@@ -1,7 +1,12 @@
+html {
+  overflow-x: hidden;
+}
+
 body {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100dvh;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -11,6 +16,8 @@ body {
 main {
   padding-left: 12px;
   padding-right: 12px;
+  max-width: 100%;
+  overflow-x: hidden;
 
   @media (min-width: 1024px) {
     padding-left: 0px;
