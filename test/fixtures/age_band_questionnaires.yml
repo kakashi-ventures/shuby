@@ -1,0 +1,61 @@
+# frozen_string_literal: true
+
+generale_0_3:
+  development_area: generale
+  min_age_months: 0
+  max_age_months: 3
+  position: 0
+
+generale_3_6:
+  development_area: generale
+  min_age_months: 3
+  max_age_months: 6
+  position: 1
+
+comunicazione_0_3:
+  development_area: comunicazione
+  min_age_months: 0
+  max_age_months: 3
+  position: 0
+
+comunicazione_3_6:
+  development_area: comunicazione
+  min_age_months: 3
+  max_age_months: 6
+  position: 1
+
+motricita_0_3:
+  development_area: motricita
+  min_age_months: 0
+  max_age_months: 3
+  position: 0
+
+motricita_3_6:
+  development_area: motricita
+  min_age_months: 3
+  max_age_months: 6
+  position: 1
+
+cognizione_0_3:
+  development_area: cognizione
+  min_age_months: 0
+  max_age_months: 3
+  position: 0
+
+cognizione_3_6:
+  development_area: cognizione
+  min_age_months: 3
+  max_age_months: 6
+  position: 1
+
+relazione_0_3:
+  development_area: relazione
+  min_age_months: 0
+  max_age_months: 3
+  position: 0
+
+relazione_3_6:
+  development_area: relazione
+  min_age_months: 3
+  max_age_months: 6
+  position: 1

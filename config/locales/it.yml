@@ -1,0 +1,132 @@
+it:
+  shuby_chats:
+    destroy:
+      destroyed: "Conversazione eliminata."
+    message:
+      blank_message: "Il messaggio non può essere vuoto"
+    not_found: "Conversazione non trovata"
+    processing_error: "Si è verificato un errore durante l'elaborazione."
+
+  children:
+    index:
+      title: "Bambini"
+      subtitle: "Gestisci i profili dei tuoi bambini"
+      add_child: "Aggiungi Bambino"
+      empty:
+        title: "Nessun bambino ancora"
+        description: "Aggiungi il tuo primo bambino per iniziare"
+    show:
+      edit: "Modifica"
+      details: "Dettagli"
+    new:
+      title: "Aggiungi Bambino"
+    edit:
+      title: "Modifica %{name}"
+    create:
+      created: "Bambino aggiunto con successo."
+    update:
+      updated: "Bambino aggiornato con successo."
+    destroy:
+      destroyed: "Bambino rimosso."
+    form:
+      name: "Nome"
+      name_placeholder: "Inserisci il nome del bambino"
+      birth_date: "Data di Nascita"
+      sex: "Sesso"
+      premature_section: "Informazioni Prematurità"
+      optional: "Opzionale"
+      gestational_weeks: "Settimane"
+      gestational_days: "Giorni"
+      gestational_age: "Età Gestazionale"
+      gestational_help: "Inserisci l'età gestazionale alla nascita se il bambino è nato prematuro"
+      notes: "Note"
+      notes_placeholder: "Note aggiuntive..."
+    sex:
+      unspecified: "Non specificato"
+      male: "Maschio"
+      female: "Femmina"
+    age:
+      weeks:
+        one: "%{count} settimana"
+        other: "%{count} settimane"
+      months:
+        one: "%{count} mese"
+        other: "%{count} mesi"
+      years:
+        one: "%{count} anno"
+        other: "%{count} anni"
+      years_and_months: "%{years} anni e %{months} mesi"
+    gestational_age:
+      weeks_and_days: "%{weeks} settimane e %{days} giorni"
+
+  development_stages:
+    title: "Tappe di Sviluppo"
+    subtitle: "Monitora le tappe di sviluppo del tuo bambino"
+
+    dashboard:
+      title: "Tappe di Sviluppo"
+      subtitle: "Inizia a monitorare lo sviluppo"
+      completed: "completato"
+      continue: "Continua"
+
+    index:
+      title: "Tappe di Sviluppo - %{name}"
+      title_short: "Tappe di Sviluppo"
+      current_band: "Fascia d'età: %{band}"
+      completed: "Completato"
+      in_progress: "In corso"
+      not_started: "Da iniziare"
+
+    show:
+      title: "Area di Sviluppo"
+      no_questionnaire: "Nessun questionario disponibile per questa fascia d'età"
+      start_questionnaire: "Inizia Questionario"
+      restart_questionnaire: "Ripeti Questionario"
+      continue_questionnaire: "Continua"
+      in_progress: "Questionario in corso"
+      questions_answered: "domande risposte"
+      completed_status: "Questionario completato"
+      completed_on: "Completato il %{date}"
+      view_results: "Vedi Risultati"
+      history_title: "Storico"
+      no_history: "Nessun questionario completato"
+      "yes": "Sì"
+      "no": "No"
+      unknown: "Non so"
+      attention: "Attenzione"
+
+  questionnaire_sessions:
+    continue:
+      title: "Questionario"
+      answer_yes: "Sì"
+      answer_no: "No"
+      answer_unknown: "Non lo so"
+      save_and_exit: "Salva e esci"
+
+    answer:
+      completed: "Questionario completato!"
+      error: "Si è verificato un errore"
+
+    complete:
+      completed: "Questionario completato!"
+
+    show:
+      title: "Risultati"
+      results_title: "Risultati del Questionario"
+      "yes": "Sì"
+      "no": "No"
+      unknown: "Non so"
+      completed_on: "Completato il %{date}"
+      responses_title: "Le tue risposte"
+      answer_si: "Sì"
+      answer_no: "No"
+      answer_non_lo_so: "Non so"
+
+      attention_title: "Suggerimenti"
+      attention_message: "Abbiamo notato alcune risposte che potrebbero indicare aree su cui concentrarsi. Ricorda che ogni bambino si sviluppa con i propri tempi!"
+      suggestion_shuby: "Chiedi a Shuby AI"
+      suggestion_pediatrician: "In caso di dubbi, consulta il pediatra"
+
+  date:
+    formats:
+      long: "%d %B %Y"

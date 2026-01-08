@@ -198,6 +198,14 @@ en:
     show:
       title: "Dashboard"
 
+  shuby_chats:
+    destroy:
+      destroyed: "Conversation deleted."
+    message:
+      blank_message: "Message cannot be empty"
+    not_found: "Conversation not found"
+    processing_error: "An error occurred during processing."
+
   oauth:
     sign_in_with: "Sign in with %{provider}"
     apple: "Apple"
@@ -556,6 +564,14 @@ en:
           attributes:
             admin:
               cannot_be_removed: "role cannot be removed for the account owner"
+        child:
+          attributes:
+            birth_date:
+              in_future: "can't be in the future"
+            gestational_weeks:
+              invalid: "must be between 22 and 42"
+            gestational_days:
+              invalid: "must be between 0 and 6"
 
   errors:
     messages:
@@ -587,3 +603,123 @@ en:
         name: "Steve Jobs"
         email: "you@example.com"
         password: "password"
+
+  children:
+    index:
+      title: "Children"
+      subtitle: "Manage your children's profiles"
+      add_child: "Add Child"
+      empty:
+        title: "No children yet"
+        description: "Add your first child to get started"
+    show:
+      edit: "Edit"
+      details: "Details"
+    new:
+      title: "Add Child"
+    edit:
+      title: "Edit %{name}"
+    create:
+      created: "Child was successfully added."
+    update:
+      updated: "Child was successfully updated."
+    destroy:
+      destroyed: "Child was removed."
+    form:
+      name: "Name"
+      name_placeholder: "Enter child's name"
+      birth_date: "Birth Date"
+      sex: "Sex"
+      premature_section: "Prematurity Information"
+      optional: "Optional"
+      gestational_weeks: "Weeks"
+      gestational_days: "Days"
+      gestational_age: "Gestational Age"
+      gestational_help: "Enter gestational age at birth if the child was born premature"
+      notes: "Notes"
+      notes_placeholder: "Any additional notes..."
+    sex:
+      unspecified: "Not specified"
+      male: "Male"
+      female: "Female"
+    age:
+      weeks:
+        one: "%{count} week"
+        other: "%{count} weeks"
+      months:
+        one: "%{count} month"
+        other: "%{count} months"
+      years:
+        one: "%{count} year"
+        other: "%{count} years"
+      years_and_months: "%{years} years, %{months} months"
+    gestational_age:
+      weeks_and_days: "%{weeks} weeks, %{days} days"
+
+  development_stages:
+    title: "Development Stages"
+    subtitle: "Track your child's developmental milestones"
+
+    dashboard:
+      title: "Development Stages"
+      subtitle: "Start tracking development"
+      completed: "completed"
+      continue: "Continue"
+
+    index:
+      title: "Development Stages - %{name}"
+      title_short: "Development Stages"
+      current_band: "Age band: %{band}"
+      completed: "Completed"
+      in_progress: "In progress"
+      not_started: "Not started"
+
+    show:
+      title: "Development Area"
+      no_questionnaire: "No questionnaire available for this age band"
+      start_questionnaire: "Start Questionnaire"
+      restart_questionnaire: "Restart Questionnaire"
+      continue_questionnaire: "Continue"
+      in_progress: "Questionnaire in progress"
+      questions_answered: "questions answered"
+      completed_status: "Questionnaire completed"
+      completed_on: "Completed on %{date}"
+      view_results: "View Results"
+      history_title: "History"
+      no_history: "No completed questionnaires"
+      "yes": "Yes"
+      "no": "No"
+      unknown: "Unknown"
+      attention: "Attention"
+
+  questionnaire_sessions:
+    continue:
+      title: "Questionnaire"
+      answer_yes: "Yes"
+      answer_no: "No"
+      answer_unknown: "I don't know"
+      save_and_exit: "Save and exit"
+
+    answer:
+      completed: "Questionnaire completed!"
+      error: "An error occurred"
+
+    complete:
+      completed: "Questionnaire completed!"
+
+    show:
+      title: "Results"
+      results_title: "Questionnaire Results"
+      "yes": "Yes"
+      "no": "No"
+      unknown: "Unknown"
+      completed_on: "Completed on %{date}"
+      responses_title: "Your responses"
+      answer_si: "Yes"
+      answer_no: "No"
+      answer_non_lo_so: "Unknown"
+
+      attention_title: "Suggestions"
+      attention_message: "We noticed some responses that may indicate areas to focus on. Remember that every child develops at their own pace!"
+      suggestion_shuby: "Ask Shuby AI"
+      suggestion_pediatrician: "If in doubt, consult your pediatrician"

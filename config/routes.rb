@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   draw :accounts
   draw :api
   draw :billing
+  draw :children
+  draw :development_stages
   draw :hotwire_native
   draw :shuby
   draw :users

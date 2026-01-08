@@ -1,0 +1,47 @@
+<%= form_with(model: child, class: "space-y-6") do |form| %>
+  <%= render "error_messages", resource: form.object %>
+
+  <div>
+    <%= form.label :name, t("children.form.name"), class: "block shuby-caption mb-2" %>
+    <%= form.text_field :name, placeholder: t("children.form.name_placeholder"), autofocus: true, required: true, class: "shuby-input w-full" %>
+  </div>
+
+  <div>
+    <%= form.label :birth_date, t("children.form.birth_date"), class: "block shuby-caption mb-2" %>
+    <%= form.date_field :birth_date, required: true, max: Date.current, class: "shuby-input w-full" %>
+  </div>
+
+  <div>
+    <%= form.label :sex, t("children.form.sex"), class: "block shuby-caption mb-2" %>
+    <%= form.select :sex, Child.sexes.keys.map { |s| [t("children.sex.#{s}"), s] }, {}, class: "shuby-input w-full" %>
+  </div>
+
+  <div class="border-t border-gray-200 pt-6">
+    <div class="flex items-center justify-between mb-4">
+      <span class="shuby-caption"><%= t("children.form.premature_section") %></span>
+      <span class="shuby-caption text-gray-400"><%= t("children.form.optional") %></span>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <%= form.label :gestational_weeks, t("children.form.gestational_weeks"), class: "block shuby-caption mb-2" %>
+        <%= form.number_field :gestational_weeks, min: 22, max: 42, placeholder: "37", class: "shuby-input w-full" %>
+      </div>
+
+      <div>
+        <%= form.label :gestational_days, t("children.form.gestational_days"), class: "block shuby-caption mb-2" %>
+        <%= form.number_field :gestational_days, min: 0, max: 6, placeholder: "0", class: "shuby-input w-full" %>
+      </div>
+    </div>
+    <p class="shuby-caption text-gray-400 mt-2"><%= t("children.form.gestational_help") %></p>
+  </div>
+
+  <div>
+    <%= form.label :notes, t("children.form.notes"), class: "block shuby-caption mb-2" %>
+    <%= form.text_area :notes, rows: 3, placeholder: t("children.form.notes_placeholder"), class: "shuby-input w-full" %>
+  </div>
+
+  <div class="pt-4">
+    <%= form.submit class: "shuby-btn shuby-btn-md shuby-btn-primary w-full" %>
+  </div>
+<% end %>

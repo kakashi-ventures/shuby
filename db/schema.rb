@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_27_113000) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_07_142652) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -96,6 +96,20 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_27_113000) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "age_band_questionnaires", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.bigint "development_area_id", null: false
+    t.integer "max_age_months", null: false
+    t.integer "min_age_months", null: false
+    t.integer "position", default: 0, null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.index ["development_area_id", "min_age_months"], name: "idx_questionnaires_area_age", unique: true
+    t.index ["development_area_id"], name: "index_age_band_questionnaires_on_development_area_id"
+    t.index ["min_age_months", "max_age_months"], name: "idx_on_min_age_months_max_age_months_817a34338d"
+  end
+
   create_table "announcements", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "kind"
@@ -118,6 +132,21 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_27_113000) do
     t.index ["user_id"], name: "index_api_tokens_on_user_id"
   end
 
+  create_table "children", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.boolean "active", default: true
+    t.date "birth_date", null: false
+    t.datetime "created_at", null: false
+    t.integer "gestational_days"
+    t.integer "gestational_weeks"
+    t.string "name", null: false
+    t.text "notes"
+    t.integer "sex", default: 0
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "active"], name: "index_children_on_account_id_and_active"
+    t.index ["account_id"], name: "index_children_on_account_id"
+  end
+
   create_table "connected_accounts", force: :cascade do |t|
     t.string "access_token"
     t.string "access_token_secret"
@@ -131,6 +160,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_27_113000) do
     t.string "uid"
     t.datetime "updated_at", precision: nil, null: false
     t.index ["owner_id", "owner_type"], name: "index_connected_accounts_on_owner_id_and_owner_type"
+  end
+
+  create_table "development_areas", force: :cascade do |t|
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.string "icon"
+    t.string "name", null: false
+    t.integer "position", default: 0, null: false
+    t.string "slug", null: false
+    t.datetime "updated_at", null: false
+    t.index ["position"], name: "index_development_areas_on_position"
+    t.index ["slug"], name: "index_development_areas_on_slug", unique: true
   end
 
   create_table "inbound_webhooks", force: :cascade do |t|
@@ -312,6 +353,46 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_27_113000) do
     t.datetime "updated_at", precision: nil, null: false
   end
 
+  create_table "question_responses", force: :cascade do |t|
+    t.integer "answer", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.text "notes"
+    t.bigint "question_id", null: false
+    t.bigint "questionnaire_session_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_question_responses_on_question_id"
+    t.index ["questionnaire_session_id", "question_id"], name: "idx_responses_session_question", unique: true
+    t.index ["questionnaire_session_id"], name: "index_question_responses_on_questionnaire_session_id"
+  end
+
+  create_table "questionnaire_sessions", force: :cascade do |t|
+    t.bigint "age_band_questionnaire_id", null: false
+    t.integer "child_age_months"
+    t.bigint "child_id", null: false
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.text "notes"
+    t.datetime "started_at"
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["age_band_questionnaire_id"], name: "index_questionnaire_sessions_on_age_band_questionnaire_id"
+    t.index ["child_id", "age_band_questionnaire_id", "created_at"], name: "idx_sessions_child_questionnaire_time"
+    t.index ["child_id", "status"], name: "index_questionnaire_sessions_on_child_id_and_status"
+    t.index ["child_id"], name: "index_questionnaire_sessions_on_child_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.boolean "active", default: true
+    t.bigint "age_band_questionnaire_id", null: false
+    t.datetime "created_at", null: false
+    t.text "help_text"
+    t.integer "position", default: 0, null: false
+    t.text "prompt", null: false
+    t.datetime "updated_at", null: false
+    t.index ["age_band_questionnaire_id", "position"], name: "index_questions_on_age_band_questionnaire_id_and_position"
+    t.index ["age_band_questionnaire_id"], name: "index_questions_on_age_band_questionnaire_id"
+  end
+
   create_table "shuby_chats", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "model", default: "gpt-4o-mini", null: false
@@ -398,10 +479,17 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_27_113000) do
   add_foreign_key "account_users", "users"
   add_foreign_key "accounts", "users", column: "owner_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "age_band_questionnaires", "development_areas"
   add_foreign_key "api_tokens", "users"
+  add_foreign_key "children", "accounts"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
+  add_foreign_key "question_responses", "questionnaire_sessions"
+  add_foreign_key "question_responses", "questions"
+  add_foreign_key "questionnaire_sessions", "age_band_questionnaires"
+  add_foreign_key "questionnaire_sessions", "children"
+  add_foreign_key "questions", "age_band_questionnaires"
   add_foreign_key "shuby_chats", "users"
   add_foreign_key "shuby_messages", "shuby_chats"
   add_foreign_key "shuby_messages", "shuby_tool_calls"

@@ -1,0 +1,64 @@
+# frozen_string_literal: true
+
+class ChildrenController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_child, only: [:show, :edit, :update, :destroy]
+
+  # GET /children
+  def index
+    @children = policy_scope(Child).active.ordered
+    authorize Child
+  end
+
+  # GET /children/:id
+  def show
+  end
+
+  # GET /children/new
+  def new
+    @child = Child.new
+    authorize @child
+  end
+
+  # GET /children/:id/edit
+  def edit
+  end
+
+  # POST /children
+  def create
+    @child = current_account.children.new(child_params)
+    authorize @child
+
+    if @child.save
+      redirect_to @child, notice: t(".created")
+    else
+      render :new, status: :unprocessable_content
+    end
+  end
+
+  # PATCH/PUT /children/:id
+  def update
+    if @child.update(child_params)
+      redirect_to @child, notice: t(".updated")
+    else
+      render :edit, status: :unprocessable_content
+    end
+  end
+
+  # DELETE /children/:id
+  def destroy
+    @child.update!(active: false)
+    redirect_to children_url, status: :see_other, notice: t(".destroyed")
+  end
+
+  private
+
+  def set_child
+    @child = policy_scope(Child).find(params[:id])
+    authorize @child
+  end
+
+  def child_params
+    params.expect(child: [:name, :birth_date, :sex, :gestational_weeks, :gestational_days, :notes])
+  end
+end

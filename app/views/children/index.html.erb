@@ -1,0 +1,52 @@
+<% content_for :title, t(".title") %>
+
+<div class="container px-4 mx-auto my-8 pb-24">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="shuby-h2"><%= t(".title") %></h1>
+      <p class="shuby-p2"><%= t(".subtitle") %></p>
+    </div>
+    <%= link_to new_child_path, class: "shuby-btn shuby-btn-md shuby-btn-primary" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2">
+        <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+      </svg>
+      <%= t(".add_child") %>
+    <% end %>
+  </div>
+
+  <% if @children.any? %>
+    <div class="space-y-3">
+      <% @children.each do |child| %>
+        <%= link_to child_path(child), class: "block shuby-card hover:shadow-md transition-shadow" do %>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
+                <span class="text-xl"><%= child.name.first.upcase %></span>
+              </div>
+              <div>
+                <h3 class="shuby-h3"><%= child.name %></h3>
+                <p class="shuby-caption"><%= child.age_display %></p>
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-gray-400">
+              <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+            </svg>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-center py-12 shuby-card">
+      <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-primary-50 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-12 h-12 text-primary-400">
+          <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <h3 class="shuby-h3 mt-4"><%= t(".empty.title") %></h3>
+      <p class="shuby-p2 mt-2"><%= t(".empty.description") %></p>
+      <%= link_to new_child_path, class: "shuby-btn shuby-btn-md shuby-btn-primary mt-4" do %>
+        <%= t(".add_child") %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

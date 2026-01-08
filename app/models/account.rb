@@ -5,4 +5,6 @@ class Account < ApplicationRecord
   include Domains
   include Transfer
   include Types
+
+  has_many :children, dependent: :destroy
 end

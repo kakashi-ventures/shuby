@@ -1,0 +1,31 @@
+# frozen_string_literal: true
+
+generale:
+  name: "Generale"
+  slug: "generale"
+  color: "#6366F1"
+  position: 1
+
+comunicazione:
+  name: "Comunicazione e Linguaggio"
+  slug: "comunicazione-linguaggio"
+  color: "#EC4899"
+  position: 2
+
+motricita:
+  name: "Motricità"
+  slug: "motricita"
+  color: "#10B981"
+  position: 3
+
+cognizione:
+  name: "Cognizione e Attenzione"
+  slug: "cognizione-attenzione"
+  color: "#F59E0B"
+  position: 4
+
+relazione:
+  name: "Relazione e Regolazione"
+  slug: "relazione-regolazione"
+  color: "#3B82F6"
+  position: 5

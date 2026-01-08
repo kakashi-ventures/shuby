@@ -1,0 +1,103 @@
+# frozen_string_literal: true
+
+# Generale 0-3m questions
+generale_q1:
+  age_band_questionnaire: generale_0_3
+  prompt: "Il bambino reagisce a stimoli visivi e sonori?"
+  position: 0
+  active: true
+
+generale_q2:
+  age_band_questionnaire: generale_0_3
+  prompt: "Il bambino mostra interesse per l'ambiente circostante?"
+  position: 1
+  active: true
+
+generale_q3:
+  age_band_questionnaire: generale_0_3
+  prompt: "Il bambino ha periodi di veglia tranquilla durante il giorno?"
+  position: 2
+  active: true
+
+# Comunicazione 0-3m questions
+comunicazione_q1:
+  age_band_questionnaire: comunicazione_0_3
+  prompt: "Il bambino emette suoni vocalici (oo, aa)?"
+  position: 0
+  active: true
+
+comunicazione_q2:
+  age_band_questionnaire: comunicazione_0_3
+  prompt: "Il bambino si gira verso la voce dei genitori?"
+  position: 1
+  active: true
+
+comunicazione_q3:
+  age_band_questionnaire: comunicazione_0_3
+  prompt: "Il bambino piange in modo differenziato per esprimere bisogni diversi?"
+  position: 2
+  active: true
+
+# Motricità 0-3m questions
+motricita_q1:
+  age_band_questionnaire: motricita_0_3
+  prompt: "Il bambino tiene la testa sollevata quando è a pancia in giù?"
+  position: 0
+  active: true
+
+motricita_q2:
+  age_band_questionnaire: motricita_0_3
+  prompt: "Il bambino muove braccia e gambe in modo simmetrico?"
+  position: 1
+  active: true
+
+motricita_q3:
+  age_band_questionnaire: motricita_0_3
+  prompt: "Il bambino afferra oggetti messi nella sua mano (riflesso di prensione)?"
+  position: 2
+  active: true
+
+# Cognizione 0-3m questions
+cognizione_q1:
+  age_band_questionnaire: cognizione_0_3
+  prompt: "Il bambino segue oggetti con lo sguardo?"
+  position: 0
+  active: true
+
+cognizione_q2:
+  age_band_questionnaire: cognizione_0_3
+  prompt: "Il bambino mostra interesse per volti e oggetti?"
+  position: 1
+  active: true
+
+cognizione_q3:
+  age_band_questionnaire: cognizione_0_3
+  prompt: "Il bambino reagisce a suoni improvvisi?"
+  position: 2
+  active: true
+
+# Relazione 0-3m questions
+relazione_q1:
+  age_band_questionnaire: relazione_0_3
+  prompt: "Il bambino riconosce il volto dei genitori?"
+  position: 0
+  active: true
+
+relazione_q2:
+  age_band_questionnaire: relazione_0_3
+  prompt: "Il bambino si calma quando viene preso in braccio?"
+  position: 1
+  active: true
+
+relazione_q3:
+  age_band_questionnaire: relazione_0_3
+  prompt: "Il bambino mostra il sorriso sociale?"
+  position: 2
+  active: true
+
+# Inactive question for testing
+inactive_question:
+  age_band_questionnaire: generale_0_3
+  prompt: "Domanda inattiva per test"
+  position: 99
+  active: false

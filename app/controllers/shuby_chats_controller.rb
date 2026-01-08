@@ -40,7 +40,7 @@ class ShubyChatsController < ApplicationController
     @shuby_chat.destroy
 
     respond_to do |format|
-      format.html { redirect_to shuby_chats_path, notice: "Conversazione eliminata.", status: :see_other }
+      format.html { redirect_to shuby_chats_path, notice: t(".destroyed"), status: :see_other }
       format.turbo_stream { redirect_to shuby_chats_path, status: :see_other }
     end
   end
@@ -56,10 +56,10 @@ class ShubyChatsController < ApplicationController
           render turbo_stream: turbo_stream.replace(
             "message_form",
             partial: "shuby_chats/message_form",
-            locals: {shuby_chat: @shuby_chat, error: "Il messaggio non può essere vuoto"}
+            locals: {shuby_chat: @shuby_chat, error: t(".blank_message")}
           )
         end
-        format.html { redirect_to shuby_chat_path(@shuby_chat), alert: "Il messaggio non può essere vuoto" }
+        format.html { redirect_to shuby_chat_path(@shuby_chat), alert: t(".blank_message") }
       end
       return
     end
@@ -104,7 +104,7 @@ class ShubyChatsController < ApplicationController
   def set_shuby_chat
     @shuby_chat = current_user.shuby_chats.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to shuby_chats_path, alert: "Conversazione non trovata"
+    redirect_to shuby_chats_path, alert: t("shuby_chats.not_found")
   end
 
   # Streams the AI response via Turbo Streams
@@ -134,7 +134,7 @@ class ShubyChatsController < ApplicationController
     rescue => e
       Rails.logger.error("Shuby streaming error: #{e.message}")
       Rails.logger.error(e.backtrace.join("\n"))
-      broadcast_error(streaming_message_id, "Si è verificato un errore durante l'elaborazione.")
+      broadcast_error(streaming_message_id, I18n.t("shuby_chats.processing_error"))
     ensure
       ActiveRecord::Base.connection_pool.release_connection
     end

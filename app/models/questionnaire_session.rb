@@ -1,0 +1,87 @@
+# frozen_string_literal: true
+
+class QuestionnaireSession < ApplicationRecord
+  belongs_to :child
+  belongs_to :age_band_questionnaire
+  has_many :question_responses, dependent: :destroy
+
+  enum :status, {not_started: 0, in_progress: 1, completed: 2}
+
+  validates :status, presence: true
+
+  scope :recent_first, -> { order(created_at: :desc) }
+  scope :for_area, ->(area) { joins(:age_band_questionnaire).where(age_band_questionnaires: {development_area_id: area.id}) }
+
+  before_create :snapshot_child_age
+
+  # Progress tracking
+  def questions_count
+    age_band_questionnaire.questions.active.count
+  end
+  alias_method :total_questions, :questions_count
+
+  def answered_count
+    question_responses.count
+  end
+
+  def progress_fraction
+    "#{answered_count}/#{questions_count}"
+  end
+
+  def progress_percentage
+    return 0 if questions_count.zero?
+    ((answered_count.to_f / questions_count) * 100).round
+  end
+
+  # Response analysis
+  def yes_count
+    question_responses.where(answer: :si).count
+  end
+
+  def no_count
+    question_responses.where(answer: :no).count
+  end
+
+  def unknown_count
+    question_responses.where(answer: :non_lo_so).count
+  end
+  alias_method :si_count, :yes_count
+  alias_method :non_lo_so_count, :unknown_count
+
+  def development_area
+    age_band_questionnaire.development_area
+  end
+
+  def mark_in_progress!
+    update!(status: :in_progress, started_at: Time.current)
+  end
+
+  def mark_completed!
+    update!(status: :completed, completed_at: Time.current)
+  end
+
+  def needs_attention?
+    # Gentle alert: multiple "No" answers (threshold: 2+ or >30%)
+    return false unless completed?
+    no_count >= 2 || (answered_count > 0 && (no_count.to_f / answered_count) > 0.3)
+  end
+
+  def response_for(question)
+    question_responses.find_by(question: question)
+  end
+
+  def next_unanswered_question
+    answered_ids = question_responses.pluck(:question_id)
+    age_band_questionnaire.questions.where.not(id: answered_ids).first
+  end
+
+  def complete!
+    update!(status: :completed, completed_at: Time.current)
+  end
+
+  private
+
+  def snapshot_child_age
+    self.child_age_months ||= child.age_in_months
+  end
+end

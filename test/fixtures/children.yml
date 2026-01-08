@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+sophia:
+  account: company
+  name: "Sophia"
+  birth_date: <%= 2.months.ago.to_date %>
+  sex: 2
+  active: true
+
+luca:
+  account: company
+  name: "Luca"
+  birth_date: <%= 18.months.ago.to_date %>
+  sex: 1
+  gestational_weeks: 34
+  gestational_days: 2
+  active: true
+
+marco_inactive:
+  account: company
+  name: "Marco"
+  birth_date: <%= 3.years.ago.to_date %>
+  sex: 1
+  active: false
