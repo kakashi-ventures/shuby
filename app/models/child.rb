@@ -3,16 +3,25 @@
 class Child < AccountRecord
   belongs_to :account
   has_many :questionnaire_sessions, dependent: :destroy
+  has_one :health_profile, class_name: "ChildHealthProfile", dependent: :destroy
+
+  accepts_nested_attributes_for :health_profile
 
   enum :sex, {unspecified: 0, male: 1, female: 2}
 
-  validates :name, presence: true
+  validates :name, presence: true, unless: -> { nickname.present? }
+  validates :nickname, presence: true, unless: -> { name.present? }
   validates :birth_date, presence: true
   validate :birth_date_not_in_future
   validate :gestational_age_validity
 
   scope :active, -> { where(active: true) }
   scope :ordered, -> { order(:name) }
+
+  # Return name or nickname for display
+  def display_name
+    name.presence || nickname
+  end
 
   # Calculate age in months (chronological only for MVP)
   def age_in_months(date = Date.current)
@@ -42,6 +51,18 @@ class Child < AccountRecord
   # Data stored, logic deferred to post-MVP
   def premature?
     gestational_weeks.present? && gestational_weeks < 37
+  end
+
+  # Calculate corrected age for premature babies
+  # Corrected age = chronological age - (40 - gestational_weeks)
+  def corrected_age_in_months(date = Date.current)
+    return age_in_months(date) unless premature? && gestational_weeks.present?
+
+    weeks_early = 40 - gestational_weeks
+    days_early = (weeks_early * 7) + (7 - (gestational_days || 0))
+    corrected_birth_date = birth_date + days_early.days
+
+    ((date - corrected_birth_date).to_i / 30.44).floor
   end
 
   # Get existing in-progress session for a questionnaire

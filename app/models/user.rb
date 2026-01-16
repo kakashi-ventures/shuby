@@ -6,6 +6,7 @@ class User < ApplicationRecord
   include User::Authenticatable
   include User::Mentions
   include User::Notifiable
+  include User::Onboarding
   include User::Searchable
   include User::Theme
 

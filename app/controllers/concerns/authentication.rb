@@ -38,6 +38,12 @@ module Authentication
 
   def after_sign_in_path_for(resource_or_scope)
     return "/reset_app" if hotwire_native_app?
+
+    # Redirect to onboarding if not completed
+    if resource_or_scope.is_a?(User) && !resource_or_scope.onboarding_completed?
+      return onboarding_family_profile_path
+    end
+
     stored_location_for(resource_or_scope) || super
   end
 

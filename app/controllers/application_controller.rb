@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   include Authentication
   include Authorization
   include DeviceFormat
+  include OnboardingRequired
   include Pagination
   include SetCurrentRequestDetails
   include SetLocale

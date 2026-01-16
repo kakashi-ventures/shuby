@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_16_090808) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_16_131329) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -150,6 +150,32 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_16_090808) do
     t.index ["month", "position"], name: "index_campanelli_allarme_on_month_and_position"
   end
 
+  create_table "child_health_profiles", force: :cascade do |t|
+    t.decimal "average_sleep_hours", precision: 4, scale: 1
+    t.jsonb "birth_complications", default: []
+    t.integer "birth_weight_grams"
+    t.integer "birth_weight_under_1500"
+    t.bigint "child_id", null: false
+    t.date "complementary_feeding_start_date"
+    t.datetime "created_at", null: false
+    t.integer "current_feeding_type"
+    t.text "feeding_difficulties"
+    t.integer "floor_play_minutes_per_day"
+    t.integer "gestational_age_category"
+    t.integer "hearing_screening_result"
+    t.integer "hospitalized_after_birth"
+    t.boolean "is_multiple_birth", default: false
+    t.text "main_foods_introduced"
+    t.integer "pregnancy_type"
+    t.integer "required_oxygen_ventilation"
+    t.jsonb "scheduled_followups", default: []
+    t.jsonb "sleep_quality_issues", default: []
+    t.boolean "started_complementary_feeding", default: false
+    t.datetime "updated_at", null: false
+    t.integer "vision_screening_result"
+    t.index ["child_id"], name: "index_child_health_profiles_on_child_id", unique: true
+  end
+
   create_table "children", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.boolean "active", default: true
@@ -157,7 +183,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_16_090808) do
     t.datetime "created_at", null: false
     t.integer "gestational_days"
     t.integer "gestational_weeks"
-    t.string "name", null: false
+    t.string "name"
+    t.string "nickname"
     t.text "notes"
     t.integer "sex", default: 0
     t.datetime "updated_at", null: false
@@ -190,6 +217,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_16_090808) do
     t.datetime "updated_at", null: false
     t.index ["position"], name: "index_development_areas_on_position"
     t.index ["slug"], name: "index_development_areas_on_slug", unique: true
+  end
+
+  create_table "family_profiles", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.integer "family_structure", default: 0
+    t.boolean "has_hereditary_conditions"
+    t.jsonb "hereditary_conditions", default: []
+    t.integer "languages_spoken_at_home", default: 1
+    t.string "mother_tongue"
+    t.string "nationality"
+    t.integer "number_of_children", default: 1
+    t.jsonb "primary_caregivers", default: []
+    t.integer "two_parents_type"
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_family_profiles_on_account_id", unique: true
   end
 
   create_table "inbound_webhooks", force: :cascade do |t|
@@ -472,6 +516,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_16_090808) do
     t.string "last_name"
     t.integer "last_otp_timestep"
     t.virtual "name", type: :string, as: "(((first_name)::text || ' '::text) || (COALESCE(last_name, ''::character varying))::text)", stored: true
+    t.datetime "onboarding_completed_at"
+    t.integer "onboarding_step", default: 0
     t.text "otp_backup_codes"
     t.boolean "otp_required_for_login"
     t.string "otp_secret"
@@ -488,6 +534,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_16_090808) do
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
+    t.index ["onboarding_completed_at"], name: "index_users_on_onboarding_completed_at"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -499,7 +546,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_16_090808) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "age_band_questionnaires", "development_areas"
   add_foreign_key "api_tokens", "users"
+  add_foreign_key "child_health_profiles", "children"
   add_foreign_key "children", "accounts"
+  add_foreign_key "family_profiles", "accounts"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"

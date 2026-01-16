@@ -7,6 +7,8 @@ one:
   accepted_privacy_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
+  onboarding_completed_at: <%= Time.current %>
+  onboarding_step: 3
 
 two:
   email: two@example.com
@@ -17,6 +19,8 @@ two:
   accepted_privacy_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
+  onboarding_completed_at: <%= Time.current %>
+  onboarding_step: 3
 
 admin:
   email: admin@example.com
@@ -28,6 +32,8 @@ admin:
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
   admin: true
+  onboarding_completed_at: <%= Time.current %>
+  onboarding_step: 3
 
 invited:
   email: invited@example.com
@@ -38,6 +44,8 @@ invited:
   accepted_privacy_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
+  onboarding_completed_at: <%= Time.current %>
+  onboarding_step: 3
 
 noaccount:
   email: noaccount@example.com
@@ -48,6 +56,8 @@ noaccount:
   accepted_privacy_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
+  onboarding_completed_at: <%= Time.current %>
+  onboarding_step: 3
 
 twofactor:
   email: twofactor@example.com
@@ -66,6 +76,8 @@ twofactor:
     - "0000000003"
     - "0000000004"
     - "0000000005"
+  onboarding_completed_at: <%= Time.current %>
+  onboarding_step: 3
 
 user_without_billing_address:
   email: noaddress@example.com
@@ -76,6 +88,8 @@ user_without_billing_address:
   accepted_privacy_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
+  onboarding_completed_at: <%= Time.current %>
+  onboarding_step: 3
 
 fake_processor:
   email: fake@example.com
@@ -86,6 +100,8 @@ fake_processor:
   accepted_privacy_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
+  onboarding_completed_at: <%= Time.current %>
+  onboarding_step: 3
 
 subscribed:
   email: subscribed@example.com
@@ -96,3 +112,5 @@ subscribed:
   accepted_privacy_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
+  onboarding_completed_at: <%= Time.current %>
+  onboarding_step: 3

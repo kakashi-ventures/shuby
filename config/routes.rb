@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   draw :children
   draw :development_stages
   draw :hotwire_native
+  draw :onboarding
   draw :shuby
   draw :users
   draw :dev if Rails.env.local?

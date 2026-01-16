@@ -1,0 +1,212 @@
+it:
+  onboarding:
+    required: "Completa la configurazione del profilo per continuare."
+
+    progress:
+      step: "Passo %{current} di %{total}"
+      family_profile: "Famiglia"
+      children: "Bambini"
+      health_history: "Salute"
+      complete: "Fine"
+
+    family_profile:
+      title: "Profilo della Famiglia"
+      subtitle: "Raccontaci della tua famiglia per personalizzare la tua esperienza su Shuby"
+
+      country: "Paese di residenza"
+      nationality: "Nazionalità"
+      mother_tongue: "Lingua madre"
+
+      family_structure:
+        label: "Struttura familiare"
+        single_parent: "Monogenitoriale"
+        two_parents: "Due genitori"
+        foster: "Famiglia affidataria"
+        adoptive: "Famiglia adottiva"
+        other: "Altro"
+
+      two_parents_type:
+        label: "Tipo di coppia"
+        unspecified: "Non specificato"
+        male_male: "Due padri"
+        female_female: "Due madri"
+        prefer_not_to_say: "Preferisco non rispondere"
+
+      number_of_children: "Numero di bambini"
+      languages_spoken_at_home: "Lingue parlate in casa"
+      languages_help: "Perché lo chiediamo: la comunicazione cresce grazie alle interazioni; parlare più lingue non rallenta, ma cambia alcune tappe."
+
+      continue: "Continua"
+
+    children:
+      title: "I tuoi bambini"
+      subtitle: "Inserisci le informazioni per ogni bambino"
+      child_number: "Bambino %{number}"
+
+      basic_info:
+        title: "Informazioni base"
+        name: "Nome"
+        name_placeholder: "Nome del bambino"
+        nickname: "Soprannome"
+        birth_date: "Data di nascita"
+        is_multiple_birth: "È un parto gemellare/multiplo?"
+        sex:
+          label: "Sesso alla nascita"
+          unspecified: "Preferisco non rispondere"
+          male: "Maschio"
+          female: "Femmina"
+
+      birth_details:
+        title: "Dettagli nascita"
+        gestational_age:
+          label: "Età gestazionale alla nascita"
+          very_preterm: "< 28 settimane"
+          moderate_preterm: "28-31+6 settimane"
+          late_preterm_early: "32-34+6 settimane"
+          late_preterm_late: "35-36+6 settimane"
+          full_term: "≥ 37 settimane (a termine)"
+
+        birth_weight: "Peso alla nascita (grammi)"
+        birth_weight_placeholder: "Es: 3200"
+
+        pregnancy_type:
+          label: "Tipo di gravidanza"
+          natural: "Naturale"
+          ivf_homologous: "PMA omologa"
+          ivf_donor_egg: "PMA con donazione ovociti"
+          ivf_donor_sperm: "PMA con donazione spermatozoi"
+          iui: "Inseminazione intrauterina"
+          fivet_icsi: "FIVET/ICSI"
+          pregnancy_other: "Altro"
+          pregnancy_unknown: "Non lo so"
+
+        hospitalization:
+          label: "Ricovero subito dopo la nascita?"
+          hosp_yes: "Sì"
+          hosp_no: "No"
+          hosp_unknown: "Non lo so"
+
+        complications:
+          label: "Complicazioni segnalate alla nascita"
+          respiratory_difficulties: "Difficoltà respiratorie"
+          jaundice_phototherapy: "Ittero con fototerapia (lampada)"
+          infection: "Infezione"
+          hypoglycemia: "Ipoglicemia"
+          complication_other: "Altro"
+          complication_unknown: "Non lo so"
+
+      premature_module:
+        title: "Informazioni prematurità"
+        subtitle: "Queste informazioni ci aiutano a calcolare l'età corretta e adattare i consigli"
+
+        exact_gestational_age: "Età gestazionale esatta"
+        weeks: "settimane"
+        days: "giorni"
+        corrected_age_note: "L'età corretta verrà calcolata automaticamente"
+
+        birth_weight_under_1500:
+          label: "Peso alla nascita < 1.500g?"
+          weight_yes: "Sì"
+          weight_no: "No"
+          weight_unknown: "Non lo so"
+
+        oxygen_ventilation:
+          label: "Ossigeno/ventilazione nelle prime settimane?"
+          oxygen_yes: "Sì"
+          oxygen_no: "No"
+          oxygen_unknown: "Non lo so"
+
+        scheduled_followups:
+          label: "Controlli programmati (follow-up)"
+          hearing: "Udito"
+          vision: "Vista"
+          motor: "Motricità"
+          respiratory: "Respiro"
+          followup_other: "Altro"
+
+      screening:
+        title: "Screening e salute"
+
+        hearing:
+          label: "Screening uditivo neonatale"
+          hearing_pass: "Superato (Pass)"
+          hearing_refer: "Da ripetere (Refer)"
+          hearing_not_done: "Non eseguito"
+          hearing_unknown: "Non lo so"
+
+        vision:
+          label: "Screening vista/occhi"
+          vision_done: "Eseguito"
+          vision_not_yet: "Non ancora"
+          vision_unknown: "Non lo so"
+
+      feeding:
+        title: "Alimentazione"
+
+        current_type:
+          label: "Alimentazione attuale"
+          breastfeeding: "Allattamento al seno"
+          formula: "Latte in formula"
+          mixed: "Misto"
+          feeding_other: "Altro"
+
+        complementary_feeding:
+          started: "Avete già iniziato lo svezzamento (alimentazione complementare)?"
+          start_date: "Da quando?"
+          main_foods: "Principali alimenti introdotti"
+          main_foods_placeholder: "Es: omogenizzati, creme, piccoli pezzi..."
+          difficulties: "Eventuali difficoltà"
+          difficulties_placeholder: "Es: rifiuto di certi cibi, allergie..."
+
+      sleep:
+        title: "Sonno e attività"
+
+        average_hours: "Ore di sonno medie in 24h"
+        average_hours_placeholder: "Es: 14"
+
+        quality_issues:
+          label: "Qualità del sonno"
+          snores: "Russa"
+          moves_a_lot: "Si muove molto"
+          wakes_often: "Si sveglia spesso"
+          cries: "Piange"
+          difficulty_falling_asleep: "Difficoltà ad addormentarsi"
+          difficulty_waking: "Difficoltà a svegliarsi"
+          teeth_grinding: "Digrigna i denti"
+          sleep_other: "Altro"
+
+        floor_play:
+          label: "Tempo di gioco/attività a terra al giorno"
+          minutes: "minuti"
+
+      continue: "Continua"
+      back: "Indietro"
+
+    health_history:
+      title: "Storia familiare"
+      subtitle: "Ultime domande sulla vostra famiglia"
+
+      caregivers:
+        label: "Con chi trascorre più tempo il bambino?"
+        parents: "Genitori"
+        grandparents: "Nonni"
+        educators: "Educatori/Tata"
+        other: "Altri"
+
+      hereditary_conditions:
+        has_conditions: "Nella vostra famiglia ci sono caratteristiche ereditarie note?"
+        conditions_label: "Quali condizioni?"
+        language_difficulties: "Difficoltà del linguaggio"
+        attention_hyperactivity: "Difficoltà di attenzione/iperattività"
+        behavioral_difficulties: "Difficoltà del comportamento"
+        autism_spectrum: "Disturbo dello spettro autistico"
+        other: "Altro"
+
+      continue: "Completa"
+      back: "Indietro"
+
+    complete:
+      title: "Configurazione completata!"
+      thank_you: "Grazie per aver completato il profilo della tua famiglia. Stiamo ottimizzando la vostra esperienza su Shuby."
+      transparency_note: "Nota importante: Shuby non sostituisce il pediatra. Le informazioni servono a sostenere le interazioni quotidiane e a fornire consigli sulla comunicazione, sulla relazione e sul gioco."
+      start: "Inizia ad usare Shuby"

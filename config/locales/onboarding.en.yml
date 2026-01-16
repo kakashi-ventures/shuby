@@ -1,0 +1,212 @@
+en:
+  onboarding:
+    required: "Please complete your profile setup to continue."
+
+    progress:
+      step: "Step %{current} of %{total}"
+      family_profile: "Family"
+      children: "Children"
+      health_history: "Health"
+      complete: "Done"
+
+    family_profile:
+      title: "Family Profile"
+      subtitle: "Tell us about your family to personalize your Shuby experience"
+
+      country: "Country of residence"
+      nationality: "Nationality"
+      mother_tongue: "Mother tongue"
+
+      family_structure:
+        label: "Family structure"
+        single_parent: "Single parent"
+        two_parents: "Two parents"
+        foster: "Foster family"
+        adoptive: "Adoptive family"
+        other: "Other"
+
+      two_parents_type:
+        label: "Type of couple"
+        unspecified: "Not specified"
+        male_male: "Two fathers"
+        female_female: "Two mothers"
+        prefer_not_to_say: "Prefer not to say"
+
+      number_of_children: "Number of children"
+      languages_spoken_at_home: "Languages spoken at home"
+      languages_help: "Why we ask: communication grows through interactions; speaking multiple languages doesn't slow development, but changes some milestones."
+
+      continue: "Continue"
+
+    children:
+      title: "Your children"
+      subtitle: "Enter information for each child"
+      child_number: "Child %{number}"
+
+      basic_info:
+        title: "Basic information"
+        name: "Name"
+        name_placeholder: "Child's name"
+        nickname: "Nickname"
+        birth_date: "Date of birth"
+        is_multiple_birth: "Is this a multiple birth (twins/triplets)?"
+        sex:
+          label: "Sex at birth"
+          unspecified: "Prefer not to say"
+          male: "Male"
+          female: "Female"
+
+      birth_details:
+        title: "Birth details"
+        gestational_age:
+          label: "Gestational age at birth"
+          very_preterm: "< 28 weeks"
+          moderate_preterm: "28-31+6 weeks"
+          late_preterm_early: "32-34+6 weeks"
+          late_preterm_late: "35-36+6 weeks"
+          full_term: "≥ 37 weeks (full term)"
+
+        birth_weight: "Birth weight (grams)"
+        birth_weight_placeholder: "E.g.: 3200"
+
+        pregnancy_type:
+          label: "Type of pregnancy"
+          natural: "Natural"
+          ivf_homologous: "IVF (homologous)"
+          ivf_donor_egg: "IVF (donor egg)"
+          ivf_donor_sperm: "IVF (donor sperm)"
+          iui: "Intrauterine insemination"
+          fivet_icsi: "FIVET/ICSI"
+          pregnancy_other: "Other"
+          pregnancy_unknown: "Don't know"
+
+        hospitalization:
+          label: "Hospitalization immediately after birth?"
+          hosp_yes: "Yes"
+          hosp_no: "No"
+          hosp_unknown: "Don't know"
+
+        complications:
+          label: "Complications reported at birth"
+          respiratory_difficulties: "Respiratory difficulties"
+          jaundice_phototherapy: "Jaundice with phototherapy"
+          infection: "Infection"
+          hypoglycemia: "Hypoglycemia"
+          complication_other: "Other"
+          complication_unknown: "Don't know"
+
+      premature_module:
+        title: "Premature baby information"
+        subtitle: "This information helps us calculate corrected age and adapt advice"
+
+        exact_gestational_age: "Exact gestational age"
+        weeks: "weeks"
+        days: "days"
+        corrected_age_note: "Corrected age will be calculated automatically"
+
+        birth_weight_under_1500:
+          label: "Birth weight < 1,500g?"
+          weight_yes: "Yes"
+          weight_no: "No"
+          weight_unknown: "Don't know"
+
+        oxygen_ventilation:
+          label: "Oxygen/ventilation in first weeks?"
+          oxygen_yes: "Yes"
+          oxygen_no: "No"
+          oxygen_unknown: "Don't know"
+
+        scheduled_followups:
+          label: "Scheduled follow-ups"
+          hearing: "Hearing"
+          vision: "Vision"
+          motor: "Motor"
+          respiratory: "Respiratory"
+          followup_other: "Other"
+
+      screening:
+        title: "Screening & health"
+
+        hearing:
+          label: "Newborn hearing screening"
+          hearing_pass: "Pass"
+          hearing_refer: "Refer"
+          hearing_not_done: "Not done"
+          hearing_unknown: "Don't know"
+
+        vision:
+          label: "Eye/vision screening"
+          vision_done: "Done"
+          vision_not_yet: "Not yet"
+          vision_unknown: "Don't know"
+
+      feeding:
+        title: "Feeding"
+
+        current_type:
+          label: "Current feeding"
+          breastfeeding: "Breastfeeding"
+          formula: "Formula"
+          mixed: "Mixed"
+          feeding_other: "Other"
+
+        complementary_feeding:
+          started: "Have you started complementary feeding (weaning)?"
+          start_date: "When did it start?"
+          main_foods: "Main foods introduced"
+          main_foods_placeholder: "E.g.: purees, cereals, finger foods..."
+          difficulties: "Any difficulties"
+          difficulties_placeholder: "E.g.: food rejection, allergies..."
+
+      sleep:
+        title: "Sleep & activity"
+
+        average_hours: "Average sleep in 24 hours"
+        average_hours_placeholder: "E.g.: 14"
+
+        quality_issues:
+          label: "Sleep quality"
+          snores: "Snores"
+          moves_a_lot: "Moves a lot"
+          wakes_often: "Wakes often"
+          cries: "Cries"
+          difficulty_falling_asleep: "Difficulty falling asleep"
+          difficulty_waking: "Difficulty waking"
+          teeth_grinding: "Teeth grinding"
+          sleep_other: "Other"
+
+        floor_play:
+          label: "Daily floor play/activity time"
+          minutes: "minutes"
+
+      continue: "Continue"
+      back: "Back"
+
+    health_history:
+      title: "Family history"
+      subtitle: "Final questions about your family"
+
+      caregivers:
+        label: "Who does the child spend most time with?"
+        parents: "Parents"
+        grandparents: "Grandparents"
+        educators: "Educators/Nanny"
+        other: "Other"
+
+      hereditary_conditions:
+        has_conditions: "Are there known hereditary conditions in your family?"
+        conditions_label: "Which conditions?"
+        language_difficulties: "Language difficulties"
+        attention_hyperactivity: "Attention/hyperactivity difficulties"
+        behavioral_difficulties: "Behavioral difficulties"
+        autism_spectrum: "Autism spectrum disorder"
+        other: "Other"
+
+      continue: "Complete"
+      back: "Back"
+
+    complete:
+      title: "Setup complete!"
+      thank_you: "Thank you for completing your family profile. We're optimizing your experience on Shuby."
+      transparency_note: "Important note: Shuby does not replace your pediatrician. The information provided supports daily interactions and offers advice on communication, relationships, and play."
+      start: "Start using Shuby"

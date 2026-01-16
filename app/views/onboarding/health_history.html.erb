@@ -1,0 +1,67 @@
+<div class="space-y-6">
+  <div class="text-center mb-8">
+    <h1 class="shuby-d1 text-[var(--color-shuby-blue-800)] dark:text-white mb-2">
+      <%= t("onboarding.health_history.title") %>
+    </h1>
+    <p class="shuby-body text-gray-500">
+      <%= t("onboarding.health_history.subtitle") %>
+    </p>
+  </div>
+
+  <%= form_with(model: @family_profile, url: onboarding_health_history_path, method: :patch, class: "space-y-6", data: { controller: "conditional-fields" }) do |form| %>
+    <%= render "error_messages", resource: @family_profile %>
+
+    <!-- Primary Caregivers -->
+    <div class="space-y-4">
+      <h3 class="shuby-caption font-semibold text-gray-700 dark:text-gray-300">
+        <%= t("onboarding.health_history.caregivers.label") %>
+      </h3>
+      <div class="grid grid-cols-2 gap-2">
+        <% FamilyProfile::CAREGIVER_OPTIONS.each do |caregiver| %>
+          <label class="flex items-center gap-2">
+            <%= check_box_tag "family_profile[primary_caregivers][]",
+              caregiver,
+              @family_profile.caregivers_list.include?(caregiver),
+              class: "shuby-checkbox" %>
+            <span class="shuby-caption"><%= t("onboarding.health_history.caregivers.#{caregiver}") %></span>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Hereditary Conditions -->
+    <div class="border-t border-gray-200 dark:border-gray-700 pt-6 space-y-4">
+      <div class="flex items-center gap-4">
+        <%= form.check_box :has_hereditary_conditions,
+          class: "shuby-checkbox",
+          data: {
+            conditional_fields_target: "hereditaryTrigger",
+            action: "change->conditional-fields#toggleHereditary"
+          } %>
+        <%= form.label :has_hereditary_conditions, t("onboarding.health_history.hereditary_conditions.has_conditions"), class: "shuby-caption" %>
+      </div>
+
+      <div data-conditional-fields-target="hereditaryDetails" class="<%= 'hidden' unless @family_profile.has_hereditary_conditions %> pl-6 space-y-4">
+        <h4 class="shuby-caption font-semibold text-gray-700 dark:text-gray-300">
+          <%= t("onboarding.health_history.hereditary_conditions.conditions_label") %>
+        </h4>
+        <div class="grid grid-cols-1 gap-2">
+          <% FamilyProfile::HEREDITARY_CONDITIONS.each do |condition| %>
+            <label class="flex items-center gap-2">
+              <%= check_box_tag "family_profile[hereditary_conditions][]",
+                condition,
+                @family_profile.hereditary_conditions_list.include?(condition),
+                class: "shuby-checkbox" %>
+              <span class="shuby-caption"><%= t("onboarding.health_history.hereditary_conditions.#{condition}") %></span>
+            </label>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-4 pt-4">
+      <%= link_to t("onboarding.health_history.back"), onboarding_children_path, class: "shuby-btn shuby-btn-md shuby-btn-secondary flex-1 text-center" %>
+      <%= form.submit t("onboarding.health_history.continue"), class: "shuby-btn shuby-btn-md shuby-btn-primary flex-1" %>
+    </div>
+  <% end %>
+</div>

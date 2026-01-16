@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="<%= class_names(dark: current_user&.dark_theme?, "hotwire-native": hotwire_native_app?) %>" lang="<%= I18n.locale %>">
+  <head>
+    <%= render "head" %>
+  </head>
+
+  <body data-controller="theme" data-theme-preference-value="<%= current_user&.theme %>">
+    <header>
+      <%= impersonation_banner %>
+      <%= render "flash" %>
+
+      <nav class="minimal-top-nav">
+        <div class="flex items-center gap-2">
+          <%= image_tag "shuby/illustrations/mascot-centered.svg", class: "w-8 h-8", alt: "Shuby" %>
+          <span class="shuby-d2 text-[var(--color-shuby-blue-800)] dark:text-white">Shuby</span>
+        </div>
+      </nav>
+    </header>
+
+    <main class="max-w-2xl mx-auto px-4 py-8">
+      <%= render "onboarding/progress_indicator" %>
+
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </main>
+  </body>
+</html>

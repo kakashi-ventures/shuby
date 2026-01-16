@@ -1,0 +1,22 @@
+<div class="text-center space-y-8 py-12">
+  <div class="flex justify-center">
+    <%= image_tag "shuby/illustrations/mascot-centered.svg", class: "w-32 h-32", alt: "Shuby" %>
+  </div>
+
+  <div class="space-y-4">
+    <h1 class="shuby-d1 text-[var(--color-shuby-blue-800)] dark:text-white">
+      <%= t("onboarding.complete.title") %>
+    </h1>
+    <p class="shuby-body text-gray-600 dark:text-gray-300 max-w-md mx-auto">
+      <%= t("onboarding.complete.thank_you") %>
+    </p>
+  </div>
+
+  <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 max-w-md mx-auto">
+    <p class="shuby-caption text-gray-600 dark:text-gray-300">
+      <%= t("onboarding.complete.transparency_note") %>
+    </p>
+  </div>
+
+  <%= button_to t("onboarding.complete.start"), onboarding_finish_path, method: :post, class: "shuby-btn shuby-btn-lg shuby-btn-primary" %>
+</div>
