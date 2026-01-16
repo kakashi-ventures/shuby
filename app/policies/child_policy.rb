@@ -25,7 +25,7 @@ class ChildPolicy < ApplicationPolicy
 
   class Scope < ApplicationPolicy::Scope
     def resolve
-      scope.all
+      scope.where(account_id: account_user.account_id)
     end
   end
 end

@@ -1,0 +1,54 @@
+# frozen_string_literal: true
+
+# Test fixtures for AttivitaStimolazione (Stimulation Activities)
+# Month 0 activities
+month_0_activity_1:
+  month: 0
+  description: "Parla al neonato con voce calma e guardandolo in volto."
+  position: 0
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+month_0_activity_2:
+  month: 0
+  description: "Offri brevi momenti di tummy time supervisionato."
+  position: 1
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+month_0_activity_3:
+  month: 0
+  description: "Accarezza, culla, canta dolcemente."
+  position: 2
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# Month 1 activities
+month_1_activity_1:
+  month: 1
+  description: "Usa canzoni brevi con gesti."
+  position: 0
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+month_1_activity_2:
+  month: 1
+  description: "Mantieni il contatto visivo durante il cambio pannolino."
+  position: 1
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# Month 12 activities (for variety in tests)
+month_12_activity_1:
+  month: 12
+  description: "Leggi libri e chiedi \"dov'è…?\""
+  position: 0
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+month_12_activity_2:
+  month: 12
+  description: "Stimola giochi di funzione (spingere, scuotere)."
+  position: 1
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

@@ -1,0 +1,601 @@
+{
+  "campanelli_allarme": [
+    {
+      "month": 0,
+      "items": [
+        "Non risponde alla voce o al volto del genitore.",
+        "Non si calma con il contatto o la voce dolce.",
+        "Nessuna reazione a rumori forti o luce intensa.",
+        "Non piange o piange con suoni poco variabili."
+      ]
+    },
+    {
+      "month": 1,
+      "items": [
+        "Non emette vocalizzi diversi dal pianto.",
+        "Non cerca il volto o la voce del caregiver.",
+        "Non inizia movimenti di apertura delle mani."
+      ]
+    },
+    {
+      "month": 2,
+      "items": [
+        "Nessun sorriso sociale.",
+        "Non solleva la testa in posizione prona.",
+        "Scarsa attenzione verso oggetti o persone."
+      ]
+    },
+    {
+      "month": 3,
+      "items": [
+        "Non mantiene il capo in posizione eretta.",
+        "Non afferra oggetti.",
+        "Non vocalizza se stimolato."
+      ]
+    },
+    {
+      "month": 4,
+      "items": [
+        "Non sorride spontaneamente.",
+        "Non segue oggetti in movimento.",
+        "Nessun tentativo di portare oggetti alla bocca."
+      ]
+    },
+    {
+      "month": 5,
+      "items": [
+        "Non ruota su un fianco.",
+        "Nessun interesse verso nuovi oggetti.",
+        "Vocalizzazioni assenti o poco variate."
+      ]
+    },
+    {
+      "month": 6,
+      "items": [
+        "Non si siede con supporto.",
+        "Non reagisce al nome.",
+        "Nessuna interazione vocale con il caregiver."
+      ]
+    },
+    {
+      "month": 7,
+      "items": [
+        "Non balbetta o non imita suoni.",
+        "Non si siede con appoggio.",
+        "Non trasferisce oggetti da una mano all'altra."
+      ]
+    },
+    {
+      "month": 8,
+      "items": [
+        "Non reagisce al proprio nome.",
+        "Non mostra curiosità per oggetti o movimenti.",
+        "Non mantiene la seduta senza supporto."
+      ]
+    },
+    {
+      "month": 9,
+      "items": [
+        "Non imita gesti o suoni.",
+        "Non esplora con mani o bocca.",
+        "Non mostra reazioni sociali a caregiver."
+      ]
+    },
+    {
+      "month": 10,
+      "items": [
+        "Non dice alcuna parola comprensibile.",
+        "Non esegue semplici comandi verbali.",
+        "Non si sposta autonomamente per raggiungere oggetti."
+      ]
+    },
+    {
+      "month": 11,
+      "items": [
+        "Nessuna reazione a nomi di oggetti noti.",
+        "Non cammina con sostegno.",
+        "Non vocalizza per attirare attenzione."
+      ]
+    },
+    {
+      "month": 12,
+      "items": [
+        "Non dice alcuna parola con significato.",
+        "Non comprende semplici comandi.",
+        "Non gioca in modo funzionale con oggetti."
+      ]
+    },
+    {
+      "month": 13,
+      "items": [
+        "Non cammina da solo.",
+        "Non indica oggetti desiderati.",
+        "Nessuna interazione condivisa con oggetti."
+      ]
+    },
+    {
+      "month": 14,
+      "items": [
+        "Non risponde al proprio nome.",
+        "Non comprende gesti o parole familiari.",
+        "Non mostra interesse per l'adulto."
+      ]
+    },
+    {
+      "month": 15,
+      "items": [
+        "Non usa parole comprensibili.",
+        "Non cammina in modo autonomo.",
+        "Non mostra emozioni condivise."
+      ]
+    },
+    {
+      "month": 16,
+      "items": [
+        "Non indica oggetti familiari.",
+        "Non risponde a indicazioni verbali.",
+        "Non partecipa a giochi con regole base."
+      ]
+    },
+    {
+      "month": 17,
+      "items": [
+        "Non produce frasi di 2 parole.",
+        "Non corre né si arrampica.",
+        "Non interagisce con coetanei."
+      ]
+    },
+    {
+      "month": 18,
+      "items": [
+        "Non comprende parole semplici.",
+        "Non mostra emozioni riconoscibili.",
+        "Non imita azioni quotidiane."
+      ]
+    },
+    {
+      "month": 19,
+      "items": [
+        "Non dice almeno 10-15 parole.",
+        "Non risponde a \"sì/no\".",
+        "Nessuna attenzione condivisa."
+      ]
+    },
+    {
+      "month": 20,
+      "items": [
+        "Non forma frasi con 2 parole.",
+        "Non cammina su superfici irregolari.",
+        "Non mostra preferenze o desideri."
+      ]
+    },
+    {
+      "month": 21,
+      "items": [
+        "Nessuna imitazione verbale.",
+        "Non salta o non corre con equilibrio.",
+        "Non mostra empatia."
+      ]
+    },
+    {
+      "month": 22,
+      "items": [
+        "Non usa almeno 30 parole.",
+        "Non comprende comandi composti da due azioni.",
+        "Non manifesta interesse per gioco simbolico o di ruolo.",
+        "Non partecipa a giochi con oggetti o adulti."
+      ]
+    },
+    {
+      "month": 23,
+      "items": [
+        "Non dice almeno 50 parole.",
+        "Non usa pronomi personali (io, tu, mio).",
+        "Non racconta esperienze o mostra memoria episodica.",
+        "Non cerca attivamente la compagnia di coetanei."
+      ]
+    },
+    {
+      "month": 24,
+      "items": [
+        "Non combina 2–3 parole in una frase.",
+        "Non riconosce azioni di routine.",
+        "Non gioca in parallelo con altri bambini.",
+        "Non risponde a domande semplici."
+      ]
+    },
+    {
+      "month": 25,
+      "items": [
+        "Non forma frasi articolate con soggetto-verbo-oggetto.",
+        "Non racconta esperienze personali.",
+        "Non utilizza aggettivi o parole descrittive."
+      ]
+    },
+    {
+      "month": 26,
+      "items": [
+        "Non utilizza correttamente i pronomi personali.",
+        "Non formula richieste complesse (\"posso avere…\").",
+        "Non riesce a raccontare eventi con 2-3 frasi."
+      ]
+    },
+    {
+      "month": 27,
+      "items": [
+        "Non usa tempo passato o futuro.",
+        "Non fa richieste complesse.",
+        "Non cammina su linea retta o scende le scale alternando i piedi."
+      ]
+    },
+    {
+      "month": 28,
+      "items": [
+        "Non usa almeno 200 parole.",
+        "Non distingue concetti come grande/piccolo o caldo/freddo.",
+        "Non partecipa attivamente a scambi verbali o giochi cooperativi."
+      ]
+    },
+    {
+      "month": 29,
+      "items": [
+        "Non usa frasi complesse.",
+        "Non distingue reale e immaginario.",
+        "Non partecipa in modo cooperativo al gioco con coetanei."
+      ]
+    },
+    {
+      "month": 30,
+      "items": [
+        "Non verbalizza emozioni o bisogni.",
+        "Non usa domande con \"perché\", \"quando\".",
+        "Non esegue giochi simbolici complessi."
+      ]
+    },
+    {
+      "month": 31,
+      "items": [
+        "Non riferisce eventi passati.",
+        "Non distingue il proprio ruolo nel gioco.",
+        "Non mostra consapevolezza delle regole nei giochi."
+      ]
+    },
+    {
+      "month": 32,
+      "items": [
+        "Non si interessa ad altri bambini.",
+        "Non accetta cambiamenti o turni.",
+        "Ha difficoltà a seguire sequenze di azioni."
+      ]
+    },
+    {
+      "month": 33,
+      "items": [
+        "Non comprende narrazioni o racconti semplici.",
+        "Non mostra empatia.",
+        "Non sa raccontare un evento anche con aiuto."
+      ]
+    },
+    {
+      "month": 34,
+      "items": [
+        "Non distingue fantasia e realtà.",
+        "Non verbalizza con struttura coerente.",
+        "Non comprende relazioni temporali (ieri, oggi, domani)."
+      ]
+    },
+    {
+      "month": 35,
+      "items": [
+        "Non segue una storia narrata.",
+        "Non risponde a domande complesse.",
+        "Non dimostra consapevolezza delle emozioni altrui."
+      ]
+    },
+    {
+      "month": 36,
+      "items": [
+        "Non costruisce frasi articolate.",
+        "Non gioca in modo cooperativo.",
+        "Non verbalizza desideri, bisogni, emozioni."
+      ]
+    }
+  ],
+  "attivita_stimolazione": [
+    {
+      "month": 0,
+      "items": [
+        "Parla al neonato con voce calma e guardandolo in volto.",
+        "Offri brevi momenti di tummy time supervisionato.",
+        "Accarezza, culla, canta dolcemente.",
+        "Espone a contrasti visivi (volto, oggetti bianchi e neri)."
+      ]
+    },
+    {
+      "month": 1,
+      "items": [
+        "Usa canzoni brevi con gesti.",
+        "Mantieni il contatto visivo durante il cambio pannolino.",
+        "Incoraggia movimenti delle braccia con piccoli massaggi."
+      ]
+    },
+    {
+      "month": 2,
+      "items": [
+        "Gioca con sonagli o campanellini.",
+        "Incoraggia il sollevamento del capo.",
+        "Sorridi spesso, stimola con la voce e carezze."
+      ]
+    },
+    {
+      "month": 3,
+      "items": [
+        "Offri oggetti leggeri da afferrare.",
+        "Osservate insieme uno specchio.",
+        "Usa routine vocali ripetitive."
+      ]
+    },
+    {
+      "month": 4,
+      "items": [
+        "Afferra e scuoti piccoli giochi davanti a lui.",
+        "Ripeti le vocalizzazioni del bambino per incoraggiarlo."
+      ]
+    },
+    {
+      "month": 5,
+      "items": [
+        "Invitalo a girarsi con oggetti sonori.",
+        "Canta e cambia tono della voce.",
+        "Usa specchi e oggetti tattili."
+      ]
+    },
+    {
+      "month": 6,
+      "items": [
+        "Chiamalo per nome da posizioni diverse.",
+        "Crea giochi di causa-effetto (suoni, luci, stoffe)."
+      ]
+    },
+    {
+      "month": 7,
+      "items": [
+        "Parla mentre mostri oggetti interessanti.",
+        "Gioca allo specchio con espressioni facciali.",
+        "Proponi giochi che stimolino la rotazione del busto."
+      ]
+    },
+    {
+      "month": 8,
+      "items": [
+        "Offri oggetti da manipolare e scuotere.",
+        "Nomina i giochi e stimola l'esplorazione.",
+        "Giochi di \"nascondino\" con oggetti."
+      ]
+    },
+    {
+      "month": 9,
+      "items": [
+        "Imita vocalizzazioni e gesti del bambino.",
+        "Gioca a \"cucù\" o \"ciao con la manina\".",
+        "Offri piccoli oggetti da manipolare."
+      ]
+    },
+    {
+      "month": 10,
+      "items": [
+        "Dai istruzioni semplici (\"dammi\", \"prendi\").",
+        "Incoraggia il movimento autonomo.",
+        "Usa giocattoli interattivi."
+      ]
+    },
+    {
+      "month": 11,
+      "items": [
+        "Invita a condividere oggetti.",
+        "Nomina oggetti e azioni quotidiane.",
+        "Sostieni il cammino cercando insieme di esplorare l'ambiente."
+      ]
+    },
+    {
+      "month": 12,
+      "items": [
+        "Leggi libri e chiedi \"dov'è…?\"",
+        "Stimola giochi di funzione (spingere, scuotere).",
+        "Incoraggia l'autonomia nel camminare."
+      ]
+    },
+    {
+      "month": 13,
+      "items": [
+        "Stimola il cammino libero in sicurezza.",
+        "Incoraggia l'uso di parole per richiedere.",
+        "Gioca insieme usando oggetti quotidiani."
+      ]
+    },
+    {
+      "month": 14,
+      "items": [
+        "Dai istruzioni semplici e visive.",
+        "Fai domande e attendi risposte non verbali.",
+        "Crea giochi di sequenze (metti, togli, ordina)."
+      ]
+    },
+    {
+      "month": 15,
+      "items": [
+        "Proponi attività motorie sicure all'aperto.",
+        "Ripeti parole e gesti legati alle routine.",
+        "Fai giochi di ruolo semplici."
+      ]
+    },
+    {
+      "month": 16,
+      "items": [
+        "Dai due comandi consecutivi (\"prendi e porta\").",
+        "Invita a disegnare o scarabocchiare.",
+        "Stimola empatia con bambole o peluche."
+      ]
+    },
+    {
+      "month": 17,
+      "items": [
+        "Fai domande e stimola risposte verbali.",
+        "Offri strutture da scalare in sicurezza.",
+        "Favorisci gioco in parallelo con altri bambini."
+      ]
+    },
+    {
+      "month": 18,
+      "items": [
+        "Stimola gioco simbolico (es. dar da mangiare a pupazzi).",
+        "Incoraggia autonomia (lavarsi, vestirsi).",
+        "Racconta piccole storie quotidiane."
+      ]
+    },
+    {
+      "month": 19,
+      "items": [
+        "Gioca al \"perché?\" e \"cosa fai?\".",
+        "Descrivi azioni e oggetti.",
+        "Crea piccole routine condivise."
+      ]
+    },
+    {
+      "month": 20,
+      "items": [
+        "Ripeti e amplia frasi del bambino.",
+        "Stimola il gioco motorio complesso.",
+        "Dai nomi a emozioni e stati d'animo."
+      ]
+    },
+    {
+      "month": 21,
+      "items": [
+        "Canta con azioni (mani, corpo).",
+        "Leggi storie brevi e fai domande.",
+        "Crea giochi cooperativi a due."
+      ]
+    },
+    {
+      "month": 22,
+      "items": [
+        "Dai comandi in due fasi: \"prendi il libro e portalo qui\".",
+        "Proponi giochi imitativi con bambole, cucine, pupazzi.",
+        "Stimola l'uso di nomi e verbi tramite la narrazione."
+      ]
+    },
+    {
+      "month": 23,
+      "items": [
+        "Incoraggia a raccontare ciò che ha fatto usando immagini o oggetti.",
+        "Fai giochi di gruppo con regole semplici.",
+        "Proponi attività di classificazione e associazione."
+      ]
+    },
+    {
+      "month": 24,
+      "items": [
+        "Usa domande quotidiane (\"Chi è?\", \"Cosa fa?\").",
+        "Proponi giochi di costruzione con regole (ordina, impila).",
+        "Invita il bambino a simulare azioni quotidiane con i giochi."
+      ]
+    },
+    {
+      "month": 25,
+      "items": [
+        "Racconta eventi familiari e chiedi di raccontare a sua volta.",
+        "Coinvolgilo nei giochi di costruzione e ruolo.",
+        "Leggi libri illustrati stimolando commenti e previsioni."
+      ]
+    },
+    {
+      "month": 26,
+      "items": [
+        "Proponi giochi simbolici più articolati (es. finta cucina).",
+        "Offri materiali per colorare, costruire, travasare.",
+        "Stimola il racconto con sequenze visive."
+      ]
+    },
+    {
+      "month": 27,
+      "items": [
+        "Gioca a \"raccontami cosa hai fatto ieri\".",
+        "Proponi attività di equilibrio e precisione motoria.",
+        "Inizia giochi a turni e alternanza."
+      ]
+    },
+    {
+      "month": 28,
+      "items": [
+        "Gioca con opposti e similitudini (\"questo è grande, questo è piccolo\").",
+        "Proponi semplici conversazioni con domande aperte.",
+        "Stimola il disegno di forme chiuse e il ritaglio."
+      ]
+    },
+    {
+      "month": 29,
+      "items": [
+        "Inventa storie e stimola l'immaginazione.",
+        "Proponi disegni guidati e giochi narrativi.",
+        "Inizia ad associare suoni a lettere o numeri."
+      ]
+    },
+    {
+      "month": 30,
+      "items": [
+        "Stimola l'espressione dei sentimenti attraverso il gioco.",
+        "Usa storie illustrate con domande riflessive.",
+        "Coinvolgilo in attività quotidiane narrando le azioni."
+      ]
+    },
+    {
+      "month": 31,
+      "items": [
+        "Gioca a \"cosa è successo prima/dopo\".",
+        "Fai giochi di ruolo con turni e ruoli diversi.",
+        "Proponi semplici giochi da tavolo con regole."
+      ]
+    },
+    {
+      "month": 32,
+      "items": [
+        "Stimola la cooperazione con giochi a squadre.",
+        "Usa sequenze visive per routine quotidiane.",
+        "Racconta storie con inizio-sviluppo-fine."
+      ]
+    },
+    {
+      "month": 33,
+      "items": [
+        "Chiedi al bambino di raccontarti la sua giornata.",
+        "Offri stimoli emotivi con storie o situazioni simulate.",
+        "Rappresenta emozioni con il disegno o il gioco."
+      ]
+    },
+    {
+      "month": 34,
+      "items": [
+        "Usa un calendario illustrato per i giorni.",
+        "Fai raccontare cosa farà domani o cosa ha fatto ieri.",
+        "Stimola narrazioni con inizio, sviluppo e fine."
+      ]
+    },
+    {
+      "month": 35,
+      "items": [
+        "Proponi brevi racconti con domande finali.",
+        "Fai domande \"cosa succede se…?\" per stimolare la logica.",
+        "Gioca a interpretare stati d'animo."
+      ]
+    },
+    {
+      "month": 36,
+      "items": [
+        "Stimola il gioco cooperativo con ruoli e turni.",
+        "Chiedi di raccontare una storia inventata.",
+        "Proponi attività con regole e narrazione strutturata."
+      ]
+    }
+  ]
+}

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
@@ -19,164 +21,207 @@
 #   )
 #   Jumpstart.grant_system_admin!(user)
 
+require "json"
+
+puts "=" * 60
+puts "Development Stages Seed Data"
+puts "Loading from: docs/Shuby_Questionari_Completi_5_Aree.json"
+puts "=" * 60
+
 # =============================================================================
-# Development Stages Seed Data
+# 0. Clean up deprecated data
+# =============================================================================
+
+# Remove deprecated "Generale" area (replaced by "Consolidamento")
+if (generale_area = DevelopmentArea.find_by(slug: "generale"))
+  puts "Removing deprecated 'Generale' area and its associated data..."
+  generale_area.destroy!
+  puts "Deprecated 'Generale' area removed."
+end
+
+# Remove old questionnaires for months > 28 (official file only has 0-28)
+old_questionnaires = AgeBandQuestionnaire.where("min_age_months > 28")
+if old_questionnaires.exists?
+  puts "Removing #{old_questionnaires.count} old questionnaires for months > 28..."
+  old_questionnaires.destroy_all
+end
+
+# Clear existing questions to ensure clean data from official file
+# (This removes old placeholder questions that differ from official file)
+# Must also clear responses and sessions first due to foreign key constraints
+if QuestionResponse.exists?
+  puts "Clearing #{QuestionResponse.count} existing question responses..."
+  QuestionResponse.delete_all
+end
+
+if QuestionnaireSession.exists?
+  puts "Clearing #{QuestionnaireSession.count} existing questionnaire sessions..."
+  QuestionnaireSession.delete_all
+end
+
+if Question.exists?
+  puts "Clearing #{Question.count} existing questions for fresh import..."
+  Question.delete_all
+end
+
+# =============================================================================
+# 1. Create Development Areas (5 areas - matches official file)
 # =============================================================================
 
 puts "Creating development areas..."
 AREAS = [
-  {name: "Generale", slug: "generale", color: "#6366F1", position: 1},
-  {name: "Comunicazione e Linguaggio", slug: "comunicazione-linguaggio", color: "#EC4899", position: 2},
-  {name: "Motricità", slug: "motricita", color: "#10B981", position: 3},
-  {name: "Cognizione e Attenzione", slug: "cognizione-attenzione", color: "#F59E0B", position: 4},
-  {name: "Relazione e Regolazione", slug: "relazione-regolazione", color: "#3B82F6", position: 5}
-]
+  {name: "Comunicazione e Linguaggio", slug: "comunicazione-linguaggio", color: "#EC4899", position: 1},
+  {name: "Motricità", slug: "motricita", color: "#10B981", position: 2},
+  {name: "Cognizione e Attenzione", slug: "cognizione-attenzione", color: "#F59E0B", position: 3},
+  {name: "Relazione e Regolazione", slug: "relazione-regolazione", color: "#3B82F6", position: 4},
+  {name: "Consolidamento", slug: "consolidamento", color: "#6366F1", position: 5}
+].freeze
 
 AREAS.each do |data|
-  DevelopmentArea.find_or_create_by!(slug: data[:slug]) do |area|
-    area.name = data[:name]
-    area.color = data[:color]
-    area.position = data[:position]
-  end
+  area = DevelopmentArea.find_or_initialize_by(slug: data[:slug])
+  area.name = data[:name]
+  area.color = data[:color]
+  area.position = data[:position]
+  area.save!
 end
 
-puts "Creating age band questionnaires..."
-AGE_BANDS = [
-  {min: 0, max: 3},
-  {min: 3, max: 6},
-  {min: 6, max: 9},
-  {min: 9, max: 12},
-  {min: 12, max: 18},
-  {min: 18, max: 24},
-  {min: 24, max: 30},
-  {min: 30, max: 36}
-]
+puts "Created #{DevelopmentArea.count} development areas"
 
-DevelopmentArea.find_each do |area|
-  AGE_BANDS.each_with_index do |band, index|
-    AgeBandQuestionnaire.find_or_create_by!(
+# =============================================================================
+# 2. Load JSON file
+# =============================================================================
+
+json_file = Rails.root.join("docs", "Shuby_Questionari_Completi_5_Aree.json")
+
+unless File.exist?(json_file)
+  puts "WARNING: JSON file not found at #{json_file}"
+  puts "Skipping questionnaire and question seeding. Please add the file and re-run seeds."
+  exit
+end
+
+data = JSON.parse(File.read(json_file))
+
+# Map JSON area keys to database slugs
+AREA_KEY_MAP = {
+  "comunicazione_linguaggio" => "comunicazione-linguaggio",
+  "motricita" => "motricita",
+  "cognizione_attenzione" => "cognizione-attenzione",
+  "relazione_regolazione" => "relazione-regolazione",
+  "consolidamento" => "consolidamento"
+}.freeze
+
+# =============================================================================
+# 3. Create Monthly Questionnaires and Questions from JSON
+# =============================================================================
+
+puts "Creating monthly questionnaires and loading questions..."
+
+questionnaires_created = 0
+questions_created = 0
+
+data["questionari_mensili"].each do |month_data|
+  month = month_data["mese"]
+
+  month_data["aree"].each do |area_key, area_data|
+    slug = AREA_KEY_MAP[area_key]
+    next unless slug # Skip unknown areas
+
+    area = DevelopmentArea.find_by(slug: slug)
+    next unless area
+
+    # Create or find questionnaire for this month/area
+    questionnaire = AgeBandQuestionnaire.find_or_create_by!(
       development_area: area,
-      min_age_months: band[:min]
+      min_age_months: month
     ) do |q|
-      q.max_age_months = band[:max]
-      q.position = index
+      q.max_age_months = month + 1
+      q.position = month
+      q.title = "#{area_data["titolo"]} - #{month_data["eta_descrizione"]}"
+    end
+
+    questionnaires_created += 1 if questionnaire.previously_new_record?
+
+    # Create questions for this questionnaire
+    questions_array = area_data["domande"] || []
+    questions_array.each_with_index do |q_data, index|
+      prompt = q_data["domanda"]
+      next if prompt.blank?
+
+      question = Question.find_or_create_by!(
+        age_band_questionnaire: questionnaire,
+        prompt: prompt
+      ) do |question|
+        question.position = index
+        question.active = true
+      end
+
+      questions_created += 1 if question.previously_new_record?
     end
   end
+
+  print "." if month % 5 == 0
 end
 
-puts "Creating sample questions..."
+puts ""
+puts "Development stages questions loaded."
 
-# Sample questions for each area for the 0-3 month band
-generale = DevelopmentArea.find_by!(slug: "generale")
-comunicazione = DevelopmentArea.find_by!(slug: "comunicazione-linguaggio")
-motricita = DevelopmentArea.find_by!(slug: "motricita")
-cognizione = DevelopmentArea.find_by!(slug: "cognizione-attenzione")
-relazione = DevelopmentArea.find_by!(slug: "relazione-regolazione")
+# =============================================================================
+# 4. Load Campanelli d'Allarme and Attività di Stimolazione
+# =============================================================================
 
-# Generale 0-3m
-q = generale.age_band_questionnaires.find_by!(min_age_months: 0)
-[
-  "Il bambino reagisce a stimoli visivi e sonori?",
-  "Il bambino mostra interesse per l'ambiente circostante?",
-  "Il bambino ha periodi di veglia tranquilla durante il giorno?",
-  "Il bambino si calma quando viene confortato?",
-  "Il bambino ha un ritmo sonno-veglia che sta iniziando a regolarizzarsi?",
-  "Il bambino mostra espressioni facciali variegate?"
-].each_with_index do |prompt, index|
-  Question.find_or_create_by!(age_band_questionnaire: q, prompt: prompt) do |question|
-    question.position = index
+puts "Loading campanelli d'allarme and attività di stimolazione..."
+
+campanelli_json = Rails.root.join("docs", "campanelli_attivita.json")
+
+if File.exist?(campanelli_json)
+  campanelli_data = JSON.parse(File.read(campanelli_json))
+
+  # Clear existing data for fresh import
+  CampanelloAllarme.delete_all
+  AttivitaStimolazione.delete_all
+
+  campanelli_created = 0
+  attivita_created = 0
+
+  # Load Campanelli d'Allarme
+  campanelli_data["campanelli_allarme"].each do |month_data|
+    month = month_data["month"]
+    month_data["items"].each_with_index do |description, index|
+      CampanelloAllarme.create!(
+        month: month,
+        description: description,
+        position: index
+      )
+      campanelli_created += 1
+    end
   end
-end
 
-# Comunicazione 0-3m
-q = comunicazione.age_band_questionnaires.find_by!(min_age_months: 0)
-[
-  "Il bambino emette suoni vocalici (oo, aa)?",
-  "Il bambino si gira verso la voce dei genitori?",
-  "Il bambino piange in modo differenziato per esprimere bisogni diversi?",
-  "Il bambino guarda il volto di chi gli parla?",
-  "Il bambino mostra interesse quando gli si parla?",
-  "Il bambino inizia a sorridere in risposta a stimoli sociali?"
-].each_with_index do |prompt, index|
-  Question.find_or_create_by!(age_band_questionnaire: q, prompt: prompt) do |question|
-    question.position = index
+  # Load Attività di Stimolazione
+  campanelli_data["attivita_stimolazione"].each do |month_data|
+    month = month_data["month"]
+    month_data["items"].each_with_index do |description, index|
+      AttivitaStimolazione.create!(
+        month: month,
+        description: description,
+        position: index
+      )
+      attivita_created += 1
+    end
   end
+
+  puts "  - Campanelli d'Allarme: #{campanelli_created}"
+  puts "  - Attività di Stimolazione: #{attivita_created}"
+else
+  puts "WARNING: campanelli_attivita.json not found. Skipping campanelli and attività loading."
 end
 
-# Motricità 0-3m
-q = motricita.age_band_questionnaires.find_by!(min_age_months: 0)
-[
-  "Il bambino tiene la testa sollevata quando è a pancia in giù?",
-  "Il bambino muove braccia e gambe in modo simmetrico?",
-  "Il bambino afferra oggetti messi nella sua mano (riflesso di prensione)?",
-  "Il bambino segue oggetti in movimento con gli occhi?",
-  "Il bambino inizia a controllare i movimenti della testa quando è in braccio?",
-  "Il bambino porta le mani alla bocca?"
-].each_with_index do |prompt, index|
-  Question.find_or_create_by!(age_band_questionnaire: q, prompt: prompt) do |question|
-    question.position = index
-  end
-end
-
-# Cognizione 0-3m
-q = cognizione.age_band_questionnaires.find_by!(min_age_months: 0)
-[
-  "Il bambino segue oggetti con lo sguardo?",
-  "Il bambino mostra interesse per volti e oggetti?",
-  "Il bambino reagisce a suoni improvvisi?",
-  "Il bambino fissa il volto dei genitori?",
-  "Il bambino inizia a anticipare eventi familiari (es. poppata)?",
-  "Il bambino mostra preferenza per alcuni stimoli rispetto ad altri?"
-].each_with_index do |prompt, index|
-  Question.find_or_create_by!(age_band_questionnaire: q, prompt: prompt) do |question|
-    question.position = index
-  end
-end
-
-# Relazione 0-3m
-q = relazione.age_band_questionnaires.find_by!(min_age_months: 0)
-[
-  "Il bambino riconosce il volto dei genitori?",
-  "Il bambino si calma quando viene preso in braccio?",
-  "Il bambino mostra il sorriso sociale?",
-  "Il bambino cerca il contatto visivo?",
-  "Il bambino si tranquillizza con la voce familiare?",
-  "Il bambino mostra preferenza per le figure di accudimento?"
-].each_with_index do |prompt, index|
-  Question.find_or_create_by!(age_band_questionnaire: q, prompt: prompt) do |question|
-    question.position = index
-  end
-end
-
-# Add a few questions for 3-6 month band as well
-# Motricità 3-6m
-q = motricita.age_band_questionnaires.find_by!(min_age_months: 3)
-[
-  "Il bambino solleva la testa e il petto quando è a pancia in giù?",
-  "Il bambino si gira da pancia in giù a pancia in su?",
-  "Il bambino afferra oggetti volontariamente?",
-  "Il bambino porta oggetti alla bocca?",
-  "Il bambino inizia a stare seduto con supporto?",
-  "Il bambino calcia energicamente quando è sdraiato?"
-].each_with_index do |prompt, index|
-  Question.find_or_create_by!(age_band_questionnaire: q, prompt: prompt) do |question|
-    question.position = index
-  end
-end
-
-# Comunicazione 3-6m
-q = comunicazione.age_band_questionnaires.find_by!(min_age_months: 3)
-[
-  "Il bambino balbetta con varietà di suoni?",
-  "Il bambino ride e vocalizza in risposta alle interazioni?",
-  "Il bambino risponde quando chiamato per nome?",
-  "Il bambino imita alcuni suoni?",
-  "Il bambino usa diverse tonalità di voce?",
-  "Il bambino comunica con gesti e vocalizzi?"
-].each_with_index do |prompt, index|
-  Question.find_or_create_by!(age_band_questionnaire: q, prompt: prompt) do |question|
-    question.position = index
-  end
-end
-
+puts ""
+puts "=" * 60
 puts "Development stages seeded successfully!"
+puts "Summary:"
+puts "  - Areas: #{DevelopmentArea.count}"
+puts "  - Questionnaires: #{AgeBandQuestionnaire.count} (new: #{questionnaires_created})"
+puts "  - Questions: #{Question.count} (new: #{questions_created})"
+puts "  - Campanelli d'Allarme: #{CampanelloAllarme.count}"
+puts "  - Attività di Stimolazione: #{AttivitaStimolazione.count}"
+puts "=" * 60

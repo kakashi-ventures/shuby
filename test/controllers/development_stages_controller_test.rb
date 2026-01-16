@@ -18,7 +18,7 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show development area with valid questionnaire" do
-    area = development_areas(:generale)
+    area = development_areas(:comunicazione)
     get child_development_stage_path(@child, area.slug)
     assert_response :success
   end

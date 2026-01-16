@@ -1,34 +1,34 @@
 # frozen_string_literal: true
 
-# In-progress session for testing
+# In-progress session for testing (motricita month 0)
 in_progress_session:
   child: sophia
-  age_band_questionnaire: motricita_0_3
+  age_band_questionnaire: motricita_month_0
   status: 1
   started_at: <%= 1.day.ago %>
-  child_age_months: 2
+  child_age_months: 0
 
-# Completed session for testing
+# Completed session for testing (comunicazione month 0)
 completed_session:
   child: sophia
-  age_band_questionnaire: generale_0_3
+  age_band_questionnaire: comunicazione_month_0
   status: 2
   started_at: <%= 3.days.ago %>
   completed_at: <%= 2.days.ago %>
-  child_age_months: 2
+  child_age_months: 0
 
 # Not started session
 not_started_session:
   child: sophia
-  age_band_questionnaire: comunicazione_0_3
+  age_band_questionnaire: relazione_month_0
   status: 0
-  child_age_months: 2
+  child_age_months: 0
 
 # Session with attention needed (many "no" answers) - will have responses attached
 attention_needed_session:
   child: sophia
-  age_band_questionnaire: cognizione_0_3
+  age_band_questionnaire: cognizione_month_0
   status: 2
   started_at: <%= 5.days.ago %>
   completed_at: <%= 4.days.ago %>
-  child_age_months: 2
+  child_age_months: 0

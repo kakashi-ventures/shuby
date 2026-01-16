@@ -1,44 +1,44 @@
 # frozen_string_literal: true
 
-# Responses for in_progress_session (motricita)
+# Responses for in_progress_session (motricita month 0)
 motricita_response_1:
   questionnaire_session: in_progress_session
-  question: motricita_q1
+  question: m0_mot_1
   answer: 1
 
 motricita_response_2:
   questionnaire_session: in_progress_session
-  question: motricita_q2
+  question: m0_mot_2
   answer: 1
 
-# Responses for completed_session (generale) - all answered
-generale_response_1:
+# Responses for completed_session (comunicazione month 0) - all answered
+comunicazione_response_1:
   questionnaire_session: completed_session
-  question: generale_q1
+  question: m0_com_1
   answer: 1
 
-generale_response_2:
+comunicazione_response_2:
   questionnaire_session: completed_session
-  question: generale_q2
+  question: m0_com_2
   answer: 1
 
-generale_response_3:
+comunicazione_response_3:
   questionnaire_session: completed_session
-  question: generale_q3
+  question: m0_com_3
   answer: 0
 
-# Responses for attention_needed_session (cognizione) - multiple "no" answers
+# Responses for attention_needed_session (cognizione month 0) - multiple "no" answers
 cognizione_response_1:
   questionnaire_session: attention_needed_session
-  question: cognizione_q1
+  question: m0_cog_1
   answer: 2
 
 cognizione_response_2:
   questionnaire_session: attention_needed_session
-  question: cognizione_q2
+  question: m0_cog_2
   answer: 2
 
 cognizione_response_3:
   questionnaire_session: attention_needed_session
-  question: cognizione_q3
+  question: m0_cog_3
   answer: 1

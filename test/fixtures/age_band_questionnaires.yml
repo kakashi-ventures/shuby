@@ -1,61 +1,110 @@
 # frozen_string_literal: true
 
-generale_0_3:
-  development_area: generale
-  min_age_months: 0
-  max_age_months: 3
-  position: 0
+# NOTE: Monthly questionnaires (min_age_months = month, max_age_months = month + 1)
+# This matches the official JSON structure with 29 months (0-28)
 
-generale_3_6:
-  development_area: generale
-  min_age_months: 3
-  max_age_months: 6
-  position: 1
-
-comunicazione_0_3:
+# Month 0 questionnaires
+comunicazione_month_0:
   development_area: comunicazione
   min_age_months: 0
-  max_age_months: 3
+  max_age_months: 1
   position: 0
 
-comunicazione_3_6:
+motricita_month_0:
+  development_area: motricita
+  min_age_months: 0
+  max_age_months: 1
+  position: 0
+
+cognizione_month_0:
+  development_area: cognizione
+  min_age_months: 0
+  max_age_months: 1
+  position: 0
+
+relazione_month_0:
+  development_area: relazione
+  min_age_months: 0
+  max_age_months: 1
+  position: 0
+
+consolidamento_month_0:
+  development_area: consolidamento
+  min_age_months: 0
+  max_age_months: 1
+  position: 0
+
+# Month 1 questionnaires
+comunicazione_month_1:
+  development_area: comunicazione
+  min_age_months: 1
+  max_age_months: 2
+  position: 1
+
+motricita_month_1:
+  development_area: motricita
+  min_age_months: 1
+  max_age_months: 2
+  position: 1
+
+cognizione_month_1:
+  development_area: cognizione
+  min_age_months: 1
+  max_age_months: 2
+  position: 1
+
+relazione_month_1:
+  development_area: relazione
+  min_age_months: 1
+  max_age_months: 2
+  position: 1
+
+consolidamento_month_1:
+  development_area: consolidamento
+  min_age_months: 1
+  max_age_months: 2
+  position: 1
+
+# Month 2 questionnaires
+comunicazione_month_2:
+  development_area: comunicazione
+  min_age_months: 2
+  max_age_months: 3
+  position: 2
+
+motricita_month_2:
+  development_area: motricita
+  min_age_months: 2
+  max_age_months: 3
+  position: 2
+
+cognizione_month_2:
+  development_area: cognizione
+  min_age_months: 2
+  max_age_months: 3
+  position: 2
+
+relazione_month_2:
+  development_area: relazione
+  min_age_months: 2
+  max_age_months: 3
+  position: 2
+
+consolidamento_month_2:
+  development_area: consolidamento
+  min_age_months: 2
+  max_age_months: 3
+  position: 2
+
+# Month 3 questionnaires (for testing older children)
+comunicazione_month_3:
   development_area: comunicazione
   min_age_months: 3
-  max_age_months: 6
-  position: 1
+  max_age_months: 4
+  position: 3
 
-motricita_0_3:
-  development_area: motricita
-  min_age_months: 0
-  max_age_months: 3
-  position: 0
-
-motricita_3_6:
+motricita_month_3:
   development_area: motricita
   min_age_months: 3
-  max_age_months: 6
-  position: 1
-
-cognizione_0_3:
-  development_area: cognizione
-  min_age_months: 0
-  max_age_months: 3
-  position: 0
-
-cognizione_3_6:
-  development_area: cognizione
-  min_age_months: 3
-  max_age_months: 6
-  position: 1
-
-relazione_0_3:
-  development_area: relazione
-  min_age_months: 0
-  max_age_months: 3
-  position: 0
-
-relazione_3_6:
-  development_area: relazione
-  min_age_months: 3
-  max_age_months: 6
-  position: 1
+  max_age_months: 4
+  position: 3

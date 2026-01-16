@@ -10,7 +10,7 @@ class QuestionResponseTest < ActiveSupport::TestCase
 
   test "belongs to question" do
     response = question_responses(:motricita_response_1)
-    assert_equal questions(:motricita_q1), response.question
+    assert_equal questions(:m0_mot_1), response.question
   end
 
   test "answer enum values" do
@@ -22,7 +22,7 @@ class QuestionResponseTest < ActiveSupport::TestCase
   test "validates presence of answer" do
     response = QuestionResponse.new(
       questionnaire_session: questionnaire_sessions(:in_progress_session),
-      question: questions(:motricita_q3),
+      question: questions(:m0_mot_3),
       answer: nil
     )
     assert_not response.valid?
@@ -51,7 +51,7 @@ class QuestionResponseTest < ActiveSupport::TestCase
   end
 
   test "non_lo_so answer is stored correctly" do
-    response = question_responses(:generale_response_3)
+    response = question_responses(:comunicazione_response_3)
     assert response.non_lo_so?
   end
 end

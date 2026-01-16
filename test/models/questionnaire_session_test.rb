@@ -10,7 +10,7 @@ class QuestionnaireSessionTest < ActiveSupport::TestCase
 
   test "belongs to age_band_questionnaire" do
     session = questionnaire_sessions(:in_progress_session)
-    assert_equal age_band_questionnaires(:motricita_0_3), session.age_band_questionnaire
+    assert_equal age_band_questionnaires(:motricita_month_0), session.age_band_questionnaire
   end
 
   test "has many question_responses" do

@@ -61,19 +61,17 @@ class Child < AccountRecord
     )
   end
 
-  # Get age band info for current age
+  # Get age band info for current age (monthly structure: 0-28 months)
   def current_age_band
     months = age_in_months
-    case months
-    when 0...3 then {min: 0, max: 3, label: "0-3 mesi"}
-    when 3...6 then {min: 3, max: 6, label: "3-6 mesi"}
-    when 6...9 then {min: 6, max: 9, label: "6-9 mesi"}
-    when 9...12 then {min: 9, max: 12, label: "9-12 mesi"}
-    when 12...18 then {min: 12, max: 18, label: "12-18 mesi"}
-    when 18...24 then {min: 18, max: 24, label: "18-24 mesi"}
-    when 24...30 then {min: 24, max: 30, label: "24-30 mesi"}
-    else {min: 30, max: 36, label: "30-36 mesi"}
-    end
+    # Cap at 28 months (last questionnaire)
+    effective_month = [months, 28].min
+    label = if effective_month == 1
+              "#{effective_month} mese"
+            else
+              "#{effective_month} mesi"
+            end
+    {min: effective_month, max: effective_month + 1, label: label}
   end
 
   # Find any in-progress session for current age band

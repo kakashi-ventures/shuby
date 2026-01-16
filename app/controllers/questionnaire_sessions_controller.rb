@@ -10,6 +10,11 @@ class QuestionnaireSessionsController < ApplicationController
     @questionnaire = @session.age_band_questionnaire
     @area = @questionnaire.development_area
     @responses = @session.question_responses.includes(:question).order("questions.position")
+
+    # Load campanelli d'allarme and attività di stimolazione for this month
+    month = @questionnaire.min_age_months
+    @campanelli = CampanelloAllarme.for_month(month)
+    @attivita = AttivitaStimolazione.for_month(month)
   end
 
   def continue

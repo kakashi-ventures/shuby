@@ -1,0 +1,55 @@
+# frozen_string_literal: true
+
+# Test fixtures for CampanelloAllarme (Warning Signs)
+# Month 0 warnings
+month_0_warning_1:
+  month: 0
+  description: "Non risponde alla voce o al volto del genitore."
+  position: 0
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+month_0_warning_2:
+  month: 0
+  description: "Non si calma con il contatto o la voce dolce."
+  position: 1
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# Month 1 warnings
+month_1_warning_1:
+  month: 1
+  description: "Non emette vocalizzi diversi dal pianto."
+  position: 0
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+month_1_warning_2:
+  month: 1
+  description: "Non cerca il volto o la voce del caregiver."
+  position: 1
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# Month 2 warnings
+month_2_warning_1:
+  month: 2
+  description: "Nessun sorriso sociale."
+  position: 0
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# Month 12 warnings (for variety in tests)
+month_12_warning_1:
+  month: 12
+  description: "Non dice alcuna parola con significato."
+  position: 0
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+month_12_warning_2:
+  month: 12
+  description: "Non comprende semplici comandi."
+  position: 1
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

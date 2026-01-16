@@ -20,7 +20,16 @@ class AgeBandQuestionnaire < ApplicationRecord
   end
 
   def age_band_label
-    "#{min_age_months}-#{max_age_months} mesi"
+    # For monthly questionnaires (max - min == 1), show single month
+    if max_age_months - min_age_months == 1
+      if min_age_months == 1
+        "#{min_age_months} mese"
+      else
+        "#{min_age_months} mesi"
+      end
+    else
+      "#{min_age_months}-#{max_age_months} mesi"
+    end
   end
 
   def display_title

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_07_142652) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_16_090808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -130,6 +130,24 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_07_142652) do
     t.bigint "user_id", null: false
     t.index ["token"], name: "index_api_tokens_on_token", unique: true
     t.index ["user_id"], name: "index_api_tokens_on_user_id"
+  end
+
+  create_table "attivita_stimolazione", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description", null: false
+    t.integer "month", null: false
+    t.integer "position", default: 0
+    t.datetime "updated_at", null: false
+    t.index ["month", "position"], name: "index_attivita_stimolazione_on_month_and_position"
+  end
+
+  create_table "campanelli_allarme", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description", null: false
+    t.integer "month", null: false
+    t.integer "position", default: 0
+    t.datetime "updated_at", null: false
+    t.index ["month", "position"], name: "index_campanelli_allarme_on_month_and_position"
   end
 
   create_table "children", force: :cascade do |t|
@@ -395,7 +413,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_07_142652) do
 
   create_table "shuby_chats", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "model", default: "gpt-5-mini", null: false
+    t.string "model", default: "gpt-4o-mini", null: false
     t.string "previous_response_id"
     t.string "title"
     t.datetime "updated_at", null: false
