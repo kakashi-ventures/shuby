@@ -1,13 +1,13 @@
 class User < ApplicationRecord
   has_prefix_id :user
 
-  include Accounts
-  include Agreements
-  include Authenticatable
-  include Mentions
-  include Notifiable
-  include Searchable
-  include Theme
+  include User::Accounts
+  include User::Agreements
+  include User::Authenticatable
+  include User::Mentions
+  include User::Notifiable
+  include User::Searchable
+  include User::Theme
 
   has_one_attached :avatar
   has_person_name
