@@ -28,6 +28,9 @@
 #       enabled: "ON"
 
 en:
+  pundit:
+    must_be_logged_in: "must be logged in"
+
   are_you_sure: "Are you sure?"
   back: "Back"
   cancel: "Cancel"
@@ -572,6 +575,20 @@ en:
               invalid: "must be between 22 and 42"
             gestational_days:
               invalid: "must be between 0 and 6"
+        age_band_questionnaire:
+          attributes:
+            max_age_months:
+              must_be_greater: "must be greater than min_age_months"
+        plan:
+          attributes:
+            currency:
+              invalid_format: "must be a 3-letter ISO currency code"
+
+  age_bands:
+    single_month:
+      one: "%{count} month"
+      other: "%{count} months"
+    range: "%{min}-%{max} months"
 
   errors:
     messages:

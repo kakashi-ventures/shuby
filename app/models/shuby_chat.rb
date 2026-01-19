@@ -24,7 +24,7 @@ class ShubyChat < ApplicationRecord
   #
   # @return [String] The chat title
   def display_title
-    title.presence || first_user_message_preview || "New Chat"
+    title.presence || first_user_message_preview || I18n.t("shuby_chats.default_title")
   end
 
   private

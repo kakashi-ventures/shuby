@@ -39,12 +39,16 @@ class AgeBandQuestionnairTest < ActiveSupport::TestCase
 
   test "age_band_label returns formatted string for monthly questionnaire" do
     questionnaire = age_band_questionnaires(:comunicazione_month_0)
-    assert_equal "0 mesi", questionnaire.age_band_label
+    I18n.with_locale(:it) do
+      assert_equal "0 mesi", questionnaire.age_band_label
+    end
   end
 
   test "age_band_label returns singular mese for month 1" do
     questionnaire = age_band_questionnaires(:comunicazione_month_1)
-    assert_equal "1 mese", questionnaire.age_band_label
+    I18n.with_locale(:it) do
+      assert_equal "1 mese", questionnaire.age_band_label
+    end
   end
 
   test "active_questions returns only active questions" do

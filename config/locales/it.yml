@@ -1,4 +1,29 @@
 it:
+  pundit:
+    must_be_logged_in: "devi effettuare l'accesso"
+
+  api_tokens:
+    created: "Token API creato con successo"
+    updated: "Token API aggiornato con successo"
+    destroyed: "Il tuo token API è stato revocato"
+    all: "Tutti i token API"
+    default: "Predefinito"
+    app: "App"
+    index:
+      title: "Token API"
+      create: "Crea un token API"
+      view: "Visualizza"
+    new:
+      title: "Nuovo token API"
+    edit:
+      title: "Modifica"
+    show:
+      edit: "Modifica token"
+      click_to_copy: "Clicca per copiare"
+      revoke: "Revoca token"
+      confirm: "Sei sicuro di voler revocare questo token API?"
+      auth_header: "Autenticazione tramite header"
+
   shuby_chats:
     destroy:
       destroyed: "Conversazione eliminata."
@@ -6,6 +31,24 @@ it:
       blank_message: "Il messaggio non può essere vuoto"
     not_found: "Conversazione non trovata"
     processing_error: "Si è verificato un errore durante l'elaborazione."
+
+  age_bands:
+    single_month:
+      one: "%{count} mese"
+      other: "%{count} mesi"
+    range: "%{min}-%{max} mesi"
+
+  activerecord:
+    errors:
+      models:
+        age_band_questionnaire:
+          attributes:
+            max_age_months:
+              must_be_greater: "deve essere maggiore di min_age_months"
+        plan:
+          attributes:
+            currency:
+              invalid_format: "deve essere un codice ISO a 3 lettere"
 
   children:
     index:

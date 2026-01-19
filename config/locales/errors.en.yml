@@ -1,0 +1,8 @@
+en:
+  errors:
+    not_found:
+      message: "Sorry, the page you are looking for could not be found."
+      back_to_home: "Back to home"
+    internal_server_error:
+      message: "Sorry, we had a problem loading this page."
+      back_to_home: "Back to home"

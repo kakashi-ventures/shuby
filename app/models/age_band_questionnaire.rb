@@ -22,13 +22,9 @@ class AgeBandQuestionnaire < ApplicationRecord
   def age_band_label
     # For monthly questionnaires (max - min == 1), show single month
     if max_age_months - min_age_months == 1
-      if min_age_months == 1
-        "#{min_age_months} mese"
-      else
-        "#{min_age_months} mesi"
-      end
+      I18n.t("age_bands.single_month", count: min_age_months)
     else
-      "#{min_age_months}-#{max_age_months} mesi"
+      I18n.t("age_bands.range", min: min_age_months, max: max_age_months)
     end
   end
 
@@ -40,6 +36,6 @@ class AgeBandQuestionnaire < ApplicationRecord
 
   def max_greater_than_min
     return unless min_age_months && max_age_months
-    errors.add(:max_age_months, "deve essere maggiore di min_age_months") if max_age_months <= min_age_months
+    errors.add(:max_age_months, :must_be_greater) if max_age_months <= min_age_months
   end
 end

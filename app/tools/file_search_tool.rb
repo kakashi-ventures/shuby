@@ -20,13 +20,13 @@ class FileSearchTool < RubyLLM::Tool
   # @param query [String] The search query
   # @return [Hash] Search results with citations and snippets
   def execute(query:)
-    return {error: "Query cannot be blank"} if query.blank?
+    return {error: I18n.t("file_search_tool.query_blank")} if query.blank?
 
     store_id = vector_store_id
-    return {error: "Vector store not configured"} unless store_id
+    return {error: I18n.t("file_search_tool.vector_store_not_configured")} unless store_id
 
     api_key = openai_api_key
-    return {error: "OpenAI API key not configured"} unless api_key
+    return {error: I18n.t("file_search_tool.api_key_not_configured")} unless api_key
 
     # Search the vector store using direct HTTP call
     # (ruby-openai gem doesn't have this endpoint yet)
@@ -36,8 +36,7 @@ class FileSearchTool < RubyLLM::Tool
 
     if results.empty?
       return {
-        answer: "Non ho trovato informazioni specifiche nella knowledge base per questa domanda. " \
-                "Posso comunque aiutarti con informazioni generali sullo sviluppo infantile.",
+        answer: I18n.t("file_search_tool.no_results"),
         citations: [],
         snippets: []
       }
@@ -49,7 +48,7 @@ class FileSearchTool < RubyLLM::Tool
     seen_files = Set.new
 
     results.each do |result|
-      filename = result.dig("file_name") || result.dig("filename") || "Documento"
+      filename = result.dig("file_name") || result.dig("filename") || I18n.t("file_search_tool.document")
       file_id = result.dig("file_id")
       content = extract_content(result)
       score = result.dig("score") || 0
@@ -73,7 +72,7 @@ class FileSearchTool < RubyLLM::Tool
 
     # Build context for the LLM
     context = snippets.map do |s|
-      "**Fonte: #{s[:file_name]}**\n#{s[:content]}"
+      "**#{I18n.t("file_search_tool.source", file_name: s[:file_name])}**\n#{s[:content]}"
     end.join("\n\n---\n\n")
 
     {
@@ -84,7 +83,7 @@ class FileSearchTool < RubyLLM::Tool
     }
   rescue Faraday::Error => e
     Rails.logger.error("FileSearchTool error: #{e.message}")
-    {error: "Errore nella ricerca: #{e.message}"}
+    {error: I18n.t("file_search_tool.search_error", message: e.message)}
   end
 
   private

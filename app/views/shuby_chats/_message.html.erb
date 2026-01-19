@@ -6,7 +6,7 @@
   <div class="<%= is_user ? 'bg-[var(--bg-primary)] text-white' : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700' %> rounded-2xl px-4 py-3 max-w-[85%] shadow-sm">
     <% unless is_user %>
       <div class="flex items-center gap-2 mb-2">
-        <span class="text-xs font-medium text-primary-600 dark:text-primary-400">Shuby</span>
+        <span class="text-xs font-medium text-primary-600 dark:text-primary-400"><%= t("shuby_chats.message.shuby_name") %></span>
       </div>
     <% end %>
 
@@ -26,11 +26,11 @@
     <%# Citations for assistant messages %>
     <% if !is_user && message.respond_to?(:citations) && message.citations.any? %>
       <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-600">
-        <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">📚 Fonti:</p>
+        <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">📚 <%= t("shuby_chats.message.sources") %></p>
         <div class="flex flex-wrap gap-1">
           <% message.citations.uniq { |c| c[:file_name] || c["file_name"] }.each do |citation| %>
             <span class="inline-flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded">
-              <%= citation[:file_name] || citation["file_name"] || "Documento" %>
+              <%= citation[:file_name] || citation["file_name"] || t("shuby_chats.message.document") %>
             </span>
           <% end %>
         </div>

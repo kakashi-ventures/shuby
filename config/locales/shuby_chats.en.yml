@@ -1,0 +1,52 @@
+en:
+  shuby_chats:
+    default_title: "New Chat"
+    index:
+      title: "Shuby - Chat Assistant"
+      heading: "Shuby"
+      subtitle: "Your assistant for child development"
+      new_conversation: "New conversation"
+      messages_count:
+        one: "%{count} message"
+        other: "%{count} messages"
+      time_ago: "%{time} ago"
+      no_conversations: "No conversations"
+      start_prompt: "Start a new conversation with Shuby"
+      start_chat_button: "Start chatting"
+    show:
+      back: "Back"
+      new_button: "New"
+      delete_confirm: "Are you sure you want to delete this conversation?"
+      powered_by: "Powered by %{model}"
+      welcome:
+        greeting: "Hello! I'm Shuby"
+        description: "I'm here to help you with questions about your child's development (0-36 months). Ask me anything!"
+      suggestions:
+        milestones_6m: "Milestones at 6 months"
+        milestones_6m_full: "What are the development milestones at 6 months?"
+        sleep_tips: "Sleep tips"
+        sleep_tips_full: "How can I help my baby sleep better?"
+        tummy_time: "Tummy time"
+        tummy_time_full: "What is tummy time and how to do it?"
+    message:
+      shuby_name: "Shuby"
+      sources: "Sources:"
+      document: "Document"
+    message_form:
+      placeholder: "Write a message..."
+      send: "Send"
+      disclaimer: "Shuby can make mistakes. Always verify important information with your pediatrician."
+    error_message:
+      error_title: "Error"
+      retry_suggestion: "Try sending the message again."
+    placeholder:
+      thinking: "Thinking..."
+
+  file_search_tool:
+    query_blank: "Query cannot be blank"
+    vector_store_not_configured: "Vector store not configured"
+    api_key_not_configured: "OpenAI API key not configured"
+    no_results: "I couldn't find specific information in the knowledge base for this question. However, I can still help you with general information about child development."
+    document: "Document"
+    source: "Source: %{file_name}"
+    search_error: "Search error: %{message}"

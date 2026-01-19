@@ -3,8 +3,8 @@
     <div class="max-w-sm m-8">
       <div class="text-5xl md:text-15xl font-black">500</div>
       <div class="w-16 h-1 bg-primary my-3 md:my-6"></div>
-      <p class="text-2xl md:text-3xl font-light mb-8 leading-normal">Sorry, we had a problem loading this page.</p>
-      <%= link_to "Back to home", root_path, class: "btn btn-primary btn-xl" %>
+      <p class="text-2xl md:text-3xl font-light mb-8 leading-normal"><%= t("errors.internal_server_error.message") %></p>
+      <%= link_to t("errors.internal_server_error.back_to_home"), root_path, class: "btn btn-primary btn-xl" %>
     </div>
   </div>
   <div class="relative pb-full md:flex md:pb-0 md:min-h-screen w-full md:w-1/2">

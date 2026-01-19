@@ -1,0 +1,8 @@
+it:
+  errors:
+    not_found:
+      message: "Spiacenti, la pagina che stai cercando non è stata trovata."
+      back_to_home: "Torna alla home"
+    internal_server_error:
+      message: "Spiacenti, si è verificato un problema nel caricamento di questa pagina."
+      back_to_home: "Torna alla home"

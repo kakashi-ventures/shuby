@@ -12,7 +12,7 @@ class ApplicationPolicy
 
   def initialize(account_user, record)
     # Comment out to allow guest users
-    raise Pundit::NotAuthorizedError, "must be logged in" unless account_user
+    raise Pundit::NotAuthorizedError, I18n.t("pundit.must_be_logged_in") unless account_user
 
     @account_user = account_user
     @record = record
@@ -49,7 +49,7 @@ class ApplicationPolicy
   class Scope
     def initialize(account_user, scope)
       # Comment out to allow guest users
-      raise Pundit::NotAuthorizedError, "must be logged in" unless account_user
+      raise Pundit::NotAuthorizedError, I18n.t("pundit.must_be_logged_in") unless account_user
 
       @account_user = account_user
       @scope = scope

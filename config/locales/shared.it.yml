@@ -1,0 +1,18 @@
+it:
+  shared:
+    bottom_nav:
+      today: "Oggi"
+      ai_helper: "AI-helper"
+      archive: "Archivio"
+      settings: "Gestione"
+
+  application:
+    footer:
+      tagline: "Il tuo compagno per i primi 1000 giorni"
+      all_rights_reserved: "Tutti i diritti riservati."
+
+  dashboard:
+    show:
+      shuby_ai:
+        title: "Shuby AI"
+        subtitle: "Il tuo assistente per lo sviluppo infantile"
