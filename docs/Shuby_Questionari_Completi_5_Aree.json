@@ -9,7 +9,9 @@
       "Cognizione e Attenzione",
       "Relazione e Regolazione",
       "Consolidamento"
-    ]
+    ],
+    "opzioni_risposta_standard": ["sì", "no", "non_lo_so"],
+    "nota_terminologia": "L'opzione 'non_lo_so' (visualizzata come 'Non lo so') è usata quando il genitore non sa se il comportamento si verifica. Questo termine è allineato con i documenti di prodotto ufficiali."
   },
   "questionari_mensili": [
     {
@@ -25,7 +27,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -34,7 +36,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -43,7 +45,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -57,7 +59,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -66,7 +68,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -75,7 +77,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -84,7 +86,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -98,7 +100,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -107,7 +109,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -116,7 +118,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -130,7 +132,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -139,7 +141,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -148,7 +150,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -173,7 +175,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -182,7 +184,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -191,7 +193,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -205,7 +207,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -214,7 +216,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -223,7 +225,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -237,7 +239,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -246,7 +248,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -260,7 +262,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -269,7 +271,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -284,7 +286,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -294,7 +296,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -304,7 +306,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -324,7 +326,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -333,7 +335,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -342,7 +344,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -356,7 +358,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -365,7 +367,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -374,7 +376,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -388,7 +390,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -397,7 +399,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -406,7 +408,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -420,7 +422,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -429,7 +431,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -444,7 +446,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -454,7 +456,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -464,7 +466,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -484,7 +486,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -493,7 +495,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -502,7 +504,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -516,7 +518,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -525,7 +527,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -534,7 +536,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -548,7 +550,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -557,7 +559,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -566,7 +568,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -580,7 +582,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -589,7 +591,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -604,7 +606,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -614,7 +616,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -624,7 +626,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -644,7 +646,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -653,7 +655,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -662,7 +664,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -676,7 +678,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -685,7 +687,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -694,7 +696,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -708,7 +710,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -717,7 +719,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -726,7 +728,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -740,7 +742,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -749,7 +751,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -764,7 +766,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -774,7 +776,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -784,7 +786,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -804,7 +806,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -813,7 +815,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -822,7 +824,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -836,7 +838,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -845,7 +847,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -854,7 +856,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -868,7 +870,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -877,7 +879,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -886,7 +888,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -900,7 +902,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -909,7 +911,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -918,7 +920,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -933,7 +935,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -943,7 +945,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -953,7 +955,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -973,7 +975,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -982,7 +984,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -991,7 +993,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1005,7 +1007,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1014,7 +1016,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1023,7 +1025,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1037,7 +1039,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1046,7 +1048,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1055,7 +1057,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1069,7 +1071,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1078,7 +1080,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1087,7 +1089,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1102,7 +1104,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1112,7 +1114,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1122,7 +1124,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1142,7 +1144,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1151,7 +1153,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1160,7 +1162,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1174,7 +1176,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1183,7 +1185,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1192,7 +1194,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1206,7 +1208,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1215,7 +1217,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1224,7 +1226,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1238,7 +1240,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1247,7 +1249,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1256,7 +1258,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1271,7 +1273,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1281,7 +1283,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1291,7 +1293,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1311,7 +1313,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1320,7 +1322,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1329,7 +1331,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1343,7 +1345,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1352,7 +1354,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1361,7 +1363,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1375,7 +1377,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1384,7 +1386,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1393,7 +1395,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1407,7 +1409,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1416,7 +1418,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1425,7 +1427,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1440,7 +1442,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1450,7 +1452,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1460,7 +1462,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1480,7 +1482,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1489,7 +1491,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1498,7 +1500,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1512,7 +1514,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1521,7 +1523,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1530,7 +1532,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1544,7 +1546,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1553,7 +1555,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1562,7 +1564,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1576,7 +1578,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1585,7 +1587,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1594,7 +1596,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1609,7 +1611,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1619,7 +1621,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1629,7 +1631,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1649,7 +1651,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1658,7 +1660,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1667,7 +1669,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1681,7 +1683,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1690,7 +1692,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1699,7 +1701,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1713,7 +1715,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1722,7 +1724,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1731,7 +1733,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1745,7 +1747,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1754,7 +1756,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1763,7 +1765,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1778,7 +1780,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1788,7 +1790,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1798,7 +1800,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1818,7 +1820,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1827,7 +1829,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1836,7 +1838,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1850,7 +1852,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1859,7 +1861,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1868,7 +1870,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1882,7 +1884,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1891,7 +1893,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1900,7 +1902,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1914,7 +1916,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1923,7 +1925,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1932,7 +1934,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1947,7 +1949,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1957,7 +1959,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1967,7 +1969,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -1987,7 +1989,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -1996,7 +1998,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2005,7 +2007,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2019,7 +2021,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2028,7 +2030,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2037,7 +2039,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2051,7 +2053,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2060,7 +2062,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2069,7 +2071,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2083,7 +2085,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2092,7 +2094,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2101,7 +2103,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2116,7 +2118,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2126,7 +2128,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2136,7 +2138,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2156,7 +2158,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2165,7 +2167,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2174,7 +2176,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2188,7 +2190,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2197,7 +2199,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2206,7 +2208,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2220,7 +2222,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2229,7 +2231,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2238,7 +2240,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2252,7 +2254,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2261,7 +2263,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2270,7 +2272,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2285,7 +2287,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2295,7 +2297,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2305,7 +2307,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2325,7 +2327,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2334,7 +2336,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2343,7 +2345,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2357,7 +2359,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2366,7 +2368,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2375,7 +2377,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2389,7 +2391,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2398,7 +2400,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2407,7 +2409,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2421,7 +2423,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2430,7 +2432,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2439,7 +2441,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2454,7 +2456,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2464,7 +2466,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2474,7 +2476,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2494,7 +2496,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2503,7 +2505,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2512,7 +2514,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2526,7 +2528,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2535,7 +2537,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2544,7 +2546,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2558,7 +2560,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2567,7 +2569,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2576,7 +2578,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2590,7 +2592,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2599,7 +2601,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2608,7 +2610,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2623,7 +2625,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2633,7 +2635,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2643,7 +2645,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2663,7 +2665,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2672,7 +2674,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2681,7 +2683,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2695,7 +2697,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2704,7 +2706,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2713,7 +2715,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2727,7 +2729,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2736,7 +2738,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2745,7 +2747,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2759,7 +2761,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2768,7 +2770,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2777,7 +2779,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2792,7 +2794,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2802,7 +2804,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2812,7 +2814,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2832,7 +2834,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2841,7 +2843,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2850,7 +2852,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2864,7 +2866,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2873,7 +2875,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2882,7 +2884,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2896,7 +2898,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2905,7 +2907,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2914,7 +2916,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2928,7 +2930,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2937,7 +2939,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2946,7 +2948,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -2961,7 +2963,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2971,7 +2973,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -2981,7 +2983,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3001,7 +3003,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3010,7 +3012,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3019,7 +3021,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3033,7 +3035,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3042,7 +3044,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3051,7 +3053,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3065,7 +3067,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3074,7 +3076,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3083,7 +3085,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3097,7 +3099,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3106,7 +3108,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3115,7 +3117,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3130,7 +3132,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3140,7 +3142,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3150,7 +3152,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3170,7 +3172,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3179,7 +3181,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3188,7 +3190,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3202,7 +3204,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3211,7 +3213,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3220,7 +3222,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3234,7 +3236,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3243,7 +3245,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3252,7 +3254,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3266,7 +3268,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3275,7 +3277,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3284,7 +3286,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3299,7 +3301,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3309,7 +3311,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3319,7 +3321,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3339,7 +3341,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3348,7 +3350,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3357,7 +3359,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3371,7 +3373,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3380,7 +3382,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3389,7 +3391,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3403,7 +3405,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3412,7 +3414,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3421,7 +3423,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3435,7 +3437,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3444,7 +3446,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3453,7 +3455,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3468,7 +3470,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3478,7 +3480,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3488,7 +3490,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3508,7 +3510,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3517,7 +3519,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3526,7 +3528,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3540,7 +3542,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3549,7 +3551,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3558,7 +3560,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3572,7 +3574,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3581,7 +3583,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3590,7 +3592,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3604,7 +3606,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3613,7 +3615,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3622,7 +3624,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3637,7 +3639,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3647,7 +3649,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3657,7 +3659,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3677,7 +3679,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3686,7 +3688,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3695,7 +3697,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3709,7 +3711,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3718,7 +3720,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3727,7 +3729,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3741,7 +3743,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3750,7 +3752,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3759,7 +3761,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3773,7 +3775,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3782,7 +3784,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3791,7 +3793,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3806,7 +3808,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3816,7 +3818,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3826,7 +3828,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3846,7 +3848,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3855,7 +3857,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3864,7 +3866,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3878,7 +3880,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3887,7 +3889,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3896,7 +3898,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3910,7 +3912,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3919,7 +3921,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3928,7 +3930,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3942,7 +3944,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3951,7 +3953,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3960,7 +3962,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -3975,7 +3977,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3985,7 +3987,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -3995,7 +3997,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4015,7 +4017,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4024,7 +4026,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4033,7 +4035,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4047,7 +4049,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4056,7 +4058,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4065,7 +4067,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4079,7 +4081,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4088,7 +4090,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4097,7 +4099,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4111,7 +4113,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4120,7 +4122,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4129,7 +4131,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4144,7 +4146,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4154,7 +4156,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4164,7 +4166,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4184,7 +4186,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4193,7 +4195,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4202,7 +4204,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4216,7 +4218,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4225,7 +4227,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4234,7 +4236,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4248,7 +4250,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4257,7 +4259,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4266,7 +4268,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4280,7 +4282,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4289,7 +4291,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4298,7 +4300,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4313,7 +4315,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4323,7 +4325,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4333,7 +4335,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4353,7 +4355,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4362,7 +4364,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4371,7 +4373,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4385,7 +4387,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4394,7 +4396,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4403,7 +4405,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4417,7 +4419,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4426,7 +4428,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4435,7 +4437,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4449,7 +4451,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4458,7 +4460,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4467,7 +4469,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4482,7 +4484,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4492,7 +4494,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4502,7 +4504,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4522,7 +4524,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4531,7 +4533,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4540,7 +4542,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4554,7 +4556,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4563,7 +4565,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4572,7 +4574,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4586,7 +4588,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4595,7 +4597,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4604,7 +4606,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4618,7 +4620,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4627,7 +4629,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4636,7 +4638,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4651,7 +4653,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4661,7 +4663,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4671,7 +4673,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4691,7 +4693,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4700,7 +4702,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4709,7 +4711,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4723,7 +4725,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4732,7 +4734,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4741,7 +4743,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4750,7 +4752,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4759,7 +4761,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4768,7 +4770,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4777,7 +4779,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4786,7 +4788,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4795,7 +4797,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4804,7 +4806,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4813,7 +4815,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4822,7 +4824,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4831,7 +4833,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4845,7 +4847,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4854,7 +4856,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4863,7 +4865,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4877,7 +4879,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4886,7 +4888,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4895,7 +4897,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]
@@ -4910,7 +4912,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4920,7 +4922,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4930,7 +4932,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4940,7 +4942,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4950,7 +4952,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             },
             {
@@ -4960,7 +4962,7 @@
               "opzioni_risposta": [
                 "sì",
                 "no",
-                "incerto"
+                "non_lo_so"
               ]
             }
           ]

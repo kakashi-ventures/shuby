@@ -734,7 +734,7 @@ en:
       responses_title: "Your responses"
       answer_si: "Yes"
       answer_no: "No"
-      answer_non_lo_so: "Unknown"
+      answer_non_lo_so: "I don't know"
 
       attention_title: "Suggestions"
       attention_message: "We noticed some responses that may indicate areas to focus on. Remember that every child develops at their own pace!"

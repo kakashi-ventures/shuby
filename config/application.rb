@@ -34,8 +34,8 @@ module JumpstartApp
     # Permitted locales available for the application
     config.i18n.available_locales = [:en, :it]
 
-    # Set default locale (English is default, users can switch to Italian)
-    config.i18n.default_locale = :en
+    # Set default locale to Italian
+    config.i18n.default_locale = :it
 
     # Use default language as fallback if translation is missing
     config.i18n.fallbacks = true

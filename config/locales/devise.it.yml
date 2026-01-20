@@ -1,0 +1,133 @@
+# Italian translations for Devise
+
+it:
+  devise:
+    confirmations:
+      confirmed: "Il tuo indirizzo email è stato confermato con successo."
+      new:
+        resend_confirmation_instructions: Reinvia istruzioni di conferma
+        title: "Reinvia istruzioni di conferma email"
+      send_instructions: "Riceverai un'email con le istruzioni per confermare il tuo indirizzo email entro pochi minuti."
+      send_paranoid_instructions: "Se il tuo indirizzo email esiste nel nostro database, riceverai un'email con le istruzioni per confermarlo entro pochi minuti."
+    failure:
+      already_authenticated: "Hai già effettuato l'accesso."
+      inactive: "Il tuo account non è ancora stato attivato."
+      invalid: "%{authentication_keys} o password non validi."
+      locked: "Il tuo account è bloccato."
+      last_attempt: "Hai ancora un tentativo prima che il tuo account venga bloccato."
+      not_found_in_database: "%{authentication_keys} o password non validi."
+      timeout: "La tua sessione è scaduta. Effettua nuovamente l'accesso per continuare."
+      unauthenticated: "Devi effettuare l'accesso o registrarti per continuare."
+      unconfirmed: "Devi confermare il tuo indirizzo email prima di continuare."
+    mailer:
+      confirmation_instructions:
+        action: Conferma il mio account
+        greeting: Benvenuto %{recipient}!
+        instruction: 'Puoi confermare il tuo account email tramite il link seguente:'
+        subject: Istruzioni di conferma
+      email_changed:
+        greeting: Ciao %{recipient}!
+        message: Ti contattiamo per informarti che la tua email è stata cambiata in %{email}.
+        subject: Email modificata
+      password_change:
+        greeting: Ciao %{recipient}!
+        message: Ti contattiamo per informarti che la tua password è stata modificata.
+        subject: Password modificata
+      reset_password_instructions:
+        action: Cambia la mia password
+        greeting: Ciao %{recipient}!
+        instruction: Qualcuno ha richiesto un link per modificare la tua password. Puoi farlo tramite il link seguente.
+        instruction_2: Se non hai richiesto questa modifica, ignora questa email.
+        instruction_3: La tua password non cambierà finché non accederai al link sopra e ne creerai una nuova.
+        subject: Istruzioni per reimpostare la password
+      unlock_instructions:
+        action: Sblocca il mio account
+        greeting: Ciao %{recipient}!
+        instruction: 'Clicca il link seguente per sbloccare il tuo account:'
+        message: Il tuo account è stato bloccato a causa di un numero eccessivo di tentativi di accesso falliti.
+        subject: Istruzioni di sblocco
+    omniauth_callbacks:
+      failure: "Non è stato possibile autenticarti da %{kind} perché \"%{reason}\"."
+      success: "Autenticazione da account %{kind} riuscita."
+    passwords:
+      edit:
+        change_my_password: Cambia la mia password
+        change_your_password: Cambia la tua password
+        confirm_new_password: Conferma nuova password
+        new_password: Nuova password
+        title: Cambia password
+      new:
+        forgot_your_password: Hai dimenticato la password?
+        send_me_reset_password_instructions: Inviami le istruzioni per reimpostare la password
+        title: "Hai dimenticato la password?"
+      no_token: "Non puoi accedere a questa pagina senza provenire da un'email di reimpostazione password. Se provieni da un'email di reimpostazione password, assicurati di aver usato l'URL completo fornito."
+      send_instructions: "Riceverai un'email con le istruzioni su come reimpostare la password entro pochi minuti."
+      send_paranoid_instructions: "Se il tuo indirizzo email esiste nel nostro database, riceverai un link per il recupero della password entro pochi minuti."
+      updated: "La tua password è stata modificata con successo. Ora sei connesso."
+      updated_not_active: "La tua password è stata modificata con successo."
+    registrations:
+      destroyed: "Arrivederci! Il tuo account è stato cancellato con successo. Speriamo di rivederti presto."
+      edit:
+        are_you_sure: Sei sicuro?
+        cancel_my_account: Elimina il mio account
+        cancel_my_account_description: Questo eliminerà permanentemente tutti i dati associati al tuo account. Questa azione non può essere annullata.
+        cancel_my_account_confirm_description_html: Questo eliminerà permanentemente tutti i dati associati al tuo account. Questa azione non può essere annullata.<br/><br/>Per verificare, digita il tuo indirizzo email per confermare ed eliminare il tuo account.
+        currently_waiting_confirmation_for_email: 'In attesa di conferma per: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: lascia vuoto se non vuoi modificarla
+        unhappy: Non sei soddisfatto?
+        update: Aggiorna
+        we_need_your_current_password_to_confirm_your_changes: abbiamo bisogno della tua password attuale per confermare le modifiche
+        saving: "Salvataggio..."
+        title: "Modifica profilo"
+      new:
+        sign_up: Registrati
+        login: "accedi al tuo account"
+        login_html: "Oppure %{link}"
+        terms_html: "Accetto i %{terms} e la %{privacy}"
+        submitting: "Invio..."
+        title: "Registrati"
+      signed_up: "Benvenuto! Ti sei registrato con successo."
+      signed_up_but_inactive: "Ti sei registrato con successo. Tuttavia, non abbiamo potuto effettuare l'accesso perché il tuo account non è ancora attivo."
+      signed_up_but_locked: "Ti sei registrato con successo. Tuttavia, non abbiamo potuto effettuare l'accesso perché il tuo account è bloccato."
+      signed_up_but_unconfirmed: "Un messaggio con un link di conferma è stato inviato al tuo indirizzo email. Segui il link per attivare il tuo account."
+      update_needs_confirmation: "Hai aggiornato il tuo account con successo, ma dobbiamo verificare il tuo nuovo indirizzo email. Controlla la tua email e segui il link di conferma."
+      updated: "Il tuo account è stato aggiornato con successo."
+      updated_but_not_signed_in: Il tuo account è stato aggiornato con successo, ma poiché la password è stata modificata, devi effettuare nuovamente l'accesso
+    sessions:
+      already_signed_out: "Disconnessione effettuata con successo."
+      new:
+        sign_up: "registrati per un account"
+        sign_up_html: "Oppure %{link}"
+        sign_in: "Accedi"
+        title: "Accedi"
+      signed_in: "Accesso effettuato con successo."
+      signed_out: "Disconnessione effettuata con successo."
+    shared:
+      links:
+        back: Indietro
+        didn_t_receive_confirmation_instructions: Non hai ricevuto le istruzioni di conferma?
+        didn_t_receive_unlock_instructions: Non hai ricevuto le istruzioni di sblocco?
+        forgot_your_password: Hai dimenticato la password?
+        sign_in: Accedi
+        sign_in_with_provider: Accedi con %{provider}
+        sign_up: Registrati
+        redirecting: "Reindirizzamento..."
+      minimum_password_length:
+        one: "(minimo %{count} carattere)"
+        other: "(minimo %{count} caratteri)"
+    unlocks:
+      new:
+        resend_unlock_instructions: Reinvia istruzioni di sblocco
+      send_instructions: "Riceverai un'email con le istruzioni su come sbloccare il tuo account entro pochi minuti."
+      send_paranoid_instructions: "Se il tuo account esiste, riceverai un'email con le istruzioni su come sbloccarlo entro pochi minuti."
+      unlocked: "Il tuo account è stato sbloccato con successo. Effettua l'accesso per continuare."
+  errors:
+    messages:
+      already_confirmed: "è già stato confermato, prova ad accedere"
+      confirmation_period_expired: "deve essere confermato entro %{period}, richiedine uno nuovo"
+      expired: "è scaduto, richiedine uno nuovo"
+      not_found: "non trovato"
+      not_locked: "non era bloccato"
+      not_saved:
+        one: "1 errore ha impedito il salvataggio di questo %{resource}:"
+        other: "%{count} errori hanno impedito il salvataggio di questo %{resource}:"

@@ -43,7 +43,8 @@ class ShubyChatTest < ActiveSupport::TestCase
 
   test "display_title returns New Chat when empty" do
     chat = @user.shuby_chats.create!(model: "gpt-4o-mini")
-    assert_equal "New Chat", chat.display_title
+    # Match English "New Chat" or Italian "Nuova Chat"
+    assert_match(/New Chat|Nuova Chat/i, chat.display_title)
   end
 
   test "recent scope orders by updated_at desc" do

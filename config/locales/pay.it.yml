@@ -1,0 +1,64 @@
+it:
+  pay:
+    successful:
+      header: "Pagamento riuscito"
+      description: "Questo pagamento è stato confermato con successo."
+    cancelled:
+      header: "Pagamento annullato"
+      description: "Questo pagamento è stato annullato."
+    requires_action:
+      header: "Conferma il tuo pagamento di %{amount}"
+      description: "È necessaria una conferma aggiuntiva per elaborare il pagamento. Conferma il pagamento inserendo i dettagli di pagamento qui sotto."
+      full_name: "Nome completo"
+      card: "Carta di credito o debito"
+      button: "Paga %{amount}"
+      name_missing: "Per favore inserisci il tuo nome."
+      success: "Il pagamento è andato a buon fine."
+    all_rights_reserved: "Tutti i diritti riservati."
+    back: "Torna indietro"
+    refund: "Rimborso"
+    line_items:
+      amount: "Importo"
+      description: "Descrizione"
+      quantity: "Quantità"
+      subtotal: "Subtotale"
+      discount: "Sconto"
+      tax: "IVA"
+      total: "Totale"
+      unit_price: "Prezzo unitario"
+      percent_discount: "%{name} (%{percent}% di sconto)"
+      amount_discount: "%{name} (%{amount} di sconto)"
+    receipt:
+      date: "Data"
+      number: "Numero ricevuta"
+      paid: "Pagato"
+      payment_method: "Metodo di pagamento"
+      amount_paid: "Importo pagato"
+      refunded: "Rimborsato"
+      refunded_on: "Rimborsato il %{date}"
+    invoice:
+      number: "Numero fattura"
+      date: "Data"
+      payment_method: "Metodo di pagamento"
+    errors:
+      action_required: "Questo tentativo di pagamento è fallito perché è richiesta un'azione aggiuntiva prima che possa essere completato."
+      invalid_payment: "Questo tentativo di pagamento è fallito a causa di un metodo di pagamento non valido."
+      email_required: "L'email è richiesta per creare un cliente"
+      no_processor: "Nessun processore di pagamento selezionato. Assicurati di impostare l'attributo `processor` di %{class_name} su 'stripe' o 'braintree'."
+      braintree:
+        authorization: "I dati inviati non sono corretti e non corrispondono all'API o la chiave API utilizzata potrebbe non essere autorizzata a eseguire questa azione."
+    user_mailer:
+      receipt:
+        subject: "[%{application}] Ricevuta di pagamento"
+      refund:
+        subject: "[%{application}] Pagamento rimborsato"
+      subscription_renewing:
+        subject: "[%{application}] Il tuo prossimo rinnovo di abbonamento"
+      payment_action_required:
+        subject: "[%{application}] Conferma il tuo pagamento"
+      payment_failed:
+        subject: "[%{application}] Azione richiesta – Il tuo pagamento è fallito"
+      subscription_trial_will_end:
+        subject: "[%{application}] Il tuo periodo di prova sta per terminare"
+      subscription_trial_ended:
+        subject: "[%{application}] Il tuo periodo di prova è terminato"

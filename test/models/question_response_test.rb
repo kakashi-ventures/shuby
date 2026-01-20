@@ -37,7 +37,7 @@ class QuestionResponseTest < ActiveSupport::TestCase
       answer: :no
     )
     assert_not duplicate.valid?
-    assert_includes duplicate.errors[:question_id], "has already been taken"
+    assert duplicate.errors[:question_id].any?
   end
 
   test "si answer is stored correctly" do

@@ -19,7 +19,7 @@ class QuestionTest < ActiveSupport::TestCase
       position: 0
     )
     assert_not question.valid?
-    assert_includes question.errors[:prompt], "can't be blank"
+    assert question.errors[:prompt].any?
   end
 
   test "active scope returns only active questions" do

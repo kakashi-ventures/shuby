@@ -2,6 +2,110 @@ it:
   pundit:
     must_be_logged_in: "devi effettuare l'accesso"
 
+  are_you_sure: "Sei sicuro?"
+  back: "Indietro"
+  cancel: "Annulla"
+  create_an_account_first: "Per favore crea prima un account."
+  delete: "Elimina"
+  edit: "Modifica"
+  view: "Visualizza"
+  must_be_an_admin: "Devi essere un amministratore per farlo."
+  processing: "Elaborazione..."
+  something_went_wrong: "Qualcosa è andato storto"
+  unauthorized: "Non sei autorizzato a eseguire questa azione."
+  reveal: "Rivela"
+  try_again_later: "Riprova più tardi."
+
+  account_invitations_mailer:
+    invite:
+      subject: "%{inviter} ti ha invitato a %{account}"
+      header_html: "%{inviter} ti ha invitato a collaborare su <strong>%{account}</strong>"
+      description_html: "Puoi %{link} questo invito."
+      accept_or_decline: "accettare o rifiutare"
+      view_invitation: "Visualizza invito"
+
+  account_invitations:
+    invite_user: "Invita utente"
+    authenticate: "Per favore accedi o crea un account per accettare questo invito"
+    not_found: "Ops, non siamo riusciti a trovare questo invito. Contatta l'amministratore del tuo account per un nuovo invito."
+    show:
+      invited_you_to_join_html: "<strong>%{inviter}</strong> ti ha invitato a unirti a <strong>%{account}</strong>"
+      accept: "Accetta invito"
+      decline: "Rifiuta"
+
+  account_users:
+    updated: "Membro dell'account aggiornato con successo."
+    destroyed: "Membro dell'account rimosso con successo."
+    edit:
+      description: "Modifica permessi account per %{user}."
+
+  accounts:
+    index:
+      title: "Account"
+      create: "Crea un account"
+      switch: "Cambia"
+      current: "Account corrente"
+    show:
+      invite: "Invita un utente"
+      resend_invite: "Reinvia invito"
+      2fa: "2FA"
+      edit: "Modifica"
+      edit_account: "Modifica account"
+      copy_link: "Copia link"
+      switch: "Cambia"
+      personal_team_description: "Il tuo account personale è privato. Crea un nuovo account per condividere con il tuo team."
+    new:
+      title: "Nuovo account"
+      description: "Collabora e condividi con altri creando un account."
+    edit:
+      title: "Modifica"
+      delete_description: "L'eliminazione di questo account rimuoverà permanentemente tutti i dati associati."
+      delete_with_payments_description: "L'eliminazione di questo account annullerà tutti gli abbonamenti attivi e rimuoverà permanentemente tutti i dati associati."
+    created: "Account creato con successo."
+    created_and_switch_html: "Account creato con successo. <a class=\"underline\" href=\"%{link}\">Cambia account</a>"
+    updated: "Account aggiornato con successo."
+    destroyed: "Account eliminato con successo."
+    admin_required: "Solo gli amministratori dell'account possono farlo."
+    personal:
+      cannot_delete: "Non puoi eliminare il tuo account personale."
+    users: "Utenti"
+    roles: "Ruoli"
+    account_invitations:
+      sent: "Invito inviato a %{email}."
+      updated: "Invito aggiornato con successo."
+      destroyed: "Invito rimosso con successo."
+      new:
+        title: "Invita utente"
+        description: "Invita un utente a unirsi al tuo account."
+        send: "Invia invito"
+        cancel: "Annulla"
+      edit:
+        title: "Modifica invito"
+        description: "Modifica o annulla invito."
+        back: "Indietro"
+        update: "Aggiorna invito"
+        destroy: "Annulla invito"
+    transfers:
+      form:
+        title: "Trasferisci proprietà"
+        description: "Trasferisci la proprietà di questo account a un altro utente."
+        transfer: "Trasferisci"
+        are_you_sure: "Sei sicuro di voler trasferire questo account?"
+      update:
+        not_allowed: "Non sei autorizzato a farlo."
+        invalid: "Per favore scegli un membro dell'account a cui trasferire la proprietà."
+        success: "Account trasferito con successo."
+
+  announcements:
+    index:
+      title: "Novità"
+      description: "Nuovi aggiornamenti e miglioramenti a %{name}"
+      empty_placeholder: "Novità entusiasmanti in arrivo molto presto!"
+    show:
+      title: "Novità"
+      description: "Nuovi aggiornamenti e miglioramenti a %{name}"
+      back: "Indietro"
+
   api_tokens:
     created: "Token API creato con successo"
     updated: "Token API aggiornato con successo"
@@ -24,6 +128,48 @@ it:
       confirm: "Sei sicuro di voler revocare questo token API?"
       auth_header: "Autenticazione tramite header"
 
+  application:
+    footer:
+      announcements: "Novità"
+      about: "Chi siamo"
+      privacy: "Privacy"
+      terms: "Termini"
+    account_menu:
+      create_account: "Crea un account"
+    account_navbar:
+      profile: "Profilo"
+      password: "Password"
+      connected_accounts: "Account collegati"
+      billing: "Fatturazione"
+      accounts: "Account"
+      api_tokens: "API"
+      referrals: "Referral"
+    flash:
+      confirm_payment: "Conferma il tuo ultimo pagamento"
+    user_menu:
+      profile: "Profilo"
+      password: "Password"
+      connected_accounts: "Account collegati"
+      billing: "Fatturazione"
+      api_tokens: "API"
+      accounts: "Account"
+      admin: "Area Admin"
+      dashboard: "Dashboard"
+      sign_out: "Esci"
+    right_nav:
+      pricing: "Prezzi"
+      log_in: "Accedi"
+      sign_up: "Registrati"
+    navbar:
+      accounts: "Account"
+      password: "Password"
+      profile: "Profilo"
+      sign_out: "Esci"
+
+  dashboard:
+    show:
+      title: "Dashboard"
+
   shuby_chats:
     destroy:
       destroyed: "Conversazione eliminata."
@@ -32,6 +178,316 @@ it:
     not_found: "Conversazione non trovata"
     processing_error: "Si è verificato un errore durante l'elaborazione."
 
+  oauth:
+    sign_in_with: "Accedi con %{provider}"
+    apple: "Apple"
+    developer: "Developer"
+    facebook: "Facebook"
+    github: "GitHub"
+    gitlab: "GitLab"
+    google_oauth2: "Google"
+    microsoft_graph: "Microsoft"
+    stripe: "Stripe"
+    twitter: "Twitter"
+
+  payments:
+    success: "Grazie per l'abbonamento!"
+    show:
+      successful: "Pagamento riuscito"
+      successful_description: "Questo pagamento è già stato confermato con successo."
+      cancelled: "Pagamento annullato"
+      cancelled_description: "Questo pagamento è stato annullato."
+      confirm: "Conferma il tuo pagamento di %{amount}"
+      confirm_description: "È necessaria una conferma aggiuntiva per elaborare il pagamento. Conferma il pagamento inserendo i dettagli di pagamento qui sotto."
+      back: "Torna indietro"
+      confirm_button: "Conferma pagamento"
+
+  pricing:
+    no_plans_html: "Non ci sono piani tariffari configurati. %{link}."
+    show:
+      heading: "Piani tariffari"
+      subhead: "Prezzi semplici e diretti per avviare la tua attività online"
+      monthly: "Mensile"
+      yearly: "Annuale"
+
+  scaffold:
+    edit:
+      title: "Modifica %{model}"
+    new:
+      title: "Nuovo %{model}"
+    actions: "Azioni"
+    view: "Visualizza"
+
+  static:
+    about:
+      title: "Chi siamo"
+    privacy:
+      title: "Privacy Policy"
+    terms:
+      title: "Termini di servizio"
+
+  billing:
+    updated: "Impostazioni di fatturazione aggiornate con successo."
+    show:
+      title: "Fatturazione"
+      contact_admin: "Contatta un amministratore per modificare l'abbonamento di %{account}."
+      subscriptions: "Piano attuale"
+      not_subscribed: "Non sei attualmente abbonato."
+      choose_plan: "Scegli un piano"
+    info:
+      extra_billing_info: "Informazioni di fatturazione aggiuntive"
+      additional_information: "Aggiungi qualsiasi informazione aggiuntiva a tutte le tue ricevute, come partita IVA, nome completo dell'azienda e indirizzo."
+      save_info: "Salva informazioni"
+      saving: "Salvataggio..."
+      add_info: "Aggiungi informazioni"
+    email:
+      billing_email: "Email di fatturazione"
+      description: "Invia le ricevute a un indirizzo email specifico oltre che al proprietario dell'account."
+      save: "Salva"
+      saving: "Salvataggio..."
+    charges:
+      title: "Storico fatturazione"
+      date: "Data"
+      amount: "Importo"
+      invoice: "Fattura"
+      receipt: "Ricevuta"
+      view: "Visualizza"
+      empty: "Nessuno storico di fatturazione."
+    subscriptions:
+      created: "Grazie per l'abbonamento!"
+      resumed: "Il tuo abbonamento è stato ripreso."
+      plan:
+        contact_us: "Contattaci"
+        contact_us_price: "Parliamone"
+        change_plan: "Cambia piano"
+        current_plan: "Piano attuale"
+        get_started: "Inizia"
+        start_trial: "Inizia prova"
+        processing: "Elaborazione..."
+      edit:
+        trial_ends: "La tua prova termina tra %{days}."
+        title: "Cambia il tuo piano"
+        description: "Prezzi semplici e diretti per avviare la tua attività online"
+        monthly: "Mensile"
+        yearly: "Annuale"
+        current_plan: "Piano attuale"
+        processing: "Elaborazione..."
+      update:
+        success: "Il tuo piano è stato aggiornato con successo."
+      subscription:
+        cancel_plan: "Annulla piano"
+        canceled_on_trial: "Dopo che la tua prova terminerà il %{date}, questo piano verrà annullato automaticamente."
+        title: "Piani attuali"
+        free_trial: "Prova gratuita"
+        free_trial_ends: "La tua prova termina il %{date}."
+        trial: "Dopo che la tua prova terminerà il %{date}, questo piano continuerà automaticamente."
+        resume: "Riprendi piano"
+        change_plan: "Cambia piano"
+        pause: "Metti in pausa piano"
+        canceled: "Annullato"
+        incomplete: "Incompleto"
+        confirm_payment: "Conferma pagamento"
+        ends_at: "Il tuo piano sarà annullato il %{date}."
+        paused_at: "Il tuo piano sarà messo in pausa il %{date}."
+        paused: "Il tuo piano è in pausa."
+        view_usage: "Visualizza utilizzo"
+        view_upcoming_invoice: "Visualizza fattura prossima"
+        past_due: "Scaduto"
+        unpaid: "Non pagato"
+        update_payment_method: "Aggiorna metodo di pagamento"
+        failed_payment: "L'ultimo pagamento non è andato a buon fine. Aggiorna il metodo di pagamento per continuare questo piano."
+      payment_methods:
+        new:
+          billing: "Fatturazione"
+          payment_details: "Dettagli pagamento"
+          past_due: "Il tuo metodo di pagamento è stato rifiutato. Aggiungi un altro metodo di pagamento per continuare."
+        create:
+          updated: "Il tuo metodo di pagamento è stato aggiornato con successo."
+        forms:
+          braintree:
+            button: "Aggiorna carta"
+          fake_processor:
+            message: "Hai accesso gratuito e non hai bisogno di aggiungere un metodo di pagamento."
+          stripe:
+            credit_or_debit_card: "Carta di credito o debito"
+            button: "Aggiorna carta"
+      pauses:
+        show:
+          title: "Metti in pausa il tuo piano"
+          description: "Puoi mettere in pausa il tuo abbonamento e riprendere in seguito."
+          note: "La pausa ha effetto dal primo giorno del tuo prossimo ciclo di fatturazione. Non ti verrà addebitato nulla mentre il tuo account è in pausa."
+          back: "Torna alla fatturazione"
+          button: "Metti in pausa piano"
+          processing: "Messa in pausa..."
+        update:
+          resumed: "Il tuo abbonamento è stato messo in pausa."
+      resumes:
+        show:
+          title: "Riprendi il tuo piano"
+          resume: "Questo piano non sarà più annullato e si rinnoverà automaticamente."
+          back: "Torna alla fatturazione"
+          button: "Riprendi piano"
+          processing: "Ripresa..."
+        update:
+          resumed: "Il tuo abbonamento è stato ripreso."
+      summary:
+        quantity: "Quantità: %{quantity} a %{price} %{unit}"
+        per_unit: "per %{unit}"
+        each: "ciascuno"
+      cancels:
+        show:
+          title: "Annulla il tuo piano"
+          description: "Puoi annullare in qualsiasi momento, ma perderai l'accesso a %{product}."
+          help_html: "Hai bisogno di parlare con qualcuno? %{link} -- saremo felici di aiutarti."
+          contact_us: "Contattaci"
+          subject: "Domanda su %{product}"
+          active_until: "Il tuo piano sarà annullato, ma sarà ancora disponibile fino alla fine del periodo di fatturazione."
+          resume: "Se cambi idea, puoi riprendere il tuo abbonamento."
+          button: "Annulla piano"
+          back: "Torna alla fatturazione"
+          processing: "Annullamento..."
+        destroy:
+          resumed: "Il tuo abbonamento è stato annullato."
+      upcomings:
+        show:
+          title: "Fattura prossima"
+          description: "I costi attuali per il tuo utilizzo in questo periodo di fatturazione."
+          line_items:
+            description: "Descrizione"
+            quantity: "Quantità"
+            unit_price: "Prezzo unitario"
+            total: "Totale"
+          back: "Torna alla fatturazione"
+      forms:
+        stripe:
+          credit_or_debit_card: "Carta di credito o debito"
+
+  checkouts:
+    already_subscribed: "Sei già abbonato."
+    testimonial: "%{product} mi ha semplificato la vita. Non posso che consigliarlo."
+    show:
+      title: "Checkout"
+      account: "Account"
+      billing_address: "Indirizzo di fatturazione"
+      payment_method: "Metodo di pagamento"
+      change: "Modifica"
+      subscribe: "Abbonati"
+      start_trial: "Inizia prova"
+      processing: "Elaborazione..."
+      help: "Hai bisogno di aiuto?"
+      contact_html: "Non esitare a %{link}."
+      renews_html: "Si rinnova automaticamente<br/>dopo 1 %{interval}"
+      contact_support: "contattare il supporto"
+      contact_subject: "Ho una domanda su %{product}"
+      subtotal: "Subtotale"
+      tax: "IVA"
+      total: "Totale da pagare oggi"
+
+  checkout:
+    returns:
+      success: "Grazie per il tuo pagamento."
+
+  account:
+    passwords:
+      updated: "La tua password è stata cambiata con successo."
+      edit:
+        update_password: "Aggiorna password"
+        update: "Aggiorna"
+        two_factor:
+          header: "Autenticazione a due fattori"
+          description: "Quando accedi, ti verrà richiesto di inserire un codice usa e getta insieme a uno dei tuoi dispositivi."
+          enable: "Abilita autenticazione a due fattori"
+          disable: "Disabilita autenticazione a due fattori"
+
+  themes:
+    system: "Sincronizza con sistema"
+    light: "Chiaro"
+    dark: "Scuro"
+
+  users:
+    agreements:
+      show:
+        title: "%{agreement} modificato"
+        last_updated: "Ultimo aggiornamento %{date}"
+        description: "Prima di poter procedere, devi leggere e accettare il nuovo %{agreement}."
+        accept: "Accetto"
+        decline: "Rifiuto"
+      destroy:
+        declined: "Per continuare a utilizzare il servizio, accedi e accetta %{agreement}."
+    avatar:
+      upload: "Carica avatar"
+    connected_accounts:
+      index:
+        title: "Account collegati"
+        description: "Collegare i tuoi account social rende l'accesso più semplice."
+        redirecting: "Reindirizzamento..."
+        none: "Non hai account collegati."
+      connected_account:
+        remove: "Rimuovi"
+    omniauth_callbacks:
+      account_exists: "Abbiamo già un account con questa email. Accedi con il tuo account precedente prima di collegare questo."
+      connected_to_another_account: "Questo account è già collegato a un altro utente."
+    sessions:
+      create:
+        incorrect_verification_code: "Codice di verifica errato"
+    sudo:
+      header: "Conferma la password per continuare"
+      submit: "Conferma password"
+      forgot_password: "Hai dimenticato la password?"
+      invalid_password: "Password non valida"
+    two_factor:
+      disabled: "L'autenticazione a due fattori è ora disabilitata"
+      enabled: "L'autenticazione a due fattori è stata abilitata con successo"
+      header: "Autenticazione a due fattori"
+      submit: "Continua"
+      backup_codes:
+        header: "Codici di backup"
+        description: "I codici di recupero vengono utilizzati per accedere al tuo account nel caso in cui non sia possibile ricevere codici di autenticazione a due fattori."
+        warning: "Scarica, stampa o copia i tuoi codici di recupero prima di continuare."
+        save_codes: "Tratta i tuoi codici di recupero con la stessa attenzione che riserveresti alla tua password!"
+        cancel: "Annulla"
+        next: "Avanti"
+      verify:
+        header: "Scansiona questo codice con la tua app."
+        subheader: "Scansiona il codice QR con l'app di autenticazione a due fattori sul tuo telefono."
+        instructions_1_html: "Installa Authy: %{ios} o %{android}"
+        instructions_2: "Nell'app, seleziona \"Aggiungi account\""
+        instructions_3: "Scegli \"Scansiona codice QR\""
+        instructions_4: "Problemi con la scansione? Inserisci invece questa chiave nella tua app:"
+        verify_header: "Inserisci il codice a sei cifre dall'applicazione"
+        verify_description: "Dopo aver scansionato il codice QR, l'app mostrerà un codice che puoi inserire per continuare."
+        cancel: "Annulla"
+        verify: "Verifica"
+    referrals:
+      index:
+        title: "Referral"
+        instructions: "Copia il tuo link unico e condividilo con i tuoi amici e follower."
+        stats: "Statistiche"
+        clicks: "Click"
+        clicks_description: "Numero di volte che il tuo link è stato cliccato."
+        referrals: "Referral"
+        referrals_description: "Persone che si sono registrate usando il tuo link."
+        completed: "Completati"
+        completed_description: "Utenti che hanno completato il loro primo acquisto."
+
+  layouts:
+    mailer:
+      copyright_html: "Copyright &copy; %{year}, Tutti i diritti riservati."
+      mailing_address: "Il nostro indirizzo è:"
+      view_in_browser: "Visualizza nel browser"
+      unsubscribe: "Annulla iscrizione da questa lista"
+      preferences: "Aggiorna preferenze di iscrizione"
+
+  notifications:
+    index:
+      title: "Notifiche"
+      empty_placeholder: "Niente da vedere qui — per ora."
+      mark_all_as_read: "Segna tutto come letto"
+    invite_accepted: "%{user} ha accettato il tuo invito."
+    account_transferred: "%{previous_owner} ti ha reso proprietario dell'account %{account}."
+    empty: "Niente da vedere qui — per ora."
+    empty_description: "Ti faremo sapere quando avrai nuove notifiche."
+
   age_bands:
     single_month:
       one: "%{count} mese"
@@ -39,8 +495,39 @@ it:
     range: "%{min}-%{max} mesi"
 
   activerecord:
+    attributes:
+      api_token:
+        last_used_at: "Ultimo utilizzo"
+        created_at: "Creato"
+      account:
+        name_on_card: "Nome sulla carta"
+      user:
+        theme: "Tema colori"
     errors:
       models:
+        account:
+          attributes:
+            domain:
+              reserved: "%{value} è riservato."
+            subdomain:
+              reserved: "%{value} è riservato."
+              format: "deve essere di almeno 2 caratteri e alfanumerico"
+        account_invitation:
+          attributes:
+            email:
+              invited: "è già stato invitato"
+        account_user:
+          attributes:
+            admin:
+              cannot_be_removed: "il ruolo non può essere rimosso per il proprietario dell'account"
+        child:
+          attributes:
+            birth_date:
+              in_future: "non può essere nel futuro"
+            gestational_weeks:
+              invalid: "deve essere tra 22 e 42"
+            gestational_days:
+              invalid: "deve essere tra 0 e 6"
         age_band_questionnaire:
           attributes:
             max_age_months:
@@ -49,6 +536,36 @@ it:
           attributes:
             currency:
               invalid_format: "deve essere un codice ISO a 3 lettere"
+
+  errors:
+    messages:
+      image_format_not_supported: "formato immagine non supportato"
+
+  helpers:
+    label:
+      country: "Paese o regione"
+      account:
+        name: "Nome account"
+      user:
+        name: "Nome completo"
+    placeholder:
+      name_on_card: "Nome completo"
+      account_invitation:
+        name: "Nome completo"
+        email: "esempio@dominio.com"
+      account:
+        name: "Nome account"
+        domain: "esempio.com"
+        subdomain: "esempio"
+        name_on_card: "Nome completo"
+        extra_billing_info: "Partita IVA, nome azienda, indirizzo, ecc..."
+        billing_email: "account@esempio.com"
+      api_token:
+        name: "Nome token"
+      user:
+        name: "Mario Rossi"
+        email: "tu@esempio.com"
+        password: "password"
 
   children:
     index:
@@ -163,7 +680,7 @@ it:
       responses_title: "Le tue risposte"
       answer_si: "Sì"
       answer_no: "No"
-      answer_non_lo_so: "Non so"
+      answer_non_lo_so: "Non lo so"
 
       attention_title: "Suggerimenti"
       attention_message: "Abbiamo notato alcune risposte che potrebbero indicare aree su cui concentrarsi. Ricorda che ogni bambino si sviluppa con i propri tempi!"

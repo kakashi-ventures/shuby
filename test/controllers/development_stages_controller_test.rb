@@ -14,7 +14,8 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get child_development_stages_path(@child)
     assert_response :success
-    assert_select "h1", /Development Stages/i
+    # Match English "Development Stages" or Italian "Tappe di Sviluppo"
+    assert_select "h1", /Development Stages|Tappe di Sviluppo/i
   end
 
   test "should show development area with valid questionnaire" do

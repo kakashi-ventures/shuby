@@ -6,7 +6,7 @@ class DevelopmentAreaTest < ActiveSupport::TestCase
   test "validates presence of name" do
     area = DevelopmentArea.new(slug: "test", color: "#000000")
     assert_not area.valid?
-    assert_includes area.errors[:name], "can't be blank"
+    assert area.errors[:name].any?
   end
 
   test "generates slug from name if not provided" do
@@ -28,14 +28,14 @@ class DevelopmentAreaTest < ActiveSupport::TestCase
     existing = development_areas(:comunicazione)
     area = DevelopmentArea.new(name: existing.name, slug: "unique-slug", color: "#000000")
     assert_not area.valid?
-    assert_includes area.errors[:name], "has already been taken"
+    assert area.errors[:name].any?
   end
 
   test "validates uniqueness of slug" do
     existing = development_areas(:comunicazione)
     area = DevelopmentArea.new(name: "Unique Name", slug: existing.slug, color: "#000000")
     assert_not area.valid?
-    assert_includes area.errors[:slug], "has already been taken"
+    assert area.errors[:slug].any?
   end
 
   test "ordered scope returns areas by position" do

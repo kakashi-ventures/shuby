@@ -6,13 +6,13 @@ class CampanelloAllarmeTest < ActiveSupport::TestCase
   test "validates presence of month" do
     campanello = CampanelloAllarme.new(description: "Test warning")
     assert_not campanello.valid?
-    assert_includes campanello.errors[:month], "can't be blank"
+    assert campanello.errors[:month].any?
   end
 
   test "validates presence of description" do
     campanello = CampanelloAllarme.new(month: 0)
     assert_not campanello.valid?
-    assert_includes campanello.errors[:description], "can't be blank"
+    assert campanello.errors[:description].any?
   end
 
   test "validates month range 0-36" do
