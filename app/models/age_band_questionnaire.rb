@@ -8,7 +8,7 @@ class AgeBandQuestionnaire < ApplicationRecord
   validates :min_age_months, presence: true,
             numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 36}
   validates :max_age_months, presence: true,
-            numericality: {greater_than: 0, less_than_or_equal_to: 36}
+            numericality: {greater_than: 0, less_than_or_equal_to: 37}
   validate :max_greater_than_min
   validates :development_area_id, uniqueness: {scope: :min_age_months}
 
