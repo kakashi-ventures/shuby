@@ -1,0 +1,3011 @@
+{
+  "info": {
+    "titolo": "Questionari Sviluppo Completo Shuby",
+    "descrizione": "Questionari mensili per 5 aree di sviluppo: Comunicazione e Linguaggio, Motricità, Cognizione e Attenzione, Relazione e Regolazione, Consolidamento",
+    "fasce_eta": "0-17 mesi",
+    "aree_sviluppo": [
+      "Comunicazione e Linguaggio",
+      "Motricità",
+      "Cognizione e Attenzione",
+      "Relazione e Regolazione",
+      "Consolidamento"
+    ],
+    "opzioni_risposta_standard": [
+      "sì",
+      "no",
+      "non_lo_so"
+    ],
+    "nota_terminologia": "L'opzione 'non_lo_so' (visualizzata come 'Non lo so') è usata quando il genitore non sa se il comportamento si verifica. Questo termine è allineato con i documenti di prodotto ufficiali."
+  },
+  "questionari_mensili": [
+    {
+      "mese": 0,
+      "eta_descrizione": "0 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m0_com_1",
+              "domanda": "Reagisce alla voce della mamma?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m0_com_2",
+              "domanda": "Piange in modo forte quando ha fame o disagio?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m0_com_3",
+              "domanda": "Si calma se parlato con voce dolce?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m0_mot_1",
+              "domanda": "Muove gambe e braccia in modo simmetrico?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m0_mot_2",
+              "domanda": "Tende a chiudere le mani?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m0_mot_3",
+              "domanda": "Avvicina le mani al volto, per esempio toccando bocca o occhi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m0_mot_4",
+              "domanda": "Afferra automaticamente un dito se glielo metti nel palmo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m0_cog_1",
+              "domanda": "Fissa una luce intensa?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m0_cog_2",
+              "domanda": "Guarda un volto vicino per qualche secondo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m0_cog_3",
+              "domanda": "Reagisce a rumori forti con un sobbalzo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m0_rel_1",
+              "domanda": "Piange quando ha fame o disagio?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m0_rel_2",
+              "domanda": "Si calma al contatto fisico?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m0_rel_3",
+              "domanda": "Dorme almeno 14-17 ore al giorno?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "nota": "Nessuno - mese iniziale",
+          "domande": []
+        }
+      }
+    },
+    {
+      "mese": 1,
+      "eta_descrizione": "1 mese",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m1_com_1",
+              "domanda": "Emette suoni diversi dal pianto (es. “ehh”, “uhh”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m1_com_2",
+              "domanda": "Vocalizza se tranquillo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m1_com_3",
+              "domanda": "Si calma se gli si parla dolcemente?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m1_mot_1",
+              "domanda": "Solleva leggermente la testa quando è a pancia in giù?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m1_mot_2",
+              "domanda": "Inizia ad aprire le mani per brevi momenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m1_mot_3",
+              "domanda": "Allunga braccia o gambe spontaneamente?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m1_cog_1",
+              "domanda": "Segue un oggetto per qualche secondo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m1_cog_2",
+              "domanda": "Si gira verso un suono?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m1_rel_1",
+              "domanda": "Si calma se preso in braccio?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m1_rel_2",
+              "domanda": "Mostra calma o agitazione in base a chi lo tiene?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m1_cons_1",
+              "domanda": "Reagisce alla voce della mamma? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m1_cons_2",
+              "domanda": "Avvicina le mani al volto, per esempio toccando bocca o occhi?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m1_cons_3",
+              "domanda": "Guarda un volto vicino per qualche secondo? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 2,
+      "eta_descrizione": "2 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m2_com_1",
+              "domanda": "Vocalizza attivamente quando è contento?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m2_com_2",
+              "domanda": "Sorride in risposta a stimoli sociali?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m2_com_3",
+              "domanda": "Reagisce alla voce familiare con vocalizzi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m2_mot_1",
+              "domanda": "Solleva la testa a 45° in posizione prona?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m2_mot_2",
+              "domanda": "Porta entrambe le mani al centro?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m2_mot_3",
+              "domanda": "Tenta di toccare oggetti vicini?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m2_cog_1",
+              "domanda": "Fissa un oggetto in movimento?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m2_cog_2",
+              "domanda": "Si ferma ad ascoltare un suono?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m2_cog_3",
+              "domanda": "Sembra osservare chi gli parla?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m2_rel_1",
+              "domanda": "Si calma facilmente se cullato?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m2_rel_2",
+              "domanda": "Mostra preferenza per il volto del caregiver?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m2_cons_1",
+              "domanda": "Afferra automaticamente un dito? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m2_cons_2",
+              "domanda": "Si calma al contatto fisico? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m2_cons_3",
+              "domanda": "Piange con intensità diversa? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 3,
+      "eta_descrizione": "3 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m3_com_1",
+              "domanda": "Ride in risposta a stimoli?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m3_com_2",
+              "domanda": "Vocalizza guardando chi gli parla?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m3_com_3",
+              "domanda": "Risponde a stimoli vocali con suoni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m3_mot_1",
+              "domanda": "Tiene la testa dritta per alcuni secondi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m3_mot_2",
+              "domanda": "Afferra oggetti se messi vicino alla mano?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m3_mot_3",
+              "domanda": "Porta le mani alla bocca?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m3_cog_1",
+              "domanda": "Guarda un oggetto che si muove a 180°?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m3_cog_2",
+              "domanda": "Fissa un volto per almeno 5 secondi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m3_cog_3",
+              "domanda": "Si gira verso un suono da entrambi i lati?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m3_rel_1",
+              "domanda": "Sorride spontaneamente?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m3_rel_2",
+              "domanda": "Reagisce con eccitazione alla vista di un volto noto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m3_cons_1",
+              "domanda": "Solleva la testa a 45° in posizione prona? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m3_cons_2",
+              "domanda": "Vocalizza se tranquillo? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m3_cons_3",
+              "domanda": "Si calma se parlato dolcemente? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 4,
+      "eta_descrizione": "4 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m4_com_1",
+              "domanda": "Ripete più volte la stessa sillaba (es. pa-pa-pa)?, “ga”?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m4_com_2",
+              "domanda": "Vocalizza in modo continuo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m4_com_3",
+              "domanda": "Reagisce alla voce con suoni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m4_mot_1",
+              "domanda": "Afferra giocattoli sospesi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m4_mot_2",
+              "domanda": "Solleva torace con appoggio sugli avambracci?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m4_mot_3",
+              "domanda": "Porta oggetti alla bocca intenzionalmente?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m4_cog_1",
+              "domanda": "Segue oggetti colorati in movimento?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m4_cog_2",
+              "domanda": "Si ferma e osserva se cambi tono di voce?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m4_cog_3",
+              "domanda": "Mostra curiosità verso volti nuovi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m4_rel_1",
+              "domanda": "Si calma al suono di una canzone?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m4_rel_2",
+              "domanda": "Risponde con sorriso se stimolato affettuosamente?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m4_cons_1",
+              "domanda": "Ride in risposta a stimoli? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m4_cons_2",
+              "domanda": "Tiene la testa dritta per alcuni secondi? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m4_cons_3",
+              "domanda": "Porta le mani alla bocca? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 5,
+      "eta_descrizione": "5 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m5_com_1",
+              "domanda": "Vocalizza quando guarda una persona?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m5_com_2",
+              "domanda": "Emissione di suoni ripetuti e variabili?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m5_com_3",
+              "domanda": "Ride sonoramente a stimoli visivi o vocali?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m5_mot_1",
+              "domanda": "Si gira da solo su un fianco?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m5_mot_2",
+              "domanda": "Raggiunge un oggetto con una mano?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m5_mot_3",
+              "domanda": "Porta entrambi i piedi alla bocca?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m5_cog_1",
+              "domanda": "Guarda intensamente nuovi oggetti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m5_cog_2",
+              "domanda": "Focalizza l’attenzione su un suono per almeno 5 secondi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m5_cog_3",
+              "domanda": "Esplora con mani e bocca oggetti nuovi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m5_rel_1",
+              "domanda": "Mostra eccitazione con braccia/gambe quando ti avvicini?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m5_rel_2",
+              "domanda": "Si calma facilmente in braccio?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m5_rel_3",
+              "domanda": "Reagisce con piacere a canzoncine familiari?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m5_cons_1",
+              "domanda": "Ripete più volte la stessa sillaba (es. pa-pa-pa)?? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m5_cons_2",
+              "domanda": "Afferra giocattoli sospesi? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m5_cons_3",
+              "domanda": "Si calma al suono di una canzone? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 6,
+      "eta_descrizione": "6 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m6_com_1",
+              "domanda": "Inizia a ripetere sillabe (“ba-ba”, “da-da”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m6_com_2",
+              "domanda": "Fa suoni in risposta alla voce di chi parla?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m6_com_3",
+              "domanda": "Reagisce al proprio nome?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m6_mot_1",
+              "domanda": "Si gira completamente (prono↔supino)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m6_mot_2",
+              "domanda": "Inizia a stare seduto con supporto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m6_mot_3",
+              "domanda": "Tiene piccoli oggetti con presa palmare?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m6_cog_1",
+              "domanda": "Riconosce oggetti familiari?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m6_cog_2",
+              "domanda": "Guarda un oggetto che cade?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m6_cog_3",
+              "domanda": "Si gira verso suoni nuovi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m6_rel_1",
+              "domanda": "Mostra preferenza evidente per caregiver?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m6_rel_2",
+              "domanda": "Dimostra disagio con sconosciuti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m6_rel_3",
+              "domanda": "Si calma in modo più rapido con contatto fisico?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m6_cons_1",
+              "domanda": "Ride sonoramente? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m6_cons_2",
+              "domanda": "Porta oggetti alla bocca? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m6_cons_3",
+              "domanda": "Raggiunge un oggetto con una mano? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 7,
+      "eta_descrizione": "7 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m7_com_1",
+              "domanda": "Ripete serie di sillabe identiche, come pa‑pa‑pa?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m7_com_2",
+              "domanda": "Risponde con suoni quando gli si parla?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m7_com_3",
+              "domanda": "Quando sente il suo nome, si volta verso chi lo chiama?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m7_mot_1",
+              "domanda": "Si siede con schiena eretta (con poco supporto)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m7_mot_2",
+              "domanda": "Trasferisce oggetti da una mano all’altra?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m7_mot_3",
+              "domanda": "Inizia a strisciare o muoversi sul pavimento?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m7_cog_1",
+              "domanda": "Esamina attentamente un nuovo giocattolo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m7_cog_2",
+              "domanda": "Tocca oggetti con le dita invece di tutta la mano?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m7_cog_3",
+              "domanda": "Reagisce a un oggetto parzialmente nascosto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m7_rel_1",
+              "domanda": "Cerca lo sguardo del genitore?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m7_rel_2",
+              "domanda": "Imita espressioni facciali semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m7_rel_3",
+              "domanda": "Reagisce diversamente con volti noti e ignoti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m7_cons_1",
+              "domanda": "Inizia a ripetere sillabe? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m7_cons_2",
+              "domanda": "Guarda oggetti in movimento? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m7_cons_3",
+              "domanda": "Reagisce al proprio nome? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 8,
+      "eta_descrizione": "8 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m8_com_1",
+              "domanda": "Vocalizza da solo durante il gioco?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m8_com_2",
+              "domanda": "Ripete sequenze di suoni noti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m8_com_3",
+              "domanda": "Gira la testa verso suoni familiari?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m8_mot_1",
+              "domanda": "Si siede senza supporto per qualche secondo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m8_mot_2",
+              "domanda": "Afferra oggetti piccoli con pollice e indice?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m8_mot_3",
+              "domanda": "Gattona o tenta di spostarsi verso un oggetto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m8_cog_1",
+              "domanda": "Riconosce il proprio riflesso allo specchio?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m8_cog_2",
+              "domanda": "Cerca un giocattolo nascosto parzialmente?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m8_cog_3",
+              "domanda": "Sperimenta oggetti in modo diverso (batti, scuoti, lancia)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m8_rel_1",
+              "domanda": "Saluta con la mano se incoraggiato?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m8_rel_2",
+              "domanda": "Reagisce a separazione dal genitore?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m8_rel_3",
+              "domanda": "Mostra eccitazione per giochi abituali?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m8_cons_1",
+              "domanda": "Si gira completamente? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m8_cons_2",
+              "domanda": "Balbetta ripetendo suoni? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m8_cons_3",
+              "domanda": "Mostra preferenza per caregiver? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 9,
+      "eta_descrizione": "9 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m9_com_1",
+              "domanda": "Dice suoni simili a “mamma” o “papà” anche se non corretti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m9_com_2",
+              "domanda": "Usa suoni diversi per richiamare attenzione?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m9_com_3",
+              "domanda": "Imita toni e ritmi vocali?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m9_mot_1",
+              "domanda": "Si siede stabilmente senza aiuto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m9_mot_2",
+              "domanda": "Gattona o si sposta per raggiungere oggetti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m9_mot_3",
+              "domanda": "Si solleva in piedi tenendosi a mobili?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m9_cog_1",
+              "domanda": "Se un giocattolo sparisce del tutto, lo cerca attivamente?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m9_cog_2",
+              "domanda": "Sperimenta intenzionalmente effetti (es. lancia oggetto e guarda)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m9_cog_3",
+              "domanda": "Usa un oggetto per colpire un altro?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m9_rel_1",
+              "domanda": "Imita suoni o gesti familiari?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m9_rel_2",
+              "domanda": "Dimostra attaccamento evidente (piange se ti allontani)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m9_rel_3",
+              "domanda": "Interagisce in giochi come “cucù”?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m9_cons_1",
+              "domanda": "Gattona o tenta di spostarsi? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m9_cons_2",
+              "domanda": "Saluta con la mano? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m9_cons_3",
+              "domanda": "Cerca lo sguardo del genitore? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 10,
+      "eta_descrizione": "10 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m10_com_1",
+              "domanda": "Dice “mamma” o “papà” con significato?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m10_com_2",
+              "domanda": "Imita parole semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m10_com_3",
+              "domanda": "Capisce e risponde a semplici comandi (“dammi”, “no”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m10_mot_1",
+              "domanda": "Si solleva in piedi da solo tenendosi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m10_mot_2",
+              "domanda": "Cammina lungo i mobili (cruising)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m10_mot_3",
+              "domanda": "Raccoglie piccoli oggetti con la pinza pollice-indice?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m10_cog_1",
+              "domanda": "Cerca oggetti nascosti anche se completamente coperti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m10_cog_2",
+              "domanda": "Osserva cosa succede se lascia cadere un oggetto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m10_cog_3",
+              "domanda": "Sperimenta effetti con ripetizione (battere, scuotere)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m10_rel_1",
+              "domanda": "Indica per mostrare interesse?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m10_rel_2",
+              "domanda": "Sorride o vocalizza per coinvolgere?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m10_rel_3",
+              "domanda": "Gioca a imitare azioni dell’adulto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m10_cons_1",
+              "domanda": "Dice suoni simili a “mamma” o “papà”? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m10_cons_2",
+              "domanda": "Si solleva in piedi tenendosi? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m10_cons_3",
+              "domanda": "Gioca a cucù? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 11,
+      "eta_descrizione": "11 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m11_com_1",
+              "domanda": "Tenta di dire parole familiari?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m11_com_2",
+              "domanda": "Comprende almeno 1-2 parole (es. “ciao”, “acqua”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m11_com_3",
+              "domanda": "Vocalizza con intonazioni variabili?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m11_mot_1",
+              "domanda": "Cammina con supporto di una mano?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m11_mot_2",
+              "domanda": "Sta in piedi per qualche secondo senza appoggio?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m11_mot_3",
+              "domanda": "Raccoglie piccoli oggetti con precisione?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m11_cog_1",
+              "domanda": "Se gli chiedi “dov’è il naso?”, lo indica toccandosi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m11_cog_2",
+              "domanda": "Usa oggetti secondo la funzione (spazzola per capelli)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m11_cog_3",
+              "domanda": "Cerca un oggetto visto nascondere in più passaggi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m11_rel_1",
+              "domanda": "Mostra paura di estranei?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m11_rel_2",
+              "domanda": "Offre oggetti per condividerli?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m11_rel_3",
+              "domanda": "Cerca il contatto fisico per conforto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m11_cons_1",
+              "domanda": "Imita parole semplici? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m11_cons_2",
+              "domanda": "Gattona per raggiungere oggetti? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m11_cons_3",
+              "domanda": "Reagisce alla separazione dal genitore? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 12,
+      "eta_descrizione": "12 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m12_com_1",
+              "domanda": "Pronuncia una parola e la usa nel contesto giusto (es. “pappa”",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m12_com_2",
+              "domanda": "Risponde a una domanda con gesto o parola (es. “dov’è papà?”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m12_com_3",
+              "domanda": "Imita parole sentite?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m12_mot_1",
+              "domanda": "Cammina con o senza supporto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m12_mot_2",
+              "domanda": "Tira oggetti con intenzione?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m12_mot_3",
+              "domanda": "Si abbassa da in piedi senza cadere?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m12_cog_1",
+              "domanda": "Capisce il concetto di “dentro/fuori” o “su/giù”?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m12_cog_2",
+              "domanda": "Riconosce il proprio nome in gruppo di parole?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m12_cog_3",
+              "domanda": "Risolve semplici problemi motori (es. spinge per prendere un",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m12_rel_1",
+              "domanda": "Mostra preferenze per giocattoli o persone?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m12_rel_2",
+              "domanda": "Cerca conforto in momenti di stress?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m12_rel_3",
+              "domanda": "Copia attività quotidiane (finge di telefonare)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m12_cons_1",
+              "domanda": "Dice “mamma” o “papà” con significato? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m12_cons_2",
+              "domanda": "Raccoglie oggetti con pinza? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m12_cons_3",
+              "domanda": "Gioca ad azioni imitate (cucù, battimani)? [consolidamento]",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 13,
+      "eta_descrizione": "13 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m13_com_1",
+              "domanda": "Usa almeno 2 parole con significato?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m13_com_2",
+              "domanda": "Risponde con gesto o parola a richieste semplici (“dammi”,",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m13_com_3",
+              "domanda": "Indica oggetti desiderati vocalizzando o gesticolando?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m13_mot_1",
+              "domanda": "Cammina da solo per almeno qualche passo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m13_mot_2",
+              "domanda": "Si china e si rialza senza cadere?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m13_mot_3",
+              "domanda": "Spinge o tira giocattoli con le mani?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m13_cog_1",
+              "domanda": "Risolve piccoli problemi, come superare un ostacolo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m13_cog_2",
+              "domanda": "Tenta di usare oggetti nel modo corretto (es. cucchiaio, spazzola)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m13_cog_3",
+              "domanda": "Riconosce immagini familiari in un libro?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m13_rel_1",
+              "domanda": "Porta oggetti all’adulto per condividere?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m13_rel_2",
+              "domanda": "Dimostra piacere nel gioco a due?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m13_rel_3",
+              "domanda": "Reagisce emotivamente quando l’adulto è triste o arrabbiato?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m13_cons_1",
+              "domanda": "Cammina con supporto o da solo?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m13_cons_2",
+              "domanda": "Dice almeno una parola con significato?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m13_cons_3",
+              "domanda": "Cerca conforto in momenti di stress?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 14,
+      "eta_descrizione": "14 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m14_com_1",
+              "domanda": "Imita nuove parole sentite?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m14_com_2",
+              "domanda": "Se gli chiedi “dov’è il naso?”, lo indica toccandosi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m14_com_3",
+              "domanda": "Risponde al proprio nome anche in contesti nuovi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m14_mot_1",
+              "domanda": "Tenta di salire su mobili bassi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m14_mot_2",
+              "domanda": "Si accovaccia per raccogliere un oggetto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m14_mot_3",
+              "domanda": "Cammina trascinando un oggetto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m14_cog_1",
+              "domanda": "Tenta soluzioni diverse se non riesce subito a ottenere qualcosa?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m14_cog_2",
+              "domanda": "Imita gesti e azioni osservate negli adulti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m14_cog_3",
+              "domanda": "Riconosce almeno 3 oggetti familiari quando nominati?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m14_rel_1",
+              "domanda": "Mostra disagio se non capito?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m14_rel_2",
+              "domanda": "Cerca l’adulto per ottenere aiuto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m14_rel_3",
+              "domanda": "Esprime preferenze (per oggetti, cibo, persone)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m14_cons_1",
+              "domanda": "Imita parole sentite?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m14_cons_2",
+              "domanda": "Porta oggetti per condividerli?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m14_cons_3",
+              "domanda": "Indica oggetti desiderati?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 15,
+      "eta_descrizione": "15 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m15_com_1",
+              "domanda": "Usa almeno 5 parole con significato?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m15_com_2",
+              "domanda": "Indica per mostrare, non solo per richiedere?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m15_com_3",
+              "domanda": "Capisce comandi con un oggetto (“metti la palla nella scatola”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m15_mot_1",
+              "domanda": "Cammina stabilmente anche su superfici irregolari?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m15_mot_2",
+              "domanda": "Spinge una sedia o un giocattolo con ruote?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m15_mot_3",
+              "domanda": "Inizia a salire le scale con aiuto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m15_cog_1",
+              "domanda": "Riconosce quando qualcosa è “fuori posto”?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m15_cog_2",
+              "domanda": "Ordina o sistema oggetti in contenitori?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m15_cog_3",
+              "domanda": "Mostra interesse per l’esplorazione di nuovi ambienti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m15_rel_1",
+              "domanda": "Cerca attivamente l’approvazione dell’adulto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m15_rel_2",
+              "domanda": "Gioca in parallelo accanto ad altri bambini?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m15_rel_3",
+              "domanda": "Reagisce con disappunto quando gli viene tolto un oggetto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m15_cons_1",
+              "domanda": "Usa oggetti in modo corretto (cucchiaio, telefono)?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m15_cons_2",
+              "domanda": "Risponde a richieste semplici con gesto o parola?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m15_cons_3",
+              "domanda": "Cammina da solo per qualche passo?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 16,
+      "eta_descrizione": "16 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m16_com_1",
+              "domanda": "Indica almeno 3 parti del corpo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m16_com_2",
+              "domanda": "Associa oggetti a nomi (“dov’è la palla?” → indica)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m16_com_3",
+              "domanda": "Vocalizza o nomina mentre gioca?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m16_mot_1",
+              "domanda": "Cammina all’indietro?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m16_mot_2",
+              "domanda": "Lancia una palla in avanti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m16_mot_3",
+              "domanda": "Sale le scale tenendosi al corrimano?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m16_cog_1",
+              "domanda": "Imitazione differita (ripete un gesto visto prima)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m16_cog_2",
+              "domanda": "Risolve problemi semplici (apre un coperchio per prendere qualcosa)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m16_cog_3",
+              "domanda": "Cerca un oggetto che è stato nascosto sotto un altro?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m16_rel_1",
+              "domanda": "Cerca conforto se si fa male?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m16_rel_2",
+              "domanda": "Esprime piacere durante momenti condivisi (es. lettura)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m16_rel_3",
+              "domanda": "Mostra inizio di empatia (abbraccia, consola)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m16_cons_1",
+              "domanda": "Usa almeno 5 parole con significato?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m16_cons_2",
+              "domanda": "Riconosce oggetti familiari?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m16_cons_3",
+              "domanda": "Si accovaccia e si rialza senza cadere?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 17,
+      "eta_descrizione": "17 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m17_com_1",
+              "domanda": "Usa almeno 10 parole con significato?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m17_com_2",
+              "domanda": "Associa parole a gesti (es. “ciao” e saluta)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m17_com_3",
+              "domanda": "Risponde a domande semplici con parole o gesti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m17_mot_1",
+              "domanda": "Corre per brevi tratti senza cadere?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m17_mot_2",
+              "domanda": "Si arrampica su mobili bassi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m17_mot_3",
+              "domanda": "Lancia una palla senza perdere l’equilibrio?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m17_cog_1",
+              "domanda": "Risolve giochi causa-effetto (premi/spingi)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m17_cog_2",
+              "domanda": "Mostra attenzione selettiva per oggetti preferiti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m17_cog_3",
+              "domanda": "Riconosce se qualcosa è mancante da un insieme?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m17_rel_1",
+              "domanda": "Condivide oggetti senza bisogno di richiesta?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m17_rel_2",
+              "domanda": "Mostra desiderio di partecipare a routine familiari?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m17_rel_3",
+              "domanda": "Reagisce alla frustrazione con pianto o ricerca del caregiver?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m17_cons_1",
+              "domanda": "Se gli chiedi “dov’è il naso?”, lo indica toccandosi?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m17_cons_2",
+              "domanda": "Cammina stabilmente anche su superfici diverse?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m17_cons_3",
+              "domanda": "Riconosce quando qualcosa è “fuori posto”?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "note_implementazione": {
+    "struttura_dati": "Ogni mese contiene 5 aree di sviluppo con domande specifiche",
+    "id_domande": "Formato: m{mese}_{area}_{numero}",
+    "aree": [
+      "comunicazione_linguaggio (com)",
+      "motricita (mot)",
+      "cognizione_attenzione (cog)",
+      "relazione_regolazione (rel)",
+      "consolidamento (cons)"
+    ],
+    "consolidamento": "Domande da mesi precedenti per verificare il mantenimento delle competenze acquisite",
+    "totale_mesi": 18
+  }
+}

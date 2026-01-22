@@ -1,0 +1,3438 @@
+{
+  "info": {
+    "titolo": "Questionari Sviluppo Completo Shuby",
+    "descrizione": "Questionari mensili per 5 aree di sviluppo: Comunicazione e Linguaggio, Motricità, Cognizione e Attenzione, Relazione e Regolazione, Consolidamento",
+    "fasce_eta": "18-36 mesi",
+    "aree_sviluppo": [
+      "Comunicazione e Linguaggio",
+      "Motricità",
+      "Cognizione e Attenzione",
+      "Relazione e Regolazione",
+      "Consolidamento"
+    ],
+    "opzioni_risposta_standard": [
+      "sì",
+      "no",
+      "non_lo_so"
+    ],
+    "nota_terminologia": "L'opzione 'non_lo_so' (visualizzata come 'Non lo so') è usata quando il genitore non sa se il comportamento si verifica. Questo termine è allineato con i documenti di prodotto ufficiali."
+  },
+  "questionari_mensili": [
+    {
+      "mese": 18,
+      "eta_descrizione": "18 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m18_com_1",
+              "domanda": "Usa almeno 15 parole comprensibili?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m18_com_2",
+              "domanda": "Dice “no” con intenzione?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m18_com_3",
+              "domanda": "Fa domande con tono (es. “papà?” con intonazione interrogativa)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m18_mot_1",
+              "domanda": "Corre senza cadere frequentemente?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m18_mot_2",
+              "domanda": "Calcia una palla con un piede?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m18_mot_3",
+              "domanda": "Si piega per raccogliere oggetti e si rialza?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m18_cog_1",
+              "domanda": "Imita una sequenza di due azioni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m18_cog_2",
+              "domanda": "Risolve puzzle semplici a incastro?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m18_cog_3",
+              "domanda": "Usa oggetti simbolici (es. una scatola come telefono)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m18_rel_1",
+              "domanda": "Dimostra gelosia o rivalità?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m18_rel_2",
+              "domanda": "Cerca lo sguardo del genitore in situazioni nuove?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m18_rel_3",
+              "domanda": "Esprime volontà di “fare da solo”?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m18_cons_1",
+              "domanda": "Usa almeno 10 parole con significato?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m18_cons_2",
+              "domanda": "Sale le scale tenendosi?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m18_cons_3",
+              "domanda": "Esprime preferenze tra oggetti o persone?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 19,
+      "eta_descrizione": "19 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m19_com_1",
+              "domanda": "Mette insieme due parole di fila, come “mamma guarda”?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m19_com_2",
+              "domanda": "Identifica persone o animali nelle foto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m19_com_3",
+              "domanda": "Risponde “sì” o “no” con coerenza?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m19_mot_1",
+              "domanda": "Sale su divano o letto senza aiuto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m19_mot_2",
+              "domanda": "Spinge o traina un giocattolo mentre cammina?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m19_mot_3",
+              "domanda": "Usa le mani per appoggiarsi a terra e rialzarsi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m19_cog_1",
+              "domanda": "Sceglie un oggetto tra due se richiesto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m19_cog_2",
+              "domanda": "Ricorda dove sono conservati oggetti familiari?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m19_cog_3",
+              "domanda": "Associa oggetti e funzioni (cucchiaio/cibo)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m19_rel_1",
+              "domanda": "Mostra disagio quando viene ignorato?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m19_rel_2",
+              "domanda": "Cerca di aiutare adulti in attività quotidiane?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m19_rel_3",
+              "domanda": "Si ferma se gli viene detto “no”?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m19_cons_1",
+              "domanda": "Dice almeno 15 parole?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m19_cons_2",
+              "domanda": "Corre con equilibrio?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m19_cons_3",
+              "domanda": "Imitazione differita di gesti semplici?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 20,
+      "eta_descrizione": "20 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m20_com_1",
+              "domanda": "Fa frasi con due parole (“acqua mia”, “bimbo nanna”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m20_com_2",
+              "domanda": "Usa il proprio nome?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m20_com_3",
+              "domanda": "Indica cosa vuole con parole semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m20_mot_1",
+              "domanda": "Cammina su e giù da un gradino senza aiuto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m20_mot_2",
+              "domanda": "Inizia a saltare con entrambi i piedi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m20_mot_3",
+              "domanda": "Costruisce una torre con almeno 4 cubi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m20_cog_1",
+              "domanda": "Riconosce categorie (animali, cibo)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m20_cog_2",
+              "domanda": "Risolve giochi semplici di abbinamento?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m20_cog_3",
+              "domanda": "Capisce differenze tra grande/piccolo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m20_rel_1",
+              "domanda": "Saluta o abbraccia spontaneamente?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m20_rel_2",
+              "domanda": "Partecipa a giochi con regole semplici (nascondino)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m20_rel_3",
+              "domanda": "Esprime orgoglio per un risultato (“fatto io”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m20_cons_1",
+              "domanda": "Mette insieme due parole di fila, come “mamma guarda”?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m20_cons_2",
+              "domanda": "Sale su mobili bassi?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m20_cons_3",
+              "domanda": "Aiuta in piccole routine?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 21,
+      "eta_descrizione": "21 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m21_com_1",
+              "domanda": "Racconta con parole proprie cosa ha fatto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m21_com_2",
+              "domanda": "Usa verbi base (es. “dormo”, “mangia”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m21_com_3",
+              "domanda": "Risponde a domande tipo “dov’è il cane?”",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m21_mot_1",
+              "domanda": "Cammina trasportando oggetti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m21_mot_2",
+              "domanda": "Salta in avanti su superfici morbide?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m21_mot_3",
+              "domanda": "Inserisce oggetti in aperture (incastri, scatole)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m21_cog_1",
+              "domanda": "Ricorda una regola da un giorno all’altro?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m21_cog_2",
+              "domanda": "Ascolta una breve storia o canzone senza distrarsi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m21_cog_3",
+              "domanda": "Imita un adulto che disegna linee o cerchi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m21_rel_1",
+              "domanda": "Difende oggetti propri (“mio!”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m21_rel_2",
+              "domanda": "Cerca di confortare un altro bambino?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m21_rel_3",
+              "domanda": "Reagisce alla frustrazione con meno pianto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m21_cons_1",
+              "domanda": "Fa frasi con due parole?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m21_cons_2",
+              "domanda": "Calcia la palla con equilibrio?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m21_cons_3",
+              "domanda": "Partecipa a giochi condivisi?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 22,
+      "eta_descrizione": "22 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m22_com_1",
+              "domanda": "Conosce almeno 30 parole?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m22_com_2",
+              "domanda": "Risponde a 2 comandi consecutivi (“prendi la palla e portala qui”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m22_com_3",
+              "domanda": "Fa domande con “dove”, “cos’è”?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m22_mot_1",
+              "domanda": "Inizia a vestirsi da solo (cappello, scarpe)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m22_mot_2",
+              "domanda": "Costruisce torri con 6 cubi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m22_mot_3",
+              "domanda": "Corre cambiando direzione?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m22_cog_1",
+              "domanda": "Usa oggetti in modo simbolico (bastone come cucchiaio)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m22_cog_2",
+              "domanda": "Abbina oggetti per colore o forma?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m22_cog_3",
+              "domanda": "Indica differenze tra oggetti simili?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m22_rel_1",
+              "domanda": "Aspetta il proprio turno con aiuto?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m22_rel_2",
+              "domanda": "Parla con bambole o pupazzi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m22_rel_3",
+              "domanda": "Reagisce a “regole” dette con tono chiaro?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m22_cons_1",
+              "domanda": "Ricorda dove sono oggetti nascosti?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m22_cons_2",
+              "domanda": "Costruisce torre di cubi?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m22_cons_3",
+              "domanda": "Risponde a comandi semplici?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 23,
+      "eta_descrizione": "23 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m23_com_1",
+              "domanda": "Conosce e utilizza circa cinquanta parole diverse?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m23_com_2",
+              "domanda": "Usa pronomi (io, tu, mio)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m23_com_3",
+              "domanda": "Racconta una piccola esperienza con 2-3 frasi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m23_mot_1",
+              "domanda": "Corre con fluidità senza cadere?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m23_mot_2",
+              "domanda": "Salta in alto o in avanti con entrambi i piedi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m23_mot_3",
+              "domanda": "Tira la palla verso una persona?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m23_cog_1",
+              "domanda": "Comprende e descrive una sequenza semplice?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m23_cog_2",
+              "domanda": "Riconosce e nomina almeno 3 colori?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m23_cog_3",
+              "domanda": "Simula una routine (es. “fare la pappa”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m23_rel_1",
+              "domanda": "Cerca attivamente altri bambini per giocare?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m23_rel_2",
+              "domanda": "Si mostra protettivo verso oggetti o persone?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m23_rel_3",
+              "domanda": "Chiede aiuto in modo verbale?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m23_cons_1",
+              "domanda": "Racconta con parole proprie cosa ha fatto?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m23_cons_2",
+              "domanda": "Partecipa a routine familiari?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m23_cons_3",
+              "domanda": "Riesce a staccare contemporaneamente entrambi i piedi da terra",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 24,
+      "eta_descrizione": "24 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m24_com_1",
+              "domanda": "Combina 2–3 parole in una frase (“voglio acqua”, “mamma guarda”)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m24_com_2",
+              "domanda": "Usa plurali e primi articoli (es. “i cani”, “un libro”)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m24_com_3",
+              "domanda": "Risponde a domande semplici (“cos’è?”, “chi è?”)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m24_mot_1",
+              "domanda": "Corre senza cadere, anche cambiando direzione",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m24_mot_2",
+              "domanda": "Sali e scende le scale con aiuto o appoggiandosi",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m24_mot_3",
+              "domanda": "Inizia a disegnare tratti verticali/orizzontali su richiesta",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m24_cog_1",
+              "domanda": "Ordina oggetti per grandezza o colore",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m24_cog_2",
+              "domanda": "Segue una routine familiare senza essere guidato",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m24_cog_3",
+              "domanda": "Capisce il concetto di “uno” e “tanti”",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m24_rel_1",
+              "domanda": "Mostra affetto spontaneo con abbracci e baci",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m24_rel_2",
+              "domanda": "Gioca parallelamente con altri bambini",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m24_rel_3",
+              "domanda": "Comincia a rispettare turni con supervisione",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m24_cons_1",
+              "domanda": "Conosce e utilizza circa cinquanta parole diverse?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m24_cons_2",
+              "domanda": "Riesce a staccare contemporaneamente entrambi i piedi da terra",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m24_cons_3",
+              "domanda": "Simula una routine con bambole?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 25,
+      "eta_descrizione": "25 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m25_com_1",
+              "domanda": "Usa frasi più articolate con soggetto-verbo-oggetto",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m25_com_2",
+              "domanda": "Sa raccontare cosa ha fatto in giornata",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m25_com_3",
+              "domanda": "Usa aggettivi (“grande”, “bello”) e prime congiunzioni (“e”)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m25_mot_1",
+              "domanda": "Lancia e afferra la palla da distanza breve",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m25_mot_2",
+              "domanda": "Corre evitando ostacoli",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m25_mot_3",
+              "domanda": "Si sveste da solo con aiuto minimo (es. toglie le scarpe)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m25_cog_1",
+              "domanda": "Risolve puzzle da 3-4 pezzi",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m25_cog_2",
+              "domanda": "Mostra attenzione prolungata (>5 minuti) per un’attività preferita",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m25_cog_3",
+              "domanda": "Inizia a riconoscere lettere o numeri familiari",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m25_rel_1",
+              "domanda": "Dimostra empatia (“sei triste?”, “dai un bacino”)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m25_rel_2",
+              "domanda": "Esprime con parole emozioni semplici (triste, arrabbiato)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m25_rel_3",
+              "domanda": "Segue regole semplici anche in gioco libero",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m25_cons_1",
+              "domanda": "Risponde a domande tipo “chi è?”",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m25_cons_2",
+              "domanda": "Si veste/sveste in parte da solo",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m25_cons_3",
+              "domanda": "Gioca parallelamente o cerca contatto con coetanei",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 26,
+      "eta_descrizione": "26 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m26_com_1",
+              "domanda": "Usa i pronomi personali correttamente (io, tu, lui)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m26_com_2",
+              "domanda": "Formula richieste complete (“posso avere la palla?”)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m26_com_3",
+              "domanda": "Racconta un evento con 2-3 frasi coerenti",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m26_mot_1",
+              "domanda": "Salta da un gradino con entrambi i piedi",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m26_mot_2",
+              "domanda": "Inizia a pedalare un triciclo con aiuto",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m26_mot_3",
+              "domanda": "Tiene correttamente una matita o un pastello",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m26_cog_1",
+              "domanda": "Completa sequenze logiche semplici (es. rosso-blu-rosso)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m26_cog_2",
+              "domanda": "Dimostra capacità di anticipare una conseguenza",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m26_cog_3",
+              "domanda": "Classifica oggetti per funzione",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m26_rel_1",
+              "domanda": "Dimostra autonomia nel gioco individuale",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m26_rel_2",
+              "domanda": "Chiede di partecipare ad attività familiari",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m26_rel_3",
+              "domanda": "Accetta di aspettare brevemente il proprio turno",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m26_cons_1",
+              "domanda": "Racconta cosa ha fatto in giornata?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m26_cons_2",
+              "domanda": "Lancia e afferra palla?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m26_cons_3",
+              "domanda": "Comprende piccole regole condivise?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 27,
+      "eta_descrizione": "27 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m27_com_1",
+              "domanda": "Usa tempo passato o futuro in modo rudimentale",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m27_com_2",
+              "domanda": "Fa richieste complesse (es. “voglio quello che ha Luca”)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m27_com_3",
+              "domanda": "Conosce e usa il proprio nome completo",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m27_mot_1",
+              "domanda": "Scende le scale alternando i piedi (con supporto)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m27_mot_2",
+              "domanda": "Cammina su linea retta per 2–3 metri",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m27_mot_3",
+              "domanda": "Impila almeno 8 cubi senza farli cadere",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m27_cog_1",
+              "domanda": "Fa finta di leggere un libro imitando il linguaggio",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m27_cog_2",
+              "domanda": "Inizia a distinguere destra/sinistra",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m27_cog_3",
+              "domanda": "Risolve problemi motori (apre un barattolo, sposta un ostacolo)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m27_rel_1",
+              "domanda": "Risponde a emozioni altrui con gesti adeguati",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m27_rel_2",
+              "domanda": "Si oppone verbalmente senza crisi (es. “non voglio”)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m27_rel_3",
+              "domanda": "Tenta strategie per calmarsi (cerca oggetto rassicurante)",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m27_cons_1",
+              "domanda": "Usa frasi soggetto-verbo-oggetto?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m27_cons_2",
+              "domanda": "Tiene correttamente pastello?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m27_cons_3",
+              "domanda": "Mostra empatia o consolazione?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 28,
+      "eta_descrizione": "28 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m28_com_1",
+              "domanda": "Usa almeno 200 parole diverse?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_com_2",
+              "domanda": "Fa piccole narrazioni su ciò che osserva?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_com_3",
+              "domanda": "Usa “perché” in frasi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m28_mot_1",
+              "domanda": "Salta su un piede per almeno 1 secondo",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_mot_2",
+              "domanda": "Ritaglia carta con forbicine a punta tonda",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_mot_3",
+              "domanda": "Traccia linee chiuse (es. cerchi) su richiesta",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_mot_4",
+              "domanda": "Salta con controllo, su e giù da gradini",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_mot_5",
+              "domanda": "Pedala correttamente",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_mot_6",
+              "domanda": "Disegna cerchi, croci, a volte figure umane stilizzate",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_mot_7",
+              "domanda": "Riconosce numeri, lettere, simboli familiari",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_mot_8",
+              "domanda": "Sequenze, classificazioni, pre-concetti matematici",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_mot_9",
+              "domanda": "Imitazione complessa, gioco simbolico e di ruolo",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_mot_10",
+              "domanda": "Gioca con altri bambini in modo cooperativo",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_mot_11",
+              "domanda": "Rispetta turni, regole condivise",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_mot_12",
+              "domanda": "Riconosce emozioni proprie e altrui",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_mot_13",
+              "domanda": "Verbalizza bisogni, desideri, disagi",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m28_cog_1",
+              "domanda": "Distingue quantità “di più/di meno”?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_cog_2",
+              "domanda": "Comprende analogie base (es. “il sole è come la lampada”)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_cog_3",
+              "domanda": "Associa oggetti opposti (caldo/freddo, grande/piccolo)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m28_rel_1",
+              "domanda": "Usa parole per chiedere aiuto o scusarsi",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_rel_2",
+              "domanda": "Accetta scambi nei giochi",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_rel_3",
+              "domanda": "Segue 2 regole semplici in gruppo",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m28_cons_1",
+              "domanda": "Usa tempo passato o futuro?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_cons_2",
+              "domanda": "Risolve problemi quotidiani semplici?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_cons_3",
+              "domanda": "Si oppone verbalmente in modo regolato?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_cons_4",
+              "domanda": "Uso articolato della lingua (frasi complesse, domande, narrazioni)",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_cons_5",
+              "domanda": "Comprensione di concetti astratti: tempo, quantità, relazioni",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m28_cons_6",
+              "domanda": "Differenzia reale/immaginario",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 29,
+      "eta_descrizione": "29 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m29_com_1",
+              "domanda": "Racconta brevi storie con inizio e fine?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m29_com_2",
+              "domanda": "Usa verbi al passato?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m29_com_3",
+              "domanda": "Espone piccole sequenze temporali?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m29_com_4",
+              "domanda": "Parla di esperienze recenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m29_mot_1",
+              "domanda": "Salta con entrambi i piedi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m29_mot_2",
+              "domanda": "Pedala un triciclo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m29_mot_3",
+              "domanda": "Usa cucchiaio e forchetta con minimi rovesciamenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m29_cog_1",
+              "domanda": "Riconosce colori e forme di base?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m29_cog_2",
+              "domanda": "Completa puzzle semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m29_cog_3",
+              "domanda": "Conta almeno fino a 3?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m29_rel_1",
+              "domanda": "Usa frasi complesse?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m29_rel_2",
+              "domanda": "Distingue tra reale e immaginario?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m29_rel_3",
+              "domanda": "Partecipa in modo cooperativo al gioco con i coetanei?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m29_cons_1",
+              "domanda": "Usa almeno 200 parole diverse?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m29_cons_2",
+              "domanda": "Distingue quantità 'di più/di meno'?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m29_cons_3",
+              "domanda": "Accetta scambi nei giochi?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 30,
+      "eta_descrizione": "30 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m30_com_1",
+              "domanda": "Racconta brevi storie con inizio e fine?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m30_com_2",
+              "domanda": "Usa verbi al passato?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m30_com_3",
+              "domanda": "Espone piccole sequenze temporali?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m30_com_4",
+              "domanda": "Parla di esperienze recenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m30_mot_1",
+              "domanda": "Salta con entrambi i piedi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m30_mot_2",
+              "domanda": "Pedala un triciclo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m30_mot_3",
+              "domanda": "Usa cucchiaio e forchetta con minimi rovesciamenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m30_cog_1",
+              "domanda": "Riconosce colori e forme di base?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m30_cog_2",
+              "domanda": "Completa puzzle semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m30_cog_3",
+              "domanda": "Conta almeno fino a 3?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m30_rel_1",
+              "domanda": "Verbalizza le proprie emozioni o bisogni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m30_rel_2",
+              "domanda": "Usa domande con 'perché' e 'quando'?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m30_rel_3",
+              "domanda": "Esegue giochi simbolici complessi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m30_cons_1",
+              "domanda": "Racconta brevi storie con inizio e fine?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m30_cons_2",
+              "domanda": "Distingue tra reale e immaginario?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m30_cons_3",
+              "domanda": "Partecipa in modo cooperativo al gioco con i coetanei?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 31,
+      "eta_descrizione": "31 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m31_com_1",
+              "domanda": "Mantiene conversazioni con più turni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m31_com_2",
+              "domanda": "Formula frasi complesse con congiunzioni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m31_com_3",
+              "domanda": "Pone e risponde a domande articolate?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m31_com_4",
+              "domanda": "Usa il linguaggio per regolare emozioni e comportamenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m31_mot_1",
+              "domanda": "Salta con entrambi i piedi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m31_mot_2",
+              "domanda": "Pedala un triciclo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m31_mot_3",
+              "domanda": "Usa cucchiaio e forchetta con minimi rovesciamenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m31_cog_1",
+              "domanda": "Riconosce colori e forme di base?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m31_cog_2",
+              "domanda": "Completa puzzle semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m31_cog_3",
+              "domanda": "Conta almeno fino a 3?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m31_rel_1",
+              "domanda": "Riferisce eventi passati?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m31_rel_2",
+              "domanda": "Distingue il proprio ruolo all'interno del gioco?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m31_rel_3",
+              "domanda": "Mostra consapevolezza delle regole nei giochi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m31_cons_1",
+              "domanda": "Verbalizza le proprie emozioni o bisogni?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m31_cons_2",
+              "domanda": "Usa domande con 'perché' e 'quando'?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m31_cons_3",
+              "domanda": "Esegue giochi simbolici complessi?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 32,
+      "eta_descrizione": "32 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m32_com_1",
+              "domanda": "Mantiene conversazioni con più turni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m32_com_2",
+              "domanda": "Formula frasi complesse con congiunzioni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m32_com_3",
+              "domanda": "Pone e risponde a domande articolate?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m32_com_4",
+              "domanda": "Usa il linguaggio per regolare emozioni e comportamenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m32_mot_1",
+              "domanda": "Salta con entrambi i piedi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m32_mot_2",
+              "domanda": "Pedala un triciclo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m32_mot_3",
+              "domanda": "Usa cucchiaio e forchetta con minimi rovesciamenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m32_cog_1",
+              "domanda": "Riconosce colori e forme di base?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m32_cog_2",
+              "domanda": "Completa puzzle semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m32_cog_3",
+              "domanda": "Conta almeno fino a 3?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m32_rel_1",
+              "domanda": "Mostra interesse verso gli altri bambini?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m32_rel_2",
+              "domanda": "Accetta i cambiamenti o l'alternanza dei turni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m32_rel_3",
+              "domanda": "Riesce a seguire sequenze di azioni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m32_cons_1",
+              "domanda": "Riferisce eventi passati?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m32_cons_2",
+              "domanda": "Distingue il proprio ruolo all'interno del gioco?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m32_cons_3",
+              "domanda": "Mostra consapevolezza delle regole nei giochi?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 33,
+      "eta_descrizione": "33 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m33_com_1",
+              "domanda": "Mantiene conversazioni con più turni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m33_com_2",
+              "domanda": "Formula frasi complesse con congiunzioni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m33_com_3",
+              "domanda": "Pone e risponde a domande articolate?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m33_com_4",
+              "domanda": "Usa il linguaggio per regolare emozioni e comportamenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m33_mot_1",
+              "domanda": "Salta con entrambi i piedi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m33_mot_2",
+              "domanda": "Pedala un triciclo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m33_mot_3",
+              "domanda": "Usa cucchiaio e forchetta con minimi rovesciamenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m33_cog_1",
+              "domanda": "Riconosce colori e forme di base?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m33_cog_2",
+              "domanda": "Completa puzzle semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m33_cog_3",
+              "domanda": "Conta almeno fino a 3?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m33_rel_1",
+              "domanda": "Comprende narrazioni o racconti semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m33_rel_2",
+              "domanda": "Mostra empatia verso gli altri?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m33_rel_3",
+              "domanda": "Sa raccontare un evento (anche con aiuto)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m33_cons_1",
+              "domanda": "Mostra interesse verso gli altri bambini?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m33_cons_2",
+              "domanda": "Accetta i cambiamenti o l'alternanza dei turni?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m33_cons_3",
+              "domanda": "Riesce a seguire sequenze di azioni?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 34,
+      "eta_descrizione": "34 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m34_com_1",
+              "domanda": "Esprime pensieri e desideri con linguaggio complesso?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m34_com_2",
+              "domanda": "Argomenta opinioni semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m34_com_3",
+              "domanda": "Racconta storie con coerenza e dettagli?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m34_com_4",
+              "domanda": "Utilizza correttamente i tempi verbali e le proposizioni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m34_mot_1",
+              "domanda": "Salta con entrambi i piedi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m34_mot_2",
+              "domanda": "Pedala un triciclo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m34_mot_3",
+              "domanda": "Usa cucchiaio e forchetta con minimi rovesciamenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m34_cog_1",
+              "domanda": "Riconosce colori e forme di base?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m34_cog_2",
+              "domanda": "Completa puzzle semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m34_cog_3",
+              "domanda": "Conta almeno fino a 3?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m34_rel_1",
+              "domanda": "Distingue fantasia e realtà?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m34_rel_2",
+              "domanda": "Verbalizza con una struttura coerente?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m34_rel_3",
+              "domanda": "Comprende le relazioni temporali (ieri, oggi, domani)?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m34_cons_1",
+              "domanda": "Comprende narrazioni o racconti semplici?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m34_cons_2",
+              "domanda": "Mostra empatia verso gli altri?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m34_cons_3",
+              "domanda": "Sa raccontare un evento (anche con aiuto)?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 35,
+      "eta_descrizione": "35 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m35_com_1",
+              "domanda": "Esprime pensieri e desideri con linguaggio complesso?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m35_com_2",
+              "domanda": "Argomenta opinioni semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m35_com_3",
+              "domanda": "Racconta storie con coerenza e dettagli?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m35_com_4",
+              "domanda": "Utilizza correttamente i tempi verbali e le proposizioni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m35_mot_1",
+              "domanda": "Salta con entrambi i piedi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m35_mot_2",
+              "domanda": "Pedala un triciclo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m35_mot_3",
+              "domanda": "Usa cucchiaio e forchetta con minimi rovesciamenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m35_cog_1",
+              "domanda": "Riconosce colori e forme di base?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m35_cog_2",
+              "domanda": "Completa puzzle semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m35_cog_3",
+              "domanda": "Conta almeno fino a 3?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m35_rel_1",
+              "domanda": "Riesce a seguire una storia narrata?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m35_rel_2",
+              "domanda": "Risponde a domande complesse?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m35_rel_3",
+              "domanda": "Dimostra consapevolezza delle emozioni altrui?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m35_cons_1",
+              "domanda": "Distingue fantasia e realtà?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m35_cons_2",
+              "domanda": "Verbalizza con una struttura coerente?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m35_cons_3",
+              "domanda": "Comprende le relazioni temporali (ieri, oggi, domani)?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "mese": 36,
+      "eta_descrizione": "36 mesi",
+      "aree": {
+        "comunicazione_linguaggio": {
+          "titolo": "Comunicazione e Linguaggio",
+          "domande": [
+            {
+              "id": "m36_com_1",
+              "domanda": "Esprime pensieri e desideri con linguaggio complesso?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m36_com_2",
+              "domanda": "Argomenta opinioni semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m36_com_3",
+              "domanda": "Racconta storie con coerenza e dettagli?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m36_com_4",
+              "domanda": "Utilizza correttamente i tempi verbali e le proposizioni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "motricita": {
+          "titolo": "Motricità",
+          "domande": [
+            {
+              "id": "m36_mot_1",
+              "domanda": "Salta con entrambi i piedi?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m36_mot_2",
+              "domanda": "Pedala un triciclo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m36_mot_3",
+              "domanda": "Usa cucchiaio e forchetta con minimi rovesciamenti?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "cognizione_attenzione": {
+          "titolo": "Cognizione e Attenzione",
+          "domande": [
+            {
+              "id": "m36_cog_1",
+              "domanda": "Riconosce colori e forme di base?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m36_cog_2",
+              "domanda": "Completa puzzle semplici?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m36_cog_3",
+              "domanda": "Conta almeno fino a 3?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "relazione_regolazione": {
+          "titolo": "Relazione e Regolazione",
+          "domande": [
+            {
+              "id": "m36_rel_1",
+              "domanda": "Costruisce frasi articolate?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m36_rel_2",
+              "domanda": "Gioca in modo cooperativo?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m36_rel_3",
+              "domanda": "Verbalizza desideri, bisogni ed emozioni?",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        },
+        "consolidamento": {
+          "titolo": "Consolidamento",
+          "domande": [
+            {
+              "id": "m36_cons_1",
+              "domanda": "Riesce a seguire una storia narrata?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m36_cons_2",
+              "domanda": "Risponde a domande complesse?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            },
+            {
+              "id": "m36_cons_3",
+              "domanda": "Dimostra consapevolezza delle emozioni altrui?",
+              "nota": "consolidamento",
+              "opzioni_risposta": [
+                "sì",
+                "no",
+                "non_lo_so"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "note_implementazione": {
+    "struttura_dati": "Ogni mese contiene 5 aree di sviluppo con domande specifiche",
+    "id_domande": "Formato: m{mese}_{area}_{numero}",
+    "aree": [
+      "comunicazione_linguaggio (com)",
+      "motricita (mot)",
+      "cognizione_attenzione (cog)",
+      "relazione_regolazione (rel)",
+      "consolidamento (cons)"
+    ],
+    "consolidamento": "Domande da mesi precedenti per verificare il mantenimento delle competenze acquisite",
+    "totale_mesi": 19
+  }
+}
