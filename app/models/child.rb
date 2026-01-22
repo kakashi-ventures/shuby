@@ -69,6 +69,27 @@ class Child < AccountRecord
     ((date - corrected_birth_date).to_i / 30.44).floor
   end
 
+  # Determine which age to use for questionnaire selection
+  # Uses corrected age for premature babies under 24 months (clinical standard)
+  def questionnaire_age_in_months(date = Date.current)
+    if premature? && age_in_months(date) < 24
+      corrected_age_in_months(date)
+    else
+      age_in_months(date)
+    end
+  end
+
+  # Check if using corrected age for questionnaires
+  def using_corrected_age?
+    premature? && age_in_months < 24
+  end
+
+  # Get age difference for display (how many months early)
+  def age_correction_months
+    return 0 unless using_corrected_age?
+    age_in_months - corrected_age_in_months
+  end
+
   # Get existing in-progress session for a questionnaire
   def session_for(questionnaire)
     questionnaire_sessions

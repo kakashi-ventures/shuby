@@ -12,7 +12,7 @@ class QuestionnaireSession < ApplicationRecord
   scope :recent_first, -> { order(created_at: :desc) }
   scope :for_area, ->(area) { joins(:age_band_questionnaire).where(age_band_questionnaires: {development_area_id: area.id}) }
 
-  before_create :snapshot_child_age
+  before_create :snapshot_metadata
 
   # Progress tracking
   def questions_count
@@ -79,9 +79,36 @@ class QuestionnaireSession < ApplicationRecord
     update!(status: :completed, completed_at: Time.current)
   end
 
+  # Editing capability - allow updates within 14 days of completion
+  # @return [Boolean] true if session can be edited
+  def editable?
+    completed? && completed_at.present? && completed_at > 14.days.ago
+  end
+
+  # Calculate when editing will be locked
+  # @return [Time, nil] the deadline for editing
+  def editing_deadline
+    completed_at + 14.days if completed_at.present?
+  end
+
+  # Calculate days remaining until locked
+  # @return [Integer] number of days until editing is locked
+  def days_until_locked
+    return 0 unless editable?
+    ((editing_deadline - Time.current) / 1.day).ceil
+  end
+
+  # Check if session was answered with current questionnaire version
+  # @return [Boolean] true if answered with latest version
+  def answered_with_current_version?
+    return true if questionnaire_version.nil? # Legacy sessions
+    age_band_questionnaire.version == questionnaire_version
+  end
+
   private
 
-  def snapshot_child_age
+  def snapshot_metadata
     self.child_age_months ||= child.age_in_months
+    self.questionnaire_version ||= age_band_questionnaire.version
   end
 end

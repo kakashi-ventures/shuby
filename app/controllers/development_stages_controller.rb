@@ -6,7 +6,7 @@ class DevelopmentStagesController < ApplicationController
 
   def index
     @areas = DevelopmentArea.ordered.includes(:age_band_questionnaires)
-    @child_age = @child.age_in_months
+    @child_age = @child.questionnaire_age_in_months
     @current_band = @child.current_age_band
 
     # Get current/active sessions for each area
@@ -32,7 +32,7 @@ class DevelopmentStagesController < ApplicationController
 
   def show
     @area = DevelopmentArea.find_by!(slug: params[:id])
-    @questionnaire = @area.questionnaire_for_age(@child.age_in_months)
+    @questionnaire = @area.questionnaire_for_age(@child.questionnaire_age_in_months)
 
     unless @questionnaire
       redirect_to child_development_stages_path(@child), alert: t(".no_questionnaire")
@@ -45,7 +45,7 @@ class DevelopmentStagesController < ApplicationController
 
   def start
     @area = DevelopmentArea.find_by!(slug: params[:id])
-    @questionnaire = @area.questionnaire_for_age(@child.age_in_months)
+    @questionnaire = @area.questionnaire_for_age(@child.questionnaire_age_in_months)
 
     unless @questionnaire
       redirect_to child_development_stages_path(@child), alert: t("development_stages.show.no_questionnaire")

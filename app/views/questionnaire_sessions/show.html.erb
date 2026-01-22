@@ -38,6 +38,23 @@
         <%= t(".completed_on", date: l(@session.completed_at.to_date, format: :long)) %>
       </p>
     <% end %>
+
+    <%# Edit button - shown within 14-day window %>
+    <% if @session.editable? %>
+      <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <p class="shuby-p2-dark text-blue-800 mb-1"><%= t(".can_edit") %></p>
+            <p class="shuby-caption text-blue-600">
+              <%= t(".edit_expires_in", count: @session.days_until_locked) %>
+            </p>
+          </div>
+          <%= link_to t(".edit_button"), 
+              edit_child_questionnaire_session_path(@child, @session), 
+              class: "shuby-btn shuby-btn-sm shuby-btn-secondary" %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <%# Attention alert (gentle) %>

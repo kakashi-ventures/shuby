@@ -34,6 +34,13 @@ class QuestionnaireSessionsController < ApplicationController
   end
 
   def answer
+    # Guard: prevent duplicate submissions on completed sessions
+    if @session.completed?
+      redirect_to child_questionnaire_session_path(@child, @session),
+                  notice: t(".already_completed")
+      return
+    end
+
     @question = Question.find(params[:question_id])
     answer_value = params[:answer]
 
@@ -59,6 +66,42 @@ class QuestionnaireSessionsController < ApplicationController
     @session.complete!
     redirect_to child_development_stage_path(@child, @session.age_band_questionnaire.development_area.slug),
                 notice: t(".completed")
+  end
+
+  def edit
+    # Guard: only allow editing within 14-day window
+    unless @session.editable?
+      redirect_to child_questionnaire_session_path(@child, @session),
+                  alert: t(".edit_window_expired")
+      return
+    end
+
+    @questionnaire = @session.age_band_questionnaire
+    @area = @questionnaire.development_area
+    @responses = @session.question_responses.includes(:question).order("questions.position")
+  end
+
+  def update
+    # Guard: only allow updates within 14-day window
+    unless @session.editable?
+      redirect_to child_questionnaire_session_path(@child, @session),
+                  alert: t(".edit_window_expired")
+      return
+    end
+
+    # Update notes for each response
+    updated_count = 0
+    if params[:responses].present?
+      params[:responses].each do |response_id, response_params|
+        response = @session.question_responses.find(response_id)
+        if response.update(notes: response_params[:notes])
+          updated_count += 1
+        end
+      end
+    end
+
+    redirect_to child_questionnaire_session_path(@child, @session),
+                notice: t(".success", count: updated_count)
   end
 
   private

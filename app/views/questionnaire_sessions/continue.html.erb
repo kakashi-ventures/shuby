@@ -4,7 +4,14 @@
   <%# Progress header %>
   <div class="mb-6">
     <div class="flex items-center justify-between mb-2">
-      <span class="shuby-caption"><%= @area.name %></span>
+      <div class="flex-1">
+        <span class="shuby-caption"><%= @area.name %></span>
+        <% if @session.child.using_corrected_age? %>
+          <span class="shuby-caption text-primary-600 ml-2">
+            · <%= t('development_stages.show.questionnaire_title', month: @questionnaire.min_age_months) %>
+          </span>
+        <% end %>
+      </div>
       <span class="shuby-caption"><%= @current_index %>/<%= @total %></span>
     </div>
     <%# Progress bar %>
@@ -28,16 +35,19 @@
       <%= hidden_field_tag :question_id, @question.id %>
 
       <button type="submit" name="answer" value="si"
+              data-disable-with="<%= t('.submitting') %>"
               class="w-full p-4 rounded-xl border-2 border-green-200 bg-green-50 text-left hover:border-green-400 transition-colors">
         <span class="shuby-p1-dark text-green-700"><%= t(".answer_yes") %></span>
       </button>
 
       <button type="submit" name="answer" value="no"
+              data-disable-with="<%= t('.submitting') %>"
               class="w-full p-4 rounded-xl border-2 border-red-200 bg-red-50 text-left hover:border-red-400 transition-colors">
         <span class="shuby-p1-dark text-red-700"><%= t(".answer_no") %></span>
       </button>
 
       <button type="submit" name="answer" value="non_lo_so"
+              data-disable-with="<%= t('.submitting') %>"
               class="w-full p-4 rounded-xl border-2 border-gray-200 bg-gray-50 text-left hover:border-gray-400 transition-colors">
         <span class="shuby-p1-dark text-gray-700"><%= t(".answer_unknown") %></span>
       </button>

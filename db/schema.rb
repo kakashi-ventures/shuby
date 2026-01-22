@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_16_131329) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_22_134500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -105,9 +105,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_16_131329) do
     t.integer "position", default: 0, null: false
     t.string "title"
     t.datetime "updated_at", null: false
+    t.integer "version", default: 1, null: false
     t.index ["development_area_id", "min_age_months"], name: "idx_questionnaires_area_age", unique: true
     t.index ["development_area_id"], name: "index_age_band_questionnaires_on_development_area_id"
     t.index ["min_age_months", "max_age_months"], name: "idx_on_min_age_months_max_age_months_817a34338d"
+    t.index ["version"], name: "index_age_band_questionnaires_on_version"
   end
 
   create_table "announcements", force: :cascade do |t|
@@ -434,6 +436,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_16_131329) do
     t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.text "notes"
+    t.integer "questionnaire_version"
     t.datetime "started_at"
     t.integer "status", default: 0, null: false
     t.datetime "updated_at", null: false
@@ -441,6 +444,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_16_131329) do
     t.index ["child_id", "age_band_questionnaire_id", "created_at"], name: "idx_sessions_child_questionnaire_time"
     t.index ["child_id", "status"], name: "index_questionnaire_sessions_on_child_id_and_status"
     t.index ["child_id"], name: "index_questionnaire_sessions_on_child_id"
+    t.index ["questionnaire_version"], name: "index_questionnaire_sessions_on_questionnaire_version"
   end
 
   create_table "questions", force: :cascade do |t|

@@ -10,7 +10,7 @@ resources :children, only: [] do
   end
 
   # Questionnaire session flow
-  resources :questionnaire_sessions, path: "questionari", only: [:show] do
+  resources :questionnaire_sessions, path: "questionari", only: [:show, :edit, :update] do
     member do
       get :continue # Resume questionnaire
       post :answer # Submit answer to a question

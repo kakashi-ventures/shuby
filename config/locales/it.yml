@@ -654,6 +654,10 @@ it:
       "no": "No"
       unknown: "Non so"
       attention: "Attenzione"
+      questionnaire_title: "Questionario Mese %{month}"
+      using_corrected_age: "Utilizziamo l'età corretta"
+      corrected_age_info: "Età corretta: %{corrected} mesi (età cronologica: %{chronological} mesi)"
+      corrected_age_explanation: "Perché %{name} è nato prematuro, utilizziamo l'età corretta (calcolata dalla data presunta del parto) fino ai 2 anni, per monitorare il suo sviluppo reale e non perdere tappe fondamentali."
 
   questionnaire_sessions:
     continue:
@@ -662,10 +666,12 @@ it:
       answer_no: "No"
       answer_unknown: "Non lo so"
       save_and_exit: "Salva e esci"
+      submitting: "Invio..."
 
     answer:
       completed: "Questionario completato!"
       error: "Si è verificato un errore"
+      already_completed: "Questo questionario è già stato completato"
 
     complete:
       completed: "Questionario completato!"
@@ -682,6 +688,12 @@ it:
       answer_no: "No"
       answer_non_lo_so: "Non lo so"
 
+      can_edit: "Puoi modificare le tue osservazioni"
+      edit_expires_in:
+        one: "Scade tra %{count} giorno"
+        other: "Scade tra %{count} giorni"
+      edit_button: "Modifica Osservazioni"
+
       attention_title: "Suggerimenti"
       attention_message: "Abbiamo notato alcune risposte che potrebbero indicare aree su cui concentrarsi. Ricorda che ogni bambino si sviluppa con i propri tempi!"
       suggestion_shuby: "Chiedi a Shuby AI"
@@ -691,6 +703,36 @@ it:
       campanelli_subtitle: "Se noti uno o più di questi segnali, condividili con il pediatra."
       attivita_title: "Attività di Stimolazione"
       attivita_subtitle: "Attività pratiche che puoi fare a casa per favorire lo sviluppo."
+
+    edit:
+      title: "Modifica Osservazioni"
+      back_to_results: "Torna ai risultati"
+      edit_window_notice:
+        one: "Hai ancora %{count} giorno per modificare"
+        other: "Hai ancora %{count} giorni per modificare"
+      instructions: "Puoi aggiungere o modificare le tue osservazioni per ogni risposta. Le risposte (Sì/No/Non lo so) non possono essere modificate dopo 14 giorni."
+      answer_locked: "La risposta non può essere modificata"
+      observations_label: "Osservazioni"
+      observations_placeholder: "Aggiungi note o osservazioni..."
+      observations_help: "Aggiungi dettagli o contesto che potrebbero essere utili"
+      cancel: "Annulla"
+      save_changes: "Salva Modifiche"
+      saving: "Salvataggio..."
+
+    update:
+      success:
+        zero: "Nessuna modifica salvata"
+        one: "%{count} osservazione aggiornata"
+        other: "%{count} osservazioni aggiornate"
+      edit_window_expired: "Il periodo di modifica è scaduto (14 giorni)"
+
+  activerecord:
+    errors:
+      models:
+        question_response:
+          attributes:
+            answer:
+              locked: "non può essere modificata dopo 14 giorni dal completamento"
 
   date:
     formats:

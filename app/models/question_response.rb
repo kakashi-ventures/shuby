@@ -8,6 +8,7 @@ class QuestionResponse < ApplicationRecord
 
   validates :answer, presence: true
   validates :question_id, uniqueness: {scope: :questionnaire_session_id}
+  validate :answer_not_locked, on: :update
 
   # Normalize text fields to strip whitespace
   normalizes :notes, with: ->(value) { value.is_a?(String) ? value.strip.squeeze(" ") : value }
@@ -26,5 +27,12 @@ class QuestionResponse < ApplicationRecord
     if session.answered_count == session.questions_count
       session.complete!
     end
+  end
+
+  # Prevent answer changes after 14-day edit window expires
+  def answer_not_locked
+    return unless answer_changed?
+    return if questionnaire_session.editable?
+    errors.add(:answer, :locked)
   end
 end
