@@ -39,14 +39,7 @@ if (generale_area = DevelopmentArea.find_by(slug: "generale"))
   puts "Deprecated 'Generale' area removed."
 end
 
-# Remove old questionnaires for months > 28 (official file only has 0-28)
-old_questionnaires = AgeBandQuestionnaire.where("min_age_months > 28")
-if old_questionnaires.exists?
-  puts "Removing #{old_questionnaires.count} old questionnaires for months > 28..."
-  old_questionnaires.destroy_all
-end
-
-# Clear existing questions to ensure clean data from official file
+# Clear existing questions to ensure clean data from official file (covers 0-36 months)
 # (This removes old placeholder questions that differ from official file)
 # Must also clear responses and sessions first due to foreign key constraints
 if QuestionResponse.exists?
@@ -65,7 +58,7 @@ if Question.exists?
 end
 
 # =============================================================================
-# 1. Create Development Areas (5 areas - matches official file)
+# 1. Create Development Areas (5 areas - matches official file, 0-36 months)
 # =============================================================================
 
 puts "Creating development areas..."
