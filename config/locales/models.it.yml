@@ -1,0 +1,21 @@
+it:
+  activerecord:
+    errors:
+      models:
+        child:
+          attributes:
+            birth_date:
+              in_future: "non può essere nel futuro"
+              too_old: "Il bambino ha più di %{max_months} mesi. Questa app è progettata per bambini fino a 36 mesi (con buffer fino a 40 mesi)"
+            gestational_weeks:
+              invalid: "deve essere compreso tra 22 e 42 settimane"
+            gestational_days:
+              invalid: "deve essere compreso tra 0 e 6 giorni"
+        child_health_profile:
+          attributes:
+            birth_weight_under_1500:
+              not_applicable_for_term: "Questo campo è rilevante solo per i neonati prematuri (< 37 settimane)"
+            required_oxygen_ventilation:
+              not_applicable_for_term: "Questo campo è rilevante solo per i neonati prematuri (< 37 settimane)"
+            scheduled_followups:
+              not_applicable_for_term: "I follow-up per prematuri (%{followups}) non sono applicabili ai bambini nati a termine (≥ 37 settimane)"

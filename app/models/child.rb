@@ -13,7 +13,11 @@ class Child < AccountRecord
   validates :nickname, presence: true, unless: -> { name.present? }
   validates :birth_date, presence: true
   validate :birth_date_not_in_future
+  validate :birth_date_within_app_scope
   validate :gestational_age_validity
+
+  # Normalize text fields to strip whitespace
+  normalizes :name, :nickname, :notes, with: ->(value) { value.is_a?(String) ? value.strip.squeeze(" ") : value }
 
   scope :active, -> { where(active: true) }
   scope :ordered, -> { order(:name) }
@@ -136,6 +140,17 @@ class Child < AccountRecord
 
   def birth_date_not_in_future
     errors.add(:birth_date, :in_future) if birth_date.present? && birth_date > Date.current
+  end
+
+  def birth_date_within_app_scope
+    return unless birth_date.present?
+
+    age_months = age_in_months
+    max_age = 40 # 36 months + 4 month buffer
+
+    if age_months > max_age
+      errors.add(:birth_date, :too_old, max_months: max_age)
+    end
   end
 
   def gestational_age_validity

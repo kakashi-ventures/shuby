@@ -182,6 +182,10 @@ it:
       continue: "Continua"
       back: "Indietro"
 
+      errors:
+        incomplete_profiles: "Hai dichiarato %{expected} bambini, ma ne hai compilati solo %{actual}. Per favore completa tutti i profili."
+        too_many_profiles: "Hai dichiarato %{expected} bambini, ma ne hai compilati %{actual}. Per favore verifica il numero di bambini nel profilo famiglia."
+
     health_history:
       title: "Storia familiare"
       subtitle: "Ultime domande sulla vostra famiglia"

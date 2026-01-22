@@ -35,6 +35,16 @@ class OnboardingController < ApplicationController
   end
 
   def update_children
+    validate_children_count
+
+    if @validation_error
+      @family_profile = @account.family_profile
+      @children = @account.children.includes(:health_profile)
+      flash.now[:alert] = @validation_error
+      render :children, status: :unprocessable_content
+      return
+    end
+
     if @account.update(children_params)
       current_user.update!(onboarding_step: :health_history)
       redirect_to onboarding_health_history_path
@@ -130,5 +140,33 @@ class OnboardingController < ApplicationController
       :has_hereditary_conditions,
       {primary_caregivers: [], hereditary_conditions: []}
     )
+  end
+
+  def validate_children_count
+    expected_count = @account.family_profile&.number_of_children || 1
+
+    # Count valid children in the submitted params
+    children_attributes = children_params.dig(:children_attributes)
+    return unless children_attributes
+
+    # Count children that have either name or nickname filled
+    valid_children_count = children_attributes.values.count do |attrs|
+      next if attrs[:_destroy] == "1" # Skip destroyed records
+      attrs[:name].present? || attrs[:nickname].present?
+    end
+
+    if valid_children_count < expected_count
+      @validation_error = I18n.t(
+        "onboarding.children.errors.incomplete_profiles",
+        expected: expected_count,
+        actual: valid_children_count
+      )
+    elsif valid_children_count > expected_count
+      @validation_error = I18n.t(
+        "onboarding.children.errors.too_many_profiles",
+        expected: expected_count,
+        actual: valid_children_count
+      )
+    end
   end
 end

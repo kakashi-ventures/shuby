@@ -65,6 +65,7 @@ class ChildHealthProfile < ApplicationRecord
   validates :birth_weight_grams, numericality: {greater_than: 0, less_than: 10000}, allow_nil: true
   validates :average_sleep_hours, numericality: {greater_than: 0, less_than_or_equal_to: 24}, allow_nil: true
   validates :floor_play_minutes_per_day, numericality: {greater_than_or_equal_to: 0, less_than: 1440}, allow_nil: true
+  validate :premature_fields_consistency
 
   def premature?
     gestational_age_category.present? && !gestational_age_category_full_term?
@@ -80,5 +81,31 @@ class ChildHealthProfile < ApplicationRecord
 
   def scheduled_followups_list
     scheduled_followups || []
+  end
+
+  private
+
+  def premature_fields_consistency
+    return unless child&.gestational_weeks.present?
+
+    is_term = child.gestational_weeks >= 37
+
+    if is_term
+      # Term babies shouldn't have these premature-specific responses
+      if birth_weight_under_1500.present? && birth_weight_under_1500_weight_yes?
+        errors.add(:birth_weight_under_1500, :not_applicable_for_term)
+      end
+
+      if required_oxygen_ventilation.present? && required_oxygen_ventilation_oxygen_yes?
+        errors.add(:required_oxygen_ventilation, :not_applicable_for_term)
+      end
+
+      # Check if premature follow-ups are scheduled
+      premature_followups = scheduled_followups_list & %w[hearing vision motor respiratory]
+      if premature_followups.any?
+        errors.add(:scheduled_followups, :not_applicable_for_term,
+                   followups: premature_followups.join(", "))
+      end
+    end
   end
 end

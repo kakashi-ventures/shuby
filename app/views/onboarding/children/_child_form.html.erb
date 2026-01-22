@@ -19,7 +19,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div>
       <%= child_form.label :birth_date, t("onboarding.children.basic_info.birth_date"), class: "block shuby-caption mb-2" %>
-      <%= child_form.date_field :birth_date, required: true, max: Date.current, class: "shuby-input w-full" %>
+      <%= child_form.date_field :birth_date, required: true, max: Date.current, min: 40.months.ago.to_date, class: "shuby-input w-full" %>
     </div>
 
     <div>

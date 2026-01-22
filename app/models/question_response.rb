@@ -9,6 +9,9 @@ class QuestionResponse < ApplicationRecord
   validates :answer, presence: true
   validates :question_id, uniqueness: {scope: :questionnaire_session_id}
 
+  # Normalize text fields to strip whitespace
+  normalizes :notes, with: ->(value) { value.is_a?(String) ? value.strip.squeeze(" ") : value }
+
   after_save :update_session_status
 
   private

@@ -23,6 +23,9 @@ class FamilyProfile < AccountRecord
   validates :number_of_children, numericality: {greater_than: 0, less_than_or_equal_to: 10}
   validates :languages_spoken_at_home, numericality: {greater_than: 0, less_than_or_equal_to: 10}
 
+  # Normalize text fields to strip whitespace
+  normalizes :country, :nationality, :mother_tongue, with: ->(value) { value.is_a?(String) ? value.strip.squeeze(" ") : value }
+
   # Primary caregiver options
   CAREGIVER_OPTIONS = %w[parents grandparents educators other].freeze
 

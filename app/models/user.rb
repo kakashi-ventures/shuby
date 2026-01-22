@@ -18,4 +18,7 @@ class User < ApplicationRecord
 
   validates :avatar, resizable_image: true
   validates :name, presence: true
+
+  # Normalize text fields to strip whitespace
+  normalizes :first_name, :last_name, with: ->(value) { value.is_a?(String) ? value.strip.squeeze(" ") : value }
 end
