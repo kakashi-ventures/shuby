@@ -3,6 +3,7 @@ module LanguageHelper
     "es-co": "Spanish (Columbia)",
     en: "English",
     fr: "French",
+    it: "Italiano",
     nl: "Dutch"
   }
 
