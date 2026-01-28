@@ -65,7 +65,7 @@
     font-weight: 600;
     line-height: 1.5;
     letter-spacing: 0;
-    color: var(--base-text-secondary);
+    color: var(--base-text);
 }
 
 /* Body P1 - Main text (Figma: Body/P1/Light - Montserrat Regular 14px) */
