@@ -1275,7 +1275,6 @@
     padding: 6px 24px 8px;
     background-color: var(--bg-light);
     box-shadow: 0px 0px 10px 0px rgba(158, 198, 240, 0.3);
-    position: relative;
 }
 
 /* Fixed position variant (for mobile apps) */
