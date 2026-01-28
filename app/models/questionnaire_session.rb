@@ -43,10 +43,10 @@ class QuestionnaireSession < ApplicationRecord
   end
 
   def unknown_count
-    question_responses.where(answer: :non_lo_so).count
+    question_responses.where(answer: :incerto).count
   end
   alias_method :si_count, :yes_count
-  alias_method :non_lo_so_count, :unknown_count
+  alias_method :incerto_count, :unknown_count
 
   def development_area
     age_band_questionnaire.development_area

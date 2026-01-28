@@ -66,10 +66,10 @@ class QuestionnaireSessionTest < ActiveSupport::TestCase
     assert_equal expected, session.no_count
   end
 
-  test "non_lo_so_count returns count of non_lo_so answers" do
+  test "incerto_count returns count of incerto answers" do
     session = questionnaire_sessions(:completed_session)
-    expected = session.question_responses.where(answer: :non_lo_so).count
-    assert_equal expected, session.non_lo_so_count
+    expected = session.question_responses.where(answer: :incerto).count
+    assert_equal expected, session.incerto_count
   end
 
   test "needs_attention? returns true when 2 or more no answers" do

@@ -14,7 +14,7 @@ class QuestionResponseTest < ActiveSupport::TestCase
   end
 
   test "answer enum values" do
-    assert_equal 0, QuestionResponse.answers[:non_lo_so]
+    assert_equal 0, QuestionResponse.answers[:incerto]
     assert_equal 1, QuestionResponse.answers[:si]
     assert_equal 2, QuestionResponse.answers[:no]
   end
@@ -50,8 +50,8 @@ class QuestionResponseTest < ActiveSupport::TestCase
     assert response.no?
   end
 
-  test "non_lo_so answer is stored correctly" do
+  test "incerto answer is stored correctly" do
     response = question_responses(:comunicazione_response_3)
-    assert response.non_lo_so?
+    assert response.incerto?
   end
 end

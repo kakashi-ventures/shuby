@@ -4,7 +4,7 @@ class QuestionResponse < ApplicationRecord
   belongs_to :questionnaire_session
   belongs_to :question
 
-  enum :answer, {non_lo_so: 0, si: 1, no: 2}
+  enum :answer, {incerto: 0, si: 1, no: 2}
 
   validates :answer, presence: true
   validates :question_id, uniqueness: {scope: :questionnaire_session_id}

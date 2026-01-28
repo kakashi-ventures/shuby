@@ -36,7 +36,7 @@
 
 ### Note su Dati Mancanti/Ambigui
 - **Questionari mesi 29-36:** Presenti solo in `campanelli_attivita.json` (campanelli e attivita), ma NON in `Shuby_Questionari_Completi_5_Aree.json` (manca il questionario vero e proprio)
-- **Terminologia:** Il codice usa `non_lo_so` mentre alcune parti dell'UI mostrano `incerto` - allineamento in corso
+- **Terminologia:** Il codice e tutti i documenti usano `incerto` (allineamento completato)
 
 ---
 
@@ -621,10 +621,10 @@ I campanelli sono segnali d'allarme da condividere con il pediatra.
 - Area "Comunicazione e Linguaggio" mancante nella scheda 24-36 (integrata in Relazione)
 - Area "Consolidamento" mancante nella scheda 24-36
 
-### 4.2 Terminologia Inconsistente
+### 4.2 Terminologia ~~Inconsistente~~ (RISOLTO)
 
-**Problema:** Il codice usa `non_lo_so` ma alcuni documenti potrebbero usare `incerto`
-**Rischio:** Possibile confusione in import/export dati
+**Stato:** ✅ Risolto - Il codice e tutti i documenti ora usano `incerto` uniformemente
+**Precedente problema:** Il codice usava `non_lo_so` mentre i documenti usavano `incerto`
 
 ### 4.3 Soglia "Needs Attention" Non Documentata
 

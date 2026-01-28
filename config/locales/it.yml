@@ -664,7 +664,7 @@ it:
       title: "Questionario"
       answer_yes: "Sì"
       answer_no: "No"
-      answer_unknown: "Non lo so"
+      answer_unknown: "Incerto"
       save_and_exit: "Salva e esci"
       submitting: "Invio..."
 
@@ -686,7 +686,7 @@ it:
       responses_title: "Le tue risposte"
       answer_si: "Sì"
       answer_no: "No"
-      answer_non_lo_so: "Non lo so"
+      answer_incerto: "Incerto"
 
       can_edit: "Puoi modificare le tue osservazioni"
       edit_expires_in:
