@@ -170,6 +170,20 @@ it:
     show:
       title: "Dashboard"
 
+  settings:
+    show:
+      title: "Gestione"
+      profile: "Profilo"
+      profile_description: "Modifica le tue informazioni personali"
+      password: "Password"
+      password_description: "Modifica la tua password"
+      pricing: "Prezzi"
+      pricing_description: "Visualizza i piani e gli abbonamenti"
+      notifications: "Notifiche"
+      notifications_description: "Visualizza le tue notifiche"
+      sign_out: "Esci"
+      sign_out_description: "Disconnettiti dal tuo account"
+
   shuby_chats:
     destroy:
       destroyed: "Conversazione eliminata."

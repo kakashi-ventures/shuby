@@ -24,7 +24,7 @@
     <span class="shuby-bottom-nav-label"><%= t("shared.bottom_nav.archive") %></span>
   <% end %>
 
-  <%= link_to "#", class: "shuby-bottom-nav-item #{'active' if active == 'gestione'}" do %>
+  <%= link_to settings_path, class: "shuby-bottom-nav-item #{'active' if active == 'gestione'}" do %>
     <div class="shuby-bottom-nav-icon">
       <%= render_svg "shuby/icons/icon-settings", styles: "w-6 h-6" %>
     </div>
