@@ -3,14 +3,18 @@ html {
 }
 
 body {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
   min-height: 100dvh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   line-height: 1.5;
+}
+
+.grid-layout-wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
 }
 
 main {
