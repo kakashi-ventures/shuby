@@ -110,7 +110,14 @@ Rails.application.configure do
   else
     config.action_mailer.smtp_settings = Jumpstart.config.smtp_settings
   end
-    # TEMP: avoid signup 500 if email provider isn't configured (e.g., Postmark sender not verified)
+
+  # ActionCable configuration for WebSockets (required for Turbo Streams broadcasts)
+  config.action_cable.allowed_request_origins = [
+    "https://#{Jumpstart.config.domain}",
+    /https:\/\/.*\.onrender\.com/
+  ]
+
+  # TEMP: avoid signup 500 if email provider isn't configured (e.g., Postmark sender not verified)
   if ENV["DISABLE_EMAILS"] == "true"
     config.action_mailer.perform_deliveries = false
     config.action_mailer.raise_delivery_errors = false
