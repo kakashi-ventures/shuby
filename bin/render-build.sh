@@ -14,4 +14,10 @@ bundle install
 npm install
 bundle exec rails assets:precompile
 bundle exec rails assets:clean
-[[ $SKIP_MIGRATE == true ]] || bundle exec rails db:prepare db:prepare:cache db:prepare:queue db:prepare:cable
+if [[ $SKIP_MIGRATE != true ]]; then
+  bundle exec rails db:prepare
+  # Load schemas for secondary databases (ignore errors if tables already exist)
+  bundle exec rails db:schema:load:cache 2>/dev/null || true
+  bundle exec rails db:schema:load:queue 2>/dev/null || true
+  bundle exec rails db:schema:load:cable 2>/dev/null || true
+fi
