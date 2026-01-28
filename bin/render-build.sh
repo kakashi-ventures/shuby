@@ -19,5 +19,5 @@ if [[ $SKIP_MIGRATE != true ]]; then
   # Load schemas for secondary databases (ignore errors if tables already exist)
   bundle exec rails db:schema:load:cache 2>/dev/null || true
   bundle exec rails db:schema:load:queue 2>/dev/null || true
-  bundle exec rails db:schema:load:cable 2>/dev/null || true
+  # Cable table is now created via migration, no need for db:schema:load:cable
 fi
