@@ -168,7 +168,17 @@ it:
 
   dashboard:
     show:
-      title: "Dashboard"
+      title: "Oggi"
+      shuby_ai:
+        title: "Shuby AI"
+        subtitle: "Chatta con il tuo assistente AI"
+      suggested_activities:
+        title: "Attività suggerite"
+      todays_tips:
+        title: "Consigli di oggi"
+      featured_articles:
+        title: "Articoli in primo piano"
+        view_all: "Tutti gli Articoli"
 
   settings:
     show:

@@ -200,6 +200,16 @@ en:
   dashboard:
     show:
       title: "Dashboard"
+      shuby_ai:
+        title: "Shuby AI"
+        subtitle: "Chat with your AI assistant"
+      suggested_activities:
+        title: "Suggested Activities"
+      todays_tips:
+        title: "Today's Tips"
+      featured_articles:
+        title: "Featured Articles"
+        view_all: "View All Articles"
 
   shuby_chats:
     destroy:
