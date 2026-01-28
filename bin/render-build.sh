@@ -14,4 +14,4 @@ bundle install
 npm install
 bundle exec rails assets:precompile
 bundle exec rails assets:clean
-[[ $SKIP_MIGRATE == true ]] || bundle exec rails db:prepare db:migrate:cache db:migrate:queue db:migrate:cable
+[[ $SKIP_MIGRATE == true ]] || bundle exec rails db:prepare db:prepare:cache db:prepare:queue db:prepare:cable
