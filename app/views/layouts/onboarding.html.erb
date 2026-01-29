@@ -4,7 +4,7 @@
     <%= render "head" %>
   </head>
 
-  <body data-controller="theme" data-theme-preference-value="<%= current_user&.theme %>">
+  <body data-controller="theme" data-theme-preference-value="<%= current_user&.theme || 'light' %>">
     <header>
       <%= impersonation_banner %>
       <%= render "flash" %>
