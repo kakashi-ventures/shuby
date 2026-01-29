@@ -87,3 +87,6 @@ eval_gemfile "Gemfile.jumpstart"
 # Shuby Chat Assistant - AI integration
 gem "ruby_llm", "~> 1.2"
 gem "ruby-openai", "~> 7.0"  # For direct Vector Store API calls
+
+# Country/nationality data with I18n support
+gem "countries", "~> 6.0"

@@ -16,6 +16,9 @@ it:
       country: "Paese di residenza"
       nationality: "Nazionalità"
       mother_tongue: "Lingua madre"
+      select_country: "Seleziona un paese..."
+      select_nationality: "Seleziona una nazionalità..."
+      select_language: "Seleziona una lingua..."
 
       family_structure:
         label: "Struttura familiare"

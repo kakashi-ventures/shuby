@@ -15,17 +15,23 @@
     <div class="space-y-4">
       <div>
         <%= form.label :country, t("onboarding.family_profile.country"), class: "block shuby-caption mb-2" %>
-        <%= form.text_field :country, placeholder: t("onboarding.family_profile.country"), required: true, class: "shuby-input w-full" %>
+        <%= form.select :country, country_options,
+          { include_blank: t("onboarding.family_profile.select_country") },
+          required: true, class: "shuby-input w-full bg-white" %>
       </div>
 
       <div>
         <%= form.label :nationality, t("onboarding.family_profile.nationality"), class: "block shuby-caption mb-2" %>
-        <%= form.text_field :nationality, class: "shuby-input w-full" %>
+        <%= form.select :nationality, nationality_options,
+          { include_blank: t("onboarding.family_profile.select_nationality") },
+          class: "shuby-input w-full bg-white" %>
       </div>
 
       <div>
         <%= form.label :mother_tongue, t("onboarding.family_profile.mother_tongue"), class: "block shuby-caption mb-2" %>
-        <%= form.text_field :mother_tongue, class: "shuby-input w-full" %>
+        <%= form.select :mother_tongue, mother_tongue_options,
+          { include_blank: t("onboarding.family_profile.select_language") },
+          class: "shuby-input w-full bg-white" %>
       </div>
     </div>
 
@@ -37,7 +43,7 @@
           <%= form.select :family_structure,
             FamilyProfile.family_structures.keys.map { |s| [t("onboarding.family_profile.family_structure.#{s}"), s] },
             {},
-            class: "shuby-input w-full",
+            class: "shuby-input w-full bg-white",
             data: {
               conditional_fields_target: "trigger",
               action: "change->conditional-fields#toggle"
@@ -49,7 +55,7 @@
           <%= form.select :two_parents_type,
             FamilyProfile.two_parents_types.keys.map { |s| [t("onboarding.family_profile.two_parents_type.#{s}"), s] },
             { include_blank: true },
-            class: "shuby-input w-full" %>
+            class: "shuby-input w-full bg-white" %>
         </div>
       </div>
     </div>
