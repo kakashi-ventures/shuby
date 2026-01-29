@@ -53,6 +53,13 @@
   }
 }
 
+/* Auth page form controls - light blue background */
+.form-control-auth,
+.auth-form .form-control {
+  background-color: var(--color-shuby-blue-50);
+  border: 1px solid var(--color-shuby-blue-300);
+}
+
 trix-toolbar {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
