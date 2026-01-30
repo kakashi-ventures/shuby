@@ -200,6 +200,9 @@ en:
   dashboard:
     show:
       title: "Dashboard"
+      complete_profile:
+        title: "Complete your profile"
+        subtitle: "Add details about your family"
       shuby_ai:
         title: "Shuby AI"
         subtitle: "Chat with your AI assistant"
@@ -665,10 +668,35 @@ en:
       gestational_help: "Enter gestational age at birth if the child was born premature"
       notes: "Notes"
       notes_placeholder: "Any additional notes..."
+      health_section: "Health Information"
+      birth_weight: "Birth Weight (grams)"
+      birth_weight_help: "Baby's weight at birth in grams"
+      hearing_screening: "Hearing Screening"
+      vision_screening: "Vision Screening"
+      feeding_type: "Feeding Type"
+      sleep_hours: "Average Sleep Hours"
+      sleep_hours_help: "Average hours of sleep per day"
+      select_option: "Select..."
     sex:
       unspecified: "Not specified"
       male: "Male"
       female: "Female"
+      intersex: "Intersex"
+    health:
+      hearing:
+        hearing_pass: "Pass"
+        hearing_refer: "Refer"
+        hearing_not_done: "Not done"
+        hearing_unknown: "Unknown"
+      vision:
+        vision_done: "Done"
+        vision_not_yet: "Not yet"
+        vision_unknown: "Unknown"
+      feeding:
+        breastfeeding: "Breastfeeding"
+        formula: "Formula"
+        mixed: "Mixed"
+        feeding_other: "Other"
     age:
       weeks:
         one: "%{count} week"

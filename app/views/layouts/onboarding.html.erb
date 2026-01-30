@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="<%= class_names(dark: current_user&.dark_theme?, "hotwire-native": hotwire_native_app?) %>" lang="<%= I18n.locale %>">
+<html class="<%= class_names("hotwire-native": hotwire_native_app?) %>" lang="<%= I18n.locale %>">
   <head>
     <%= render "head" %>
   </head>
 
-  <body data-controller="theme" data-theme-preference-value="<%= current_user&.theme || 'light' %>">
+  <body class="bg-white min-h-screen" data-controller="theme" data-theme-preference-value="light">
     <header>
       <%= impersonation_banner %>
       <%= render "flash" %>
@@ -17,9 +17,7 @@
       </nav>
     </header>
 
-    <main class="max-w-2xl mx-auto px-4 py-8">
-      <%= render "onboarding/progress_indicator" %>
-
+    <main class="max-w-md mx-auto px-4 py-8">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
   </body>

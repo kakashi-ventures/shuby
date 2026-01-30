@@ -45,4 +45,15 @@ class FamilyProfile < AccountRecord
   def hereditary_conditions_list
     hereditary_conditions || []
   end
+
+  # Profile completeness tracking
+  def profile_completeness_percentage
+    required_fields = [nationality, country, mother_tongue]
+    filled = required_fields.count(&:present?)
+    (filled.to_f / required_fields.size * 100).round
+  end
+
+  def profile_complete?
+    profile_completeness_percentage >= 100
+  end
 end

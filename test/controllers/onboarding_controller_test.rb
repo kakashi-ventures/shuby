@@ -6,108 +6,158 @@ class OnboardingControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
     @account = @user.personal_account
-    # Clean up any existing family profile
+    # Clean up any existing family profile and children
     @account.family_profile&.destroy
+    @account.children.destroy_all
     # Reset onboarding status for these tests
-    @user.update!(onboarding_completed_at: nil, onboarding_step: :family_profile)
+    @user.update!(onboarding_completed_at: nil, onboarding_step: :setup)
     sign_in @user
   end
 
-  test "should get family_profile step" do
-    get onboarding_family_profile_path
+  test "should get onboarding show page" do
+    get onboarding_path
     assert_response :success
-    assert_select "h1", /Profilo della Famiglia|Family Profile/
+    assert_select "h1", /Iniziamo insieme|Let's get started/
   end
 
-  test "should update family_profile and advance to children step" do
-    patch onboarding_family_profile_path, params: {
-      family_profile: {
-        country: "Italy",
-        nationality: "Italian",
-        mother_tongue: "Italian",
-        family_structure: "two_parents",
-        number_of_children: 2,
-        languages_spoken_at_home: 1
+  test "should create child and complete onboarding" do
+    assert_difference ["Child.count", "FamilyProfile.count"], 1 do
+      post onboarding_path, params: {
+        child: {
+          name: "Marco",
+          birth_date: 6.months.ago.to_date,
+          sex: "male"
+        },
+        family_profile: {
+          languages_spoken_at_home: 1
+        },
+        account_user: {
+          relationship_to_child: "dad"
+        }
       }
-    }
-    assert_redirected_to onboarding_children_path
+    end
+
+    assert_redirected_to root_path
     @user.reload
-    assert_equal "children", @user.onboarding_step
-    assert @account.reload.family_profile.present?
-  end
-
-  test "should get children step" do
-    # First complete family profile
-    @account.create_family_profile!(
-      country: "Italy",
-      number_of_children: 1,
-      languages_spoken_at_home: 1
-    )
-    @user.update!(onboarding_step: :children)
-
-    get onboarding_children_path
-    assert_response :success
-  end
-
-  test "should get health_history step" do
-    # First complete family profile
-    @account.create_family_profile!(
-      country: "Italy",
-      number_of_children: 1,
-      languages_spoken_at_home: 1
-    )
-    @user.update!(onboarding_step: :health_history)
-
-    get onboarding_health_history_path
-    assert_response :success
-  end
-
-  test "should complete onboarding" do
-    # Set up prerequisites
-    @account.create_family_profile!(
-      country: "Italy",
-      number_of_children: 1,
-      languages_spoken_at_home: 1
-    )
-    @user.update!(onboarding_step: :health_history)
-
-    patch onboarding_health_history_path, params: {
-      family_profile: {
-        primary_caregivers: ["parents"],
-        has_hereditary_conditions: false
-      }
-    }
-    assert_redirected_to onboarding_complete_path
-
-    @user.reload
+    @account.reload
     assert @user.onboarding_completed?
+
+    # Check child was created correctly
+    child = @account.children.first
+    assert_equal "Marco", child.name
+    assert_equal "male", child.sex
+
+    # Check family profile was created
+    family_profile = @account.family_profile
+    assert_equal 1, family_profile.languages_spoken_at_home
+    assert_equal "Italia", family_profile.country
+
+    # Check account user relationship was updated
+    account_user = @account.account_users.find_by(user: @user)
+    assert_equal "dad", account_user.relationship_to_child
+  end
+
+  test "should render show on validation errors" do
+    post onboarding_path, params: {
+      child: {
+        name: "",
+        birth_date: nil,
+        sex: "male"
+      },
+      family_profile: {
+        languages_spoken_at_home: 1
+      },
+      account_user: {
+        relationship_to_child: "dad"
+      }
+    }
+
+    assert_response :unprocessable_content
+  end
+
+  test "should reject future birth date" do
+    post onboarding_path, params: {
+      child: {
+        name: "Marco",
+        birth_date: 1.month.from_now.to_date,
+        sex: "male"
+      },
+      family_profile: {
+        languages_spoken_at_home: 1
+      },
+      account_user: {
+        relationship_to_child: "dad"
+      }
+    }
+
+    assert_response :unprocessable_content
   end
 
   test "should redirect completed user to root" do
     @user.update!(onboarding_completed_at: Time.current)
 
-    get onboarding_family_profile_path
+    get onboarding_path
     assert_redirected_to root_path
   end
 
-  test "should show complete page" do
-    @user.update!(onboarding_step: :complete)
-    get onboarding_complete_path
-    assert_response :success
-  end
+  test "should allow intersex option" do
+    post onboarding_path, params: {
+      child: {
+        name: "Alex",
+        birth_date: 6.months.ago.to_date,
+        sex: "intersex"
+      },
+      family_profile: {
+        languages_spoken_at_home: 2
+      },
+      account_user: {
+        relationship_to_child: "mom"
+      }
+    }
 
-  test "finish redirects to root" do
-    post onboarding_finish_path
     assert_redirected_to root_path
+    @account.reload
+    child = @account.children.first
+    assert_equal "intersex", child.sex
   end
 
-  test "redirects to family_profile when accessing children without family profile" do
-    get onboarding_children_path
-    assert_redirected_to onboarding_family_profile_path
+  test "should allow grandparent relationship" do
+    post onboarding_path, params: {
+      child: {
+        name: "Test",
+        birth_date: 6.months.ago.to_date,
+        sex: "male"
+      },
+      family_profile: {
+        languages_spoken_at_home: 1
+      },
+      account_user: {
+        relationship_to_child: "grandparent"
+      }
+    }
+
+    assert_redirected_to root_path
+    account_user = AccountUser.find_by(user: @user, account: @account)
+    assert_equal "grandparent", account_user.relationship_to_child
   end
 
-  test "redirects to family_profile when accessing health_history without family profile" do
-    get onboarding_health_history_path
-    assert_redirected_to onboarding_family_profile_path
+  test "should allow other relationship" do
+    post onboarding_path, params: {
+      child: {
+        name: "Test",
+        birth_date: 6.months.ago.to_date,
+        sex: "male"
+      },
+      family_profile: {
+        languages_spoken_at_home: 1
+      },
+      account_user: {
+        relationship_to_child: "other"
+      }
+    }
+
+    assert_redirected_to root_path
+    account_user = AccountUser.find_by(user: @user, account: @account)
+    assert_equal "other", account_user.relationship_to_child
   end
 end

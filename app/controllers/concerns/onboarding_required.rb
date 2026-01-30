@@ -15,7 +15,7 @@ module OnboardingRequired
     return if controller_path == "onboarding"
     return if devise_controller?
 
-    redirect_to onboarding_family_profile_path,
+    redirect_to onboarding_path,
       alert: I18n.t("onboarding.required")
   end
 end

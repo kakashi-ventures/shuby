@@ -41,6 +41,56 @@
     <%= form.text_area :notes, rows: 3, placeholder: t("children.form.notes_placeholder"), class: "shuby-input w-full" %>
   </div>
 
+  <%# Health Profile Section %>
+  <% if child.persisted? %>
+    <div class="border-t border-gray-200 pt-6">
+      <div class="flex items-center justify-between mb-4">
+        <span class="shuby-caption"><%= t("children.form.health_section") %></span>
+        <span class="shuby-caption text-gray-400"><%= t("children.form.optional") %></span>
+      </div>
+
+      <%= form.fields_for :health_profile, child.health_profile || child.build_health_profile do |hp| %>
+        <div class="space-y-4">
+          <div>
+            <%= hp.label :birth_weight_grams, t("children.form.birth_weight"), class: "block shuby-caption mb-2" %>
+            <%= hp.number_field :birth_weight_grams, min: 500, max: 6000, placeholder: "3200", class: "shuby-input w-full" %>
+            <p class="shuby-caption text-gray-400 mt-1"><%= t("children.form.birth_weight_help") %></p>
+          </div>
+
+          <div>
+            <%= hp.label :hearing_screening_result, t("children.form.hearing_screening"), class: "block shuby-caption mb-2" %>
+            <%= hp.select :hearing_screening_result,
+                ChildHealthProfile.hearing_screening_results.keys.map { |k| [t("children.health.hearing.#{k}"), k] },
+                { include_blank: t("children.form.select_option") },
+                class: "shuby-input w-full" %>
+          </div>
+
+          <div>
+            <%= hp.label :vision_screening_result, t("children.form.vision_screening"), class: "block shuby-caption mb-2" %>
+            <%= hp.select :vision_screening_result,
+                ChildHealthProfile.vision_screening_results.keys.map { |k| [t("children.health.vision.#{k}"), k] },
+                { include_blank: t("children.form.select_option") },
+                class: "shuby-input w-full" %>
+          </div>
+
+          <div>
+            <%= hp.label :current_feeding_type, t("children.form.feeding_type"), class: "block shuby-caption mb-2" %>
+            <%= hp.select :current_feeding_type,
+                ChildHealthProfile.current_feeding_types.keys.map { |k| [t("children.health.feeding.#{k}"), k] },
+                { include_blank: t("children.form.select_option") },
+                class: "shuby-input w-full" %>
+          </div>
+
+          <div>
+            <%= hp.label :average_sleep_hours, t("children.form.sleep_hours"), class: "block shuby-caption mb-2" %>
+            <%= hp.number_field :average_sleep_hours, min: 8, max: 20, step: 0.5, placeholder: "14", class: "shuby-input w-full" %>
+            <p class="shuby-caption text-gray-400 mt-1"><%= t("children.form.sleep_hours_help") %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="pt-4">
     <%= form.submit class: "shuby-btn shuby-btn-md shuby-btn-primary w-full" %>
   </div>

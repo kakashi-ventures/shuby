@@ -22,6 +22,7 @@ class ChildrenController < ApplicationController
 
   # GET /children/:id/edit
   def edit
+    @child.build_health_profile unless @child.health_profile
   end
 
   # POST /children
@@ -59,6 +60,12 @@ class ChildrenController < ApplicationController
   end
 
   def child_params
-    params.expect(child: [:name, :birth_date, :sex, :gestational_weeks, :gestational_days, :notes])
+    params.expect(child: [
+      :name, :birth_date, :sex, :gestational_weeks, :gestational_days, :notes,
+      health_profile_attributes: [
+        :id, :birth_weight_grams, :hearing_screening_result, :vision_screening_result,
+        :current_feeding_type, :average_sleep_hours
+      ]
+    ])
   end
 end

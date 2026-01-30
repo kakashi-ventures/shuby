@@ -7,7 +7,7 @@ class Child < AccountRecord
 
   accepts_nested_attributes_for :health_profile
 
-  enum :sex, {unspecified: 0, male: 1, female: 2}
+  enum :sex, {unspecified: 0, male: 1, female: 2, intersex: 3}
 
   validates :name, presence: true, unless: -> { nickname.present? }
   validates :nickname, presence: true, unless: -> { name.present? }
@@ -155,6 +155,32 @@ class Child < AccountRecord
       needs_attention: session.needs_attention?,
       completed_at: session.completed_at
     }
+  end
+
+  # Profile completeness tracking
+  def profile_completeness_percentage
+    base_fields = [name, birth_date, sex.present? && sex != "unspecified"]
+    base_filled = base_fields.count { |f| f.present? && f != false }
+
+    if health_profile.present?
+      health_fields = [
+        health_profile.birth_weight_grams,
+        health_profile.hearing_screening_result,
+        health_profile.current_feeding_type
+      ]
+      health_filled = health_fields.count(&:present?)
+      total_fields = base_fields.size + health_fields.size
+      total_filled = base_filled + health_filled
+    else
+      total_fields = base_fields.size + 3 # Expecting 3 health fields
+      total_filled = base_filled
+    end
+
+    (total_filled.to_f / total_fields * 100).round
+  end
+
+  def profile_complete?
+    profile_completeness_percentage >= 80
   end
 
   private

@@ -169,6 +169,9 @@ it:
   dashboard:
     show:
       title: "Oggi"
+      complete_profile:
+        title: "Completa il tuo profilo"
+        subtitle: "Aggiungi dettagli sulla tua famiglia"
       shuby_ai:
         title: "Shuby AI"
         subtitle: "Chatta con il tuo assistente AI"
@@ -625,10 +628,35 @@ it:
       gestational_help: "Inserisci l'età gestazionale alla nascita se il bambino è nato prematuro"
       notes: "Note"
       notes_placeholder: "Note aggiuntive..."
+      health_section: "Informazioni Salute"
+      birth_weight: "Peso alla nascita (grammi)"
+      birth_weight_help: "Peso del bambino alla nascita in grammi"
+      hearing_screening: "Screening Uditivo"
+      vision_screening: "Screening Visivo"
+      feeding_type: "Tipo di Alimentazione"
+      sleep_hours: "Ore di Sonno Medie"
+      sleep_hours_help: "Quante ore dorme in media al giorno"
+      select_option: "Seleziona..."
     sex:
       unspecified: "Non specificato"
       male: "Maschio"
       female: "Femmina"
+      intersex: "Intersex"
+    health:
+      hearing:
+        hearing_pass: "Superato"
+        hearing_refer: "Da approfondire"
+        hearing_not_done: "Non effettuato"
+        hearing_unknown: "Non so"
+      vision:
+        vision_done: "Effettuato"
+        vision_not_yet: "Non ancora"
+        vision_unknown: "Non so"
+      feeding:
+        breastfeeding: "Allattamento al seno"
+        formula: "Formula"
+        mixed: "Misto"
+        feeding_other: "Altro"
     age:
       weeks:
         one: "%{count} settimana"

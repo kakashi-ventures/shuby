@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_29_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_30_105205) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -31,6 +31,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_29_100000) do
   create_table "account_users", force: :cascade do |t|
     t.bigint "account_id"
     t.datetime "created_at", null: false
+    t.integer "relationship_to_child", default: 0
     t.jsonb "roles", default: {}, null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -490,7 +491,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_29_100000) do
 
   create_table "shuby_chats", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "model", default: "gpt-5-mini", null: false
+    t.string "model", default: "gpt-4o-mini", null: false
     t.string "previous_response_id"
     t.string "title"
     t.datetime "updated_at", null: false

@@ -41,7 +41,7 @@ module Authentication
 
     # Redirect to onboarding if not completed
     if resource_or_scope.is_a?(User) && !resource_or_scope.onboarding_completed?
-      return onboarding_family_profile_path
+      return onboarding_path
     end
 
     stored_location_for(resource_or_scope) || super

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   draw :billing
   draw :children
   draw :development_stages
+  draw :family_profiles
   draw :hotwire_native
   draw :onboarding
   draw :shuby

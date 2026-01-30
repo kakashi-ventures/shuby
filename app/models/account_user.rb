@@ -3,6 +3,15 @@ class AccountUser < ApplicationRecord
   # Do NOT to use any reserved words like `user` or `account`
   ROLES = [:admin, :member]
 
+  enum :relationship_to_child, {
+    unspecified: 0,
+    dad: 1,
+    mom: 2,
+    grandparent: 3,
+    caregiver: 4,
+    other: 5
+  }, prefix: :relationship
+
   include UpdatesSubscriptionQuantity
   include Roles
 

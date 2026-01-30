@@ -1,0 +1,126 @@
+<div class="w-full">
+  <!-- Header with mascot -->
+  <div class="text-center mb-8">
+    <%= image_tag "shuby/illustrations/mascot-centered.svg", class: "w-20 h-20 mx-auto mb-4", alt: "Shuby" %>
+    <h1 class="shuby-d1 text-[var(--color-shuby-blue-800)] mb-2">
+      <%= t("onboarding.title") %>
+    </h1>
+    <p class="shuby-p1 text-gray-500">
+      <%= t("onboarding.subtitle") %>
+    </p>
+  </div>
+
+  <%= form_with url: onboarding_path, method: :post, class: "space-y-6", data: { turbo: false } do |form| %>
+    <!-- Error messages -->
+    <% if @child.errors.any? || @family_profile.errors.any? || @account_user.errors.any? %>
+      <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+        <ul class="list-disc list-inside text-red-600 shuby-p2">
+          <% @child.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          <% @family_profile.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          <% @account_user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- 1. Child's Name -->
+    <div>
+      <label for="child_name" class="block shuby-caption mb-2 text-gray-700"><%= t("onboarding.child_name") %></label>
+      <input type="text" name="child[name]" id="child_name"
+             value="<%= @child.name %>"
+             placeholder="<%= t("onboarding.child_name_placeholder") %>"
+             required
+             autofocus
+             class="shuby-input w-full">
+    </div>
+
+    <!-- 2. Date of Birth -->
+    <div>
+      <label for="child_birth_date" class="block shuby-caption mb-2 text-gray-700"><%= t("onboarding.birth_date") %></label>
+      <input type="date" name="child[birth_date]" id="child_birth_date"
+             value="<%= @child.birth_date %>"
+             required
+             max="<%= Date.current %>"
+             min="<%= 40.months.ago.to_date %>"
+             class="shuby-input w-full">
+    </div>
+
+    <!-- 3. Sex at Birth (Button Group) -->
+    <div>
+      <span class="block shuby-caption mb-2 text-gray-700"><%= t("onboarding.sex_at_birth") %></span>
+      <div class="grid grid-cols-3 gap-2">
+        <% [:male, :female, :intersex].each do |sex| %>
+          <label class="relative cursor-pointer">
+            <input type="radio" name="child[sex]" value="<%= sex %>"
+                   class="peer sr-only"
+                   <%= "checked" if @child.sex == sex.to_s %>>
+            <span class="block w-full py-3 px-2 text-center rounded-xl border-2 border-gray-200
+                        peer-checked:border-[var(--color-shuby-blue-500)] peer-checked:bg-[var(--color-shuby-blue-50)]
+                        hover:border-gray-300 transition-all shuby-p1 text-gray-700">
+              <%= t("onboarding.sex.#{sex}") %>
+            </span>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- 4. Your Relationship (Button Group) -->
+    <div>
+      <span class="block shuby-caption mb-2 text-gray-700"><%= t("onboarding.relationship") %></span>
+      <div class="grid grid-cols-2 gap-2">
+        <% [:dad, :mom, :grandparent, :other].each do |rel| %>
+          <label class="relative cursor-pointer">
+            <input type="radio" name="account_user[relationship_to_child]" value="<%= rel %>"
+                   class="peer sr-only"
+                   <%= "checked" if @account_user.relationship_to_child == rel.to_s %>>
+            <span class="block w-full py-3 px-2 text-center rounded-xl border-2 border-gray-200
+                        peer-checked:border-[var(--color-shuby-blue-500)] peer-checked:bg-[var(--color-shuby-blue-50)]
+                        hover:border-gray-300 transition-all shuby-p1 text-gray-700">
+              <%= t("onboarding.relationship_options.#{rel}") %>
+            </span>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- 5. Languages at Home (Button Group) -->
+    <div>
+      <span class="block shuby-caption mb-2 text-gray-700"><%= t("onboarding.languages") %></span>
+      <div class="grid grid-cols-3 gap-2">
+        <% [1, 2, 3].each do |count| %>
+          <label class="relative cursor-pointer">
+            <input type="radio" name="family_profile[languages_spoken_at_home]" value="<%= count %>"
+                   class="peer sr-only"
+                   <%= "checked" if @family_profile.languages_spoken_at_home == count %>>
+            <span class="block w-full py-3 px-2 text-center rounded-xl border-2 border-gray-200
+                        peer-checked:border-[var(--color-shuby-blue-500)] peer-checked:bg-[var(--color-shuby-blue-50)]
+                        hover:border-gray-300 transition-all shuby-p1 text-gray-700">
+              <%= count == 3 ? "3+" : count %>
+            </span>
+          </label>
+        <% end %>
+      </div>
+      <p class="shuby-p2 text-gray-400 mt-2 text-center">
+        <%= t("onboarding.languages_help") %>
+      </p>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="pt-4">
+      <%= form.submit t("onboarding.submit"),
+          class: "shuby-btn shuby-btn-lg shuby-btn-primary w-full" %>
+    </div>
+
+    <!-- Details later note -->
+    <div class="text-center">
+      <p class="shuby-p2 text-gray-400">
+        <%= t("onboarding.details_later") %>
+      </p>
+    </div>
+  <% end %>
+</div>
