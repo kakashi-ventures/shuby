@@ -1,0 +1,126 @@
+<% content_for :title, t(".title") %>
+
+<div class="container px-4 mx-auto my-8 pb-24">
+  <% if @sectioned_view %>
+    <%# ===== SECTIONED HOME VIEW ===== %>
+
+    <%# Header %>
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="shuby-h1 text-shuby-blue-800"><%= t(".heading") %></h1>
+      <div class="flex items-center gap-3">
+        <button type="button" class="p-2 text-shuby-blue-800 hover:bg-shuby-blue-50 rounded-full">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+          </svg>
+        </button>
+        <button type="button" class="p-2 text-shuby-blue-800 hover:bg-shuby-blue-50 rounded-full">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <%# Articoli per te Section %>
+    <section class="mb-8">
+      <h2 class="shuby-h2 text-shuby-blue-800 mb-4"><%= t(".sections.articles") %></h2>
+      <% if @articles.any? %>
+        <div class="space-y-3">
+          <% @articles.each do |article| %>
+            <%= render "archive/article_card", content: article %>
+          <% end %>
+        </div>
+        <div class="mt-4 text-right">
+          <%= link_to archive_index_path(type: 'article'), class: "inline-flex items-center gap-1 text-shuby-blue-800 font-semibold text-sm hover:underline" do %>
+            <%= t(".sections.all_articles") %>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="shuby-p2 text-gray-500"><%= t(".sections.no_articles") %></p>
+      <% end %>
+    </section>
+
+    <%# Consigli per te Section %>
+    <section class="mb-8">
+      <h2 class="shuby-h2 text-shuby-blue-800 mb-4"><%= t(".sections.consigli") %></h2>
+      <% if @consigli.any? %>
+        <div class="space-y-3">
+          <% @consigli.each do |consiglio| %>
+            <%= render "archive/consigli_card", content: consiglio %>
+          <% end %>
+        </div>
+        <div class="mt-4 text-right">
+          <%= link_to archive_index_path(type: 'book'), class: "inline-flex items-center gap-1 text-shuby-blue-800 font-semibold text-sm hover:underline" do %>
+            <%= t(".sections.all_consigli") %>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="shuby-p2 text-gray-500"><%= t(".sections.no_consigli") %></p>
+      <% end %>
+    </section>
+
+    <%# Attività Section %>
+    <section class="mb-8">
+      <h2 class="shuby-h2 text-shuby-blue-800 mb-4"><%= t(".sections.activities") %></h2>
+      <% if @activities.any? %>
+        <div class="space-y-3">
+          <% @activities.each do |activity| %>
+            <%= render "archive/game_card", content: activity %>
+          <% end %>
+        </div>
+        <div class="mt-4 text-right">
+          <%= link_to archive_index_path(type: 'game'), class: "inline-flex items-center gap-1 text-shuby-blue-800 font-semibold text-sm hover:underline" do %>
+            <%= t(".sections.all_activities") %>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="shuby-p2 text-gray-500"><%= t(".sections.no_activities") %></p>
+      <% end %>
+    </section>
+
+    <%# Empty state when no content at all %>
+    <% if @articles.empty? && @consigli.empty? && @activities.empty? %>
+      <%= render "archive/empty_state" %>
+    <% end %>
+
+  <% else %>
+    <%# ===== FILTERED LIST VIEW ===== %>
+
+    <%# Header with back link %>
+    <div class="flex items-center gap-3 mb-6">
+      <%= link_to archive_index_path, class: "p-2 text-shuby-blue-800 hover:bg-shuby-blue-50 rounded-full" do %>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      <% end %>
+      <h1 class="shuby-h1 text-shuby-blue-800"><%= t(".tabs.#{@active_type}") %></h1>
+    </div>
+
+    <%# Filters %>
+    <%= render "archive/filters", categories: @categories, selected_age: @selected_age, selected_category: @selected_category %>
+
+    <%# Content Grid %>
+    <div id="archive-content" class="space-y-3">
+      <% if @contents.any? %>
+        <% @contents.each do |content| %>
+          <%= render "archive/content_card", content: content %>
+        <% end %>
+      <% else %>
+        <%= render "archive/empty_state" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% content_for :bottom_nav do %>
+  <%= render "shared/shuby_bottom_nav", active: "archivio" %>
+<% end %>

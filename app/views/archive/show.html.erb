@@ -1,0 +1,163 @@
+<% content_for :title, @content.title %>
+
+<div class="pb-24">
+  <%# Back navigation %>
+  <div class="px-4 py-3">
+    <%= link_to archive_index_path, class: "inline-flex items-center gap-2 text-shuby-blue-800 hover:text-shuby-blue-900" do %>
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+      <%= t("archive.back_to_archive") %>
+    <% end %>
+  </div>
+
+  <% if @content.content_type_article? || @content.content_type_game? %>
+    <%# Article/Game Hero %>
+    <div class="relative bg-shuby-blue-100 px-4 py-8">
+      <% if @content.cover_image.attached? %>
+        <div class="flex justify-center mb-6">
+          <%= image_tag @content.cover_image, alt: "", class: "max-h-48 rounded-lg" %>
+        </div>
+      <% end %>
+      <div class="space-y-3">
+        <div class="flex flex-wrap gap-2">
+          <span class="shuby-tag shuby-tag-info">
+            <%= @content.category %>
+          </span>
+          <span class="shuby-tag shuby-tag-default">
+            <%= @content.age_range_label %>
+          </span>
+          <% if @content.duration_minutes %>
+            <span class="shuby-tag shuby-tag-default">
+              <%= render_svg "shuby/icons/icon-alarm", styles: "w-3 h-3 inline mr-1" %>
+              <%= @content.duration_label %>
+            </span>
+          <% end %>
+        </div>
+        <h1 class="shuby-d1 text-shuby-blue-800"><%= @content.title %></h1>
+      </div>
+    </div>
+
+    <%# Article Body %>
+    <div class="px-4 py-6">
+      <% if @content.description.present? %>
+        <p class="shuby-p1 text-gray-600 mb-4"><%= @content.description %></p>
+      <% end %>
+      <% if @content.materials.present? %>
+        <div class="mb-4 p-4 bg-shuby-giallo-400 rounded-lg">
+          <p class="shuby-p1-dark"><%= t("archive.game.materials") %>:</p>
+          <p class="shuby-p1"><%= @content.materials %></p>
+        </div>
+      <% end %>
+      <div class="prose prose-sm max-w-none">
+        <%= simple_format(@content.body) %>
+      </div>
+    </div>
+
+  <% elsif @content.content_type_book? %>
+    <%# Book Detail Layout %>
+    <div class="px-4 py-6">
+      <% if @content.cover_image.attached? %>
+        <div class="flex justify-center mb-6">
+          <%= image_tag @content.cover_image, alt: @content.title, class: "max-h-64 rounded-lg shadow-lg" %>
+        </div>
+      <% end %>
+
+      <div class="text-center mb-6">
+        <h1 class="shuby-d1 text-shuby-blue-800"><%= @content.title %></h1>
+        <% if @content.author.present? %>
+          <p class="shuby-p1 text-gray-600 mt-2"><%= @content.author %></p>
+        <% end %>
+        <% if @content.publisher.present? %>
+          <p class="shuby-p2 text-gray-500 mt-1">
+            <%= @content.publisher %><%= ", #{@content.publication_year}" if @content.publication_year %>
+          </p>
+        <% end %>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-2 mb-6">
+        <span class="shuby-tag shuby-tag-giallo">
+          <%= render_svg "shuby/icons/icon-book", styles: "w-3 h-3 inline mr-1" %>
+          <%= t("archive.content_types.book") %>
+        </span>
+        <span class="shuby-tag shuby-tag-default">
+          <%= @content.age_range_label %>
+        </span>
+      </div>
+
+      <% if @content.description.present? %>
+        <p class="shuby-p1 text-gray-700 mb-6"><%= @content.description %></p>
+      <% end %>
+
+      <%# Book metadata %>
+      <div class="bg-gray-50 rounded-lg p-4 space-y-2">
+        <% if @content.author.present? %>
+          <div class="flex justify-between">
+            <span class="shuby-p2 text-gray-500"><%= t("archive.book.author") %>:</span>
+            <span class="shuby-p1"><%= @content.author %></span>
+          </div>
+        <% end %>
+        <% if @content.illustrator.present? %>
+          <div class="flex justify-between">
+            <span class="shuby-p2 text-gray-500"><%= t("archive.book.illustrator") %>:</span>
+            <span class="shuby-p1"><%= @content.illustrator %></span>
+          </div>
+        <% end %>
+        <% if @content.publisher.present? %>
+          <div class="flex justify-between">
+            <span class="shuby-p2 text-gray-500"><%= t("archive.book.publisher") %>:</span>
+            <span class="shuby-p1"><%= @content.publisher %></span>
+          </div>
+        <% end %>
+        <% if @content.isbn.present? %>
+          <div class="flex justify-between">
+            <span class="shuby-p2 text-gray-500">ISBN:</span>
+            <span class="shuby-p1"><%= @content.isbn %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <% if @content.body.present? %>
+        <div class="prose prose-sm max-w-none mt-6">
+          <%= simple_format(@content.body) %>
+        </div>
+      <% end %>
+    </div>
+
+  <% elsif @content.content_type_tip? %>
+    <%# Tip Detail Layout %>
+    <div class="px-4 py-6">
+      <div class="bg-shuby-giallo-400 rounded-lg p-6 mb-6">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="shuby-tag shuby-tag-giallo">
+            <%= render_svg "shuby/icons/icon-heart", styles: "w-3 h-3 inline mr-1" %>
+            <%= t("archive.content_types.tip") %>
+          </span>
+          <span class="shuby-tag shuby-tag-light">
+            <%= @content.age_range_label %>
+          </span>
+          <% if @content.category.present? %>
+            <span class="shuby-tag shuby-tag-light">
+              <%= @content.category %>
+            </span>
+          <% end %>
+        </div>
+        <h1 class="shuby-d1 text-shuby-blue-800"><%= @content.title %></h1>
+      </div>
+
+      <% if @content.description.present? %>
+        <p class="shuby-p1 text-gray-700 mb-4"><%= @content.description %></p>
+      <% end %>
+
+      <% if @content.body.present? %>
+        <div class="prose prose-sm max-w-none">
+          <%= simple_format(@content.body) %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% content_for :bottom_nav do %>
+  <%= render "shared/shuby_bottom_nav", active: "archivio" %>
+<% end %>

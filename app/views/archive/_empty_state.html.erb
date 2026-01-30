@@ -1,0 +1,7 @@
+<%# Empty state when no content matches filters %>
+<div class="text-center py-12 shuby-card">
+  <%= render_svg "shuby/icons/icon-book", styles: "w-16 h-16 mx-auto mb-4 text-shuby-blue-300" %>
+  <h3 class="shuby-h3 mt-4"><%= t("archive.index.empty.title") %></h3>
+  <p class="shuby-p2 mt-2"><%= t("archive.index.empty.description") %></p>
+  <%= link_to t("archive.index.empty.clear_filters"), archive_index_path, class: "shuby-btn shuby-btn-md shuby-btn-outline mt-4" %>
+</div>

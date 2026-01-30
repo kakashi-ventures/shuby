@@ -17,7 +17,7 @@
     <span class="shuby-bottom-nav-label"><%= t("shared.bottom_nav.ai_helper") %></span>
   <% end %>
 
-  <%= link_to "#", class: "shuby-bottom-nav-item #{'active' if active == 'archivio'}" do %>
+  <%= link_to archive_index_path, class: "shuby-bottom-nav-item #{'active' if active == 'archivio'}" do %>
     <div class="shuby-bottom-nav-icon">
       <%= render_svg "shuby/icons/icon-book", styles: "w-6 h-6" %>
     </div>

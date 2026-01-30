@@ -1,0 +1,57 @@
+it:
+  archive:
+    index:
+      title: "Archivio"
+      heading: "Archivio"
+      subtitle: "Contenuti educativi per genitori"
+      tabs:
+        all: "Tutto"
+        article: "Articoli"
+        articles: "Articoli"
+        book: "Lettura"
+        books: "Lettura"
+        game: "Giochi"
+        games: "Giochi"
+        tip: "Consigli"
+        tips: "Consigli"
+      filters:
+        age_label: "Età"
+        category_label: "Categoria"
+        all_ages: "Tutte le età"
+        all_categories: "Tutte le categorie"
+      sections:
+        articles: "Articoli per te"
+        all_articles: "Tutti gli Articoli"
+        no_articles: "Nessun articolo disponibile"
+        consigli: "Consigli per te"
+        all_consigli: "Tutti i Consigli"
+        no_consigli: "Nessun consiglio disponibile"
+        activities: "Attività"
+        all_activities: "Tutte le Attività"
+        no_activities: "Nessuna attività disponibile"
+      empty:
+        title: "Nessun contenuto trovato"
+        description: "Prova a modificare i filtri di ricerca"
+        clear_filters: "Cancella filtri"
+
+    show:
+      title: "Dettaglio contenuto"
+
+    back_to_archive: "Archivio"
+    not_found: "Contenuto non trovato"
+
+    months: "mesi"
+
+    content_types:
+      article: "Articoli"
+      book: "Lettura"
+      game: "Giochi"
+      tip: "Consigli"
+
+    book:
+      author: "Autore"
+      illustrator: "Illustrazioni"
+      publisher: "Editore"
+
+    game:
+      materials: "Materiali"

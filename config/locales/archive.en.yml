@@ -1,0 +1,57 @@
+en:
+  archive:
+    index:
+      title: "Archive"
+      heading: "Archive"
+      subtitle: "Educational content for parents"
+      tabs:
+        all: "All"
+        article: "Articles"
+        articles: "Articles"
+        book: "Reading"
+        books: "Reading"
+        game: "Games"
+        games: "Games"
+        tip: "Tips"
+        tips: "Tips"
+      filters:
+        age_label: "Age"
+        category_label: "Category"
+        all_ages: "All ages"
+        all_categories: "All categories"
+      sections:
+        articles: "Articles for you"
+        all_articles: "All Articles"
+        no_articles: "No articles available"
+        consigli: "Tips for you"
+        all_consigli: "All Tips"
+        no_consigli: "No tips available"
+        activities: "Activities"
+        all_activities: "All Activities"
+        no_activities: "No activities available"
+      empty:
+        title: "No content found"
+        description: "Try adjusting your search filters"
+        clear_filters: "Clear filters"
+
+    show:
+      title: "Content detail"
+
+    back_to_archive: "Archive"
+    not_found: "Content not found"
+
+    months: "months"
+
+    content_types:
+      article: "Articles"
+      book: "Reading"
+      game: "Games"
+      tip: "Tips"
+
+    book:
+      author: "Author"
+      illustrator: "Illustrations"
+      publisher: "Publisher"
+
+    game:
+      materials: "Materials"

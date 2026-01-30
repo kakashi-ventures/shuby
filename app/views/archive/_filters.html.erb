@@ -1,0 +1,39 @@
+<%# Age and Category filter dropdowns %>
+<div class="flex gap-4 mb-6">
+  <%# Age filter %>
+  <div class="flex-1">
+    <label class="shuby-overline-dark block mb-2"><%= t("archive.index.filters.age_label") %></label>
+    <%= form_with url: archive_index_path, method: :get, data: { turbo_frame: "_top" }, class: "inline" do |f| %>
+      <%= hidden_field_tag :type, @active_type if @active_type.present? %>
+      <%= hidden_field_tag :category, selected_category if selected_category.present? %>
+      <%= f.select :age,
+          options_for_select(
+            [[t("archive.index.filters.all_ages"), ""]] +
+            (0..36).step(6).map { |m| ["#{m} #{t('archive.months')}", m] },
+            selected_age
+          ),
+          {},
+          { class: "shuby-input w-full", onchange: "this.form.submit()" }
+      %>
+    <% end %>
+  </div>
+
+  <%# Category filter %>
+  <% if categories.any? %>
+    <div class="flex-1">
+      <label class="shuby-overline-dark block mb-2"><%= t("archive.index.filters.category_label") %></label>
+      <%= form_with url: archive_index_path, method: :get, data: { turbo_frame: "_top" }, class: "inline" do |f| %>
+        <%= hidden_field_tag :type, @active_type if @active_type.present? %>
+        <%= hidden_field_tag :age, selected_age if selected_age.present? %>
+        <%= f.select :category,
+            options_for_select(
+              [[t("archive.index.filters.all_categories"), ""]] + categories.map { |c| [c, c] },
+              selected_category
+            ),
+            {},
+            { class: "shuby-input w-full", onchange: "this.form.submit()" }
+        %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

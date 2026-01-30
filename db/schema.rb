@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_28_121623) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_29_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -132,6 +132,35 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_28_121623) do
     t.bigint "user_id", null: false
     t.index ["token"], name: "index_api_tokens_on_token", unique: true
     t.index ["user_id"], name: "index_api_tokens_on_user_id"
+  end
+
+  create_table "archive_contents", force: :cascade do |t|
+    t.string "author"
+    t.text "body"
+    t.string "category"
+    t.integer "content_type", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.integer "duration_minutes"
+    t.string "illustrator"
+    t.string "isbn"
+    t.string "materials"
+    t.integer "max_age_months", default: 36
+    t.integer "min_age_months", default: 0
+    t.integer "position", default: 0
+    t.integer "publication_year"
+    t.boolean "published", default: false
+    t.datetime "published_at"
+    t.string "publisher"
+    t.string "slug", null: false
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category"], name: "index_archive_contents_on_category"
+    t.index ["content_type", "published"], name: "index_archive_contents_on_content_type_and_published"
+    t.index ["content_type"], name: "index_archive_contents_on_content_type"
+    t.index ["min_age_months", "max_age_months"], name: "index_archive_contents_on_min_age_months_and_max_age_months"
+    t.index ["position"], name: "index_archive_contents_on_position"
+    t.index ["slug"], name: "index_archive_contents_on_slug", unique: true
   end
 
   create_table "attivita_stimolazione", force: :cascade do |t|

@@ -1,0 +1,9 @@
+<%# Dynamic card selector based on content type %>
+<% case content.content_type %>
+<% when "article" %>
+  <%= render "archive/article_card", content: content %>
+<% when "book", "tip" %>
+  <%= render "archive/consigli_card", content: content %>
+<% when "game" %>
+  <%= render "archive/game_card", content: content %>
+<% end %>

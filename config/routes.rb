@@ -2,6 +2,7 @@
 Rails.application.routes.draw do
   draw :accounts
   draw :api
+  draw :archive
   draw :billing
   draw :children
   draw :development_stages

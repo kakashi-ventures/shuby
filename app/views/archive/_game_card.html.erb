@@ -1,0 +1,15 @@
+<%# Game/Activity card using shuby-scheda-attivita design %>
+<%= link_to archive_path(content.slug), class: "block" do %>
+  <div class="shuby-scheda-attivita">
+    <div class="shuby-scheda-attivita-content">
+      <p class="shuby-scheda-attivita-title"><%= content.title %></p>
+      <% if content.duration_minutes.present? %>
+        <div class="shuby-scheda-attivita-time">
+          <%= render_svg "shuby/icons/icon-alarm", styles: "w-3 h-3" %>
+          <span class="shuby-scheda-attivita-time-text"><%= content.duration_label %></span>
+        </div>
+      <% end %>
+    </div>
+    <%= render_svg "shuby/icons/icon-arrow-forward", styles: "shuby-scheda-attivita-arrow" %>
+  </div>
+<% end %>
