@@ -461,7 +461,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_28_121623) do
 
   create_table "shuby_chats", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "model", default: "gpt-4o-mini", null: false
+    t.string "model", default: "gpt-5-mini", null: false
     t.string "previous_response_id"
     t.string "title"
     t.datetime "updated_at", null: false
