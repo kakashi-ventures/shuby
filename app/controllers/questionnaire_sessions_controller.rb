@@ -33,11 +33,27 @@ class QuestionnaireSessionsController < ApplicationController
     @total = @session.questions_count
   end
 
+  def stories
+    @questionnaire = @session.age_band_questionnaire
+    @area = @questionnaire.development_area
+    @questions = @questionnaire.questions.active.ordered.to_a
+
+    # Check if already completed
+    if @session.completed?
+      redirect_to child_questionnaire_session_path(@child, @session)
+      return
+    end
+
+    render layout: "stories"
+  end
+
   def answer
     # Guard: prevent duplicate submissions on completed sessions
     if @session.completed?
-      redirect_to child_questionnaire_session_path(@child, @session),
-                  notice: t(".already_completed")
+      respond_to do |format|
+        format.html { redirect_to child_questionnaire_session_path(@child, @session), notice: t(".already_completed") }
+        format.json { render json: { success: false, error: t(".already_completed") }, status: :unprocessable_entity }
+      end
       return
     end
 
@@ -50,15 +66,29 @@ class QuestionnaireSessionsController < ApplicationController
 
     if response.save
       # Check if session is complete
-      if @session.reload.completed?
-        redirect_to child_questionnaire_session_path(@child, @session),
-                    notice: t(".completed")
-      else
-        redirect_to continue_child_questionnaire_session_path(@child, @session)
+      completed = @session.reload.completed?
+
+      respond_to do |format|
+        format.html do
+          if completed
+            redirect_to child_questionnaire_session_path(@child, @session), notice: t(".completed")
+          else
+            redirect_to continue_child_questionnaire_session_path(@child, @session)
+          end
+        end
+        format.json do
+          render json: {
+            success: true,
+            completed: completed,
+            progress: @session.progress_percentage
+          }
+        end
       end
     else
-      redirect_to continue_child_questionnaire_session_path(@child, @session),
-                  alert: t(".error")
+      respond_to do |format|
+        format.html { redirect_to continue_child_questionnaire_session_path(@child, @session), alert: t(".error") }
+        format.json { render json: { success: false, error: t(".error") }, status: :unprocessable_entity }
+      end
     end
   end
 

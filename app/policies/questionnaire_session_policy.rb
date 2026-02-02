@@ -21,6 +21,10 @@ class QuestionnaireSessionPolicy < ApplicationPolicy
     show?
   end
 
+  def stories?
+    show?
+  end
+
   def answer?
     update?
   end

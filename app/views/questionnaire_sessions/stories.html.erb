@@ -1,0 +1,64 @@
+<% content_for :title, t("questionnaire_sessions.stories.title", area: @area.name) %>
+
+<div data-controller="questionnaire-stories"
+     data-questionnaire-stories-child-id-value="<%= @child.id %>"
+     data-questionnaire-stories-session-id-value="<%= @session.id %>"
+     data-questionnaire-stories-total-value="<%= @questions.count %>"
+     data-questionnaire-stories-exit-confirmation-value="<%= t('questionnaire_sessions.stories.exit_confirmation') %>"
+     class="stories-container">
+
+  <%# Progress bar at top %>
+  <div class="stories-progress" data-questionnaire-stories-target="progress">
+    <% (@questions.count + 2).times do |i| %>
+      <div class="stories-progress-segment <%= 'current' if i == 0 %>" data-index="<%= i %>"></div>
+    <% end %>
+  </div>
+
+  <%# Close/back button %>
+  <button type="button"
+          data-action="questionnaire-stories#exit"
+          class="stories-close-btn"
+          aria-label="<%= t('questionnaire_sessions.stories.exit') %>">
+    <%= inline_svg_tag "shuby/icons/icon-arrow-back.svg" %>
+  </button>
+
+  <%# Slide 0: Intro %>
+  <div class="stories-slide active"
+       data-questionnaire-stories-target="slide"
+       data-index="0"
+       role="tabpanel"
+       aria-label="<%= t('questionnaire_sessions.stories.intro_label') %>">
+    <%= render "questionnaire_sessions/stories/intro",
+               area: @area,
+               questionnaire: @questionnaire,
+               child: @child %>
+  </div>
+
+  <%# Slides 1-N: Questions %>
+  <% @questions.each_with_index do |question, idx| %>
+    <div class="stories-slide"
+         data-questionnaire-stories-target="slide"
+         data-index="<%= idx + 1 %>"
+         role="tabpanel"
+         aria-label="<%= t('questionnaire_sessions.stories.question_label', index: idx + 1) %>">
+      <%= render "questionnaire_sessions/stories/question",
+                 question: question,
+                 index: idx + 1,
+                 total: @questions.count,
+                 session: @session,
+                 child: @child %>
+    </div>
+  <% end %>
+
+  <%# Final Slide: Completion %>
+  <div class="stories-slide"
+       data-questionnaire-stories-target="slide"
+       data-index="<%= @questions.count + 1 %>"
+       role="tabpanel"
+       aria-label="<%= t('questionnaire_sessions.stories.completion_label') %>">
+    <%= render "questionnaire_sessions/stories/completion",
+               session: @session,
+               child: @child,
+               area: @area %>
+  </div>
+</div>

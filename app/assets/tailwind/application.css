@@ -49,3 +49,4 @@
 @import "./components/wells.css" layer(components);
 @import "./components/braintree.css" layer(components);
 @import "./components/shuby.css" layer(components);
+@import "./components/stories.css" layer(components);

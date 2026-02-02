@@ -55,7 +55,7 @@ class DevelopmentStagesController < ApplicationController
     # Create new session
     @session = @child.start_new_session(@questionnaire)
 
-    redirect_to continue_child_questionnaire_session_path(@child, @session)
+    redirect_to stories_child_questionnaire_session_path(@child, @session)
   end
 
   private

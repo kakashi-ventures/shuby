@@ -194,8 +194,19 @@ it:
       pricing_description: "Visualizza i piani e gli abbonamenti"
       notifications: "Notifiche"
       notifications_description: "Visualizza le tue notifiche"
+      privacy: "Privacy"
+      privacy_description: "Gestisci le tue preferenze sulla privacy"
       sign_out: "Esci"
       sign_out_description: "Disconnettiti dal tuo account"
+    privacy:
+      show:
+        title: "Privacy"
+        data_sharing:
+          title: "Condivisione dati anonimi"
+          description: "Aiutaci a migliorare Shuby condividendo dati anonimi sull'utilizzo. Le tue informazioni personali restano private."
+        save: "Salva"
+      update:
+        updated: "Preferenze privacy aggiornate."
 
   shuby_chats:
     destroy:
@@ -712,6 +723,30 @@ it:
       corrected_age_explanation: "Perché %{name} è nato prematuro, utilizziamo l'età corretta (calcolata dalla data presunta del parto) fino ai 2 anni, per monitorare il suo sviluppo reale e non perdere tappe fondamentali."
 
   questionnaire_sessions:
+    stories:
+      title: "Questionario - %{area}"
+      exit: "Esci"
+      intro_label: "Introduzione"
+      question_label: "Domanda %{index}"
+      completion_label: "Completamento"
+      ricorda: "RICORDA"
+      ricorda_message: "Ogni bambino cresce con i suoi tempi. Rispondi nel modo più obiettivo possibile, basandoti su ciò che osservi davvero ogni giorno."
+      ricorda_short: "Rispondi basandoti su ciò che osservi ogni giorno."
+      intro_description_default: "In questa tappa scopriamo come %{name} sviluppa le competenze nella %{area}."
+      comincia: "Comincia"
+      question_of: "DOMANDA %{current} DI %{total}"
+      answer_yes: "Sì"
+      answer_no: "No"
+      answer_unknown: "Non lo so"
+      completed_title: "Tappa completata!"
+      summary_excellent: "%{name} mostra ottimi progressi nella %{area}!"
+      summary_good: "%{name} mostra buoni progressi nella %{area}. Alcune abilità sono ancora in evoluzione, ed è del tutto normale!"
+      summary_developing: "%{name} sta sviluppando le competenze nella %{area}. Continua a stimolare queste abilità!"
+      report_updated: "Il Report di Crescita è stato aggiornato. Puoi aprirlo e condividerlo con il pediatra per un confronto durante le visite di controllo."
+      view_report: "Apri il Report di Crescita"
+      back_to_stages: "Torna alle Tappe"
+      exit_confirmation: "Vuoi uscire dal questionario? I progressi saranno salvati."
+
     continue:
       title: "Questionario"
       answer_yes: "Sì"

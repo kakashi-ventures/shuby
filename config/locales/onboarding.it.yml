@@ -30,4 +30,6 @@ it:
     submit: "Inizia con Shuby"
     details_later: "Potrai aggiungere altri dettagli in seguito"
 
+    data_sharing_consent: "Aiutaci a migliorare Shuby condividendo dati anonimi sull'utilizzo. Le tue informazioni personali restano private."
+
     success: "Benvenuto! Shuby è pronto per aiutarti."

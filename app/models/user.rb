@@ -4,6 +4,7 @@ class User < ApplicationRecord
   include User::Accounts
   include User::Agreements
   include User::Authenticatable
+  include User::DataSharingConsent
   include User::Mentions
   include User::Notifiable
   include User::Onboarding

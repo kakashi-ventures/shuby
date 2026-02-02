@@ -22,11 +22,13 @@ class OnboardingController < ApplicationController
     @family_profile.country ||= "Italia"
     @family_profile.number_of_children = 1
     @account_user.assign_attributes(account_user_params)
+    current_user.assign_attributes(user_params)
 
     if @child.valid? && @family_profile.valid? && @account_user.valid?
       @child.save!
       @family_profile.save!
       @account_user.save!
+      current_user.save!
       current_user.complete_onboarding!
       redirect_to root_path, notice: t("onboarding.success")
     else
@@ -50,5 +52,9 @@ class OnboardingController < ApplicationController
 
   def account_user_params
     params.fetch(:account_user, {}).permit(:relationship_to_child)
+  end
+
+  def user_params
+    params.fetch(:user, {}).permit(:data_sharing_consent)
   end
 end

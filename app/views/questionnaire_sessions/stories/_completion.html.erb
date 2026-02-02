@@ -1,0 +1,39 @@
+<div class="stories-slide-content stories-completion">
+  <div class="stories-completion-visual">
+    <%# Happy mascot %>
+    <%= image_tag "shuby/illustrations/mascot-cloud-happy.png",
+                  alt: "",
+                  class: "stories-completion-mascot" %>
+  </div>
+
+  <div class="stories-completion-content">
+    <span class="stories-completion-label">
+      <%= area.name %>
+    </span>
+    <h1 class="stories-completion-title">
+      <%= t("questionnaire_sessions.stories.completed_title") %>
+    </h1>
+    <p class="stories-completion-summary">
+      <%= completion_summary(session, child, area) %>
+    </p>
+
+    <%# Info card %>
+    <div class="stories-completion-info">
+      <p class="stories-completion-info-text">
+        <%= t("questionnaire_sessions.stories.report_updated") %>
+      </p>
+    </div>
+  </div>
+
+  <div class="stories-completion-actions">
+    <%= link_to child_questionnaire_session_path(child, session),
+                class: "stories-completion-btn-primary" do %>
+      <%= t("questionnaire_sessions.stories.view_report") %>
+    <% end %>
+
+    <%= link_to child_development_stages_path(child),
+                class: "stories-completion-btn-secondary" do %>
+      <%= t("questionnaire_sessions.stories.back_to_stages") %>
+    <% end %>
+  </div>
+</div>

@@ -12,7 +12,8 @@ resources :children, only: [] do
   # Questionnaire session flow
   resources :questionnaire_sessions, path: "questionari", only: [:show, :edit, :update] do
     member do
-      get :continue # Resume questionnaire
+      get :continue # Resume questionnaire (fallback)
+      get :stories # Stories-style questionnaire (default)
       post :answer # Submit answer to a question
       patch :complete # Mark as complete
     end

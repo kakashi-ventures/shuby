@@ -1,0 +1,50 @@
+<div class="stories-slide-content stories-question">
+  <%# Illustration %>
+  <div class="stories-question-illustration">
+    <%= image_tag "shuby/illustrations/mascot-sorriso.png", alt: "", class: "stories-illustration-img" %>
+  </div>
+
+  <%# Question counter %>
+  <div class="stories-question-counter">
+    <span class="stories-question-counter-text">
+      <%= t("questionnaire_sessions.stories.question_of", current: index, total: total) %>
+    </span>
+  </div>
+
+  <%# Question text %>
+  <div class="stories-question-text">
+    <p class="stories-question-prompt"><%= question.prompt %></p>
+    <% if question.help_text.present? %>
+      <p class="stories-question-help"><%= question.help_text %></p>
+    <% end %>
+  </div>
+
+  <%# Answer buttons %>
+  <div class="stories-answer-buttons"
+       data-questionnaire-stories-target="answerGroup"
+       data-question-id="<%= question.id %>">
+    <button type="button"
+            data-action="questionnaire-stories#answer"
+            data-answer="si"
+            data-question-id="<%= question.id %>"
+            class="stories-answer-btn">
+      <span class="stories-answer-label"><%= t("questionnaire_sessions.stories.answer_yes") %></span>
+    </button>
+
+    <button type="button"
+            data-action="questionnaire-stories#answer"
+            data-answer="no"
+            data-question-id="<%= question.id %>"
+            class="stories-answer-btn">
+      <span class="stories-answer-label"><%= t("questionnaire_sessions.stories.answer_no") %></span>
+    </button>
+
+    <button type="button"
+            data-action="questionnaire-stories#answer"
+            data-answer="incerto"
+            data-question-id="<%= question.id %>"
+            class="stories-answer-btn">
+      <span class="stories-answer-label"><%= t("questionnaire_sessions.stories.answer_unknown") %></span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="stories-slide-content stories-intro">
+  <div class="stories-intro-visual">
+    <%# Pentagon mascot with area icon %>
+    <div class="shuby-mascot-pentagon shuby-mascot-pentagon-lg">
+      <div class="shuby-mascot-pentagon-shape">
+        <div class="shuby-mascot-pentagon-face">
+          <div class="shuby-mascot-pentagon-eyes">
+            <div class="shuby-mascot-pentagon-eye"></div>
+            <div class="shuby-mascot-pentagon-eye"></div>
+          </div>
+          <div class="shuby-mascot-pentagon-smile"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stories-intro-content">
+    <h1 class="stories-intro-title"><%= area.name %></h1>
+    <p class="stories-intro-description">
+      <%= questionnaire.description.presence || t("questionnaire_sessions.stories.intro_description_default", area: area.name.downcase, name: child.display_name) %>
+    </p>
+
+    <%# RICORDA box %>
+    <div class="shuby-ricorda-box">
+      <div class="shuby-ricorda-header">
+        <div class="shuby-ricorda-icon">
+          <%= inline_svg_tag "shuby/icons/icon-alarm.svg", class: "text-white" %>
+        </div>
+        <span class="shuby-ricorda-label"><%= t("questionnaire_sessions.stories.ricorda") %></span>
+      </div>
+      <p class="shuby-ricorda-text">
+        <%= t("questionnaire_sessions.stories.ricorda_message") %>
+      </p>
+    </div>
+  </div>
+
+  <div class="stories-intro-action">
+    <button type="button"
+            data-action="questionnaire-stories#next"
+            class="shuby-btn shuby-btn-lg shuby-btn-primary w-full">
+      <%= t("questionnaire_sessions.stories.comincia") %>
+    </button>
+  </div>
+</div>
