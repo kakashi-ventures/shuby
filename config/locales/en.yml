@@ -198,6 +198,12 @@ en:
       sign_out: "Sign out"
 
   dashboard:
+    header:
+      greeting: "Hello %{name}"
+      no_child: "Select child"
+      selected: "Selected"
+      add_child: "+ Add child"
+      account_management: "Account management"
     show:
       title: "Dashboard"
       complete_profile:
@@ -656,6 +662,7 @@ en:
     destroy:
       destroyed: "Child was removed."
     form:
+      avatar_help: "Tap to add a photo"
       name: "Name"
       name_placeholder: "Enter child's name"
       birth_date: "Birth Date"

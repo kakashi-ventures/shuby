@@ -1,0 +1,15 @@
+<%# Child profile button with avatar %>
+<%= link_to (current_child ? child_path(current_child) : children_path),
+            class: "w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden border-2 border-white shadow-sm" do %>
+  <% if current_child&.avatar&.attached? %>
+    <%= image_tag current_child.avatar, class: "w-full h-full object-cover" %>
+  <% elsif current_child %>
+    <span class="shuby-p1 font-bold text-[var(--color-shuby-blue-800)]">
+      <%= current_child.display_name.first.upcase %>
+    </span>
+  <% else %>
+    <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+    </svg>
+  <% end %>
+<% end %>

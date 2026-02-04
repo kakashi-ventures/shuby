@@ -1,0 +1,81 @@
+<%# Child selector dropdown %>
+<% children = current_account.children.active.ordered %>
+
+<div class="relative" data-controller="dropdown">
+  <button type="button"
+          data-action="click->dropdown#toggle click@window->dropdown#hide"
+          class="flex items-center gap-2 text-white">
+    <span class="shuby-h2 text-white text-xl font-bold"><%= current_child&.display_name || t("dashboard.header.no_child") %></span>
+    <% if children.size > 1 || children.empty? %>
+      <%= render_svg "shuby/icons/icon-chevron-down", styles: "w-4 h-4 fill-white" %>
+    <% end %>
+  </button>
+
+  <%# Dropdown overlay %>
+  <nav data-dropdown-target="menu"
+       data-transition-enter="transition ease-out duration-200"
+       data-transition-enter-from="opacity-0 -translate-y-2"
+       data-transition-enter-to="opacity-100 translate-y-0"
+       data-transition-leave="transition ease-in duration-150"
+       data-transition-leave-from="opacity-100 translate-y-0"
+       data-transition-leave-to="opacity-0 -translate-y-2"
+       class="hidden absolute left-0 top-full mt-2 w-64 bg-[#E8F4FD] rounded-2xl shadow-lg overflow-hidden z-50">
+
+    <%# Children list %>
+    <% if children.any? %>
+      <ul class="py-2">
+        <% children.each do |child| %>
+          <li>
+            <%= button_to child_selection_path(child),
+                          method: :patch,
+                          data: { turbo_stream: true },
+                          class: "w-full flex items-center gap-3 px-4 py-3 hover:bg-white/50 transition-colors #{child == current_child ? 'bg-white/30' : ''}" do %>
+              <%# Child avatar/icon %>
+              <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden flex-shrink-0 border-2 <%= child == current_child ? 'border-[var(--color-shuby-blue-800)]' : 'border-transparent' %>">
+                <% if child.avatar.attached? %>
+                  <%= image_tag child.avatar, class: "w-full h-full object-cover" %>
+                <% else %>
+                  <span class="shuby-p1 font-semibold text-[var(--color-shuby-blue-800)]">
+                    <%= child.display_name.first.upcase %>
+                  </span>
+                <% end %>
+              </div>
+
+              <%# Child name %>
+              <span class="shuby-p1 font-semibold text-gray-900 flex-1 text-left"><%= child.display_name %></span>
+
+              <%# Selected indicator %>
+              <% if child == current_child %>
+                <div class="w-2 h-2 rounded-full bg-[var(--color-shuby-blue-800)]"></div>
+              <% end %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%# Divider %>
+    <div class="border-t border-white/50"></div>
+
+    <%# Add child button %>
+    <div class="py-2">
+      <%= link_to new_child_path, class: "flex items-center gap-3 px-4 py-3 hover:bg-white/50 transition-colors" do %>
+        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+          <%= render_svg "shuby/icons/icon-add", styles: "w-5 h-5 fill-[var(--color-shuby-blue-800)]" %>
+        </div>
+        <span class="shuby-p1 font-semibold text-[var(--color-shuby-blue-800)]">
+          <%= t("dashboard.header.add_child") %>
+        </span>
+      <% end %>
+    </div>
+
+    <%# Account management link %>
+    <div class="border-t border-white/50 py-2">
+      <%= link_to settings_path, class: "flex items-center justify-center px-4 py-2 hover:bg-white/50 transition-colors" do %>
+        <span class="shuby-p2 text-gray-600 border border-gray-400 rounded-full px-4 py-1 text-sm">
+          <%= t("dashboard.header.account_management") %>
+        </span>
+      <% end %>
+    </div>
+  </nav>
+</div>

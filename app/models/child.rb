@@ -4,6 +4,7 @@ class Child < AccountRecord
   belongs_to :account
   has_many :questionnaire_sessions, dependent: :destroy
   has_one :health_profile, class_name: "ChildHealthProfile", dependent: :destroy
+  has_one_attached :avatar
 
   accepts_nested_attributes_for :health_profile
 

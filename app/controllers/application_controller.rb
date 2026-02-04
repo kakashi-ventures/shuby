@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include ActiveStorage::SetCurrent
   include Authentication
   include Authorization
+  include ChildSelection
   include DeviceFormat
   include OnboardingRequired
   include Pagination

@@ -4904,3 +4904,41 @@
     width: 200px;
     height: 140px;
 }
+
+/* =====================================================
+   DASHBOARD HEADER
+   ===================================================== */
+
+/* Dashboard header base styles */
+.shuby-dashboard-header {
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Scrolled state - applied via JS when user scrolls past sentinel */
+.shuby-header-scrolled {
+    background-color: white !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Text color transitions when scrolled */
+.shuby-header-scrolled .text-white {
+    color: var(--color-shuby-blue-800) !important;
+}
+
+.shuby-header-scrolled .text-white\/80 {
+    color: #666 !important;
+}
+
+/* Icon fill color transitions when scrolled */
+.shuby-header-scrolled .fill-white {
+    fill: var(--color-shuby-blue-800) !important;
+}
+
+/* Button background transitions when scrolled */
+.shuby-header-scrolled .bg-white\/20 {
+    background-color: var(--color-shuby-blue-100) !important;
+}
+
+.shuby-header-scrolled .bg-white\/20:hover {
+    background-color: var(--color-shuby-blue-200) !important;
+}

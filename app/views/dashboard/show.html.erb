@@ -1,6 +1,9 @@
 <% Current.meta_tags.set(title: t(".title")) %>
 
 <div class="min-h-screen bg-white dark:bg-gray-900 w-full max-w-full">
+  <%# Dashboard Header with child selector %>
+  <%= render "shared/dashboard_header/dashboard_header" %>
+
   <div class="w-full mx-auto px-4 py-6 pb-24 lg:max-w-lg">
 
     <%# ========== COMPLETA IL TUO PROFILO BANNER ========== %>

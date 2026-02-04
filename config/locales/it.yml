@@ -167,6 +167,12 @@ it:
       sign_out: "Esci"
 
   dashboard:
+    header:
+      greeting: "Ciao %{name}"
+      no_child: "Seleziona bambino"
+      selected: "Selezionato"
+      add_child: "+ Aggiungi bambino/a"
+      account_management: "Gestione account"
     show:
       title: "Oggi"
       complete_profile:
@@ -627,6 +633,7 @@ it:
     destroy:
       destroyed: "Bambino rimosso."
     form:
+      avatar_help: "Tocca per aggiungere una foto"
       name: "Nome"
       name_placeholder: "Inserisci il nome del bambino"
       birth_date: "Data di Nascita"

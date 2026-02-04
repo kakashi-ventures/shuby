@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     namespace :settings do
       resource :privacy, only: [:show, :update], controller: "privacy"
     end
+    resources :child_selections, only: [:update]
     # Alternate route to use if logged in users should still see public root
     # get "/dashboard", to: "dashboard#show", as: :user_root
   end

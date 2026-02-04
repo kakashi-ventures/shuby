@@ -61,7 +61,7 @@ class ChildrenController < ApplicationController
 
   def child_params
     params.expect(child: [
-      :name, :birth_date, :sex, :gestational_weeks, :gestational_days, :notes,
+      :name, :birth_date, :sex, :gestational_weeks, :gestational_days, :notes, :avatar,
       health_profile_attributes: [
         :id, :birth_weight_grams, :hearing_screening_result, :vision_screening_result,
         :current_feeding_type, :average_sleep_hours

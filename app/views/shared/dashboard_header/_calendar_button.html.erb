@@ -1,0 +1,11 @@
+<%# Calendar/Development Stages button %>
+<% if current_child %>
+  <%= link_to child_development_stages_path(current_child),
+              class: "w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors" do %>
+    <%= render_svg "shuby/icons/icon-date-outline", styles: "w-5 h-5 fill-white" %>
+  <% end %>
+<% else %>
+  <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center opacity-50">
+    <%= render_svg "shuby/icons/icon-date-outline", styles: "w-5 h-5 fill-white" %>
+  </div>
+<% end %>
