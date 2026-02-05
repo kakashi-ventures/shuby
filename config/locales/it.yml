@@ -188,6 +188,15 @@ it:
       featured_articles:
         title: "Articoli in primo piano"
         view_all: "Tutti gli Articoli"
+    milestone_box:
+      type_tag: "Tappa di sviluppo"
+      progress_intro: "I progressi di %{name} su:"
+      estimated_time: "2 MIN"
+      cta_button: "Fai il test"
+      completed_title: "Hai completato la Tappa di Sviluppo di oggi!"
+      discover_more: "Scopri le altre Tappe"
+      all_complete_title: "Tutte le tappe completate!"
+      all_complete_subtitle: "Hai completato tutte le tappe per %{band}"
 
   settings:
     show:

@@ -219,6 +219,15 @@ en:
       featured_articles:
         title: "Featured Articles"
         view_all: "View All Articles"
+    milestone_box:
+      type_tag: "Development Milestone"
+      progress_intro: "%{name}'s progress on:"
+      estimated_time: "2 MIN"
+      cta_button: "Take the test"
+      completed_title: "You completed today's Development Milestone!"
+      discover_more: "Discover other Milestones"
+      all_complete_title: "All milestones completed!"
+      all_complete_subtitle: "You've completed all milestones for %{band}"
 
   shuby_chats:
     destroy:

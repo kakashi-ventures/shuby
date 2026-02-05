@@ -1,0 +1,13 @@
+<%# Development Milestone Box - Daily milestone for child's age range %>
+<% if @milestone_state.present? %>
+  <section class="mb-4">
+    <% case @milestone_state
+       when :proposed %>
+      <%= render "dashboard/milestone_box/proposed", milestone: @todays_milestone, child: current_child %>
+    <% when :completed_today %>
+      <%= render "dashboard/milestone_box/completed_today", child: current_child %>
+    <% when :all_complete %>
+      <%= render "dashboard/milestone_box/all_complete", child: current_child %>
+    <% end %>
+  </section>
+<% end %>
