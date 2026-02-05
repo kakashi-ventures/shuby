@@ -6,6 +6,9 @@
 
   <div class="w-full mx-auto px-4 py-6 pb-24 lg:max-w-lg">
 
+    <%# ========== AGE AND GROWTH PHASE SECTION ========== %>
+    <%= render "dashboard/age_growth_phase" %>
+
     <%# ========== COMPLETA IL TUO PROFILO BANNER ========== %>
     <% family_profile = current_account.family_profile %>
     <% profile_incomplete = !family_profile&.profile_complete? || current_account.children.any? { |c| c.profile_completeness_percentage < 50 } %>

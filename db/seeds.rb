@@ -218,3 +218,85 @@ puts "  - Questions: #{Question.count} (new: #{questions_created})"
 puts "  - Campanelli d'Allarme: #{CampanelloAllarme.count}"
 puts "  - Attività di Stimolazione: #{AttivitaStimolazione.count}"
 puts "=" * 60
+
+# =============================================================================
+# 5. Growth Phases - Developmental milestones by age range
+# =============================================================================
+
+puts ""
+puts "=" * 60
+puts "Growth Phases Seed Data"
+puts "=" * 60
+
+GROWTH_PHASES = [
+  {
+    min_age_months: 0, max_age_months: 2,
+    title: "Il mondo dei sensi",
+    description: "In questa fase il tuo bambino sta scoprendo il mondo attraverso i sensi. Parla con lui, accarezzalo e permettigli di esplorare oggetti sicuri.",
+    illustration_key: "growth-phase-mascot.svg"
+  },
+  {
+    min_age_months: 2, max_age_months: 4,
+    title: "Sta arrivando il sorriso sociale",
+    description: "Garantisci al tuo bambino almeno 30 minuti totali di tummy time al giorno. Usa la tua voce e i canti e ricorda niente schermi.",
+    illustration_key: "growth-phase-mascot.svg"
+  },
+  {
+    min_age_months: 4, max_age_months: 6,
+    title: "Esplorazione attiva",
+    description: "Il tuo bambino inizia a esplorare attivamente il mondo. Offrigli giocattoli sicuri da afferrare e lascialo sperimentare diverse texture.",
+    illustration_key: "growth-phase-mascot.svg"
+  },
+  {
+    min_age_months: 6, max_age_months: 9,
+    title: "Primi movimenti",
+    description: "È il momento della scoperta del movimento! Incoraggia il gattonamento e crea spazi sicuri per l'esplorazione.",
+    illustration_key: "growth-phase-mascot.svg"
+  },
+  {
+    min_age_months: 9, max_age_months: 12,
+    title: "Comunicazione emergente",
+    description: "Il tuo bambino sta sviluppando le prime forme di comunicazione. Rispondi ai suoi gesti e balbettii per incoraggiare il linguaggio.",
+    illustration_key: "growth-phase-mascot.svg"
+  },
+  {
+    min_age_months: 12, max_age_months: 18,
+    title: "Primi passi e prime parole",
+    description: "Un periodo entusiasmante di grandi conquiste! Sostieni i primi passi e celebra ogni nuova parola.",
+    illustration_key: "growth-phase-mascot.svg"
+  },
+  {
+    min_age_months: 18, max_age_months: 24,
+    title: "Indipendenza crescente",
+    description: "Il tuo bambino vuole fare sempre più cose da solo. Lascialo provare e guidalo con pazienza nelle nuove sfide.",
+    illustration_key: "growth-phase-mascot.svg"
+  },
+  {
+    min_age_months: 24, max_age_months: 30,
+    title: "Esplosione del linguaggio",
+    description: "Le parole aumentano ogni giorno! Leggi insieme, canta e conversa per stimolare lo sviluppo del linguaggio.",
+    illustration_key: "growth-phase-mascot.svg"
+  },
+  {
+    min_age_months: 30, max_age_months: 37,
+    title: "Socializzazione e gioco",
+    description: "Il tuo bambino è pronto per interagire con altri bambini. Favorisci le occasioni di gioco condiviso e socializzazione.",
+    illustration_key: "growth-phase-mascot.svg"
+  }
+].freeze
+
+puts "Seeding growth phases..."
+GROWTH_PHASES.each_with_index do |data, index|
+  GrowthPhase.find_or_create_by!(
+    min_age_months: data[:min_age_months],
+    max_age_months: data[:max_age_months]
+  ) do |phase|
+    phase.title = data[:title]
+    phase.description = data[:description]
+    phase.illustration_key = data[:illustration_key]
+    phase.position = index
+  end
+end
+
+puts "Created #{GrowthPhase.count} growth phases"
+puts "=" * 60

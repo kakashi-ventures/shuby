@@ -53,6 +53,43 @@ class Child < AccountRecord
     end
   end
 
+  # Detailed age display for dashboard (months + weeks, or years + months)
+  def detailed_age_display
+    return nil unless birth_date
+
+    total_days = (Date.current - birth_date).to_i
+
+    if total_days < 7
+      # Days only for newborns (less than a week)
+      I18n.t("children.age.days", count: total_days)
+    elsif age_in_months < 1
+      # Weeks only (under 1 month)
+      weeks = (total_days / 7)
+      I18n.t("children.age.weeks", count: weeks)
+    elsif age_in_months < 12
+      # Months and weeks for first year
+      months = age_in_months
+      remaining_days = total_days - (months * 30.44).to_i
+      weeks = (remaining_days / 7).floor.clamp(0, 3)
+
+      if weeks == 0
+        I18n.t("children.age.months", count: months)
+      else
+        format_months_and_weeks(months, weeks)
+      end
+    else
+      # Years and months for 12+ months
+      years = age_in_months / 12
+      remaining_months = age_in_months % 12
+
+      if remaining_months.zero?
+        I18n.t("children.age.years", count: years)
+      else
+        I18n.t("children.age.years_and_months", years: years, months: remaining_months)
+      end
+    end
+  end
+
   # Data stored, logic deferred to post-MVP
   def premature?
     gestational_weeks.present? && gestational_weeks < 37
@@ -114,10 +151,10 @@ class Child < AccountRecord
     # Cap at 28 months (last questionnaire)
     effective_month = [months, 28].min
     label = if effective_month == 1
-              "#{effective_month} mese"
-            else
-              "#{effective_month} mesi"
-            end
+      "#{effective_month} mese"
+    else
+      "#{effective_month} mesi"
+    end
     {min: effective_month, max: effective_month + 1, label: label}
   end
 
@@ -152,7 +189,7 @@ class Child < AccountRecord
     {
       completed: true,
       percentage: session.progress_percentage,
-      yes_rate: session.questions_count > 0 ? ((session.yes_count.to_f / session.questions_count) * 100).round : 0,
+      yes_rate: (session.questions_count > 0) ? ((session.yes_count.to_f / session.questions_count) * 100).round : 0,
       needs_attention: session.needs_attention?,
       completed_at: session.completed_at
     }
@@ -205,5 +242,12 @@ class Child < AccountRecord
     return unless gestational_weeks.present?
     errors.add(:gestational_weeks, :invalid) unless gestational_weeks.between?(22, 42)
     errors.add(:gestational_days, :invalid) if gestational_days.present? && !gestational_days.between?(0, 6)
+  end
+
+  # Helper for months and weeks pluralization
+  def format_months_and_weeks(months, weeks)
+    months_key = (months == 1) ? "1" : "other"
+    weeks_key = (weeks == 1) ? "1" : "other"
+    I18n.t("children.age.months_and_weeks_#{months_key}_#{weeks_key}", months: months, weeks: weeks)
   end
 end

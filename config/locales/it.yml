@@ -676,12 +676,19 @@ it:
         mixed: "Misto"
         feeding_other: "Altro"
     age:
+      days:
+        one: "%{count} giorno"
+        other: "%{count} giorni"
       weeks:
         one: "%{count} settimana"
         other: "%{count} settimane"
       months:
         one: "%{count} mese"
         other: "%{count} mesi"
+      months_and_weeks_1_1: "1 mese e 1 settimana"
+      months_and_weeks_1_other: "1 mese e %{weeks} settimane"
+      months_and_weeks_other_1: "%{months} mesi e 1 settimana"
+      months_and_weeks_other_other: "%{months} mesi e %{weeks} settimane"
       years:
         one: "%{count} anno"
         other: "%{count} anni"
@@ -831,3 +838,4 @@ it:
   date:
     formats:
       long: "%d %B %Y"
+      dashboard_day: "%A, %d %B"
