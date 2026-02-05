@@ -6,13 +6,14 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
-# Use environment variables (preferred for Render/PaaS) or rails credentials:edit
+# Cloudflare R2 (S3-compatible) - set environment variables on Render
 amazon:
   service: S3
   access_key_id: <%= ENV.fetch("AWS_ACCESS_KEY_ID") { Rails.application.credentials.dig(:aws, :access_key_id) } %>
   secret_access_key: <%= ENV.fetch("AWS_SECRET_ACCESS_KEY") { Rails.application.credentials.dig(:aws, :secret_access_key) } %>
-  region: <%= ENV.fetch("AWS_REGION", "eu-central-1") %>
+  region: <%= ENV.fetch("AWS_REGION", "auto") %>
   bucket: <%= ENV.fetch("AWS_S3_BUCKET", "shuby-production") %>
+  endpoint: <%= ENV.fetch("AWS_ENDPOINT", nil) %>
 
 # DigitalOcean Spaces is API compatible with S3, so we can use their config and just change the endpoint.  You also need to add the aws-sdk gem to your Gemfile.
 # digitalocean_spaces:
