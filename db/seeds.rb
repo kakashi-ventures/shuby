@@ -300,3 +300,135 @@ end
 
 puts "Created #{GrowthPhase.count} growth phases"
 puts "=" * 60
+
+# =============================================================================
+# 6. Archive Content - Educational articles, books, and activities
+# =============================================================================
+
+puts ""
+puts "=" * 60
+puts "Archive Content Seed Data"
+puts "=" * 60
+
+ARCHIVE_CONTENTS = [
+  # Articles
+  {
+    title: "Benessere emotivo della famiglia",
+    description: "Tutto quello che c'è da sapere sulla salute emotiva della famiglia nel post-partum",
+    content_type: :article,
+    category: "Benessere famigliare",
+    min_age_months: 0,
+    max_age_months: 6,
+    published: true
+  },
+  {
+    title: "5 cose che dovresti sapere sul contatto pelle a pelle",
+    description: "Il contatto pelle a pelle è molto più di un gesto d'amore: scopri perché è fondamentale",
+    content_type: :article,
+    category: "Neurosviluppo",
+    min_age_months: 0,
+    max_age_months: 6,
+    published: true
+  },
+  {
+    title: "Il tempo speciale: un dono di attenzione",
+    description: "Un dono reciproco di attenzione, ascolto e amore",
+    content_type: :article,
+    category: "Attaccamento",
+    min_age_months: 0,
+    max_age_months: 36,
+    published: true
+  },
+  # Books
+  {
+    title: "Quelli là",
+    description: "Un libro illustrato per i più piccoli",
+    content_type: :book,
+    category: "Lettura",
+    author: "Teresa Porcella",
+    publisher: "Bacchilega Editore",
+    min_age_months: 0,
+    max_age_months: 12,
+    published: true
+  },
+  {
+    title: "Il viaggio di piedino",
+    description: "Una storia tenera sul primo viaggio",
+    content_type: :book,
+    category: "Lettura",
+    author: "Elisa Mazzoli, Marianna Balducci",
+    publisher: "Bacchilega Editore",
+    min_age_months: 0,
+    max_age_months: 12,
+    published: true
+  },
+  # Games/Activities
+  {
+    title: "Guarda lo specchio... chi c'è qui?",
+    content_type: :game,
+    category: "Giochi",
+    min_age_months: 0,
+    max_age_months: 2,
+    duration_minutes: 3,
+    published: true
+  },
+  {
+    title: "La danza degli sguardi",
+    content_type: :game,
+    category: "Giochi",
+    min_age_months: 0,
+    max_age_months: 2,
+    duration_minutes: 3,
+    published: true
+  },
+  {
+    title: "Tummy time musicale",
+    content_type: :game,
+    category: "Attività",
+    min_age_months: 0,
+    max_age_months: 6,
+    duration_minutes: 5,
+    published: true
+  },
+  {
+    title: "Massaggio mani e piedi",
+    content_type: :game,
+    category: "Attività",
+    min_age_months: 0,
+    max_age_months: 12,
+    duration_minutes: 5,
+    published: true
+  },
+  {
+    title: "Musica classica",
+    content_type: :game,
+    category: "Attività",
+    min_age_months: 0,
+    max_age_months: 36,
+    duration_minutes: 5,
+    published: true
+  },
+  {
+    title: 'Momento "viso a viso"',
+    content_type: :game,
+    category: "Attività",
+    min_age_months: 0,
+    max_age_months: 6,
+    duration_minutes: 5,
+    published: true
+  }
+].freeze
+
+puts "Seeding archive content..."
+ARCHIVE_CONTENTS.each do |data|
+  slug = data[:title].parameterize
+  content = ArchiveContent.find_or_initialize_by(slug: slug)
+  content.assign_attributes(data)
+  content.save!
+end
+
+puts "Created #{ArchiveContent.count} archive content items"
+puts "  - Articles: #{ArchiveContent.articles.count}"
+puts "  - Books: #{ArchiveContent.books.count}"
+puts "  - Games/Activities: #{ArchiveContent.games.count}"
+puts "=" * 60
