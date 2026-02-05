@@ -15,6 +15,7 @@ amazon:
   bucket: <%= ENV.fetch("AWS_S3_BUCKET", "shuby-production") %>
   endpoint: <%= ENV.fetch("AWS_ENDPOINT", nil) %>
   force_path_style: true
+  checksum_algorithm: nil
 
 # DigitalOcean Spaces is API compatible with S3, so we can use their config and just change the endpoint.  You also need to add the aws-sdk gem to your Gemfile.
 # digitalocean_spaces:
