@@ -195,7 +195,7 @@
     font-family: var(--font-sans);
     /* Montserrat */
     font-weight: 600;
-    border-radius: var(--radius-xl);
+    border-radius: 999px;
     transition: all 0.2s ease;
     cursor: pointer;
     border: none;
