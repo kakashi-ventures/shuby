@@ -240,7 +240,7 @@
 .shuby-btn-outline {
     background-color: transparent;
     color: var(--text-primary);
-    border: 1px solid var(--text-primary);
+    border: 2px solid var(--text-primary);
 }
 
 .shuby-btn-outline:hover {
