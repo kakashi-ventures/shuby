@@ -1218,7 +1218,7 @@
 
 .shuby-icon-btn-outline {
     background-color: transparent;
-    border: 1px solid var(--text-primary);
+    border: 2px solid var(--text-primary);
     color: var(--text-primary);
 }
 
