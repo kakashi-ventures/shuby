@@ -28,7 +28,6 @@
           <li>
             <%= button_to child_selection_path(child),
                           method: :patch,
-                          data: { turbo_stream: true },
                           class: "w-full flex items-center gap-3 px-4 py-3 hover:bg-white/50 transition-colors #{child == current_child ? 'bg-white/30' : ''}" do %>
               <%# Child avatar/icon %>
               <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden flex-shrink-0 border-2 <%= child == current_child ? 'border-[var(--color-shuby-blue-800)]' : 'border-transparent' %>">

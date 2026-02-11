@@ -7,14 +7,6 @@ class ChildSelectionsController < ApplicationController
     child = current_account.children.active.find(params[:id])
     select_child(child)
 
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace(
-          "dashboard-header",
-          partial: "shared/dashboard_header/dashboard_header"
-        )
-      end
-      format.html { redirect_back(fallback_location: root_path) }
-    end
+    redirect_back(fallback_location: root_path)
   end
 end

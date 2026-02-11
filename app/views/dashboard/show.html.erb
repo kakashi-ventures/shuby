@@ -40,10 +40,9 @@
     <section class="mb-6">
       <div class="grid gap-3">
         <%# Development Stages in progress card %>
-        <% first_child = current_account.children.active.ordered.first %>
-        <% if first_child %>
-          <% active_session = first_child.active_questionnaire_session %>
-          <%= link_to (active_session ? continue_child_questionnaire_session_path(first_child, active_session) : child_development_stages_path(first_child)),
+        <% if current_child.present? %>
+          <% active_session = current_child.active_questionnaire_session %>
+          <%= link_to (active_session ? continue_child_questionnaire_session_path(current_child, active_session) : child_development_stages_path(current_child)),
               class: "flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow" do %>
             <div class="w-10 h-10 rounded-xl bg-green-100 dark:bg-gray-700 flex items-center justify-center flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-green-600">
@@ -55,7 +54,7 @@
               <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white text-sm"><%= t("development_stages.dashboard.title") %></h3>
               <% if active_session %>
                 <p class="shuby-p2 text-gray-500 dark:text-gray-400 text-xs truncate">
-                  <%= first_child.name %> · <%= active_session.progress_fraction %> <%= t("development_stages.dashboard.completed") %>
+                  <%= current_child.name %> · <%= active_session.progress_fraction %> <%= t("development_stages.dashboard.completed") %>
                 </p>
               <% else %>
                 <p class="shuby-p2 text-gray-500 dark:text-gray-400 text-xs truncate"><%= t("development_stages.dashboard.subtitle") %></p>
