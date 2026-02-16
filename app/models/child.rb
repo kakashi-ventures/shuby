@@ -3,6 +3,7 @@
 class Child < AccountRecord
   belongs_to :account
   has_many :questionnaire_sessions, dependent: :destroy
+  has_many :measurements, dependent: :destroy
   has_one :health_profile, class_name: "ChildHealthProfile", dependent: :destroy
   has_one_attached :avatar
 
@@ -126,6 +127,16 @@ class Child < AccountRecord
   def age_correction_months
     return 0 unless using_corrected_age?
     age_in_months - corrected_age_in_months
+  end
+
+  # Get latest measurement of a specific type
+  def latest_measurement(type)
+    measurements.by_type(type).ordered.first
+  end
+
+  # Get latest measurements grouped by type (one per type)
+  def latest_measurements
+    measurements.latest_per_type
   end
 
   # Get existing in-progress session for a questionnaire

@@ -1,0 +1,60 @@
+<%= form_with(model: [@child, @measurement], class: "space-y-6") do |form| %>
+  <% if @measurement.errors.any? %>
+    <div class="shuby-card bg-red-50 border-red-200 mb-4">
+      <ul class="text-sm text-red-600 list-disc list-inside">
+        <% @measurement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%# Measurement type selector - segmented control %>
+  <div>
+    <label class="shuby-caption block mb-2"><%= t("measurements.form.type") %></label>
+    <div class="shuby-tab-segmented">
+      <% Measurement.measurement_types.keys.each do |type| %>
+        <label class="shuby-tab-segmented-item <%= "active" if @measurement.measurement_type == type %>" style="cursor: pointer;">
+          <%= form.radio_button :measurement_type, type, class: "sr-only", data: { action: "change->measurement-form#typeChanged" } %>
+          <%= t("measurements.types.#{type}") %>
+        </label>
+      <% end %>
+    </div>
+  </div>
+
+  <%# Value input %>
+  <div>
+    <label class="shuby-caption block mb-2" for="measurement_value"><%= t("measurements.form.value") %></label>
+    <%= form.number_field :value,
+        class: "shuby-input w-full",
+        step: "0.01",
+        min: "0",
+        inputmode: "decimal",
+        placeholder: t("measurements.form.placeholders.#{@measurement.measurement_type || 'weight'}") %>
+  </div>
+
+  <%# Date/time input %>
+  <div>
+    <label class="shuby-caption block mb-2" for="measurement_measured_at"><%= t("measurements.form.measured_at") %></label>
+    <%= form.datetime_local_field :measured_at,
+        class: "shuby-input w-full",
+        value: @measurement.measured_at&.strftime("%Y-%m-%dT%H:%M") || Time.current.strftime("%Y-%m-%dT%H:%M") %>
+  </div>
+
+  <%# Notes %>
+  <div>
+    <label class="shuby-caption block mb-2" for="measurement_notes"><%= t("measurements.form.notes") %></label>
+    <%= form.text_area :notes,
+        class: "shuby-input w-full",
+        rows: 3,
+        placeholder: t("measurements.form.notes_placeholder") %>
+  </div>
+
+  <%# Actions %>
+  <div class="flex gap-3 pt-2">
+    <%= form.submit t("measurements.form.save"), class: "shuby-btn shuby-btn-primary flex-1" %>
+    <%= link_to t("measurements.form.cancel"),
+        child_path(@child, tab: "misurazioni"),
+        class: "shuby-btn shuby-btn-outline flex-1 text-center" %>
+  </div>
+<% end %>

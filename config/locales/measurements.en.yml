@@ -1,0 +1,61 @@
+en:
+  measurements:
+    types:
+      weight: "Weight"
+      height: "Height"
+      head_circumference: "Head circumference"
+      feeding_weight: "Pre/post feed weight"
+    units:
+      weight: "g"
+      height: "cm"
+      head_circumference: "cm"
+      feeding_weight: "g"
+    tabs:
+      info: "Info"
+      misurazioni: "Measurements"
+      tappe: "Milestones"
+    card:
+      update_badge: "Update"
+      no_data: "-"
+      start_tracking: "Start tracking"
+    index:
+      title: "Measurements"
+      add_new: "Add measurement"
+      empty: "No measurements recorded"
+    new:
+      title: "New measurement"
+    create:
+      created: "Measurement saved successfully"
+    edit:
+      title: "Edit measurement"
+    update:
+      updated: "Measurement updated successfully"
+    destroy:
+      destroyed: "Measurement deleted"
+    form:
+      type: "Type"
+      value: "Value"
+      measured_at: "Date and time"
+      notes: "Notes"
+      notes_placeholder: "Additional notes (optional)"
+      save: "Save"
+      cancel: "Cancel"
+      placeholders:
+        weight: "e.g. 3900"
+        height: "e.g. 54.3"
+        head_circumference: "e.g. 34.2"
+        feeding_weight: "e.g. 106"
+    dashboard:
+      title: "Measurements"
+      start_tracking: "Start tracking"
+      update: "Update"
+      track: "Record"
+  activerecord:
+    errors:
+      models:
+        measurement:
+          attributes:
+            measured_at:
+              in_future: "cannot be in the future"
+            value:
+              out_of_range: "is not within the valid range"

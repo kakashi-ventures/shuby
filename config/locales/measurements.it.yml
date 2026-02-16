@@ -1,0 +1,61 @@
+it:
+  measurements:
+    types:
+      weight: "Peso"
+      height: "Altezza"
+      head_circumference: "Circ. cranica"
+      feeding_weight: "Peso pre/post poppata"
+    units:
+      weight: "gr"
+      height: "cm"
+      head_circumference: "cm"
+      feeding_weight: "gr"
+    tabs:
+      info: "Info"
+      misurazioni: "Misurazioni"
+      tappe: "Tappe"
+    card:
+      update_badge: "Aggiorna"
+      no_data: "-"
+      start_tracking: "Inizia a tracciare"
+    index:
+      title: "Misurazioni"
+      add_new: "Aggiungi misurazione"
+      empty: "Nessuna misurazione registrata"
+    new:
+      title: "Nuova misurazione"
+    create:
+      created: "Misurazione salvata con successo"
+    edit:
+      title: "Modifica misurazione"
+    update:
+      updated: "Misurazione aggiornata con successo"
+    destroy:
+      destroyed: "Misurazione eliminata"
+    form:
+      type: "Tipo"
+      value: "Valore"
+      measured_at: "Data e ora"
+      notes: "Note"
+      notes_placeholder: "Note aggiuntive (opzionale)"
+      save: "Salva"
+      cancel: "Annulla"
+      placeholders:
+        weight: "es. 3900"
+        height: "es. 54,3"
+        head_circumference: "es. 34,2"
+        feeding_weight: "es. 106"
+    dashboard:
+      title: "Misurazioni"
+      start_tracking: "Inizia a tracciare"
+      update: "Aggiorna"
+      track: "Registra"
+  activerecord:
+    errors:
+      models:
+        measurement:
+          attributes:
+            measured_at:
+              in_future: "non può essere nel futuro"
+            value:
+              out_of_range: "non rientra nell'intervallo valido"

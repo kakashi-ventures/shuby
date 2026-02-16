@@ -5127,3 +5127,159 @@
 .shuby-header-scrolled .bg-white\/20:hover {
     background-color: var(--color-shuby-blue-200) !important;
 }
+
+/* =====================================================
+   SEGMENTED TAB BAR
+   Figma-style segmented control for profile tabs
+   ===================================================== */
+
+.shuby-tab-segmented {
+    display: flex;
+    width: 100%;
+}
+
+.shuby-tab-segmented-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border: 1px solid var(--color-shuby-blue-300);
+    color: var(--color-shuby-gray-800);
+    background-color: white;
+    cursor: pointer;
+}
+
+.shuby-tab-segmented-item:first-child {
+    border-radius: 12px 0 0 12px;
+}
+
+.shuby-tab-segmented-item:last-child {
+    border-radius: 0 12px 12px 0;
+}
+
+.shuby-tab-segmented-item:not(:first-child) {
+    border-left: none;
+}
+
+.shuby-tab-segmented-item.active {
+    background-color: var(--color-shuby-blue-800);
+    color: white;
+    border-color: var(--color-shuby-blue-800);
+}
+
+.shuby-tab-segmented-item.active + .shuby-tab-segmented-item {
+    border-left: none;
+}
+
+/* =====================================================
+   FUCSIA BADGE
+   Badge variant for "Aggiorna" stale indicator
+   ===================================================== */
+
+.shuby-badge-fucsia {
+    background-color: var(--color-shuby-fucsia-500);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-tondo);
+}
+
+/* =====================================================
+   MEASUREMENT CARD
+   Two-part card for displaying measurement data
+   ===================================================== */
+
+.shuby-measurement-card {
+    display: flex;
+    border: 1px solid var(--color-shuby-blue-300);
+    border-radius: var(--radius-grande);
+    overflow: hidden;
+    width: 100%;
+}
+
+.shuby-measurement-card-info {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+}
+
+.shuby-measurement-card-info-title {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-measurement-card-info-date {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--color-shuby-gray-800);
+}
+
+.shuby-measurement-card-value {
+    width: 131px;
+    flex-shrink: 0;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 0 var(--radius-grande) var(--radius-grande) 0;
+}
+
+.shuby-measurement-card-value.updated {
+    background-color: var(--color-shuby-blue-400);
+}
+
+.shuby-measurement-card-value.stale {
+    background-color: var(--color-shuby-gray-400);
+}
+
+.shuby-measurement-card-number {
+    text-align: center;
+}
+
+.shuby-measurement-card-number-value {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-shuby-blue-800);
+    line-height: 1.2;
+}
+
+.shuby-measurement-card-number-unit {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-measurement-card-percentile {
+    text-align: center;
+}
+
+.shuby-measurement-card-percentile-value {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    line-height: 1.2;
+}
+
+.shuby-measurement-card-percentile-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 400;
+    color: #000;
+}

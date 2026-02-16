@@ -1,0 +1,51 @@
+<%# Measurement card component (SchedaMisureAttuali)
+  Locals:
+    title       - measurement type label (e.g. "Peso")
+    value       - formatted numeric value (e.g. "3900")
+    unit        - unit label (e.g. "gr")
+    percentile  - percentile number (e.g. 50), nil to hide
+    measured_at - datetime of measurement, nil if none
+    stale       - boolean, true if measurement is outdated
+    child       - the child record (for link to new measurement)
+    type        - measurement_type key (e.g. "weight")
+%>
+<% has_data = value.present? %>
+<% is_stale = stale || !has_data %>
+
+<div class="shuby-measurement-card">
+  <div class="shuby-measurement-card-info">
+    <div class="flex items-center gap-2">
+      <span class="shuby-measurement-card-info-title"><%= title %></span>
+      <% if has_data && is_stale %>
+        <span class="shuby-badge-fucsia"><%= t("measurements.card.update_badge") %></span>
+      <% end %>
+    </div>
+    <% if measured_at.present? %>
+      <span class="shuby-measurement-card-info-date">
+        <%= l(measured_at, format: :short) %> - h. <%= measured_at.strftime("%H:%M") %>
+      </span>
+    <% elsif !has_data %>
+      <span class="shuby-measurement-card-info-date"><%= t("measurements.card.start_tracking") %></span>
+    <% end %>
+  </div>
+
+  <div class="shuby-measurement-card-value <%= has_data && !is_stale ? "updated" : "stale" %>">
+    <% if has_data %>
+      <div class="shuby-measurement-card-number">
+        <div class="shuby-measurement-card-number-value"><%= value %></div>
+        <div class="shuby-measurement-card-number-unit"><%= unit %></div>
+      </div>
+      <% if percentile.present? %>
+        <div class="shuby-measurement-card-percentile">
+          <div class="shuby-measurement-card-percentile-value"><%= percentile %>&deg;</div>
+          <div class="shuby-measurement-card-percentile-label">%</div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="shuby-measurement-card-number">
+        <div class="shuby-measurement-card-number-value"><%= t("measurements.card.no_data") %></div>
+        <div class="shuby-measurement-card-number-unit"><%= unit %></div>
+      </div>
+    <% end %>
+  </div>
+</div>
