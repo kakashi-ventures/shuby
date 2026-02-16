@@ -274,11 +274,22 @@ Based on an 8px unit system:
   <p class="shuby-p1">Card content...</p>
 </div>
 
-<%# Metric card (light blue background) %>
+<%# Metric card (Percentile - Aggiornato) %>
 <div class="shuby-card-metric">
-  <p class="shuby-h3">Peso</p>
-  <span class="shuby-metric-value-success">3900</span>
-  <span class="shuby-metric-unit">gr</span>
+  <div class="shuby-card-metric-info">
+    <p class="shuby-card-metric-title">Peso</p>
+    <p class="shuby-card-metric-date">25.08.2025 - h. 10:34</p>
+  </div>
+  <div class="shuby-card-metric-values">
+    <div>
+      <span class="shuby-card-metric-value">3900</span>
+      <span class="shuby-card-metric-unit">grammi</span>
+    </div>
+    <div>
+      <span class="shuby-card-metric-percentile">50°</span>
+      <span class="shuby-card-metric-percentile-unit">%</span>
+    </div>
+  </div>
 </div>
 ```
 

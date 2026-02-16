@@ -346,29 +346,48 @@
     <h2 class="shuby-h2 mb-6">Cards</h2>
     
     <div class="grid md:grid-cols-2 gap-6">
-      <!-- Standard Card -->
-      <div class="shuby-card">
-        <span class="shuby-overline mb-3 block">0–36 MESI</span>
-        <h3 class="shuby-d2 mb-3">Il tempo speciale con il tuo bambino</h3>
-        <p class="shuby-p1">Un dono reciproco di attenzione esclusiva che nutre la connessione genitore-bambino e sostiene lo sviluppo emotivo.</p>
+      <!-- Vertical Article Card (Figma: Articolo) -->
+      <div class="shuby-card-articolo">
+        <div class="shuby-card-articolo-image">
+          <%= image_tag "shuby/illustrations/mascot-pink-shapes.png", alt: "Illustrazione articolo" %>
+        </div>
+        <div class="shuby-card-articolo-content">
+          <div class="shuby-card-articolo-tags">
+            <span class="shuby-card-articolo-tag shuby-card-articolo-tag-tipo">
+              <span class="shuby-card-articolo-tag-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+              </span>
+              Attaccamento
+            </span>
+            <span class="shuby-card-articolo-tag shuby-card-articolo-tag-eta">0-36 mesi</span>
+          </div>
+          <div class="shuby-card-articolo-body">
+            <h3 class="shuby-card-articolo-title">Il tempo speciale: un dono di attenzione per il tuo ba...</h3>
+            <p class="shuby-card-articolo-description">Un dono reciproco di attenzione, ascolto e amore.</p>
+          </div>
+          <div class="shuby-card-articolo-time">
+            <span class="shuby-card-articolo-time-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            </span>
+            <span class="shuby-card-articolo-time-text">4 min</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Metric Card -->
+      <!-- Metric Card (Percentile - Aggiornato) -->
       <div class="shuby-card-metric">
-        <div class="flex justify-between items-start">
+        <div class="shuby-card-metric-info">
+          <p class="shuby-card-metric-title">Peso</p>
+          <p class="shuby-card-metric-date">25.08.2025 - h. 10:34</p>
+        </div>
+        <div class="shuby-card-metric-values">
           <div>
-            <p class="shuby-h3 mb-1">Peso</p>
-            <p class="shuby-p2">25.08.2025 - h. 10:34</p>
+            <span class="shuby-card-metric-value">3900</span>
+            <span class="shuby-card-metric-unit">grammi</span>
           </div>
-          <div class="text-right">
-            <div class="shuby-metric">
-              <span class="shuby-metric-value-success">3900</span>
-              <span class="shuby-metric-unit">gr</span>
-            </div>
-          </div>
-          <div class="text-right">
-            <span class="shuby-metric-percentile">50°</span>
-            <span class="shuby-metric-unit">%</span>
+          <div>
+            <span class="shuby-card-metric-percentile">50°</span>
+            <span class="shuby-card-metric-percentile-unit">%</span>
           </div>
         </div>
       </div>
