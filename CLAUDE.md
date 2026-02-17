@@ -154,3 +154,45 @@ Full documentation: `docs/shuby_setup.md`
 - **Billing features** conditionally loaded based on `Jumpstart.config.payments_enabled?`
 - **Background jobs** configurable between SolidQueue and Sidekiq
 - **Multi-database** setup with separate databases for cache, jobs, and cable
+
+## Development Workflow
+
+### Session Start
+Run `/shuby-status` to see current progress, or `/shuby-next` to pick up the next task.
+The SessionStart hook automatically loads the last session's handoff context.
+
+### Feature Development Priority (v1.0 Remaining)
+See `docs/PROGRESS.md` for the current checklist. Priority order:
+1. Growth chart visualizations
+2. Pediatrician report PDF generation
+3. Premium feature gating
+4. Notification system
+5. Advanced analytics
+6. Test coverage & technical debt
+
+### Quality Gates (Automated)
+- **Auto-RuboCop**: Ruby files are auto-formatted after every edit
+- **Stop reminder**: If you modified .rb files, you'll be reminded to run tests
+- **Spec review**: Run `/shuby-review` to verify against product spec
+
+### Before Committing
+1. `/shuby-test` — run tests and RuboCop
+2. `/shuby-review` — check spec compliance
+3. Use `/commit` to create a well-formatted commit
+
+### Session End
+Run `/shuby-handoff` to save context for the next developer. This writes to `.claude/HANDOFF.md` and updates `docs/PROGRESS.md`.
+
+### For New Team Members
+1. Read this CLAUDE.md
+2. Read `docs/Shuby 1.0 - Specifiche di Prodotto.md` for product context
+3. Run `/shuby-status` to understand current state
+4. Expected project permissions (for `.claude/settings.local.json`):
+   - `bin/rails test`, `bin/rubocop`, `bundle exec`, `bin/rails generate/db:migrate`
+   - `git add/commit/log/diff/status/stash/branch`
+   - Playwright and Figma MCP tools
+
+### Specification Documents
+- **Product spec**: `docs/Shuby 1.0 - Specifiche di Prodotto.md` (Italian)
+- **Functional analysis**: `docs/Shuby - Analisi Funzionale - v.1.0.pdf` (Italian)
+- Always verify implementations against these documents
