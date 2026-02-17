@@ -9,7 +9,6 @@
 /* Display XL - Large hero/overlay titles (Figma: Headings/H1 - Baloo 2 Bold 38px) */
 .shuby-display-xl {
     font-family: var(--font-display);
-    /* Baloo 2 */
     font-size: 38px;
     font-weight: 700;
     line-height: 1;
@@ -20,7 +19,6 @@
 /* Display D1 - Hero text (Figma: Font Primario - Baloo 2) */
 .shuby-d1 {
     font-family: var(--font-display);
-    /* Baloo 2 */
     font-size: 28px;
     font-weight: 700;
     line-height: 34px;
@@ -31,7 +29,6 @@
 /* Display D2 - Card titles (Figma: Display/D2 - Baloo 2 Bold 20px) */
 .shuby-d2 {
     font-family: var(--font-display);
-    /* Baloo 2 */
     font-size: 20px;
     font-weight: 700;
     line-height: 24px;
@@ -59,8 +56,6 @@
 
 /* Heading H3 - Subsection (Figma: Headings/H3 - Montserrat Semi-Bold 20px) */
 .shuby-h3 {
-    font-family: var(--font-sans);
-    /* Montserrat */
     font-size: 20px;
     font-weight: 600;
     line-height: 1.5;
@@ -70,8 +65,6 @@
 
 /* Body P1 - Main text (Figma: Body/P1/Light - Montserrat Regular 14px) */
 .shuby-p1 {
-    font-family: var(--font-sans);
-    /* Montserrat */
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
@@ -81,8 +74,6 @@
 
 /* Body P1 Dark - Emphasized text (Figma: Body/P1/Dark - Montserrat Semi-Bold 14px) */
 .shuby-p1-dark {
-    font-family: var(--font-sans);
-    /* Montserrat */
     font-size: 14px;
     font-weight: 600;
     line-height: 1.5;
@@ -92,8 +83,6 @@
 
 /* Body P2 - Secondary text (Figma: Montserrat Regular 12px) */
 .shuby-p2 {
-    font-family: var(--font-sans);
-    /* Montserrat */
     font-size: 12px;
     font-weight: 400;
     line-height: 1.5;
@@ -103,8 +92,6 @@
 
 /* Caption - Labels (Figma: Caption/Span/Light - Montserrat Medium 10px) */
 .shuby-caption {
-    font-family: var(--font-sans);
-    /* Montserrat */
     font-size: 10px;
     font-weight: 500;
     line-height: 1.5;
@@ -115,8 +102,6 @@
 
 /* Caption Dark - Emphasized labels (Figma: Caption/Span/Dark - Montserrat Semi-Bold 10px) */
 .shuby-caption-dark {
-    font-family: var(--font-sans);
-    /* Montserrat */
     font-size: 10px;
     font-weight: 600;
     line-height: 1.5;
@@ -127,11 +112,8 @@
 
 /* Overline - Tags (Figma: Overline/OL/Light - Montserrat Regular 10px) */
 .shuby-overline {
-    font-family: var(--font-sans);
-    /* Montserrat */
     font-size: 10px;
     font-weight: 400;
-    /* Figma: Overline/OL/Light uses Regular (400), not Semi-Bold */
     line-height: 1.5;
     letter-spacing: 0;
     text-transform: uppercase;
@@ -140,11 +122,8 @@
 
 /* Overline Dark - Form labels (Figma: Overline/OL/Dark - Montserrat Semi-Bold 10px) */
 .shuby-overline-dark {
-    font-family: var(--font-sans);
-    /* Montserrat */
     font-size: 10px;
     font-weight: 600;
-    /* Figma: Tipografia/Semi-Bold */
     line-height: 1.5;
     letter-spacing: 0;
     text-transform: uppercase;
@@ -162,22 +141,16 @@
 
 /* Button text small - 16px (Figma: Button/Button S) */
 .shuby-btn-text-s {
-    font-family: var(--font-sans);
-    /* Montserrat */
     font-size: 16px;
     font-weight: 600;
-    /* Figma: Tipografia/Semi-Bold */
     line-height: 1.5;
     letter-spacing: 0;
 }
 
 /* Button text large - 20px (Figma: Button/Button L) */
 .shuby-btn-text-l {
-    font-family: var(--font-sans);
-    /* Montserrat */
     font-size: 20px;
     font-weight: 600;
-    /* Figma: Tipografia/Semi-Bold */
     line-height: 1.5;
     letter-spacing: 0;
 }
@@ -192,19 +165,25 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    font-family: var(--font-sans);
-    /* Montserrat */
     font-weight: 600;
     border-radius: 999px;
     transition: all 0.2s ease;
     cursor: pointer;
     border: none;
     text-decoration: none;
-}
 
-.shuby-btn:focus {
-    outline: 2px solid var(--base-border-focus);
-    outline-offset: 2px;
+    &:focus {
+        outline: 2px solid var(--base-border-focus);
+        outline-offset: 2px;
+    }
+
+    &:disabled,
+    &.disabled {
+        background-color: var(--bg-disabled);
+        color: var(--base-text-disabled);
+        cursor: not-allowed;
+        border-color: var(--border-disabled);
+    }
 }
 
 /* Button sizes (Figma: Button/Button L - 20px, Button/Button S - 16px) */
@@ -230,10 +209,8 @@
 .shuby-btn-primary {
     background-color: var(--bg-primary);
     color: var(--text-on-primary);
-}
 
-.shuby-btn-primary:hover {
-    background-color: var(--bg-primary-hover);
+    &:hover { background-color: var(--bg-primary-hover); }
 }
 
 /* Primary button - outlined */
@@ -241,10 +218,8 @@
     background-color: transparent;
     color: var(--text-primary);
     border: 2px solid var(--text-primary);
-}
 
-.shuby-btn-outline:hover {
-    background-color: var(--base-bg-hover);
+    &:hover { background-color: var(--base-bg-hover); }
 }
 
 /* Dark button - outlined (Figma: Type=Outline, Colore=Nero) */
@@ -252,10 +227,8 @@
     background-color: transparent;
     color: var(--color-shuby-black);
     border: 2px solid var(--color-shuby-black);
-}
 
-.shuby-btn-outline-dark:hover {
-    background-color: var(--color-shuby-gray-100);
+    &:hover { background-color: var(--color-shuby-gray-100); }
 }
 
 /* Secondary button */
@@ -263,29 +236,16 @@
     background-color: var(--bg-secondary);
     color: var(--text-on-secondary);
     border: 1px solid var(--border-secondary);
-}
 
-.shuby-btn-secondary:hover {
-    background-color: var(--bg-secondary-hover);
+    &:hover { background-color: var(--bg-secondary-hover); }
 }
 
 /* Danger button */
 .shuby-btn-danger {
     background-color: var(--bg-danger);
     color: var(--text-on-danger);
-}
 
-.shuby-btn-danger:hover {
-    background-color: var(--bg-danger-hover);
-}
-
-/* Button disabled state */
-.shuby-btn:disabled,
-.shuby-btn.disabled {
-    background-color: var(--bg-disabled);
-    color: var(--base-text-disabled);
-    cursor: not-allowed;
-    border-color: var(--border-disabled);
+    &:hover { background-color: var(--bg-danger-hover); }
 }
 
 /* Text/Link button (Figma: Type=Testo) */
@@ -296,17 +256,14 @@
     background: transparent;
     border: none;
     padding: 0;
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 600;
     line-height: 1.5;
     color: var(--color-shuby-blue-800);
     cursor: pointer;
     transition: color 0.2s ease;
-}
 
-.shuby-btn-text:hover {
-    color: var(--color-shuby-blue-700);
+    &:hover { color: var(--color-shuby-blue-700); }
 }
 
 .shuby-btn-text-icon {
@@ -341,23 +298,19 @@
     border: none;
     background-color: transparent;
     color: var(--base-text-secondary);
-}
 
-.shuby-tab:hover {
-    background-color: var(--base-bg-hover);
-    color: var(--text-primary);
-}
+    &:hover {
+        background-color: var(--base-bg-hover);
+        color: var(--text-primary);
+    }
 
-/* Active tab */
-.shuby-tab.active,
-.shuby-tab[aria-selected="true"] {
-    background-color: var(--bg-primary);
-    color: var(--text-on-primary);
-}
+    &.active,
+    &[aria-selected="true"] {
+        background-color: var(--bg-primary);
+        color: var(--text-on-primary);
 
-.shuby-tab.active:hover,
-.shuby-tab[aria-selected="true"]:hover {
-    background-color: var(--bg-primary-hover);
+        &:hover { background-color: var(--bg-primary-hover); }
+    }
 }
 
 /* =====================================================
@@ -409,7 +362,6 @@
 }
 
 .shuby-card-metric-title {
-    font-family: var(--font-sans);
     font-weight: 600;
     font-size: 14px;
     line-height: 150%;
@@ -417,7 +369,6 @@
 }
 
 .shuby-card-metric-date {
-    font-family: var(--font-sans);
     font-weight: 400;
     font-size: 10px;
     line-height: 150%;
@@ -446,7 +397,6 @@
 }
 
 .shuby-card-metric-unit {
-    font-family: var(--font-sans);
     font-weight: 400;
     font-size: 10px;
     line-height: 150%;
@@ -454,7 +404,6 @@
 }
 
 .shuby-card-metric-percentile {
-    font-family: var(--font-sans);
     font-weight: 600;
     font-size: 16px;
     line-height: 150%;
@@ -462,7 +411,6 @@
 }
 
 .shuby-card-metric-percentile-unit {
-    font-family: var(--font-sans);
     font-weight: 400;
     font-size: 10px;
     line-height: 150%;
@@ -486,12 +434,12 @@
     border-radius: var(--radius-md) var(--radius-md) 0 0;
     overflow: hidden;
     background-color: var(--color-shuby-blue-300);
-}
 
-.shuby-card-articolo-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 .shuby-card-articolo-content {
@@ -519,7 +467,6 @@
     padding: 4px 8px;
     gap: 4px;
     border-radius: var(--radius-full);
-    font-family: var(--font-sans);
     font-weight: 600;
     font-size: 10px;
     line-height: 150%;
@@ -533,11 +480,11 @@
     height: 16px;
     flex-shrink: 0;
     color: var(--text-primary);
-}
 
-.shuby-card-articolo-tag-icon svg {
-    width: 100%;
-    height: 100%;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .shuby-card-articolo-tag-tipo {
@@ -568,7 +515,6 @@
 }
 
 .shuby-card-articolo-description {
-    font-family: var(--font-sans);
     font-weight: 400;
     font-size: 14px;
     line-height: 150%;
@@ -590,15 +536,14 @@
     height: 12px;
     flex-shrink: 0;
     color: var(--text-primary);
-}
 
-.shuby-card-articolo-time-icon svg {
-    width: 100%;
-    height: 100%;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .shuby-card-articolo-time-text {
-    font-family: var(--font-sans);
     font-weight: 500;
     font-size: 10px;
     line-height: 150%;
@@ -626,12 +571,12 @@
     flex-shrink: 0;
     overflow: hidden;
     border-radius: var(--radius-grande) 0 0 var(--radius-grande);
-}
 
-.shuby-card-article-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 .shuby-card-article-content {
@@ -653,7 +598,6 @@
 }
 
 .shuby-card-article-title {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 600;
     line-height: 1.5;
@@ -664,7 +608,6 @@
 }
 
 .shuby-card-article-description {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 400;
     line-height: 1.5;
@@ -709,7 +652,6 @@
 }
 
 .shuby-card-consigli-author {
-    font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 400;
     line-height: 1.5;
@@ -725,7 +667,6 @@
 }
 
 .shuby-card-consigli-publisher {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 400;
     line-height: 1.5;
@@ -737,12 +678,12 @@
     height: 99px;
     flex-shrink: 0;
     overflow: hidden;
-}
 
-.shuby-card-consigli-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 /* Consigli card with time indicator (games/activities) */
@@ -759,7 +700,6 @@
 }
 
 .shuby-card-consigli-time-text {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 500;
     line-height: 1.5;
@@ -811,7 +751,6 @@
 }
 
 .shuby-scheda-attivita-time-text {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 500;
     line-height: 1.5;
@@ -892,22 +831,20 @@
     padding: 12px 16px;
     font-size: 14px;
     line-height: 20px;
-    color: #000 !important;
+    color: var(--base-text);
     background-color: var(--bg-light);
     border: 1px solid var(--base-border-tertiary);
     border-radius: var(--radius-xl);
     transition: border-color 0.2s ease;
-}
 
-.shuby-input::placeholder {
-    color: var(--base-text-disabled);
-}
+    &::placeholder { color: var(--base-text-disabled); }
 
-.shuby-input:focus {
-    outline: none;
-    border-color: var(--base-border-focus);
-    box-shadow: 0 0 0 3px rgba(1, 89, 181, 0.1);
-    color: #000 !important;
+    &:focus {
+        outline: none;
+        border-color: var(--base-border-focus);
+        box-shadow: 0 0 0 3px rgba(1, 89, 181, 0.1);
+        color: var(--base-text);
+    }
 }
 
 /* =====================================================
@@ -980,21 +917,19 @@
     width: 16px;
     height: 16px;
     flex-shrink: 0;
-}
 
-.shuby-tag-icon svg {
-    width: 100%;
-    height: 100%;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /* Default tag - Light gray background */
 .shuby-tag-default {
     background-color: var(--color-shuby-gray-100);
     color: var(--color-shuby-gray-700);
-}
 
-.shuby-tag-default .shuby-tag-icon {
-    color: var(--color-shuby-gray-500);
+    .shuby-tag-icon { color: var(--color-shuby-gray-500); }
 }
 
 /* Light tag - White background with subtle border */
@@ -1002,60 +937,48 @@
     background-color: var(--color-shuby-white);
     color: var(--color-shuby-gray-700);
     border: 1px solid var(--color-shuby-gray-200);
-}
 
-.shuby-tag-light .shuby-tag-icon {
-    color: var(--color-shuby-gray-500);
+    .shuby-tag-icon { color: var(--color-shuby-gray-500); }
 }
 
 /* Primary tag - Blue filled */
 .shuby-tag-primary {
     background-color: var(--color-shuby-blue-800);
     color: var(--color-shuby-white);
-}
 
-.shuby-tag-primary .shuby-tag-icon {
-    color: var(--color-shuby-white);
+    .shuby-tag-icon { color: var(--color-shuby-white); }
 }
 
 /* Magenta/Selection tag - Magenta filled */
 .shuby-tag-magenta {
     background-color: var(--color-shuby-magenta-500);
     color: var(--color-shuby-white);
-}
 
-.shuby-tag-magenta .shuby-tag-icon {
-    color: var(--color-shuby-white);
+    .shuby-tag-icon { color: var(--color-shuby-white); }
 }
 
 /* Info tag - Light blue background */
 .shuby-tag-info {
     background-color: var(--color-shuby-blue-100);
     color: var(--color-shuby-blue-800);
-}
 
-.shuby-tag-info .shuby-tag-icon {
-    color: var(--color-shuby-blue-500);
+    .shuby-tag-icon { color: var(--color-shuby-blue-500); }
 }
 
 /* Yellow/Amber tag (warning style) */
 .shuby-tag-yellow {
     background-color: var(--color-shuby-orange-500);
     color: var(--color-shuby-gray-700);
-}
 
-.shuby-tag-yellow .shuby-tag-icon {
-    color: var(--color-shuby-gray-600);
+    .shuby-tag-icon { color: var(--color-shuby-gray-600); }
 }
 
 /* Giallo tag (Figma: Colori/Giallo 500 - bright yellow) */
 .shuby-tag-giallo {
     background-color: var(--color-shuby-giallo-500);
     color: var(--color-shuby-blue-800);
-}
 
-.shuby-tag-giallo .shuby-tag-icon {
-    color: var(--color-shuby-blue-800);
+    .shuby-tag-icon { color: var(--color-shuby-blue-800); }
 }
 
 /* Outline tag - Border only */
@@ -1063,10 +986,8 @@
     background-color: transparent;
     color: var(--color-shuby-blue-800);
     border: 1px solid var(--color-shuby-blue-800);
-}
 
-.shuby-tag-outline .shuby-tag-icon {
-    color: var(--color-shuby-blue-800);
+    .shuby-tag-icon { color: var(--color-shuby-blue-800); }
 }
 
 /* Outline Magenta tag */
@@ -1074,10 +995,8 @@
     background-color: transparent;
     color: var(--color-shuby-magenta-500);
     border: 1px solid var(--color-shuby-magenta-500);
-}
 
-.shuby-tag-outline-magenta .shuby-tag-icon {
-    color: var(--color-shuby-magenta-500);
+    .shuby-tag-icon { color: var(--color-shuby-magenta-500); }
 }
 
 /* Small tag variant */
@@ -1096,14 +1015,9 @@
 /* Tag interactive state (for clickable/selectable tags) */
 .shuby-tag-clickable {
     cursor: pointer;
-}
 
-.shuby-tag-clickable:hover {
-    opacity: 0.85;
-}
-
-.shuby-tag-clickable:active {
-    transform: scale(0.98);
+    &:hover { opacity: 0.85; }
+    &:active { transform: scale(0.98); }
 }
 
 /* Tag selected state */
@@ -1111,10 +1025,8 @@
     background-color: var(--color-shuby-magenta-500);
     color: var(--color-shuby-white);
     border-color: var(--color-shuby-magenta-500);
-}
 
-.shuby-tag.selected .shuby-tag-icon {
-    color: var(--color-shuby-white);
+    .shuby-tag-icon { color: var(--color-shuby-white); }
 }
 
 /* =====================================================
@@ -1129,10 +1041,12 @@
     border-radius: var(--radius-full);
     cursor: pointer;
     transition: background-color 0.2s ease;
-}
 
-.shuby-toggle.active {
-    background-color: var(--bg-primary);
+    &.active {
+        background-color: var(--bg-primary);
+
+        .shuby-toggle-knob { transform: translateX(20px); }
+    }
 }
 
 .shuby-toggle-knob {
@@ -1145,10 +1059,6 @@
     border-radius: 50%;
     transition: transform 0.2s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.shuby-toggle.active .shuby-toggle-knob {
-    transform: translateX(20px);
 }
 
 /* =====================================================
@@ -1170,37 +1080,27 @@
     min-width: 150px;
     max-width: 320px;
     height: 36px;
-    font-family: var(--font-sans);
     font-size: 16px;
     font-weight: 600;
     line-height: 1.5;
     cursor: pointer;
     border: none;
     transition: all 0.2s ease;
-}
 
-.shuby-switch-option:first-child {
-    border-radius: var(--radius-tondo) 0 0 var(--radius-tondo);
-}
+    &:first-child { border-radius: var(--radius-tondo) 0 0 var(--radius-tondo); }
+    &:last-child { border-radius: 0 var(--radius-tondo) var(--radius-tondo) 0; }
 
-.shuby-switch-option:last-child {
-    border-radius: 0 var(--radius-tondo) var(--radius-tondo) 0;
-}
+    &.active {
+        background-color: var(--color-shuby-blue-800);
+        color: var(--color-shuby-white);
+    }
 
-/* Active option */
-.shuby-switch-option.active {
-    background-color: var(--color-shuby-blue-800);
-    color: var(--color-shuby-white);
-}
+    &:not(.active) {
+        background-color: var(--color-shuby-blue-400);
+        color: var(--color-shuby-gray-800);
 
-/* Inactive option */
-.shuby-switch-option:not(.active) {
-    background-color: var(--color-shuby-blue-400);
-    color: var(--color-shuby-gray-800);
-}
-
-.shuby-switch-option:not(.active):hover {
-    background-color: var(--color-shuby-blue-500);
+        &:hover { background-color: var(--color-shuby-blue-500); }
+    }
 }
 
 /* =====================================================
@@ -1216,7 +1116,6 @@
 }
 
 .shuby-form-label {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 600;
     line-height: 1.5;
@@ -1242,14 +1141,9 @@
     font-weight: 400;
     line-height: 1.5;
     color: var(--color-shuby-black);
-}
 
-.shuby-form-input-underline::placeholder {
-    color: var(--color-shuby-gray-800);
-}
-
-.shuby-form-input-underline:focus {
-    outline: none;
+    &::placeholder { color: var(--color-shuby-gray-800); }
+    &:focus { outline: none; }
 }
 
 .shuby-form-icon {
@@ -1260,7 +1154,6 @@
 }
 
 .shuby-form-error {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 400;
     line-height: 1.5;
@@ -1289,6 +1182,10 @@
     border: 1px solid var(--color-shuby-blue-400);
     border-radius: var(--radius-tondo);
     cursor: pointer;
+
+    &[data-active="right"] .shuby-unit-toggle-slider {
+        transform: translateX(100%);
+    }
 }
 
 .shuby-unit-toggle-option {
@@ -1296,7 +1193,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-sans);
     font-size: 16px;
     font-weight: 600;
     line-height: 1.5;
@@ -1305,14 +1201,9 @@
     border: none;
     background: transparent;
     cursor: pointer;
-}
 
-.shuby-unit-toggle-option.active {
-    color: var(--color-shuby-white);
-}
-
-.shuby-unit-toggle-option:not(.active) {
-    color: var(--color-shuby-gray-800);
+    &.active { color: var(--color-shuby-white); }
+    &:not(.active) { color: var(--color-shuby-gray-800); }
 }
 
 .shuby-unit-toggle-slider {
@@ -1325,10 +1216,6 @@
     border-radius: var(--radius-tondo);
     transition: transform 0.2s ease;
     box-shadow: 0 0 2px var(--color-shuby-blue-500);
-}
-
-.shuby-unit-toggle[data-active="right"] .shuby-unit-toggle-slider {
-    transform: translateX(100%);
 }
 
 /* =====================================================
@@ -1368,10 +1255,8 @@
     justify-content: space-between;
     padding: var(--space-4) 0;
     border-bottom: 1px solid var(--base-border-tertiary);
-}
 
-.shuby-list-item:last-child {
-    border-bottom: none;
+    &:last-child { border-bottom: none; }
 }
 
 .shuby-list-item-content {
@@ -1411,68 +1296,67 @@
 
 /* =====================================================
    ICON BUTTON
+   Shared flexbox centering for all icon button variants
    ===================================================== */
+
+.shuby-icon-btn,
+.shuby-icon-btn-ghost,
+.shuby-icon-btn-pink,
+.shuby-action-btn,
+.shuby-member-edit,
+.shuby-header-icon-btn,
+.shuby-accordion-btn,
+.shuby-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease;
+}
 
 .shuby-icon-btn {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: var(--bg-primary);
     color: var(--text-on-primary);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
 
-.shuby-icon-btn:hover {
-    background-color: var(--bg-primary-hover);
+    &:hover { background-color: var(--bg-primary-hover); }
 }
 
 .shuby-icon-btn-outline {
     background-color: transparent;
     border: 2px solid var(--text-primary);
     color: var(--text-primary);
-}
 
-.shuby-icon-btn-outline:hover {
-    background-color: var(--base-bg-hover);
+    &:hover { background-color: var(--base-bg-hover); }
 }
 
 /* Ghost icon button - no background, just icon */
 .shuby-icon-btn-ghost {
     width: 32px;
     height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: transparent;
     color: var(--color-shuby-gray-700);
-    border: none;
-    cursor: pointer;
     transition: all 0.2s ease;
-}
 
-.shuby-icon-btn-ghost:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    color: var(--text-primary);
-}
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: var(--text-primary);
+    }
 
-.shuby-icon-btn-ghost svg {
-    width: 20px;
-    height: 20px;
+    svg {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 /* Ghost icon button - primary color variant */
 .shuby-icon-btn-ghost-primary {
     color: var(--text-primary);
-}
 
-.shuby-icon-btn-ghost-primary:hover {
-    background-color: var(--base-bg-hover);
+    &:hover { background-color: var(--base-bg-hover); }
 }
 
 /* =====================================================
@@ -1518,16 +1402,9 @@
     background: transparent;
     border: none;
     cursor: pointer;
-}
 
-/* Hover state */
-.shuby-bottom-nav-item:hover {
-    color: var(--text-primary);
-}
-
-/* Active state - Blue 800 from Figma */
-.shuby-bottom-nav-item.active {
-    color: var(--text-primary);
+    &:hover { color: var(--text-primary); }
+    &.active { color: var(--text-primary); }
 }
 
 /* Navigation icon container - matches Figma Round Button */
@@ -1540,11 +1417,11 @@
     justify-content: center;
     border-radius: var(--radius-full);
     margin-bottom: -4px;
-}
 
-.shuby-bottom-nav-icon svg {
-    width: 24px;
-    height: 24px;
+    svg {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 /* Navigation label - Figma: 10px Montserrat */
@@ -1556,7 +1433,7 @@
     min-width: 100%;
 }
 
-/* Active label styling - Figma: Semi-Bold */
+/* Active label weight handled via parent .shuby-bottom-nav-item.active nesting */
 .shuby-bottom-nav-item.active .shuby-bottom-nav-label {
     font-weight: 600;
 }
@@ -1605,7 +1482,6 @@
 
 /* Metric range label (e.g., "PESO", "ALTEZZA") */
 .shuby-metric-range-label {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.3px;
@@ -1624,7 +1500,6 @@
 
 /* Individual range value (large number) */
 .shuby-metric-range-value {
-    font-family: var(--font-sans);
     font-size: 20px;
     font-weight: 700;
     color: var(--text-primary);
@@ -1633,7 +1508,6 @@
 
 /* Metric range unit (e.g., "chilogrammi", "centimetri") */
 .shuby-metric-range-unit {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 400;
     color: var(--base-text-tertiary);
@@ -1644,11 +1518,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-2);
-}
 
-/* Responsive: 2 columns on smaller screens */
-@media (max-width: 360px) {
-    .shuby-metric-range-grid {
+    @media (max-width: 360px) {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -1666,10 +1537,8 @@
     padding: var(--space-2) 0;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-}
 
-.shuby-date-picker::-webkit-scrollbar {
-    display: none;
+    &::-webkit-scrollbar { display: none; }
 }
 
 /* Individual date pill */
@@ -1686,24 +1555,27 @@
     cursor: pointer;
     transition: all 0.2s ease;
     flex-shrink: 0;
-}
 
-.shuby-date-pill:hover {
-    border-color: var(--border-selection);
-    background-color: var(--bg-selection-light);
-}
+    &:hover {
+        border-color: var(--border-selection);
+        background-color: var(--bg-selection-light);
+    }
 
-/* Selected date pill - uses Magenta */
-.shuby-date-pill.selected,
-.shuby-date-pill[aria-selected="true"] {
-    background-color: var(--bg-selection);
-    border-color: var(--bg-selection);
-    color: var(--text-on-selection);
-}
+    &.selected,
+    &[aria-selected="true"] {
+        background-color: var(--bg-selection);
+        border-color: var(--bg-selection);
+        color: var(--text-on-selection);
 
-.shuby-date-pill.selected:hover,
-.shuby-date-pill[aria-selected="true"]:hover {
-    background-color: var(--bg-selection-hover);
+        &:hover { background-color: var(--bg-selection-hover); }
+    }
+
+    &.disabled,
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
 }
 
 /* Date pill day label (e.g., "Lu", "Ma", "Me") */
@@ -1729,14 +1601,6 @@
 
 .shuby-date-pill.selected .shuby-date-pill-number {
     color: var(--text-on-selection);
-}
-
-/* Disabled date pill */
-.shuby-date-pill.disabled,
-.shuby-date-pill:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-    pointer-events: none;
 }
 
 /* =====================================================
@@ -1768,35 +1632,30 @@
     cursor: pointer;
     transition: all 0.2s ease;
     border: none;
-}
 
-.shuby-week-item:hover {
-    background-color: var(--bg-selection-light);
-    color: var(--text-selection);
-}
+    &:hover {
+        background-color: var(--bg-selection-light);
+        color: var(--text-selection);
+    }
 
-/* Selected week/step - uses Magenta */
-.shuby-week-item.selected,
-.shuby-week-item[aria-selected="true"] {
-    background-color: var(--bg-selection);
-    color: var(--text-on-selection);
-}
+    &.selected,
+    &[aria-selected="true"] {
+        background-color: var(--bg-selection);
+        color: var(--text-on-selection);
 
-.shuby-week-item.selected:hover,
-.shuby-week-item[aria-selected="true"]:hover {
-    background-color: var(--bg-selection-hover);
-}
+        &:hover { background-color: var(--bg-selection-hover); }
+    }
 
-/* Completed step indicator */
-.shuby-week-item.completed {
-    background-color: var(--bg-selection-light);
-    color: var(--text-selection);
-}
+    &.completed {
+        background-color: var(--bg-selection-light);
+        color: var(--text-selection);
 
-.shuby-week-item.completed::before {
-    content: "✓";
-    margin-right: 4px;
-    font-size: 12px;
+        &::before {
+            content: "✓";
+            margin-right: 4px;
+            font-size: 12px;
+        }
+    }
 }
 
 /* =====================================================
@@ -1816,16 +1675,14 @@
     border-radius: 50%;
     background-color: var(--base-border-tertiary);
     transition: all 0.2s ease;
-}
 
-.shuby-step-dot.active {
-    background-color: var(--bg-selection);
-    width: 24px;
-    border-radius: 4px;
-}
+    &.active {
+        background-color: var(--bg-selection);
+        width: 24px;
+        border-radius: 4px;
+    }
 
-.shuby-step-dot.completed {
-    background-color: var(--bg-selection);
+    &.completed { background-color: var(--bg-selection); }
 }
 
 /* =====================================================
@@ -1883,28 +1740,21 @@
     cursor: pointer;
     transition: all 0.15s ease;
     color: var(--base-text);
-}
 
-.shuby-calendar-day:hover {
-    background-color: var(--bg-selection-light);
-}
+    &:hover { background-color: var(--bg-selection-light); }
 
-.shuby-calendar-day.selected {
-    background-color: var(--bg-selection);
-    color: var(--text-on-selection);
-}
+    &.selected {
+        background-color: var(--bg-selection);
+        color: var(--text-on-selection);
+    }
 
-.shuby-calendar-day.today {
-    border: 2px solid var(--border-selection-outline);
-}
+    &.today { border: 2px solid var(--border-selection-outline); }
+    &.other-month { color: var(--base-text-disabled); }
 
-.shuby-calendar-day.other-month {
-    color: var(--base-text-disabled);
-}
-
-.shuby-calendar-day.disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
+    &.disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
 }
 
 /* =====================================================
@@ -1923,10 +1773,8 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-}
 
-.shuby-timeline-container::-webkit-scrollbar {
-    display: none;
+    &::-webkit-scrollbar { display: none; }
 }
 
 /* Timeline container alternate (gray background, no border) */
@@ -1939,10 +1787,8 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-}
 
-.shuby-timeline-container-alt::-webkit-scrollbar {
-    display: none;
+    &::-webkit-scrollbar { display: none; }
 }
 
 /* Timeline date pill (Sett./Mese style) */
@@ -1959,41 +1805,33 @@
     transition: all 0.2s ease;
     flex-shrink: 0;
     border: none;
-}
 
-.shuby-timeline-pill:hover {
-    background-color: var(--base-bg-hover);
-}
+    &:hover { background-color: var(--base-bg-hover); }
 
-/* Outline selected state (light blue/purple border, white bg) */
-.shuby-timeline-pill.selected-outline {
-    background-color: var(--bg-secondary);
-    border: 2px solid var(--border-selection-outline);
-}
+    &.selected-outline {
+        background-color: var(--bg-secondary);
+        border: 2px solid var(--border-selection-outline);
+    }
 
-/* Filled selected state (magenta background) */
-.shuby-timeline-pill.selected {
-    background-color: var(--bg-selection);
-    color: var(--text-on-selection);
-}
+    &.selected {
+        background-color: var(--bg-selection);
+        color: var(--text-on-selection);
 
-.shuby-timeline-pill.selected:hover {
-    background-color: var(--bg-selection-hover);
-}
+        &:hover { background-color: var(--bg-selection-hover); }
 
-/* Primary selected state (blue background) */
-.shuby-timeline-pill.selected-primary {
-    background-color: var(--bg-primary);
-    color: var(--text-on-primary);
-}
+        .shuby-timeline-pill-label { color: var(--text-on-selection); }
+        .shuby-timeline-pill-number { color: var(--text-on-selection); }
+    }
 
-.shuby-timeline-pill.selected-primary:hover {
-    background-color: var(--bg-primary-hover);
-}
+    &.selected-primary {
+        background-color: var(--bg-primary);
+        color: var(--text-on-primary);
 
-.shuby-timeline-pill.selected-primary .shuby-timeline-pill-label,
-.shuby-timeline-pill.selected-primary .shuby-timeline-pill-number {
-    color: var(--text-on-primary);
+        &:hover { background-color: var(--bg-primary-hover); }
+
+        .shuby-timeline-pill-label,
+        .shuby-timeline-pill-number { color: var(--text-on-primary); }
+    }
 }
 
 /* Timeline pill label (e.g., "Sett.", "Mese") */
@@ -2006,20 +1844,12 @@
     margin-bottom: 2px;
 }
 
-.shuby-timeline-pill.selected .shuby-timeline-pill-label {
-    color: var(--text-on-selection);
-}
-
 /* Timeline pill number (e.g., "3", "6") */
 .shuby-timeline-pill-number {
     font-size: 18px;
     font-weight: 700;
     line-height: 1.2;
     color: var(--text-primary);
-}
-
-.shuby-timeline-pill.selected .shuby-timeline-pill-number {
-    color: var(--text-on-selection);
 }
 
 /* =====================================================
@@ -2053,23 +1883,19 @@
     cursor: pointer;
     transition: all 0.2s ease;
     border: none;
-}
 
-.shuby-settimana-item:hover {
-    background-color: var(--bg-selection-light);
-    color: var(--text-selection);
-}
+    &:hover {
+        background-color: var(--bg-selection-light);
+        color: var(--text-selection);
+    }
 
-/* Active/selected settimana */
-.shuby-settimana-item.active,
-.shuby-settimana-item[aria-selected="true"] {
-    background-color: var(--bg-selection);
-    color: var(--text-on-selection);
-}
+    &.active,
+    &[aria-selected="true"] {
+        background-color: var(--bg-selection);
+        color: var(--text-on-selection);
 
-.shuby-settimana-item.active:hover,
-.shuby-settimana-item[aria-selected="true"]:hover {
-    background-color: var(--bg-selection-hover);
+        &:hover { background-color: var(--bg-selection-hover); }
+    }
 }
 
 /* Progressive state indicator (shows progression through weeks) */
@@ -2162,11 +1988,11 @@
     width: 14px;
     height: 14px;
     flex-shrink: 0;
-}
 
-.shuby-tappa-tag-icon svg {
-    width: 100%;
-    height: 100%;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /* Month tag (white with border) */
@@ -2221,13 +2047,12 @@
     width: 80px;
     height: 80px;
     margin-left: var(--space-4);
-}
 
-.shuby-tappa-mascot img,
-.shuby-tappa-mascot svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    img, svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 }
 
 /* Pentagon mascot shape with face */
@@ -2272,20 +2097,18 @@
     border-radius: 0 0 10px 10px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 480px) {
-    .shuby-tappa-card {
+/* Responsive adjustments nested in .shuby-tappa-card */
+.shuby-tappa-card {
+    @media (max-width: 480px) {
         flex-direction: column;
-    }
 
-    .shuby-tappa-content {
-        max-width: 100%;
-    }
+        .shuby-tappa-content { max-width: 100%; }
 
-    .shuby-tappa-mascot {
-        margin-left: 0;
-        margin-top: var(--space-4);
-        align-self: flex-end;
+        .shuby-tappa-mascot {
+            margin-left: 0;
+            margin-top: var(--space-4);
+            align-self: flex-end;
+        }
     }
 }
 
@@ -2296,11 +2119,11 @@
 /* Compact variant (smaller padding) */
 .shuby-tappa-card-compact {
     padding: var(--space-4);
-}
 
-.shuby-tappa-card-compact .shuby-tappa-mascot {
-    width: 60px;
-    height: 60px;
+    .shuby-tappa-mascot {
+        width: 60px;
+        height: 60px;
+    }
 }
 
 /* Full-width section variant */
@@ -2357,24 +2180,15 @@
 .shuby-action-btn {
     width: 36px;
     height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: var(--bg-primary);
     color: var(--text-on-primary);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
 
-.shuby-action-btn:hover {
-    background-color: var(--bg-primary-hover);
-}
+    &:hover { background-color: var(--bg-primary-hover); }
 
-.shuby-action-btn svg {
-    width: 16px;
-    height: 16px;
+    svg {
+        width: 16px;
+        height: 16px;
+    }
 }
 
 /* Category label (ADULTI, BAMBINI) */
@@ -2402,14 +2216,9 @@
     padding: var(--space-4);
     margin-bottom: var(--space-3);
     transition: box-shadow 0.2s ease;
-}
 
-.shuby-member-card:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.shuby-member-card:last-child {
-    margin-bottom: 0;
+    &:hover { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); }
+    &:last-child { margin-bottom: 0; }
 }
 
 /* Member card content (left side: avatar + info) */
@@ -2430,23 +2239,23 @@
     align-items: center;
     justify-content: center;
     background-color: var(--color-shuby-gray-100);
-}
 
-.shuby-member-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 /* Default user icon avatar (gray circle with person icon) */
 .shuby-member-avatar-default {
     background-color: var(--color-shuby-gray-200);
     color: var(--color-shuby-gray-500);
-}
 
-.shuby-member-avatar-default svg {
-    width: 24px;
-    height: 24px;
+    svg {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 /* Member text info */
@@ -2474,25 +2283,16 @@
 .shuby-member-edit {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: var(--bg-primary);
     color: var(--text-on-primary);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
     flex-shrink: 0;
-}
 
-.shuby-member-edit:hover {
-    background-color: var(--bg-primary-hover);
-}
+    &:hover { background-color: var(--bg-primary-hover); }
 
-.shuby-member-edit svg {
-    width: 18px;
-    height: 18px;
+    svg {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 /* =====================================================
@@ -2546,22 +2346,16 @@
     border: none;
     background-color: transparent;
     color: var(--base-text-secondary);
-}
 
-.shuby-gestione-tab:hover {
-    color: var(--text-primary);
-}
+    &:hover { color: var(--text-primary); }
 
-/* Active tab - filled blue */
-.shuby-gestione-tab.active,
-.shuby-gestione-tab[aria-selected="true"] {
-    background-color: var(--bg-primary);
-    color: var(--text-on-primary);
-}
+    &.active,
+    &[aria-selected="true"] {
+        background-color: var(--bg-primary);
+        color: var(--text-on-primary);
 
-.shuby-gestione-tab.active:hover,
-.shuby-gestione-tab[aria-selected="true"]:hover {
-    background-color: var(--bg-primary-hover);
+        &:hover { background-color: var(--bg-primary-hover); }
+    }
 }
 
 /* =====================================================
@@ -2570,10 +2364,8 @@
 
 .shuby-family-section {
     margin-bottom: var(--space-6);
-}
 
-.shuby-family-section:last-child {
-    margin-bottom: 0;
+    &:last-child { margin-bottom: 0; }
 }
 
 /* Empty state for family sections */
@@ -2602,13 +2394,12 @@
 .shuby-mascot-cloud {
     width: 100px;
     height: 80px;
-}
 
-.shuby-mascot-cloud img,
-.shuby-mascot-cloud svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    img, svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 }
 
 .shuby-mascot-cloud-sm {
@@ -2633,10 +2424,8 @@
     justify-content: space-between;
     padding: var(--space-4) 0;
     border-bottom: 1px solid var(--base-border-tertiary);
-}
 
-.shuby-activity-item:last-child {
-    border-bottom: none;
+    &:last-child { border-bottom: none; }
 }
 
 .shuby-activity-content {
@@ -2646,7 +2435,6 @@
 }
 
 .shuby-activity-title {
-    font-family: var(--font-sans);
     font-size: 16px;
     font-weight: 600;
     line-height: 1.4;
@@ -2657,7 +2445,6 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 500;
     color: var(--base-text-tertiary);
@@ -2667,11 +2454,11 @@
     width: 14px;
     height: 14px;
     flex-shrink: 0;
-}
 
-.shuby-activity-duration-icon svg {
-    width: 100%;
-    height: 100%;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .shuby-activity-arrow {
@@ -2679,11 +2466,11 @@
     width: 20px;
     height: 20px;
     flex-shrink: 0;
-}
 
-.shuby-activity-arrow svg {
-    width: 100%;
-    height: 100%;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /* Activity item clickable variant */
@@ -2693,10 +2480,8 @@
     margin: 0 calc(-1 * var(--space-4));
     padding: var(--space-4);
     border-radius: var(--radius-md);
-}
 
-.shuby-activity-item-clickable:hover {
-    background-color: var(--base-bg-hover);
+    &:hover { background-color: var(--base-bg-hover); }
 }
 
 /* Activity item with thumbnail */
@@ -2706,10 +2491,8 @@
     gap: var(--space-3);
     padding: var(--space-3) 0;
     border-bottom: 1px solid var(--base-border-tertiary);
-}
 
-.shuby-activity-item-with-thumb:last-child {
-    border-bottom: none;
+    &:last-child { border-bottom: none; }
 }
 
 /* Activity thumbnail (circular) */
@@ -2723,18 +2506,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
 
-.shuby-activity-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-.shuby-activity-thumbnail svg {
-    width: 60%;
-    height: 60%;
-    color: var(--text-primary);
+    svg {
+        width: 60%;
+        height: 60%;
+        color: var(--text-primary);
+    }
 }
 
 /* Small activity thumbnail */
@@ -2783,7 +2566,6 @@
    ===================================================== */
 
 .shuby-author {
-    font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 400;
     color: var(--base-text-tertiary);
@@ -2794,15 +2576,12 @@
     color: var(--base-text-tertiary);
     text-decoration: none;
     transition: color 0.2s ease;
-}
 
-.shuby-author-link:hover {
-    color: var(--text-primary);
+    &:hover { color: var(--text-primary); }
 }
 
 /* Author primary variant - uppercase, blue */
 .shuby-author-primary {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 500;
     color: var(--color-shuby-blue-800);
@@ -2822,10 +2601,8 @@
     gap: var(--space-3);
     padding: var(--space-3) 0;
     border-bottom: 1px solid var(--base-border-tertiary);
-}
 
-.shuby-consiglio-item:last-child {
-    border-bottom: none;
+    &:last-child { border-bottom: none; }
 }
 
 /* Consiglio thumbnail */
@@ -2836,12 +2613,12 @@
     overflow: hidden;
     flex-shrink: 0;
     background-color: var(--color-shuby-blue-100);
-}
 
-.shuby-consiglio-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 /* Consiglio content */
@@ -2862,7 +2639,6 @@
 
 /* Consiglio title */
 .shuby-consiglio-title {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 600;
     line-height: 1.4;
@@ -2871,7 +2647,6 @@
 
 /* Consiglio author/source */
 .shuby-consiglio-author {
-    font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 400;
     color: var(--base-text-tertiary);
@@ -2885,10 +2660,8 @@
     border-radius: var(--radius-md);
     border-bottom: none;
     transition: background-color 0.2s ease;
-}
 
-.shuby-consiglio-item-clickable:hover {
-    background-color: var(--base-bg-hover);
+    &:hover { background-color: var(--base-bg-hover); }
 }
 
 /* =====================================================
@@ -2901,11 +2674,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-4);
-}
 
-/* Single column on very small screens */
-@media (max-width: 320px) {
-    .shuby-metric-grid {
+    @media (max-width: 320px) {
         grid-template-columns: 1fr;
     }
 }
@@ -2928,14 +2698,12 @@
 }
 
 .shuby-tracking-card-title {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 500;
     color: var(--base-text-secondary);
 }
 
 .shuby-tracking-card-value {
-    font-family: var(--font-sans);
     font-size: 12px;
     color: var(--base-text-tertiary);
     margin-top: auto;
@@ -2954,35 +2722,26 @@
 .shuby-icon-btn-pink {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: var(--color-shuby-fucsia-500);
     color: var(--color-shuby-white);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
 
-.shuby-icon-btn-pink:hover {
-    background-color: var(--color-shuby-fucsia-700);
-}
+    &:hover { background-color: var(--color-shuby-fucsia-700); }
 
-.shuby-icon-btn-pink svg {
-    width: 20px;
-    height: 20px;
+    svg {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 /* Small icon button variant */
 .shuby-icon-btn-sm {
     width: 32px;
     height: 32px;
-}
 
-.shuby-icon-btn-sm svg {
-    width: 16px;
-    height: 16px;
+    svg {
+        width: 16px;
+        height: 16px;
+    }
 }
 
 /* =====================================================
@@ -2992,7 +2751,6 @@
    ===================================================== */
 
 .shuby-date-header {
-    font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
@@ -3008,7 +2766,6 @@
    ===================================================== */
 
 .shuby-age-indicator {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 600;
     color: var(--color-shuby-verde-500);
@@ -3032,10 +2789,8 @@
     background-color: var(--color-shuby-white);
     border-radius: var(--radius-md);
     transition: box-shadow 0.2s ease;
-}
 
-.shuby-article-card:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    &:hover { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
 }
 
 /* Article thumbnail container */
@@ -3049,17 +2804,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
 
-.shuby-article-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-.shuby-article-thumbnail svg {
-    width: 60%;
-    height: 60%;
+    svg {
+        width: 60%;
+        height: 60%;
+    }
 }
 
 /* Smaller thumbnail variant */
@@ -3086,7 +2841,6 @@
 
 /* Article title */
 .shuby-article-title {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 600;
     line-height: 1.4;
@@ -3099,7 +2853,6 @@
 
 /* Article description/excerpt */
 .shuby-article-excerpt {
-    font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 400;
     line-height: 1.5;
@@ -3114,10 +2867,8 @@
 .shuby-article-card-clickable {
     cursor: pointer;
     text-decoration: none;
-}
 
-.shuby-article-card-clickable:hover .shuby-article-title {
-    color: var(--text-primary);
+    &:hover .shuby-article-title { color: var(--text-primary); }
 }
 
 /* =====================================================
@@ -3176,7 +2927,6 @@
     align-items: center;
     gap: 6px;
     padding: 6px 12px 6px 8px;
-    font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 600;
     line-height: 1;
@@ -3203,11 +2953,11 @@
     width: 14px;
     height: 14px;
     z-index: 1;
-}
 
-.shuby-badge-diamond-icon svg {
-    width: 100%;
-    height: 100%;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /* Diamond badge color variants */
@@ -3236,41 +2986,38 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 600;
     color: var(--text-primary);
     text-decoration: none;
     transition: gap 0.2s ease;
-}
 
-.shuby-link-arrow:hover {
-    gap: 8px;
+    &:hover { gap: 8px; }
 }
 
 .shuby-link-arrow-icon {
     width: 16px;
     height: 16px;
     transition: transform 0.2s ease;
-}
 
-.shuby-link-arrow:hover .shuby-link-arrow-icon {
-    transform: translateX(2px);
-}
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 
-.shuby-link-arrow-icon svg {
-    width: 100%;
-    height: 100%;
+    .shuby-link-arrow:hover & {
+        transform: translateX(2px);
+    }
 }
 
 /* Small variant */
 .shuby-link-arrow-sm {
     font-size: 12px;
-}
 
-.shuby-link-arrow-sm .shuby-link-arrow-icon {
-    width: 14px;
-    height: 14px;
+    .shuby-link-arrow-icon {
+        width: 14px;
+        height: 14px;
+    }
 }
 
 /* =====================================================
@@ -3282,28 +3029,25 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-family: var(--font-sans);
     font-size: 16px;
     font-weight: 600;
     color: var(--text-primary);
     text-decoration: none;
     cursor: pointer;
     transition: opacity 0.2s ease;
-}
 
-.shuby-back-link:hover {
-    opacity: 0.8;
+    &:hover { opacity: 0.8; }
 }
 
 .shuby-back-link-icon {
     width: 20px;
     height: 20px;
     flex-shrink: 0;
-}
 
-.shuby-back-link-icon svg {
-    width: 100%;
-    height: 100%;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /* Small back link variant */
@@ -3331,7 +3075,6 @@
 }
 
 .shuby-page-header-title {
-    font-family: var(--font-sans);
     font-size: 20px;
     font-weight: 700;
     color: var(--text-primary);
@@ -3347,24 +3090,15 @@
 .shuby-header-icon-btn {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: transparent;
     color: var(--text-primary);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
 
-.shuby-header-icon-btn:hover {
-    background-color: var(--base-bg-hover);
-}
+    &:hover { background-color: var(--base-bg-hover); }
 
-.shuby-header-icon-btn svg {
-    width: 24px;
-    height: 24px;
+    svg {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 /* =====================================================
@@ -3386,7 +3120,6 @@
 
 /* Section label - uppercase category header (e.g., "MISURE MEDIE") */
 .shuby-section-label {
-    font-family: var(--font-sans);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -3607,10 +3340,8 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     scroll-snap-type: x mandatory;
-}
 
-.shuby-carousel::-webkit-scrollbar {
-    display: none;
+    &::-webkit-scrollbar { display: none; }
 }
 
 .shuby-carousel>* {
@@ -3631,7 +3362,6 @@
 }
 
 .shuby-carousel-title {
-    font-family: var(--font-sans);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -3648,7 +3378,6 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 500;
     color: var(--base-text-tertiary);
@@ -3711,6 +3440,8 @@
 .shuby-accordion {
     border-bottom: 1px solid var(--color-shuby-blue-300);
     padding-bottom: var(--space-4);
+
+    &[open] .shuby-accordion-icon { transform: rotate(180deg); }
 }
 
 .shuby-accordion-header {
@@ -3734,12 +3465,7 @@
     transition: transform 0.2s ease;
 }
 
-.shuby-accordion[open] .shuby-accordion-icon {
-    transform: rotate(180deg);
-}
-
 .shuby-accordion-label {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 500;
     color: var(--base-text);
@@ -3754,7 +3480,6 @@
 }
 
 .shuby-accordion-count {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 600;
     color: var(--base-text);
@@ -3801,7 +3526,6 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 500;
     color: var(--color-shuby-blue-800);
@@ -3830,24 +3554,19 @@
     align-items: center;
     justify-content: center;
     color: var(--color-shuby-blue-800);
-}
 
-.shuby-milestone-card-action svg {
-    width: 16px;
-    height: 16px;
+    svg {
+        width: 16px;
+        height: 16px;
+    }
 }
 
 /* Completed state - dark teal background */
 .shuby-milestone-card-completed {
     background-color: var(--color-shuby-verde-scuro-500);
-}
 
-.shuby-milestone-card-completed .shuby-milestone-card-title {
-    color: var(--color-shuby-white);
-}
-
-.shuby-milestone-card-completed .shuby-milestone-card-action {
-    color: var(--color-shuby-white);
+    .shuby-milestone-card-title { color: var(--color-shuby-white); }
+    .shuby-milestone-card-action { color: var(--color-shuby-white); }
 }
 
 .shuby-milestone-card-completed-meta {
@@ -3857,7 +3576,6 @@
 }
 
 .shuby-milestone-card-completed-date {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 400;
     color: var(--color-shuby-white);
@@ -3874,17 +3592,9 @@
 .shuby-accordion-btn {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
     background-color: var(--color-shuby-blue-400);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
 
-.shuby-accordion-btn:hover {
-    background-color: var(--color-shuby-blue-500);
+    &:hover { background-color: var(--color-shuby-blue-500); }
 }
 
 .shuby-accordion-btn-icon {
@@ -3908,7 +3618,6 @@
 }
 
 .shuby-related-section-title {
-    font-family: var(--font-sans);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -3994,36 +3703,30 @@
     right: var(--space-4);
     width: 32px;
     height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: transparent;
     color: var(--base-text-secondary);
-    border: none;
-    cursor: pointer;
     transition: all 0.2s ease;
     z-index: 10;
-}
 
-.shuby-modal-close:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    color: var(--base-text);
-}
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: var(--base-text);
+    }
 
-.shuby-modal-close svg {
-    width: 20px;
-    height: 20px;
+    svg {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 /* Close button on dark/colored background */
 .shuby-modal-close-light {
     color: var(--color-shuby-white);
-}
 
-.shuby-modal-close-light:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: var(--color-shuby-white);
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        color: var(--color-shuby-white);
+    }
 }
 
 /* =====================================================
@@ -4084,52 +3787,22 @@
 .shuby-mascot-pentagon-sm {
     width: 80px;
     height: 80px;
-}
 
-.shuby-mascot-pentagon-sm .shuby-mascot-pentagon-face {
-    gap: 5px;
-    margin-top: 10px;
-}
-
-.shuby-mascot-pentagon-sm .shuby-mascot-pentagon-eyes {
-    gap: 10px;
-}
-
-.shuby-mascot-pentagon-sm .shuby-mascot-pentagon-eye {
-    width: 7px;
-    height: 9px;
-}
-
-.shuby-mascot-pentagon-sm .shuby-mascot-pentagon-smile {
-    width: 14px;
-    height: 7px;
-    border-width: 2px;
+    .shuby-mascot-pentagon-face { gap: 5px; margin-top: 10px; }
+    .shuby-mascot-pentagon-eyes { gap: 10px; }
+    .shuby-mascot-pentagon-eye { width: 7px; height: 9px; }
+    .shuby-mascot-pentagon-smile { width: 14px; height: 7px; border-width: 2px; }
 }
 
 /* Large pentagon variant */
 .shuby-mascot-pentagon-lg {
     width: 160px;
     height: 160px;
-}
 
-.shuby-mascot-pentagon-lg .shuby-mascot-pentagon-face {
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.shuby-mascot-pentagon-lg .shuby-mascot-pentagon-eyes {
-    gap: 20px;
-}
-
-.shuby-mascot-pentagon-lg .shuby-mascot-pentagon-eye {
-    width: 14px;
-    height: 16px;
-}
-
-.shuby-mascot-pentagon-lg .shuby-mascot-pentagon-smile {
-    width: 26px;
-    height: 13px;
-    border-width: 4px;
+    .shuby-mascot-pentagon-face { gap: 10px; margin-top: 20px; }
+    .shuby-mascot-pentagon-eyes { gap: 20px; }
+    .shuby-mascot-pentagon-eye { width: 14px; height: 16px; }
+    .shuby-mascot-pentagon-smile { width: 26px; height: 13px; border-width: 4px; }
 }
 
 /* =====================================================
@@ -4173,16 +3846,14 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-}
 
-.shuby-ricorda-icon img,
-.shuby-ricorda-icon svg {
-    width: 20px;
-    height: 20px;
+    img, svg {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 .shuby-ricorda-label {
-    font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
@@ -4191,16 +3862,15 @@
 }
 
 .shuby-ricorda-text {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.6;
     color: var(--base-text);
-}
 
-.shuby-ricorda-text strong {
-    font-weight: 600;
-    color: var(--base-text);
+    strong {
+        font-weight: 600;
+        color: var(--base-text);
+    }
 }
 
 /* =====================================================
@@ -4239,7 +3909,6 @@
 }
 
 .shuby-tappa-modal-description {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.6;
@@ -4273,26 +3942,19 @@
     display: flex;
     flex-direction: column;
     color: var(--color-shuby-white);
-}
 
-/* Dark modal header */
-.shuby-tappa-modal-dark .shuby-tappa-modal-header {
-    padding: var(--space-6);
-    padding-top: calc(var(--space-8) + 32px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative;
-}
+    .shuby-tappa-modal-header {
+        padding: var(--space-6);
+        padding-top: calc(var(--space-8) + 32px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+    }
 
-/* Dark modal text colors */
-.shuby-tappa-modal-dark .shuby-tappa-modal-title {
-    color: var(--color-shuby-white);
-}
-
-.shuby-tappa-modal-dark .shuby-tappa-modal-description {
-    color: rgba(255, 255, 255, 0.9);
+    .shuby-tappa-modal-title { color: var(--color-shuby-white); }
+    .shuby-tappa-modal-description { color: rgba(255, 255, 255, 0.9); }
 }
 
 /* =====================================================
@@ -4300,24 +3962,23 @@
    Gradient verde variant for success states
    ===================================================== */
 
-.shuby-mascot-pentagon-teal .shuby-mascot-pentagon-shape {
-    background: linear-gradient(135deg, var(--color-shuby-verde-400) 0%, var(--color-shuby-verde-500) 100%);
-    box-shadow: 0 4px 20px rgba(56, 163, 165, 0.4);
-}
+.shuby-mascot-pentagon-teal {
+    .shuby-mascot-pentagon-shape {
+        background: linear-gradient(135deg, var(--color-shuby-verde-400) 0%, var(--color-shuby-verde-500) 100%);
+        box-shadow: 0 4px 20px rgba(56, 163, 165, 0.4);
+    }
 
-.shuby-mascot-pentagon-teal .shuby-mascot-pentagon-eye {
-    background-color: var(--color-shuby-white);
-}
-
-.shuby-mascot-pentagon-teal .shuby-mascot-pentagon-smile {
-    border-color: var(--color-shuby-white);
+    .shuby-mascot-pentagon-eye { background-color: var(--color-shuby-white); }
+    .shuby-mascot-pentagon-smile { border-color: var(--color-shuby-white); }
 }
 
 /* Winking eye variant */
-.shuby-mascot-pentagon-wink .shuby-mascot-pentagon-eye:first-child {
-    height: 3px;
-    border-radius: 2px;
-    margin-top: 4px;
+.shuby-mascot-pentagon-wink {
+    .shuby-mascot-pentagon-eye:first-child {
+        height: 3px;
+        border-radius: 2px;
+        margin-top: 4px;
+    }
 }
 
 /* =====================================================
@@ -4326,7 +3987,6 @@
    ===================================================== */
 
 .shuby-success-label {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.8);
@@ -4343,7 +4003,6 @@
 }
 
 .shuby-success-description {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.6;
@@ -4362,18 +4021,15 @@
     border-radius: var(--radius-lg);
     padding: var(--space-4);
     color: var(--color-shuby-white);
-}
 
-.shuby-info-card-light p {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--color-shuby-white);
-}
+    p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--color-shuby-white);
+    }
 
-.shuby-info-card-light strong {
-    font-weight: 600;
+    strong { font-weight: 600; }
 }
 
 /* Solid light variant */
@@ -4382,19 +4038,18 @@
     border-radius: var(--radius-lg);
     padding: var(--space-4);
     color: var(--base-text);
-}
 
-.shuby-info-card-solid p {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--base-text);
-}
+    p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--base-text);
+    }
 
-.shuby-info-card-solid strong {
-    font-weight: 600;
-    color: var(--base-text);
+    strong {
+        font-weight: 600;
+        color: var(--base-text);
+    }
 }
 
 /* =====================================================
@@ -4407,6 +4062,20 @@
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
+
+    svg, img {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+    }
+
+    .shuby-btn-sm & {
+        svg, img { width: 16px; height: 16px; }
+    }
+
+    .shuby-btn-lg & {
+        svg, img { width: 24px; height: 24px; }
+    }
 }
 
 .shuby-btn-icon-left {
@@ -4415,25 +4084,6 @@
 
 .shuby-btn-icon-right {
     flex-direction: row-reverse;
-}
-
-.shuby-btn-icon svg,
-.shuby-btn-icon img {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-}
-
-.shuby-btn-sm .shuby-btn-icon svg,
-.shuby-btn-sm .shuby-btn-icon img {
-    width: 16px;
-    height: 16px;
-}
-
-.shuby-btn-lg .shuby-btn-icon svg,
-.shuby-btn-lg .shuby-btn-icon img {
-    width: 24px;
-    height: 24px;
 }
 
 /* =====================================================
@@ -4463,7 +4113,6 @@
 }
 
 .shuby-tappa-completed-label {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.8);
@@ -4480,7 +4129,6 @@
 }
 
 .shuby-tappa-completed-description {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.6;
@@ -4510,55 +4158,51 @@
     display: flex;
     flex-direction: column;
     position: relative;
-}
 
-.shuby-tappa-completed-teal .shuby-tappa-completed-header {
-    padding: var(--space-6);
-    padding-top: calc(var(--space-10) + 32px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
+    .shuby-tappa-completed-header {
+        padding: var(--space-6);
+        padding-top: calc(var(--space-10) + 32px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
-.shuby-tappa-completed-teal .shuby-tappa-completed-mascot {
-    margin-bottom: var(--space-5);
-}
+    .shuby-tappa-completed-mascot { margin-bottom: var(--space-5); }
 
-.shuby-tappa-completed-teal .shuby-tappa-completed-label {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: var(--space-1);
-}
+    .shuby-tappa-completed-label {
+        font-size: 14px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: var(--space-1);
+    }
 
-.shuby-tappa-completed-teal .shuby-tappa-completed-title {
-    font-family: var(--font-display);
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--color-shuby-white);
-    margin-bottom: var(--space-4);
-}
+    .shuby-tappa-completed-title {
+        font-family: var(--font-display);
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--color-shuby-white);
+        margin-bottom: var(--space-4);
+    }
 
-.shuby-tappa-completed-teal .shuby-tappa-completed-description {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 300px;
-}
+    .shuby-tappa-completed-description {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 300px;
+    }
 
-.shuby-tappa-completed-teal .shuby-tappa-completed-content {
-    padding: var(--space-4) var(--space-6);
-    flex: 1;
-}
+    .shuby-tappa-completed-content {
+        padding: var(--space-4) var(--space-6);
+        flex: 1;
+    }
 
-.shuby-tappa-completed-teal .shuby-tappa-completed-footer {
-    padding: var(--space-4) var(--space-6);
-    padding-bottom: var(--space-8);
+    .shuby-tappa-completed-footer {
+        padding: var(--space-4) var(--space-6);
+        padding-bottom: var(--space-8);
+    }
 }
 
 /* =====================================================
@@ -4572,19 +4216,16 @@
     border-radius: var(--radius-lg);
     padding: var(--space-4);
     color: var(--color-shuby-white);
-}
 
-.shuby-info-box-dark p {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--color-shuby-white);
-    margin: 0;
-}
+    p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--color-shuby-white);
+        margin: 0;
+    }
 
-.shuby-info-box-dark strong {
-    font-weight: 600;
+    strong { font-weight: 600; }
 }
 
 /* Alternative: Blurred glass effect */
@@ -4595,19 +4236,16 @@
     border-radius: var(--radius-lg);
     padding: var(--space-4);
     color: var(--color-shuby-white);
-}
 
-.shuby-info-box-dark-blur p {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--color-shuby-white);
-    margin: 0;
-}
+    p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--color-shuby-white);
+        margin: 0;
+    }
 
-.shuby-info-box-dark-blur strong {
-    font-weight: 600;
+    strong { font-weight: 600; }
 }
 
 /* =====================================================
@@ -4618,10 +4256,8 @@
 .shuby-btn-teal {
     background-color: var(--color-shuby-verde-scuro-400);
     color: var(--color-shuby-white);
-}
 
-.shuby-btn-teal:hover {
-    background-color: var(--color-shuby-verde-scuro-500);
+    &:hover { background-color: var(--color-shuby-verde-scuro-500); }
 }
 
 /* White/Light button on dark backgrounds */
@@ -4629,10 +4265,8 @@
     background-color: rgba(255, 255, 255, 0.15);
     color: var(--color-shuby-white);
     border: 1px solid rgba(255, 255, 255, 0.3);
-}
 
-.shuby-btn-light-on-dark:hover {
-    background-color: rgba(255, 255, 255, 0.25);
+    &:hover { background-color: rgba(255, 255, 255, 0.25); }
 }
 
 /* =====================================================
@@ -4659,7 +4293,6 @@
 }
 
 .shuby-p1-white {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
@@ -4668,7 +4301,6 @@
 }
 
 .shuby-p1-white-muted {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
@@ -4677,7 +4309,6 @@
 }
 
 .shuby-overline-white {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 400;
     line-height: 1.5;
@@ -4687,7 +4318,6 @@
 }
 
 .shuby-caption-white {
-    font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 500;
     line-height: 1.5;
@@ -4703,43 +4333,35 @@
    ===================================================== */
 
 .shuby-article-body {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.7;
     color: var(--base-text);
-}
 
-.shuby-article-body p {
-    margin-bottom: var(--space-4);
-}
+    p { margin-bottom: var(--space-4); }
 
-.shuby-article-body strong,
-.shuby-article-body b {
-    font-weight: 600;
-    color: var(--base-text);
-}
+    strong, b {
+        font-weight: 600;
+        color: var(--base-text);
+    }
 
-/* Article section headers (h2, h3 within body) */
-.shuby-article-body h2,
-.shuby-article-body .shuby-article-section-title {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.4;
-    color: var(--base-text);
-    margin-top: var(--space-6);
-    margin-bottom: var(--space-3);
-}
+    h2, .shuby-article-section-title {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.4;
+        color: var(--base-text);
+        margin-top: var(--space-6);
+        margin-bottom: var(--space-3);
+    }
 
-.shuby-article-body h3 {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.4;
-    color: var(--base-text);
-    margin-top: var(--space-5);
-    margin-bottom: var(--space-2);
+    h3 {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.4;
+        color: var(--base-text);
+        margin-top: var(--space-5);
+        margin-bottom: var(--space-2);
+    }
 }
 
 /* =====================================================
@@ -4752,26 +4374,25 @@
     list-style: none;
     padding: 0;
     margin: 0 0 var(--space-4) 0;
-}
 
-.shuby-list-blue li {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: var(--space-2);
-    font-family: var(--font-sans);
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--base-text);
-}
+    li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: var(--space-2);
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--base-text);
 
-.shuby-list-blue li::before {
-    content: "●";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--color-shuby-blue-800);
-    font-size: 8px;
-    line-height: 2.8;
+        &::before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--color-shuby-blue-800);
+            font-size: 8px;
+            line-height: 2.8;
+        }
+    }
 }
 
 /* Red/warning bullet list (Campanelli d'allarme) */
@@ -4780,28 +4401,25 @@
     list-style: none;
     padding: 0;
     margin: 0 0 var(--space-4) 0;
-}
 
-.shuby-list-red li,
-.shuby-list-warning li {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: var(--space-2);
-    font-family: var(--font-sans);
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--base-text);
-}
+    li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: var(--space-2);
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--base-text);
 
-.shuby-list-red li::before,
-.shuby-list-warning li::before {
-    content: "●";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--color-shuby-red-500);
-    font-size: 8px;
-    line-height: 2.8;
+        &::before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--color-shuby-red-500);
+            font-size: 8px;
+            line-height: 2.8;
+        }
+    }
 }
 
 /* Verde/teal bullet list */
@@ -4809,26 +4427,25 @@
     list-style: none;
     padding: 0;
     margin: 0 0 var(--space-4) 0;
-}
 
-.shuby-list-verde li {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: var(--space-2);
-    font-family: var(--font-sans);
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--base-text);
-}
+    li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: var(--space-2);
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--base-text);
 
-.shuby-list-verde li::before {
-    content: "●";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--color-shuby-verde-500);
-    font-size: 8px;
-    line-height: 2.8;
+        &::before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--color-shuby-verde-500);
+            font-size: 8px;
+            line-height: 2.8;
+        }
+    }
 }
 
 /* =====================================================
@@ -4851,7 +4468,6 @@
 }
 
 .shuby-section-giallo-title {
-    font-family: var(--font-sans);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -4877,28 +4493,25 @@
     padding: 12px 16px;
     background-color: var(--color-shuby-verde-200);
     border-radius: var(--radius-md);
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 600;
     color: var(--color-shuby-blue-800);
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s ease;
-}
 
-.shuby-pill-verde:hover {
-    background-color: var(--color-shuby-verde-300);
+    &:hover { background-color: var(--color-shuby-verde-300); }
 }
 
 .shuby-pill-verde-icon {
     width: 20px;
     height: 20px;
     flex-shrink: 0;
-}
 
-.shuby-pill-verde-icon svg {
-    width: 100%;
-    height: 100%;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /* Arrow icon on right side */
@@ -4933,16 +4546,15 @@
     border-radius: var(--radius-md);
     overflow: hidden;
     margin: 0 auto var(--space-4);
-}
 
-.shuby-book-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 .shuby-book-title {
-    font-family: var(--font-sans);
     font-size: 22px;
     font-weight: 700;
     line-height: 1.3;
@@ -4951,7 +4563,6 @@
 }
 
 .shuby-book-author {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
@@ -4959,7 +4570,6 @@
 }
 
 .shuby-book-publisher {
-    font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 400;
     line-height: 1.5;
@@ -4967,7 +4577,6 @@
 }
 
 .shuby-book-description {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.7;
@@ -4991,7 +4600,6 @@
 }
 
 .shuby-book-meta-label {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 600;
     color: var(--base-text);
@@ -4999,7 +4607,6 @@
 }
 
 .shuby-book-meta-value {
-    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 400;
     color: var(--base-text);
@@ -5042,15 +4649,14 @@
     height: 48px;
     margin-bottom: var(--space-3);
     color: var(--color-shuby-blue-800);
-}
 
-.shuby-article-hero-icon svg {
-    width: 100%;
-    height: 100%;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .shuby-article-hero-title {
-    font-family: var(--font-sans);
     font-size: 22px;
     font-weight: 700;
     line-height: 1.3;
@@ -5067,63 +4673,49 @@
     height: 160px;
     opacity: 0.9;
     pointer-events: none;
-}
 
-.shuby-article-hero-illustration img,
-.shuby-article-hero-illustration svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    img, svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 }
 
 /* Hero variant with full-width illustration at top */
 .shuby-article-hero-full {
     padding-top: 120px;
     background: linear-gradient(180deg, var(--color-shuby-blue-200) 0%, var(--color-shuby-blue-100) 50%, var(--color-shuby-white) 100%);
-}
 
-.shuby-article-hero-full .shuby-article-hero-illustration {
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 140px;
+    .shuby-article-hero-illustration {
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 140px;
+    }
 }
 
 /* =====================================================
    DASHBOARD HEADER
    ===================================================== */
 
-/* Dashboard header base styles */
+/* Dashboard header base styles with CSS custom properties for scroll transition */
 .shuby-dashboard-header {
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    --header-text: white;
+    --header-text-secondary: rgba(255, 255, 255, 0.8);
+    --header-icon: white;
+    --header-btn-bg: rgba(255, 255, 255, 0.2);
+    --header-btn-bg-hover: rgba(255, 255, 255, 0.3);
 }
 
 /* Scrolled state - applied via JS when user scrolls past sentinel */
 .shuby-header-scrolled {
-    background-color: white !important;
+    background-color: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-/* Text color transitions when scrolled */
-.shuby-header-scrolled .text-white {
-    color: var(--color-shuby-blue-800) !important;
-}
-
-.shuby-header-scrolled .text-white\/80 {
-    color: #666 !important;
-}
-
-/* Icon fill color transitions when scrolled */
-.shuby-header-scrolled .fill-white {
-    fill: var(--color-shuby-blue-800) !important;
-}
-
-/* Button background transitions when scrolled */
-.shuby-header-scrolled .bg-white\/20 {
-    background-color: var(--color-shuby-blue-100) !important;
-}
-
-.shuby-header-scrolled .bg-white\/20:hover {
-    background-color: var(--color-shuby-blue-200) !important;
+    --header-text: var(--color-shuby-blue-800);
+    --header-text-secondary: #666;
+    --header-icon: var(--color-shuby-blue-800);
+    --header-btn-bg: var(--color-shuby-blue-100);
+    --header-btn-bg-hover: var(--color-shuby-blue-200);
 }
