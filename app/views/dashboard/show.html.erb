@@ -12,6 +12,9 @@
     <%# ========== TODAYS MILESTONE BOX ========== %>
     <%= render "dashboard/milestone_box" if current_child.present? %>
 
+    <%# ========== MEASUREMENT BOXES ========== %>
+    <%= render "dashboard/measurement_boxes" if current_child.present? %>
+
     <%# ========== COMPLETA IL TUO PROFILO BANNER ========== %>
     <% family_profile = current_account.family_profile %>
     <% profile_incomplete = !family_profile&.profile_complete? || current_account.children.any? { |c| c.profile_completeness_percentage < 50 } %>

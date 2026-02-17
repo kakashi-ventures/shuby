@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_05_094023) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_16_163652) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -287,6 +287,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_05_094023) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "measurements", force: :cascade do |t|
+    t.bigint "child_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "measured_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.integer "measurement_type", null: false
+    t.text "notes"
+    t.integer "percentile"
+    t.datetime "updated_at", null: false
+    t.decimal "value", precision: 8, scale: 2, null: false
+    t.index ["child_id", "measurement_type", "measured_at"], name: "idx_measurements_child_type_date"
+    t.index ["child_id"], name: "index_measurements_on_child_id"
+  end
+
   create_table "noticed_events", force: :cascade do |t|
     t.bigint "account_id"
     t.datetime "created_at", null: false
@@ -503,7 +516,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_05_094023) do
 
   create_table "shuby_chats", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "model", default: "gpt-4o-mini", null: false
+    t.string "model", default: "gpt-5-mini", null: false
     t.string "previous_response_id"
     t.string "title"
     t.datetime "updated_at", null: false
@@ -605,6 +618,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_05_094023) do
   add_foreign_key "child_health_profiles", "children"
   add_foreign_key "children", "accounts"
   add_foreign_key "family_profiles", "accounts"
+  add_foreign_key "measurements", "children"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"

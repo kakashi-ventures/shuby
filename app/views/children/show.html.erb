@@ -1,86 +1,77 @@
 <% content_for :title, @child.name %>
 
 <div class="container px-4 mx-auto my-8 pb-24">
+  <%# Back link %>
   <div class="mb-6">
     <%= link_to children_path, class: "inline-flex items-center shuby-caption hover:text-primary-600" do %>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mr-1">
         <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
       </svg>
-      <%= t("children.index.title") %>
+      <%= @child.display_name %>
     <% end %>
   </div>
 
-  <div class="shuby-card mb-6">
-    <div class="flex items-start justify-between">
-      <div class="flex items-center gap-4">
-        <div class="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center">
-          <span class="text-2xl font-semibold text-primary-600"><%= @child.name.first.upcase %></span>
-        </div>
-        <div>
-          <h1 class="shuby-h2"><%= @child.name %></h1>
-          <p class="shuby-p2"><%= @child.age_display %></p>
-        </div>
-      </div>
-      <%= link_to edit_child_path(@child), class: "shuby-btn shuby-btn-sm shuby-btn-outline" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mr-1">
-          <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
-          <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
-        </svg>
-        <%= t("children.show.edit") %>
+  <%# Child avatar centered %>
+  <div class="flex justify-center mb-6">
+    <div class="w-24 h-24 rounded-full bg-[var(--color-shuby-blue-100)] flex items-center justify-center">
+      <% if @child.avatar.attached? %>
+        <%= image_tag @child.avatar, class: "w-24 h-24 rounded-full object-cover" %>
+      <% else %>
+        <span class="text-3xl font-semibold text-[var(--color-shuby-blue-800)]"><%= @child.display_name.first.upcase %></span>
       <% end %>
     </div>
   </div>
 
-  <div class="shuby-card mb-6">
-    <h2 class="shuby-h3 mb-4"><%= t("children.show.details") %></h2>
+  <%# Segmented tab bar %>
+  <%= render "children/tab_bar" %>
 
-    <dl class="space-y-4">
-      <div class="flex justify-between">
-        <dt class="shuby-caption"><%= t("children.form.birth_date") %></dt>
-        <dd class="shuby-p1"><%= l(@child.birth_date, format: :long) %></dd>
-      </div>
-
-      <div class="flex justify-between">
-        <dt class="shuby-caption"><%= t("children.form.sex") %></dt>
-        <dd class="shuby-p1"><%= t("children.sex.#{@child.sex}") %></dd>
-      </div>
-
-      <% if @child.premature? %>
-        <div class="flex justify-between">
-          <dt class="shuby-caption"><%= t("children.form.gestational_age") %></dt>
-          <dd class="shuby-p1">
-            <%= t("children.gestational_age.weeks_and_days", weeks: @child.gestational_weeks, days: @child.gestational_days || 0) %>
-          </dd>
-        </div>
-      <% end %>
-
-      <% if @child.notes.present? %>
-        <div>
-          <dt class="shuby-caption mb-2"><%= t("children.form.notes") %></dt>
-          <dd class="shuby-p1"><%= simple_format(@child.notes) %></dd>
-        </div>
-      <% end %>
-    </dl>
-  </div>
-
-  <%# Development Stages card %>
-  <%= link_to child_development_stages_path(@child), class: "shuby-card hover:shadow-md transition-shadow block" do %>
-    <div class="flex items-center justify-between">
-      <div class="flex items-center gap-4">
-        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-green-600">
-            <path fill-rule="evenodd" d="M2.25 13.5a8.25 8.25 0 0 1 8.25-8.25.75.75 0 0 1 .75.75v6.75H18a.75.75 0 0 1 .75.75 8.25 8.25 0 0 1-16.5 0Z" clip-rule="evenodd" />
-            <path fill-rule="evenodd" d="M12.75 3a.75.75 0 0 1 .75-.75 8.25 8.25 0 0 1 8.25 8.25.75.75 0 0 1-.75.75h-7.5a.75.75 0 0 1-.75-.75V3Z" clip-rule="evenodd" />
+  <%# Tab content %>
+  <% case @tab %>
+  <% when "info" %>
+    <%# Info tab - child details %>
+    <div class="shuby-card mb-6">
+      <div class="flex items-start justify-between mb-4">
+        <h2 class="shuby-h3"><%= t("children.show.details") %></h2>
+        <%= link_to edit_child_path(@child), class: "shuby-btn shuby-btn-sm shuby-btn-outline" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mr-1">
+            <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
+            <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
           </svg>
-        </div>
-        <div>
-          <h3 class="shuby-h3"><%= t("development_stages.title") %></h3>
-          <p class="shuby-caption"><%= t("development_stages.subtitle") %></p>
-        </div>
+          <%= t("children.show.edit") %>
+        <% end %>
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-gray-400">
-        <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-      </svg>
+
+      <dl class="space-y-4">
+        <div class="flex justify-between">
+          <dt class="shuby-caption"><%= t("children.form.birth_date") %></dt>
+          <dd class="shuby-p1"><%= l(@child.birth_date, format: :long) %></dd>
+        </div>
+
+        <div class="flex justify-between">
+          <dt class="shuby-caption"><%= t("children.form.sex") %></dt>
+          <dd class="shuby-p1"><%= t("children.sex.#{@child.sex}") %></dd>
+        </div>
+
+        <% if @child.premature? %>
+          <div class="flex justify-between">
+            <dt class="shuby-caption"><%= t("children.form.gestational_age") %></dt>
+            <dd class="shuby-p1">
+              <%= t("children.gestational_age.weeks_and_days", weeks: @child.gestational_weeks, days: @child.gestational_days || 0) %>
+            </dd>
+          </div>
+        <% end %>
+
+        <% if @child.notes.present? %>
+          <div>
+            <dt class="shuby-caption mb-2"><%= t("children.form.notes") %></dt>
+            <dd class="shuby-p1"><%= simple_format(@child.notes) %></dd>
+          </div>
+        <% end %>
+      </dl>
     </div>
+
+  <% when "misurazioni" %>
+    <%= render "children/measurements_tab" %>
+
   <% end %>
 </div>

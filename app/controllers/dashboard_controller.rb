@@ -1,6 +1,9 @@
 class DashboardController < ApplicationController
   def show
-    load_todays_milestone if current_child.present?
+    if current_child.present?
+      load_todays_milestone
+      load_measurement_boxes
+    end
   end
 
   private
@@ -9,5 +12,9 @@ class DashboardController < ApplicationController
     result = DailyMilestoneService.call(current_child)
     @todays_milestone = result[:milestone]
     @milestone_state = result[:state]
+  end
+
+  def load_measurement_boxes
+    @measurement_boxes = MeasurementDashboardService.call(current_child)
   end
 end

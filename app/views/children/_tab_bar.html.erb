@@ -1,0 +1,12 @@
+<%# Segmented tab bar for child profile %>
+<nav class="shuby-tab-segmented mb-6">
+  <%= link_to t("measurements.tabs.info"),
+      child_path(@child, tab: "info"),
+      class: "shuby-tab-segmented-item #{"active" if @tab == "info"}" %>
+  <%= link_to t("measurements.tabs.misurazioni"),
+      child_path(@child, tab: "misurazioni"),
+      class: "shuby-tab-segmented-item #{"active" if @tab == "misurazioni"}" %>
+  <%= link_to t("measurements.tabs.tappe"),
+      child_development_stages_path(@child),
+      class: "shuby-tab-segmented-item" %>
+</nav>
