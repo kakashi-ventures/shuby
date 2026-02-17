@@ -1,0 +1,154 @@
+  <!-- Modal & Tappa Components -->
+  <section class="mb-12">
+    <h2 class="shuby-h2 mb-6">Modal & Tappa Components (from Figma)</h2>
+
+    <!-- Pentagon Mascot -->
+    <h3 class="shuby-h3 mb-4">White Pentagon Mascot</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="shuby-card text-center p-6" style="background-color: var(--color-shuby-blue-100);">
+        <div class="shuby-mascot-pentagon shuby-mascot-pentagon-sm mx-auto mb-4">
+          <div class="shuby-mascot-pentagon-shape">
+            <div class="shuby-mascot-pentagon-face">
+              <div class="shuby-mascot-pentagon-eyes">
+                <div class="shuby-mascot-pentagon-eye"></div>
+                <div class="shuby-mascot-pentagon-eye"></div>
+              </div>
+              <div class="shuby-mascot-pentagon-smile"></div>
+            </div>
+          </div>
+        </div>
+        <p class="shuby-caption">Small (80px)</p>
+        <code class="shuby-p2">.shuby-mascot-pentagon-sm</code>
+      </div>
+      <div class="shuby-card text-center p-6" style="background-color: var(--color-shuby-blue-100);">
+        <div class="shuby-mascot-pentagon mx-auto mb-4">
+          <div class="shuby-mascot-pentagon-shape">
+            <div class="shuby-mascot-pentagon-face">
+              <div class="shuby-mascot-pentagon-eyes">
+                <div class="shuby-mascot-pentagon-eye"></div>
+                <div class="shuby-mascot-pentagon-eye"></div>
+              </div>
+              <div class="shuby-mascot-pentagon-smile"></div>
+            </div>
+          </div>
+        </div>
+        <p class="shuby-caption">Default (120px)</p>
+        <code class="shuby-p2">.shuby-mascot-pentagon</code>
+      </div>
+      <div class="shuby-card text-center p-6" style="background-color: var(--color-shuby-blue-100);">
+        <div class="shuby-mascot-pentagon shuby-mascot-pentagon-lg mx-auto mb-4">
+          <div class="shuby-mascot-pentagon-shape">
+            <div class="shuby-mascot-pentagon-face">
+              <div class="shuby-mascot-pentagon-eyes">
+                <div class="shuby-mascot-pentagon-eye"></div>
+                <div class="shuby-mascot-pentagon-eye"></div>
+              </div>
+              <div class="shuby-mascot-pentagon-smile"></div>
+            </div>
+          </div>
+        </div>
+        <p class="shuby-caption">Large (160px)</p>
+        <code class="shuby-p2">.shuby-mascot-pentagon-lg</code>
+      </div>
+    </div>
+
+    <!-- Ricorda Box -->
+    <h3 class="shuby-h3 mb-4">Ricorda Info Box</h3>
+    <div class="mb-8" style="max-width: 400px;">
+      <div class="shuby-ricorda-box">
+        <div class="shuby-ricorda-header">
+          <div class="shuby-ricorda-icon">
+            <%= image_tag "shuby/illustrations/mascot-cloud.png", alt: "Mascot" %>
+          </div>
+          <span class="shuby-ricorda-label">RICORDA:</span>
+        </div>
+        <p class="shuby-ricorda-text">
+          Ogni bambino cresce con i suoi tempi. Rispondi nel modo più obiettivo possibile, basandoti su <strong>ciò che osservi davvero ogni giorno</strong>.
+        </p>
+      </div>
+      <p class="shuby-p2 mt-4">Usage: <code>.shuby-ricorda-box</code></p>
+    </div>
+
+    <!-- Full-width Button -->
+    <h3 class="shuby-h3 mb-4">Full-width Button</h3>
+    <div class="mb-8" style="max-width: 400px;">
+      <button class="shuby-btn shuby-btn-primary shuby-btn-lg shuby-btn-full">
+        Comincia
+      </button>
+      <p class="shuby-p2 mt-4">Usage: <code>.shuby-btn-full</code></p>
+    </div>
+
+    <!-- Modal Close Button -->
+    <h3 class="shuby-h3 mb-4">Modal Close Button</h3>
+    <div class="flex gap-6 mb-8">
+      <div class="shuby-card p-6 relative" style="min-width: 120px; min-height: 80px;">
+        <button class="shuby-modal-close">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <p class="shuby-p2 mt-8">Default</p>
+      </div>
+      <div class="shuby-card p-6 relative" style="min-width: 120px; min-height: 80px; background-color: var(--color-shuby-blue-500);">
+        <button class="shuby-modal-close shuby-modal-close-light">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <p class="shuby-p2 mt-8" style="color: white;">Light</p>
+      </div>
+    </div>
+
+    <!-- Tappa Modal Preview -->
+    <h3 class="shuby-h3 mb-4">Tappa Modal Preview</h3>
+    <div class="mb-8">
+      <div class="shuby-tappa-modal relative" style="max-width: 400px; min-height: 500px; border-radius: var(--radius-lg); overflow: hidden;">
+        <button class="shuby-modal-close">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div class="shuby-tappa-modal-header">
+          <div class="shuby-tappa-modal-mascot">
+            <div class="shuby-mascot-pentagon">
+              <div class="shuby-mascot-pentagon-shape">
+                <div class="shuby-mascot-pentagon-face">
+                  <div class="shuby-mascot-pentagon-eyes">
+                    <div class="shuby-mascot-pentagon-eye"></div>
+                    <div class="shuby-mascot-pentagon-eye"></div>
+                  </div>
+                  <div class="shuby-mascot-pentagon-smile"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h2 class="shuby-tappa-modal-title">Comunicazione e linguaggio</h2>
+          <p class="shuby-tappa-modal-description">
+            In questa tappa scopriamo come Alessandro inizia a comunicare con suoni, sguardi e piccole reazioni alla tua voce.
+          </p>
+        </div>
+
+        <div class="shuby-tappa-modal-content">
+          <div class="shuby-ricorda-box">
+            <div class="shuby-ricorda-header">
+              <div class="shuby-ricorda-icon">
+                <%= image_tag "shuby/illustrations/mascot-cloud.png", alt: "Mascot" %>
+              </div>
+              <span class="shuby-ricorda-label">RICORDA:</span>
+            </div>
+            <p class="shuby-ricorda-text">
+              Ogni bambino cresce con i suoi tempi. Rispondi nel modo più obiettivo possibile, basandoti su <strong>ciò che osservi davvero ogni giorno</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="shuby-tappa-modal-footer">
+          <button class="shuby-btn shuby-btn-primary shuby-btn-lg shuby-btn-full">
+            Comincia
+          </button>
+        </div>
+      </div>
+      <p class="shuby-p2 mt-4">Usage: <code>.shuby-tappa-modal</code> with nested components</p>
+    </div>
+  </section>

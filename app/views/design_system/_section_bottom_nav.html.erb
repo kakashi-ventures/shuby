@@ -1,0 +1,47 @@
+  <!-- Bottom Navigation Section -->
+  <section class="mb-12">
+    <h2 class="shuby-h2 mb-6">Bottom Navigation (App Menu)</h2>
+
+    <div class="shuby-card mb-6">
+      <p class="shuby-caption mb-4">Menu items: Oggi, AI-helper, Archivio, Gestione</p>
+
+      <%= ds_bottom_nav_example(active: "oggi", label: "Oggi active:") %>
+      <%= ds_bottom_nav_example(active: "ai-helper", label: "AI-helper active:") %>
+      <%= ds_bottom_nav_example(active: "archivio", label: "Archivio active:") %>
+      <%= ds_bottom_nav_example(active: "gestione", label: "Gestione active:") %>
+    </div>
+
+    <!-- Usage Notes -->
+    <div class="shuby-card">
+      <h3 class="shuby-h3 mb-4">Navigation Component Details</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <p class="shuby-caption mb-2">States (Figma aligned)</p>
+          <ul class="shuby-p2 space-y-1">
+            <li><strong>Inactive:</strong> Gray 800 (#616467)</li>
+            <li><strong>Active:</strong> Blue 800 (#0159B5), Semi-Bold</li>
+            <li><strong>Hover:</strong> Transitions to blue</li>
+          </ul>
+        </div>
+        <div>
+          <p class="shuby-caption mb-2">Figma Specs</p>
+          <ul class="shuby-p2 space-y-1">
+            <li><strong>Gap:</strong> 47px between items</li>
+            <li><strong>Label:</strong> 10px, line-height 1.5</li>
+            <li><strong>Icon:</strong> 24x24px</li>
+            <li><strong>Shadow:</strong> 0 0 10px rgba(158,198,240,0.3)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-4">
+        <p class="shuby-caption mb-2">CSS Classes</p>
+        <ul class="shuby-p2 space-y-1">
+          <li><code>.shuby-bottom-nav</code> - Container with shadow</li>
+          <li><code>.shuby-bottom-nav-item</code> - Nav item (50px width)</li>
+          <li><code>.shuby-bottom-nav-icon</code> - Icon wrapper (40x40px, padding 8px)</li>
+          <li><code>.shuby-bottom-nav-label</code> - Text label (10px)</li>
+          <li><code>.active</code> - Active state (Blue 800, font-weight 600)</li>
+        </ul>
+      </div>
+    </div>
+  </section>

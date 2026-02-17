@@ -158,6 +158,13 @@ See `docs/PROGRESS.md` for the current checklist. Priority order:
 - **Stop reminder**: If you modified .rb files, you'll be reminded to run tests
 - **Spec review**: Run `/shuby-review` to verify against product spec
 
+### Code Composition Standards
+All code must follow `.claude/rules/code-composition.md`:
+- **Views < 50 lines** — decompose into partials + helpers
+- **No copy-paste** — 3+ repetitions = extract a helper
+- **Data-driven rendering** — define data as constants, loop to render
+- **Reuse existing patterns** — `render_svg`, `badge()`, partials
+
 ### Before Committing
 1. `/shuby-test` — run tests and RuboCop
 2. `/shuby-review` — check spec compliance

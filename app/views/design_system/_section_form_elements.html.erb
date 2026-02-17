@@ -1,0 +1,133 @@
+  <!-- Form Elements Section -->
+  <section class="mb-12">
+    <h2 class="shuby-h2 mb-6">Form Elements</h2>
+
+    <div class="shuby-card mb-6">
+      <div class="mb-6">
+        <label class="shuby-caption block mb-2">Input Field</label>
+        <input type="text" class="shuby-input" placeholder="Fai una domanda">
+      </div>
+
+      <div class="mb-6">
+        <label class="shuby-caption block mb-2">Toggle Switch</label>
+        <div class="flex items-center gap-4">
+          <div class="shuby-toggle">
+            <div class="shuby-toggle-knob"></div>
+          </div>
+          <span class="shuby-p1">Inattivo</span>
+        </div>
+        <div class="flex items-center gap-4 mt-2">
+          <div class="shuby-toggle active">
+            <div class="shuby-toggle-knob"></div>
+          </div>
+          <span class="shuby-p1">Attivo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Figma Components -->
+    <h3 class="shuby-h3 mb-4">Figma Form Components</h3>
+
+    <!-- Segmented Switch -->
+    <div class="shuby-card mb-6">
+      <p class="shuby-caption mb-4">Segmented Switch (Figma: Switch)</p>
+      <div class="shuby-switch mb-4">
+        <button class="shuby-switch-option active">Maschio</button>
+        <button class="shuby-switch-option">Femmina</button>
+      </div>
+      <div class="shuby-switch">
+        <button class="shuby-switch-option">Opzione 1</button>
+        <button class="shuby-switch-option active">Opzione 2</button>
+      </div>
+      <p class="shuby-p2 mt-4">Uses: <code>.shuby-switch</code>, <code>.shuby-switch-option</code>, <code>.active</code></p>
+    </div>
+
+    <!-- Underline Form Input -->
+    <div class="shuby-card mb-6">
+      <p class="shuby-caption mb-4">Underline Form Input (Figma: Form)</p>
+
+      <div class="space-y-6">
+        <!-- Basic input -->
+        <div class="shuby-form-group">
+          <label class="shuby-form-label">Label</label>
+          <div class="shuby-form-input-wrapper">
+            <input type="text" class="shuby-form-input-underline" placeholder="Placeholder">
+            <svg class="shuby-form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6,9 12,15 18,9"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Date input with calendar icon -->
+        <div class="shuby-form-group">
+          <label class="shuby-form-label">Data Misurazione</label>
+          <div class="shuby-form-input-wrapper">
+            <input type="text" class="shuby-form-input-underline" value="28 . 08 . 2025">
+            <svg class="shuby-form-icon" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+              <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/>
+              <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/>
+              <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Input with error -->
+        <div class="shuby-form-group">
+          <label class="shuby-form-label">Email</label>
+          <div class="shuby-form-input-wrapper">
+            <input type="email" class="shuby-form-input-underline" value="invalid-email">
+          </div>
+          <p class="shuby-form-error">Inserisci un indirizzo email valido</p>
+        </div>
+      </div>
+
+      <p class="shuby-p2 mt-4">Uses: <code>.shuby-form-group</code>, <code>.shuby-form-label</code>, <code>.shuby-form-input-wrapper</code>, <code>.shuby-form-input-underline</code>, <code>.shuby-form-icon</code>, <code>.shuby-form-error</code></p>
+    </div>
+
+    <!-- Unit Toggle -->
+    <div class="shuby-card mb-6">
+      <p class="shuby-caption mb-4">Unit Toggle (Figma: Toggle unit)</p>
+
+      <div class="flex items-center gap-6 mb-4">
+        <!-- cm active -->
+        <div class="shuby-unit-toggle">
+          <div class="shuby-unit-toggle-slider"></div>
+          <button class="shuby-unit-toggle-option active">cm</button>
+          <button class="shuby-unit-toggle-option">in</button>
+        </div>
+        <span class="shuby-p2">cm active</span>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <!-- in active -->
+        <div class="shuby-unit-toggle" data-active="right">
+          <div class="shuby-unit-toggle-slider"></div>
+          <button class="shuby-unit-toggle-option">cm</button>
+          <button class="shuby-unit-toggle-option active">in</button>
+        </div>
+        <span class="shuby-p2">in active</span>
+      </div>
+
+      <p class="shuby-p2 mt-4">Uses: <code>.shuby-unit-toggle</code>, <code>.shuby-unit-toggle-option</code>, <code>.shuby-unit-toggle-slider</code>, <code>data-active="right"</code></p>
+    </div>
+
+    <!-- Combined Example: Form with Unit Toggle -->
+    <div class="shuby-card" style="background-color: var(--color-shuby-blue-500);">
+      <p class="shuby-caption mb-4" style="color: var(--color-shuby-blue-800);">Combined Example: Height Input (Figma Overlay)</p>
+
+      <div class="flex items-end gap-6">
+        <div class="shuby-form-group flex-1">
+          <label class="shuby-form-label">Altezza</label>
+          <div class="shuby-form-input-wrapper shuby-form-input-lg">
+            <input type="text" class="shuby-form-input-underline" placeholder="Inserisci">
+          </div>
+        </div>
+        <div class="shuby-unit-toggle">
+          <div class="shuby-unit-toggle-slider"></div>
+          <button class="shuby-unit-toggle-option active">cm</button>
+          <button class="shuby-unit-toggle-option">in</button>
+        </div>
+      </div>
+    </div>
+  </section>

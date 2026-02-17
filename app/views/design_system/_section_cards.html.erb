@@ -1,0 +1,163 @@
+  <section class="mb-12">
+    <h2 class="shuby-h2 mb-6">Cards</h2>
+    
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Vertical Article Card (Figma: Articolo) -->
+      <div class="shuby-card-articolo">
+        <div class="shuby-card-articolo-image">
+          <%= image_tag "shuby/illustrations/mascot-pink-shapes.png", alt: "Illustrazione articolo" %>
+        </div>
+        <div class="shuby-card-articolo-content">
+          <div class="shuby-card-articolo-tags">
+            <span class="shuby-card-articolo-tag shuby-card-articolo-tag-tipo">
+              <span class="shuby-card-articolo-tag-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+              </span>
+              Attaccamento
+            </span>
+            <span class="shuby-card-articolo-tag shuby-card-articolo-tag-eta">0-36 mesi</span>
+          </div>
+          <div class="shuby-card-articolo-body">
+            <h3 class="shuby-card-articolo-title">Il tempo speciale: un dono di attenzione per il tuo ba...</h3>
+            <p class="shuby-card-articolo-description">Un dono reciproco di attenzione, ascolto e amore.</p>
+          </div>
+          <div class="shuby-card-articolo-time">
+            <span class="shuby-card-articolo-time-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            </span>
+            <span class="shuby-card-articolo-time-text">4 min</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metric Card (Percentile - Aggiornato) -->
+      <div class="shuby-card-metric">
+        <div class="shuby-card-metric-info">
+          <p class="shuby-card-metric-title">Peso</p>
+          <p class="shuby-card-metric-date">25.08.2025 - h. 10:34</p>
+        </div>
+        <div class="shuby-card-metric-values">
+          <div>
+            <span class="shuby-card-metric-value">3900</span>
+            <span class="shuby-card-metric-unit">grammi</span>
+          </div>
+          <div>
+            <span class="shuby-card-metric-percentile">50°</span>
+            <span class="shuby-card-metric-percentile-unit">%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Card -->
+    <h3 class="shuby-h3 mb-4 mt-8">Article Cards (Archivio)</h3>
+    <p class="shuby-p2 mb-4">Horizontal cards with image on left and content on right.</p>
+    <div class="max-w-md">
+      <div class="shuby-card-article">
+        <div class="shuby-card-article-image" style="background: linear-gradient(135deg, var(--color-shuby-blue-700), var(--color-shuby-blue-800));">
+        </div>
+        <div class="shuby-card-article-content">
+          <div class="shuby-card-article-tags">
+            <span class="shuby-tag shuby-tag-info shuby-tag-sm">
+              <span class="shuby-tag-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <ellipse cx="11" cy="13" rx="6" ry="9"/>
+                </svg>
+              </span>
+              Abilità motorie
+            </span>
+            <span class="shuby-tag shuby-tag-default shuby-tag-sm">0-2 mesi</span>
+          </div>
+          <p class="shuby-card-article-title">Riflessi e scoperte iniziali</p>
+          <p class="shuby-card-article-description">Come stimolarlo e campanelli di allarme.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Consigli Card -->
+    <h3 class="shuby-h3 mb-4 mt-8">Consigli Cards</h3>
+    <p class="shuby-p2 mb-4">Yellow cards for tips, books, and games recommendations.</p>
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Book recommendation -->
+      <div class="shuby-card-consigli">
+        <div class="shuby-card-consigli-content">
+          <div class="shuby-card-consigli-tags">
+            <span class="shuby-tag shuby-tag-giallo shuby-tag-sm">
+              <span class="shuby-tag-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                </svg>
+              </span>
+              Lettura
+            </span>
+            <span class="shuby-tag shuby-tag-light shuby-tag-sm">0-12 Mesi</span>
+          </div>
+          <div class="shuby-card-consigli-body">
+            <p class="shuby-card-consigli-author">Teresa Porcella</p>
+            <p class="shuby-card-consigli-title">Quelli là</p>
+            <p class="shuby-card-consigli-publisher">Bacchilega Editore</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game/Activity -->
+      <div class="shuby-card-consigli">
+        <div class="shuby-card-consigli-content">
+          <div class="shuby-card-consigli-tags">
+            <span class="shuby-tag shuby-tag-giallo shuby-tag-sm">
+              <span class="shuby-tag-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 12h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/>
+                </svg>
+              </span>
+              Giochi
+            </span>
+            <span class="shuby-tag shuby-tag-light shuby-tag-sm">0-2 Mesi</span>
+          </div>
+          <div class="shuby-card-consigli-body">
+            <p class="shuby-card-consigli-title">Guarda lo specchio… chi c'è qui?</p>
+            <div class="shuby-card-consigli-time">
+              <svg class="shuby-card-consigli-time-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/>
+              </svg>
+              <span class="shuby-card-consigli-time-text">3 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scheda Attività -->
+    <h3 class="shuby-h3 mb-4 mt-8">Scheda Attività</h3>
+    <p class="shuby-p2 mb-4">Simple activity list items with title, duration, and arrow.</p>
+    <div class="space-y-3 max-w-md">
+      <div class="shuby-scheda-attivita">
+        <div class="shuby-scheda-attivita-content">
+          <p class="shuby-scheda-attivita-title">Tummy time musicale</p>
+          <div class="shuby-scheda-attivita-time">
+            <svg class="shuby-scheda-attivita-time-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/>
+            </svg>
+            <span class="shuby-scheda-attivita-time-text">5 min</span>
+          </div>
+        </div>
+        <svg class="shuby-scheda-attivita-arrow" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+        </svg>
+      </div>
+      <div class="shuby-scheda-attivita">
+        <div class="shuby-scheda-attivita-content">
+          <p class="shuby-scheda-attivita-title">Massaggio mani e piedi</p>
+          <div class="shuby-scheda-attivita-time">
+            <svg class="shuby-scheda-attivita-time-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/>
+            </svg>
+            <span class="shuby-scheda-attivita-time-text">5 min</span>
+          </div>
+        </div>
+        <svg class="shuby-scheda-attivita-arrow" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+        </svg>
+      </div>
+    </div>
+  </section>

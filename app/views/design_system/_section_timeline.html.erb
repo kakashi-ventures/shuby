@@ -1,0 +1,189 @@
+  <!-- Timeline Components Section -->
+  <section class="mb-12">
+    <h2 class="shuby-h2 mb-6">Timeline Components</h2>
+    
+    <!-- Timeline Containers -->
+    <div class="mb-8">
+      <h3 class="shuby-h3 mb-4">Timeline Containers</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Lavender Border Container -->
+        <div>
+          <p class="shuby-caption mb-2">Lavender Border Container</p>
+          <div class="shuby-timeline-container p-6">
+            <p class="shuby-p1">This container has a lavender background with purple border.</p>
+            <p class="shuby-p2 mt-2">Uses: .shuby-timeline-container</p>
+          </div>
+        </div>
+        <!-- Gray Background Container -->
+        <div>
+          <p class="shuby-caption mb-2">Gray Background Container (Alt)</p>
+          <div class="shuby-timeline-container-alt p-6">
+            <p class="shuby-p1">This container has a gray background variant.</p>
+            <p class="shuby-p2 mt-2">Uses: .shuby-timeline-container-alt</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Pills -->
+    <div class="mb-8">
+      <h3 class="shuby-h3 mb-4">Timeline Pills (Date Selector)</h3>
+      <div class="shuby-card">
+        <p class="shuby-caption mb-4">Date range pills with selection states</p>
+        <div class="flex flex-wrap gap-3 mb-6">
+          <button class="shuby-timeline-pill">Sett.</button>
+          <button class="shuby-timeline-pill selected">Mese</button>
+          <button class="shuby-timeline-pill selected-outline">Anno</button>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4 mt-4">
+          <div class="text-center">
+            <p class="shuby-caption">Default</p>
+            <p class="shuby-p2">Gray background, dark text</p>
+          </div>
+          <div class="text-center">
+            <p class="shuby-caption">Selected (Magenta)</p>
+            <p class="shuby-p2">.selected - filled magenta bg</p>
+          </div>
+          <div class="text-center">
+            <p class="shuby-caption">Selected Outline</p>
+            <p class="shuby-p2">.selected-outline - purple border</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settimana (Week) Selector -->
+    <div class="mb-8">
+      <h3 class="shuby-h3 mb-4">Settimana (Week) Selector</h3>
+      <div class="shuby-card">
+        <p class="shuby-caption mb-4">Week selection pills with magenta active state</p>
+        <div class="shuby-settimana-selector">
+          <button class="shuby-settimana-item active">Settimana 1</button>
+          <button class="shuby-settimana-item">Settimana 2</button>
+          <button class="shuby-settimana-item">Settimana 3</button>
+          <button class="shuby-settimana-item">Settimana 4</button>
+        </div>
+        <p class="shuby-p2 mt-4">Uses: .shuby-settimana-selector, .shuby-settimana-item, .active</p>
+      </div>
+    </div>
+
+    <!-- Calendar Day Selection -->
+    <div class="mb-8">
+      <h3 class="shuby-h3 mb-4">Calendar Day Selection</h3>
+      <div class="shuby-card">
+        <p class="shuby-caption mb-4">Calendar days with magenta selection</p>
+        <div class="shuby-calendar inline-grid mb-4">
+          <div class="shuby-calendar-day">1</div>
+          <div class="shuby-calendar-day">2</div>
+          <div class="shuby-calendar-day selected">3</div>
+          <div class="shuby-calendar-day">4</div>
+          <div class="shuby-calendar-day">5</div>
+          <div class="shuby-calendar-day">6</div>
+          <div class="shuby-calendar-day">7</div>
+        </div>
+        <p class="shuby-p2">Uses: .shuby-calendar, .shuby-calendar-day, .selected</p>
+      </div>
+    </div>
+
+    <!-- Step Progress Dots -->
+    <div class="mb-8">
+      <h3 class="shuby-h3 mb-4">Step Progress Dots</h3>
+      <div class="shuby-card">
+        <p class="shuby-caption mb-4">Progress indicator dots</p>
+        <div class="shuby-step-dots">
+          <div class="shuby-step-dot completed"></div>
+          <div class="shuby-step-dot active"></div>
+          <div class="shuby-step-dot"></div>
+          <div class="shuby-step-dot"></div>
+        </div>
+        <div class="flex gap-8 mt-4">
+          <div>
+            <span class="inline-block w-3 h-3 rounded-full mr-2" style="background-color: var(--color-shuby-magenta-500);"></span>
+            <span class="shuby-p2">Completed</span>
+          </div>
+          <div>
+            <span class="inline-block w-3 h-3 rounded-full border-2 mr-2" style="border-color: var(--color-shuby-magenta-500);"></span>
+            <span class="shuby-p2">Active</span>
+          </div>
+          <div>
+            <span class="inline-block w-3 h-3 rounded-full mr-2" style="background-color: var(--color-shuby-gray-200);"></span>
+            <span class="shuby-p2">Pending</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Date Picker Example -->
+    <div class="mb-8">
+      <h3 class="shuby-h3 mb-4">Date Picker</h3>
+      <div class="shuby-card">
+        <p class="shuby-caption mb-4">Date picker with magenta selection</p>
+        <div class="shuby-date-picker inline-flex mb-4">
+          <button class="shuby-date-pill">Oggi</button>
+          <button class="shuby-date-pill selected">Ieri</button>
+          <button class="shuby-date-pill">Settimana</button>
+          <button class="shuby-date-pill">Mese</button>
+        </div>
+        <p class="shuby-p2">Uses: .shuby-date-picker, .shuby-date-pill, .selected</p>
+      </div>
+    </div>
+
+    <!-- Week Selector Example -->
+    <div class="mb-8">
+      <h3 class="shuby-h3 mb-4">Week Selector</h3>
+      <div class="shuby-card">
+        <p class="shuby-caption mb-4">Weekly time selector</p>
+        <div class="shuby-week-selector inline-flex mb-4">
+          <button class="shuby-week-item">L</button>
+          <button class="shuby-week-item active">M</button>
+          <button class="shuby-week-item">M</button>
+          <button class="shuby-week-item">G</button>
+          <button class="shuby-week-item">V</button>
+          <button class="shuby-week-item">S</button>
+          <button class="shuby-week-item">D</button>
+        </div>
+        <p class="shuby-p2">Uses: .shuby-week-selector, .shuby-week-item, .active</p>
+      </div>
+    </div>
+
+    <!-- Selection Theme Variables -->
+    <div class="overflow-x-auto">
+      <h3 class="shuby-h3 mb-4">Selection Theme Variables</h3>
+      <table class="w-full shuby-card">
+        <thead>
+          <tr class="border-b" style="border-color: var(--base-border-tertiary);">
+            <th class="text-left p-3 shuby-caption">Variable</th>
+            <th class="text-left p-3 shuby-caption">Value</th>
+            <th class="text-left p-3 shuby-caption">Usage</th>
+          </tr>
+        </thead>
+        <tbody class="shuby-p2">
+          <tr class="border-b" style="border-color: var(--base-border-tertiary);">
+            <td class="p-3"><code>--bg-selection</code></td>
+            <td class="p-3">#D946EF (Magenta 500)</td>
+            <td class="p-3">Primary selection background</td>
+          </tr>
+          <tr class="border-b" style="border-color: var(--base-border-tertiary);">
+            <td class="p-3"><code>--border-selection-outline</code></td>
+            <td class="p-3">#A5B4FC (Purple 300)</td>
+            <td class="p-3">Outline selection border</td>
+          </tr>
+          <tr class="border-b" style="border-color: var(--base-border-tertiary);">
+            <td class="p-3"><code>--bg-timeline-container</code></td>
+            <td class="p-3">#FAE8FF (Magenta 100)</td>
+            <td class="p-3">Timeline container background</td>
+          </tr>
+          <tr class="border-b" style="border-color: var(--base-border-tertiary);">
+            <td class="p-3"><code>--border-timeline-container</code></td>
+            <td class="p-3">#A5B4FC (Purple 300)</td>
+            <td class="p-3">Timeline container border</td>
+          </tr>
+          <tr>
+            <td class="p-3"><code>--text-on-selection</code></td>
+            <td class="p-3">#FFFFFF</td>
+            <td class="p-3">Text on selected elements</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
