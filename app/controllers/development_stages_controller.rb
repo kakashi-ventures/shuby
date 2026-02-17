@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class DevelopmentStagesController < ApplicationController
+  include ChildScoped
+
   before_action :authenticate_user!
   before_action :set_child
 
@@ -59,9 +61,4 @@ class DevelopmentStagesController < ApplicationController
   end
 
   private
-
-  def set_child
-    @child = policy_scope(Child).find(params[:child_id])
-    authorize @child, :show?
-  end
 end

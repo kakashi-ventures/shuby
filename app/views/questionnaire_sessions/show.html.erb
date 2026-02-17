@@ -1,7 +1,6 @@
 <% content_for :title, t(".title") %>
 
 <div class="container px-4 mx-auto my-8 pb-24">
-  <%# Back link %>
   <div class="mb-6">
     <%= link_to child_development_stage_path(@child, @area.slug),
         class: "inline-flex items-center shuby-caption hover:text-primary-600" do %>
@@ -12,136 +11,11 @@
     <% end %>
   </div>
 
-  <%# Summary card %>
-  <div class="shuby-card mb-6">
-    <h1 class="shuby-h2 mb-2"><%= t(".results_title") %></h1>
-    <p class="shuby-p2 mb-4"><%= @questionnaire.display_title %></p>
-
-    <%# Stats %>
-    <div class="grid grid-cols-3 gap-4 mb-6">
-      <div class="text-center p-3 bg-green-50 rounded-lg">
-        <div class="shuby-d1 text-green-600"><%= @session.yes_count %></div>
-        <div class="shuby-caption text-green-600"><%= t(".yes") %></div>
-      </div>
-      <div class="text-center p-3 bg-red-50 rounded-lg">
-        <div class="shuby-d1 text-red-600"><%= @session.no_count %></div>
-        <div class="shuby-caption text-red-600"><%= t(".no") %></div>
-      </div>
-      <div class="text-center p-3 bg-gray-50 rounded-lg">
-        <div class="shuby-d1 text-gray-600"><%= @session.unknown_count %></div>
-        <div class="shuby-caption text-gray-600"><%= t(".unknown") %></div>
-      </div>
-    </div>
-
-    <% if @session.completed_at %>
-      <p class="shuby-caption text-gray-400">
-        <%= t(".completed_on", date: l(@session.completed_at.to_date, format: :long)) %>
-      </p>
-    <% end %>
-
-    <%# Edit button - shown within 14-day window %>
-    <% if @session.editable? %>
-      <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-        <div class="flex items-start justify-between gap-3">
-          <div class="flex-1">
-            <p class="shuby-p2-dark text-blue-800 mb-1"><%= t(".can_edit") %></p>
-            <p class="shuby-caption text-blue-600">
-              <%= t(".edit_expires_in", count: @session.days_until_locked) %>
-            </p>
-          </div>
-          <%= link_to t(".edit_button"), 
-              edit_child_questionnaire_session_path(@child, @session), 
-              class: "shuby-btn shuby-btn-sm shuby-btn-secondary" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
-  <%# Attention alert (gentle) %>
-  <% if @session.needs_attention? %>
-    <div class="shuby-card mb-6 border-yellow-300 bg-yellow-50">
-      <div class="flex gap-3">
-        <div class="flex-shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-yellow-500">
-            <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003Z" clip-rule="evenodd" />
-          </svg>
-        </div>
-        <div>
-          <h3 class="shuby-h3 text-yellow-800 mb-2"><%= t(".attention_title") %></h3>
-          <p class="shuby-p1 text-yellow-700 mb-4"><%= t(".attention_message") %></p>
-
-          <div class="space-y-2">
-            <%= link_to t(".suggestion_shuby"), shuby_chats_path, class: "block shuby-btn shuby-btn-sm shuby-btn-outline" %>
-            <p class="shuby-caption text-yellow-600"><%= t(".suggestion_pediatrician") %></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
-  <%# Campanelli d'Allarme (Warning Signs) %>
-  <% if @campanelli.any? %>
-    <div class="shuby-card mb-6 border-red-200 bg-red-50">
-      <div class="flex gap-3">
-        <div class="flex-shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-red-500">
-            <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
-          </svg>
-        </div>
-        <div class="flex-1">
-          <h3 class="shuby-h3 text-red-800 mb-2"><%= t(".campanelli_title") %></h3>
-          <p class="shuby-caption text-red-600 mb-3"><%= t(".campanelli_subtitle") %></p>
-          <ul class="list-disc list-inside space-y-2">
-            <% @campanelli.each do |c| %>
-              <li class="shuby-p2 text-red-700"><%= c.description %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
-  <%# Attività di Stimolazione (Stimulation Activities) %>
-  <% if @attivita.any? %>
-    <div class="shuby-card mb-6 border-green-200 bg-green-50">
-      <div class="flex gap-3">
-        <div class="flex-shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-green-500">
-            <path fill-rule="evenodd" d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z" clip-rule="evenodd" />
-          </svg>
-        </div>
-        <div class="flex-1">
-          <h3 class="shuby-h3 text-green-800 mb-2"><%= t(".attivita_title") %></h3>
-          <p class="shuby-caption text-green-600 mb-3"><%= t(".attivita_subtitle") %></p>
-          <ul class="list-disc list-inside space-y-2">
-            <% @attivita.each do |a| %>
-              <li class="shuby-p2 text-green-700"><%= a.description %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
-  <%# Responses list %>
-  <div class="shuby-card">
-    <h2 class="shuby-h3 mb-4"><%= t(".responses_title") %></h2>
-    <div class="space-y-4">
-      <% @responses.each do |response| %>
-        <div class="flex items-start gap-3 pb-4 border-b border-gray-100 last:border-0 last:pb-0">
-          <% badge_class = case response.answer
-               when "si" then "bg-green-100 text-green-700"
-               when "no" then "bg-red-100 text-red-700"
-               else "bg-gray-100 text-gray-500"
-             end %>
-          <span class="flex-shrink-0 px-2 py-1 rounded text-xs font-medium <%= badge_class %>">
-            <%= t(".answer_#{response.answer}") %>
-          </span>
-          <p class="shuby-p2"><%= response.question.prompt %></p>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= render "questionnaire_sessions/section_summary", session: @session, questionnaire: @questionnaire, child: @child %>
+  <%= render "questionnaire_sessions/section_attention_alert", session: @session %>
+  <%= render "questionnaire_sessions/section_campanelli", campanelli: @campanelli %>
+  <%= render "questionnaire_sessions/section_attivita", attivita: @attivita %>
+  <%= render "questionnaire_sessions/section_responses", responses: @responses %>
 </div>
 
 <% content_for :bottom_nav do %>

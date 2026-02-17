@@ -16,9 +16,7 @@
               <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white text-sm"><%= type_label %></h3>
               <p class="shuby-p2 text-gray-500 dark:text-gray-400 text-xs"><%= t("measurements.dashboard.start_tracking") %></p>
             </div>
-            <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
+            <%= render "shared/chevron_right_icon" %>
           <% end %>
 
         <% when :update %>
@@ -51,9 +49,7 @@
               <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white text-sm"><%= type_label %></h3>
               <p class="shuby-p2 text-gray-500 dark:text-gray-400 text-xs"><%= box[:last_measurement].display_value %></p>
             </div>
-            <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
+            <%= render "shared/chevron_right_icon" %>
           <% end %>
         <% end %>
       <% end %>

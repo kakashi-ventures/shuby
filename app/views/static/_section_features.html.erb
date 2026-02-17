@@ -1,0 +1,39 @@
+<section class="mb-6">
+  <h2 class="shuby-overline text-gray-500 dark:text-gray-400 mb-3 text-xs font-semibold uppercase tracking-wider">
+    Cosa puoi fare
+  </h2>
+  <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden divide-y divide-gray-100 dark:divide-gray-700">
+    <a href="#" class="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+      <div class="w-10 h-10 rounded-xl bg-[var(--color-shuby-blue-100)] dark:bg-gray-700 flex items-center justify-center flex-shrink-0">
+        <%= image_tag "shuby/icons/icon-footprints.svg", class: "w-5 h-5", alt: "" %>
+      </div>
+      <div class="flex-1 min-w-0">
+        <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white text-sm">Monitora le tappe</h3>
+        <p class="shuby-p2 text-gray-500 dark:text-gray-400 text-xs truncate">Peso, altezza e milestones</p>
+      </div>
+      <%= render "shared/chevron_right_icon" %>
+    </a>
+
+    <a href="#ai-section" class="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+      <div class="w-10 h-10 rounded-xl bg-[var(--color-shuby-verde-200)] dark:bg-gray-700 flex items-center justify-center flex-shrink-0">
+        <%= image_tag "shuby/icons/icon-robot.svg", class: "w-5 h-5", alt: "" %>
+      </div>
+      <div class="flex-1 min-w-0">
+        <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white text-sm">Assistente AI 24/7</h3>
+        <p class="shuby-p2 text-gray-500 dark:text-gray-400 text-xs truncate">Risposte basate su fonti mediche</p>
+      </div>
+      <%= render "shared/chevron_right_icon" %>
+    </a>
+
+    <a href="#" class="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+      <div class="w-10 h-10 rounded-xl bg-[var(--color-shuby-giallo-400)] dark:bg-gray-700 flex items-center justify-center flex-shrink-0">
+        <%= image_tag "shuby/icons/icon-book.svg", class: "w-5 h-5", alt: "" %>
+      </div>
+      <div class="flex-1 min-w-0">
+        <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white text-sm">Consigli personalizzati</h3>
+        <p class="shuby-p2 text-gray-500 dark:text-gray-400 text-xs truncate">Attività e giochi per ogni età</p>
+      </div>
+      <%= render "shared/chevron_right_icon" %>
+    </a>
+  </div>
+</section>

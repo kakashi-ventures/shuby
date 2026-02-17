@@ -1,0 +1,42 @@
+<!-- Underline Form Input -->
+<div class="shuby-card mb-6">
+  <p class="shuby-caption mb-4">Underline Form Input (Figma: Form)</p>
+
+  <div class="space-y-6">
+    <!-- Basic input -->
+    <div class="shuby-form-group">
+      <label class="shuby-form-label">Label</label>
+      <div class="shuby-form-input-wrapper">
+        <input type="text" class="shuby-form-input-underline" placeholder="Placeholder">
+        <svg class="shuby-form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6,9 12,15 18,9"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Date input with calendar icon -->
+    <div class="shuby-form-group">
+      <label class="shuby-form-label">Data Misurazione</label>
+      <div class="shuby-form-input-wrapper">
+        <input type="text" class="shuby-form-input-underline" value="28 . 08 . 2025">
+        <svg class="shuby-form-icon" viewBox="0 0 24 24" fill="currentColor">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+          <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/>
+          <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/>
+          <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Input with error -->
+    <div class="shuby-form-group">
+      <label class="shuby-form-label">Email</label>
+      <div class="shuby-form-input-wrapper">
+        <input type="email" class="shuby-form-input-underline" value="invalid-email">
+      </div>
+      <p class="shuby-form-error">Inserisci un indirizzo email valido</p>
+    </div>
+  </div>
+
+  <p class="shuby-p2 mt-4">Uses: <code>.shuby-form-group</code>, <code>.shuby-form-label</code>, <code>.shuby-form-input-wrapper</code>, <code>.shuby-form-input-underline</code>, <code>.shuby-form-icon</code>, <code>.shuby-form-error</code></p>
+</div>

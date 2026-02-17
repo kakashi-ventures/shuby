@@ -1,0 +1,15 @@
+<% if child.errors.any? || family_profile.errors.any? || account_user.errors.any? %>
+  <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+    <ul class="list-disc list-inside text-red-600 shuby-p2">
+      <% child.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      <% family_profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      <% account_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

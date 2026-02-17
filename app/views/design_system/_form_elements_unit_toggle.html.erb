@@ -1,0 +1,45 @@
+<!-- Unit Toggle -->
+<div class="shuby-card mb-6">
+  <p class="shuby-caption mb-4">Unit Toggle (Figma: Toggle unit)</p>
+
+  <div class="flex items-center gap-6 mb-4">
+    <!-- cm active -->
+    <div class="shuby-unit-toggle">
+      <div class="shuby-unit-toggle-slider"></div>
+      <button class="shuby-unit-toggle-option active">cm</button>
+      <button class="shuby-unit-toggle-option">in</button>
+    </div>
+    <span class="shuby-p2">cm active</span>
+  </div>
+
+  <div class="flex items-center gap-6">
+    <!-- in active -->
+    <div class="shuby-unit-toggle" data-active="right">
+      <div class="shuby-unit-toggle-slider"></div>
+      <button class="shuby-unit-toggle-option">cm</button>
+      <button class="shuby-unit-toggle-option active">in</button>
+    </div>
+    <span class="shuby-p2">in active</span>
+  </div>
+
+  <p class="shuby-p2 mt-4">Uses: <code>.shuby-unit-toggle</code>, <code>.shuby-unit-toggle-option</code>, <code>.shuby-unit-toggle-slider</code>, <code>data-active="right"</code></p>
+</div>
+
+<!-- Combined Example: Form with Unit Toggle -->
+<div class="shuby-card" style="background-color: var(--color-shuby-blue-500);">
+  <p class="shuby-caption mb-4" style="color: var(--color-shuby-blue-800);">Combined Example: Height Input (Figma Overlay)</p>
+
+  <div class="flex items-end gap-6">
+    <div class="shuby-form-group flex-1">
+      <label class="shuby-form-label">Altezza</label>
+      <div class="shuby-form-input-wrapper shuby-form-input-lg">
+        <input type="text" class="shuby-form-input-underline" placeholder="Inserisci">
+      </div>
+    </div>
+    <div class="shuby-unit-toggle">
+      <div class="shuby-unit-toggle-slider"></div>
+      <button class="shuby-unit-toggle-option active">cm</button>
+      <button class="shuby-unit-toggle-option">in</button>
+    </div>
+  </div>
+</div>

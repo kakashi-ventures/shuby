@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class MeasurementsController < ApplicationController
+  include ChildScoped
+
   before_action :authenticate_user!
   before_action :set_child
   before_action :set_measurement, only: [:edit, :update, :destroy]
@@ -45,11 +47,6 @@ class MeasurementsController < ApplicationController
   end
 
   private
-
-  def set_child
-    @child = policy_scope(Child).find(params[:child_id])
-    authorize @child, :show?
-  end
 
   def set_measurement
     @measurement = @child.measurements.find(params[:id])
