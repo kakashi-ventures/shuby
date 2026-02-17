@@ -1,0 +1,218 @@
+/* Shuby Forms
+ * Inputs, form groups, unit toggle, toggle switch, segmented switch
+ */
+
+/* =====================================================
+   INPUT COMPONENTS
+   ===================================================== */
+
+/* Text input */
+.shuby-input {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--base-text);
+    background-color: var(--bg-light);
+    border: 1px solid var(--base-border-tertiary);
+    border-radius: var(--radius-xl);
+    transition: border-color 0.2s ease;
+
+    &::placeholder { color: var(--base-text-disabled); }
+
+    &:focus {
+        outline: none;
+        border-color: var(--base-border-focus);
+        box-shadow: var(--shadow-focus);
+        color: var(--base-text);
+    }
+}
+
+/* =====================================================
+   TOGGLE SWITCH
+   ===================================================== */
+
+.shuby-toggle {
+    position: relative;
+    width: 48px;
+    height: 28px;
+    background-color: var(--base-border-tertiary);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &.active {
+        background-color: var(--bg-primary);
+
+        .shuby-toggle-knob { transform: translateX(20px); }
+    }
+}
+
+.shuby-toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-shuby-white);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* =====================================================
+   SEGMENTED SWITCH (Figma: Switch component)
+   Two-option toggle like Maschio/Femmina
+   ===================================================== */
+
+.shuby-switch {
+    display: inline-flex;
+    border-radius: var(--radius-tondo);
+    overflow: hidden;
+}
+
+.shuby-switch-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px var(--space-5);
+    min-width: 150px;
+    max-width: 320px;
+    height: 36px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+
+    &:first-child { border-radius: var(--radius-tondo) 0 0 var(--radius-tondo); }
+    &:last-child { border-radius: 0 var(--radius-tondo) var(--radius-tondo) 0; }
+
+    &.active {
+        background-color: var(--color-shuby-blue-800);
+        color: var(--color-shuby-white);
+    }
+
+    &:not(.active) {
+        background-color: var(--color-shuby-blue-400);
+        color: var(--color-shuby-gray-800);
+
+        &:hover { background-color: var(--color-shuby-blue-500); }
+    }
+}
+
+/* =====================================================
+   UNDERLINE FORM INPUT (Figma: Form component)
+   Input with label and bottom border
+   ===================================================== */
+
+.shuby-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    width: 100%;
+}
+
+.shuby-form-label {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--color-shuby-black);
+    text-transform: uppercase;
+}
+
+.shuby-form-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--color-shuby-blue-700);
+}
+
+.shuby-form-input-underline {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--color-shuby-black);
+
+    &::placeholder { color: var(--color-shuby-gray-800); }
+    &:focus { outline: none; }
+}
+
+.shuby-form-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-shuby-blue-800);
+    flex-shrink: 0;
+}
+
+.shuby-form-error {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text-error);
+}
+
+/* Large form input (Figma: Dimesione=Grande) */
+.shuby-form-input-lg {
+    height: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* =====================================================
+   UNIT TOGGLE (Figma: Toggle unit - cm/in)
+   Small toggle for measurement units
+   ===================================================== */
+
+.shuby-unit-toggle {
+    position: relative;
+    display: flex;
+    width: 88px;
+    height: 36px;
+    background-color: var(--color-shuby-blue-400);
+    border: 1px solid var(--color-shuby-blue-400);
+    border-radius: var(--radius-tondo);
+    cursor: pointer;
+
+    &[data-active="right"] .shuby-unit-toggle-slider {
+        transform: translateX(100%);
+    }
+}
+
+.shuby-unit-toggle-option {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    z-index: 1;
+    transition: color 0.2s ease;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    &.active { color: var(--color-shuby-white); }
+    &:not(.active) { color: var(--color-shuby-gray-800); }
+}
+
+.shuby-unit-toggle-slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(50% - 4px);
+    height: calc(100% - 4px);
+    background-color: var(--color-shuby-blue-800);
+    border-radius: var(--radius-tondo);
+    transition: transform 0.2s ease;
+    box-shadow: 0 0 2px var(--color-shuby-blue-500);
+}

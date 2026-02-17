@@ -1,0 +1,32 @@
+/* Shuby Utilities
+ * Single-purpose utility classes using @utility for variant support
+ * (hover:shuby-bg-section, md:shuby-shadow-blu, etc.)
+ */
+
+@utility shuby-bg-section {
+    background-color: var(--base-bg-section);
+}
+
+@utility shuby-bg-white {
+    background-color: var(--color-shuby-white);
+}
+
+@utility shuby-bg-timeline {
+    background-color: var(--bg-timeline-container);
+}
+
+@utility shuby-bg-timeline-alt {
+    background-color: var(--bg-timeline-container-alt);
+}
+
+@utility shuby-shadow-blu {
+    box-shadow: var(--shadow-blu);
+}
+
+@utility shuby-text-secondary {
+    color: var(--base-text-tertiary);
+}
+
+@utility shuby-border-timeline {
+    border: 2px solid var(--border-timeline-container);
+}

@@ -1,0 +1,214 @@
+/* Shuby Tags & Badges
+ * Badges, tags, selection badges, fucsia badge
+ */
+
+/* =====================================================
+   BADGE COMPONENTS
+   ===================================================== */
+
+/* Base badge */
+.shuby-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-3);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    border-radius: var(--radius-full);
+}
+
+/* Primary badge */
+.shuby-badge-primary {
+    background-color: var(--bg-primary);
+    color: var(--text-on-primary);
+}
+
+/* Outline badge */
+.shuby-badge-outline {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--text-primary);
+}
+
+/* Success badge */
+.shuby-badge-success {
+    background-color: var(--bg-success);
+    color: var(--text-on-success);
+}
+
+/* Warning badge */
+.shuby-badge-warning {
+    background-color: var(--bg-warning);
+    color: var(--color-shuby-white);
+}
+
+/* Info badge */
+.shuby-badge-info {
+    background-color: var(--bg-info);
+    color: var(--text-on-info-secondary);
+}
+
+/* =====================================================
+   TAG COMPONENTS (with icon)
+   Based on Figma screenshot: pill-shaped tags with footprint icon
+   ===================================================== */
+
+/* Base tag styles */
+.shuby-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 6px var(--space-3);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 18px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+/* Tag icon */
+.shuby-tag-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Default tag - Light gray background */
+.shuby-tag-default {
+    background-color: var(--color-shuby-gray-100);
+    color: var(--color-shuby-gray-700);
+
+    .shuby-tag-icon { color: var(--color-shuby-gray-500); }
+}
+
+/* Light tag - White background with subtle border */
+.shuby-tag-light {
+    background-color: var(--color-shuby-white);
+    color: var(--color-shuby-gray-700);
+    border: 1px solid var(--color-shuby-gray-200);
+
+    .shuby-tag-icon { color: var(--color-shuby-gray-500); }
+}
+
+/* Primary tag - Blue filled */
+.shuby-tag-primary {
+    background-color: var(--color-shuby-blue-800);
+    color: var(--color-shuby-white);
+
+    .shuby-tag-icon { color: var(--color-shuby-white); }
+}
+
+/* Magenta/Selection tag - Magenta filled */
+.shuby-tag-magenta {
+    background-color: var(--color-shuby-magenta-500);
+    color: var(--color-shuby-white);
+
+    .shuby-tag-icon { color: var(--color-shuby-white); }
+}
+
+/* Info tag - Light blue background */
+.shuby-tag-info {
+    background-color: var(--color-shuby-blue-100);
+    color: var(--color-shuby-blue-800);
+
+    .shuby-tag-icon { color: var(--color-shuby-blue-500); }
+}
+
+/* Yellow/Amber tag (warning style) */
+.shuby-tag-yellow {
+    background-color: var(--color-shuby-orange-500);
+    color: var(--color-shuby-gray-700);
+
+    .shuby-tag-icon { color: var(--color-shuby-gray-600); }
+}
+
+/* Giallo tag (Figma: Colori/Giallo 500 - bright yellow) */
+.shuby-tag-giallo {
+    background-color: var(--color-shuby-giallo-500);
+    color: var(--color-shuby-blue-800);
+
+    .shuby-tag-icon { color: var(--color-shuby-blue-800); }
+}
+
+/* Outline tag - Border only */
+.shuby-tag-outline {
+    background-color: transparent;
+    color: var(--color-shuby-blue-800);
+    border: 1px solid var(--color-shuby-blue-800);
+
+    .shuby-tag-icon { color: var(--color-shuby-blue-800); }
+}
+
+/* Outline Magenta tag */
+.shuby-tag-outline-magenta {
+    background-color: transparent;
+    color: var(--color-shuby-magenta-500);
+    border: 1px solid var(--color-shuby-magenta-500);
+
+    .shuby-tag-icon { color: var(--color-shuby-magenta-500); }
+}
+
+/* Small tag variant */
+.shuby-tag-sm {
+    padding: var(--space-1) 10px;
+    font-size: 11px;
+    line-height: 14px;
+    gap: 3px;
+}
+
+.shuby-tag-sm .shuby-tag-icon {
+    width: 14px;
+    height: 14px;
+}
+
+/* Tag interactive state (for clickable/selectable tags) */
+.shuby-tag-clickable {
+    cursor: pointer;
+
+    &:hover { opacity: 0.85; }
+    &:active { transform: scale(0.98); }
+}
+
+/* Tag selected state */
+.shuby-tag.selected {
+    background-color: var(--color-shuby-magenta-500);
+    color: var(--color-shuby-white);
+    border-color: var(--color-shuby-magenta-500);
+
+    .shuby-tag-icon { color: var(--color-shuby-white); }
+}
+
+/* =====================================================
+   SELECTION BADGE (Magenta variant)
+   ===================================================== */
+
+.shuby-badge-selection {
+    background-color: var(--bg-selection);
+    color: var(--text-on-selection);
+}
+
+.shuby-badge-selection-outline {
+    background-color: transparent;
+    color: var(--text-selection);
+    border: 1px solid var(--border-selection);
+}
+
+/* =====================================================
+   FUCSIA BADGE
+   Badge variant for "Aggiorna" stale indicator
+   ===================================================== */
+
+.shuby-badge-fucsia {
+    background-color: var(--color-shuby-fucsia-500);
+    color: var(--color-shuby-white);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-tondo);
+}

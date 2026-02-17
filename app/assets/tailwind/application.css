@@ -103,6 +103,13 @@
   --color-shuby-gray-800: #616467;
   --color-shuby-gray-900: #111827;
 
+  /* Mascot Gradient Teal */
+  --color-shuby-mascot-teal-light: #9DD8E8;
+  --color-shuby-mascot-teal: #7BC4D7;
+
+  /* Verde Scuro Extended */
+  --color-shuby-verde-scuro-300: #0098B5;
+
   /* Core Colors */
   --color-shuby-white: #FFFFFF;
   --color-shuby-black: #000000;
@@ -139,5 +146,18 @@
 @import "./components/typography.css" layer(components);
 @import "./components/wells.css" layer(components);
 @import "./components/braintree.css" layer(components);
-@import "./components/shuby.css" layer(components);
+/* Shuby Design System Components */
+@import "./components/shuby/typography.css" layer(components);
+@import "./components/shuby/buttons.css" layer(components);
+@import "./components/shuby/forms.css" layer(components);
+@import "./components/shuby/tags-badges.css" layer(components);
+@import "./components/shuby/cards.css" layer(components);
+@import "./components/shuby/cards-articolo.css" layer(components);
+@import "./components/shuby/navigation.css" layer(components);
+@import "./components/shuby/timeline.css" layer(components);
+@import "./components/shuby/tappa.css" layer(components);
+@import "./components/shuby/gestione.css" layer(components);
+@import "./components/shuby/content.css" layer(components);
+@import "./components/shuby/layout.css" layer(components);
+@import "./components/shuby/utilities.css";
 @import "./components/stories.css" layer(components);

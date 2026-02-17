@@ -1,0 +1,292 @@
+/* Shuby Navigation
+ * Bottom nav, tabs, gestione tabs, segmented tab bar, back/arrow links
+ */
+
+/* =====================================================
+   TAB COMPONENTS
+   ===================================================== */
+
+/* Tab container */
+.shuby-tabs {
+    display: inline-flex;
+    gap: var(--space-1);
+    padding: var(--space-1);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--base-border-tertiary);
+    border-radius: var(--radius-xl);
+}
+
+/* Tab item */
+.shuby-tab {
+    padding: var(--space-2) var(--space-5);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    background-color: transparent;
+    color: var(--base-text-secondary);
+
+    &:hover {
+        background-color: var(--base-bg-hover);
+        color: var(--text-primary);
+    }
+
+    &.active,
+    &[aria-selected="true"] {
+        background-color: var(--bg-primary);
+        color: var(--text-on-primary);
+
+        &:hover { background-color: var(--bg-primary-hover); }
+    }
+}
+
+/* =====================================================
+   BOTTOM NAVIGATION (App Menu Bar)
+   Based on Figma: Oggi, AI-helper, Archivio, Gestione
+   Aligned with Figma design tokens
+   ===================================================== */
+
+/* Navigation bar container */
+.shuby-bottom-nav {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 47px;
+    padding: 6px var(--space-6) var(--space-2);
+    background-color: var(--bg-light);
+    box-shadow: 0px 0px 10px 0px rgba(158, 198, 240, 0.3);
+}
+
+/* Fixed position variant (for mobile apps) */
+.shuby-bottom-nav-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+}
+
+/* Navigation item */
+.shuby-bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    padding-bottom: var(--space-1);
+    width: 50px;
+    color: var(--color-shuby-gray-800);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    position: relative;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover { color: var(--text-primary); }
+    &.active { color: var(--text-primary); }
+}
+
+/* Navigation icon container - matches Figma Round Button */
+.shuby-bottom-nav-icon {
+    width: 40px;
+    height: 40px;
+    padding: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    margin-bottom: calc(-1 * var(--space-1));
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Navigation label - Figma: 10px Montserrat */
+.shuby-bottom-nav-label {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    min-width: 100%;
+}
+
+/* Active label weight handled via parent .shuby-bottom-nav-item.active nesting */
+.shuby-bottom-nav-item.active .shuby-bottom-nav-label {
+    font-weight: 600;
+}
+
+/* =====================================================
+   GESTIONE TABS (Famiglia, Impostazioni, Piano)
+   Pill-style tabs matching the Figma screenshot
+   ===================================================== */
+
+.shuby-gestione-tabs {
+    display: inline-flex;
+    gap: var(--space-1);
+    padding: var(--space-1);
+    background-color: var(--color-shuby-gray-100);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-4);
+}
+
+.shuby-gestione-tab {
+    padding: 10px var(--space-5);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    background-color: transparent;
+    color: var(--base-text-secondary);
+
+    &:hover { color: var(--text-primary); }
+
+    &.active,
+    &[aria-selected="true"] {
+        background-color: var(--bg-primary);
+        color: var(--text-on-primary);
+
+        &:hover { background-color: var(--bg-primary-hover); }
+    }
+}
+
+/* =====================================================
+   VIEW ALL LINK
+   Arrow link for "Tutti gli Articoli" style navigation
+   ===================================================== */
+
+.shuby-link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: gap 0.2s ease;
+
+    &:hover { gap: var(--space-2); }
+}
+
+.shuby-link-arrow-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .shuby-link-arrow:hover & {
+        transform: translateX(2px);
+    }
+}
+
+/* Small variant */
+.shuby-link-arrow-sm {
+    font-size: 12px;
+
+    .shuby-link-arrow-icon {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* =====================================================
+   BACK BUTTON / NAVIGATION LINK
+   Back arrow link for page navigation
+   ===================================================== */
+
+.shuby-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+
+    &:hover { opacity: 0.8; }
+}
+
+.shuby-back-link-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Small back link variant */
+.shuby-back-link-sm {
+    font-size: 14px;
+}
+
+.shuby-back-link-sm .shuby-back-link-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* =====================================================
+   SEGMENTED TAB BAR
+   Figma-style segmented control for profile tabs
+   ===================================================== */
+
+.shuby-tab-segmented {
+    display: flex;
+    width: 100%;
+}
+
+.shuby-tab-segmented-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px var(--space-4);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border: 1px solid var(--color-shuby-blue-300);
+    color: var(--color-shuby-gray-800);
+    background-color: var(--color-shuby-white);
+    cursor: pointer;
+}
+
+.shuby-tab-segmented-item:first-child {
+    border-radius: 12px 0 0 12px;
+}
+
+.shuby-tab-segmented-item:last-child {
+    border-radius: 0 12px 12px 0;
+}
+
+.shuby-tab-segmented-item:not(:first-child) {
+    border-left: none;
+}
+
+.shuby-tab-segmented-item.active {
+    background-color: var(--color-shuby-blue-800);
+    color: var(--color-shuby-white);
+    border-color: var(--color-shuby-blue-800);
+}
+
+.shuby-tab-segmented-item.active + .shuby-tab-segmented-item {
+    border-left: none;
+}

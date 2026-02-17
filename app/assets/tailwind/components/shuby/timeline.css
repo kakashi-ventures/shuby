@@ -1,0 +1,380 @@
+/* Shuby Timeline
+ * Date pickers, week selectors, step dots, calendar grid, timeline containers
+ *
+ * Shared patterns:
+ * - Scrollbar hiding: scrollbar-width: none + ::-webkit-scrollbar { display: none }
+ *   Used on horizontal scroll containers (.shuby-date-picker)
+ * - Magenta selection: --bg-selection / --text-on-selection tokens for selected states
+ *   Consistent across date pills, week items, calendar days, timeline pills
+ */
+
+/* =====================================================
+   DATE PICKER PILLS (Magenta selection)
+   Used for date selection in calendars and date pickers
+   ===================================================== */
+
+/* Date pill container (horizontal scrolling row of dates) */
+.shuby-date-picker {
+    display: flex;
+    gap: var(--space-2);
+    overflow-x: auto;
+    padding: var(--space-2) 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+}
+
+/* Individual date pill */
+.shuby-date-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--base-border-tertiary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+
+    &:hover {
+        border-color: var(--border-selection);
+        background-color: var(--bg-selection-light);
+    }
+
+    &.selected,
+    &[aria-selected="true"] {
+        background-color: var(--bg-selection);
+        border-color: var(--bg-selection);
+        color: var(--text-on-selection);
+
+        &:hover { background-color: var(--bg-selection-hover); }
+    }
+
+    &.disabled,
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+}
+
+/* Date pill day label (e.g., "Lu", "Ma", "Me") */
+.shuby-date-pill-day {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    opacity: 0.7;
+    line-height: 1;
+}
+
+.shuby-date-pill.selected .shuby-date-pill-day {
+    opacity: 1;
+    color: var(--text-on-selection);
+}
+
+/* Date pill number (e.g., "12", "13", "14") */
+.shuby-date-pill-number {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.shuby-date-pill.selected .shuby-date-pill-number {
+    color: var(--text-on-selection);
+}
+
+/* =====================================================
+   WEEK/STEP SELECTOR (Magenta selection)
+   Used for selecting weeks, months, or progress steps
+   ===================================================== */
+
+/* Week selector container */
+.shuby-week-selector {
+    display: flex;
+    gap: var(--space-1);
+    padding: var(--space-1);
+    background-color: var(--base-bg-high);
+    border-radius: var(--radius-xl);
+}
+
+/* Individual week/step item */
+.shuby-week-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2) var(--space-4);
+    min-width: 44px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 20px;
+    background-color: transparent;
+    color: var(--base-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+
+    &:hover {
+        background-color: var(--bg-selection-light);
+        color: var(--text-selection);
+    }
+
+    &.selected,
+    &[aria-selected="true"] {
+        background-color: var(--bg-selection);
+        color: var(--text-on-selection);
+
+        &:hover { background-color: var(--bg-selection-hover); }
+    }
+
+    &.completed {
+        background-color: var(--bg-selection-light);
+        color: var(--text-selection);
+
+        &::before {
+            content: "\2713";
+            margin-right: var(--space-1);
+            font-size: 12px;
+        }
+    }
+}
+
+/* =====================================================
+   STEP PROGRESS INDICATOR
+   Horizontal dots/steps with magenta active state
+   ===================================================== */
+
+.shuby-step-dots {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.shuby-step-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--base-border-tertiary);
+    transition: all 0.2s ease;
+
+    &.active {
+        background-color: var(--bg-selection);
+        width: 24px;
+        border-radius: 4px;
+    }
+
+    &.completed { background-color: var(--bg-selection); }
+}
+
+/* =====================================================
+   CALENDAR GRID
+   Full calendar with magenta selection
+   ===================================================== */
+
+.shuby-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--space-1);
+    padding: var(--space-4);
+}
+
+.shuby-calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--space-1);
+    padding: 0 var(--space-4);
+    margin-bottom: var(--space-2);
+}
+
+.shuby-calendar-header-day {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--base-text-tertiary);
+    padding: var(--space-2) 0;
+}
+
+.shuby-calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: var(--base-text);
+
+    &:hover { background-color: var(--bg-selection-light); }
+
+    &.selected {
+        background-color: var(--bg-selection);
+        color: var(--text-on-selection);
+    }
+
+    &.today { border: 2px solid var(--border-selection-outline); }
+    &.other-month { color: var(--base-text-disabled); }
+
+    &.disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+}
+
+/* =====================================================
+   TIMELINE DATE PICKER (from Figma screenshots)
+   Horizontal scrolling date pills with container variants
+   ===================================================== */
+
+/* Timeline container with lavender border (first row in screenshot) */
+.shuby-timeline-container {
+    display: flex;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--bg-timeline-container);
+    border: 2px solid var(--border-timeline-container);
+    border-radius: var(--radius-xl);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+}
+
+/* Timeline container alternate (gray background, no border) */
+.shuby-timeline-container-alt {
+    display: flex;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--bg-timeline-container-alt);
+    border-radius: var(--radius-xl);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+}
+
+/* Timeline date pill (Sett./Mese style) */
+.shuby-timeline-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 52px;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    border: none;
+
+    &:hover { background-color: var(--base-bg-hover); }
+
+    &.selected-outline {
+        background-color: var(--bg-secondary);
+        border: 2px solid var(--border-selection-outline);
+    }
+
+    &.selected {
+        background-color: var(--bg-selection);
+        color: var(--text-on-selection);
+
+        &:hover { background-color: var(--bg-selection-hover); }
+
+        .shuby-timeline-pill-label { color: var(--text-on-selection); }
+        .shuby-timeline-pill-number { color: var(--text-on-selection); }
+    }
+
+    &.selected-primary {
+        background-color: var(--bg-primary);
+        color: var(--text-on-primary);
+
+        &:hover { background-color: var(--bg-primary-hover); }
+
+        .shuby-timeline-pill-label,
+        .shuby-timeline-pill-number { color: var(--text-on-primary); }
+    }
+}
+
+/* Timeline pill label (e.g., "Sett.", "Mese") */
+.shuby-timeline-pill-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+/* Timeline pill number (e.g., "3", "6") */
+.shuby-timeline-pill-number {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+/* =====================================================
+   SETTIMANA (WEEK) SELECTOR (from Figma screenshot)
+   Full text week labels with magenta active state
+   ===================================================== */
+
+/* Settimana selector container */
+.shuby-settimana-selector {
+    display: flex;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    background-color: var(--bg-timeline-container-alt);
+    border-radius: var(--radius-xl);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Individual settimana item */
+.shuby-settimana-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px var(--space-5);
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    border-radius: var(--radius-full);
+    background-color: transparent;
+    color: var(--base-text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+
+    &:hover {
+        background-color: var(--bg-selection-light);
+        color: var(--text-selection);
+    }
+
+    &.active,
+    &[aria-selected="true"] {
+        background-color: var(--bg-selection);
+        color: var(--text-on-selection);
+
+        &:hover { background-color: var(--bg-selection-hover); }
+    }
+}
+
+/* Progressive state indicator (shows progression through weeks) */
+.shuby-settimana-item.past {
+    font-weight: 700;
+    color: var(--base-text);
+}
+
+/* =====================================================
+   TIMELINE UTILITY BACKGROUNDS
+   ===================================================== */
+
+/* shuby-bg-timeline, shuby-bg-timeline-alt, shuby-border-timeline moved to utilities.css as @utility */

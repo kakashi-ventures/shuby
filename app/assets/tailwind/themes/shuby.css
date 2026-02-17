@@ -49,6 +49,18 @@
        ===================================================== */
     --shadow-dark-blue: 0 0 8px 0 rgba(59, 131, 207, 0.8);    /* Figma: Shadow Dark Blue */
     --shadow-blu: 0 0 10px 0 rgba(158, 198, 240, 0.3);        /* Figma: Shadow Blu */
+    --shadow-focus: 0 0 0 3px rgba(1, 89, 181, 0.1);
+    --shadow-card-hover: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-card-hover-strong: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-overlay: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    /* =====================================================
+       OVERLAY TOKENS (Glassmorphism & Muted Text)
+       ===================================================== */
+    --overlay-white-15: rgba(255, 255, 255, 0.15);
+    --overlay-white-80: rgba(255, 255, 255, 0.80);
+    --overlay-white-85: rgba(255, 255, 255, 0.85);
+    --overlay-white-90: rgba(255, 255, 255, 0.90);
 
     /* =====================================================
        THEME VARIABLE MAPPINGS

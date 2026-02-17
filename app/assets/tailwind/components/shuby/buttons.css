@@ -1,0 +1,290 @@
+/* Shuby Buttons
+ * Button components, icon buttons, full-width variants, dark bg variants
+ *
+ * Shared patterns:
+ * - Icon slot: 16px square (flex-shrink: 0) for inline button icons
+ * - Disabled state: via &:disabled or &.disabled on .shuby-btn
+ * - Dark bg variants: use --overlay-white-* tokens for glassmorphism
+ */
+
+/* =====================================================
+   BUTTON COMPONENTS
+   ===================================================== */
+
+/* Base button styles (Figma: Button/Button S - Montserrat Semi-Bold) */
+.shuby-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-weight: 600;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+
+    &:focus {
+        outline: 2px solid var(--base-border-focus);
+        outline-offset: 2px;
+    }
+
+    &:disabled,
+    &.disabled {
+        background-color: var(--bg-disabled);
+        color: var(--base-text-disabled);
+        cursor: not-allowed;
+        border-color: var(--border-disabled);
+    }
+}
+
+/* Button sizes (Figma: Button/Button L - 20px, Button/Button S - 16px) */
+.shuby-btn-lg {
+    padding: var(--space-3) var(--space-6);
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.shuby-btn-md {
+    padding: 10px var(--space-5);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.shuby-btn-sm {
+    padding: var(--space-2) var(--space-4);
+    font-size: 14px;
+    line-height: 18px;
+}
+
+/* Primary button - filled */
+.shuby-btn-primary {
+    background-color: var(--bg-primary);
+    color: var(--text-on-primary);
+
+    &:hover { background-color: var(--bg-primary-hover); }
+}
+
+/* Primary button - outlined */
+.shuby-btn-outline {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--text-primary);
+
+    &:hover { background-color: var(--base-bg-hover); }
+}
+
+/* Dark button - outlined (Figma: Type=Outline, Colore=Nero) */
+.shuby-btn-outline-dark {
+    background-color: transparent;
+    color: var(--color-shuby-black);
+    border: 2px solid var(--color-shuby-black);
+
+    &:hover { background-color: var(--color-shuby-gray-100); }
+}
+
+/* Secondary button */
+.shuby-btn-secondary {
+    background-color: var(--bg-secondary);
+    color: var(--text-on-secondary);
+    border: 1px solid var(--border-secondary);
+
+    &:hover { background-color: var(--bg-secondary-hover); }
+}
+
+/* Danger button */
+.shuby-btn-danger {
+    background-color: var(--bg-danger);
+    color: var(--text-on-danger);
+
+    &:hover { background-color: var(--bg-danger-hover); }
+}
+
+/* Text/Link button (Figma: Type=Testo) */
+.shuby-btn-text {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--color-shuby-blue-800);
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover { color: var(--color-shuby-blue-700); }
+}
+
+.shuby-btn-text-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+/* =====================================================
+   ICON BUTTON
+   Shared flexbox centering for all icon button variants
+   ===================================================== */
+
+.shuby-icon-btn,
+.shuby-icon-btn-ghost,
+.shuby-icon-btn-pink,
+.shuby-action-btn,
+.shuby-member-edit,
+.shuby-header-icon-btn,
+.shuby-accordion-btn,
+.shuby-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.shuby-icon-btn {
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-primary);
+    color: var(--text-on-primary);
+
+    &:hover { background-color: var(--bg-primary-hover); }
+}
+
+.shuby-icon-btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+
+    &:hover { background-color: var(--base-bg-hover); }
+}
+
+/* Ghost icon button - no background, just icon */
+.shuby-icon-btn-ghost {
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    color: var(--color-shuby-gray-700);
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: var(--text-primary);
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Ghost icon button - primary color variant */
+.shuby-icon-btn-ghost-primary {
+    color: var(--text-primary);
+
+    &:hover { background-color: var(--base-bg-hover); }
+}
+
+/* =====================================================
+   ICON BUTTON VARIANTS
+   Additional color variants for icon buttons
+   ===================================================== */
+
+/* Pink/Fucsia icon button */
+.shuby-icon-btn-pink {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-shuby-fucsia-500);
+    color: var(--color-shuby-white);
+
+    &:hover { background-color: var(--color-shuby-fucsia-700); }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Small icon button variant */
+.shuby-icon-btn-sm {
+    width: 32px;
+    height: 32px;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* =====================================================
+   FULL-WIDTH BUTTON
+   Button that spans container width
+   ===================================================== */
+
+.shuby-btn-full {
+    width: 100%;
+}
+
+.shuby-btn-block {
+    display: block;
+    width: 100%;
+}
+
+/* =====================================================
+   BUTTON WITH ICON
+   Button variants with leading/trailing icons
+   ===================================================== */
+
+.shuby-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+
+    svg, img {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+    }
+
+    .shuby-btn-sm & {
+        svg, img { width: 16px; height: 16px; }
+    }
+
+    .shuby-btn-lg & {
+        svg, img { width: 24px; height: 24px; }
+    }
+}
+
+.shuby-btn-icon-left {
+    flex-direction: row;
+}
+
+.shuby-btn-icon-right {
+    flex-direction: row-reverse;
+}
+
+/* =====================================================
+   BUTTON VARIANT FOR DARK BACKGROUNDS
+   Primary button styled for teal/dark backgrounds
+   ===================================================== */
+
+.shuby-btn-teal {
+    background-color: var(--color-shuby-verde-scuro-400);
+    color: var(--color-shuby-white);
+
+    &:hover { background-color: var(--color-shuby-verde-scuro-500); }
+}
+
+/* White/Light button on dark backgrounds */
+.shuby-btn-light-on-dark {
+    background-color: var(--overlay-white-15);
+    color: var(--color-shuby-white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    &:hover { background-color: rgba(255, 255, 255, 0.25); }
+}
