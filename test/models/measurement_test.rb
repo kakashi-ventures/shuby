@@ -194,4 +194,36 @@ class MeasurementTest < ActiveSupport::TestCase
     m = Measurement.new(measurement_type: :weight, value: 4000)
     assert m.stale?(2)
   end
+
+  # === Auto-percentile calculation ===
+
+  test "saving a weight measurement auto-calculates percentile" do
+    m = Measurement.new(
+      child: children(:sophia),
+      measurement_type: :weight,
+      value: 5000,
+      measured_at: 1.day.ago
+    )
+    m.save!
+    assert_not_nil m.percentile
+    assert_includes 0..100, m.percentile
+  end
+
+  test "saving a feeding_weight leaves percentile nil" do
+    m = Measurement.new(
+      child: children(:sophia),
+      measurement_type: :feeding_weight,
+      value: 80,
+      measured_at: 1.day.ago
+    )
+    m.save!
+    assert_nil m.percentile
+  end
+
+  test "updating value recalculates percentile" do
+    m = measurements(:sophia_weight_recent)
+    old_percentile = m.percentile
+    m.update!(value: 6000) # significantly higher weight
+    assert_not_equal old_percentile, m.percentile
+  end
 end

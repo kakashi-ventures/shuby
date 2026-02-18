@@ -45,6 +45,22 @@ it:
         height: "es. 54,3"
         head_circumference: "es. 34,2"
         feeding_weight: "es. 106"
+    chart:
+      title: "Grafici di crescita"
+      what_is_percentile: "Cos'è il percentile?"
+      percentile_description: "Il percentile indica la posizione del tuo bambino rispetto agli altri bambini della stessa età e sesso, secondo gli standard OMS. Un valore tra il 10° e il 90° percentile è considerato nella norma."
+      sex_required: "Per visualizzare i grafici di crescita, indica il sesso del bambino nel profilo."
+      update_profile: "Aggiorna profilo"
+      percentile_very_low: "Molto sotto la media"
+      percentile_low: "Sotto la media"
+      percentile_normal: "Nella norma"
+      percentile_high: "Sopra la media"
+      percentile_very_high: "Molto sopra la media"
+      zoom:
+        1m: "1 mese"
+        3m: "3 mesi"
+        6m: "6 mesi"
+        all: "Tutto"
     dashboard:
       title: "Misurazioni"
       start_tracking: "Inizia a tracciare"

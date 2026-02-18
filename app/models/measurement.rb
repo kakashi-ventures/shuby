@@ -12,6 +12,8 @@ class Measurement < ApplicationRecord
   validate :measured_at_not_in_future
   validate :value_within_range
 
+  before_save :calculate_percentile, if: -> { value_changed? || measurement_type_changed? || measured_at_changed? }
+
   scope :ordered, -> { order(measured_at: :desc) }
   scope :by_type, ->(type) { where(measurement_type: type) }
   scope :latest_per_type, -> {
@@ -68,6 +70,10 @@ class Measurement < ApplicationRecord
   end
 
   private
+
+  def calculate_percentile
+    self.percentile = PercentileCalculator.call(measurement: self, child: child)
+  end
 
   def measured_at_not_in_future
     errors.add(:measured_at, :in_future) if measured_at.present? && measured_at > Time.current

@@ -1,0 +1,79 @@
+# frozen_string_literal: true
+
+module GrowthChartHelper
+  # Build chart data JSON for the Stimulus controller
+  def growth_chart_data(child:, type:)
+    sex = child.sex.to_sym
+    measurements = child.measurements.by_type(type).ordered.to_a
+
+    {
+      measurements: format_measurements(measurements, type),
+      who_curves: WhoGrowthStandard.percentile_curves(sex: sex, type: type.to_sym),
+      type: type,
+      unit: chart_unit(type),
+      title: t("measurements.types.#{type}")
+    }
+  end
+
+  # CSS class for percentile color coding (green/orange/red)
+  def percentile_color_class(percentile)
+    return "" unless percentile
+    case percentile
+    when 0..2 then "text-[var(--color-shuby-red-500)]"
+    when 3..9 then "text-[var(--color-shuby-orange-500)]"
+    when 10..90 then "text-[var(--color-shuby-green-600)]"
+    when 91..97 then "text-[var(--color-shuby-orange-500)]"
+    else "text-[var(--color-shuby-red-500)]"
+    end
+  end
+
+  # Italian description for percentile range
+  def percentile_explanation(percentile)
+    return nil unless percentile
+    case percentile
+    when 0..2 then t("measurements.chart.percentile_very_low")
+    when 3..9 then t("measurements.chart.percentile_low")
+    when 10..90 then t("measurements.chart.percentile_normal")
+    when 91..97 then t("measurements.chart.percentile_high")
+    else t("measurements.chart.percentile_very_high")
+    end
+  end
+
+  # Stub for future premium gating
+  def premium_charts?(_account)
+    true
+  end
+
+  private
+
+  def format_measurements(measurements, type)
+    measurements.filter_map do |m|
+      next unless m.child
+
+      {
+        age: age_at_measurement(m),
+        value: normalize_for_chart(m.value, type),
+        percentile: m.percentile,
+        date: I18n.l(m.measured_at, format: :short)
+      }
+    end
+  end
+
+  def normalize_for_chart(value, type)
+    # Weight: grams → kg (WHO uses kg)
+    (type.to_s == "weight") ? (value / 1000.0).round(2) : value.to_f.round(2)
+  end
+
+  def age_at_measurement(measurement)
+    date = measurement.measured_at.to_date
+    days = (date - measurement.child.birth_date).to_i
+    (days / 30.44).round(2)
+  end
+
+  def chart_unit(type)
+    case type.to_s
+    when "weight" then "kg"
+    else "cm"
+    end
+  end
+end

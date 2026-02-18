@@ -1,0 +1,34 @@
+<%# Growth chart for a single measurement type
+  Locals:
+    child      - the child record
+    chart_data - hash from growth_chart_data helper
+%>
+<div class="shuby-growth-chart"
+     data-controller="growth-chart"
+     data-growth-chart-measurements-value="<%= chart_data[:measurements].to_json %>"
+     data-growth-chart-who-curves-value="<%= chart_data[:who_curves].to_json %>"
+     data-growth-chart-type-value="<%= chart_data[:type] %>"
+     data-growth-chart-unit-value="<%= chart_data[:unit] %>"
+     data-growth-chart-title-value="<%= chart_data[:title] %>"
+     data-growth-chart-zoom-value="all">
+
+  <h3 class="font-[family-name:var(--font-sans)] text-sm font-semibold mb-2 text-shuby-gray-900">
+    <%= chart_data[:title] %>
+  </h3>
+
+  <div class="shuby-growth-chart-canvas">
+    <canvas data-growth-chart-target="canvas"></canvas>
+  </div>
+
+  <div class="shuby-growth-chart-zoom">
+    <% %w[1m 3m 6m all].each do |zoom| %>
+      <button class="shuby-growth-chart-zoom-btn <%= "active" if zoom == "all" %>"
+              data-action="click->growth-chart#setZoom"
+              data-zoom="<%= zoom %>"
+              data-growth-chart-target="zoomButton"
+              type="button">
+        <%= t("measurements.chart.zoom.#{zoom}") %>
+      </button>
+    <% end %>
+  </div>
+</div>
