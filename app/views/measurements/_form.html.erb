@@ -1,4 +1,10 @@
-<%= form_with(model: [@child, @measurement], class: "space-y-6") do |form| %>
+<%= form_with(model: [@child, @measurement], class: "space-y-6",
+    data: {
+      controller: "measurement-form",
+      measurement_form_placeholders_value: Measurement.measurement_types.keys.index_with { |type|
+        t("measurements.form.placeholders.#{type}")
+      }.to_json
+    }) do |form| %>
   <% if @measurement.errors.any? %>
     <div class="shuby-card bg-red-50 border-red-200 mb-4">
       <ul class="text-sm text-red-600 list-disc list-inside">
@@ -30,7 +36,8 @@
         step: "0.01",
         min: "0",
         inputmode: "decimal",
-        placeholder: t("measurements.form.placeholders.#{@measurement.measurement_type || 'weight'}") %>
+        placeholder: t("measurements.form.placeholders.#{@measurement.measurement_type || 'weight'}"),
+        data: { measurement_form_target: "valueInput" } %>
   </div>
 
   <%# Date/time input %>

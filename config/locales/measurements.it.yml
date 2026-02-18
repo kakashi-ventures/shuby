@@ -57,5 +57,7 @@ it:
           attributes:
             measured_at:
               in_future: "non può essere nel futuro"
+            percentile:
+              in: "deve essere tra 0 e 100"
             value:
               out_of_range: "non rientra nell'intervallo valido"

@@ -1,0 +1,64 @@
+# frozen_string_literal: true
+
+# Recent weight for Sophia (2 months old, threshold: 14 days)
+sophia_weight_recent:
+  child: sophia
+  measurement_type: 0
+  value: 4500.00
+  measured_at: <%= 3.days.ago %>
+  percentile: 50
+
+# Stale weight for Sophia (older than 14 days)
+sophia_weight_stale:
+  child: sophia
+  measurement_type: 0
+  value: 3800.00
+  measured_at: <%= 20.days.ago %>
+  percentile: 45
+
+# Recent height for Sophia
+sophia_height:
+  child: sophia
+  measurement_type: 1
+  value: 56.50
+  measured_at: <%= 5.days.ago %>
+  percentile: 60
+
+# Head circumference for Sophia
+sophia_head:
+  child: sophia
+  measurement_type: 2
+  value: 37.20
+  measured_at: <%= 7.days.ago %>
+  percentile: 55
+
+# Feeding weight for Sophia
+sophia_feeding:
+  child: sophia
+  measurement_type: 3
+  value: 80.00
+  measured_at: <%= 1.day.ago %>
+
+# Weight for Luca (18 months old, threshold: 60 days)
+luca_weight:
+  child: luca
+  measurement_type: 0
+  value: 11200.00
+  measured_at: <%= 10.days.ago %>
+  percentile: 65
+
+# Stale height for Luca (older than 60 days)
+luca_height_stale:
+  child: luca
+  measurement_type: 1
+  value: 80.50
+  measured_at: <%= 70.days.ago %>
+  percentile: 70
+
+# Weight for Marco (inactive child, 3 years old)
+marco_weight:
+  child: marco_inactive
+  measurement_type: 0
+  value: 14500.00
+  measured_at: <%= 30.days.ago %>
+  percentile: 55

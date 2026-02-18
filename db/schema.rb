@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_16_163652) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_18_105515) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -297,6 +297,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_16_163652) do
     t.datetime "updated_at", null: false
     t.decimal "value", precision: 8, scale: 2, null: false
     t.index ["child_id", "measurement_type", "measured_at"], name: "idx_measurements_child_type_date"
+    t.index ["child_id", "measurement_type", "measured_at"], name: "idx_measurements_child_type_date_desc", order: { measured_at: :desc }
     t.index ["child_id"], name: "index_measurements_on_child_id"
   end
 
