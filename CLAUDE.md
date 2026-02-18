@@ -160,7 +160,7 @@ See `docs/PROGRESS.md` for the current checklist. Priority order:
 
 ### Code Composition Standards
 All code must follow `.claude/rules/code-composition.md`:
-- **Views < 50 lines** — decompose into partials + helpers
+- **Views < 200 lines** — decompose into partials + helpers
 - **No copy-paste** — 3+ repetitions = extract a helper
 - **Data-driven rendering** — define data as constants, loop to render
 - **Reuse existing patterns** — `render_svg`, `badge()`, partials
