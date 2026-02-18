@@ -93,3 +93,7 @@ gem "ruby-openai", "~> 7.0"  # For direct Vector Store API calls
 
 # Country/nationality data with I18n support
 gem "countries", "~> 6.0"
+
+# PDF generation for pediatrician reports
+gem "prawn", "~> 2.5"
+gem "prawn-table", "~> 0.2"

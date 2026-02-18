@@ -9,6 +9,7 @@ class Child < AccountRecord
   has_many :questionnaire_sessions, dependent: :destroy
   has_many :measurements, dependent: :destroy
   has_one :health_profile, class_name: "ChildHealthProfile", dependent: :destroy
+  has_many :pediatrician_questions, dependent: :destroy
   has_one_attached :avatar
 
   accepts_nested_attributes_for :health_profile

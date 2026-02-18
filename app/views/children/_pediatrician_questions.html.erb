@@ -1,0 +1,17 @@
+<div class="shuby-card mb-6">
+  <h2 class="shuby-h3 mb-4"><%= t("pediatrician_report.sections.questions") %></h2>
+
+  <div id="pediatrician_questions_list">
+    <% if child.pediatrician_questions.any? %>
+      <% child.pediatrician_questions.ordered.each do |question| %>
+        <%= render "pediatrician_questions/question", question: question, child: child %>
+      <% end %>
+    <% else %>
+      <p class="shuby-caption mb-4"><%= t("pediatrician_questions.empty") %></p>
+    <% end %>
+  </div>
+
+  <div class="mt-4">
+    <%= render "pediatrician_questions/form", child: child, question: child.pediatrician_questions.build %>
+  </div>
+</div>

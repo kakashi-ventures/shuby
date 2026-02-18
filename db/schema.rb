@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_18_105515) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_18_152608) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -450,6 +450,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_18_105515) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pediatrician_questions", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "child_id", null: false
+    t.datetime "created_at", null: false
+    t.integer "position", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id"], name: "index_pediatrician_questions_on_child_id"
+  end
+
   create_table "plans", force: :cascade do |t|
     t.integer "amount", default: 0, null: false
     t.string "braintree_id"
@@ -517,7 +526,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_18_105515) do
 
   create_table "shuby_chats", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "model", default: "gpt-5-mini", null: false
+    t.string "model", default: "gpt-4o-mini", null: false
     t.string "previous_response_id"
     t.string "title"
     t.datetime "updated_at", null: false
@@ -623,6 +632,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_18_105515) do
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
+  add_foreign_key "pediatrician_questions", "children"
   add_foreign_key "question_responses", "questionnaire_sessions"
   add_foreign_key "question_responses", "questions"
   add_foreign_key "questionnaire_sessions", "age_band_questionnaires"

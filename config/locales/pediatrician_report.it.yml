@@ -1,0 +1,92 @@
+it:
+  pediatrician_report:
+    title: "Report per il Pediatra"
+    generated_at: "Report generato il %{date}"
+    download: "Scarica Report PDF"
+    child_info:
+      name: "Nome"
+      birth_date: "Data di nascita"
+      current_age: "Età attuale"
+      corrected_age: "Età corretta"
+      sex: "Sesso"
+      premature: "Prematuro"
+    sections:
+      header: "REPORT PER IL PEDIATRA"
+      general_info: "Informazioni Generali"
+      measurements: "Misurazioni Crescita"
+      development: "Tappe di Sviluppo"
+      questionnaires: "Questionari Completati"
+      questions: "Domande per il Pediatra"
+      notes: "Note Libere"
+    general_info:
+      birth_weight: "Peso alla nascita"
+      birth_height: "Lunghezza alla nascita"
+      gestational_age: "Età gestazionale"
+      weeks_and_days: "%{weeks} settimane e %{days} giorni"
+      birth_complications: "Complicazioni alla nascita"
+      feeding: "Alimentazione attuale"
+      sleep: "Sonno medio"
+      sleep_hours: "%{hours} ore/giorno"
+      floor_play: "Gioco a terra"
+      floor_play_minutes: "%{minutes} min/giorno"
+      screening:
+        hearing: "Screening uditivo"
+        vision: "Screening visivo"
+      family_context: "Contesto familiare"
+      family_structure: "Struttura familiare"
+      number_of_children: "Numero figli"
+      languages: "Lingue parlate"
+      hereditary_conditions: "Condizioni ereditarie"
+    measurements:
+      type: "Tipo"
+      value: "Valore"
+      percentile: "Percentile"
+      date: "Data"
+      no_data: "Nessuna misurazione registrata"
+      alert_low: "Sotto il 3° percentile"
+      alert_high: "Sopra il 97° percentile"
+    development:
+      area: "Area"
+      status: "Stato"
+      yes_rate: "Risposte positive"
+      completed: "Completato"
+      not_completed: "Non completato"
+      needs_attention: "Da approfondire"
+      no_data: "Nessun dato disponibile"
+    questionnaires:
+      age_band: "Fascia d'età"
+      completed_at: "Completato il"
+      yes_count: "Sì"
+      no_count: "No"
+      unknown_count: "Incerto"
+      needs_attention: "Da approfondire"
+      no_data: "Nessun questionario completato"
+    questions:
+      no_questions: "Nessuna domanda inserita"
+      visit_notes: "Note dalla visita"
+    notes:
+      no_notes: "Nessuna nota"
+    footer:
+      disclaimer: "Questo report è generato dall'app Shuby ed è inteso come supporto informativo per la comunicazione con il pediatra. Non sostituisce la valutazione medica professionale. I dati riportati sono basati sulle informazioni inserite dal genitore e sugli standard OMS."
+      page: "Pagina %{current} di %{total}"
+  pediatrician_questions:
+    create:
+      created: "Domanda aggiunta"
+    destroy:
+      destroyed: "Domanda rimossa"
+    form:
+      placeholder: "Scrivi una domanda per il pediatra..."
+      add: "Aggiungi"
+    empty: "Nessuna domanda per il pediatra. Aggiungi le domande che vuoi porre alla prossima visita."
+  activerecord:
+    models:
+      pediatrician_question:
+        one: "Domanda per il pediatra"
+        other: "Domande per il pediatra"
+    errors:
+      models:
+        pediatrician_question:
+          attributes:
+            body:
+              blank: "non può essere vuoto"
+              too_long: "non può superare i 500 caratteri"

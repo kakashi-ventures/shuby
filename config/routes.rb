@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   draw :children
   draw :development_stages
   draw :measurements
+  draw :pediatrician_reports
   draw :family_profiles
   draw :hotwire_native
   draw :onboarding
