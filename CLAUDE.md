@@ -47,6 +47,7 @@ config/initializers/ruby_llm.rb            # RubyLLM configuration
 ### Specification Documents
 - **Product spec**: `docs/Shuby 1.0 - Specifiche di Prodotto.md` (Italian)
 - **Functional analysis**: `docs/Shuby - Analisi Funzionale - v.1.0.pdf` (Italian)
+- **Product decisions**: `docs/DECISIONS.md` (client decisions that override the spec)
 - Always verify implementations against these documents
 
 ### OpenAI Credentials

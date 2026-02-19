@@ -7,7 +7,9 @@ Review current changes against the Shuby product specification.
 3. Read relevant sections from:
    - `docs/Shuby 1.0 - Specifiche di Prodotto.md` (product spec)
    - `docs/Shuby - Analisi Funzionale - v.1.0.pdf` (functional analysis)
-4. Compare implementation against spec requirements. Check for:
+   - `docs/DECISIONS.md` (client decisions that override the spec)
+4. Compare implementation against spec requirements. When DECISIONS.md
+   contradicts the spec, the decision takes precedence. Check for:
    - **Feature completeness**: Does the implementation cover all spec requirements?
    - **Italian text**: Are all user-facing strings in Italian?
    - **Premium/free gating**: Is the feature properly gated per the pricing spec?

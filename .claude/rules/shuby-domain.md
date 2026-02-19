@@ -38,4 +38,5 @@ paths:
 - Always verify implementations against:
   - `docs/Shuby 1.0 - Specifiche di Prodotto.md` (product spec)
   - `docs/Shuby - Analisi Funzionale - v.1.0.pdf` (functional analysis)
+  - `docs/DECISIONS.md` (client decisions — **OVERRIDE** the spec when conflicting)
 - When in doubt about a feature's behavior, check the spec before guessing
