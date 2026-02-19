@@ -91,7 +91,7 @@ module Child::AgeCalculations
 
   def current_age_band
     months = age_in_months
-    effective_month = [months, 28].min
+    effective_month = [months, 36].min
     label = I18n.t("children.age.months", count: effective_month)
     {min: effective_month, max: effective_month + 1, label: label}
   end

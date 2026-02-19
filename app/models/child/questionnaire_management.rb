@@ -32,7 +32,7 @@ module Child::QuestionnaireManagement
   end
 
   def area_progress(area)
-    questionnaire = area.questionnaire_for_age(age_in_months)
+    questionnaire = area.questionnaire_for_age(questionnaire_age_in_months)
     return {completed: false, percentage: 0} unless questionnaire
 
     session = questionnaire_sessions
