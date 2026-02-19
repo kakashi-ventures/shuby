@@ -6,6 +6,9 @@
           data-action="click->dropdown#toggle click@window->dropdown#hide"
           class="flex items-center gap-2 text-[var(--header-text)]">
     <span class="shuby-h2 text-[var(--header-text)] text-xl font-bold"><%= current_child&.display_name || t("dashboard.header.no_child") %></span>
+    <% if current_child&.birth_date %>
+      <span class="shuby-caption text-[var(--header-text-secondary)] text-xs ml-1 self-end mb-0.5"><%= current_child.detailed_corrected_age_display %></span>
+    <% end %>
     <% if children.size > 1 || children.empty? %>
       <%= render_svg "shuby/icons/icon-chevron-down", styles: "w-4 h-4 fill-[var(--header-icon)]" %>
     <% end %>

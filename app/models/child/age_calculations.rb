@@ -58,6 +58,41 @@ module Child::AgeCalculations
     end
   end
 
+  def detailed_corrected_age_display
+    return detailed_age_display unless using_corrected_age?
+
+    corrected_birth = birth_date + ((40 - gestational_weeks) * 7 + (7 - (gestational_days || 0))).days
+    total_days = (Date.current - corrected_birth).to_i
+    return detailed_age_display if total_days < 0
+
+    corrected_months = corrected_age_in_months
+
+    if total_days < 7
+      I18n.t("children.age.days", count: total_days)
+    elsif corrected_months < 1
+      weeks = (total_days / 7)
+      I18n.t("children.age.weeks", count: weeks)
+    elsif corrected_months < 12
+      remaining_days = total_days - (corrected_months * 30.44).to_i
+      weeks = (remaining_days / 7).floor.clamp(0, 3)
+
+      if weeks == 0
+        I18n.t("children.age.months", count: corrected_months)
+      else
+        format_months_and_weeks(corrected_months, weeks)
+      end
+    else
+      years = corrected_months / 12
+      remaining_months = corrected_months % 12
+
+      if remaining_months.zero?
+        I18n.t("children.age.years", count: years)
+      else
+        I18n.t("children.age.years_and_months", years: years, months: remaining_months)
+      end
+    end
+  end
+
   def premature?
     gestational_weeks.present? && gestational_weeks < 37
   end
