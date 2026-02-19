@@ -17,6 +17,7 @@ class ChildrenController < ApplicationController
       @measurements_by_type = Measurement.measurement_types.keys.map do |type|
         [type, @child.latest_measurement(type)]
       end
+      @child.measurements.load # Preload for growth chart rendering
     end
   end
 

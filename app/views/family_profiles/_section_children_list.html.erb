@@ -1,0 +1,28 @@
+<% scope = "family_profiles.edit" %>
+
+<% if children.any? %>
+  <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5">
+    <h2 class="shuby-d2 text-gray-900 dark:text-white mb-4"><%= t("sections.children", scope: scope) %></h2>
+
+    <div class="space-y-3">
+      <% children.each do |child| %>
+        <%= link_to edit_child_path(child), class: "flex items-center gap-4 p-3 rounded-xl border border-gray-200 hover:border-gray-300 transition-colors" do %>
+          <div class="w-10 h-10 rounded-full bg-[var(--color-shuby-blue-100)] flex items-center justify-center">
+            <span class="shuby-p1 font-semibold text-[var(--color-shuby-blue-800)]"><%= child.display_name.first.upcase %></span>
+          </div>
+          <div class="flex-1">
+            <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white"><%= child.display_name %></h3>
+            <div class="flex items-center gap-2">
+              <span class="shuby-p2 text-gray-500"><%= child.age_display %></span>
+              <span class="shuby-p2 text-gray-400">&middot;</span>
+              <span class="shuby-p2 <%= child.profile_complete? ? 'text-green-600' : 'text-orange-500' %>">
+                <%= child.profile_completeness_percentage %>% <%= t("complete", scope: scope) %>
+              </span>
+            </div>
+          </div>
+          <%= render "shared/chevron_right_icon", css_class: "w-5 h-5 text-gray-400" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

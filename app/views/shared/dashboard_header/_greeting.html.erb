@@ -1,6 +1,6 @@
 <%# Personalized greeting with caregiver name %>
 <% greeting_name = current_user.first_name.presence || current_user.name&.split&.first || current_user.email.split("@").first %>
 
-<p class="shuby-p2 text-white/80 text-sm">
+<p class="shuby-p2 text-[var(--header-text-secondary)] text-sm">
   <%= t("dashboard.header.greeting", name: greeting_name) %> e
 </p>

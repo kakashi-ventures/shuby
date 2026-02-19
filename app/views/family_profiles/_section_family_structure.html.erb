@@ -1,0 +1,16 @@
+<% scope = "family_profiles.edit" %>
+
+<div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5">
+  <h2 class="shuby-d2 text-gray-900 dark:text-white mb-4"><%= t("sections.family_structure", scope: scope) %></h2>
+
+  <div class="space-y-4">
+    <div>
+      <%= form.label :family_structure, t("fields.family_structure", scope: scope), class: "block shuby-caption mb-2 text-gray-700 dark:text-gray-300" %>
+      <div class="grid grid-cols-2 gap-2">
+        <% FamilyProfile.family_structures.keys.each do |structure| %>
+          <%= selectable_radio(form: form, field: :family_structure, value: structure, label: t("family_structures.#{structure}", scope: scope)) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

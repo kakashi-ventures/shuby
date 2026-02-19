@@ -37,7 +37,7 @@
       </div>
       <% if percentile.present? %>
         <div class="shuby-measurement-card-percentile">
-          <div class="shuby-measurement-card-percentile-value"><%= percentile %>&deg;</div>
+          <div class="shuby-measurement-card-percentile-value <%= percentile_color_class(percentile) %>"><%= percentile %>&deg;</div>
           <div class="shuby-measurement-card-percentile-label">%</div>
         </div>
       <% end %>

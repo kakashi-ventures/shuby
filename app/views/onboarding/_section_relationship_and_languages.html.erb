@@ -1,0 +1,38 @@
+<div>
+  <span class="block shuby-caption mb-2 text-gray-700"><%= t("onboarding.relationship") %></span>
+  <div class="grid grid-cols-2 gap-2">
+    <% [:dad, :mom, :grandparent, :other].each do |rel| %>
+      <label class="relative cursor-pointer">
+        <input type="radio" name="account_user[relationship_to_child]" value="<%= rel %>"
+               class="peer sr-only"
+               <%= "checked" if account_user.relationship_to_child == rel.to_s %>>
+        <span class="block w-full py-3 px-2 text-center rounded-xl border-2 border-gray-200
+                    peer-checked:border-[var(--color-shuby-blue-500)] peer-checked:bg-[var(--color-shuby-blue-50)]
+                    hover:border-gray-300 transition-all shuby-p1 text-gray-700">
+          <%= t("onboarding.relationship_options.#{rel}") %>
+        </span>
+      </label>
+    <% end %>
+  </div>
+</div>
+
+<div>
+  <span class="block shuby-caption mb-2 text-gray-700"><%= t("onboarding.languages") %></span>
+  <div class="grid grid-cols-3 gap-2">
+    <% [1, 2, 3].each do |count| %>
+      <label class="relative cursor-pointer">
+        <input type="radio" name="family_profile[languages_spoken_at_home]" value="<%= count %>"
+               class="peer sr-only"
+               <%= "checked" if family_profile.languages_spoken_at_home == count %>>
+        <span class="block w-full py-3 px-2 text-center rounded-xl border-2 border-gray-200
+                    peer-checked:border-[var(--color-shuby-blue-500)] peer-checked:bg-[var(--color-shuby-blue-50)]
+                    hover:border-gray-300 transition-all shuby-p1 text-gray-700">
+          <%= count == 3 ? "3+" : count %>
+        </span>
+      </label>
+    <% end %>
+  </div>
+  <p class="shuby-p2 text-gray-400 mt-2 text-center">
+    <%= t("onboarding.languages_help") %>
+  </p>
+</div>

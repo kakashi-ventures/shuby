@@ -1,0 +1,24 @@
+<section class="mb-6">
+  <h2 class="shuby-overline text-gray-500 dark:text-gray-400 mb-3 text-xs font-semibold uppercase tracking-wider">
+    Attività suggerite
+  </h2>
+  <div class="space-y-3">
+    <%= render partial: "shared/activity_card", locals: {
+      path: "#",
+      icon_bg: "bg-[var(--color-shuby-verde-200)]",
+      title: "Tummy time musicale",
+      duration: "5 MIN",
+      icon_content: tag.svg(
+        tag.path(nil, "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"),
+        class: "w-5 h-5 text-[var(--color-shuby-verde-500)]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor"
+      )
+    } %>
+    <%= render partial: "shared/activity_card", locals: {
+      path: "#",
+      icon_bg: "bg-[var(--color-shuby-blue-100)]",
+      title: "Massaggio mani e piedi",
+      duration: "5 MIN",
+      icon_content: image_tag("shuby/icons/icon-hands-heart.svg", class: "w-5 h-5", alt: "")
+    } %>
+  </div>
+</section>

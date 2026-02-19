@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+sophia_question_one:
+  child: sophia
+  body: "Il bambino dorme meno di 10 ore al giorno, è normale?"
+  position: 0
+
+sophia_question_two:
+  child: sophia
+  body: "Quando iniziare lo svezzamento?"
+  position: 1
+
+luca_question:
+  child: luca
+  body: "Serve una visita ortopedica per la camminata?"
+  position: 0

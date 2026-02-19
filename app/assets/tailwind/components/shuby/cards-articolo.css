@@ -1,0 +1,573 @@
+/* Shuby Article Cards
+ * Article cards (vertical, horizontal, illustrated, featured), diamond badge
+ */
+
+/* =====================================================
+   VERTICAL ARTICLE CARD (Figma: Articolo - vertical layout)
+   Card with image on top and content below
+   ===================================================== */
+
+.shuby-card-articolo {
+    width: 290px;
+    height: 389px;
+    position: relative;
+}
+
+.shuby-card-articolo-image {
+    width: 290px;
+    height: 200px;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    overflow: hidden;
+    background-color: var(--color-shuby-blue-300);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.shuby-card-articolo-content {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-4);
+    gap: var(--space-4);
+    background: var(--color-shuby-white);
+    border: 1px solid var(--color-shuby-blue-300);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.shuby-card-articolo-tags {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.shuby-card-articolo-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-2);
+    gap: var(--space-1);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 150%;
+    text-align: center;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.shuby-card-articolo-tag-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--text-primary);
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.shuby-card-articolo-tag-tipo {
+    background-color: var(--color-shuby-blue-300);
+}
+
+.shuby-card-articolo-tag-eta {
+    background-color: var(--color-shuby-gray-400);
+}
+
+.shuby-card-articolo-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+    align-self: stretch;
+}
+
+.shuby-card-articolo-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--text-primary);
+    max-height: 48px;
+    overflow: hidden;
+    align-self: stretch;
+}
+
+.shuby-card-articolo-description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: var(--base-text);
+    max-height: 60px;
+    overflow: hidden;
+    align-self: stretch;
+}
+
+.shuby-card-articolo-time {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.shuby-card-articolo-time-icon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    color: var(--text-primary);
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.shuby-card-articolo-time-text {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 150%;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+
+/* =====================================================
+   ARTICLE CARD (Figma: Articolo)
+   Horizontal card with image on left, content on right
+   ===================================================== */
+
+.shuby-card-article {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    height: 117px;
+    position: relative;
+}
+
+.shuby-card-article-image {
+    width: 94px;
+    height: 100%;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: var(--radius-grande) 0 0 var(--radius-grande);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.shuby-card-article-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    background-color: var(--color-shuby-white);
+    border: 1px solid var(--color-shuby-blue-300);
+    border-left: none;
+    border-radius: 0 var(--radius-grande) var(--radius-grande) 0;
+}
+
+.shuby-card-article-tags {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+}
+
+.shuby-card-article-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--color-shuby-blue-800);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.shuby-card-article-description {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--color-shuby-black);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* =====================================================
+   ARTICLE CARD
+   Horizontal card with thumbnail for article listings
+   Based on Figma "Archivio" page
+   ===================================================== */
+
+.shuby-article-card {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background-color: var(--color-shuby-white);
+    border-radius: var(--radius-md);
+    transition: box-shadow 0.2s ease;
+
+    &:hover { box-shadow: var(--shadow-card-hover-strong); }
+}
+
+/* Article thumbnail container */
+.shuby-article-thumbnail {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background-color: var(--color-shuby-blue-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    svg {
+        width: 60%;
+        height: 60%;
+    }
+}
+
+/* Smaller thumbnail variant */
+.shuby-article-thumbnail-sm {
+    width: 64px;
+    height: 64px;
+}
+
+/* Article content area */
+.shuby-article-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+/* Article tags row */
+.shuby-article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* Article title */
+.shuby-article-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--base-text);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Article description/excerpt */
+.shuby-article-excerpt {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--base-text-tertiary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Article card clickable variant */
+.shuby-article-card-clickable {
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover .shuby-article-title { color: var(--text-primary); }
+}
+
+/* =====================================================
+   FEATURED ARTICLE CARD
+   Blue gradient background variant for highlighted articles
+   ===================================================== */
+
+.shuby-article-card-featured {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: linear-gradient(135deg, var(--color-shuby-blue-400) 0%, var(--color-shuby-blue-500) 100%);
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.shuby-article-card-featured .shuby-article-content {
+    z-index: 1;
+}
+
+.shuby-article-card-featured .shuby-article-title {
+    color: var(--color-shuby-white);
+    font-size: 16px;
+}
+
+.shuby-article-card-featured .shuby-article-excerpt {
+    color: var(--overlay-white-85);
+}
+
+/* Featured card mascot/illustration */
+.shuby-article-featured-mascot {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    width: 120px;
+    height: 120px;
+    opacity: 0.9;
+}
+
+.shuby-article-featured-mascot img,
+.shuby-article-featured-mascot svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* =====================================================
+   DIAMOND BADGE
+   Diamond-shaped badge for article categories
+   e.g., "Articolo" badge in Archivio
+   ===================================================== */
+
+.shuby-badge-diamond {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px 6px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-shuby-white);
+    background-color: var(--color-shuby-blue-800);
+    border-radius: 0 var(--radius-full) var(--radius-full) 0;
+    position: relative;
+}
+
+/* Diamond shape on left side */
+.shuby-badge-diamond::before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 16px;
+    height: 16px;
+    background-color: var(--color-shuby-blue-800);
+    border-radius: 2px;
+}
+
+.shuby-badge-diamond-icon {
+    width: 14px;
+    height: 14px;
+    z-index: 1;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Diamond badge color variants */
+.shuby-badge-diamond-verde {
+    background-color: var(--color-shuby-verde-500);
+}
+
+.shuby-badge-diamond-verde::before {
+    background-color: var(--color-shuby-verde-500);
+}
+
+.shuby-badge-diamond-magenta {
+    background-color: var(--color-shuby-magenta-500);
+}
+
+.shuby-badge-diamond-magenta::before {
+    background-color: var(--color-shuby-magenta-500);
+}
+
+/* =====================================================
+   VERTICAL ARTICLE CARD
+   Card with image on top for carousels and grids
+   Based on Figma "Articoli Collegati" section
+   ===================================================== */
+
+.shuby-article-card-vertical {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    min-width: 280px;
+    background-color: var(--color-shuby-white);
+    border: 1px solid var(--base-border-tertiary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+    flex-shrink: 0;
+}
+
+.shuby-article-card-vertical:hover {
+    box-shadow: var(--shadow-overlay);
+}
+
+/* Vertical card image area */
+.shuby-article-card-vertical-image {
+    width: 100%;
+    height: 160px;
+    background-color: var(--color-shuby-blue-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.shuby-article-card-vertical-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.shuby-article-card-vertical-image svg {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+/* Taller image variant */
+.shuby-article-card-vertical-image-tall {
+    height: 200px;
+}
+
+/* Vertical card content area */
+.shuby-article-card-vertical-content {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1;
+}
+
+/* Vertical card title */
+.shuby-article-card-vertical .shuby-article-title {
+    font-size: 16px;
+    color: var(--text-primary);
+}
+
+/* Vertical card footer with reading time */
+.shuby-article-card-vertical-footer {
+    margin-top: auto;
+    padding-top: var(--space-2);
+}
+
+/* Small vertical card variant */
+.shuby-article-card-vertical-sm {
+    width: 200px;
+    min-width: 200px;
+}
+
+.shuby-article-card-vertical-sm .shuby-article-card-vertical-image {
+    height: 120px;
+}
+
+.shuby-article-card-vertical-sm .shuby-article-title {
+    font-size: 14px;
+}
+
+/* Large vertical card variant */
+.shuby-article-card-vertical-lg {
+    width: 320px;
+    min-width: 320px;
+}
+
+.shuby-article-card-vertical-lg .shuby-article-card-vertical-image {
+    height: 200px;
+}
+
+/* =====================================================
+   ARTICLE ILLUSTRATION HEADER
+   Blue background with mascot illustration
+   Based on Figma "Shuby Sorriso" variant
+   ===================================================== */
+
+.shuby-article-illustration {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background-color: var(--color-shuby-blue-700);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    overflow: hidden;
+}
+
+.shuby-article-illustration-tall {
+    height: 200px;
+}
+
+.shuby-article-illustration-mascot {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shuby-article-illustration-mascot img,
+.shuby-article-illustration-mascot svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Tags overlay on illustration */
+.shuby-article-illustration-tags {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-4);
+    display: flex;
+    gap: var(--space-2);
+    z-index: 1;
+}
+
+/* Article card with illustration header */
+.shuby-article-card-illustrated {
+    display: flex;
+    flex-direction: column;
+    width: 298px;
+    background-color: var(--color-shuby-white);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 0 10px 0 rgba(158, 198, 240, 0.3);
+    overflow: hidden;
+}
+
+.shuby-article-card-illustrated-full {
+    width: 350px;
+}
+
+.shuby-article-card-illustrated-content {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.shuby-article-card-illustrated-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

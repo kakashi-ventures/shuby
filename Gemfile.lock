@@ -651,6 +651,8 @@ DEPENDENCIES
   pay (~> 11.0)
   pg
   postmark-rails
+  prawn (~> 2.5)
+  prawn-table (~> 0.2)
   prefixed_ids (~> 1.2)
   pretender (~> 0.4)
   propshaft (~> 1.0)

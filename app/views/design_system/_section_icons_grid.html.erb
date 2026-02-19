@@ -1,0 +1,74 @@
+  <!-- Icons & Illustrations Section -->
+  <section class="mb-12">
+    <h2 class="shuby-h2 mb-6">Icons & Illustrations</h2>
+
+    <!-- Icons Grid -->
+    <h3 class="shuby-h3 mb-4">Icons</h3>
+    <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 mb-8">
+      <% Dir.glob(Rails.root.join('app/assets/images/shuby/icons/*.svg')).sort.each do |icon_path| %>
+        <% icon_name = File.basename(icon_path, '.svg') %>
+        <div class="text-center p-3 rounded-lg" style="background-color: var(--base-bg-secondary);">
+          <div class="w-8 h-8 mx-auto mb-2 flex items-center justify-center">
+            <%= image_tag "shuby/icons/#{File.basename(icon_path)}", class: "max-w-full max-h-full", style: "--fill-0: var(--base-text-primary);" %>
+          </div>
+          <p class="shuby-caption text-xs truncate" title="<%= icon_name %>"><%= icon_name.gsub('icon-', '') %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Mascots -->
+    <h3 class="shuby-h3 mb-4">Mascots (Pentagon Character)</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+      <% Dir.glob(Rails.root.join('app/assets/images/shuby/illustrations/mascot-*.svg')).sort.each do |mascot_path| %>
+        <% mascot_name = File.basename(mascot_path, '.svg') %>
+        <div class="text-center p-4 rounded-xl" style="background-color: var(--base-bg-secondary);">
+          <div class="h-24 mx-auto mb-3 flex items-center justify-center">
+            <%= image_tag "shuby/illustrations/#{File.basename(mascot_path)}", class: "max-h-full w-auto" %>
+          </div>
+          <p class="shuby-caption"><%= mascot_name.gsub('mascot-', '').titleize %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Illustrations -->
+    <h3 class="shuby-h3 mb-4">Illustrations</h3>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+      <% Dir.glob(Rails.root.join('app/assets/images/shuby/illustrations/illustration-*.svg')).sort.each do |illus_path| %>
+        <% illus_name = File.basename(illus_path, '.svg') %>
+        <div class="text-center p-4 rounded-xl" style="background-color: var(--base-bg-secondary);">
+          <div class="h-32 mx-auto mb-3 flex items-center justify-center">
+            <%= image_tag "shuby/illustrations/#{File.basename(illus_path)}", class: "max-h-full w-auto" %>
+          </div>
+          <p class="shuby-caption"><%= illus_name.gsub('illustration-', '').titleize %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Avatar Components -->
+    <h3 class="shuby-h3 mb-4">Avatar Components</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+      <% Dir.glob(Rails.root.join('app/assets/images/shuby/illustrations/avatar-*.{svg,png}')).sort.each do |avatar_path| %>
+        <% avatar_name = File.basename(avatar_path).gsub(/\.(svg|png)$/, '') %>
+        <div class="text-center p-4 rounded-xl" style="background-color: var(--base-bg-secondary);">
+          <div class="h-20 mx-auto mb-3 flex items-center justify-center">
+            <%= image_tag "shuby/illustrations/#{File.basename(avatar_path)}", class: "max-h-full w-auto" %>
+          </div>
+          <p class="shuby-caption"><%= avatar_name.gsub('avatar-', '').titleize %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Baby Photos -->
+    <h3 class="shuby-h3 mb-4">Baby Photos</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <% Dir.glob(Rails.root.join('app/assets/images/shuby/illustrations/baby-*.png')).sort.each do |baby_path| %>
+        <% baby_name = File.basename(baby_path, '.png') %>
+        <div class="text-center p-4 rounded-xl" style="background-color: var(--base-bg-secondary);">
+          <div class="h-24 w-24 mx-auto mb-3 rounded-full overflow-hidden">
+            <%= image_tag "shuby/illustrations/#{File.basename(baby_path)}", class: "w-full h-full object-cover" %>
+          </div>
+          <p class="shuby-caption"><%= baby_name.gsub('baby-', '').titleize %></p>
+        </div>
+      <% end %>
+    </div>
+  </section>

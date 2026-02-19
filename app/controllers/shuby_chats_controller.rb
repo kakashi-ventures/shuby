@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
-require "ostruct"
-
 # Controller for Shuby chat assistant
 # Handles conversation management and messaging via Turbo Streams
 class ShubyChatsController < ApplicationController
-  include ActionView::RecordIdentifier
-
   before_action :authenticate_user!
   before_action :set_shuby_chat, only: [:show, :destroy, :message]
 
@@ -92,7 +88,9 @@ class ShubyChatsController < ApplicationController
 
     # Process the AI response in a background thread and stream via ActionCable
     Thread.new do
-      stream_ai_response(user_message_content, streaming_message_id)
+      ActiveRecord::Base.connection_pool.with_connection do
+        ShubyBroadcastService.new(@shuby_chat).stream_ai_response(user_message_content, streaming_message_id)
+      end
     end
   end
 
@@ -105,77 +103,5 @@ class ShubyChatsController < ApplicationController
     @shuby_chat = current_user.shuby_chats.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to shuby_chats_path, alert: t("shuby_chats.not_found")
-  end
-
-  # Streams the AI response via Turbo Streams
-  #
-  # @param user_message [String] The user's message
-  # @param streaming_message_id [String] The DOM ID for the streaming message
-  def stream_ai_response(user_message, streaming_message_id)
-    service = ShubyAssistantService.new(@shuby_chat)
-    accumulated_content = ""
-
-    begin
-      service.ask_streaming(user_message) do |event|
-        case event[:type]
-        when :delta
-          accumulated_content += event[:content]
-          broadcast_streaming_update(streaming_message_id, accumulated_content)
-
-        when :completed
-          # Broadcast final message with citations
-          broadcast_final_message(streaming_message_id, event[:message])
-          service.update_title_if_needed
-
-        when :error
-          broadcast_error(streaming_message_id, event[:message])
-        end
-      end
-    rescue => e
-      Rails.logger.error("Shuby streaming error: #{e.message}")
-      Rails.logger.error(e.backtrace.join("\n"))
-      broadcast_error(streaming_message_id, I18n.t("shuby_chats.processing_error"))
-    ensure
-      ActiveRecord::Base.connection_pool.release_connection
-    end
-  end
-
-  # Broadcasts a streaming content update
-  #
-  # @param message_id [String] The DOM ID of the message element
-  # @param content [String] The accumulated content so far
-  def broadcast_streaming_update(message_id, content)
-    Turbo::StreamsChannel.broadcast_replace_to(
-      "shuby_chat_#{@shuby_chat.id}",
-      target: message_id,
-      partial: "shuby_chats/assistant_message_streaming",
-      locals: {message_id: message_id, content: content}
-    )
-  end
-
-  # Broadcasts the final complete message
-  #
-  # @param message_id [String] The DOM ID to replace
-  # @param message [ShubyMessage] The complete message
-  def broadcast_final_message(message_id, message)
-    Turbo::StreamsChannel.broadcast_replace_to(
-      "shuby_chat_#{@shuby_chat.id}",
-      target: message_id,
-      partial: "shuby_chats/message",
-      locals: {message: message, message_id: message_id}
-    )
-  end
-
-  # Broadcasts an error message
-  #
-  # @param message_id [String] The DOM ID to replace
-  # @param error_text [String] The error message
-  def broadcast_error(message_id, error_text)
-    Turbo::StreamsChannel.broadcast_replace_to(
-      "shuby_chat_#{@shuby_chat.id}",
-      target: message_id,
-      partial: "shuby_chats/error_message",
-      locals: {message_id: message_id, error: error_text}
-    )
   end
 end

@@ -1,0 +1,38 @@
+<section id="ai-section" class="mb-6">
+  <div class="bg-gradient-to-br from-[var(--color-shuby-blue-800)] to-[var(--color-shuby-blue-700)] rounded-2xl p-5 text-white">
+    <div class="flex items-start gap-4 mb-4">
+      <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+        <%= image_tag "shuby/icons/icon-robot.svg", class: "w-6 h-6", style: "filter: brightness(0) invert(1);", alt: "Shuby AI" %>
+      </div>
+      <div>
+        <h2 class="shuby-d2 text-white text-lg mb-1">Incontra Shuby</h2>
+        <p class="text-blue-100 text-sm">Il tuo assistente AI per ogni domanda</p>
+      </div>
+    </div>
+
+    <div class="bg-white/10 rounded-xl p-3 mb-4">
+      <div class="flex items-start gap-2 mb-2">
+        <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+          <span class="text-xs">👤</span>
+        </div>
+        <p class="text-sm text-blue-100">"Quando inizia a gattonare?"</p>
+      </div>
+      <div class="flex items-start gap-2">
+        <div class="w-6 h-6 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+          <%= image_tag "shuby/icons/icon-robot.svg", class: "w-4 h-4", alt: "" %>
+        </div>
+        <p class="text-sm text-white">"Tra i 7 e 10 mesi, ma ogni bambino ha i suoi tempi!"</p>
+      </div>
+    </div>
+
+    <% if user_signed_in? %>
+      <%= link_to shuby_chats_path, class: "block w-full text-center px-4 py-3 bg-white text-[var(--color-shuby-blue-800)] font-semibold rounded-xl hover:bg-gray-100 transition-colors" do %>
+        Parla con Shuby
+      <% end %>
+    <% else %>
+      <%= link_to new_user_registration_path, class: "block w-full text-center px-4 py-3 bg-white text-[var(--color-shuby-blue-800)] font-semibold rounded-xl hover:bg-gray-100 transition-colors" do %>
+        Prova Shuby Gratis
+      <% end %>
+    <% end %>
+  </div>
+</section>

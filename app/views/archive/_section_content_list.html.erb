@@ -1,0 +1,20 @@
+<% scope = "archive.index" %>
+
+<section class="mb-8">
+  <h2 class="shuby-h2 text-shuby-blue-800 mb-4"><%= t("sections.#{section_key}", scope: scope) %></h2>
+  <% if items.any? %>
+    <div class="space-y-3">
+      <% items.each do |item| %>
+        <%= render card_partial, content: item %>
+      <% end %>
+    </div>
+    <div class="mt-4 text-right">
+      <%= link_to archive_index_path(type: filter_type), class: "inline-flex items-center gap-1 text-shuby-blue-800 font-semibold text-sm hover:underline" do %>
+        <%= t("sections.all_#{section_key}", scope: scope) %>
+        <%= render "shared/chevron_right_icon", css_class: "w-4 h-4" %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="shuby-p2 text-gray-500"><%= t("sections.no_#{section_key}", scope: scope) %></p>
+  <% end %>
+</section>

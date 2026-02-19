@@ -1,0 +1,37 @@
+  <!-- Bottom Navigation Demo -->
+  <section class="mb-12">
+    <h2 class="shuby-h2 mb-6">Bottom Navigation</h2>
+
+    <div class="shuby-card">
+      <p class="shuby-p1 mb-4">Mobile app navigation bar with Figma icons:</p>
+      <div class="relative bg-gray-100 rounded-lg p-4" style="max-width: 390px; margin: 0 auto;">
+        <nav class="shuby-bottom-nav" style="position: relative;">
+          <a href="#" class="shuby-bottom-nav-item active">
+            <div class="shuby-bottom-nav-icon">
+              <%= image_tag "shuby/icons/icon-dashboard.svg", class: "w-6 h-6", alt: "Oggi" %>
+            </div>
+            <span class="shuby-bottom-nav-label">Oggi</span>
+          </a>
+          <a href="#" class="shuby-bottom-nav-item">
+            <div class="shuby-bottom-nav-icon">
+              <%= image_tag "shuby/icons/icon-robot.svg", class: "w-6 h-6", alt: "AI-helper" %>
+            </div>
+            <span class="shuby-bottom-nav-label">AI-helper</span>
+          </a>
+          <a href="#" class="shuby-bottom-nav-item">
+            <div class="shuby-bottom-nav-icon">
+              <%= image_tag "shuby/icons/icon-book.svg", class: "w-6 h-6", alt: "Archivio" %>
+            </div>
+            <span class="shuby-bottom-nav-label">Archivio</span>
+          </a>
+          <a href="#" class="shuby-bottom-nav-item">
+            <div class="shuby-bottom-nav-icon">
+              <%= image_tag "shuby/icons/icon-settings.svg", class: "w-6 h-6", alt: "Gestione" %>
+            </div>
+            <span class="shuby-bottom-nav-label">Gestione</span>
+          </a>
+        </nav>
+      </div>
+      <p class="shuby-p2 mt-4 text-center">Usage: <code>&lt;%= render "shared/shuby_bottom_nav", active: "oggi" %&gt;</code></p>
+    </div>
+  </section>

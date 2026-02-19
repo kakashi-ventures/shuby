@@ -12,6 +12,8 @@ class Measurement < ApplicationRecord
   validate :measured_at_not_in_future
   validate :value_within_range
 
+  before_save :calculate_percentile, if: -> { value_changed? || measurement_type_changed? || measured_at_changed? }
+
   scope :ordered, -> { order(measured_at: :desc) }
   scope :by_type, ->(type) { where(measurement_type: type) }
   scope :latest_per_type, -> {
@@ -49,21 +51,29 @@ class Measurement < ApplicationRecord
     end
   end
 
+  # Staleness thresholds: max days between measurements by child age (months)
+  STALENESS_THRESHOLDS = {
+    0..3 => 14,
+    4..12 => 30,
+    13..24 => 60,
+    25..36 => 90
+  }.freeze
+
+  def self.staleness_days_for(age_months)
+    STALENESS_THRESHOLDS.find { |range, _| range.cover?(age_months) }&.last || 90
+  end
+
   # Check if measurement is stale based on child's age
   def stale?(child_age_months)
     return true unless measured_at
-
-    max_days = case child_age_months
-    when 0..3 then 14
-    when 4..12 then 30
-    when 13..24 then 60
-    else 90
-    end
-
-    measured_at < max_days.days.ago
+    measured_at < self.class.staleness_days_for(child_age_months).days.ago
   end
 
   private
+
+  def calculate_percentile
+    self.percentile = PercentileCalculator.call(measurement: self, child: child)
+  end
 
   def measured_at_not_in_future
     errors.add(:measured_at, :in_future) if measured_at.present? && measured_at > Time.current
@@ -85,6 +95,6 @@ class Measurement < ApplicationRecord
   end
 
   def format_decimal(val)
-    val == val.to_i ? val.to_i.to_s : val.to_s.sub(".", ",")
+    (val == val.to_i) ? val.to_i.to_s : val.to_s.sub(".", ",")
   end
 end

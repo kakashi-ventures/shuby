@@ -1,0 +1,22 @@
+<% scope = "questionnaire_sessions.show" %>
+
+<% if session.needs_attention? %>
+  <div class="shuby-card mb-6 border-yellow-300 bg-yellow-50">
+    <div class="flex gap-3">
+      <div class="flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-yellow-500">
+          <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003Z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="shuby-h3 text-yellow-800 mb-2"><%= t("attention_title", scope: scope) %></h3>
+        <p class="shuby-p1 text-yellow-700 mb-4"><%= t("attention_message", scope: scope) %></p>
+
+        <div class="space-y-2">
+          <%= link_to t("suggestion_shuby", scope: scope), shuby_chats_path, class: "block shuby-btn shuby-btn-sm shuby-btn-outline" %>
+          <p class="shuby-caption text-yellow-600"><%= t("suggestion_pediatrician", scope: scope) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

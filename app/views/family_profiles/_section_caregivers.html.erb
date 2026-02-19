@@ -1,0 +1,17 @@
+<% scope = "family_profiles.edit" %>
+
+<div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5">
+  <h2 class="shuby-d2 text-gray-900 dark:text-white mb-4"><%= t("sections.caregivers", scope: scope) %></h2>
+  <p class="shuby-p2 text-gray-500 mb-4"><%= t("sections.caregivers_help", scope: scope) %></p>
+
+  <div class="grid grid-cols-2 gap-2">
+    <% FamilyProfile::CAREGIVER_OPTIONS.each do |caregiver| %>
+      <%= selectable_checkbox(
+            name: "family_profile[primary_caregivers][]",
+            value: caregiver,
+            checked: family_profile.caregivers_list.include?(caregiver),
+            label: t("caregivers.#{caregiver}", scope: scope),
+            id: "caregiver_#{caregiver}") %>
+    <% end %>
+  </div>
+</div>

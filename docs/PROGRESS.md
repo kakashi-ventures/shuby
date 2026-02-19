@@ -12,13 +12,14 @@
 - [x] Growth phases & timeline navigation
 - [x] Family profile management
 - [x] Basic settings/account management
+- [x] Growth chart visualizations (WHO percentile graphs for measurements)
+- [x] Pediatrician report PDF generation (exportable growth + milestone summary)
 
 ## In Progress
 - [ ] (none currently)
 
 ## Remaining — User-Facing Features (Priority Order)
-- [ ] Growth chart visualizations (WHO percentile graphs for measurements)
-- [ ] Pediatrician report PDF generation (exportable growth + milestone summary)
+
 - [ ] Premium feature gating (freemium vs premium tiers per spec)
 - [ ] Notification system (measurement reminders, milestone alerts)
 - [ ] Advanced analytics dashboards (development progress trends)

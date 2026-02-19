@@ -1,0 +1,49 @@
+<section class="mb-6">
+  <div class="flex items-center justify-between mb-3">
+    <h2 class="shuby-overline text-gray-500 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider">
+      Articoli in primo piano
+    </h2>
+  </div>
+
+  <%= render layout: "shared/featured_carousel" do %>
+    <%= render partial: "shared/featured_article_card", locals: {
+      path: "#",
+      bg_color: "bg-[var(--color-shuby-blue-100)]",
+      tag_label: "Abilità motorie",
+      tag_bg: "bg-white/80",
+      tag_text_color: "text-[var(--color-shuby-blue-800)]",
+      age_range: "0-2 Mesi",
+      title: "Riflessi e scoperte iniziali",
+      description: "Come stimolarlo e campanelli di allarme.",
+      duration: "4 MIN"
+    } %>
+    <%= render partial: "shared/featured_article_card", locals: {
+      path: "#",
+      bg_color: "bg-[var(--color-shuby-verde-200)]",
+      tag_label: "Benessere",
+      tag_bg: "bg-white/80",
+      tag_text_color: "text-[var(--color-shuby-verde-600)]",
+      age_range: "0-36 Mesi",
+      title: "Benessere famigliare",
+      description: "Tutto quello che c'è da sapere su emotività e cure.",
+      duration: "7 MIN"
+    } %>
+    <%= render partial: "shared/featured_article_card", locals: {
+      path: "#",
+      bg_color: "bg-[var(--color-shuby-giallo-400)]",
+      tag_label: "Giochi",
+      tag_bg: "bg-white/80",
+      tag_text_color: "text-gray-800",
+      age_range: "0-12 Mesi",
+      title: "Giochi sensoriali",
+      description: "Attività per stimolare i sensi del tuo bambino.",
+      duration: "5 MIN"
+    } %>
+  <% end %>
+
+  <div class="text-right mt-3">
+    <a href="#" class="shuby-p2 text-[var(--color-shuby-blue-800)] font-semibold text-sm hover:underline">
+      Tutti gli Articoli →
+    </a>
+  </div>
+</section>

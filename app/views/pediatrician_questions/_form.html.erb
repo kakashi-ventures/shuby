@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "pediatrician_question_form" do %>
+  <%= form_with(model: [child, question], class: "flex gap-2 items-start") do |form| %>
+    <div class="flex-1">
+      <%= form.text_field :body,
+          placeholder: t("pediatrician_questions.form.placeholder"),
+          class: "shuby-input w-full text-sm",
+          required: true,
+          maxlength: 500 %>
+    </div>
+    <%= form.submit t("pediatrician_questions.form.add"),
+        class: "shuby-btn shuby-btn-sm shuby-btn-primary whitespace-nowrap" %>
+  <% end %>
+<% end %>

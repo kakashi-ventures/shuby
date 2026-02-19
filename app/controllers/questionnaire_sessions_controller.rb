@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 class QuestionnaireSessionsController < ApplicationController
+  include ChildScoped
+
   before_action :authenticate_user!
   before_action :set_child
   before_action :set_session
+  before_action :ensure_editable!, only: [:edit, :update]
 
   def show
     # Session overview/summary
@@ -99,26 +102,12 @@ class QuestionnaireSessionsController < ApplicationController
   end
 
   def edit
-    # Guard: only allow editing within 14-day window
-    unless @session.editable?
-      redirect_to child_questionnaire_session_path(@child, @session),
-                  alert: t(".edit_window_expired")
-      return
-    end
-
     @questionnaire = @session.age_band_questionnaire
     @area = @questionnaire.development_area
     @responses = @session.question_responses.includes(:question).order("questions.position")
   end
 
   def update
-    # Guard: only allow updates within 14-day window
-    unless @session.editable?
-      redirect_to child_questionnaire_session_path(@child, @session),
-                  alert: t(".edit_window_expired")
-      return
-    end
-
     # Update notes for each response
     updated_count = 0
     if params[:responses].present?
@@ -136,13 +125,15 @@ class QuestionnaireSessionsController < ApplicationController
 
   private
 
-  def set_child
-    @child = policy_scope(Child).find(params[:child_id])
-    authorize @child, :show?
-  end
-
   def set_session
     @session = @child.questionnaire_sessions.find(params[:id])
     authorize @session
+  end
+
+  def ensure_editable!
+    return if @session.editable?
+
+    redirect_to child_questionnaire_session_path(@child, @session),
+      alert: t("questionnaire_sessions.edit.edit_window_expired")
   end
 end

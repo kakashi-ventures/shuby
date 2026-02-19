@@ -1,0 +1,35 @@
+<% scope = "family_profiles.edit" %>
+
+<div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5"
+     data-controller="conditional-fields">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="shuby-d2 text-gray-900 dark:text-white"><%= t("sections.hereditary", scope: scope) %></h2>
+    <span class="shuby-caption text-gray-400"><%= t("children.form.optional") %></span>
+  </div>
+  <p class="shuby-p2 text-gray-500 mb-4"><%= t("sections.hereditary_help", scope: scope) %></p>
+
+  <div class="mb-4">
+    <label class="flex items-center gap-3 cursor-pointer">
+      <%= form.check_box :has_hereditary_conditions,
+          class: "w-5 h-5 rounded border-gray-300 text-[var(--color-shuby-blue-500)] focus:ring-[var(--color-shuby-blue-500)]",
+          data: { conditional_fields_target: "hereditaryTrigger", action: "conditional-fields#toggleHereditary" } %>
+      <span class="shuby-p1 text-gray-700 dark:text-gray-300"><%= t("fields.has_hereditary_conditions", scope: scope) %></span>
+    </label>
+  </div>
+
+  <div id="hereditary-conditions"
+       class="<%= 'hidden' unless family_profile.has_hereditary_conditions? %>"
+       data-conditional-fields-target="hereditaryDetails">
+    <div class="grid grid-cols-1 gap-2">
+      <% FamilyProfile::HEREDITARY_CONDITIONS.each do |condition| %>
+        <%= selectable_checkbox(
+              name: "family_profile[hereditary_conditions][]",
+              value: condition,
+              checked: family_profile.hereditary_conditions_list.include?(condition),
+              label: t("hereditary_conditions.#{condition}", scope: scope),
+              id: "condition_#{condition}",
+              full_width: true) %>
+      <% end %>
+    </div>
+  </div>
+</div>

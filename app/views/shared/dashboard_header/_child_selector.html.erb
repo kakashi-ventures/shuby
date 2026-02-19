@@ -4,10 +4,10 @@
 <div class="relative" data-controller="dropdown">
   <button type="button"
           data-action="click->dropdown#toggle click@window->dropdown#hide"
-          class="flex items-center gap-2 text-white">
-    <span class="shuby-h2 text-white text-xl font-bold"><%= current_child&.display_name || t("dashboard.header.no_child") %></span>
+          class="flex items-center gap-2 text-[var(--header-text)]">
+    <span class="shuby-h2 text-[var(--header-text)] text-xl font-bold"><%= current_child&.display_name || t("dashboard.header.no_child") %></span>
     <% if children.size > 1 || children.empty? %>
-      <%= render_svg "shuby/icons/icon-chevron-down", styles: "w-4 h-4 fill-white" %>
+      <%= render_svg "shuby/icons/icon-chevron-down", styles: "w-4 h-4 fill-[var(--header-icon)]" %>
     <% end %>
   </button>
 

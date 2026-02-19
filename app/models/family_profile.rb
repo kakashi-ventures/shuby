@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FamilyProfile < AccountRecord
+  include ProfileCompleteness
+
   belongs_to :account
 
   enum :family_structure, {
@@ -46,14 +48,13 @@ class FamilyProfile < AccountRecord
     hereditary_conditions || []
   end
 
-  # Profile completeness tracking
-  def profile_completeness_percentage
-    required_fields = [nationality, country, mother_tongue]
-    filled = required_fields.count(&:present?)
-    (filled.to_f / required_fields.size * 100).round
+  private
+
+  def completeness_fields
+    [nationality, country, mother_tongue]
   end
 
-  def profile_complete?
-    profile_completeness_percentage >= 100
+  def completeness_threshold
+    100
   end
 end

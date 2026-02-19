@@ -1,0 +1,31 @@
+<% scope = "family_profiles.edit" %>
+
+<div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5">
+  <h2 class="shuby-d2 text-gray-900 dark:text-white mb-4"><%= t("sections.family_info", scope: scope) %></h2>
+
+  <div class="space-y-4">
+    <div>
+      <%= form.label :nationality, t("fields.nationality", scope: scope), class: "block shuby-caption mb-2 text-gray-700 dark:text-gray-300" %>
+      <%= form.select :nationality,
+          t("nationalities", scope: scope).map { |k, v| [v, v] },
+          { include_blank: t("select_option", scope: scope) },
+          class: "shuby-input w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :country, t("fields.country", scope: scope), class: "block shuby-caption mb-2 text-gray-700 dark:text-gray-300" %>
+      <%= form.select :country,
+          t("countries", scope: scope).map { |k, v| [v, v] },
+          { include_blank: t("select_option", scope: scope) },
+          class: "shuby-input w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :mother_tongue, t("fields.mother_tongue", scope: scope), class: "block shuby-caption mb-2 text-gray-700 dark:text-gray-300" %>
+      <%= form.select :mother_tongue,
+          t("mother_tongues", scope: scope).map { |k, v| [v, v] },
+          { include_blank: t("select_option", scope: scope) },
+          class: "shuby-input w-full" %>
+    </div>
+  </div>
+</div>

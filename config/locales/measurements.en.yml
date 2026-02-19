@@ -45,6 +45,22 @@ en:
         height: "e.g. 54.3"
         head_circumference: "e.g. 34.2"
         feeding_weight: "e.g. 106"
+    chart:
+      title: "Growth Charts"
+      what_is_percentile: "What is a percentile?"
+      percentile_description: "The percentile indicates your child's position compared to other children of the same age and sex, according to WHO standards. A value between the 10th and 90th percentile is considered normal."
+      sex_required: "To view growth charts, please indicate the child's sex in their profile."
+      update_profile: "Update profile"
+      percentile_very_low: "Well below average"
+      percentile_low: "Below average"
+      percentile_normal: "Normal range"
+      percentile_high: "Above average"
+      percentile_very_high: "Well above average"
+      zoom:
+        1m: "1 month"
+        3m: "3 months"
+        6m: "6 months"
+        all: "All"
     dashboard:
       title: "Measurements"
       start_tracking: "Start tracking"
@@ -57,5 +73,7 @@ en:
           attributes:
             measured_at:
               in_future: "cannot be in the future"
+            percentile:
+              in: "must be between 0 and 100"
             value:
               out_of_range: "is not within the valid range"
