@@ -25,6 +25,7 @@ namespace :madmin, path: :admin do
   resources :age_band_questionnaires
   resources :questions
   resources :campanelli_allarme
+  resources :attivita_stimolazioni
   namespace :pay do
     resources :customers
     resources :charges

@@ -18,4 +18,5 @@
 # Italian pluralization rules for Shuby domain models
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular "campanello_allarme", "campanelli_allarme"
+  inflect.irregular "attivita_stimolazione", "attivita_stimolazioni"
 end
