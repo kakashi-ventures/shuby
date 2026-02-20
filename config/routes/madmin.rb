@@ -20,6 +20,7 @@ namespace :madmin, path: :admin do
   resources :account_users
   resources :account_invitations
   resources :plans
+  resources :archive_contents
   namespace :pay do
     resources :customers
     resources :charges

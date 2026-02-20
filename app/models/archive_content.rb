@@ -28,6 +28,7 @@ class ArchiveContent < ApplicationRecord
 
   # Scopes
   scope :published, -> { where(published: true) }
+  scope :draft, -> { where(published: false) }
   scope :ordered, -> { order(position: :asc, created_at: :desc) }
   scope :for_age, ->(months) {
     where("min_age_months <= ? AND max_age_months >= ?", months, months)
