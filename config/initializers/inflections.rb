@@ -14,3 +14,8 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym "RESTful"
 # end
+
+# Italian pluralization rules for Shuby domain models
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.irregular "campanello_allarme", "campanelli_allarme"
+end

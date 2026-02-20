@@ -59,6 +59,33 @@ class CampanelloAllarmeTest < ActiveSupport::TestCase
     end
   end
 
+  test "valid record can be created" do
+    campanello = CampanelloAllarme.new(month: 6, description: "Non si siede con supporto.", position: 0)
+    assert campanello.valid?
+    assert campanello.save
+  end
+
+  test "validates month is numeric" do
+    campanello = CampanelloAllarme.new(month: "abc", description: "Test")
+    assert_not campanello.valid?
+    assert campanello.errors[:month].any?
+  end
+
+  test "for_month scope does not include other months" do
+    results = CampanelloAllarme.for_month(0)
+    assert results.none? { |c| c.month != 0 }
+  end
+
+  test "for_month scope returns empty for month with no warnings" do
+    results = CampanelloAllarme.for_month(99)
+    assert_empty results
+  end
+
+  test "position defaults to 0" do
+    campanello = CampanelloAllarme.create!(month: 18, description: "Test warning without explicit position")
+    assert_equal 0, campanello.position
+  end
+
   test "fixture data is loaded correctly" do
     warning = campanelli_allarme(:month_0_warning_1)
     assert_equal 0, warning.month
