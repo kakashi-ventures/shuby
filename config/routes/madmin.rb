@@ -26,6 +26,7 @@ namespace :madmin, path: :admin do
   resources :questions
   resources :campanelli_allarme
   resources :attivita_stimolazioni
+  resources :growth_phases
   namespace :pay do
     resources :customers
     resources :charges
