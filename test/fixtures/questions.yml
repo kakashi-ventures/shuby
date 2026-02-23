@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# NOTE: Using OFFICIAL questions from docs/Shuby_Questionari_Completi_5_Aree.json
+# NOTE: Using OFFICIAL questions from db/seeds/data/questionari_completi_5_aree.json
 
 # =============================================================================
 # Month 0 - Comunicazione e Linguaggio

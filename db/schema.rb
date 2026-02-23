@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_23_100156) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_23_133927) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -162,15 +162,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_23_100156) do
     t.index ["min_age_months", "max_age_months"], name: "index_archive_contents_on_min_age_months_and_max_age_months"
     t.index ["position"], name: "index_archive_contents_on_position"
     t.index ["slug"], name: "index_archive_contents_on_slug", unique: true
-  end
-
-  create_table "attivita_stimolazione", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.text "description", null: false
-    t.integer "month", null: false
-    t.integer "position", default: 0
-    t.datetime "updated_at", null: false
-    t.index ["month", "position"], name: "index_attivita_stimolazione_on_month_and_position"
   end
 
   create_table "child_health_profiles", force: :cascade do |t|
@@ -571,6 +562,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_23_100156) do
     t.index ["channel"], name: "index_solid_cable_messages_on_channel"
     t.index ["channel_hash"], name: "index_solid_cable_messages_on_channel_hash"
     t.index ["created_at"], name: "index_solid_cable_messages_on_created_at"
+  end
+
+  create_table "stimulation_activities", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description", null: false
+    t.integer "month", null: false
+    t.integer "position", default: 0
+    t.datetime "updated_at", null: false
+    t.index ["month", "position"], name: "index_stimulation_activities_on_month_and_position"
   end
 
   create_table "users", force: :cascade do |t|

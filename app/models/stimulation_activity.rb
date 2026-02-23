@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class AttivitaStimolazione < ApplicationRecord
-  self.table_name = "attivita_stimolazione"
-
+class StimulationActivity < ApplicationRecord
   validates :month, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 36 }
   validates :description, presence: true
 

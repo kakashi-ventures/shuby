@@ -25,7 +25,7 @@ require "json"
 
 puts "=" * 60
 puts "Development Stages Seed Data"
-puts "Loading from: docs/Shuby_Questionari_Completi_5_Aree.json"
+puts "Loading from: db/seeds/data/questionari_completi_5_aree.json"
 puts "=" * 60
 
 # =============================================================================
@@ -84,7 +84,7 @@ puts "Created #{DevelopmentArea.count} development areas"
 # 2. Load JSON file
 # =============================================================================
 
-json_file = Rails.root.join("docs", "Shuby_Questionari_Completi_5_Aree.json")
+json_file = Rails.root.join("db", "seeds", "data", "questionari_completi_5_aree.json")
 
 unless File.exist?(json_file)
   puts "WARNING: JSON file not found at #{json_file}"
@@ -159,25 +159,25 @@ puts ""
 puts "Development stages questions loaded."
 
 # =============================================================================
-# 4. Load Campanelli d'Allarme and Attività di Stimolazione
+# 4. Load Warning Signs and Stimulation Activities
 # =============================================================================
 
-puts "Loading warning signs and attività di stimolazione..."
+puts "Loading warning signs and stimulation activities..."
 
-campanelli_json = Rails.root.join("docs", "campanelli_attivita.json")
+json_file = Rails.root.join("db", "seeds", "data", "campanelli_attivita.json")
 
-if File.exist?(campanelli_json)
-  campanelli_data = JSON.parse(File.read(campanelli_json))
+if File.exist?(json_file)
+  json_data = JSON.parse(File.read(json_file))
 
   # Clear existing data for fresh import
   WarningSign.delete_all
-  AttivitaStimolazione.delete_all
+  StimulationActivity.delete_all
 
   warning_signs_created = 0
-  attivita_created = 0
+  activities_created = 0
 
   # Load Warning Signs
-  campanelli_data["warning_signs"].each do |month_data|
+  json_data["warning_signs"].each do |month_data|
     month = month_data["month"]
     month_data["items"].each_with_index do |description, index|
       WarningSign.create!(
@@ -189,23 +189,23 @@ if File.exist?(campanelli_json)
     end
   end
 
-  # Load Attività di Stimolazione
-  campanelli_data["attivita_stimolazione"].each do |month_data|
+  # Load Stimulation Activities
+  json_data["stimulation_activities"].each do |month_data|
     month = month_data["month"]
     month_data["items"].each_with_index do |description, index|
-      AttivitaStimolazione.create!(
+      StimulationActivity.create!(
         month: month,
         description: description,
         position: index
       )
-      attivita_created += 1
+      activities_created += 1
     end
   end
 
   puts "  - Warning Signs: #{warning_signs_created}"
-  puts "  - Attività di Stimolazione: #{attivita_created}"
+  puts "  - Stimulation Activities: #{activities_created}"
 else
-  puts "WARNING: campanelli_attivita.json not found. Skipping warning signs and attività loading."
+  puts "WARNING: campanelli_attivita.json not found. Skipping warning signs and stimulation activities loading."
 end
 
 puts ""
@@ -216,7 +216,7 @@ puts "  - Areas: #{DevelopmentArea.count}"
 puts "  - Questionnaires: #{AgeBandQuestionnaire.count} (new: #{questionnaires_created})"
 puts "  - Questions: #{Question.count} (new: #{questions_created})"
 puts "  - Warning Signs: #{WarningSign.count}"
-puts "  - Attività di Stimolazione: #{AttivitaStimolazione.count}"
+puts "  - Stimulation Activities: #{StimulationActivity.count}"
 puts "=" * 60
 
 # =============================================================================

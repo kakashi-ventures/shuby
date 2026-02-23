@@ -14,10 +14,10 @@ class QuestionnaireSessionsController < ApplicationController
     @area = @questionnaire.development_area
     @responses = @session.question_responses.includes(:question).order("questions.position")
 
-    # Load warning signs and attività di stimolazione for this month
+    # Load warning signs and stimulation activities for this month
     month = @questionnaire.min_age_months
     @warnings = WarningSign.for_month(month)
-    @attivita = AttivitaStimolazione.for_month(month)
+    @activities = StimulationActivity.for_month(month)
   end
 
   def continue

@@ -14,8 +14,3 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym "RESTful"
 # end
-
-# Italian pluralization rules for Shuby domain models
-ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.irregular "attivita_stimolazione", "attivita_stimolazioni"
-end

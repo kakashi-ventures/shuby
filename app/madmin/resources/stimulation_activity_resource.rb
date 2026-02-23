@@ -1,4 +1,4 @@
-class AttivitaStimolazioneResource < Madmin::Resource
+class StimulationActivityResource < Madmin::Resource
   menu parent: "Resources", position: 6
 
   # Scopes for filtering by month

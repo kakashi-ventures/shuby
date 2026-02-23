@@ -13,8 +13,8 @@
 
   <%= render "questionnaire_sessions/section_summary", session: @session, questionnaire: @questionnaire, child: @child %>
   <%= render "questionnaire_sessions/section_attention_alert", session: @session %>
-  <%= render "questionnaire_sessions/section_warning_signs", warnings: @warnings %>
-  <%= render "questionnaire_sessions/section_attivita", attivita: @attivita %>
+  <%= render "questionnaire_sessions/section_warning_signs", warning_signs: @warnings %>
+  <%= render "questionnaire_sessions/section_stimulation_activities", stimulation_activities: @activities %>
   <%= render "questionnaire_sessions/section_responses", responses: @responses %>
 </div>
 
