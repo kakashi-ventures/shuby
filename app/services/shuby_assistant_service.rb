@@ -88,7 +88,7 @@ class ShubyAssistantService
   # @yield [Hash] Each event with :type (:delta, :citations, :completed, :error)
   # @return [Hash] The complete response info including response_id
   def ask_streaming(message, &block)
-    accumulated_text = ""
+    accumulated_text = String.new
     citations = []
     file_search_results = []
     response_id = nil
