@@ -1,6 +1,6 @@
 <% scope = "questionnaire_sessions.show" %>
 
-<% if campanelli.any? %>
+<% if warning_signs.any? %>
   <div class="shuby-card mb-6 border-red-200 bg-red-50">
     <div class="flex gap-3">
       <div class="flex-shrink-0">
@@ -9,10 +9,10 @@
         </svg>
       </div>
       <div class="flex-1">
-        <h3 class="shuby-h3 text-red-800 mb-2"><%= t("campanelli_title", scope: scope) %></h3>
-        <p class="shuby-caption text-red-600 mb-3"><%= t("campanelli_subtitle", scope: scope) %></p>
+        <h3 class="shuby-h3 text-red-800 mb-2"><%= t("warning_signs_title", scope: scope) %></h3>
+        <p class="shuby-caption text-red-600 mb-3"><%= t("warning_signs_subtitle", scope: scope) %></p>
         <ul class="list-disc list-inside space-y-2">
-          <% campanelli.each do |c| %>
+          <% warning_signs.each do |c| %>
             <li class="shuby-p2 text-red-700"><%= c.description %></li>
           <% end %>
         </ul>

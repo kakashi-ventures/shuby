@@ -10,7 +10,7 @@ class MeasurementDashboardService
 
   def initialize(child)
     @child = child
-    @age_months = child.age_in_months
+    @age_months = child.questionnaire_age_in_months
   end
 
   def call

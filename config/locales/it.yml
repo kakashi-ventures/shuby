@@ -173,6 +173,9 @@ it:
       selected: "Selezionato"
       add_child: "+ Aggiungi bambino/a"
       account_management: "Gestione account"
+    age_growth_phase:
+      corrected_age_label: "Età corretta"
+      chronological_age: "età cronologica: %{age}"
     show:
       title: "Oggi"
       complete_profile:
@@ -767,6 +770,8 @@ it:
       summary_developing: "%{name} sta sviluppando le competenze nella %{area}. Continua a stimolare queste abilità!"
       report_updated: "Il Report di Crescita è stato aggiornato. Puoi aprirlo e condividerlo con il pediatra per un confronto durante le visite di controllo."
       view_report: "Apri il Report di Crescita"
+      download_report_pdf: "Scarica Report PDF"
+      ask_shuby: "Chiedi a Shuby AI"
       back_to_stages: "Torna alle Tappe"
       exit_confirmation: "Vuoi uscire dal questionario? I progressi saranno salvati."
 
@@ -809,10 +814,10 @@ it:
       suggestion_shuby: "Chiedi a Shuby AI"
       suggestion_pediatrician: "In caso di dubbi, consulta il pediatra"
 
-      campanelli_title: "Campanelli d'Allarme"
-      campanelli_subtitle: "Se noti uno o più di questi segnali, condividili con il pediatra."
-      attivita_title: "Attività di Stimolazione"
-      attivita_subtitle: "Attività pratiche che puoi fare a casa per favorire lo sviluppo."
+      warning_signs_title: "Campanelli d'Allarme"
+      warning_signs_subtitle: "Se noti uno o più di questi segnali, condividili con il pediatra."
+      stimulation_activities_title: "Attività di Stimolazione"
+      stimulation_activities_subtitle: "Attività pratiche che puoi fare a casa per favorire lo sviluppo."
 
     edit:
       title: "Modifica Osservazioni"

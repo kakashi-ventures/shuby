@@ -1,6 +1,6 @@
 <% scope = "questionnaire_sessions.show" %>
 
-<% if attivita.any? %>
+<% if stimulation_activities.any? %>
   <div class="shuby-card mb-6 border-green-200 bg-green-50">
     <div class="flex gap-3">
       <div class="flex-shrink-0">
@@ -9,10 +9,10 @@
         </svg>
       </div>
       <div class="flex-1">
-        <h3 class="shuby-h3 text-green-800 mb-2"><%= t("attivita_title", scope: scope) %></h3>
-        <p class="shuby-caption text-green-600 mb-3"><%= t("attivita_subtitle", scope: scope) %></p>
+        <h3 class="shuby-h3 text-green-800 mb-2"><%= t("stimulation_activities_title", scope: scope) %></h3>
+        <p class="shuby-caption text-green-600 mb-3"><%= t("stimulation_activities_subtitle", scope: scope) %></p>
         <ul class="list-disc list-inside space-y-2">
-          <% attivita.each do |a| %>
+          <% stimulation_activities.each do |a| %>
             <li class="shuby-p2 text-green-700"><%= a.description %></li>
           <% end %>
         </ul>

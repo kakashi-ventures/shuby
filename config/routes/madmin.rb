@@ -20,6 +20,13 @@ namespace :madmin, path: :admin do
   resources :account_users
   resources :account_invitations
   resources :plans
+  resources :archive_contents
+  resources :development_areas
+  resources :age_band_questionnaires
+  resources :questions
+  resources :warning_signs
+  resources :stimulation_activities
+  resources :growth_phases
   namespace :pay do
     resources :customers
     resources :charges

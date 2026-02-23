@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_18_152608) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_23_133927) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -164,24 +164,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_18_152608) do
     t.index ["slug"], name: "index_archive_contents_on_slug", unique: true
   end
 
-  create_table "attivita_stimolazione", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.text "description", null: false
-    t.integer "month", null: false
-    t.integer "position", default: 0
-    t.datetime "updated_at", null: false
-    t.index ["month", "position"], name: "index_attivita_stimolazione_on_month_and_position"
-  end
-
-  create_table "campanelli_allarme", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.text "description", null: false
-    t.integer "month", null: false
-    t.integer "position", default: 0
-    t.datetime "updated_at", null: false
-    t.index ["month", "position"], name: "index_campanelli_allarme_on_month_and_position"
-  end
-
   create_table "child_health_profiles", force: :cascade do |t|
     t.decimal "average_sleep_hours", precision: 4, scale: 1
     t.jsonb "birth_complications", default: []
@@ -266,6 +248,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_18_152608) do
     t.integer "two_parents_type"
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_family_profiles_on_account_id", unique: true
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "archive_content_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["archive_content_id"], name: "index_favorites_on_archive_content_id"
+    t.index ["user_id", "archive_content_id"], name: "index_favorites_on_user_id_and_archive_content_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "growth_phases", force: :cascade do |t|
@@ -572,6 +564,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_18_152608) do
     t.index ["created_at"], name: "index_solid_cable_messages_on_created_at"
   end
 
+  create_table "stimulation_activities", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description", null: false
+    t.integer "month", null: false
+    t.integer "position", default: 0
+    t.datetime "updated_at", null: false
+    t.index ["month", "position"], name: "index_stimulation_activities_on_month_and_position"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "accepted_privacy_at", precision: nil
     t.datetime "accepted_terms_at", precision: nil
@@ -594,6 +595,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_18_152608) do
     t.string "invited_by_type"
     t.string "last_name"
     t.integer "last_otp_timestep"
+    t.integer "monthly_messages_count", default: 0, null: false
+    t.datetime "monthly_messages_reset_at"
     t.virtual "name", type: :string, as: "(((first_name)::text || ' '::text) || (COALESCE(last_name, ''::character varying))::text)", stored: true
     t.datetime "onboarding_completed_at"
     t.integer "onboarding_step", default: 0
@@ -617,6 +620,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_18_152608) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "warning_signs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description", null: false
+    t.integer "month", null: false
+    t.integer "position", default: 0
+    t.datetime "updated_at", null: false
+    t.index ["month", "position"], name: "index_warning_signs_on_month_and_position"
+  end
+
   add_foreign_key "account_invitations", "accounts"
   add_foreign_key "account_invitations", "users", column: "invited_by_id"
   add_foreign_key "account_users", "accounts"
@@ -628,6 +640,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_18_152608) do
   add_foreign_key "child_health_profiles", "children"
   add_foreign_key "children", "accounts"
   add_foreign_key "family_profiles", "accounts"
+  add_foreign_key "favorites", "archive_contents"
+  add_foreign_key "favorites", "users"
   add_foreign_key "measurements", "children"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Test fixtures for AttivitaStimolazione (Stimulation Activities)
+# Test fixtures for StimulationActivity
 # Month 0 activities
 month_0_activity_1:
   month: 0

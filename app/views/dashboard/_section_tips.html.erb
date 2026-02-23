@@ -1,31 +1,24 @@
-<section class="mb-6">
-  <div class="flex items-center justify-between mb-3">
-    <h2 class="shuby-overline text-gray-500 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider">
-      <%= t("dashboard.show.todays_tips.title") %>
-    </h2>
-  </div>
-  <div class="space-y-3">
-    <%= render partial: "shared/tip_card", locals: {
-      path: "#",
-      thumbnail_bg: "bg-[var(--color-shuby-giallo-400)]",
-      thumbnail_image: "shuby/illustrations/mascot-cloud-happy.png",
-      tag_label: "Lettura",
-      tag_bg: "bg-[var(--color-shuby-verde-200)]",
-      tag_text_color: "text-[var(--color-shuby-verde-600)]",
-      age_range: "0-12 Mesi",
-      title: "Quelli l\u00E0",
-      author: "Teresa Porcella"
-    } %>
-    <%= render partial: "shared/tip_card", locals: {
-      path: "#",
-      thumbnail_bg: "bg-[var(--color-shuby-blue-100)]",
-      thumbnail_image: "shuby/illustrations/baby-piedino.png",
-      tag_label: "Lettura",
-      tag_bg: "bg-[var(--color-shuby-blue-100)]",
-      tag_text_color: "text-[var(--color-shuby-blue-800)]",
-      age_range: "0-12 Mesi",
-      title: "Il viaggio di piedino",
-      author: "Elisa Mazzoli, Marianna Balducci"
-    } %>
-  </div>
-</section>
+<% if @tips.present? %>
+  <section class="mb-6">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="shuby-overline text-gray-500 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider">
+        <%= t("dashboard.show.todays_tips.title") %>
+      </h2>
+    </div>
+    <div class="space-y-3">
+      <% @tips.each do |tip| %>
+        <%= render partial: "shared/tip_card", locals: {
+          path: archive_path(tip),
+          thumbnail_bg: "bg-[var(--color-shuby-giallo-400)]",
+          thumbnail_image: tip.cover_image.attached? ? url_for(tip.cover_image) : "shuby/illustrations/mascot-cloud-happy.png",
+          tag_label: tip.category || t("dashboard.show.todays_tips.reading"),
+          tag_bg: "bg-[var(--color-shuby-verde-200)]",
+          tag_text_color: "text-[var(--color-shuby-verde-600)]",
+          age_range: tip.age_range_label,
+          title: tip.title,
+          author: tip.author || ""
+        } %>
+      <% end %>
+    </div>
+  </section>
+<% end %>

@@ -1,5 +1,5 @@
 {
-  "campanelli_allarme": [
+  "warning_signs": [
     {
       "month": 0,
       "items": [
@@ -301,7 +301,7 @@
       ]
     }
   ],
-  "attivita_stimolazione": [
+  "stimulation_activities": [
     {
       "month": 0,
       "items": [

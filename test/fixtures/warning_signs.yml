@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Test fixtures for CampanelloAllarme (Warning Signs)
+# Test fixtures for WarningSign (Warning Signs)
 # Month 0 warnings
 month_0_warning_1:
   month: 0

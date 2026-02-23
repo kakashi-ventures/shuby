@@ -24,8 +24,8 @@
 - `config/routes/onboarding.rb`
 
 **Questionari Sviluppo:**
-- `docs/Shuby_Questionari_Completi_5_Aree.json`
-- `docs/campanelli_attivita.json`
+- `db/seeds/data/questionari_completi_5_aree.json`
+- `db/seeds/data/campanelli_attivita.json`
 - `app/models/questionnaire_session.rb`
 - `app/models/question_response.rb`
 - `app/models/development_area.rb`
@@ -369,7 +369,7 @@ Per TUTTE le domande dei questionari:
 
 *I questionari continuano con lo stesso pattern per ogni mese.*
 
-**Sorgente completa:** `docs/Shuby_Questionari_Completi_5_Aree.json`
+**Sorgente completa:** `db/seeds/data/questionari_completi_5_aree.json`
 
 **Struttura per ogni mese:**
 - 3-4 domande per Comunicazione e Linguaggio
@@ -453,7 +453,7 @@ Per TUTTE le domande dei questionari:
 
 ## Campanelli d'Allarme (Warning Bells)
 
-**Sorgente:** `docs/campanelli_attivita.json`
+**Sorgente:** `db/seeds/data/campanelli_attivita.json`
 
 I campanelli sono segnali d'allarme da condividere con il pediatra.
 
@@ -494,11 +494,11 @@ I campanelli sono segnali d'allarme da condividere con il pediatra.
 
 ---
 
-## Attivita di Stimolazione
+## Stimulation Activities
 
-**Sorgente:** `docs/campanelli_attivita.json`
+**Sorgente:** `db/seeds/data/campanelli_attivita.json`
 
-**UI Label:** "Attivita di Stimolazione"
+**UI Label:** "Stimulation Activities"
 **Sottotitolo:** "Attivita pratiche che puoi fare a casa per favorire lo sviluppo."
 
 ### Mese 0
@@ -612,7 +612,7 @@ I campanelli sono segnali d'allarme da condividere con il pediatra.
 - Mesi 0-28: Questionari MENSILI con 5 aree
 - Mesi 24-36: Scheda UNICA con 3 aree (dalla documentazione "Scheda 24-36 mesi")
 
-**File JSON attuale:** `docs/Shuby_Questionari_Completi_5_Aree.json` contiene solo mesi 0-28
+**File JSON attuale:** `db/seeds/data/questionari_completi_5_aree.json` contiene solo mesi 0-28
 **Dati aggiuntivi:** `campanelli_attivita.json` ha campanelli/attivita per mesi 0-36
 **Scheda 24-36:** Fornita separatamente (non nel JSON)
 

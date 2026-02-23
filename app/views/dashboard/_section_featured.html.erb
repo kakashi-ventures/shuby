@@ -1,49 +1,31 @@
-<section class="mb-6">
-  <div class="flex items-center justify-between mb-3">
-    <h2 class="shuby-overline text-gray-500 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider">
-      <%= t("dashboard.show.featured_articles.title") %>
-    </h2>
-  </div>
+<% if @featured_articles.present? %>
+  <section class="mb-6">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="shuby-overline text-gray-500 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider">
+        <%= t("dashboard.show.featured_articles.title") %>
+      </h2>
+    </div>
 
-  <%= render layout: "shared/featured_carousel" do %>
-    <%= render partial: "shared/featured_article_card", locals: {
-      path: "#",
-      bg_color: "bg-[var(--color-shuby-blue-100)]",
-      tag_label: "Abilità motorie",
-      tag_bg: "bg-white/80",
-      tag_text_color: "text-[var(--color-shuby-blue-800)]",
-      age_range: "0-2 Mesi",
-      title: "Riflessi e scoperte iniziali",
-      description: "Come stimolarlo e campanelli di allarme.",
-      duration: "4 MIN"
-    } %>
-    <%= render partial: "shared/featured_article_card", locals: {
-      path: "#",
-      bg_color: "bg-[var(--color-shuby-verde-200)]",
-      tag_label: "Benessere",
-      tag_bg: "bg-white/80",
-      tag_text_color: "text-[var(--color-shuby-verde-600)]",
-      age_range: "0-36 Mesi",
-      title: "Benessere famigliare",
-      description: "Tutto quello che c'è da sapere su emotività e cure.",
-      duration: "7 MIN"
-    } %>
-    <%= render partial: "shared/featured_article_card", locals: {
-      path: "#",
-      bg_color: "bg-[var(--color-shuby-giallo-400)]",
-      tag_label: "Giochi",
-      tag_bg: "bg-white/80",
-      tag_text_color: "text-gray-800",
-      age_range: "0-12 Mesi",
-      title: "Giochi sensoriali",
-      description: "Attività per stimolare i sensi del tuo bambino.",
-      duration: "5 MIN"
-    } %>
-  <% end %>
+    <%= render layout: "shared/featured_carousel" do %>
+      <% @featured_articles.each do |article| %>
+        <%= render partial: "shared/featured_article_card", locals: {
+          path: archive_path(article),
+          bg_color: "bg-[var(--color-shuby-blue-100)]",
+          tag_label: article.category || article.content_type.humanize,
+          tag_bg: "bg-white/80",
+          tag_text_color: "text-[var(--color-shuby-blue-800)]",
+          age_range: article.age_range_label,
+          title: article.title,
+          description: article.description || "",
+          duration: article.duration_label || ""
+        } %>
+      <% end %>
+    <% end %>
 
-  <div class="text-right mt-3">
-    <a href="#" class="shuby-p2 text-[var(--color-shuby-blue-800)] font-semibold text-sm hover:underline">
-      <%= t("dashboard.show.featured_articles.view_all") %> →
-    </a>
-  </div>
-</section>
+    <div class="text-right mt-3">
+      <%= link_to archive_index_path, class: "shuby-p2 text-[var(--color-shuby-blue-800)] font-semibold text-sm hover:underline" do %>
+        <%= t("dashboard.show.featured_articles.view_all") %> →
+      <% end %>
+    </div>
+  </section>
+<% end %>

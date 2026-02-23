@@ -18,8 +18,8 @@
 #
 class ShubyAssistantService
   # Italian system prompt for Shuby - child development expert (0-36 months)
-  SYSTEM_PROMPT = <<~PROMPT
-     Shuby, un'assistente esperta in sviluppo infantile (0-36 mesi) che supporta genitori con consigli evidence-based.
+  BASE_SYSTEM_PROMPT = <<~PROMPT
+    Shuby, un'assistente esperta in sviluppo infantile (0-36 mesi) che supporta genitori con consigli evidence-based.
 
     STILE COMUNICATIVO:
     - Usa un tono empatico, caldo e rassicurante
@@ -51,6 +51,22 @@ class ShubyAssistantService
     - Usa "può" invece di "deve"
     - Celebra i piccoli progressi
     - Rassicura i genitori sulle variazioni normali
+
+    SITUAZIONI DI EMERGENZA:
+    Se l'utente descrive sintomi di emergenza, SEMPRE:
+    1. Consiglia IMMEDIATAMENTE di chiamare il 112 o recarsi al Pronto Soccorso
+    2. NON fornire consigli medici specifici per emergenze
+    3. Rassicura il genitore e ricorda l'importanza di agire rapidamente
+
+    Sintomi di emergenza includono:
+    - Febbre ≥38°C in neonati sotto i 3 mesi (qualsiasi febbre nei neonati è un'emergenza)
+    - Febbre alta >40°C nei bambini più grandi
+    - Difficoltà respiratorie, cianosi, soffocamento
+    - Convulsioni, perdita di coscienza, ipotonia grave improvvisa
+    - Trauma cranico, ingestione di sostanze tossiche
+    - Petecchie o emorragie cutanee improvvise
+    - Fontanella anteriore bombata, rigidità nucale
+    Per sintomi preoccupanti ma non emergenziali, consiglia sempre di consultare il pediatra.
   PROMPT
 
   # Default model to use - Single source of truth for model name
@@ -72,7 +88,7 @@ class ShubyAssistantService
   # @yield [Hash] Each event with :type (:delta, :citations, :completed, :error)
   # @return [Hash] The complete response info including response_id
   def ask_streaming(message, &block)
-    accumulated_text = ""
+    accumulated_text = String.new
     citations = []
     file_search_results = []
     response_id = nil
@@ -81,7 +97,7 @@ class ShubyAssistantService
 
     begin
       client = ShubyOpenaiClient.new(@shuby_chat)
-      client.stream(message, system_prompt: SYSTEM_PROMPT) do |event_data|
+      client.stream(message, system_prompt: build_system_prompt) do |event_data|
         event_response_id, input_tokens, output_tokens = process_event(
           event_data, accumulated_text, citations, file_search_results,
           input_tokens, output_tokens, &block
@@ -140,6 +156,61 @@ class ShubyAssistantService
   end
 
   private
+
+  # Builds the full system prompt with child context appended
+  #
+  # @return [String] The complete system prompt
+  def build_system_prompt
+    prompt = BASE_SYSTEM_PROMPT.dup
+    context = child_context_prompt
+    prompt << "\n#{context}" if context.present?
+    prompt
+  end
+
+  # Generates the child context section for the system prompt
+  #
+  # @return [String, nil] The child context block, or nil if no child found
+  def child_context_prompt
+    user = @shuby_chat.user
+    account = user.personal_account
+    return nil unless account
+
+    child = account.children.active.ordered.first
+    return nil unless child
+
+    family_profile = account.family_profile
+    account_user = account.account_users.find_by(user: user)
+
+    lines = ["CONTESTO BAMBINO:"]
+    lines << "- Nome: #{child.display_name}"
+    lines << "- Età: #{child.detailed_age_display}"
+
+    if child.premature?
+      lines << "- Nato prematuro (#{child.gestational_weeks} settimane)"
+      lines << "- Età corretta: #{child.corrected_age_in_months} mesi" if child.using_corrected_age?
+    end
+
+    lines << "- Sesso: #{I18n.t("children.sex.#{child.sex}", default: child.sex)}" unless child.unspecified?
+
+    if family_profile&.languages_spoken_at_home
+      lang_count = family_profile.languages_spoken_at_home
+      lang_label = case lang_count
+      when 1 then "monolingue"
+      when 2 then "bilingue"
+      when 3 then "trilingue"
+      else "quattro o più lingue"
+      end
+      lines << "- Contesto linguistico: #{lang_label}"
+    end
+
+    if account_user&.relationship_to_child && !account_user.relationship_unspecified?
+      lines << "- Relazione caregiver: #{I18n.t("account_users.relationship.#{account_user.relationship_to_child}", default: account_user.relationship_to_child)}"
+    end
+
+    lines << ""
+    lines << "Usa il nome \"#{child.display_name}\" nelle risposte. Adatta i consigli all'età specifica del bambino."
+    lines.join("\n")
+  end
 
   # Processes a single SSE event during streaming
   #
