@@ -162,7 +162,7 @@ puts "Development stages questions loaded."
 # 4. Load Campanelli d'Allarme and Attività di Stimolazione
 # =============================================================================
 
-puts "Loading campanelli d'allarme and attività di stimolazione..."
+puts "Loading warning signs and attività di stimolazione..."
 
 campanelli_json = Rails.root.join("docs", "campanelli_attivita.json")
 
@@ -170,22 +170,22 @@ if File.exist?(campanelli_json)
   campanelli_data = JSON.parse(File.read(campanelli_json))
 
   # Clear existing data for fresh import
-  CampanelloAllarme.delete_all
+  WarningSign.delete_all
   AttivitaStimolazione.delete_all
 
-  campanelli_created = 0
+  warning_signs_created = 0
   attivita_created = 0
 
-  # Load Campanelli d'Allarme
-  campanelli_data["campanelli_allarme"].each do |month_data|
+  # Load Warning Signs
+  campanelli_data["warning_signs"].each do |month_data|
     month = month_data["month"]
     month_data["items"].each_with_index do |description, index|
-      CampanelloAllarme.create!(
+      WarningSign.create!(
         month: month,
         description: description,
         position: index
       )
-      campanelli_created += 1
+      warning_signs_created += 1
     end
   end
 
@@ -202,10 +202,10 @@ if File.exist?(campanelli_json)
     end
   end
 
-  puts "  - Campanelli d'Allarme: #{campanelli_created}"
+  puts "  - Warning Signs: #{warning_signs_created}"
   puts "  - Attività di Stimolazione: #{attivita_created}"
 else
-  puts "WARNING: campanelli_attivita.json not found. Skipping campanelli and attività loading."
+  puts "WARNING: campanelli_attivita.json not found. Skipping warning signs and attività loading."
 end
 
 puts ""
@@ -215,7 +215,7 @@ puts "Summary:"
 puts "  - Areas: #{DevelopmentArea.count}"
 puts "  - Questionnaires: #{AgeBandQuestionnaire.count} (new: #{questionnaires_created})"
 puts "  - Questions: #{Question.count} (new: #{questions_created})"
-puts "  - Campanelli d'Allarme: #{CampanelloAllarme.count}"
+puts "  - Warning Signs: #{WarningSign.count}"
 puts "  - Attività di Stimolazione: #{AttivitaStimolazione.count}"
 puts "=" * 60
 

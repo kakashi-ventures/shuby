@@ -814,8 +814,8 @@ it:
       suggestion_shuby: "Chiedi a Shuby AI"
       suggestion_pediatrician: "In caso di dubbi, consulta il pediatra"
 
-      campanelli_title: "Campanelli d'Allarme"
-      campanelli_subtitle: "Se noti uno o più di questi segnali, condividili con il pediatra."
+      warning_signs_title: "Campanelli d'Allarme"
+      warning_signs_subtitle: "Se noti uno o più di questi segnali, condividili con il pediatra."
       attivita_title: "Attività di Stimolazione"
       attivita_subtitle: "Attività pratiche che puoi fare a casa per favorire lo sviluppo."
 

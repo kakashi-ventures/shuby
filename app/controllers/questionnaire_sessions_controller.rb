@@ -14,9 +14,9 @@ class QuestionnaireSessionsController < ApplicationController
     @area = @questionnaire.development_area
     @responses = @session.question_responses.includes(:question).order("questions.position")
 
-    # Load campanelli d'allarme and attività di stimolazione for this month
+    # Load warning signs and attività di stimolazione for this month
     month = @questionnaire.min_age_months
-    @campanelli = CampanelloAllarme.for_month(month)
+    @warnings = WarningSign.for_month(month)
     @attivita = AttivitaStimolazione.for_month(month)
   end
 

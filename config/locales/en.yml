@@ -798,8 +798,8 @@ en:
       suggestion_shuby: "Ask Shuby AI"
       suggestion_pediatrician: "If in doubt, consult your pediatrician"
 
-      campanelli_title: "Warning Signs"
-      campanelli_subtitle: "If you notice one or more of these signs, share them with your pediatrician."
+      warning_signs_title: "Warning Signs"
+      warning_signs_subtitle: "If you notice one or more of these signs, share them with your pediatrician."
       attivita_title: "Stimulation Activities"
       attivita_subtitle: "Practical activities you can do at home to promote development."
 

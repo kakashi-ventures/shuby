@@ -25,7 +25,6 @@ module ActiveSupport
     parallelize(workers: :number_of_processors)
 
     # Declare custom fixture classes for Italian table names
-    set_fixture_class campanelli_allarme: CampanelloAllarme
     set_fixture_class attivita_stimolazione: AttivitaStimolazione
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.

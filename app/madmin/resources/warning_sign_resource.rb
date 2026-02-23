@@ -1,4 +1,4 @@
-class CampanelloAllarmeResource < Madmin::Resource
+class WarningSignResource < Madmin::Resource
   menu parent: "Resources", position: 5
 
   # Scopes for filtering by month
