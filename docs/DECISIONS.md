@@ -1,186 +1,160 @@
-# Decisioni di Prodotto — Shuby v1.0
+# Product Decisions — Shuby v1.0
 
-> Questo documento raccoglie le decisioni prese durante gli incontri con il cliente (Set 2024 – Gen 2026)
-> che **non sono presenti** o **contraddicono** le specifiche di prodotto.
+> This document collects decisions made during client meetings (Sep 2025 – Jan 2026)
+> that are **not present** or **contradict** the product specifications.
 >
-> **Precedenza**: Quando questo documento contraddice le specifiche (`Shuby 1.0 - Specifiche di Prodotto.md`
-> o `Analisi Funzionale v.1.0`), **questo documento ha la precedenza**.
+> **Precedence**: When this document contradicts the specs (`Shuby 1.0 - Specifiche di Prodotto`
+> or `Analisi Funzionale v.1.0`), **this document takes precedence**.
 
 ---
 
-## Profilo Bambino
+## Child Profile
 
-### DEC-001: Sesso alla nascita — opzioni aggiornate
-- **Data**: 2026-01-28
-- **Sovrascrive**: Specifiche di prodotto — campo "Sesso" (F / M / Preferisco non dirlo)
-- **Decisione**: Le opzioni per il sesso alla nascita sono: **M / F / INTERSEX**. L'opzione "Preferisco non dirlo" viene rimossa.
-- **Stato**: da-fare
-- **Impatto**: `app/models/child.rb` (validazione enum), form di creazione/modifica bambino, fixtures
+### DEC-001: Sex at birth — updated options
 
-### DEC-002: Lingua — solo bilinguismo sì/no
-- **Data**: 2026-01-28
-- **Sovrascrive**: Specifiche di prodotto — campo lingua principale dettagliato nell'onboarding
-- **Decisione**: Non chiedere la lingua principale dettagliata. Chiedere solo se il bambino è esposto a più lingue con opzioni: **monolingue / bilingue / trilingue / quattro o più lingue**.
-- **Stato**: da-fare
-- **Impatto**: `app/models/child.rb`, onboarding flow, form bambino
+- **Overrides**: Product spec — "Sex" field (F / M / Prefer not to say)
+- **Decision**: Sex at birth options are: **M / F / INTERSEX**. The "Prefer not to say" option is removed.
+- **Status**: to-confirm
+- **Note**: Needs confirmation from Azia on whether to keep the intersex option.
 
-### DEC-003: Tipo di relazione del caregiver
-- **Data**: 2026-01-28
-- **Sovrascrive**: Non presente nelle specifiche
-- **Decisione**: Aggiungere un campo per il tipo di relazione del caregiver con il bambino: **papà / mamma / altro**.
-- **Stato**: da-fare
-- **Impatto**: `app/models/user.rb` o `app/models/account_user.rb`, onboarding, profilo utente
+### DEC-002: Language — bilingualism only
 
-### DEC-004: Un solo caregiver per account in v1.0
-- **Data**: 2026-01-28
-- **Sovrascrive**: Modifica scope
-- **Decisione**: Nella v1.0 ogni account ha un solo caregiver. La gestione multi-caregiver è rimandata a versioni successive.
-- **Stato**: da-fare
-- **Impatto**: Modello `Account`, logica di inviti, UI gestione account
+- **Overrides**: Product spec — detailed primary language field in onboarding
+- **Decision**: Do not ask for the detailed primary language. Only ask if the child is exposed to multiple languages with options: **monolingual / bilingual / trilingual / four or more languages**.
+- **Status**: partial
+- **Note**: Currently implemented as a numeric field (1, 2, 3+) instead of the categorical labels. Functionally equivalent.
+
+### DEC-003: Caregiver relationship type
+
+- **Overrides**: Not present in specs
+- **Decision**: Add a field for the caregiver's relationship to the child: **dad / mom / other**.
+- **Status**: done
+- **Note**: Current implementation includes additional options (grandparent, caregiver, other) beyond the original spec.
+
+### DEC-004: Single caregiver per account in v1.0
+
+- **Overrides**: Scope change
+- **Decision**: In v1.0, each account has a single caregiver. Multi-caregiver management is deferred to future versions.
+- **Status**: done
 
 ---
 
 ## AI Chat (Shuby Assistant)
 
-### DEC-005: Limite chat gratuita — 30 messaggi/mese
-- **Data**: 2026-01-28
-- **Sovrascrive**: Specifiche di prodotto — 10 domande/mese per utenti free
-- **Decisione**: Il limite per gli utenti gratuiti è di **30 messaggi al mese** (non 10 domande).
-- **Stato**: da-confermare
-- **Impatto**: `app/services/shuby_assistant_service.rb`, logica di gating, contatore messaggi
+### DEC-005: Free chat limit — 30 messages/month
 
-### DEC-006: Memoria conversazionale persistente per utenti Premium
-- **Data**: 2026-01-28
-- **Sovrascrive**: Non presente nelle specifiche
-- **Decisione**: Gli utenti Premium hanno **contesto persistente tra le sessioni di chat**. Il chatbot ricorda le conversazioni precedenti per offrire risposte più personalizzate.
-- **Stato**: da-fare
-- **Impatto**: `app/models/shuby_chat.rb`, `app/services/shuby_assistant_service.rb`, system prompt, logica di contesto
+- **Overrides**: Product spec — 10 questions/month for free users
+- **Decision**: The limit for free users is **30 messages per month** (not 10 questions).
+- **Status**: to-confirm
 
-### DEC-007: Architettura chatbot specializzati — dispatcher generalista
-- **Data**: 2024-09-23
-- **Sovrascrive**: Non presente nelle specifiche (che menziona 7 chatbot separati)
-- **Decisione**: Un **chatbot generalista** che smista (dispatch) verso specialisti, non 7 chatbot separati. L'utente interagisce con un unico punto di accesso.
-- **Stato**: da-fare
-- **Impatto**: `app/services/shuby_assistant_service.rb`, architettura tools, system prompt
+### DEC-006: Persistent conversational memory for Premium users
 
-### DEC-008: Collegamento chatbot → articoli in-app
-- **Data**: 2026-01-28
-- **Sovrascrive**: Non presente nelle specifiche
-- **Decisione**: Il chatbot deve **linkare agli articoli presenti nell'app** quando pertinenti. Gli articoli a loro volta devono **linkare alle fonti internazionali** di riferimento.
-- **Stato**: da-fare
-- **Impatto**: `app/tools/file_search_tool.rb`, `app/models/archive_content.rb`, risposte chatbot
+- **Overrides**: Not present in specs
+- **Decision**: Premium users have **persistent context across chat sessions**. The chatbot remembers previous conversations to offer more personalized responses.
+- **Status**: partial
+- **Note**: Cross-session context is implemented but not yet gated to Premium users only — all users currently benefit from it.
+
+### DEC-007: Chatbot architecture — generalist dispatcher
+
+- **Overrides**: Not present in specs (which mention 7 separate chatbots)
+- **Decision**: A single **generalist chatbot** that dispatches to specialists, not 7 separate chatbots. The user interacts with a single entry point.
+- **Status**: done
+
+### DEC-008: Chatbot linking to in-app articles
+
+- **Overrides**: Not present in specs
+- **Decision**: The chatbot should **link to articles within the app** when relevant. Articles in turn should **link to international reference sources**.
+- **Status**: to-do
 
 ---
 
-## Milestone e Sviluppo
+## Development Stages
 
-### DEC-009: Terminologia — "Stage di sviluppo" non "Milestone"
-- **Data**: 2026-01-28
-- **Sovrascrive**: Specifiche di prodotto — terminologia interna "milestone"
-- **Decisione**: In inglese usare **"Development STAGE"** anziché "milestone". In italiano mantenere la terminologia esistente ("tappe di sviluppo" o equivalente).
-- **Stato**: da-fare
-- **Impatto**: Traduzioni EN, documentazione, API responses
+### DEC-009: Terminology — "Development Stage" not "Milestone"
 
-### DEC-010: Flusso completamento milestone
-- **Data**: 2026-01-28
-- **Sovrascrive**: Non presente nelle specifiche
-- **Decisione**: Al completamento di una tappa, mostrare: (1) **"Report clinico aggiornato"**, (2) **link per scaricare il report**, (3) **link all'AI helper** o alle **attività di stimolazione**.
-- **Stato**: da-fare
-- **Impatto**: Controller questionari, viste completamento, generazione PDF
+- **Overrides**: Product spec — internal "milestone" terminology
+- **Decision**: In English use **"Development Stage"** instead of "milestone". In Italian keep existing terminology ("tappe di sviluppo").
+- **Status**: done
 
-### DEC-011: Milestone saltate — skip al periodo corrente
-- **Data**: 2026-01-28
-- **Sovrascrive**: Non presente nelle specifiche
-- **Decisione**: Se una tappa non viene completata entro il periodo previsto, viene **saltata** e si passa direttamente alle tappe del **periodo corrente** del bambino.
-- **Stato**: da-fare
-- **Impatto**: Logica di selezione questionari, `app/models/questionnaire.rb`, timeline
+### DEC-010: Stage completion flow
 
-### DEC-012: Proposta intelligente delle milestone
-- **Data**: 2026-01-28
-- **Sovrascrive**: Non presente nelle specifiche
-- **Decisione**: L'app propone le **tappe più rilevanti** basandosi sui risultati precedenti, non seguendo un ordine puramente sequenziale.
-- **Stato**: da-confermare
-- **Impatto**: Algoritmo di selezione questionari, modello AI, logica di raccomandazione
+- **Overrides**: Not present in specs
+- **Decision**: Upon completing a stage, show: (1) **"Updated clinical report"**, (2) **link to download the report**, (3) **link to the AI helper** or to **stimulation activities**.
+- **Status**: partial
+- **Note**: Completion screen exists with link to session report. Missing: direct link to AI helper and direct PDF download from the completion flow.
 
-### DEC-013: Milestone nascoste — rimandato a post-v1.0
-- **Data**: 2026-01-28
-- **Sovrascrive**: Modifica scope
-- **Decisione**: Le milestone nascoste (trigger da definire con Azia) sono **rimandate a dopo la v1.0**.
-- **Stato**: rimandato
-- **Impatto**: Nessuno per v1.0
+### DEC-011: Skipped stages — jump to current period
+
+- **Overrides**: Not present in specs
+- **Decision**: If a stage is not completed within the expected period, it is **skipped** and the app moves directly to the stages for the **child's current period**.
+- **Status**: to-do
+
+### DEC-012: Intelligent stage proposal
+
+- **Overrides**: Not present in specs
+- **Decision**: The app proposes the **most relevant stages** based on previous results, not following a purely sequential order.
+- **Status**: to-confirm
+
+### DEC-013: Hidden stages — deferred to post-v1.0
+
+- **Overrides**: Scope change
+- **Decision**: Hidden stages (triggers to be defined with Azia) are **deferred to after v1.0**.
+- **Status**: deferred
 
 ---
 
-## Report e PDF
+## Reports & PDF
 
-### DEC-014: Report PDF per periodo
-- **Data**: 2026-01-28
-- **Sovrascrive**: Non presente nelle specifiche (chiarimento)
-- **Decisione**: Il report per il pediatra è **per periodo**. Tipicamente si condivide solo il **report più recente** con il pediatra.
-- **Stato**: da-fare
-- **Impatto**: Generazione PDF, UI lista report, controller report
+### DEC-014: PDF report per period
 
----
-
-## Pricing e Contenuti
-
-### DEC-015: Contenuti di qualità restano gratuiti
-- **Data**: 2026-01-28
-- **Sovrascrive**: Specifiche di prodotto — 20 articoli free / 100+ premium
-- **Decisione**: I **contenuti di qualità** (articoli, risorse) devono restare **gratuiti** e non essere bloccati dietro paywall. Il premium si differenzia per altre funzionalità.
-- **Stato**: da-confermare
-- **Impatto**: `app/models/archive_content.rb`, logica di gating contenuti, policy Pundit
-
-### DEC-016: Abbonamenti regalo
-- **Data**: 2024-09-23
-- **Sovrascrive**: Non presente nelle specifiche
-- **Decisione**: Supportare la possibilità di **regalare un abbonamento** (es. regalo alla nascita). Meccanismo esatto da definire.
-- **Stato**: da-fare
-- **Impatto**: Billing, Pay gem, UI regalo, codici promozionali
+- **Overrides**: Not present in specs (clarification)
+- **Decision**: The pediatrician report is **per period**. Typically only the **most recent report** is shared with the pediatrician.
+- **Status**: done
 
 ---
 
-## Internazionalizzazione (i18n)
+## Pricing & Content
 
-### DEC-017: Lingue v1.0 — IT + EN + FR
-- **Data**: 2026-01-28
-- **Sovrascrive**: Specifiche di prodotto — solo italiano per v1.0, inglese dal Q2 2026
-- **Decisione**: La v1.0 deve supportare **italiano, inglese e francese** fin dal lancio.
-- **Stato**: da-confermare
-- **Impatto**: File i18n (`config/locales/`), UI language switcher, contenuti tradotti, test
+### DEC-015: Quality content stays free
 
----
+- **Overrides**: Product spec — 20 free articles / 100+ premium
+- **Decision**: **Quality content** (articles, resources) should remain **free** and not be locked behind a paywall. Premium differentiates through other features.
+- **Status**: to-confirm
 
-## Privacy e Dati
+### DEC-016: Gift subscriptions
 
-### DEC-018: Opt-in partecipazione dati utente
-- **Data**: 2026-01-28
-- **Sovrascrive**: Non presente nelle specifiche
-- **Decisione**: Chiedere agli utenti se vogliono **partecipare al miglioramento del prodotto** condividendo dati anonimi di utilizzo.
-- **Stato**: da-fare
-- **Impatto**: Onboarding/settings, modello User (flag opt-in), privacy policy, analytics
+- **Overrides**: Not present in specs
+- **Decision**: Support the ability to **gift a subscription** (e.g., birth gift). Exact mechanism to be defined.
+- **Status**: to-do
 
 ---
 
-## Scope Rimandato
+## Internationalization (i18n)
 
-### DEC-019: Tracciamento qualità del sonno — rimandato
-- **Data**: 2026-01-28
-- **Sovrascrive**: Modifica scope
-- **Decisione**: Il tracciamento della qualità del sonno è **rimandato** a una versione successiva.
-- **Stato**: rimandato
-- **Impatto**: Nessuno per v1.0
+### DEC-017: v1.0 languages — Italian only at launch
+
+- **Overrides**: Product spec — Italian only for v1.0, English from Q2 2026
+- **Decision**: v1.0 launches in **Italian only**. Additional languages (English, French) to be added post-launch.
+- **Status**: to-confirm
+- **Note**: English and French translations are partially in place but completeness needs to be verified before committing to multi-language at launch.
 
 ---
 
-## Decisioni da Confermare
+## Privacy & Data
 
-Le seguenti decisioni presentano **contraddizioni** tra le specifiche e le note degli incontri.
-Richiedono conferma con i fondatori prima dell'implementazione.
+### DEC-018: User data sharing opt-in
 
-| ID | Tema | Conflitto | Azione |
-|----|------|-----------|--------|
-| DEC-005 | Limite chat gratuita | Spec: 10 domande/mese vs Incontro: 30 messaggi/mese | Confermare il limite finale |
-| DEC-012 | Proposta intelligente milestone | Quanto AI-driven vs sequenziale per v1.0? | Definire scope v1.0 |
-| DEC-015 | Contenuti gratuiti | Spec: 20 free / 100+ premium vs Incontro: contenuti di qualità gratis | Chiarire cosa resta gratuito |
-| DEC-017 | Lingue v1.0 | Spec: solo IT, EN dal Q2 2026 vs Incontro: IT+EN+FR dal lancio | Confermare lingue al lancio |
+- **Overrides**: Not present in specs
+- **Decision**: Ask users if they want to **participate in product improvement** by sharing anonymous usage data.
+- **Status**: partial
+- **Note**: Backend consent mechanism exists. Missing: UI in onboarding/settings to actually ask the user.
+
+---
+
+## Deferred Scope
+
+### DEC-019: Sleep quality tracking — deferred
+
+- **Overrides**: Scope change
+- **Decision**: Sleep quality tracking is **deferred** to a future version.
+- **Status**: deferred
