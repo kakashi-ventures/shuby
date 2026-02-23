@@ -5,6 +5,7 @@
 class ShubyChatsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_shuby_chat, only: [:show, :destroy, :message]
+  before_action :check_chat_rate_limit, only: [:message]
 
   # GET /shuby
   # Lists all conversations for the current user
@@ -17,6 +18,8 @@ class ShubyChatsController < ApplicationController
   def show
     # Only show user and assistant messages (exclude tool/system messages)
     @messages = @shuby_chat.messages.chronological.where(role: %w[user assistant]).includes(:tool_calls)
+    @chat_rate_limited = current_user.chat_rate_limited?
+    @messages_remaining = current_user.chat_messages_remaining
   end
 
   # POST /shuby
@@ -78,8 +81,12 @@ class ShubyChatsController < ApplicationController
         # Append assistant placeholder
         streams << turbo_stream.append("messages", partial: "shuby_chats/assistant_message_placeholder", locals: {message_id: streaming_message_id})
 
-        # Reset the form
-        streams << turbo_stream.replace("message_form", partial: "shuby_chats/message_form", locals: {shuby_chat: @shuby_chat})
+        # Reset the form (with updated remaining count)
+        streams << if current_user.chat_rate_limited?
+          turbo_stream.replace("message_form", partial: "shuby_chats/rate_limit_reached")
+        else
+          turbo_stream.replace("message_form", partial: "shuby_chats/message_form", locals: {shuby_chat: @shuby_chat, messages_remaining: current_user.chat_messages_remaining})
+        end
 
         render turbo_stream: streams
       end
@@ -95,6 +102,23 @@ class ShubyChatsController < ApplicationController
   end
 
   private
+
+  # Blocks message submission if the user has hit their monthly limit
+  #
+  # @return [void]
+  def check_chat_rate_limit
+    return unless current_user.chat_rate_limited?
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          "message_form",
+          partial: "shuby_chats/rate_limit_reached"
+        )
+      end
+      format.html { redirect_to shuby_chat_path(@shuby_chat), alert: t("shuby_chats.rate_limit.reached") }
+    end
+  end
 
   # Sets the shuby_chat from params
   #

@@ -28,6 +28,16 @@ it:
         sleep_tips_full: "Come posso aiutare il mio bambino a dormire meglio?"
         tummy_time: "Tummy time"
         tummy_time_full: "Cos'è il tummy time e come farlo?"
+    rate_limit:
+      reached: "Hai raggiunto il limite mensile di messaggi gratuiti."
+      reached_title: "Messaggi esauriti"
+      reached_description: "Hai utilizzato tutti i %{limit} messaggi gratuiti di questo mese."
+      upgrade_button: "Passa a Premium"
+      reset_info: "I messaggi gratuiti si rinnovano il primo di ogni mese."
+      remaining:
+        zero: "Nessun messaggio rimasto su %{total} questo mese"
+        one: "%{count} messaggio rimasto su %{total} questo mese"
+        other: "%{count} messaggi rimasti su %{total} questo mese"
     message:
       shuby_name: "Shuby"
       sources: "Fonti:"

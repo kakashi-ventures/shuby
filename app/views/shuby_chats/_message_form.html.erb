@@ -31,4 +31,10 @@
   <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">
     <%= t("shuby_chats.message_form.disclaimer") %>
   </p>
+
+  <% if local_assigns[:messages_remaining] && messages_remaining != Float::INFINITY %>
+    <p class="text-xs mt-1 text-center <%= messages_remaining <= 5 ? 'text-amber-600 dark:text-amber-400 font-medium' : 'text-gray-500 dark:text-gray-400' %>" aria-live="polite">
+      <%= t("shuby_chats.rate_limit.remaining", count: messages_remaining, total: User::ChatRateLimit::FREE_MONTHLY_MESSAGE_LIMIT) %>
+    </p>
+  <% end %>
 </div>

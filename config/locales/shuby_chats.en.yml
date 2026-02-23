@@ -28,6 +28,16 @@ en:
         sleep_tips_full: "How can I help my baby sleep better?"
         tummy_time: "Tummy time"
         tummy_time_full: "What is tummy time and how to do it?"
+    rate_limit:
+      reached: "You have reached the monthly free message limit."
+      reached_title: "Messages exhausted"
+      reached_description: "You have used all %{limit} free messages this month."
+      upgrade_button: "Upgrade to Premium"
+      reset_info: "Free messages reset on the first of each month."
+      remaining:
+        zero: "No messages remaining out of %{total} this month"
+        one: "%{count} message remaining out of %{total} this month"
+        other: "%{count} messages remaining out of %{total} this month"
     message:
       shuby_name: "Shuby"
       sources: "Sources:"

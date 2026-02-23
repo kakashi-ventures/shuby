@@ -70,4 +70,59 @@ class ShubyChatsControllerTest < ActionDispatch::IntegrationTest
     # For now, we skip the actual API call test
     skip "Requires OpenAI API mocking"
   end
+
+  # --- Rate Limiting Tests ---
+
+  test "show displays remaining messages count for free user" do
+    get shuby_chat_path(@chat)
+    assert_response :success
+    assert_select "p", /rimast[oiae]/i
+  end
+
+  test "message action blocked via HTML redirect when at limit" do
+    fill_to_limit(@user)
+
+    post message_shuby_chat_path(@chat), params: {message: "One more message"}
+
+    assert_redirected_to shuby_chat_path(@chat)
+    assert_equal I18n.t("shuby_chats.rate_limit.reached"), flash[:alert]
+  end
+
+  test "message action blocked via Turbo Stream when at limit" do
+    fill_to_limit(@user)
+
+    post message_shuby_chat_path(@chat),
+      params: {message: "One more message"},
+      headers: {"Accept" => "text/vnd.turbo-stream.html"}
+
+    assert_response :success
+    assert_includes response.body, I18n.t("shuby_chats.rate_limit.reached_title")
+  end
+
+  test "message action allowed when under limit" do
+    assert_difference("ShubyMessage.count") do
+      post message_shuby_chat_path(@chat),
+        params: {message: "Hello Shuby"},
+        headers: {"Accept" => "text/vnd.turbo-stream.html"}
+    end
+  end
+
+  test "show renders rate limit CTA when at limit" do
+    fill_to_limit(@user)
+
+    get shuby_chat_path(@chat)
+    assert_response :success
+    assert_select "#message_form" do
+      assert_select "a[href=?]", pricing_path
+    end
+  end
+
+  private
+
+  def fill_to_limit(user)
+    chat = user.shuby_chats.create!(model: "gpt-4o-mini")
+    existing = user.chat_messages_sent_this_month
+    remaining = User::ChatRateLimit::FREE_MONTHLY_MESSAGE_LIMIT - existing
+    remaining.times { |i| chat.messages.create!(role: "user", content: "Msg #{i}") }
+  end
 end

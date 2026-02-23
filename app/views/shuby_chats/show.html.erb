@@ -62,7 +62,11 @@
   <%# Input area %>
   <div class="px-4 py-3 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
     <div class="max-w-3xl mx-auto">
-      <%= render "shuby_chats/message_form", shuby_chat: @shuby_chat %>
+      <% if @chat_rate_limited %>
+        <%= render "shuby_chats/rate_limit_reached" %>
+      <% else %>
+        <%= render "shuby_chats/message_form", shuby_chat: @shuby_chat, messages_remaining: @messages_remaining %>
+      <% end %>
     </div>
   </div>
 </div>
