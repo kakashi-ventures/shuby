@@ -86,7 +86,7 @@ class ShubyOpenaiClient
   def build_http_request(uri, message, system_prompt)
     request = Net::HTTP::Post.new(uri)
     request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{Rails.application.credentials.dig(:openai, :api_key) || ENV["OPENAI_API_KEY"]}"
+    request["Authorization"] = "Bearer #{ENV["OPENAI_API_KEY"] || Rails.application.credentials.dig(:openai, :api_key)}"
 
     body = {
       model: @shuby_chat.model || ShubyAssistantService::DEFAULT_MODEL,
@@ -97,7 +97,7 @@ class ShubyOpenaiClient
     }
 
     # Add file_search tool only if vector store is configured
-    vector_store_id = Rails.application.credentials.dig(:openai, :vector_store_id) || ENV["OPENAI_VECTOR_STORE_ID"]
+    vector_store_id = ENV["OPENAI_VECTOR_STORE_ID"] || Rails.application.credentials.dig(:openai, :vector_store_id)
     if vector_store_id.present?
       body[:tools] = [
         {
