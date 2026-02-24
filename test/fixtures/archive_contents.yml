@@ -1,0 +1,181 @@
+# frozen_string_literal: true
+
+# === Articles (5 total: 4 categories + 1 duplicate category) ===
+
+article_sonno_one:
+  title: "Routine della nanna per neonati"
+  slug: "routine-nanna-neonati"
+  content_type: 0
+  category: "Sonno"
+  description: "Come stabilire una routine serale"
+  min_age_months: 0
+  max_age_months: 6
+  position: 1
+  published: true
+
+article_nutrizione:
+  title: "Allattamento e nutrizione nei primi mesi"
+  slug: "allattamento-nutrizione"
+  content_type: 0
+  category: "Nutrizione"
+  description: "Guida completa all'alimentazione"
+  min_age_months: 0
+  max_age_months: 12
+  position: 2
+  published: true
+
+article_sviluppo:
+  title: "Lo sviluppo motorio nel primo anno"
+  slug: "sviluppo-motorio-primo-anno"
+  content_type: 0
+  category: "Sviluppo"
+  description: "Tappe dello sviluppo motorio"
+  min_age_months: 0
+  max_age_months: 12
+  position: 3
+  published: true
+
+article_sicurezza:
+  title: "Sicurezza in casa con il neonato"
+  slug: "sicurezza-casa-neonato"
+  content_type: 0
+  category: "Sicurezza"
+  description: "Rendere la casa sicura"
+  min_age_months: 0
+  max_age_months: 36
+  position: 4
+  published: true
+
+article_sonno_two:
+  title: "Gestire i risvegli notturni"
+  slug: "risvegli-notturni"
+  content_type: 0
+  category: "Sonno"
+  description: "Strategie per i risvegli"
+  min_age_months: 0
+  max_age_months: 6
+  position: 5
+  published: true
+
+# === Games/Activities (4 total, age-appropriate for sophia at ~2mo) ===
+
+game_tummy_time:
+  title: "Tummy time guidato"
+  slug: "tummy-time-guidato"
+  content_type: 2
+  category: "Motricità"
+  description: "Esercizi di tummy time"
+  min_age_months: 0
+  max_age_months: 6
+  duration_minutes: 10
+  position: 1
+  published: true
+
+game_sonagli:
+  title: "Gioco con sonagli"
+  slug: "gioco-sonagli"
+  content_type: 2
+  category: "Sensoriale"
+  description: "Stimolazione uditiva con sonagli"
+  min_age_months: 0
+  max_age_months: 6
+  duration_minutes: 5
+  position: 2
+  published: true
+
+game_specchio:
+  title: "Gioco dello specchio"
+  slug: "gioco-specchio"
+  content_type: 2
+  category: "Sociale"
+  description: "Riconoscimento allo specchio"
+  min_age_months: 0
+  max_age_months: 12
+  duration_minutes: 5
+  position: 3
+  published: true
+
+game_canzoncine:
+  title: "Canzoncine e filastrocche"
+  slug: "canzoncine-filastrocche"
+  content_type: 2
+  category: "Linguaggio"
+  description: "Canzoni per stimolare il linguaggio"
+  min_age_months: 0
+  max_age_months: 36
+  duration_minutes: 10
+  position: 4
+  published: true
+
+# === Tips (4 total) ===
+
+tip_pianto:
+  title: "Interpretare il pianto del neonato"
+  slug: "interpretare-pianto"
+  content_type: 3
+  category: "Benessere"
+  description: "Capire i diversi tipi di pianto"
+  min_age_months: 0
+  max_age_months: 6
+  position: 1
+  published: true
+
+tip_bagnetto:
+  title: "Il bagnetto sicuro"
+  slug: "bagnetto-sicuro"
+  content_type: 3
+  category: "Igiene"
+  description: "Consigli per il bagnetto"
+  min_age_months: 0
+  max_age_months: 12
+  position: 2
+  published: true
+
+tip_massaggio:
+  title: "Massaggio neonatale"
+  slug: "massaggio-neonatale"
+  content_type: 3
+  category: "Benessere"
+  description: "Tecniche di massaggio per neonati"
+  min_age_months: 0
+  max_age_months: 6
+  position: 3
+  published: true
+
+tip_sonno:
+  title: "Ambiente ideale per il sonno"
+  slug: "ambiente-sonno"
+  content_type: 3
+  category: "Sonno"
+  description: "Creare l'ambiente giusto per dormire"
+  min_age_months: 0
+  max_age_months: 12
+  position: 4
+  published: true
+
+# === Edge case: Unpublished (should be filtered out) ===
+
+article_unpublished:
+  title: "Bozza articolo non pubblicato"
+  slug: "bozza-non-pubblicata"
+  content_type: 0
+  category: "Sonno"
+  description: "Questo non dovrebbe apparire"
+  min_age_months: 0
+  max_age_months: 36
+  position: 99
+  published: false
+
+# === Edge case: Out of age range for sophia (24-36 months) ===
+
+game_out_of_range:
+  title: "Gioco per bambini grandi"
+  slug: "gioco-bambini-grandi"
+  content_type: 2
+  category: "Motricità"
+  description: "Attività per 24-36 mesi"
+  min_age_months: 24
+  max_age_months: 36
+  duration_minutes: 15
+  position: 1
+  published: true

@@ -280,13 +280,15 @@ Currently only per-child growth charts exist. No cross-child comparison or aggre
 
 ### 3.4 Dashboard Dynamic Content Logic (FA 3.3–3.5)
 
-**Status: PARTIAL**
+**Status: MOSTLY DONE**
 
 The Functional Analysis specifies:
-- Daily rotation of development milestone proposals (one different milestone per day until all completed) — **Partially done** via `DailyMilestoneService`
-- Activities retrieved from archive, age-filtered, rotated cyclically to always show new content — **Basic filtering done**, cyclic rotation not implemented
-- Tips section with 3 daily tips, changing every day — **Basic filtering done**, daily rotation not implemented
-- Article carousel with intelligent selection based on age + navigation + caregiver behavior — **Age filtering done**, behavioral selection not implemented
+- Daily rotation of development milestone proposals (one different milestone per day until all completed) — **Done** via `DailyMilestoneService`
+- Activities retrieved from archive, age-filtered, rotated cyclically to always show new content — **Done** via `DashboardContentService` (deterministic daily rotation)
+- Tips section with 3 daily tips, changing every day — **Done** via `DashboardContentService`
+- Article carousel with intelligent selection based on age + navigation + caregiver behavior — **Mostly done** via `DashboardContentService` (age filtering + category diversity; behavioral selection deferred post-v1.0)
+
+**Remaining:** Premium/free activity count differentiation (free: 2/day, premium: 10+/day) — blocked on premium gating infrastructure.
 
 ### 3.5 OAuth Registration (Spec 3.1.1)
 

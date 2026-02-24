@@ -14,6 +14,7 @@
 - [x] Basic settings/account management
 - [x] Growth chart visualizations (WHO percentile graphs for measurements)
 - [x] Pediatrician report PDF generation (exportable growth + milestone summary)
+- [x] Dashboard dynamic content rotation (FA 3.3–3.5: daily cycling for activities, tips, articles)
 
 ## In Progress
 - [ ] (none currently)

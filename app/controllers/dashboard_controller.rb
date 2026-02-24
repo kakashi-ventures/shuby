@@ -20,9 +20,9 @@ class DashboardController < ApplicationController
   end
 
   def load_dashboard_content
-    age = current_child.questionnaire_age_in_months
-    @activities = ArchiveContent.published.games.for_age(age).ordered.limit(3)
-    @tips = ArchiveContent.published.tips.for_age(age).ordered.limit(2)
-    @featured_articles = ArchiveContent.published.articles.for_age(age).ordered.limit(3)
+    content = DashboardContentService.call(current_child)
+    @activities = content[:activities]
+    @tips = content[:tips]
+    @featured_articles = content[:articles]
   end
 end
