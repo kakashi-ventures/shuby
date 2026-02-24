@@ -304,9 +304,9 @@ Past-month questionnaires are implicitly skipped — only current-age questionna
 
 ### 3.7 Milestone Completion Flow (DEC-010)
 
-**Status: NOT STARTED**
+**Status: DONE**
 
-On milestone completion, the app should show: (1) "Updated clinical report", (2) link to download report, (3) link to AI helper or stimulation activities. Currently questionnaire completion just marks the session as complete.
+The stories completion slide shows: (1) "Il Report di Crescita è stato aggiornato" message, (2) PDF download link via pediatrician report, (3) "Chiedi a Shuby" link to AI helper, plus a "Visualizza Report" link to the session summary. Implementation in `app/views/questionnaire_sessions/stories/_completion.html.erb`.
 
 ### 3.8 Intelligent Milestone Proposal (DEC-012)
 

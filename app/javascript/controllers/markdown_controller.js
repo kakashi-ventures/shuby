@@ -33,6 +33,10 @@ export default class extends Controller {
         html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         html = html.replace(/\*(.+?)\*/g, '<em>$1</em>')
 
+        // Markdown links [text](url)
+        html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g,
+            '<a href="$2" class="text-primary-600 dark:text-primary-400 underline hover:text-primary-800 dark:hover:text-primary-300" data-turbo-frame="_top">$1</a>')
+
         // Blockquotes
         html = html.replace(/^> (.*)$/gim, '<blockquote class="pl-4 border-l-4 border-gray-300 dark:border-gray-600 italic my-2">$1</blockquote>')
 
