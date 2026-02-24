@@ -87,7 +87,8 @@
 
 - **Overrides**: Not present in specs
 - **Decision**: If a stage is not completed within the expected period, it is **skipped** and the app moves directly to the stages for the **child's current period**.
-- **Status**: to-do
+- **Status**: done
+- **Note**: Past-month questionnaires are implicitly skipped (only current-age questionnaires shown). In-progress past sessions can still be completed. Stale not-started sessions are cleaned up automatically.
 
 ### DEC-012: Intelligent stage proposal
 

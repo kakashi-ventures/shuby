@@ -200,6 +200,10 @@ it:
       discover_more: "Scopri le altre Tappe"
       all_complete_title: "Tutte le tappe completate!"
       all_complete_subtitle: "Hai completato tutte le tappe per %{band}"
+      finish_previous_title: "Hai un questionario in corso"
+      finish_previous_subtitle: "%{area} - Mese %{month}"
+      finish_previous_progress: "%{answered} di %{total} domande"
+      finish_previous_cta: "Completa"
 
   settings:
     show:
@@ -725,10 +729,14 @@ it:
       completed: "Completato"
       in_progress: "In corso"
       not_started: "Da iniziare"
+      past_in_progress: "In corso (mese %{month})"
 
     show:
       title: "Area di Sviluppo"
       no_questionnaire: "Nessun questionario disponibile per questa fascia d'età"
+      past_in_progress_title: "Questionario del mese %{month} in corso"
+      past_in_progress_progress: "%{progress} domande risposte"
+      finish_past_questionnaire: "Completa"
       start_questionnaire: "Inizia Questionario"
       restart_questionnaire: "Ripeti Questionario"
       continue_questionnaire: "Continua"

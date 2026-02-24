@@ -18,17 +18,23 @@ class DevelopmentStagesController < ApplicationController
       next unless questionnaire
 
       session = @child.session_for(questionnaire) ||
-                @child.questionnaire_sessions
-                      .where(age_band_questionnaire: questionnaire)
-                      .completed
-                      .recent_first
-                      .first
+        @child.questionnaire_sessions
+          .where(age_band_questionnaire: questionnaire)
+          .completed
+          .recent_first
+          .first
 
       @area_sessions[area.id] = {
         questionnaire: questionnaire,
         session: session,
         progress: session&.progress_fraction || "0/#{questionnaire.questions.count}"
       }
+    end
+
+    past_in_progress = @child.in_progress_past_sessions
+      .index_by { |s| s.age_band_questionnaire.development_area_id }
+    @area_sessions.each do |area_id, data|
+      data[:past_in_progress] = past_in_progress[area_id]
     end
   end
 
@@ -43,6 +49,7 @@ class DevelopmentStagesController < ApplicationController
 
     @current_session = @child.session_for(@questionnaire)
     @completed_sessions = @child.completed_sessions_for_area(@area)
+    @past_in_progress_session = @child.in_progress_past_sessions.for_area(@area).first
   end
 
   def start

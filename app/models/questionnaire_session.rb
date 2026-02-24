@@ -11,6 +11,16 @@ class QuestionnaireSession < ApplicationRecord
 
   scope :recent_first, -> { order(created_at: :desc) }
   scope :for_area, ->(area) { joins(:age_band_questionnaire).where(age_band_questionnaires: {development_area_id: area.id}) }
+  scope :for_past_age, ->(current_age) {
+    in_progress
+      .joins(:age_band_questionnaire)
+      .where("age_band_questionnaires.max_age_months <= ?", current_age)
+  }
+  scope :stale_not_started, ->(current_age) {
+    not_started
+      .joins(:age_band_questionnaire)
+      .where("age_band_questionnaires.max_age_months <= ?", current_age)
+  }
 
   before_create :snapshot_metadata
 
@@ -47,6 +57,10 @@ class QuestionnaireSession < ApplicationRecord
   end
   alias_method :si_count, :yes_count
   alias_method :incerto_count, :unknown_count
+
+  def from_past_age_band?(current_age)
+    age_band_questionnaire.max_age_months <= current_age
+  end
 
   def development_area
     age_band_questionnaire.development_area

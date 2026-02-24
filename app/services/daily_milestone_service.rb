@@ -13,6 +13,17 @@ class DailyMilestoneService
   end
 
   def call
+    @child.cleanup_stale_sessions!
+
+    past_session = @child.in_progress_past_sessions.first
+    if past_session
+      return {
+        milestone: past_session.age_band_questionnaire,
+        state: :finish_previous,
+        session: past_session
+      }
+    end
+
     {
       milestone: todays_milestone,
       state: determine_state
@@ -30,10 +41,10 @@ class DailyMilestoneService
 
   def completed_today?(questionnaire)
     @child.questionnaire_sessions
-          .completed
-          .where(age_band_questionnaire: questionnaire)
-          .where("DATE(completed_at) = ?", @date)
-          .exists?
+      .completed
+      .where(age_band_questionnaire: questionnaire)
+      .where("DATE(completed_at) = ?", @date)
+      .exists?
   end
 
   private
@@ -50,19 +61,19 @@ class DailyMilestoneService
 
   def last_completed_today?
     @child.questionnaire_sessions
-          .completed
-          .joins(:age_band_questionnaire)
-          .where(age_band_questionnaire: current_age_questionnaires)
-          .where("DATE(questionnaire_sessions.completed_at) = ?", @date)
-          .exists?
+      .completed
+      .joins(:age_band_questionnaire)
+      .where(age_band_questionnaire: current_age_questionnaires)
+      .where("DATE(questionnaire_sessions.completed_at) = ?", @date)
+      .exists?
   end
 
   def uncompleted_questionnaires
     @uncompleted ||= begin
       completed_ids = @child.questionnaire_sessions
-                            .completed
-                            .where(age_band_questionnaire: current_age_questionnaires)
-                            .pluck(:age_band_questionnaire_id)
+        .completed
+        .where(age_band_questionnaire: current_age_questionnaires)
+        .pluck(:age_band_questionnaire_id)
       current_age_questionnaires.where.not(id: completed_ids)
     end
   end

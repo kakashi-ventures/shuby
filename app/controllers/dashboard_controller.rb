@@ -13,6 +13,7 @@ class DashboardController < ApplicationController
     result = DailyMilestoneService.call(current_child)
     @todays_milestone = result[:milestone]
     @milestone_state = result[:state]
+    @milestone_session = result[:session]
   end
 
   def load_measurement_boxes

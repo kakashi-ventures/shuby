@@ -12,10 +12,26 @@ module Child::QuestionnaireManagement
   end
 
   def start_new_session(questionnaire)
+    if questionnaire.max_age_months <= questionnaire_age_in_months
+      raise ArgumentError, "Cannot start session for past age band"
+    end
+
     questionnaire_sessions.create!(
       age_band_questionnaire: questionnaire,
       status: :not_started
     )
+  end
+
+  def in_progress_past_sessions
+    questionnaire_sessions
+      .for_past_age(questionnaire_age_in_months)
+      .includes(age_band_questionnaire: :development_area)
+  end
+
+  def cleanup_stale_sessions!
+    questionnaire_sessions
+      .stale_not_started(questionnaire_age_in_months)
+      .destroy_all
   end
 
   def active_questionnaire_session

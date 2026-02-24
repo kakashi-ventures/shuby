@@ -32,3 +32,18 @@ attention_needed_session:
   started_at: <%= 5.days.ago %>
   completed_at: <%= 4.days.ago %>
   child_age_months: 0
+
+# Past in-progress session (month 1, sophia is ~2 months) - for skip logic tests
+past_in_progress_session:
+  child: sophia
+  age_band_questionnaire: comunicazione_month_1
+  status: 1
+  started_at: <%= 2.weeks.ago %>
+  child_age_months: 1
+
+# Past not-started session (month 1, sophia is ~2 months) - for cleanup tests
+past_not_started_session:
+  child: sophia
+  age_band_questionnaire: consolidamento_month_1
+  status: 0
+  child_age_months: 1

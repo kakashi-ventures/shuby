@@ -11,7 +11,7 @@
 |--------|-------|
 | **Overall completion** | ~85% of core features |
 | **Spec sections covered** | 9/9 (chapter 3 — Funzionalita Core) |
-| **Decisions implemented** | 7/19 fully, 4/19 partially |
+| **Decisions implemented** | 8/19 fully, 3/19 partially |
 | **Decisions pending confirmation** | 4 (DEC-005, DEC-012, DEC-015, DEC-017) |
 | **Decisions deferred post-v1.0** | 2 (DEC-013, DEC-019) |
 | **Major gaps** | Premium gating, notifications, advanced analytics |
@@ -298,9 +298,9 @@ Google/Apple OAuth infrastructure exists via Jumpstart Pro (OmniAuth) but is not
 
 ### 3.6 Milestone Skip Logic (DEC-011)
 
-**Status: NOT STARTED**
+**Status: DONE**
 
-When a milestone isn't completed within its expected period, it should be skipped and the app should jump to the current period's milestones. Basic `questionnaire_age_in_months` and `current_age_band` logic exists in the child model, but explicit skip-and-advance behavior is not implemented.
+Past-month questionnaires are implicitly skipped — only current-age questionnaires are shown. In-progress past sessions are surfaced on the dashboard (`:finish_previous` state) and development stages (amber banner) so parents can finish what they started. Stale `not_started` sessions are cleaned up automatically. A guard prevents creating new sessions for past age bands.
 
 ### 3.7 Milestone Completion Flow (DEC-010)
 
@@ -374,7 +374,7 @@ These decisions are confirmed ("da-fare") but not yet reflected in the codebase.
 | **DEC-008** | Chat links to in-app articles | **NOT STARTED** | Cross-reference `ArchiveContent` in tool responses |
 | **DEC-009** | Terminology: "Development Stage" | **PARTIAL** — Models use `development_area`; EN translations not complete | Update EN locale files |
 | **DEC-010** | Milestone completion flow | **NOT STARTED** | Post-completion UI with report + AI helper links |
-| **DEC-011** | Skip old milestones | **PARTIAL** — `current_age_band` logic exists | Explicit skip-and-advance behavior |
+| **DEC-011** | Skip old milestones | **DONE** — Skip logic, past session surfacing, stale cleanup, guard rails | None |
 | **DEC-014** | Report per period | **DONE** — Report shows recent questionnaire sessions | None |
 | **DEC-016** | Gift subscriptions | **NOT STARTED** | Billing mechanism, promo codes, gift UI |
 | **DEC-018** | Opt-in data sharing | **PARTIAL** — `data_sharing_consent` field exists in onboarding | Full analytics opt-in flow in settings |
@@ -514,7 +514,7 @@ Confirmed out-of-scope per spec:
 | DEC-008 | **NOT STARTED** | Chat → article linking |
 | DEC-009 | **PARTIAL** | EN translations incomplete |
 | DEC-010 | **NOT STARTED** | Completion flow UI |
-| DEC-011 | **PARTIAL** | Basic age logic, no skip behavior |
+| DEC-011 | **DONE** | Skip logic + past session surfacing + cleanup |
 | DEC-012 | **PENDING** | Needs confirmation + design |
 | DEC-013 | **DEFERRED** | Hidden milestones → post-v1.0 |
 | DEC-014 | **DONE** | Report per period |

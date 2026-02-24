@@ -10,6 +10,11 @@
     <% end %>
   </div>
 
+  <% if @past_in_progress_session %>
+    <%= render "development_stages/section_past_in_progress",
+               session: @past_in_progress_session, child: @child %>
+  <% end %>
+
   <div class="shuby-card mb-6">
     <%= render "development_stages/section_header", area: @area, questionnaire: @questionnaire, child: @child %>
     <%= render "development_stages/section_session_status", current_session: @current_session, child: @child, area: @area %>

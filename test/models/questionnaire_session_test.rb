@@ -50,7 +50,7 @@ class QuestionnaireSessionTest < ActiveSupport::TestCase
     session = questionnaire_sessions(:in_progress_session)
     total = session.total_questions
     answered = session.answered_count
-    expected = total > 0 ? (answered.to_f / total * 100).round : 0
+    expected = (total > 0) ? (answered.to_f / total * 100).round : 0
     assert_equal expected, session.progress_percentage
   end
 
@@ -119,5 +119,61 @@ class QuestionnaireSessionTest < ActiveSupport::TestCase
     session.mark_completed!
     assert session.completed?
     assert_not_nil session.completed_at
+  end
+
+  # --- Skip logic scopes ---
+
+  test "for_past_age returns in-progress sessions from past age bands" do
+    sophia = children(:sophia)
+    current_age = sophia.questionnaire_age_in_months
+
+    past_sessions = sophia.questionnaire_sessions.for_past_age(current_age)
+    assert past_sessions.any?, "Expected past in-progress sessions for sophia"
+    past_sessions.each do |s|
+      assert s.in_progress?
+      assert_operator s.age_band_questionnaire.max_age_months, :<=, current_age
+    end
+  end
+
+  test "for_past_age does not include current age sessions" do
+    sophia = children(:sophia)
+    current_age = sophia.questionnaire_age_in_months
+
+    past_sessions = sophia.questionnaire_sessions.for_past_age(current_age)
+    past_sessions.each do |s|
+      assert_operator s.age_band_questionnaire.max_age_months, :<=, current_age
+      # Current age sessions have max_age_months > current_age, so they should not appear
+    end
+  end
+
+  test "stale_not_started returns not-started sessions from past age bands" do
+    sophia = children(:sophia)
+    current_age = sophia.questionnaire_age_in_months
+
+    stale = sophia.questionnaire_sessions.stale_not_started(current_age)
+    assert stale.any?, "Expected stale not-started sessions for sophia"
+    stale.each do |s|
+      assert s.not_started?
+      assert_operator s.age_band_questionnaire.max_age_months, :<=, current_age
+    end
+  end
+
+  test "from_past_age_band? returns true for past session" do
+    session = questionnaire_sessions(:past_in_progress_session)
+    sophia = children(:sophia)
+    assert session.from_past_age_band?(sophia.questionnaire_age_in_months)
+  end
+
+  test "from_past_age_band? returns false for current session" do
+    # Create a session for current age band
+    sophia = children(:sophia)
+    current_q = AgeBandQuestionnaire.for_age(sophia.questionnaire_age_in_months).first
+    return unless current_q # skip if no questionnaire for current age
+
+    session = sophia.questionnaire_sessions.create!(
+      age_band_questionnaire: current_q,
+      status: :not_started
+    )
+    assert_not session.from_past_age_band?(sophia.questionnaire_age_in_months)
   end
 end

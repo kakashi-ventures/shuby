@@ -2,7 +2,10 @@
 <% if @milestone_state.present? %>
   <section class="mb-4">
     <% case @milestone_state
-       when :proposed %>
+       when :finish_previous %>
+      <%= render "dashboard/milestone_box/finish_previous",
+                 milestone: @todays_milestone, session: @milestone_session, child: current_child %>
+    <% when :proposed %>
       <%= render "dashboard/milestone_box/proposed", milestone: @todays_milestone, child: current_child %>
     <% when :completed_today %>
       <%= render "dashboard/milestone_box/completed_today", child: current_child %>
