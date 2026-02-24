@@ -164,6 +164,8 @@ class ShubyAssistantService
     prompt = BASE_SYSTEM_PROMPT.dup
     context = child_context_prompt
     prompt << "\n#{context}" if context.present?
+    catalog = article_catalog_prompt
+    prompt << "\n#{catalog}" if catalog.present?
     prompt
   end
 
@@ -209,6 +211,35 @@ class ShubyAssistantService
 
     lines << ""
     lines << "Usa il nome \"#{child.display_name}\" nelle risposte. Adatta i consigli all'età specifica del bambino."
+    lines.join("\n")
+  end
+
+  # Generates a compact catalog of published in-app articles for the system prompt.
+  # The AI uses this to naturally link to relevant articles in its responses.
+  #
+  # @return [String, nil] The article catalog block, or nil if no published content
+  def article_catalog_prompt
+    contents = ArchiveContent.published.ordered.to_a
+    return nil if contents.empty?
+
+    type_labels = {"article" => "Articoli", "book" => "Libri", "game" => "Attività e Giochi", "tip" => "Consigli"}
+
+    lines = []
+    lines << "CONTENUTI IN-APP DISPONIBILI:"
+    lines << "Quando pertinente alla domanda del genitore, suggerisci contenuti dell'app usando link markdown: [Titolo](/archivio/slug)"
+    lines << "Inserisci i link in modo naturale nel testo della risposta."
+    lines << "Suggerisci massimo 1-3 contenuti per risposta, solo se realmente rilevanti."
+    lines << "Usa SOLO i link esatti elencati qui sotto — non inventare slug."
+    lines << ""
+
+    contents.group_by(&:content_type).each do |type, items|
+      lines << "#{type_labels[type] || type.capitalize}:"
+      items.each do |item|
+        lines << "- [#{item.title}](/archivio/#{item.slug}) | #{item.category} | #{item.age_range_label}"
+      end
+      lines << ""
+    end
+
     lines.join("\n")
   end
 

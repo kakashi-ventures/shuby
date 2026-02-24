@@ -64,7 +64,8 @@
 
 - **Overrides**: Not present in specs
 - **Decision**: The chatbot should **link to articles within the app** when relevant. Articles in turn should **link to international reference sources**.
-- **Status**: to-do
+- **Status**: done
+- **Note**: Published ArchiveContent catalog is injected into the AI system prompt. The AI weaves markdown links (`[Title](/archivio/slug)`) naturally into responses. Markdown controller renders these as clickable Turbo-navigated links.
 
 ---
 
@@ -80,8 +81,8 @@
 
 - **Overrides**: Not present in specs
 - **Decision**: Upon completing a stage, show: (1) **"Updated clinical report"**, (2) **link to download the report**, (3) **link to the AI helper** or to **stimulation activities**.
-- **Status**: partial
-- **Note**: Completion screen exists with link to session report. Missing: direct link to AI helper and direct PDF download from the completion flow.
+- **Status**: done
+- **Note**: Stories completion slide shows report-updated message, PDF download link, AI helper link, and session report link.
 
 ### DEC-011: Skipped stages — jump to current period
 
