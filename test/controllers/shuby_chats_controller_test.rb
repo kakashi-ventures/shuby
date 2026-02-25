@@ -120,7 +120,7 @@ class ShubyChatsControllerTest < ActionDispatch::IntegrationTest
   private
 
   def fill_to_limit(user)
-    chat = user.shuby_chats.create!(model: "gpt-4o-mini")
+    chat = user.shuby_chats.create!(model: "gpt-4o-mini", account: accounts(:one))
     existing = user.chat_messages_sent_this_month
     remaining = User::ChatRateLimit::FREE_MONTHLY_MESSAGE_LIMIT - existing
     remaining.times { |i| chat.messages.create!(role: "user", content: "Msg #{i}") }

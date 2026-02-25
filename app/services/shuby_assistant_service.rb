@@ -150,7 +150,7 @@ class ShubyAssistantService
     # @param model [String] The model to use
     # @return [ShubyAssistantService] The service instance
     def create_for_user(user, model: DEFAULT_MODEL)
-      chat = user.shuby_chats.create!(model: model)
+      chat = user.shuby_chats.create!(model: model, account: user.personal_account)
       new(chat)
     end
   end

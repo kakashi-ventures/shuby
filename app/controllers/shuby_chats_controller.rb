@@ -25,7 +25,10 @@ class ShubyChatsController < ApplicationController
   # POST /shuby
   # Creates a new conversation and redirects to it
   def create
-    @shuby_chat = current_user.shuby_chats.create!(model: params[:model] || ShubyAssistantService::DEFAULT_MODEL)
+    @shuby_chat = current_user.shuby_chats.create!(
+      model: params[:model] || ShubyAssistantService::DEFAULT_MODEL,
+      account: current_account
+    )
 
     respond_to do |format|
       format.html { redirect_to shuby_chat_path(@shuby_chat) }

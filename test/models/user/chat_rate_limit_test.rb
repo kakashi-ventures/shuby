@@ -20,7 +20,7 @@ class User::ChatRateLimitTest < ActiveSupport::TestCase
 
   test "chat_messages_sent_this_month excludes messages from previous months" do
     # Create a message from last month
-    old_chat = @user.shuby_chats.create!(model: "gpt-4o-mini")
+    old_chat = @user.shuby_chats.create!(model: "gpt-4o-mini", account: accounts(:one))
     old_msg = old_chat.messages.create!(role: "user", content: "Old message")
     old_msg.update_column(:created_at, 1.month.ago)
 
@@ -56,7 +56,7 @@ class User::ChatRateLimitTest < ActiveSupport::TestCase
 
   test "chat_rate_limited? is true when at limit" do
     # Create enough messages to hit the limit
-    chat = @user.shuby_chats.create!(model: "gpt-4o-mini")
+    chat = @user.shuby_chats.create!(model: "gpt-4o-mini", account: accounts(:one))
     existing = @user.chat_messages_sent_this_month
     (User::ChatRateLimit::FREE_MONTHLY_MESSAGE_LIMIT - existing).times do |i|
       chat.messages.create!(role: "user", content: "Message #{i}")
@@ -73,7 +73,7 @@ class User::ChatRateLimitTest < ActiveSupport::TestCase
   end
 
   test "chat_messages_remaining never goes below zero" do
-    chat = @user.shuby_chats.create!(model: "gpt-4o-mini")
+    chat = @user.shuby_chats.create!(model: "gpt-4o-mini", account: accounts(:one))
     existing = @user.chat_messages_sent_this_month
     # Create more than the limit
     (User::ChatRateLimit::FREE_MONTHLY_MESSAGE_LIMIT - existing + 5).times do |i|
@@ -87,7 +87,7 @@ class User::ChatRateLimitTest < ActiveSupport::TestCase
     # Stub the premium check
     @user.stub(:chat_premium?, true) do
       # Even with many messages, premium user is not rate limited
-      chat = @user.shuby_chats.create!(model: "gpt-4o-mini")
+      chat = @user.shuby_chats.create!(model: "gpt-4o-mini", account: accounts(:one))
       existing = @user.chat_messages_sent_this_month
       (User::ChatRateLimit::FREE_MONTHLY_MESSAGE_LIMIT - existing).times do |i|
         chat.messages.create!(role: "user", content: "Message #{i}")

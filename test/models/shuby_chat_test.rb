@@ -42,17 +42,17 @@ class ShubyChatTest < ActiveSupport::TestCase
   end
 
   test "display_title returns New Chat when empty" do
-    chat = @user.shuby_chats.create!(model: "gpt-4o-mini")
+    chat = @user.shuby_chats.create!(model: "gpt-4o-mini", account: accounts(:one))
     # Match English "New Chat" or Italian "Nuova Chat"
     assert_match(/New Chat|Nuova Chat/i, chat.display_title)
   end
 
   test "recent scope orders by updated_at desc" do
     # Create chats with explicit different timestamps to test ordering
-    old_chat = @user.shuby_chats.create!(model: "gpt-4o-mini")
+    old_chat = @user.shuby_chats.create!(model: "gpt-4o-mini", account: accounts(:one))
     old_chat.update_column(:updated_at, 1.day.ago)
 
-    new_chat = @user.shuby_chats.create!(model: "gpt-4o-mini")
+    new_chat = @user.shuby_chats.create!(model: "gpt-4o-mini", account: accounts(:one))
     new_chat.update_column(:updated_at, Time.current)
 
     recent_chats = @user.shuby_chats.recent.to_a

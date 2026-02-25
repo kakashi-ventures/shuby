@@ -7,6 +7,7 @@ class Account < ApplicationRecord
   include Types
 
   has_many :children, dependent: :destroy
+  has_many :shuby_chats, dependent: :destroy
   has_one :family_profile, dependent: :destroy
 
   accepts_nested_attributes_for :family_profile

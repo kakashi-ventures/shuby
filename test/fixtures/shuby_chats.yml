@@ -2,10 +2,12 @@
 
 one:
   user: one
+  account: one
   model: gpt-4o-mini
   title: Test conversation
 
 two:
   user: two
+  account: two
   model: gpt-4o-mini
   title: Another conversation

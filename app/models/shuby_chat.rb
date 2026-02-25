@@ -10,6 +10,7 @@ class ShubyChat < ApplicationRecord
   acts_as_chat message_class: "ShubyMessage", tool_call_class: "ShubyToolCall"
 
   belongs_to :user
+  belongs_to :account
 
   validates :model, presence: true
 
