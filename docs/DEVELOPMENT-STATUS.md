@@ -316,9 +316,9 @@ The app should propose the most relevant milestones based on previous results, n
 
 ### 3.9 Chat-to-Article Linking (DEC-008)
 
-**Status: NOT STARTED**
+**Status: DONE** (to be configured)
 
-The chatbot should link to in-app articles when relevant. `FileSearchTool` searches the OpenAI Vector Store but does not cross-reference `ArchiveContent` records to generate in-app links.
+Published `ArchiveContent` catalog is injected into the AI system prompt (`ShubyAssistantService#article_catalog_prompt`), enabling the chatbot to link to in-app articles using markdown links (`[Title](/archivio/slug)`). The `markdown_controller.js` renders these as clickable links in chat responses.
 
 ### 3.10 Persistent Chat Memory for Premium (DEC-006)
 
