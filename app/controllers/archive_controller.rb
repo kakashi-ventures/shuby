@@ -9,11 +9,13 @@ class ArchiveController < ApplicationController
   # GET /archivio
   # Lists all published archive content organized by sections
   def index
-    if params[:type].present?
-      # Filtered view - show all content of a specific type
+    @favorite_ids = current_user_favorite_ids
+
+    if params[:type] == "saved"
+      load_saved_content
+    elsif params[:type].present?
       load_filtered_content
     else
-      # Home view - show sectioned content
       load_sectioned_content
     end
 
@@ -26,6 +28,7 @@ class ArchiveController < ApplicationController
   # GET /archivio/:id
   # Displays a single archive content item
   def show
+    @favorited = current_user.archive_favorites.exists?(archive_content: @content)
   end
 
   private
@@ -34,12 +37,23 @@ class ArchiveController < ApplicationController
     ArchiveContent.published
   end
 
+  def current_user_favorite_ids
+    Set.new(current_user.archive_favorites.pluck(:archive_content_id))
+  end
+
   # Load content for the sectioned home view
   def load_sectioned_content
     @articles = base_scope.articles.ordered.limit(4)
     @consigli = base_scope.where(content_type: [:book, :tip]).ordered.limit(4)
     @activities = base_scope.games.ordered.limit(4)
     @sectioned_view = true
+  end
+
+  # Load saved/favorited content
+  def load_saved_content
+    @contents = base_scope.where(id: @favorite_ids.to_a).ordered
+    @active_type = "saved"
+    @sectioned_view = false
   end
 
   # Load filtered content for type-specific views
@@ -64,10 +78,10 @@ class ArchiveController < ApplicationController
 
     # Get unique categories for filter dropdown
     @categories = ArchiveContent.published
-                                .distinct
-                                .pluck(:category)
-                                .compact
-                                .sort
+      .distinct
+      .pluck(:category)
+      .compact
+      .sort
     @sectioned_view = false
   end
 

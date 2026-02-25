@@ -1,6 +1,7 @@
 <%# Article card using shuby-card-article design %>
 <%= link_to archive_path(content.slug), class: "block" do %>
-  <div class="shuby-card-article">
+  <div class="shuby-card-article relative">
+    <%= render "archive/favorite_button", content: content, favorited: local_assigns[:favorite_ids]&.include?(content.id) %>
     <div class="shuby-card-article-image">
       <% if content.cover_image.attached? %>
         <%= image_tag content.cover_image, alt: content.title %>

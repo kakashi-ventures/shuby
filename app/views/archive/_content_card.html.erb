@@ -1,9 +1,9 @@
 <%# Dynamic card selector based on content type %>
 <% case content.content_type %>
 <% when "article" %>
-  <%= render "archive/article_card", content: content %>
+  <%= render "archive/article_card", content: content, favorite_ids: local_assigns[:favorite_ids] %>
 <% when "book", "tip" %>
-  <%= render "archive/consigli_card", content: content %>
+  <%= render "archive/consigli_card", content: content, favorite_ids: local_assigns[:favorite_ids] %>
 <% when "game" %>
-  <%= render "archive/game_card", content: content %>
+  <%= render "archive/game_card", content: content, favorite_ids: local_assigns[:favorite_ids] %>
 <% end %>

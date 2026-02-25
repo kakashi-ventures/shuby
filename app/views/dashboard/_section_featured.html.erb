@@ -17,7 +17,9 @@
           age_range: article.age_range_label,
           title: article.title,
           description: article.description || "",
-          duration: article.duration_label || ""
+          duration: article.duration_label || "",
+          content: article,
+          favorite_ids: @favorite_ids
         } %>
       <% end %>
     <% end %>

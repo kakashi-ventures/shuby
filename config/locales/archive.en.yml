@@ -14,6 +14,7 @@ en:
         games: "Games"
         tip: "Tips"
         tips: "Tips"
+        saved: "Saved"
       filters:
         age_label: "Age"
         category_label: "Category"
@@ -29,6 +30,8 @@ en:
         activities: "Activities"
         all_activities: "All Activities"
         no_activities: "No activities available"
+        saved: "Your saved items"
+        no_saved: "You haven't saved any content yet"
       empty:
         title: "No content found"
         description: "Try adjusting your search filters"
@@ -52,6 +55,10 @@ en:
       author: "Author"
       illustrator: "Illustrations"
       publisher: "Publisher"
+
+    favorites:
+      save: "Save to favorites"
+      remove: "Remove from favorites"
 
     game:
       materials: "Materials"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_25_103250) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_25_131423) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -164,6 +164,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_25_103250) do
     t.index ["slug"], name: "index_archive_contents_on_slug", unique: true
   end
 
+  create_table "archive_favorites", force: :cascade do |t|
+    t.bigint "archive_content_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["archive_content_id"], name: "index_archive_favorites_on_archive_content_id"
+    t.index ["user_id", "archive_content_id"], name: "index_archive_favorites_on_user_id_and_archive_content_id", unique: true
+    t.index ["user_id"], name: "index_archive_favorites_on_user_id"
+  end
+
   create_table "child_health_profiles", force: :cascade do |t|
     t.decimal "average_sleep_hours", precision: 4, scale: 1
     t.jsonb "birth_complications", default: []
@@ -248,16 +258,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_25_103250) do
     t.integer "two_parents_type"
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_family_profiles_on_account_id", unique: true
-  end
-
-  create_table "favorites", force: :cascade do |t|
-    t.bigint "archive_content_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.index ["archive_content_id"], name: "index_favorites_on_archive_content_id"
-    t.index ["user_id", "archive_content_id"], name: "index_favorites_on_user_id_and_archive_content_id", unique: true
-    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "growth_phases", force: :cascade do |t|
@@ -642,11 +642,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_25_103250) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "age_band_questionnaires", "development_areas"
   add_foreign_key "api_tokens", "users"
+  add_foreign_key "archive_favorites", "archive_contents"
+  add_foreign_key "archive_favorites", "users"
   add_foreign_key "child_health_profiles", "children"
   add_foreign_key "children", "accounts"
   add_foreign_key "family_profiles", "accounts"
-  add_foreign_key "favorites", "archive_contents"
-  add_foreign_key "favorites", "users"
   add_foreign_key "measurements", "children"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"

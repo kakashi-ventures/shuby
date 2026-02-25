@@ -16,7 +16,9 @@
           tag_text_color: "text-[var(--color-shuby-verde-600)]",
           age_range: tip.age_range_label,
           title: tip.title,
-          author: tip.author || ""
+          author: tip.author || "",
+          content: tip,
+          favorite_ids: @favorite_ids
         } %>
       <% end %>
     </div>

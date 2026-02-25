@@ -1,0 +1,6 @@
+<%# Empty state when user has no saved content %>
+<div class="text-center py-12 shuby-card">
+  <%= render_svg "shuby/icons/icon-heart-outline", styles: "w-16 h-16 mx-auto mb-4 text-shuby-blue-300" %>
+  <h3 class="shuby-h3 mt-4"><%= t("archive.index.sections.no_saved") %></h3>
+  <%= link_to t("archive.back_to_archive"), archive_index_path, class: "shuby-btn shuby-btn-md shuby-btn-outline mt-4" %>
+</div>

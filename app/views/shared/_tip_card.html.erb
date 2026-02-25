@@ -1,4 +1,4 @@
-<a href="<%= path %>" class="flex gap-4 p-3 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
+<a href="<%= path %>" class="relative flex gap-4 p-3 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
   <div class="w-16 h-16 rounded-xl <%= thumbnail_bg %> flex items-center justify-center flex-shrink-0 overflow-hidden">
     <%= image_tag thumbnail_image, class: "w-full h-full object-cover", alt: "" %>
   </div>
@@ -10,4 +10,7 @@
     <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white text-sm line-clamp-1"><%= title %></h3>
     <p class="shuby-p2 text-gray-500 text-xs"><%= author %></p>
   </div>
+  <% if local_assigns[:content] %>
+    <%= render "archive/favorite_button", content: content, favorited: favorite_ids&.include?(content.id) %>
+  <% end %>
 </a>

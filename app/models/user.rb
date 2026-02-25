@@ -18,6 +18,10 @@ class User < ApplicationRecord
   # Shuby chat conversations
   has_many :shuby_chats, dependent: :destroy
 
+  # Archive favorites
+  has_many :archive_favorites, dependent: :destroy
+  has_many :favorite_archive_contents, through: :archive_favorites, source: :archive_content
+
   validates :avatar, resizable_image: true
   validates :name, presence: true
 

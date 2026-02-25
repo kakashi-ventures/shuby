@@ -12,6 +12,9 @@ class ArchiveContent < ApplicationRecord
   # ActiveStorage
   has_one_attached :cover_image
 
+  # Favorites
+  has_many :archive_favorites, dependent: :destroy
+
   # Validations
   validates :title, presence: true
   validates :slug, presence: true, uniqueness: true

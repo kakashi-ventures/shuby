@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+one:
+  user: one
+  archive_content: article_sonno_one
+
+two:
+  user: one
+  archive_content: game_tummy_time

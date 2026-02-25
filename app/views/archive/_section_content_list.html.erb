@@ -5,7 +5,7 @@
   <% if items.any? %>
     <div class="space-y-3">
       <% items.each do |item| %>
-        <%= render card_partial, content: item %>
+        <%= render card_partial, content: item, favorite_ids: local_assigns[:favorite_ids] %>
       <% end %>
     </div>
     <div class="mt-4 text-right">

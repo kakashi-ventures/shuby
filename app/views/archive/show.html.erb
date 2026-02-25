@@ -1,13 +1,14 @@
 <% content_for :title, @content.title %>
 
 <div class="pb-24">
-  <div class="px-4 py-3">
+  <div class="px-4 py-3 flex items-center justify-between">
     <%= link_to archive_index_path, class: "inline-flex items-center gap-2 text-shuby-blue-800 hover:text-shuby-blue-900" do %>
       <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M15 18l-6-6 6-6"/>
       </svg>
       <%= t("archive.back_to_archive") %>
     <% end %>
+    <%= render "archive/favorite_button", content: @content, favorited: @favorited, inline: true %>
   </div>
 
   <% if @content.content_type_article? || @content.content_type_game? %>

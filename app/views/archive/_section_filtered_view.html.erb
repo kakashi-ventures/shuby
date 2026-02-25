@@ -9,13 +9,17 @@
   <h1 class="shuby-h1 text-shuby-blue-800"><%= t("tabs.#{active_type}", scope: scope) %></h1>
 </div>
 
-<%= render "archive/filters", categories: categories, selected_age: selected_age, selected_category: selected_category %>
+<% if active_type != "saved" %>
+  <%= render "archive/filters", categories: categories, selected_age: selected_age, selected_category: selected_category %>
+<% end %>
 
 <div id="archive-content" class="space-y-3">
   <% if contents.any? %>
     <% contents.each do |content| %>
-      <%= render "archive/content_card", content: content %>
+      <%= render "archive/content_card", content: content, favorite_ids: favorite_ids %>
     <% end %>
+  <% elsif active_type == "saved" %>
+    <%= render "archive/empty_state_saved" %>
   <% else %>
     <%= render "archive/empty_state" %>
   <% end %>

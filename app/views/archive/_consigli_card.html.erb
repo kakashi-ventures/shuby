@@ -1,6 +1,7 @@
 <%# Consigli card for books and tips using shuby-card-consigli design %>
 <%= link_to archive_path(content.slug), class: "block" do %>
-  <div class="shuby-card-consigli">
+  <div class="shuby-card-consigli relative">
+    <%= render "archive/favorite_button", content: content, favorited: local_assigns[:favorite_ids]&.include?(content.id) %>
     <div class="shuby-card-consigli-content">
       <div class="shuby-card-consigli-tags">
         <span class="shuby-tag shuby-tag-giallo">

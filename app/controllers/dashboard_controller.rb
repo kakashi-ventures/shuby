@@ -25,5 +25,6 @@ class DashboardController < ApplicationController
     @activities = content[:activities]
     @tips = content[:tips]
     @featured_articles = content[:articles]
+    @favorite_ids = Set.new(current_user.archive_favorites.pluck(:archive_content_id))
   end
 end

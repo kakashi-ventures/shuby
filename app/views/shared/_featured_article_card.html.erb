@@ -1,4 +1,4 @@
-<a href="<%= path %>" class="flex-shrink-0 w-64 snap-start">
+<a href="<%= path %>" class="relative flex-shrink-0 w-64 snap-start">
   <div class="<%= bg_color %> rounded-2xl p-4 h-full">
     <div class="flex items-center gap-2 mb-3">
       <span class="px-2 py-0.5 text-xs font-medium rounded-full <%= tag_bg %> <%= tag_text_color %>"><%= tag_label %></span>
@@ -8,4 +8,7 @@
     <p class="shuby-p2 text-gray-600 text-xs mb-2 line-clamp-2"><%= description %></p>
     <span class="text-xs text-gray-500"><%= duration %></span>
   </div>
+  <% if local_assigns[:content] %>
+    <%= render "archive/favorite_button", content: content, favorited: favorite_ids&.include?(content.id) %>
+  <% end %>
 </a>

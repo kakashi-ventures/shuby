@@ -5,14 +5,16 @@
     <%= render "archive/section_home_view",
         articles: @articles,
         consigli: @consigli,
-        activities: @activities %>
+        activities: @activities,
+        favorite_ids: @favorite_ids %>
   <% else %>
     <%= render "archive/section_filtered_view",
         active_type: @active_type,
         categories: @categories,
         selected_age: @selected_age,
         selected_category: @selected_category,
-        contents: @contents %>
+        contents: @contents,
+        favorite_ids: @favorite_ids %>
   <% end %>
 </div>
 
