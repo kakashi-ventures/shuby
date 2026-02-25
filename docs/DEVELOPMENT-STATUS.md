@@ -328,9 +328,9 @@ Premium users should have persistent conversational context across chat sessions
 
 ### 3.11 Dispatcher Chatbot Architecture (DEC-007)
 
-**Status: PARTIAL**
+**Status: DONE**
 
-A single generalist chatbot exists (correct per DEC-007), but the dispatcher pattern to route to specialist sub-agents is not implemented. Current architecture uses one system prompt for all queries.
+Single generalist chatbot with transparent dispatcher routing. The system prompt includes 7 specialist knowledge sections (Sonno, Alimentazione, Motricità, Comunicazione, Benessere Famiglia, Salute & Prevenzione, Gioco & Sviluppo) and dispatcher instructions. The LLM self-selects expertise based on query topic — no visible routing to the user.
 
 ### 3.12 Article Favorites / Saved (Spec 3.7.1)
 
