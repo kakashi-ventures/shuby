@@ -17,6 +17,8 @@
 #   end
 #
 class ShubyAssistantService
+  include Specialists
+
   # Italian system prompt for Shuby - child development expert (0-36 months)
   BASE_SYSTEM_PROMPT = <<~PROMPT
     Shuby, un'assistente esperta in sviluppo infantile (0-36 mesi) che supporta genitori con consigli evidence-based.
@@ -162,6 +164,8 @@ class ShubyAssistantService
   # @return [String] The complete system prompt
   def build_system_prompt
     prompt = BASE_SYSTEM_PROMPT.dup
+    prompt << "\n#{DISPATCHER_INSTRUCTIONS}"
+    prompt << "\n#{specialist_prompt}"
     context = child_context_prompt
     prompt << "\n#{context}" if context.present?
     catalog = article_catalog_prompt
