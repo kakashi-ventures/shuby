@@ -1,5 +1,19 @@
 # frozen_string_literal: true
 
+emma:
+  account: one
+  name: "Emma"
+  birth_date: <%= 6.months.ago.to_date %>
+  sex: 2
+  active: true
+
+matteo:
+  account: one
+  name: "Matteo"
+  birth_date: <%= 12.months.ago.to_date %>
+  sex: 1
+  active: true
+
 sophia:
   account: company
   name: "Sophia"

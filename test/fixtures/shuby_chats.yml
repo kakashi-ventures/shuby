@@ -5,6 +5,7 @@ one:
   account: one
   model: gpt-4o-mini
   title: Test conversation
+  child: emma
 
 two:
   user: two

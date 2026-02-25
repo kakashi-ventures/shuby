@@ -27,7 +27,8 @@ class ShubyChatsController < ApplicationController
   def create
     @shuby_chat = current_user.shuby_chats.create!(
       model: params[:model] || ShubyAssistantService::DEFAULT_MODEL,
-      account: current_account
+      account: current_account,
+      child: current_child
     )
 
     respond_to do |format|

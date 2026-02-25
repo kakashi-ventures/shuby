@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_25_093538) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_25_103250) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -518,6 +518,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_25_093538) do
 
   create_table "shuby_chats", force: :cascade do |t|
     t.bigint "account_id", null: false
+    t.bigint "child_id"
     t.datetime "created_at", null: false
     t.string "model", default: "gpt-4o-mini", null: false
     t.string "previous_response_id"
@@ -526,6 +527,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_25_093538) do
     t.bigint "user_id", null: false
     t.index ["account_id", "user_id"], name: "index_shuby_chats_on_account_id_and_user_id"
     t.index ["account_id"], name: "index_shuby_chats_on_account_id"
+    t.index ["child_id"], name: "index_shuby_chats_on_child_id"
     t.index ["created_at"], name: "index_shuby_chats_on_created_at"
     t.index ["user_id"], name: "index_shuby_chats_on_user_id"
   end
@@ -656,6 +658,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_25_093538) do
   add_foreign_key "questionnaire_sessions", "children"
   add_foreign_key "questions", "age_band_questionnaires"
   add_foreign_key "shuby_chats", "accounts"
+  add_foreign_key "shuby_chats", "children"
   add_foreign_key "shuby_chats", "users"
   add_foreign_key "shuby_messages", "shuby_chats"
   add_foreign_key "shuby_messages", "shuby_tool_calls"

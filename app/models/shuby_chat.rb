@@ -11,8 +11,10 @@ class ShubyChat < ApplicationRecord
 
   belongs_to :user
   belongs_to :account
+  belongs_to :child, optional: true
 
   validates :model, presence: true
+  validate :child_belongs_to_account
 
   # RubyLLM expects model_id, but we use model column
   # Alias methods for compatibility
@@ -29,6 +31,13 @@ class ShubyChat < ApplicationRecord
   end
 
   private
+
+  def child_belongs_to_account
+    return unless child_id.present? && account_id.present?
+    return if child.account_id == account_id
+
+    errors.add(:child, :invalid)
+  end
 
   # Extracts preview from the first user message
   #

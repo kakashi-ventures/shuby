@@ -6,6 +6,7 @@ class Child < AccountRecord
   include ProfileCompleteness
 
   belongs_to :account
+  has_many :shuby_chats, dependent: :nullify
   has_many :questionnaire_sessions, dependent: :destroy
   has_many :measurements, dependent: :destroy
   has_one :health_profile, class_name: "ChildHealthProfile", dependent: :destroy

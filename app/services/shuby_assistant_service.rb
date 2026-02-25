@@ -151,8 +151,9 @@ class ShubyAssistantService
     # @param user [User] The user
     # @param model [String] The model to use
     # @return [ShubyAssistantService] The service instance
-    def create_for_user(user, model: DEFAULT_MODEL)
-      chat = user.shuby_chats.create!(model: model, account: user.personal_account)
+    def create_for_user(user, model: DEFAULT_MODEL, child: nil)
+      child ||= user.personal_account&.children&.active&.ordered&.first
+      chat = user.shuby_chats.create!(model: model, account: user.personal_account, child: child)
       new(chat)
     end
   end
@@ -177,15 +178,15 @@ class ShubyAssistantService
   #
   # @return [String, nil] The child context block, or nil if no child found
   def child_context_prompt
-    user = @shuby_chat.user
-    account = user.personal_account
-    return nil unless account
-
-    child = account.children.active.ordered.first
+    child = @shuby_chat.child
+    # Fallback for legacy chats without child_id
+    child ||= @shuby_chat.account&.children&.active&.ordered&.first
     return nil unless child
 
-    family_profile = account.family_profile
-    account_user = account.account_users.find_by(user: user)
+    account = @shuby_chat.account
+    user = @shuby_chat.user
+    family_profile = account&.family_profile
+    account_user = account&.account_users&.find_by(user: user)
 
     lines = ["CONTESTO BAMBINO:"]
     lines << "- Nome: #{child.display_name}"

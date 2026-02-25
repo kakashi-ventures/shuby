@@ -18,6 +18,7 @@ it:
       new_button: "Nuova"
       delete_confirm: "Sei sicuro di voler eliminare questa conversazione?"
       powered_by: "Powered by %{model}"
+      child_context: "Chat su %{child_name}"
       welcome:
         greeting: "Ciao! Sono Shuby"
         description: "Sono qui per aiutarti con domande sullo sviluppo del tuo bambino (0-36 mesi). Chiedimi qualsiasi cosa!"

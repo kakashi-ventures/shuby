@@ -11,7 +11,13 @@
         <%= image_tag "shuby/icons/icon-robot.svg", class: "w-8 h-8", alt: "Shuby" %>
         <div>
           <h1 class="text-lg font-semibold text-gray-900 dark:text-white"><%= @shuby_chat.display_title %></h1>
-          <p class="text-xs text-gray-500 dark:text-gray-400"><%= t(".powered_by", model: ShubyAssistantService::MODEL_DISPLAY_NAME) %></p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            <% if @shuby_chat.child %>
+              <%= t(".child_context", child_name: @shuby_chat.child.display_name) %> · <%= t(".powered_by", model: ShubyAssistantService::MODEL_DISPLAY_NAME) %>
+            <% else %>
+              <%= t(".powered_by", model: ShubyAssistantService::MODEL_DISPLAY_NAME) %>
+            <% end %>
+          </p>
         </div>
       </div>
     </div>
