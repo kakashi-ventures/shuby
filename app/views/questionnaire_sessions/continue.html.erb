@@ -15,10 +15,7 @@
       <span class="shuby-caption"><%= @current_index %>/<%= @total %></span>
     </div>
     <%# Progress bar %>
-    <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-      <div class="h-full bg-primary-500 transition-all duration-300"
-           style="width: <%= @session.progress_percentage %>%;"></div>
-    </div>
+    <%= render "shared/ui/progress_bar", percentage: @session.progress_percentage %>
   </div>
 
   <%# Question card %>

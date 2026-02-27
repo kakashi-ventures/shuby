@@ -1,0 +1,24 @@
+<%# Page header with optional actions
+  Required locals:
+    title - heading text
+  Optional locals:
+    subtitle    - secondary text below title
+    title_class - CSS class for title (default: "shuby-page-header-title")
+    class       - additional CSS classes on wrapper
+  Block: yield = actions area (right side)
+%>
+<% title_class = local_assigns.fetch(:title_class, "shuby-page-header-title") %>
+
+<div class="shuby-page-header <%= local_assigns[:class] %>">
+  <div>
+    <h1 class="<%= title_class %>"><%= title %></h1>
+    <% if local_assigns[:subtitle] %>
+      <p class="shuby-p2"><%= subtitle %></p>
+    <% end %>
+  </div>
+  <% if block_given? %>
+    <div class="shuby-page-header-actions">
+      <%= yield %>
+    </div>
+  <% end %>
+</div>

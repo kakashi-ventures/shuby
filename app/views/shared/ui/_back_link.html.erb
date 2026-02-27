@@ -1,0 +1,17 @@
+<%# Back link navigation
+  Required locals:
+    path  - URL to navigate back to
+    label - display text
+  Optional locals:
+    size  - "base" or "sm" (default: "base")
+    class - additional CSS classes
+%>
+<% size = local_assigns.fetch(:size, "base") %>
+<% link_class = size == "sm" ? "shuby-back-link shuby-back-link-sm" : "shuby-back-link" %>
+
+<%= link_to path, class: "#{link_class} #{local_assigns[:class]}" do %>
+  <span class="shuby-back-link-icon">
+    <%= render_svg "shuby/icons/icon-chevron-left" %>
+  </span>
+  <%= label %>
+<% end %>

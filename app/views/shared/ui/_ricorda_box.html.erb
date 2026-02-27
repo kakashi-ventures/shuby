@@ -1,0 +1,21 @@
+<%# Ricorda (reminder) box component
+  Optional locals:
+    label - header text (default: "RICORDA:")
+    icon  - SVG name for render_svg (default: "shuby/icons/icon-alarm")
+    class - additional CSS classes
+  Block: yield = reminder text content
+%>
+<% label = local_assigns.fetch(:label, "RICORDA:") %>
+<% icon = local_assigns.fetch(:icon, "shuby/icons/icon-alarm") %>
+
+<div class="shuby-ricorda-box <%= local_assigns[:class] %>">
+  <div class="shuby-ricorda-header">
+    <div class="shuby-ricorda-icon">
+      <%= render_svg icon, styles: "text-white fill-current" %>
+    </div>
+    <span class="shuby-ricorda-label"><%= label %></span>
+  </div>
+  <div class="shuby-ricorda-text">
+    <%= yield %>
+  </div>
+</div>

@@ -21,17 +21,9 @@
     </p>
 
     <%# RICORDA box %>
-    <div class="shuby-ricorda-box">
-      <div class="shuby-ricorda-header">
-        <div class="shuby-ricorda-icon">
-          <%= inline_svg_tag "shuby/icons/icon-alarm.svg", class: "text-white" %>
-        </div>
-        <span class="shuby-ricorda-label"><%= t("questionnaire_sessions.stories.ricorda") %></span>
-      </div>
-      <p class="shuby-ricorda-text">
-        <%= t("questionnaire_sessions.stories.ricorda_message") %>
-      </p>
-    </div>
+    <%= render "shared/ui/ricorda_box", label: t("questionnaire_sessions.stories.ricorda") do %>
+      <%= t("questionnaire_sessions.stories.ricorda_message") %>
+    <% end %>
   </div>
 
   <div class="stories-intro-action">

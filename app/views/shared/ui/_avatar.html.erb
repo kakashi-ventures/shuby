@@ -1,0 +1,30 @@
+<%# Avatar component
+  Required locals:
+    child - Child record (needs .display_name, .avatar)
+  Optional locals:
+    size  - "sm", "md", "base", "lg", "xl" (default: "base")
+    class - additional CSS classes
+%>
+<% size = local_assigns.fetch(:size, "base") %>
+<% size_class = case size
+                when "sm" then "shuby-avatar shuby-avatar-sm"
+                when "md" then "shuby-avatar shuby-avatar-md"
+                when "lg" then "shuby-avatar shuby-avatar-lg"
+                when "xl" then "shuby-avatar shuby-avatar-xl"
+                else           "shuby-avatar"
+                end %>
+<% initials_font = case size
+                   when "sm" then "text-xs"
+                   when "md" then "text-sm"
+                   when "lg" then "text-2xl"
+                   when "xl" then "text-3xl"
+                   else           "text-base"
+                   end %>
+
+<% if child.avatar.attached? %>
+  <%= image_tag child.avatar, class: "#{size_class} #{local_assigns[:class]}" %>
+<% else %>
+  <div class="<%= size_class %> bg-shuby-blue-100 flex items-center justify-center <%= local_assigns[:class] %>">
+    <span class="<%= initials_font %> font-semibold text-shuby-blue-800"><%= child.display_name.first.upcase %></span>
+  </div>
+<% end %>

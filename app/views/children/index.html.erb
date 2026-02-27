@@ -1,18 +1,12 @@
 <% content_for :title, t(".title") %>
 
 <div class="container px-4 mx-auto my-8 pb-24">
-  <div class="flex items-center justify-between mb-6">
-    <div>
-      <h1 class="shuby-h2"><%= t(".title") %></h1>
-      <p class="shuby-p2"><%= t(".subtitle") %></p>
-    </div>
+  <%= render "shared/ui/page_header", title: t(".title"), subtitle: t(".subtitle"), title_class: "shuby-h2", class: "pt-0 mb-6" do %>
     <%= link_to new_child_path, class: "shuby-btn shuby-btn-md shuby-btn-primary" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2">
-        <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
-      </svg>
-      <%= t(".add_child") %>
+      <%= render_svg "shuby/icons/icon-add", styles: "w-5 h-5 mr-2 fill-current" %>
+      <%= t("children.index.add_child") %>
     <% end %>
-  </div>
+  <% end %>
 
   <% if @children.any? %>
     <div class="space-y-3">
@@ -20,17 +14,13 @@
         <%= link_to child_path(child), class: "block shuby-card hover:shadow-md transition-shadow" do %>
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
-                <span class="text-xl"><%= child.name.first.upcase %></span>
-              </div>
+              <%= render "shared/ui/avatar", child: child %>
               <div>
                 <h3 class="shuby-h3"><%= child.name %></h3>
                 <p class="shuby-caption"><%= child.age_display %></p>
               </div>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-gray-400">
-              <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-            </svg>
+            <%= render "shared/chevron_right_icon" %>
           </div>
         <% end %>
       <% end %>

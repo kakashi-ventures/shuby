@@ -1,0 +1,32 @@
+<%# Info box component (info / warning / success)
+  Optional locals:
+    variant - "info", "warning", "success" (default: "info")
+    title   - header text (uppercase label)
+    icon    - SVG name for render_svg (e.g. "shuby/icons/icon-alarm")
+    class   - additional CSS classes
+  Block: yield = box body content
+%>
+<% variant = local_assigns.fetch(:variant, "info") %>
+<% box_class = case variant
+               when "warning" then "shuby-warning-box"
+               when "success" then "shuby-success-box"
+               else                "shuby-info-box"
+               end %>
+
+<div class="<%= box_class %> <%= local_assigns[:class] %>">
+  <% if local_assigns[:title] || local_assigns[:icon] %>
+    <div class="shuby-info-box-header">
+      <% if local_assigns[:icon] %>
+        <div class="shuby-info-box-icon">
+          <%= render_svg icon %>
+        </div>
+      <% end %>
+      <% if local_assigns[:title] %>
+        <span class="shuby-info-box-title"><%= title %></span>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="shuby-info-box-content">
+    <%= yield %>
+  </div>
+</div>

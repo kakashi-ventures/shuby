@@ -1,0 +1,26 @@
+<%# List item component
+  Required locals:
+    title - primary text
+  Optional locals:
+    subtitle    - secondary text
+    child       - Child record (renders avatar if provided)
+    avatar_size - avatar size when child is present (default: "base")
+    class       - additional CSS classes
+  Block: yield = trailing action (chevron, button, etc.)
+%>
+<div class="shuby-list-item <%= local_assigns[:class] %>">
+  <div class="shuby-list-item-content">
+    <% if local_assigns[:child] %>
+      <%= render "shared/ui/avatar", child: child, size: local_assigns.fetch(:avatar_size, "base") %>
+    <% end %>
+    <div class="shuby-list-item-text">
+      <span class="shuby-list-item-title"><%= title %></span>
+      <% if local_assigns[:subtitle] %>
+        <span class="shuby-list-item-subtitle"><%= subtitle %></span>
+      <% end %>
+    </div>
+  </div>
+  <% if block_given? %>
+    <%= yield %>
+  <% end %>
+</div>

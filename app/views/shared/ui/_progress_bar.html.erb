@@ -1,0 +1,27 @@
+<%# Progress bar component
+  Required locals:
+    percentage - 0-100 value
+  Optional locals:
+    variant          - "primary" or "success" (default: "primary")
+    label            - text label shown above the bar
+    show_percentage  - boolean, show percentage text (default: false)
+    class            - additional CSS classes on outer wrapper
+%>
+<% variant = local_assigns.fetch(:variant, "primary") %>
+<% bar_class = variant == "success" ? "shuby-progress-bar shuby-progress-bar-success" : "shuby-progress-bar" %>
+
+<div class="<%= local_assigns[:class] %>">
+  <% if local_assigns[:label] || local_assigns[:show_percentage] %>
+    <div class="flex items-center justify-between mb-2">
+      <% if local_assigns[:label] %>
+        <span class="shuby-caption"><%= label %></span>
+      <% end %>
+      <% if local_assigns[:show_percentage] %>
+        <span class="shuby-p1 font-semibold text-[var(--color-shuby-blue-800)]"><%= percentage %>%</span>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="shuby-progress">
+    <div class="<%= bar_class %>" style="width: <%= percentage %>%"></div>
+  </div>
+</div>
