@@ -1,5 +1,11 @@
-<%# Game/Activity card using shuby-scheda-attivita design %>
-<%= link_to archive_path(content.slug), class: "block" do %>
+<%# Activity/game card using shuby-scheda-attivita design
+  Locals:
+    content      - (required) ArchiveContent record
+    path         - (optional) override link target (default: archive_path(content.slug))
+    favorite_ids - (optional) Set of favorited content IDs
+%>
+<% card_path = local_assigns[:path] || archive_path(content.slug) %>
+<%= link_to card_path, class: "block", aria: { label: content.title } do %>
   <div class="shuby-scheda-attivita relative">
     <%= render "archive/favorite_button", content: content, favorited: local_assigns[:favorite_ids]&.include?(content.id) %>
     <div class="shuby-scheda-attivita-content">

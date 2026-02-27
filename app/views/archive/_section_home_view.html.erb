@@ -17,21 +17,21 @@
 <%= render "archive/section_content_list",
     items: articles,
     section_key: "articles",
-    card_partial: "archive/article_card",
+    card_partial: "shared/ui/card_article",
     filter_type: "article",
     favorite_ids: favorite_ids %>
 
 <%= render "archive/section_content_list",
     items: consigli,
     section_key: "consigli",
-    card_partial: "archive/consigli_card",
+    card_partial: "shared/ui/card_tip",
     filter_type: "book",
     favorite_ids: favorite_ids %>
 
 <%= render "archive/section_content_list",
     items: activities,
     section_key: "activities",
-    card_partial: "archive/game_card",
+    card_partial: "shared/ui/card_activity",
     filter_type: "game",
     favorite_ids: favorite_ids %>
 

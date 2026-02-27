@@ -112,6 +112,55 @@
 }
 
 /* =====================================================
+   NAV CARD (Dashboard navigation link cards)
+   Horizontal card with icon, title, subtitle, optional badge
+   ===================================================== */
+
+.shuby-nav-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background-color: var(--bg-light);
+    border: 1px solid var(--base-border-primary);
+    border-radius: var(--radius-grande);
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+        box-shadow: var(--shadow-card-hover-strong);
+    }
+}
+
+.shuby-nav-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.shuby-nav-card-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.shuby-nav-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.shuby-nav-card-subtitle {
+    font-size: 12px;
+    color: var(--base-text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* =====================================================
    CONSIGLI CARD (Figma: Scheda Consigli)
    Yellow card for tips/advice with optional thumbnail
    ===================================================== */

@@ -1,14 +1,15 @@
-<a href="<%= path %>" class="relative flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
-  <div class="w-10 h-10 rounded-full <%= icon_bg %> flex items-center justify-center flex-shrink-0">
-    <%= icon_content %>
-  </div>
-  <div class="flex-1 min-w-0">
-    <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white text-sm"><%= title %></h3>
-  </div>
-  <span class="shuby-p2 text-gray-400 text-xs flex-shrink-0"><%= duration %></span>
-  <% if local_assigns[:content] %>
-    <%= render "archive/favorite_button", content: content, favorited: favorite_ids&.include?(content.id) %>
-  <% else %>
+<% if local_assigns[:content] %>
+  <%= render "shared/ui/card_activity", **local_assigns %>
+<% else %>
+  <%# Legacy raw-param mode for static/demo pages %>
+  <a href="<%= path %>" class="relative flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
+    <div class="w-10 h-10 rounded-full <%= icon_bg %> flex items-center justify-center shrink-0">
+      <%= icon_content %>
+    </div>
+    <div class="flex-1 min-w-0">
+      <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white text-sm"><%= title %></h3>
+    </div>
+    <span class="shuby-p2 text-gray-400 text-xs shrink-0"><%= duration %></span>
     <%= render "shared/chevron_right_icon" %>
-  <% end %>
-</a>
+  </a>
+<% end %>

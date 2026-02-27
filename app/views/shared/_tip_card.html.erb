@@ -1,16 +1,18 @@
-<a href="<%= path %>" class="relative flex gap-4 p-3 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
-  <div class="w-16 h-16 rounded-xl <%= thumbnail_bg %> flex items-center justify-center flex-shrink-0 overflow-hidden">
-    <%= image_tag thumbnail_image, class: "w-full h-full object-cover", alt: "" %>
-  </div>
-  <div class="flex-1 min-w-0">
-    <div class="flex items-center gap-2 mb-1">
-      <span class="px-2 py-0.5 text-xs font-medium rounded-full <%= tag_bg %> <%= tag_text_color %>"><%= tag_label %></span>
-      <span class="text-xs text-gray-400"><%= age_range %></span>
+<% if local_assigns[:content] %>
+  <%= render "shared/ui/card_tip", **local_assigns %>
+<% else %>
+  <%# Legacy raw-param mode for static/demo pages %>
+  <a href="<%= path %>" class="relative flex gap-4 p-3 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
+    <div class="w-16 h-16 rounded-xl <%= thumbnail_bg %> flex items-center justify-center shrink-0 overflow-hidden">
+      <%= image_tag thumbnail_image, class: "w-full h-full object-cover", alt: "" %>
     </div>
-    <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white text-sm line-clamp-1"><%= title %></h3>
-    <p class="shuby-p2 text-gray-500 text-xs"><%= author %></p>
-  </div>
-  <% if local_assigns[:content] %>
-    <%= render "archive/favorite_button", content: content, favorited: favorite_ids&.include?(content.id) %>
-  <% end %>
-</a>
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="px-2 py-0.5 text-xs font-medium rounded-full <%= tag_bg %> <%= tag_text_color %>"><%= tag_label %></span>
+        <span class="text-xs text-gray-400"><%= age_range %></span>
+      </div>
+      <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white text-sm line-clamp-1"><%= title %></h3>
+      <p class="shuby-p2 text-gray-500 text-xs"><%= author %></p>
+    </div>
+  </a>
+<% end %>

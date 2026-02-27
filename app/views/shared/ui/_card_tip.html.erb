@@ -1,5 +1,11 @@
-<%# Consigli card for books and tips using shuby-card-consigli design %>
-<%= link_to archive_path(content.slug), class: "block" do %>
+<%# Tip/consigli card using shuby-card-consigli design
+  Locals:
+    content      - (required) ArchiveContent record
+    path         - (optional) override link target (default: archive_path(content.slug))
+    favorite_ids - (optional) Set of favorited content IDs
+%>
+<% card_path = local_assigns[:path] || archive_path(content.slug) %>
+<%= link_to card_path, class: "block", aria: { label: content.title } do %>
   <div class="shuby-card-consigli relative">
     <%= render "archive/favorite_button", content: content, favorited: local_assigns[:favorite_ids]&.include?(content.id) %>
     <div class="shuby-card-consigli-content">
@@ -35,14 +41,7 @@
       </div>
     </div>
     <div class="shuby-card-consigli-thumbnail">
-      <% if content.cover_image.attached? %>
-        <%= image_tag content.cover_image, alt: content.title %>
-      <% else %>
-        <%# Default placeholder with archivio illustrations - cycle through based on content id %>
-        <% archivio_images = ["shuby/illustrations/archivio-1.svg", "shuby/illustrations/archivio-2.svg", "shuby/illustrations/archivio-3.svg"] %>
-        <% image_index = content.id % 3 %>
-        <%= image_tag archivio_images[image_index], alt: "", class: "w-full h-full object-cover rounded" %>
-      <% end %>
+      <%= archive_cover_image(content, class: "w-full h-full object-cover rounded") %>
     </div>
   </div>
 <% end %>

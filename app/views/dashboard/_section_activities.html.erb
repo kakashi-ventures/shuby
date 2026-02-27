@@ -5,12 +5,7 @@
     </h2>
     <div class="space-y-3">
       <% @activities.each do |activity| %>
-        <%= render partial: "shared/activity_card", locals: {
-          path: archive_path(activity),
-          icon_bg: "bg-[var(--color-shuby-verde-200)]",
-          title: activity.title,
-          duration: activity.duration_label || "",
-          icon_content: image_tag("shuby/icons/icon-footprints.svg", class: "w-5 h-5", alt: ""),
+        <%= render partial: "shared/ui/card_activity", locals: {
           content: activity,
           favorite_ids: @favorite_ids
         } %>

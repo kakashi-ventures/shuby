@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class MeasurementDashboardService
+  MeasurementBox = Data.define(:type, :state, :last_measurement)
+
   MAX_BOXES = 2
   PRIORITY_TYPES = %w[weight height head_circumference].freeze
 
@@ -22,11 +24,7 @@ class MeasurementDashboardService
       measurement = @child.latest_measurement(type)
       state = determine_state(measurement)
 
-      boxes << {
-        type: type,
-        state: state,
-        last_measurement: measurement
-      }
+      boxes << MeasurementBox.new(type: type, state: state, last_measurement: measurement)
     end
 
     boxes

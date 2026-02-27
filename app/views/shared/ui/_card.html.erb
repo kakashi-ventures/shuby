@@ -1,0 +1,13 @@
+<%# Base card wrapper
+  Optional locals:
+    variant - "flat" or "sm" (default: standard card)
+    class   - additional CSS classes
+%>
+<% variant_class = case local_assigns[:variant]
+                   when "flat" then "shuby-card-flat"
+                   when "sm"   then "shuby-card shuby-card-sm"
+                   else             "shuby-card"
+                   end %>
+<div class="<%= variant_class %> <%= local_assigns[:class] %>">
+  <%= yield %>
+</div>

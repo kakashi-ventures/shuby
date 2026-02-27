@@ -27,6 +27,22 @@ module ArchiveHelper
     CATEGORY_ICONS[category] || DEFAULT_CATEGORY_ICON
   end
 
+  ARCHIVIO_PLACEHOLDER_IMAGES = [
+    "shuby/illustrations/archivio-1.svg",
+    "shuby/illustrations/archivio-2.svg",
+    "shuby/illustrations/archivio-3.svg"
+  ].freeze
+
+  # Returns the cover image tag for an ArchiveContent, falling back to a
+  # cycling placeholder illustration when no cover image is attached.
+  def archive_cover_image(content, **)
+    if content.cover_image.attached?
+      image_tag(content.cover_image, alt: content.title, **)
+    else
+      image_tag(ARCHIVIO_PLACEHOLDER_IMAGES[content.id % 3], alt: "", **)
+    end
+  end
+
   # Returns the content type icon path
   #
   # @param content_type [String] The content type (article, book, game, tip)

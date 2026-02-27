@@ -16,7 +16,7 @@
 <div id="archive-content" class="space-y-3">
   <% if contents.any? %>
     <% contents.each do |content| %>
-      <%= render "archive/content_card", content: content, favorite_ids: favorite_ids %>
+      <%= render "shared/ui/content_card", content: content, favorite_ids: favorite_ids %>
     <% end %>
   <% elsif active_type == "saved" %>
     <%= render "archive/empty_state_saved" %>

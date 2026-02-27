@@ -1,0 +1,82 @@
+<%# Article card with image, tags, title, description
+  Supports horizontal (default) and vertical variants.
+
+  Locals:
+    content      - (required) ArchiveContent record
+    variant      - (optional) "horizontal" (default) or "vertical"
+    path         - (optional) override link target (default: archive_path(content.slug))
+    favorite_ids - (optional) Set of favorited content IDs
+    bg_color     - (optional) CSS class for vertical variant background
+%>
+<% card_path = local_assigns[:path] || archive_path(content.slug) %>
+<% is_vertical = local_assigns[:variant] == "vertical" %>
+
+<% if is_vertical %>
+  <%# Vertical variant (featured carousel) using shuby-card-articolo classes %>
+  <%= link_to card_path, class: "block shrink-0", aria: { label: content.title } do %>
+    <div class="shuby-card-articolo relative <%= local_assigns[:bg_color] %>">
+      <%= render "archive/favorite_button", content: content, favorited: local_assigns[:favorite_ids]&.include?(content.id) %>
+      <div class="shuby-card-articolo-image">
+        <%= archive_cover_image(content) %>
+      </div>
+      <div class="shuby-card-articolo-content">
+        <div class="shuby-card-articolo-tags">
+          <% if content.category.present? %>
+            <span class="shuby-card-articolo-tag shuby-card-articolo-tag-tipo">
+              <span class="shuby-card-articolo-tag-icon">
+                <%= render_svg category_icon_for(content.category), styles: "w-full h-full" %>
+              </span>
+              <%= content.category %>
+            </span>
+          <% end %>
+          <span class="shuby-card-articolo-tag shuby-card-articolo-tag-eta"><%= content.age_range_label %></span>
+        </div>
+        <div class="shuby-card-articolo-body">
+          <h3 class="shuby-card-articolo-title"><%= content.title %></h3>
+          <% if content.description.present? %>
+            <p class="shuby-card-articolo-description"><%= content.description %></p>
+          <% end %>
+        </div>
+        <% if content.duration_minutes.present? %>
+          <div class="shuby-card-articolo-time">
+            <span class="shuby-card-articolo-time-icon">
+              <%= render_svg "shuby/icons/icon-alarm", styles: "w-full h-full" %>
+            </span>
+            <span class="shuby-card-articolo-time-text"><%= content.duration_label %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+<% else %>
+  <%# Horizontal variant (default) using shuby-card-article classes %>
+  <%= link_to card_path, class: "block", aria: { label: content.title } do %>
+    <div class="shuby-card-article relative">
+      <%= render "archive/favorite_button", content: content, favorited: local_assigns[:favorite_ids]&.include?(content.id) %>
+      <div class="shuby-card-article-image">
+        <%= archive_cover_image(content) %>
+      </div>
+      <div class="shuby-card-article-content">
+        <div class="shuby-card-article-tags">
+          <% if content.category.present? %>
+            <span class="shuby-tag shuby-tag-info">
+              <span class="shuby-tag-icon">
+                <%= render_svg category_icon_for(content.category), styles: "w-3 h-3" %>
+              </span>
+              <%= content.category %>
+            </span>
+          <% end %>
+          <span class="shuby-tag shuby-tag-default"><%= content.age_range_label %></span>
+          <% if content.duration_minutes.present? %>
+            <span class="shuby-tag shuby-tag-light"><%= content.duration_label %></span>
+          <% end %>
+        </div>
+        <p class="shuby-card-article-title"><%= content.title %></p>
+        <% if content.description.present? %>
+          <p class="shuby-card-article-description"><%= content.description %></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

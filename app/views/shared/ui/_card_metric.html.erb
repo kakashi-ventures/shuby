@@ -12,7 +12,7 @@
 <% has_data = value.present? %>
 <% is_stale = stale || !has_data %>
 
-<div class="shuby-measurement-card">
+<div class="shuby-measurement-card" role="group" aria-label="<%= title %>">
   <div class="shuby-measurement-card-info">
     <div class="flex items-center gap-2">
       <span class="shuby-measurement-card-info-title"><%= title %></span>

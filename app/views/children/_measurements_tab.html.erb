@@ -4,7 +4,7 @@
     <h2 class="shuby-h3"><%= t("measurements.index.title") %></h2>
     <%= link_to new_child_measurement_path(@child),
         class: "w-10 h-10 rounded-full bg-[var(--color-shuby-blue-400)] flex items-center justify-center hover:opacity-80 transition-opacity" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-[var(--color-shuby-blue-800)]">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-shuby-blue-800">
         <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
       </svg>
     <% end %>
@@ -14,7 +14,7 @@
     <% child_age = @child.age_in_months %>
     <% is_stale = measurement ? measurement.stale?(child_age) : false %>
 
-    <%= render "children/measurement_card",
+    <%= render "shared/ui/card_metric",
       title: t("measurements.types.#{type}"),
       value: measurement&.formatted_value,
       unit: t("measurements.units.#{type}"),
