@@ -84,7 +84,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-1);
+    gap: 2px;
     align-self: stretch;
 }
 
@@ -117,8 +117,8 @@
 }
 
 .shuby-card-articolo-time-icon {
-    width: 12px;
-    height: 12px;
+    width: 24px;
+    height: 24px;
     flex-shrink: 0;
     color: var(--text-primary);
 

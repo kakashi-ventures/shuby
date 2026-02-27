@@ -1,5 +1,6 @@
-<div class="w-full overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
-  <div class="flex gap-3 w-max">
+<div data-controller="carousel-stepper" class="shuby-carousel-wrapper">
+  <div class="shuby-carousel" data-carousel-stepper-target="scroller">
     <%= yield %>
   </div>
+  <div class="shuby-carousel-stepper" data-carousel-stepper-target="stepper"></div>
 </div>
