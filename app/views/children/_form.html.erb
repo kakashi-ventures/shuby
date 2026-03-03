@@ -4,18 +4,18 @@
   <%# Avatar upload %>
   <div class="flex flex-col items-center">
     <div class="relative">
-      <div class="w-24 h-24 rounded-full bg-[var(--color-shuby-blue-100)] flex items-center justify-center overflow-hidden border-4 border-white shadow-lg">
+      <div class="w-24 h-24 rounded-full bg-shuby-blue-100 flex items-center justify-center overflow-hidden border-4 border-white shadow-lg">
         <% if child.avatar.attached? %>
           <%= image_tag child.avatar, class: "w-full h-full object-cover", id: "avatar-preview" %>
         <% else %>
-          <span class="shuby-d1 text-[var(--color-shuby-blue-800)]" id="avatar-placeholder">
+          <span class="shuby-d1 text-shuby-blue-800" id="avatar-placeholder">
             <%= child.display_name&.first&.upcase || "?" %>
           </span>
           <img src="" class="w-full h-full object-cover hidden" id="avatar-preview" />
         <% end %>
       </div>
-      <label for="child_avatar" class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-[var(--color-shuby-blue-800)] flex items-center justify-center cursor-pointer hover:bg-[var(--color-shuby-blue-700)] transition-colors shadow-md">
-        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <label for="child_avatar" class="shuby-icon-btn shuby-icon-btn-sm absolute bottom-0 right-0 shadow-md">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>

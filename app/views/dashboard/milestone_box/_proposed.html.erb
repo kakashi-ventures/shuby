@@ -1,14 +1,14 @@
 <%# Proposed milestone state - clickable box to start questionnaire %>
 <%= link_to start_child_development_stage_path(child, milestone.development_area.slug), class: "block rounded-2xl overflow-hidden hover:shadow-md transition-shadow" do %>
-  <div class="bg-[var(--color-shuby-verde-200)] rounded-2xl relative">
+  <div class="bg-shuby-verde-200 rounded-2xl relative">
     <%# Tags row %>
     <div class="flex items-center gap-2 px-4 pt-4">
       <%# Type tag %>
-      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-white text-[var(--color-shuby-blue-800)]">
+      <span class="shuby-badge shuby-badge-info">
         <%= t("dashboard.milestone_box.type_tag") %>
       </span>
       <%# Age tag %>
-      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-[var(--color-shuby-blue-800)] text-white">
+      <span class="shuby-badge shuby-badge-primary">
         <%= milestone.age_band_label %>
       </span>
     </div>
@@ -25,13 +25,13 @@
           <%= milestone.development_area.name %>
         </h3>
         <%# CTA Button %>
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-[var(--color-shuby-rosa-400)] text-white font-semibold rounded-full text-sm">
+        <div class="shuby-btn shuby-btn-sm shuby-btn-primary">
           <%= t("dashboard.milestone_box.cta_button") %>
         </div>
       </div>
 
       <%# Illustration and time %>
-      <div class="flex flex-col items-end gap-2 flex-shrink-0">
+      <div class="flex flex-col items-end gap-2 shrink-0">
         <%= image_tag "shuby/illustrations/mascot-sorriso-small.png", class: "w-20 h-20 object-contain", alt: "" %>
         <%# Estimated time %>
         <div class="flex items-center gap-1 text-gray-500">

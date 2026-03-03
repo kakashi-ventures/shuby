@@ -4,11 +4,11 @@
     <%# Tags row %>
     <div class="flex items-center gap-2 px-4 pt-4">
       <%# Type tag %>
-      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-white text-amber-700">
+      <span class="shuby-badge shuby-badge-info">
         <%= t("dashboard.milestone_box.type_tag") %>
       </span>
       <%# Age tag %>
-      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-amber-600 text-white">
+      <span class="shuby-badge shuby-badge-warning">
         <%= milestone.age_band_label %>
       </span>
     </div>
@@ -30,13 +30,13 @@
                 answered: session.answered_count, total: session.questions_count) %>
         </p>
         <%# CTA Button %>
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 text-white font-semibold rounded-full text-sm">
+        <div class="shuby-btn shuby-btn-sm shuby-btn-primary">
           <%= t("dashboard.milestone_box.finish_previous_cta") %>
         </div>
       </div>
 
       <%# Illustration %>
-      <div class="flex flex-col items-end gap-2 flex-shrink-0">
+      <div class="flex flex-col items-end gap-2 shrink-0">
         <%= image_tag "shuby/illustrations/mascot-sorriso-small.png", class: "w-20 h-20 object-contain", alt: "" %>
       </div>
     </div>

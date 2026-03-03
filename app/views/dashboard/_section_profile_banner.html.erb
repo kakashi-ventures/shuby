@@ -1,8 +1,8 @@
 <% if profile_incomplete %>
   <section class="mb-4">
-    <%= link_to edit_family_profile_path, class: "block p-4 bg-[var(--color-shuby-giallo-400)] rounded-2xl hover:shadow-md transition-shadow" do %>
+    <%= link_to edit_family_profile_path, class: "block p-4 bg-shuby-giallo-400 rounded-2xl hover:shadow-md transition-shadow" do %>
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-white/50 flex items-center justify-center flex-shrink-0">
+        <div class="w-10 h-10 rounded-full bg-white/50 flex items-center justify-center shrink-0">
           <svg class="w-5 h-5 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
@@ -11,7 +11,7 @@
           <h3 class="shuby-p1 font-semibold text-gray-900"><%= t("dashboard.show.complete_profile.title") %></h3>
           <p class="shuby-p2 text-gray-700 text-xs"><%= t("dashboard.show.complete_profile.subtitle") %></p>
         </div>
-        <%= render "shared/chevron_right_icon", css_class: "w-5 h-5 text-gray-600 flex-shrink-0" %>
+        <%= render "shared/chevron_right_icon", css_class: "w-5 h-5 text-gray-600 shrink-0" %>
       </div>
     <% end %>
   </section>
