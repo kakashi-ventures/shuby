@@ -1,8 +1,6 @@
 <% if @activities.present? %>
   <section class="mb-6">
-    <h2 class="shuby-overline text-gray-500 dark:text-gray-400 mb-3 text-xs font-semibold uppercase tracking-wider">
-      <%= t("dashboard.show.suggested_activities.title") %>
-    </h2>
+    <%= render "shared/ui/section_header", title: t("dashboard.show.suggested_activities.title"), variant: "overline" %>
     <div class="space-y-3">
       <% @activities.each do |activity| %>
         <%= render partial: "shared/ui/card_activity", locals: {

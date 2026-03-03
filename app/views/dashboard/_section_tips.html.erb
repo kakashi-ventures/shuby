@@ -1,10 +1,6 @@
 <% if @tips.present? %>
   <section class="mb-6">
-    <div class="flex items-center justify-between mb-3">
-      <h2 class="shuby-overline text-gray-500 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider">
-        <%= t("dashboard.show.todays_tips.title") %>
-      </h2>
-    </div>
+    <%= render "shared/ui/section_header", title: t("dashboard.show.todays_tips.title"), variant: "overline" %>
     <div class="space-y-3">
       <% @tips.each do |tip| %>
         <%= render partial: "shared/ui/card_tip", locals: {

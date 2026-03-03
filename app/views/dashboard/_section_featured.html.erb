@@ -17,8 +17,9 @@
     <% end %>
 
     <div class="text-right mt-3">
-      <%= link_to archive_index_path, class: "shuby-p2 text-shuby-blue-800 font-semibold text-sm hover:underline" do %>
-        <%= t("dashboard.show.featured_articles.view_all") %> →
+      <%= link_to archive_index_path, class: "shuby-link-arrow" do %>
+        <%= t("dashboard.show.featured_articles.view_all") %>
+        <span class="shuby-link-arrow-icon"><%= render_svg "shuby/icons/icon-arrow-forward" %></span>
       <% end %>
     </div>
   </section>

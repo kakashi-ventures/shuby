@@ -1,0 +1,30 @@
+<%# Tab navigation (link-based)
+  Required locals:
+    tabs - array of hashes: [{ label:, path: }]
+             optional per-tab: active (bool) — if omitted, derived via current_page?
+  Optional locals:
+    variant    - "pill" (default), "segmented", or "gestione"
+    aria_label - accessible label for the nav element
+    class      - additional CSS classes
+%>
+<% variant = local_assigns.fetch(:variant, "pill") %>
+<%
+  case variant
+  when "segmented"
+    container_class = "shuby-tab-segmented"
+    item_class = "shuby-tab-segmented-item"
+  when "gestione"
+    container_class = "shuby-gestione-tabs"
+    item_class = "shuby-gestione-tab"
+  else
+    container_class = "shuby-tabs"
+    item_class = "shuby-tab"
+  end
+%>
+
+<nav class="<%= container_class %> <%= local_assigns[:class] %>"<%= " aria-label=\"#{local_assigns[:aria_label]}\"".html_safe if local_assigns[:aria_label] %>>
+  <% tabs.each do |tab| %>
+    <% is_active = tab.key?(:active) ? tab[:active] : current_page?(tab[:path]) %>
+    <%= link_to tab[:label], tab[:path], class: "#{item_class} #{"active" if is_active}", "aria-current": ("page" if is_active) %>
+  <% end %>
+</nav>

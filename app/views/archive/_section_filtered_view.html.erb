@@ -1,12 +1,7 @@
 <% scope = "archive.index" %>
 
-<div class="flex items-center gap-3 mb-6">
-  <%= link_to archive_index_path, class: "p-2 text-shuby-blue-800 hover:bg-shuby-blue-50 rounded-full" do %>
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-    </svg>
-  <% end %>
-  <h1 class="shuby-h1 text-shuby-blue-800"><%= t("tabs.#{active_type}", scope: scope) %></h1>
+<div class="mb-6">
+  <%= render "shared/ui/back_link", path: archive_index_path, label: t("tabs.#{active_type}", scope: scope) %>
 </div>
 
 <% if active_type != "saved" %>

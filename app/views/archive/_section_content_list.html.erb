@@ -1,17 +1,17 @@
 <% scope = "archive.index" %>
 
 <section class="mb-8">
-  <h2 class="shuby-h2 text-shuby-blue-800 mb-4"><%= t("sections.#{section_key}", scope: scope) %></h2>
+  <%= render "shared/ui/section_header", title: t("sections.#{section_key}", scope: scope) %>
   <% if items.any? %>
     <div class="space-y-3">
       <% items.each do |item| %>
         <%= render card_partial, content: item, favorite_ids: local_assigns[:favorite_ids] %>
       <% end %>
     </div>
-    <div class="mt-4 text-right">
-      <%= link_to archive_index_path(type: filter_type), class: "inline-flex items-center gap-1 text-shuby-blue-800 font-semibold text-sm hover:underline" do %>
+    <div class="text-right mt-4">
+      <%= link_to archive_index_path(type: filter_type), class: "shuby-link-arrow shuby-link-arrow-sm" do %>
         <%= t("sections.all_#{section_key}", scope: scope) %>
-        <%= render "shared/chevron_right_icon", css_class: "w-4 h-4" %>
+        <span class="shuby-link-arrow-icon"><%= render_svg "shuby/icons/icon-arrow-forward" %></span>
       <% end %>
     </div>
   <% else %>

@@ -12,7 +12,7 @@
   </div>
 
   <%# Segmented tab bar %>
-  <%= render "children/tab_bar" %>
+  <%= render "children/tab_bar", child: @child, tab: @tab %>
 
   <%# Tab content %>
   <% case @tab %>
