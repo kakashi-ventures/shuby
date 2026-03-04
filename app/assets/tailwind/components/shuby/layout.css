@@ -273,7 +273,7 @@
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
-    background-color: var(--color-shuby-blue-100);
+    background-color: var(--color-shuby-blue-400);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -383,7 +383,7 @@
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
-    background-color: var(--color-shuby-blue-100);
+    background-color: var(--color-shuby-blue-400);
 
     img {
         width: 100%;
@@ -583,7 +583,7 @@
 .shuby-modal-fullscreen {
     position: fixed;
     inset: 0;
-    background-color: var(--color-shuby-blue-100);
+    background-color: var(--color-shuby-blue-400);
     display: flex;
     flex-direction: column;
     z-index: 100;
@@ -592,7 +592,7 @@
 
 /* Modal with blue background */
 .shuby-modal-blue {
-    background-color: var(--color-shuby-blue-100);
+    background-color: var(--color-shuby-blue-400);
 }
 
 /* Modal header area */
@@ -738,7 +738,7 @@
    ===================================================== */
 
 .shuby-ricorda-box {
-    background-color: var(--color-shuby-blue-50);
+    background-color: var(--color-shuby-blue-300);
     border-radius: var(--radius-lg);
     padding: var(--space-5);
 }
@@ -807,6 +807,6 @@
     --header-text: var(--color-shuby-blue-800);
     --header-text-secondary: var(--base-text-secondary);
     --header-icon: var(--color-shuby-blue-800);
-    --header-btn-bg: var(--color-shuby-blue-100);
-    --header-btn-bg-hover: var(--color-shuby-blue-200);
+    --header-btn-bg: var(--color-shuby-blue-400);
+    --header-btn-bg-hover: var(--color-shuby-blue-500);
 }

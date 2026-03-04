@@ -5,7 +5,7 @@
   <button type="button"
           data-action="click->dropdown#toggle click@window->dropdown#hide"
           class="flex items-center gap-2 text-[var(--header-text)]">
-    <span class="shuby-h2 text-[var(--header-text)] text-xl font-bold"><%= current_child&.display_name || t("dashboard.header.no_child") %></span>
+    <span class="shuby-h3 text-[var(--header-text)]"><%= current_child&.display_name || t("dashboard.header.no_child") %></span>
     <% if current_child&.birth_date %>
       <span class="shuby-caption text-[var(--header-text-secondary)] text-xs ml-1 self-end mb-0.5"><%= current_child.detailed_corrected_age_display %></span>
     <% end %>
@@ -74,7 +74,7 @@
     <%# Account management link %>
     <div class="border-t border-white/50 py-2">
       <%= link_to settings_path, class: "flex items-center justify-center px-4 py-2 hover:bg-white/50 transition-colors" do %>
-        <span class="shuby-p2 text-gray-600 border border-gray-400 rounded-full px-4 py-1 text-sm">
+        <span class="shuby-p2 text-shuby-gray-700 border border-shuby-gray-600 rounded-full px-4 py-1 text-sm">
           <%= t("dashboard.header.account_management") %>
         </span>
       <% end %>

@@ -1,7 +1,7 @@
 <% content_for :title, t(".title") %>
 
 <div class="container px-4 mx-auto my-8 pb-24">
-  <%= render "shared/ui/page_header", title: t(".title"), subtitle: t(".subtitle"), title_class: "shuby-h2", class: "pt-0 mb-6" do %>
+  <%= render "shared/ui/page_header", title: t(".title"), subtitle: t(".subtitle"), title_class: "shuby-h3", class: "pt-0 mb-6" do %>
     <%= link_to new_child_path, class: "shuby-btn shuby-btn-md shuby-btn-primary" do %>
       <%= render_svg "shuby/icons/icon-add", styles: "w-5 h-5 mr-2 fill-current" %>
       <%= t("children.index.add_child") %>

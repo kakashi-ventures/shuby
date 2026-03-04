@@ -7,7 +7,7 @@
                class="peer sr-only"
                <%= "checked" if account_user.relationship_to_child == rel.to_s %>>
         <span class="block w-full py-3 px-2 text-center rounded-xl border-2 border-gray-200
-                    peer-checked:border-[var(--color-shuby-blue-500)] peer-checked:bg-[var(--color-shuby-blue-50)]
+                    peer-checked:border-[var(--color-shuby-blue-500)] peer-checked:bg-[var(--color-shuby-blue-300)]
                     hover:border-gray-300 transition-all shuby-p1 text-gray-700">
           <%= t("onboarding.relationship_options.#{rel}") %>
         </span>
@@ -25,7 +25,7 @@
                class="peer sr-only"
                <%= "checked" if family_profile.languages_spoken_at_home == count %>>
         <span class="block w-full py-3 px-2 text-center rounded-xl border-2 border-gray-200
-                    peer-checked:border-[var(--color-shuby-blue-500)] peer-checked:bg-[var(--color-shuby-blue-50)]
+                    peer-checked:border-[var(--color-shuby-blue-500)] peer-checked:bg-[var(--color-shuby-blue-300)]
                     hover:border-gray-300 transition-all shuby-p1 text-gray-700">
           <%= count == 3 ? "3+" : count %>
         </span>

@@ -4,11 +4,11 @@
   <%# Avatar upload %>
   <div class="flex flex-col items-center">
     <div class="relative">
-      <div class="w-24 h-24 rounded-full bg-shuby-blue-100 flex items-center justify-center overflow-hidden border-4 border-white shadow-lg">
+      <div class="w-24 h-24 rounded-full bg-shuby-blue-400 flex items-center justify-center overflow-hidden border-4 border-white shadow-lg">
         <% if child.avatar.attached? %>
           <%= image_tag child.avatar, class: "w-full h-full object-cover", id: "avatar-preview" %>
         <% else %>
-          <span class="shuby-d1 text-shuby-blue-800" id="avatar-placeholder">
+          <span class="shuby-h2 text-shuby-blue-800" id="avatar-placeholder">
             <%= child.display_name&.first&.upcase || "?" %>
           </span>
           <img src="" class="w-full h-full object-cover hidden" id="avatar-preview" />

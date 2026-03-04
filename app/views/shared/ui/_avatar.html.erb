@@ -24,7 +24,7 @@
 <% if child.avatar.attached? %>
   <%= image_tag child.avatar, class: "#{size_class} #{local_assigns[:class]}" %>
 <% else %>
-  <div class="<%= size_class %> bg-shuby-blue-100 flex items-center justify-center <%= local_assigns[:class] %>">
+  <div class="<%= size_class %> bg-shuby-blue-400 flex items-center justify-center <%= local_assigns[:class] %>">
     <span class="<%= initials_font %> font-semibold text-shuby-blue-800"><%= child.display_name.first.upcase %></span>
   </div>
 <% end %>

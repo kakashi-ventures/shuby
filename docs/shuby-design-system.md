@@ -24,15 +24,12 @@ The Shuby design system is implemented as a DaisyUI/Tailwind CSS theme named `sh
 
 | Token | HEX | CSS Variable | Usage |
 |-------|-----|--------------|-------|
-| Blue 50 | `#F0F7FF` | `--color-shuby-blue-50` | Hover states, subtle backgrounds |
-| Blue 100 | `#D4EDFF` | `--color-shuby-blue-100` | Section backgrounds (AI-helper, quiz) |
-| Blue 200 | `#A8DBFF` | `--color-shuby-blue-200` | Light accents |
-| Blue 300 | `#E5F2FF` | `--color-shuby-blue-300` | Card borders |
-| Blue 400 | `#CAE4FF` | `--color-shuby-blue-400` | Light blue accent |
-| Blue 500 | `#9EC6F0` | `--color-shuby-blue-500` | Mid-tone blue |
-| Blue 700 | `#3B83CF` | `--color-shuby-blue-700` | Form borders, hover states |
-| Blue 800 | `#0159B5` | `--color-shuby-blue-800` | **Primary brand color** |
-| Blue 900 | `#004488` | `--color-shuby-blue-900` | Dark blue |
+| Blu 300 | `#E5F2FF` | `--color-shuby-blue-300` | Hover states, card borders, subtle backgrounds |
+| Blu 400 | `#CAE4FF` | `--color-shuby-blue-400` | Section backgrounds, light blue accent |
+| Blu 500 | `#9EC6F0` | `--color-shuby-blue-500` | Mid-tone blue, light accents |
+| Blu 600 | `#6BA2DC` | `--color-shuby-blue-600` | Border hover states |
+| Blu 700 | `#3B83CF` | `--color-shuby-blue-700` | Form borders, primary hover |
+| Blu 800 | `#0159B5` | `--color-shuby-blue-800` | **Primary brand color** |
 
 ### Verde (Green/Teal) Scale - Figma: Colori/Verde
 
@@ -51,6 +48,7 @@ The Shuby design system is implemented as a DaisyUI/Tailwind CSS theme named `sh
 |-------|-----|--------------|-------|
 | Giallo 400 | `#FFF7D4` | `--color-shuby-giallo-400` | Light yellow card backgrounds (Consigli) |
 | Giallo 500 | `#FFE882` | `--color-shuby-giallo-500` | Highlights, attention elements, tags |
+| Giallo 600 | `#FDD318` | `--color-shuby-giallo-600` | Strong yellow accent |
 
 ### Other Accent Colors
 
@@ -59,7 +57,10 @@ The Shuby design system is implemented as a DaisyUI/Tailwind CSS theme named `sh
 | Green 500 | `#2ECC71` | `--color-shuby-green-500` | Success, positive metrics |
 | Orange 500 | `#F39C12` | `--color-shuby-orange-500` | Warnings, "Aggiorna" badge |
 | Red 500 | `#E74C3C` | `--color-shuby-red-500` | Danger, "Elimina Account" |
+| Fucsia 300 | `#F456D8` | `--color-shuby-fucsia-300` | Light fucsia accent |
+| Fucsia 400 | `#DC21BB` | `--color-shuby-fucsia-400` | Mid-tone fucsia |
 | Fucsia 500 | `#C500A2` | `--color-shuby-fucsia-500` | Vibrant accent |
+| Fucsia 600 | `#AB008D` | `--color-shuby-fucsia-600` | Dark fucsia |
 | Fucsia 700 | `#91018A` | `--color-shuby-fucsia-700` | Form error text |
 
 ### Magenta/Pink Scale (Selection Accent)
@@ -68,11 +69,11 @@ Used for date pickers, week selectors, and other selection states.
 
 | Token | HEX | CSS Variable | Usage |
 |-------|-----|--------------|-------|
-| Magenta 50 | `#FDF4FF` | `--color-shuby-magenta-50` | Light selection background |
-| Magenta 100 | `#FAE8FF` | `--color-shuby-magenta-100` | Hover backgrounds |
-| Magenta 400 | `#E879F9` | `--color-shuby-magenta-400` | Selection borders |
-| Magenta 500 | `#D946EF` | `--color-shuby-magenta-500` | **Primary selection color** |
-| Magenta 600 | `#C026D3` | `--color-shuby-magenta-600` | Hover on selection |
+| Magenta 300 | `#FF92D9` | `--color-shuby-magenta-300` | Light magenta accent, light selection background |
+| Magenta 400 | `#FF56C4` | `--color-shuby-magenta-400` | Selection borders |
+| Magenta 500 | `#FD1EAF` | `--color-shuby-magenta-500` | **Primary selection color** |
+| Magenta 600 | `#E11097` | `--color-shuby-magenta-600` | Hover on selection |
+| Magenta 700 | `#BF007C` | `--color-shuby-magenta-700` | Dark selection accent |
 | Purple 300 | `#A5B4FC` | `--color-shuby-purple-300` | Outline borders, today marker |
 
 ### Selection Theme Variables
@@ -92,11 +93,11 @@ Used for date pickers, week selectors, and other selection states.
 | Token | HEX | CSS Variable | Usage |
 |-------|-----|--------------|-------|
 | White | `#FFFFFF` | `--color-shuby-white` | Card backgrounds |
-| Gray 100 | `#F3F4F6` | `--color-shuby-gray-100` | Light backgrounds |
-| Gray 200 | `#E5E7EB` | `--color-shuby-gray-200` | Borders, dividers |
-| Gray 400 | `#9CA3AF` | `--color-shuby-gray-400` | Placeholder text |
-| Gray 500 | `#6B7280` | `--color-shuby-gray-500` | Secondary text, inactive |
-| Gray 700 | `#374151` | `--color-shuby-gray-700` | Secondary headings |
+| Grigio 400 | `#F6F8FA` | `--color-shuby-gray-400` | Light backgrounds, hover states |
+| Grigio 500 | `#E2E5E8` | `--color-shuby-gray-500` | Borders, subtle backgrounds |
+| Grigio 600 | `#B5B7BA` | `--color-shuby-gray-600` | Muted text, chart labels |
+| Grigio 700 | `#898D91` | `--color-shuby-gray-700` | Secondary text |
+| Grigio 800 | `#616467` | `--color-shuby-gray-800` | Body text, headings |
 | Black | `#000000` | `--color-shuby-black` | Body text |
 
 ---
@@ -121,15 +122,17 @@ The Shuby design system uses two font families from Figma:
 
 | Class | Font | Size | Weight | Line-Height | Usage |
 |-------|------|------|--------|-------------|-------|
-| `.shuby-d1` | Baloo 2 | 28px | Bold (700) | 34px | Hero text |
+| `.shuby-d1` | Baloo 2 | 48px | Bold (700) | 1 | Hero text |
+| `.shuby-h1` | Baloo 2 | 38px | Bold (700) | 1 | Page titles (Figma: Headings/H1) |
+| `.shuby-h2` | Baloo 2 | 28px | Bold (700) | 1 | Section titles (Figma: Headings/H2) |
 | `.shuby-d2` | Baloo 2 | 20px | Bold (700) | 24px | Card titles (Figma: Display/D2) |
-| `.shuby-h1` | Montserrat | 24px | Bold (700) | 30px | Page titles |
-| `.shuby-h2` | Montserrat | 20px | Semibold (600) | 26px | Section titles |
 | `.shuby-h3` | Montserrat | 20px | Semibold (600) | 150% | Subsection titles (Figma: Headings/H3) |
 | `.shuby-p1` | Montserrat | 14px | Regular (400) | 150% | Main body text (Figma: Body/P1/Light) |
 | `.shuby-p1-dark` | Montserrat | 14px | Semibold (600) | 150% | Emphasized body text (Figma: Body/P1/Dark) |
 | `.shuby-p2` | Montserrat | 12px | Regular (400) | 150% | Secondary text (Figma: Body/P2/Light) |
+| `.shuby-p2-dark` | Montserrat | 12px | Semibold (600) | 150% | Emphasized secondary text (Figma: Body/P2/Dark) |
 | `.shuby-caption` | Montserrat | 10px | Medium (500) | 150% | Labels (Figma: Caption/Span/Light) |
+| `.shuby-caption-dark` | Montserrat | 10px | Semibold (600) | 150% | Emphasized labels, uppercase (Figma: Caption/Span/Dark) |
 | `.shuby-overline` | Montserrat | 10px | Regular (400) | 150% | Tags, uppercase (Figma: Overline/OL/Light) |
 | `.shuby-overline-dark` | Montserrat | 10px | Semibold (600) | 150% | Form labels, uppercase (Figma: Overline/OL/Dark) |
 | `.shuby-btn-text-s` | Montserrat | 16px | Semibold (600) | 150% | Button text small (Figma: Button/Button S) |
@@ -1241,7 +1244,7 @@ Full text week labels with progressive selection.
 | `--border-timeline-container` | `#A5B4FC` | Purple container border |
 | `--bg-timeline-container-alt` | `#F3F4F6` | Gray container background |
 | `--border-selection-outline` | `#A5B4FC` | Outline selection border |
-| `--bg-selection` | `#D946EF` | Magenta filled selection |
+| `--bg-selection` | `#FD1EAF` | Magenta filled selection |
 | `--text-on-selection` | `#FFFFFF` | White text on selection |
 
 ---
@@ -1347,19 +1350,6 @@ The teal variant matches the Figma design for milestone completion screens.
   <p>Message with blur backdrop...</p>
 </div>
 ```
-
-### White Typography Variants
-
-For use on dark/colored backgrounds:
-
-| Class | Description |
-|-------|-------------|
-| `.shuby-d1-white` | Display 1 in white |
-| `.shuby-d2-white` | Display 2 in white |
-| `.shuby-p1-white` | Body text in white |
-| `.shuby-p1-white-muted` | Body text in white (90% opacity) |
-| `.shuby-overline-white` | Overline in white (85% opacity) |
-| `.shuby-caption-white` | Caption in white (85% opacity) |
 
 ### Button Variants for Dark Backgrounds
 

@@ -24,12 +24,12 @@ export default class extends Controller {
   static COLORS = {
     childLine: "#0159B5",       // shuby-blue-800
     childPoint: "#0159B5",
-    p50Line: "#2C9A94",         // shuby-verde-600
+    p50Line: "#2C9A94",         // shuby-verde-500
     normalBand: "rgba(44, 154, 148, 0.12)",   // verde, light
     warningBand: "rgba(243, 156, 18, 0.10)",  // orange, light
     alertBand: "rgba(231, 76, 60, 0.08)",     // red, light
-    gridLine: "#E5E7EB",        // shuby-gray-200
-    textColor: "#4B5563"        // shuby-gray-600
+    gridLine: "#E2E5E8",        // shuby-gray-500
+    textColor: "#B5B7BA"        // shuby-gray-600
   }
 
   connect() {

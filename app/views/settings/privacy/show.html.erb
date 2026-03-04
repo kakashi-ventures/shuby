@@ -10,7 +10,7 @@
       <%= t("back") %>
     <% end %>
 
-    <h1 class="shuby-h2 mb-6"><%= t(".title") %></h1>
+    <h1 class="shuby-h3 mb-6"><%= t(".title") %></h1>
 
     <%= form_with model: current_user, url: settings_privacy_path, method: :patch, class: "space-y-6" do |form| %>
       <div class="shuby-card">
@@ -21,7 +21,7 @@
           </div>
           <label class="relative inline-flex items-center cursor-pointer shrink-0">
             <%= form.check_box :data_sharing_consent, class: "sr-only peer" %>
-            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[var(--color-shuby-blue-100)] rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[var(--color-shuby-blue-500)]"></div>
+            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[var(--color-shuby-blue-400)] rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[var(--color-shuby-blue-500)]"></div>
           </label>
         </div>
       </div>

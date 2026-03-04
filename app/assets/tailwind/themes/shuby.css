@@ -6,7 +6,7 @@
  * - Background: #FFFFFF (Colori/Bianco)
  * - Body Text: #000000 (Colori/Nero)
  * - Border (Light Blue): #E5F2FF (Colori/Blu 300)
- * - Section Background: #D4EDFF (Colori/Blu 100)
+ * - Section Background: #CAE4FF (Colori/Blu 400)
  */
 
 :root,
@@ -79,9 +79,9 @@
     /* Secondary */
     --bg-secondary: var(--color-shuby-white);
     --text-on-secondary: var(--color-shuby-black);
-    --bg-secondary-hover: var(--color-shuby-gray-50);
+    --bg-secondary-hover: var(--color-shuby-gray-400);
     --text-on-secondary-hover: var(--color-shuby-gray-700);
-    --border-secondary: var(--color-shuby-gray-200);
+    --border-secondary: var(--color-shuby-gray-500);
 
     /* Danger */
     --bg-danger: var(--color-shuby-red-500);
@@ -109,8 +109,8 @@
     --icon-on-success-secondary: var(--color-shuby-green-500);
 
     /* Info - Using Shuby blue tones */
-    --bg-info: var(--color-shuby-blue-100);
-    --bg-info-secondary: var(--color-shuby-blue-100);
+    --bg-info: var(--color-shuby-blue-400);
+    --bg-info-secondary: var(--color-shuby-blue-400);
     --text-on-info-secondary: var(--color-shuby-blue-800);
     --icon-on-info-secondary: var(--color-shuby-blue-500);
     --border-info: var(--color-shuby-blue-300);
@@ -133,17 +133,17 @@
     --text-on-selection: var(--color-shuby-white);
     --border-selection: var(--color-shuby-magenta-400);
     --text-selection: var(--color-shuby-magenta-500);
-    --bg-selection-light: var(--color-shuby-magenta-50);
+    --bg-selection-light: var(--color-shuby-magenta-300);
     --border-selection-outline: var(--color-shuby-purple-300);
 
     /* Timeline Container (lavender bordered container) */
     --bg-timeline-container: var(--color-shuby-purple-50);
     --border-timeline-container: var(--color-shuby-purple-300);
-    --bg-timeline-container-alt: var(--color-shuby-gray-100);
+    --bg-timeline-container-alt: var(--color-shuby-gray-400);
 
     /* Light */
     --bg-light: var(--color-shuby-white);
-    --bg-light-hover: var(--color-shuby-gray-50);
+    --bg-light-hover: var(--color-shuby-gray-400);
     --text-on-light: var(--color-shuby-black);
     --text-on-light-outline: var(--color-shuby-black);
     --border-light: var(--color-shuby-blue-300);
@@ -158,11 +158,11 @@
     --border-dark-focus: var(--color-shuby-gray-500);
 
     /* Disabled */
-    --bg-disabled: var(--color-shuby-gray-200);
+    --bg-disabled: var(--color-shuby-gray-500);
     --bg-disabled-selected: var(--color-shuby-gray-400);
-    --text-on-disabled-selected: var(--color-shuby-gray-200);
-    --border-disabled: var(--color-shuby-gray-300);
-    --bg-disabled-secondary: var(--color-shuby-gray-300);
+    --text-on-disabled-selected: var(--color-shuby-gray-500);
+    --border-disabled: var(--color-shuby-gray-600);
+    --bg-disabled-secondary: var(--color-shuby-gray-600);
     --icon-disabled: var(--color-shuby-gray-400);
 
     /* Base */
@@ -172,18 +172,18 @@
     --base-text-disabled: var(--color-shuby-gray-400);
     --base-icon: var(--color-shuby-gray-500);
     --base-bg-backdrop: var(--color-shuby-gray-800);
-    --base-bg-highest: var(--color-shuby-gray-300);
-    --base-bg-high: var(--color-shuby-gray-100);
-    --base-bg-base: var(--color-shuby-gray-50);
+    --base-bg-highest: var(--color-shuby-gray-600);
+    --base-bg-high: var(--color-shuby-gray-400);
+    --base-bg-base: var(--color-shuby-gray-400);
     --base-bg-low: var(--color-shuby-white);
-    --base-bg-lowest: var(--color-shuby-gray-50);
-    --base-bg-section: var(--color-shuby-blue-100);
+    --base-bg-lowest: var(--color-shuby-gray-400);
+    --base-bg-section: var(--color-shuby-blue-400);
     --base-border-primary: var(--color-shuby-blue-300);
-    --base-border-secondary: var(--color-shuby-gray-300);
-    --base-border-tertiary: var(--color-shuby-gray-200);
+    --base-border-secondary: var(--color-shuby-gray-600);
+    --base-border-tertiary: var(--color-shuby-gray-500);
     --base-border-focus: var(--color-shuby-blue-500);
     --base-bg-selected: var(--color-shuby-blue-800);
-    --base-bg-hover: var(--color-shuby-blue-50);
+    --base-bg-hover: var(--color-shuby-blue-300);
     --base-bg-tooltip: var(--color-shuby-gray-800);
     --base-text-on-tooltip: var(--color-shuby-white);
 

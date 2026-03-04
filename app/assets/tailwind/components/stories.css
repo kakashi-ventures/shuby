@@ -8,13 +8,13 @@
   min-height: 100vh;
   min-height: 100dvh;
   overflow: hidden;
-  background-color: var(--color-shuby-blue-100);
+  background-color: var(--color-shuby-blue-400);
 }
 
 .stories-container {
   position: fixed;
   inset: 0;
-  background: linear-gradient(180deg, var(--color-shuby-blue-100) 0%, var(--color-shuby-blue-50) 100%);
+  background: linear-gradient(180deg, var(--color-shuby-blue-400) 0%, var(--color-shuby-blue-300) 100%);
   overflow: hidden;
 }
 
@@ -272,14 +272,14 @@
 .stories-question-help {
   font-family: var(--font-sans);
   font-size: 13px;
-  color: #6B7280;
+  color: var(--color-shuby-gray-700);
   line-height: 1.5;
 }
 
 /* RICORDA box styling within stories (uses shuby-ricorda-box from shuby.css) */
 .stories-slide-content .shuby-ricorda-box {
   margin-bottom: 20px;
-  background-color: var(--color-shuby-blue-50);
+  background-color: var(--color-shuby-blue-300);
 }
 
 .stories-slide-content .shuby-ricorda-icon svg {
@@ -324,7 +324,7 @@
 }
 
 .stories-answer-btn:hover:not(:disabled) {
-  background-color: var(--color-shuby-blue-50);
+  background-color: var(--color-shuby-blue-300);
   border-color: var(--color-shuby-blue-600);
 }
 

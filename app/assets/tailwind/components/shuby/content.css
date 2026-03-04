@@ -425,7 +425,7 @@
     position: relative;
     width: 100%;
     padding: var(--space-6) var(--space-4);
-    background: linear-gradient(180deg, var(--color-shuby-blue-100) 0%, var(--color-shuby-white) 100%);
+    background: linear-gradient(180deg, var(--color-shuby-blue-400) 0%, var(--color-shuby-white) 100%);
     border-radius: 0 0 var(--radius-xl) var(--radius-xl);
     overflow: hidden;
     margin-bottom: var(--space-4);
@@ -488,7 +488,7 @@
 /* Hero variant with full-width illustration at top */
 .shuby-article-hero-full {
     padding-top: 120px;
-    background: linear-gradient(180deg, var(--color-shuby-blue-200) 0%, var(--color-shuby-blue-100) 50%, var(--color-shuby-white) 100%);
+    background: linear-gradient(180deg, var(--color-shuby-blue-500) 0%, var(--color-shuby-blue-400) 50%, var(--color-shuby-white) 100%);
 
     .shuby-article-hero-illustration {
         top: -20px;

@@ -10,11 +10,11 @@
     <%# Growth Phase Card %>
     <% phase = GrowthPhase.for_age(current_child.questionnaire_age_in_months) %>
     <% if phase %>
-      <div class="bg-shuby-blue-100 rounded-2xl p-4 pt-6 flex gap-2 items-end relative overflow-visible">
+      <div class="bg-shuby-blue-400 rounded-2xl p-4 pt-6 flex gap-2 items-end relative overflow-visible">
         <%# Content - Left side %>
         <div class="flex-1 min-w-0 pb-2">
           <%# Age Display inside card (corrected age for premature babies) %>
-          <h1 class="shuby-d1 text-shuby-blue-800 mb-2 leading-tight">
+          <h1 class="shuby-h2 text-shuby-blue-800 mb-2 leading-tight">
             <%= current_child.detailed_corrected_age_display %>
           </h1>
           <% if current_child.using_corrected_age? %>

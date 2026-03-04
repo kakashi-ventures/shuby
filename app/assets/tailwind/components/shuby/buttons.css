@@ -80,7 +80,7 @@
     color: var(--color-shuby-black);
     border: 2px solid var(--color-shuby-black);
 
-    &:hover { background-color: var(--color-shuby-gray-100); }
+    &:hover { background-color: var(--color-shuby-gray-400); }
 }
 
 /* Secondary button */

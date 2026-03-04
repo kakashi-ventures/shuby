@@ -1,20 +1,20 @@
 <% scope = "questionnaire_sessions.show" %>
 
 <div class="shuby-card mb-6">
-  <h1 class="shuby-h2 mb-2"><%= t("results_title", scope: scope) %></h1>
+  <h1 class="shuby-h3 mb-2"><%= t("results_title", scope: scope) %></h1>
   <p class="shuby-p2 mb-4"><%= questionnaire.display_title %></p>
 
   <div class="grid grid-cols-3 gap-4 mb-6">
     <div class="text-center p-3 bg-green-50 rounded-lg">
-      <div class="shuby-d1 text-green-600"><%= session.yes_count %></div>
+      <div class="shuby-h2 text-green-600"><%= session.yes_count %></div>
       <div class="shuby-caption text-green-600"><%= t("yes", scope: scope) %></div>
     </div>
     <div class="text-center p-3 bg-red-50 rounded-lg">
-      <div class="shuby-d1 text-red-600"><%= session.no_count %></div>
+      <div class="shuby-h2 text-red-600"><%= session.no_count %></div>
       <div class="shuby-caption text-red-600"><%= t("no", scope: scope) %></div>
     </div>
     <div class="text-center p-3 bg-gray-50 rounded-lg">
-      <div class="shuby-d1 text-gray-600"><%= session.unknown_count %></div>
+      <div class="shuby-h2 text-gray-600"><%= session.unknown_count %></div>
       <div class="shuby-caption text-gray-600"><%= t("unknown", scope: scope) %></div>
     </div>
   </div>

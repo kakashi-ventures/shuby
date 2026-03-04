@@ -11,7 +11,7 @@
 <% when :start_tracking %>
   <%= dashboard_nav_card(
     path: new_child_measurement_path(child, type: box.type),
-    icon_bg: "bg-shuby-blue-100",
+    icon_bg: "bg-shuby-blue-400",
     title: type_label,
     subtitle: t("measurements.dashboard.start_tracking")
   ) do %>
@@ -23,7 +23,7 @@
 <% when :update %>
   <%= dashboard_nav_card(
     path: new_child_measurement_path(child, type: box.type),
-    icon_bg: "bg-shuby-magenta-50",
+    icon_bg: "bg-shuby-magenta-300",
     title: type_label,
     subtitle: "#{box.last_measurement.display_value} \u00B7 #{t("measurements.dashboard.update")}",
     badge: t("measurements.card.update_badge"),
@@ -37,7 +37,7 @@
 <% when :track %>
   <%= dashboard_nav_card(
     path: child_path(child, tab: "misurazioni"),
-    icon_bg: "bg-shuby-blue-100",
+    icon_bg: "bg-shuby-blue-400",
     title: type_label,
     subtitle: box.last_measurement.display_value
   ) do %>

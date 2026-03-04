@@ -1,14 +1,14 @@
 <% scope = "archive.index" %>
 
 <div class="flex items-center justify-between mb-6">
-  <h1 class="shuby-h1 text-shuby-blue-800"><%= t("heading", scope: scope) %></h1>
+  <h1 class="shuby-h2 text-shuby-blue-800"><%= t("heading", scope: scope) %></h1>
   <div class="flex items-center gap-3">
-    <button type="button" class="p-2 text-shuby-blue-800 hover:bg-shuby-blue-50 rounded-full">
+    <button type="button" class="p-2 text-shuby-blue-800 hover:bg-shuby-blue-300 rounded-full">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
       </svg>
     </button>
-    <%= link_to archive_index_path(type: "saved"), class: "p-2 text-shuby-blue-800 hover:bg-shuby-blue-50 rounded-full" do %>
+    <%= link_to archive_index_path(type: "saved"), class: "p-2 text-shuby-blue-800 hover:bg-shuby-blue-300 rounded-full" do %>
       <%= render_svg "shuby/icons/icon-heart-outline", styles: "w-6 h-6" %>
     <% end %>
   </div>

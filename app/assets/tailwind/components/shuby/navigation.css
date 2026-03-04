@@ -131,7 +131,7 @@
     display: inline-flex;
     gap: var(--space-1);
     padding: var(--space-1);
-    background-color: var(--color-shuby-gray-100);
+    background-color: var(--color-shuby-gray-400);
     border-radius: var(--radius-xl);
     margin-bottom: var(--space-4);
 }

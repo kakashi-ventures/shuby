@@ -107,7 +107,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-shuby-gray-100);
+    background-color: var(--color-shuby-gray-400);
 
     img {
         width: 100%;
@@ -118,7 +118,7 @@
 
 /* Default user icon avatar (gray circle with person icon) */
 .shuby-member-avatar-default {
-    background-color: var(--color-shuby-gray-200);
+    background-color: var(--color-shuby-gray-500);
     color: var(--color-shuby-gray-500);
 
     svg {
@@ -170,12 +170,12 @@
 
 /* Adult member card (with default avatar) */
 .shuby-member-card-adult .shuby-member-avatar {
-    background-color: var(--color-shuby-gray-200);
+    background-color: var(--color-shuby-gray-500);
 }
 
 /* Child member card (with photo or emoji) */
 .shuby-member-card-child .shuby-member-avatar {
-    background-color: var(--color-shuby-blue-50);
+    background-color: var(--color-shuby-blue-300);
 }
 
 /* Emoji avatar for children */
@@ -187,7 +187,7 @@
 /* Highlighted member card (selected state) */
 .shuby-member-card.selected {
     border-color: var(--bg-primary);
-    box-shadow: 0 0 0 2px var(--color-shuby-blue-100);
+    box-shadow: 0 0 0 2px var(--color-shuby-blue-400);
 }
 
 /* =====================================================
