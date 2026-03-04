@@ -1,22 +1,22 @@
 <h3 class="shuby-h3 mb-4">Category Icons</h3>
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
   <div class="shuby-card text-center p-4">
-    <%= image_tag "shuby/icons/icon-footprints.svg", class: "w-8 h-8 mx-auto mb-2", style: "color: var(--color-shuby-blue-800);", alt: "Footprints" %>
+    <%= render_svg "shuby/icons/icon-barefoot", size: :xl, styles: "mx-auto mb-2 text-shuby-blue-800" %>
     <p class="shuby-p2">Footprints</p>
     <p class="shuby-caption">Abilita motorie</p>
   </div>
   <div class="shuby-card text-center p-4">
-    <%= image_tag "shuby/icons/icon-heart.svg", class: "w-8 h-8 mx-auto mb-2", style: "color: var(--color-shuby-blue-800);", alt: "Heart" %>
+    <%= render_svg "shuby/icons/icon-heart-filled", size: :xl, styles: "mx-auto mb-2 text-shuby-blue-800" %>
     <p class="shuby-p2">Heart</p>
     <p class="shuby-caption">Benessere famigliare</p>
   </div>
   <div class="shuby-card text-center p-4">
-    <%= image_tag "shuby/icons/icon-brain.svg", class: "w-8 h-8 mx-auto mb-2", style: "color: var(--color-shuby-blue-800);", alt: "Brain" %>
+    <%= render_svg "shuby/icons/icon-neurodevelopment", size: :xl, styles: "mx-auto mb-2 text-shuby-blue-800" %>
     <p class="shuby-p2">Brain</p>
     <p class="shuby-caption">Neurosviluppo</p>
   </div>
   <div class="shuby-card text-center p-4">
-    <%= image_tag "shuby/icons/icon-hands-heart.svg", class: "w-8 h-8 mx-auto mb-2", style: "color: var(--color-shuby-blue-800);", alt: "Hands Heart" %>
+    <%= render_svg "shuby/icons/icon-attachment", size: :xl, styles: "mx-auto mb-2 text-shuby-blue-800" %>
     <p class="shuby-p2">Hands Heart</p>
     <p class="shuby-caption">Attaccamento</p>
   </div>
@@ -26,19 +26,19 @@
 <div class="shuby-card mb-8">
   <div class="flex flex-wrap gap-3">
     <span class="shuby-tag shuby-tag-light">
-      <span class="shuby-tag-icon"><%= image_tag "shuby/icons/icon-footprints.svg", alt: "" %></span>
+      <span class="shuby-tag-icon"><%= render_svg "shuby/icons/icon-barefoot", size: :xs, decorative: true %></span>
       Abilita motorie
     </span>
     <span class="shuby-tag shuby-tag-light">
-      <span class="shuby-tag-icon"><%= image_tag "shuby/icons/icon-heart.svg", alt: "" %></span>
+      <span class="shuby-tag-icon"><%= render_svg "shuby/icons/icon-heart-filled", size: :xs, decorative: true %></span>
       Benessere famigliare
     </span>
     <span class="shuby-tag shuby-tag-light">
-      <span class="shuby-tag-icon"><%= image_tag "shuby/icons/icon-brain.svg", alt: "" %></span>
+      <span class="shuby-tag-icon"><%= render_svg "shuby/icons/icon-neurodevelopment", size: :xs, decorative: true %></span>
       Neurosviluppo
     </span>
     <span class="shuby-tag shuby-tag-light">
-      <span class="shuby-tag-icon"><%= image_tag "shuby/icons/icon-hands-heart.svg", alt: "" %></span>
+      <span class="shuby-tag-icon"><%= render_svg "shuby/icons/icon-attachment", size: :xs, decorative: true %></span>
       Attaccamento
     </span>
   </div>

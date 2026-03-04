@@ -61,15 +61,6 @@ class ArchiveContent < ApplicationRecord
     "#{duration_minutes} min"
   end
 
-  def content_type_icon
-    case content_type
-    when "article" then "icon-article"
-    when "book" then "icon-book"
-    when "game" then "icon-game"
-    when "tip" then "icon-lightbulb"
-    end
-  end
-
   private
 
   def generate_slug

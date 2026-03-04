@@ -3,19 +3,19 @@
 module ArchiveHelper
   # Maps category names to icon paths
   CATEGORY_ICONS = {
-    "Abilità motorie" => "shuby/icons/icon-footprints",
-    "Motricità" => "shuby/icons/icon-footprints",
-    "Benessere familiare" => "shuby/icons/icon-heart",
-    "Benessere" => "shuby/icons/icon-heart",
-    "Neurosviluppo" => "shuby/icons/icon-brain",
-    "Attaccamento" => "shuby/icons/icon-hands-heart",
-    "Comunicazione" => "shuby/icons/icon-docs",
-    "Linguaggio" => "shuby/icons/icon-docs",
-    "Lettura" => "shuby/icons/icon-book",
-    "Giochi" => "shuby/icons/icon-footprints"
+    "Abilità motorie" => "shuby/icons/icon-barefoot",
+    "Motricità" => "shuby/icons/icon-barefoot",
+    "Benessere familiare" => "shuby/icons/icon-heart-filled",
+    "Benessere" => "shuby/icons/icon-heart-filled",
+    "Neurosviluppo" => "shuby/icons/icon-neurodevelopment",
+    "Attaccamento" => "shuby/icons/icon-attachment",
+    "Comunicazione" => "shuby/icons/icon-document",
+    "Linguaggio" => "shuby/icons/icon-document",
+    "Lettura" => "shuby/icons/icon-reading",
+    "Giochi" => "shuby/icons/icon-barefoot"
   }.freeze
 
-  DEFAULT_CATEGORY_ICON = "shuby/icons/icon-docs"
+  DEFAULT_CATEGORY_ICON = "shuby/icons/icon-document"
 
   # Returns the icon path for a given category
   #
@@ -49,11 +49,11 @@ module ArchiveHelper
   # @return [String] The icon path
   def content_type_icon_for(content_type)
     case content_type.to_s
-    when "article" then "shuby/icons/icon-docs"
-    when "book" then "shuby/icons/icon-book"
-    when "game" then "shuby/icons/icon-footprints"
-    when "tip" then "shuby/icons/icon-heart"
-    else "shuby/icons/icon-docs"
+    when "article" then "shuby/icons/icon-document"
+    when "book" then "shuby/icons/icon-reading"
+    when "game" then "shuby/icons/icon-barefoot"
+    when "tip" then "shuby/icons/icon-tips"
+    else "shuby/icons/icon-document"
     end
   end
 end

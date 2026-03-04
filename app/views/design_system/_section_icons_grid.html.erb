@@ -9,7 +9,7 @@
         <% icon_name = File.basename(icon_path, '.svg') %>
         <div class="text-center p-3 rounded-lg" style="background-color: var(--base-bg-secondary);">
           <div class="w-8 h-8 mx-auto mb-2 flex items-center justify-center">
-            <%= image_tag "shuby/icons/#{File.basename(icon_path)}", class: "max-w-full max-h-full", style: "--fill-0: var(--base-text-primary);" %>
+            <%= render_svg "shuby/icons/#{icon_name}", size: :xl, decorative: true %>
           </div>
           <p class="shuby-caption text-xs truncate" title="<%= icon_name %>"><%= icon_name.gsub('icon-', '') %></p>
         </div>

@@ -3,14 +3,14 @@
 <div class="container px-4 mx-auto my-8 pb-24">
   <div class="flex items-center justify-between mb-6">
     <div class="flex items-center gap-3">
-      <%= image_tag "shuby/icons/icon-robot.svg", class: "w-10 h-10", alt: "Shuby" %>
+      <%= render_svg "shuby/icons/icon-chatbot", size: :xxl %>
       <div>
         <h1 class="shuby-h3"><%= t(".heading") %></h1>
         <p class="shuby-p2"><%= t(".subtitle") %></p>
       </div>
     </div>
     <%= link_to shuby_chats_path, data: { turbo_method: :post }, class: "shuby-btn shuby-btn-md shuby-btn-primary" do %>
-      <%= image_tag "shuby/icons/icon-add.svg", class: "w-5 h-5 mr-2", style: "filter: brightness(0) invert(1);", alt: "" %>
+      <%= render_svg "shuby/icons/icon-add", size: :md, styles: "mr-2 text-white", decorative: true %>
       <%= t(".new_conversation") %>
     <% end %>
   </div>

@@ -5,28 +5,28 @@
 <nav class="shuby-bottom-nav shuby-bottom-nav-fixed">
   <%= link_to root_path, class: "shuby-bottom-nav-item #{'active' if active == 'oggi'}" do %>
     <div class="shuby-bottom-nav-icon">
-      <%= render_svg "shuby/icons/icon-dashboard", styles: "w-6 h-6" %>
+      <%= render_svg "shuby/icons/icon-dashboard", size: :lg, decorative: true %>
     </div>
     <span class="shuby-bottom-nav-label"><%= t("shared.bottom_nav.today") %></span>
   <% end %>
 
   <%= link_to shuby_chats_path, class: "shuby-bottom-nav-item #{'active' if active == 'ai-helper'}" do %>
     <div class="shuby-bottom-nav-icon">
-      <%= render_svg "shuby/icons/icon-robot", styles: "w-6 h-6" %>
+      <%= render_svg "shuby/icons/icon-chatbot", size: :lg, decorative: true %>
     </div>
     <span class="shuby-bottom-nav-label"><%= t("shared.bottom_nav.ai_helper") %></span>
   <% end %>
 
   <%= link_to archive_index_path, class: "shuby-bottom-nav-item #{'active' if active == 'archivio'}" do %>
     <div class="shuby-bottom-nav-icon">
-      <%= render_svg "shuby/icons/icon-book", styles: "w-6 h-6" %>
+      <%= render_svg "shuby/icons/icon-archive", size: :lg, decorative: true %>
     </div>
     <span class="shuby-bottom-nav-label"><%= t("shared.bottom_nav.archive") %></span>
   <% end %>
 
   <%= link_to settings_path, class: "shuby-bottom-nav-item #{'active' if active == 'gestione'}" do %>
     <div class="shuby-bottom-nav-icon">
-      <%= render_svg "shuby/icons/icon-settings", styles: "w-6 h-6" %>
+      <%= render_svg "shuby/icons/icon-settings", size: :lg, decorative: true %>
     </div>
     <span class="shuby-bottom-nav-label"><%= t("shared.bottom_nav.settings") %></span>
   <% end %>

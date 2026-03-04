@@ -3,11 +3,11 @@
        data-action="click->favorite#toggle">
     <% if local_assigns[:favorited] && favorited %>
       <%= button_to archive_favorite_path(content), method: :delete, class: "p-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm hover:bg-white transition-colors", aria: {label: t("archive.favorites.remove")} do %>
-        <%= render_svg "shuby/icons/icon-heart", styles: "w-5 h-5 text-shuby-fucsia-500" %>
+        <%= render_svg "shuby/icons/icon-bookmark-filled", size: :md, styles: "text-shuby-fucsia-500" %>
       <% end %>
     <% else %>
       <%= button_to archive_favorite_path(content), method: :post, class: "p-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm hover:bg-white transition-colors", aria: {label: t("archive.favorites.save")} do %>
-        <%= render_svg "shuby/icons/icon-heart-outline", styles: "w-5 h-5 text-shuby-gray-400" %>
+        <%= render_svg "shuby/icons/icon-bookmark", size: :md, styles: "text-shuby-gray-400" %>
       <% end %>
     <% end %>
   </div>

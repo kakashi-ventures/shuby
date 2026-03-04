@@ -13,11 +13,11 @@
         <span class="shuby-tag shuby-tag-giallo">
           <span class="shuby-tag-icon">
             <% if content.content_type_book? %>
-              <%= render_svg "shuby/icons/icon-book", styles: "w-3 h-3" %>
+              <%= render_svg "shuby/icons/icon-reading", size: :xs, decorative: true %>
             <% elsif content.content_type_game? %>
-              <%= render_svg "shuby/icons/icon-footprints", styles: "w-3 h-3" %>
+              <%= render_svg "shuby/icons/icon-barefoot", size: :xs, decorative: true %>
             <% else %>
-              <%= render_svg "shuby/icons/icon-heart", styles: "w-3 h-3" %>
+              <%= render_svg "shuby/icons/icon-heart-filled", size: :xs, decorative: true %>
             <% end %>
           </span>
           <%= t("archive.content_types.#{content.content_type}") %>
@@ -34,7 +34,7 @@
         <% end %>
         <% if content.duration_minutes.present? %>
           <div class="shuby-card-consigli-time">
-            <%= render_svg "shuby/icons/icon-alarm", styles: "w-3 h-3" %>
+            <%= render_svg "shuby/icons/icon-alarm", size: :xs, decorative: true %>
             <span class="shuby-card-consigli-time-text"><%= content.duration_label %></span>
           </div>
         <% end %>
