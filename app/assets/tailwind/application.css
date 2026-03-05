@@ -133,6 +133,8 @@
 /* Shuby Design System Components */
 @import "./components/shuby/typography.css" layer(components);
 @import "./components/shuby/buttons.css" layer(components);
+@import "./components/shuby/icon-buttons.css" layer(components);
+@import "./components/shuby/links.css" layer(components);
 @import "./components/shuby/forms.css" layer(components);
 @import "./components/shuby/tags-badges.css" layer(components);
 @import "./components/shuby/cards.css" layer(components);

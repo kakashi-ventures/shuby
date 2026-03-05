@@ -1,0 +1,229 @@
+/* Shuby Icon Buttons
+ * Circular icon-only button components — single source of truth
+ *
+ * Shared patterns:
+ * - All icon buttons: flexbox centering, circular, no border
+ * - Default size: 40px (sm: 32px)
+ * - SVG sizing varies by variant
+ */
+
+/* =====================================================
+   ICON BUTTON BASE
+   Shared flexbox centering for all icon button variants
+   ===================================================== */
+
+.shuby-icon-btn,
+.shuby-icon-btn-ghost,
+.shuby-icon-btn-pink,
+.shuby-action-btn,
+.shuby-member-edit,
+.shuby-header-icon-btn,
+.shuby-accordion-btn,
+.shuby-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+/* =====================================================
+   PRIMARY ICON BUTTON
+   ===================================================== */
+
+.shuby-icon-btn {
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-primary);
+    color: var(--text-on-primary);
+
+    &:hover { background-color: var(--bg-primary-hover); }
+}
+
+.shuby-icon-btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+
+    &:hover { background-color: var(--base-bg-hover); }
+}
+
+/* =====================================================
+   GHOST ICON BUTTON
+   No background, just icon — subtle hover
+   ===================================================== */
+
+.shuby-icon-btn-ghost {
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    color: var(--color-shuby-gray-700);
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: var(--text-primary);
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Ghost icon button - primary color variant */
+.shuby-icon-btn-ghost-primary {
+    color: var(--text-primary);
+
+    &:hover { background-color: var(--base-bg-hover); }
+}
+
+/* =====================================================
+   ICON BUTTON COLOR VARIANTS
+   ===================================================== */
+
+/* Pink/Fucsia icon button */
+.shuby-icon-btn-pink {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-shuby-fucsia-500);
+    color: var(--color-shuby-white);
+
+    &:hover { background-color: var(--color-shuby-fucsia-700); }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* =====================================================
+   ICON BUTTON SIZE VARIANTS
+   ===================================================== */
+
+/* Small icon button variant */
+.shuby-icon-btn-sm {
+    width: 32px;
+    height: 32px;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* =====================================================
+   ACTION BUTTON
+   Small circular icon button for section actions (+ and edit)
+   ===================================================== */
+
+.shuby-action-btn {
+    width: 36px;
+    height: 36px;
+    background-color: var(--bg-primary);
+    color: var(--text-on-primary);
+
+    &:hover { background-color: var(--bg-primary-hover); }
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* =====================================================
+   MEMBER EDIT BUTTON
+   Edit button for member cards
+   ===================================================== */
+
+.shuby-member-edit {
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-primary);
+    color: var(--text-on-primary);
+    flex-shrink: 0;
+
+    &:hover { background-color: var(--bg-primary-hover); }
+
+    svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* =====================================================
+   HEADER ICON BUTTON
+   Transparent icon button for page headers
+   ===================================================== */
+
+.shuby-header-icon-btn {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    color: var(--text-primary);
+
+    &:hover { background-color: var(--base-bg-hover); }
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* =====================================================
+   ACCORDION BUTTON
+   Round button for accordion expand/collapse
+   ===================================================== */
+
+.shuby-accordion-btn {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-shuby-blue-400);
+
+    &:hover { background-color: var(--color-shuby-blue-500); }
+}
+
+.shuby-accordion-btn-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-shuby-blue-800);
+}
+
+/* =====================================================
+   MODAL CLOSE BUTTON
+   X button for dismissing modals
+   ===================================================== */
+
+.shuby-modal-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    color: var(--base-text-secondary);
+    transition: all 0.2s ease;
+    z-index: 10;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: var(--base-text);
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Close button on dark/colored background */
+.shuby-modal-close-light {
+    color: var(--color-shuby-white);
+
+    &:hover {
+        background-color: var(--overlay-white-15);
+        color: var(--color-shuby-white);
+    }
+}

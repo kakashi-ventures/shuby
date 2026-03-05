@@ -45,20 +45,6 @@
     gap: var(--space-2);
 }
 
-/* Small circular icon buttons (+ and edit) */
-.shuby-action-btn {
-    width: 36px;
-    height: 36px;
-    background-color: var(--bg-primary);
-    color: var(--text-on-primary);
-
-    &:hover { background-color: var(--bg-primary-hover); }
-
-    svg {
-        width: 16px;
-        height: 16px;
-    }
-}
 
 /* Category label (ADULTI, BAMBINI) */
 .shuby-category-label {
@@ -148,21 +134,6 @@
     color: var(--base-text-tertiary);
 }
 
-/* Edit button (right side of member card) */
-.shuby-member-edit {
-    width: 40px;
-    height: 40px;
-    background-color: var(--bg-primary);
-    color: var(--text-on-primary);
-    flex-shrink: 0;
-
-    &:hover { background-color: var(--bg-primary-hover); }
-
-    svg {
-        width: 18px;
-        height: 18px;
-    }
-}
 
 /* =====================================================
    MEMBER CARD VARIANTS

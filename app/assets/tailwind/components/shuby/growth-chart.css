@@ -19,29 +19,6 @@
   margin-top: var(--space-3, 12px);
 }
 
-.shuby-growth-chart-zoom-btn {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 500;
-  padding: var(--space-1, 4px) var(--space-3, 12px);
-  border-radius: var(--radius-full, 999px);
-  border: 1px solid var(--color-shuby-gray-500);
-  color: var(--color-shuby-gray-600);
-  background: var(--color-shuby-white);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.shuby-growth-chart-zoom-btn:hover {
-  border-color: var(--color-shuby-blue-500);
-  color: var(--color-shuby-blue-800);
-}
-
-.shuby-growth-chart-zoom-btn.active {
-  background: var(--color-shuby-blue-800);
-  color: var(--color-shuby-white);
-  border-color: var(--color-shuby-blue-800);
-}
 
 /* Percentile explanation card */
 .shuby-percentile-explanation {

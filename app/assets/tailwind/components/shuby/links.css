@@ -1,0 +1,28 @@
+/* Shuby Links
+ * Text/link button components — inline link-style elements
+ * Used on <a> tags for "view all" and similar navigational links
+ */
+
+/* Text/Link button (Figma: Type=Testo) */
+.shuby-btn-text {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--color-shuby-blue-800);
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover { color: var(--color-shuby-blue-700); }
+}
+
+.shuby-btn-text-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
