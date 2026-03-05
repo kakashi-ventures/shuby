@@ -15,9 +15,7 @@
     title: type_label,
     subtitle: t("measurements.dashboard.start_tracking")
   ) do %>
-    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-shuby-blue-800">
-      <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
-    </svg>
+    <%= render_svg "shuby/icons/icon-add", size: :md, styles: "text-shuby-blue-800", decorative: true %>
   <% end %>
 
 <% when :update %>
@@ -29,9 +27,7 @@
     badge: t("measurements.card.update_badge"),
     badge_class: "shuby-badge-fucsia"
   ) do %>
-    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-shuby-fucsia-500">
-      <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clip-rule="evenodd" />
-    </svg>
+    <%= render_svg "shuby/icons/icon-alarm", size: :md, styles: "text-shuby-fucsia-500", decorative: true %>
   <% end %>
 
 <% when :track %>
@@ -41,9 +37,6 @@
     title: type_label,
     subtitle: box.last_measurement.display_value
   ) do %>
-    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-shuby-blue-800">
-      <path fill-rule="evenodd" d="M2.25 13.5a8.25 8.25 0 0 1 8.25-8.25.75.75 0 0 1 .75.75v6.75H18a.75.75 0 0 1 .75.75 8.25 8.25 0 0 1-16.5 0Z" clip-rule="evenodd" />
-      <path fill-rule="evenodd" d="M12.75 3a.75.75 0 0 1 .75-.75 8.25 8.25 0 0 1 8.25 8.25.75.75 0 0 1-.75.75h-7.5a.75.75 0 0 1-.75-.75V3Z" clip-rule="evenodd" />
-    </svg>
+    <%= render_svg "shuby/icons/icon-baby-tracker", size: :md, styles: "text-shuby-blue-800", decorative: true %>
   <% end %>
 <% end %>

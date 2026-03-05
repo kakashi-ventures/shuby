@@ -18,7 +18,7 @@ module SettingsHelper
                 tag.p(description, class: "shuby-caption")
             end
         end +
-          render("shared/chevron_right_icon", css_class: "w-5 h-5 text-gray-400")
+          render_svg("shuby/icons/icon-chevron-right", size: :md, styles: "text-gray-400", decorative: true)
       end
     end
   end

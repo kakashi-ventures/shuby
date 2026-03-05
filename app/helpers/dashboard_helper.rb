@@ -11,7 +11,7 @@ module DashboardHelper
       content += if badge
         tag.span(badge, class: badge_class)
       else
-        render("shared/chevron_right_icon")
+        render_svg("shuby/icons/icon-chevron-right", size: :md, styles: "text-gray-400", decorative: true)
       end
       content
     end
