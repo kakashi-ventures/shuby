@@ -4,7 +4,7 @@ class DevelopmentAreaResource < Madmin::Resource
   # Attributes
   attribute :id, form: false
   attribute :name
-  attribute :slug
+  attribute :slug, form: false
   attribute :color
   attribute :icon
   attribute :position

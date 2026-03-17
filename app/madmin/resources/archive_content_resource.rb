@@ -12,7 +12,7 @@ class ArchiveContentResource < Madmin::Resource
   # Attributes
   attribute :id, form: false
   attribute :title
-  attribute :slug
+  attribute :slug, form: false
   attribute :description, index: false
   attribute :body, :text, index: false
   attribute :content_type, :select, collection: ArchiveContent.content_types.keys

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ArchiveContent < ApplicationRecord
+  include Sluggable
+
   # Enums
   enum :content_type, {
     article: 0,
@@ -17,7 +19,7 @@ class ArchiveContent < ApplicationRecord
 
   # Validations
   validates :title, presence: true
-  validates :slug, presence: true, uniqueness: true
+  validates :slug, presence: true
   validates :content_type, presence: true
   validates :min_age_months, numericality: {
     greater_than_or_equal_to: 0,
@@ -42,9 +44,6 @@ class ArchiveContent < ApplicationRecord
   scope :games, -> { content_type_game }
   scope :tips, -> { content_type_tip }
 
-  # Callbacks
-  before_validation :generate_slug, on: :create
-
   # Instance methods
   def age_range_label
     if min_age_months == 0 && max_age_months >= 36
@@ -62,10 +61,6 @@ class ArchiveContent < ApplicationRecord
   end
 
   private
-
-  def generate_slug
-    self.slug ||= title&.parameterize
-  end
 
   def max_age_greater_than_min
     return unless min_age_months && max_age_months
