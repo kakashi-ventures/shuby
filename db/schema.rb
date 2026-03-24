@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_25_131423) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_24_104200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -172,6 +172,32 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_25_131423) do
     t.index ["archive_content_id"], name: "index_archive_favorites_on_archive_content_id"
     t.index ["user_id", "archive_content_id"], name: "index_archive_favorites_on_user_id_and_archive_content_id", unique: true
     t.index ["user_id"], name: "index_archive_favorites_on_user_id"
+  end
+
+  create_table "archive_page_sections", force: :cascade do |t|
+    t.bigint "archive_section_id", null: false
+    t.datetime "created_at", null: false
+    t.string "display_label_override"
+    t.integer "limit_override"
+    t.string "page_identifier", null: false
+    t.integer "position", default: 0
+    t.datetime "updated_at", null: false
+    t.index ["archive_section_id"], name: "index_archive_page_sections_on_archive_section_id"
+    t.index ["page_identifier", "archive_section_id"], name: "idx_page_sections_on_page_and_section", unique: true
+    t.index ["page_identifier", "position"], name: "idx_page_sections_on_page_and_position"
+  end
+
+  create_table "archive_sections", force: :cascade do |t|
+    t.boolean "active", default: true
+    t.string "card_partial", null: false
+    t.string "content_types", null: false
+    t.datetime "created_at", null: false
+    t.integer "default_limit", default: 4
+    t.string "filter_type"
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_archive_sections_on_slug", unique: true
   end
 
   create_table "child_health_profiles", force: :cascade do |t|
@@ -644,6 +670,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_25_131423) do
   add_foreign_key "api_tokens", "users"
   add_foreign_key "archive_favorites", "archive_contents"
   add_foreign_key "archive_favorites", "users"
+  add_foreign_key "archive_page_sections", "archive_sections"
   add_foreign_key "child_health_profiles", "children"
   add_foreign_key "children", "accounts"
   add_foreign_key "family_profiles", "accounts"

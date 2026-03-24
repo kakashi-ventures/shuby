@@ -50,9 +50,8 @@ module ArchiveHelper
   def content_type_icon_for(content_type)
     case content_type.to_s
     when "article" then "shuby/icons/icon-document"
-    when "book" then "shuby/icons/icon-reading"
-    when "game" then "shuby/icons/icon-barefoot"
     when "tip" then "shuby/icons/icon-tips"
+    when "activity" then "shuby/icons/icon-barefoot"
     else "shuby/icons/icon-document"
     end
   end

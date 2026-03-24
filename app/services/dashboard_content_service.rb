@@ -21,7 +21,7 @@ class DashboardContentService
     age = @child.questionnaire_age_in_months(@date)
 
     {
-      activities: rotate_content(ArchiveContent.published.games.for_age(age).ordered, ACTIVITIES_COUNT),
+      activities: rotate_content(ArchiveContent.published.activities.for_age(age).ordered, ACTIVITIES_COUNT),
       tips: rotate_content(ArchiveContent.published.tips.for_age(age).ordered, TIPS_COUNT),
       articles: rotate_articles(ArchiveContent.published.articles.for_age(age).ordered, ARTICLES_COUNT)
     }

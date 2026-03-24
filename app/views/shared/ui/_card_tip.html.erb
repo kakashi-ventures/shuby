@@ -12,24 +12,18 @@
       <div class="shuby-card-consigli-tags">
         <span class="shuby-tag shuby-tag-giallo">
           <span class="shuby-tag-icon">
-            <% if content.content_type_book? %>
-              <%= render_svg "shuby/icons/icon-reading", size: :xs, decorative: true %>
-            <% elsif content.content_type_game? %>
-              <%= render_svg "shuby/icons/icon-barefoot", size: :xs, decorative: true %>
-            <% else %>
-              <%= render_svg "shuby/icons/icon-heart-filled", size: :xs, decorative: true %>
-            <% end %>
+            <%= render_svg category_icon_for(content.category), size: :xs, decorative: true %>
           </span>
-          <%= t("archive.content_types.#{content.content_type}") %>
+          <%= content.category.presence || t("archive.content_types.#{content.content_type}") %>
         </span>
         <span class="shuby-tag shuby-tag-light"><%= content.age_range_label %></span>
       </div>
       <div class="shuby-card-consigli-body">
-        <% if content.content_type_book? && content.author.present? %>
+        <% if content.author.present? %>
           <p class="shuby-card-consigli-author"><%= content.author %></p>
         <% end %>
         <p class="shuby-card-consigli-title"><%= content.title %></p>
-        <% if content.content_type_book? && content.publisher.present? %>
+        <% if content.publisher.present? %>
           <p class="shuby-card-consigli-publisher"><%= content.publisher %></p>
         <% end %>
         <% if content.duration_minutes.present? %>

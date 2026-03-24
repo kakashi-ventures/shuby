@@ -6,9 +6,8 @@ class ArchiveContent < ApplicationRecord
   # Enums
   enum :content_type, {
     article: 0,
-    book: 1,
-    game: 2,
-    tip: 3
+    tip: 1,
+    activity: 2
   }, prefix: true
 
   # ActiveStorage
@@ -40,9 +39,8 @@ class ArchiveContent < ApplicationRecord
   }
   scope :by_type, ->(type) { where(content_type: type) }
   scope :articles, -> { content_type_article }
-  scope :books, -> { content_type_book }
-  scope :games, -> { content_type_game }
   scope :tips, -> { content_type_tip }
+  scope :activities, -> { content_type_activity }
 
   # Instance methods
   def age_range_label

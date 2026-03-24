@@ -5,9 +5,8 @@ class ArchiveContentResource < Madmin::Resource
   scope :published
   scope :draft
   scope :articles
-  scope :books
-  scope :games
   scope :tips
+  scope :activities
 
   # Attributes
   attribute :id, form: false
@@ -20,14 +19,14 @@ class ArchiveContentResource < Madmin::Resource
   attribute :min_age_months
   attribute :max_age_months
 
-  # Book-specific fields
+  # Tip fields (for Lettura category)
   attribute :author, index: false
   attribute :illustrator, index: false
   attribute :publisher, index: false
   attribute :publication_year, index: false
   attribute :isbn, index: false
 
-  # Game-specific fields
+  # Activity fields
   attribute :duration_minutes, index: false
   attribute :materials, index: false
 

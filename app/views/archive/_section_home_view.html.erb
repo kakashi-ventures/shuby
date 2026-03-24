@@ -23,14 +23,14 @@
     items: consigli,
     section_key: "consigli",
     card_partial: "shared/ui/card_tip",
-    filter_type: "book",
+    filter_type: "tip",
     favorite_ids: favorite_ids %>
 
 <%= render "archive/section_content_list",
     items: activities,
     section_key: "activities",
     card_partial: "shared/ui/card_activity",
-    filter_type: "game",
+    filter_type: "activity",
     favorite_ids: favorite_ids %>
 
 <% if articles.empty? && consigli.empty? && activities.empty? %>

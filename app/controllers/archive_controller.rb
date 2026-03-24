@@ -44,8 +44,8 @@ class ArchiveController < ApplicationController
   # Load content for the sectioned home view
   def load_sectioned_content
     @articles = base_scope.articles.ordered.limit(4)
-    @consigli = base_scope.where(content_type: [:book, :tip]).ordered.limit(4)
-    @activities = base_scope.games.ordered.limit(4)
+    @consigli = base_scope.tips.ordered.limit(4)
+    @activities = base_scope.activities.ordered.limit(4)
     @sectioned_view = true
   end
 

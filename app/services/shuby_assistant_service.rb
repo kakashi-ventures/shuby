@@ -227,7 +227,7 @@ class ShubyAssistantService
     contents = ArchiveContent.published.ordered.to_a
     return nil if contents.empty?
 
-    type_labels = {"article" => "Articoli", "book" => "Libri", "game" => "Attività e Giochi", "tip" => "Consigli"}
+    type_labels = {"article" => "Articoli", "tip" => "Consigli", "activity" => "Attività"}
 
     lines = []
     lines << "CONTENUTI IN-APP DISPONIBILI:"

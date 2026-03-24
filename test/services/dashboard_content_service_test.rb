@@ -126,7 +126,7 @@ class DashboardContentServiceTest < ActiveSupport::TestCase
 
     result = DashboardContentService.call(child, date: @date)
 
-    # At 30 months, only game_canzoncine (0-36), game_out_of_range (24-36), and
+    # At 30 months, only activity_canzoncine (0-36), activity_out_of_range (24-36), and
     # article_sicurezza (0-36) match — pools are <= count, so full pool returned
     result.each_value do |items|
       items.each do |item|

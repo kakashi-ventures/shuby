@@ -339,11 +339,11 @@ ARCHIVE_CONTENTS = [
     max_age_months: 36,
     published: true
   },
-  # Books
+  # Tips - Lettura (reading recommendations)
   {
     title: "Quelli là",
     description: "Un libro illustrato per i più piccoli",
-    content_type: :book,
+    content_type: :tip,
     category: "Lettura",
     author: "Teresa Porcella",
     publisher: "Bacchilega Editore",
@@ -354,7 +354,7 @@ ARCHIVE_CONTENTS = [
   {
     title: "Il viaggio di piedino",
     description: "Una storia tenera sul primo viaggio",
-    content_type: :book,
+    content_type: :tip,
     category: "Lettura",
     author: "Elisa Mazzoli, Marianna Balducci",
     publisher: "Bacchilega Editore",
@@ -362,10 +362,10 @@ ARCHIVE_CONTENTS = [
     max_age_months: 12,
     published: true
   },
-  # Games/Activities
+  # Tips - Giochi (game suggestions)
   {
     title: "Guarda lo specchio... chi c'è qui?",
-    content_type: :game,
+    content_type: :tip,
     category: "Giochi",
     min_age_months: 0,
     max_age_months: 2,
@@ -374,16 +374,17 @@ ARCHIVE_CONTENTS = [
   },
   {
     title: "La danza degli sguardi",
-    content_type: :game,
+    content_type: :tip,
     category: "Giochi",
     min_age_months: 0,
     max_age_months: 2,
     duration_minutes: 3,
     published: true
   },
+  # Activities
   {
     title: "Tummy time musicale",
-    content_type: :game,
+    content_type: :activity,
     category: "Attività",
     min_age_months: 0,
     max_age_months: 6,
@@ -392,7 +393,7 @@ ARCHIVE_CONTENTS = [
   },
   {
     title: "Massaggio mani e piedi",
-    content_type: :game,
+    content_type: :activity,
     category: "Attività",
     min_age_months: 0,
     max_age_months: 12,
@@ -401,7 +402,7 @@ ARCHIVE_CONTENTS = [
   },
   {
     title: "Musica classica",
-    content_type: :game,
+    content_type: :activity,
     category: "Attività",
     min_age_months: 0,
     max_age_months: 36,
@@ -410,7 +411,7 @@ ARCHIVE_CONTENTS = [
   },
   {
     title: 'Momento "viso a viso"',
-    content_type: :game,
+    content_type: :activity,
     category: "Attività",
     min_age_months: 0,
     max_age_months: 6,
@@ -429,6 +430,6 @@ end
 
 puts "Created #{ArchiveContent.count} archive content items"
 puts "  - Articles: #{ArchiveContent.articles.count}"
-puts "  - Books: #{ArchiveContent.books.count}"
-puts "  - Games/Activities: #{ArchiveContent.games.count}"
+puts "  - Tips: #{ArchiveContent.tips.count}"
+puts "  - Activities: #{ArchiveContent.activities.count}"
 puts "=" * 60

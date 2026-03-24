@@ -2,8 +2,8 @@
 <% case content.content_type %>
 <% when "article" %>
   <%= render "shared/ui/card_article", content: content, favorite_ids: local_assigns[:favorite_ids] %>
-<% when "book", "tip" %>
+<% when "tip" %>
   <%= render "shared/ui/card_tip", content: content, favorite_ids: local_assigns[:favorite_ids] %>
-<% when "game" %>
+<% when "activity" %>
   <%= render "shared/ui/card_activity", content: content, favorite_ids: local_assigns[:favorite_ids] %>
 <% end %>

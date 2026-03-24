@@ -6,10 +6,8 @@
     <%= render "archive/favorite_button", content: @content, favorited: @favorited, inline: true %>
   </div>
 
-  <% if @content.content_type_article? || @content.content_type_game? %>
+  <% if @content.content_type_article? || @content.content_type_activity? %>
     <%= render "archive/show_article", content: @content %>
-  <% elsif @content.content_type_book? %>
-    <%= render "archive/show_book", content: @content %>
   <% elsif @content.content_type_tip? %>
     <%= render "archive/show_tip", content: @content %>
   <% end %>

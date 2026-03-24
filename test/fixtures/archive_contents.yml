@@ -57,9 +57,9 @@ article_sonno_two:
   position: 5
   published: true
 
-# === Games/Activities (4 total, age-appropriate for sophia at ~2mo) ===
+# === Activities (5 total, age-appropriate for sophia at ~2mo) ===
 
-game_tummy_time:
+activity_tummy_time:
   title: "Tummy time guidato"
   slug: "tummy-time-guidato"
   content_type: 2
@@ -71,7 +71,7 @@ game_tummy_time:
   position: 1
   published: true
 
-game_sonagli:
+activity_sonagli:
   title: "Gioco con sonagli"
   slug: "gioco-sonagli"
   content_type: 2
@@ -83,7 +83,7 @@ game_sonagli:
   position: 2
   published: true
 
-game_specchio:
+activity_specchio:
   title: "Gioco dello specchio"
   slug: "gioco-specchio"
   content_type: 2
@@ -95,7 +95,7 @@ game_specchio:
   position: 3
   published: true
 
-game_canzoncine:
+activity_canzoncine:
   title: "Canzoncine e filastrocche"
   slug: "canzoncine-filastrocche"
   content_type: 2
@@ -112,7 +112,7 @@ game_canzoncine:
 tip_pianto:
   title: "Interpretare il pianto del neonato"
   slug: "interpretare-pianto"
-  content_type: 3
+  content_type: 1
   category: "Benessere"
   description: "Capire i diversi tipi di pianto"
   min_age_months: 0
@@ -123,7 +123,7 @@ tip_pianto:
 tip_bagnetto:
   title: "Il bagnetto sicuro"
   slug: "bagnetto-sicuro"
-  content_type: 3
+  content_type: 1
   category: "Igiene"
   description: "Consigli per il bagnetto"
   min_age_months: 0
@@ -134,7 +134,7 @@ tip_bagnetto:
 tip_massaggio:
   title: "Massaggio neonatale"
   slug: "massaggio-neonatale"
-  content_type: 3
+  content_type: 1
   category: "Benessere"
   description: "Tecniche di massaggio per neonati"
   min_age_months: 0
@@ -145,7 +145,7 @@ tip_massaggio:
 tip_sonno:
   title: "Ambiente ideale per il sonno"
   slug: "ambiente-sonno"
-  content_type: 3
+  content_type: 1
   category: "Sonno"
   description: "Creare l'ambiente giusto per dormire"
   min_age_months: 0
@@ -168,7 +168,7 @@ article_unpublished:
 
 # === Edge case: Out of age range for sophia (24-36 months) ===
 
-game_out_of_range:
+activity_out_of_range:
   title: "Gioco per bambini grandi"
   slug: "gioco-bambini-grandi"
   content_type: 2

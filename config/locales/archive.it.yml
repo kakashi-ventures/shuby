@@ -8,12 +8,10 @@ it:
         all: "Tutto"
         article: "Articoli"
         articles: "Articoli"
-        book: "Lettura"
-        books: "Lettura"
-        game: "Giochi"
-        games: "Giochi"
         tip: "Consigli"
         tips: "Consigli"
+        activity: "Attività"
+        activities: "Attività"
         saved: "Salvati"
       filters:
         age_label: "Età"
@@ -47,9 +45,8 @@ it:
 
     content_types:
       article: "Articoli"
-      book: "Lettura"
-      game: "Giochi"
       tip: "Consigli"
+      activity: "Attività"
 
     book:
       author: "Autore"
@@ -60,5 +57,5 @@ it:
       save: "Salva nei preferiti"
       remove: "Rimuovi dai preferiti"
 
-    game:
+    activity:
       materials: "Materiali"
