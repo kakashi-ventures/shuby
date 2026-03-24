@@ -174,32 +174,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_24_104200) do
     t.index ["user_id"], name: "index_archive_favorites_on_user_id"
   end
 
-  create_table "archive_page_sections", force: :cascade do |t|
-    t.bigint "archive_section_id", null: false
-    t.datetime "created_at", null: false
-    t.string "display_label_override"
-    t.integer "limit_override"
-    t.string "page_identifier", null: false
-    t.integer "position", default: 0
-    t.datetime "updated_at", null: false
-    t.index ["archive_section_id"], name: "index_archive_page_sections_on_archive_section_id"
-    t.index ["page_identifier", "archive_section_id"], name: "idx_page_sections_on_page_and_section", unique: true
-    t.index ["page_identifier", "position"], name: "idx_page_sections_on_page_and_position"
-  end
-
-  create_table "archive_sections", force: :cascade do |t|
-    t.boolean "active", default: true
-    t.string "card_partial", null: false
-    t.string "content_types", null: false
-    t.datetime "created_at", null: false
-    t.integer "default_limit", default: 4
-    t.string "filter_type"
-    t.string "name", null: false
-    t.string "slug", null: false
-    t.datetime "updated_at", null: false
-    t.index ["slug"], name: "index_archive_sections_on_slug", unique: true
-  end
-
   create_table "child_health_profiles", force: :cascade do |t|
     t.decimal "average_sleep_hours", precision: 4, scale: 1
     t.jsonb "birth_complications", default: []
@@ -546,12 +520,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_24_104200) do
     t.bigint "account_id", null: false
     t.bigint "child_id"
     t.datetime "created_at", null: false
-    t.string "model", default: "gpt-4o-mini", null: false
+    t.string "model", default: "gpt-5-mini", null: false
     t.string "previous_response_id"
     t.string "title"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.index ["account_id", "user_id"], name: "index_shuby_chats_on_account_id_and_user_id"
     t.index ["account_id"], name: "index_shuby_chats_on_account_id"
     t.index ["child_id"], name: "index_shuby_chats_on_child_id"
     t.index ["created_at"], name: "index_shuby_chats_on_created_at"
@@ -626,8 +599,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_24_104200) do
     t.string "invited_by_type"
     t.string "last_name"
     t.integer "last_otp_timestep"
-    t.integer "monthly_messages_count", default: 0, null: false
-    t.datetime "monthly_messages_reset_at"
     t.virtual "name", type: :string, as: "(((first_name)::text || ' '::text) || (COALESCE(last_name, ''::character varying))::text)", stored: true
     t.datetime "onboarding_completed_at"
     t.integer "onboarding_step", default: 0
@@ -670,7 +641,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_24_104200) do
   add_foreign_key "api_tokens", "users"
   add_foreign_key "archive_favorites", "archive_contents"
   add_foreign_key "archive_favorites", "users"
-  add_foreign_key "archive_page_sections", "archive_sections"
   add_foreign_key "child_health_profiles", "children"
   add_foreign_key "children", "accounts"
   add_foreign_key "family_profiles", "accounts"

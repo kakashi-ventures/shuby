@@ -61,6 +61,51 @@ git fetch jumpstart-pro
 git merge jumpstart-pro/main
 ```
 
+## Local Development Quick Start
+
+If `bin/dev` (Overmind) doesn't work, start services individually:
+
+```bash
+bin/rails db:migrate                  # Always run first — pending migrations cause 500s
+bin/rails db:seed                     # Populate questionnaires, growth phases, archive content
+bin/rails server -p 3000              # Web server (use -p 3001 if 3000 is occupied)
+bin/rails tailwindcss:watch           # CSS hot reload (separate terminal)
+bin/jobs                              # SolidQueue background worker (separate terminal)
+```
+
+### Dev Test User
+
+The dev database starts empty. Create a test admin user with:
+
+```bash
+bin/rails runner '
+user = User.create!(
+  name: "Admin Test",
+  email: "admin@test.com",
+  password: "password123",
+  password_confirmation: "password123",
+  terms_of_service: true,
+  confirmed_at: Time.current
+)
+Jumpstart.grant_system_admin!(user)
+account = user.accounts.first
+account.children.create!(
+  name: "Marco",
+  birth_date: 6.months.ago.to_date,
+  sex: "male",
+  active: true
+)
+puts "Done: admin@test.com / password123"
+'
+```
+
+| Field    | Value           |
+|----------|-----------------|
+| Email    | admin@test.com  |
+| Password | password123     |
+| Role     | System admin    |
+| Child    | Marco (~6 mesi) |
+
 ## Shuby Chat Assistant
 
 This application includes **Shuby**, an AI-powered chat assistant for child development (0-36 months).
