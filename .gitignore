@@ -53,3 +53,6 @@ yarn-debug.log*
 # Worktrees
 .worktrees/
 
+# Knowledge base documents (large binary files)
+docs/knowledge_base/
+
