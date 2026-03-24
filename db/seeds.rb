@@ -75,6 +75,7 @@ AREAS.each do |data|
   area.name = data[:name]
   area.color = data[:color]
   area.position = data[:position]
+  area.illustration_key = data[:slug]
   area.save!
 end
 
@@ -146,6 +147,12 @@ data["questionari_mensili"].each do |month_data|
       ) do |question|
         question.position = index
         question.active = true
+        question.illustration_key = q_data["id"]
+      end
+
+      # Backfill illustration_key for existing questions
+      if question.illustration_key.blank? && q_data["id"].present?
+        question.update!(illustration_key: q_data["id"])
       end
 
       questions_created += 1 if question.previously_new_record?

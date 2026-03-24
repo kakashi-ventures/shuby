@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_24_104200) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_24_132455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -235,10 +235,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_24_104200) do
     t.string "color"
     t.datetime "created_at", null: false
     t.string "icon"
+    t.string "illustration_key"
     t.string "name", null: false
     t.integer "position", default: 0, null: false
     t.string "slug", null: false
     t.datetime "updated_at", null: false
+    t.index ["illustration_key"], name: "index_development_areas_on_illustration_key", unique: true
     t.index ["position"], name: "index_development_areas_on_position"
     t.index ["slug"], name: "index_development_areas_on_slug", unique: true
   end
@@ -509,11 +511,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_24_104200) do
     t.bigint "age_band_questionnaire_id", null: false
     t.datetime "created_at", null: false
     t.text "help_text"
+    t.string "illustration_key"
     t.integer "position", default: 0, null: false
     t.text "prompt", null: false
     t.datetime "updated_at", null: false
     t.index ["age_band_questionnaire_id", "position"], name: "index_questions_on_age_band_questionnaire_id_and_position"
     t.index ["age_band_questionnaire_id"], name: "index_questions_on_age_band_questionnaire_id"
+    t.index ["illustration_key"], name: "index_questions_on_illustration_key", unique: true
   end
 
   create_table "shuby_chats", force: :cascade do |t|

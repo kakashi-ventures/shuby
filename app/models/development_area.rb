@@ -20,4 +20,12 @@ class DevelopmentArea < ApplicationRecord
       "min_age_months <= ? AND max_age_months > ?", months, months
     )
   end
+
+  def illustration_path
+    if illustration_key.present?
+      "shuby/illustrations/categories/#{illustration_key}.png"
+    else
+      "shuby/illustrations/growth-phase-mascot.svg"
+    end
+  end
 end

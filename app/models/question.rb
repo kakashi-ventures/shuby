@@ -9,4 +9,11 @@ class Question < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :ordered, -> { order(:position) }
+
+  def illustration_path
+    area_slug = age_band_questionnaire&.development_area&.slug
+    if illustration_key.present? && area_slug.present?
+      "shuby/illustrations/questions/#{area_slug}/#{illustration_key}.png"
+    end
+  end
 end
