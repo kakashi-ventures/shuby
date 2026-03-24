@@ -1,5 +1,5 @@
-<%# Single measurement box card for the dashboard.
-  Renders a nav-card-style link for each measurement type/state.
+<%# Compact measurement tracking card for the dashboard grid.
+  Renders inside shuby-metric-grid (2-column layout).
 
   Locals:
     box   - MeasurementDashboardService::MeasurementBox (type, state, last_measurement)
@@ -9,34 +9,46 @@
 
 <% case box.state %>
 <% when :start_tracking %>
-  <%= dashboard_nav_card(
-    path: new_child_measurement_path(child, type: box.type),
-    icon_bg: "bg-shuby-blue-400",
-    title: type_label,
-    subtitle: t("measurements.dashboard.start_tracking")
-  ) do %>
-    <%= render_svg "shuby/icons/icon-add", size: :md, styles: "text-shuby-blue-800", decorative: true %>
+  <%= link_to new_child_measurement_path(child, type: box.type), class: "shuby-tracking-card" do %>
+    <p class="shuby-caption mb-1"><%= t("measurements.dashboard.section_start_tracking") %></p>
+    <div class="shuby-tracking-card-header">
+      <span class="shuby-tracking-card-title"><%= type_label %></span>
+      <span class="shuby-tracking-card-action">
+        <span class="shuby-icon-btn shuby-icon-btn-sm">
+          <%= render_svg "shuby/icons/icon-add", decorative: true %>
+        </span>
+      </span>
+    </div>
   <% end %>
 
 <% when :update %>
-  <%= dashboard_nav_card(
-    path: new_child_measurement_path(child, type: box.type),
-    icon_bg: "bg-shuby-magenta-300",
-    title: type_label,
-    subtitle: "#{box.last_measurement.display_value} \u00B7 #{t("measurements.dashboard.update")}",
-    badge: t("measurements.card.update_badge"),
-    badge_class: "shuby-badge-fucsia"
-  ) do %>
-    <%= render_svg "shuby/icons/icon-alarm", size: :md, styles: "text-shuby-fucsia-500", decorative: true %>
+  <%= link_to new_child_measurement_path(child, type: box.type), class: "shuby-tracking-card" do %>
+    <div class="shuby-tracking-card-header">
+      <div>
+        <span class="shuby-tag shuby-tag-yellow shuby-tag-sm mb-2"><%= t("measurements.card.update_badge") %></span>
+        <span class="shuby-tracking-card-title block"><%= type_label %></span>
+      </div>
+      <span class="shuby-tracking-card-action">
+        <span class="shuby-icon-btn-pink shuby-icon-btn-sm">
+          <%= render_svg "shuby/icons/icon-add", decorative: true %>
+        </span>
+      </span>
+    </div>
+    <span class="shuby-tracking-card-value">
+      <%= l(box.last_measurement.measured_at, format: :short) %> - <%= box.last_measurement.display_value %>
+    </span>
   <% end %>
 
 <% when :track %>
-  <%= dashboard_nav_card(
-    path: child_path(child, tab: "misurazioni"),
-    icon_bg: "bg-shuby-blue-400",
-    title: type_label,
-    subtitle: box.last_measurement.display_value
-  ) do %>
-    <%= render_svg "shuby/icons/icon-baby-tracker", size: :md, styles: "text-shuby-blue-800", decorative: true %>
+  <%= link_to child_path(child, tab: "misurazioni"), class: "shuby-tracking-card" do %>
+    <div class="shuby-tracking-card-header">
+      <span class="shuby-tracking-card-title"><%= type_label %></span>
+      <span class="shuby-tracking-card-action">
+        <span class="shuby-icon-btn shuby-icon-btn-sm">
+          <%= render_svg "shuby/icons/icon-baby-tracker", decorative: true %>
+        </span>
+      </span>
+    </div>
+    <span class="shuby-tracking-card-value"><%= box.last_measurement.display_value %></span>
   <% end %>
 <% end %>

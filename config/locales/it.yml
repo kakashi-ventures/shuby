@@ -210,6 +210,8 @@ it:
       title: "Gestione"
       profile: "Profilo"
       profile_description: "Modifica le tue informazioni personali"
+      children: "Bambini"
+      children_description: "Gestisci i profili dei tuoi bambini"
       password: "Password"
       password_description: "Modifica la tua password"
       pricing: "Prezzi"

@@ -9,15 +9,13 @@
 
     <%= render "dashboard/milestone_box" if current_child.present? %>
 
-    <%= render "dashboard/measurement_boxes" if current_child.present? %>
+    <%= render "dashboard/section_activities" %>
 
     <% family_profile = current_account.family_profile %>
     <% profile_incomplete = !family_profile&.profile_complete? || current_account.children.any? { |c| c.profile_completeness_percentage < 50 } %>
     <%= render "dashboard/section_profile_banner", profile_incomplete: profile_incomplete %>
 
-    <%= render "dashboard/section_nav_cards" %>
-
-    <%= render "dashboard/section_activities" %>
+    <%= render "dashboard/measurement_boxes" if current_child.present? %>
 
     <%= render "dashboard/section_tips" %>
 

@@ -66,6 +66,8 @@ it:
       start_tracking: "Inizia a tracciare"
       update: "Aggiorna"
       track: "Registra"
+      section_start_tracking: "Comincia a tracciare:"
+      section_update: "Aggiorna:"
   activerecord:
     errors:
       models:

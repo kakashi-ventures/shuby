@@ -66,6 +66,8 @@ en:
       start_tracking: "Start tracking"
       update: "Update"
       track: "Record"
+      section_start_tracking: "Start tracking:"
+      section_update: "Update:"
   activerecord:
     errors:
       models:
