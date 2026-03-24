@@ -1,0 +1,112 @@
+<%= form_with model: [:madmin, record], url: (record.persisted? ? resource.show_path(record) : resource.index_path), local: true,
+    data: { controller: "admin-archive-form", action: "change->admin-archive-form#toggle" } do |form| %>
+
+  <%# Helper to render a single Madmin field by attribute name %>
+  <% render_field = ->(name) do
+    attr = resource.attributes[name]
+    return unless attr&.field&.visible?(action_name)
+    field = attr.field
+  %>
+    <div class="form-group">
+      <%= render "madmin/shared/label", form: form, field: field %>
+      <%= render partial: field.to_partial_path("form"), locals: { field: field, record: record, form: form, resource: resource } %>
+      <% if field.options.description.present? %>
+        <div class="form-description"><%= field.options.description %></div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if form.object.errors.any? %>
+    <div class="alert alert-danger">
+      <div><%= pluralize form.object.errors.full_messages.count, "errore", "errori" %> nel salvataggio:</div>
+      <ul>
+        <% form.object.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%# ── Section 1: Tipo e titolo ── %>
+  <fieldset class="admin-section">
+    <legend>Tipo e titolo</legend>
+
+    <% render_field.call(:content_type) %>
+    <% render_field.call(:title) %>
+    <% render_field.call(:description) %>
+  </fieldset>
+
+  <%# ── Section 2: Contenuto ── %>
+  <fieldset class="admin-section">
+    <legend>Contenuto</legend>
+
+    <% render_field.call(:body) %>
+    <% render_field.call(:cover_image) %>
+  </fieldset>
+
+  <%# ── Section 3: Categorizzazione ── %>
+  <fieldset class="admin-section">
+    <legend>Categorizzazione</legend>
+
+    <% render_field.call(:category) %>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div><% render_field.call(:min_age_months) %></div>
+      <div><% render_field.call(:max_age_months) %></div>
+    </div>
+  </fieldset>
+
+  <%# ── Section 4: Dettagli libro (only for tips) ── %>
+  <fieldset class="admin-section" data-admin-archive-form-target="tipFields">
+    <legend>Dettagli libro</legend>
+    <p class="form-description" style="margin-top: 0;">
+      Compila questi campi solo se il tip è una raccomandazione di lettura.
+    </p>
+
+    <% render_field.call(:author) %>
+    <% render_field.call(:illustrator) %>
+    <% render_field.call(:publisher) %>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div><% render_field.call(:publication_year) %></div>
+      <div><% render_field.call(:isbn) %></div>
+    </div>
+  </fieldset>
+
+  <%# ── Section 5: Dettagli attività (only for activities) ── %>
+  <fieldset class="admin-section" data-admin-archive-form-target="activityFields">
+    <legend>Dettagli attività</legend>
+
+    <% render_field.call(:duration_minutes) %>
+    <% render_field.call(:materials) %>
+  </fieldset>
+
+  <%# ── Section 6: Pubblicazione ── %>
+  <fieldset class="admin-section">
+    <legend>Pubblicazione</legend>
+
+    <% render_field.call(:published) %>
+    <% render_field.call(:published_at) %>
+    <% render_field.call(:position) %>
+  </fieldset>
+
+  <div style="margin-top: 1.5rem;">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Annulla", (record.persisted? ? resource.show_path(record) : resource.index_path), class: "btn" %>
+  </div>
+<% end %>
+
+<style>
+  .admin-section {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .admin-section legend {
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0 0.5rem;
+    color: #374151;
+  }
+</style>

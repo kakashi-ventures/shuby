@@ -1,5 +1,5 @@
 class QuestionResource < Madmin::Resource
-  menu parent: "Resources", position: 4
+  menu parent: "Sviluppo e Questionari", label: "❓ Domande", position: 3
 
   scope :active
 

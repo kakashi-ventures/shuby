@@ -1,4 +1,5 @@
 class AnnouncementResource < Madmin::Resource
+  menu parent: "Sistema"
   scope :draft
   scope :published
 

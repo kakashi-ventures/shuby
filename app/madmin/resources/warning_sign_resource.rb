@@ -1,5 +1,5 @@
 class WarningSignResource < Madmin::Resource
-  menu parent: "Resources", position: 5
+  menu parent: "Sviluppo e Questionari", label: "⚠️ Segnali di Attenzione", position: 4
 
   # Scopes for filtering by month
   scope :ordered

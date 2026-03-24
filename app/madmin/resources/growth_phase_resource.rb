@@ -1,5 +1,5 @@
 class GrowthPhaseResource < Madmin::Resource
-  menu parent: "Resources", position: 7
+  menu parent: "Contenuti Shuby", label: "🌱 Fasi di Crescita", position: 2
 
   # Attributes
   attribute :id, form: false

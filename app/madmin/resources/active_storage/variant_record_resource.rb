@@ -1,4 +1,6 @@
 class ActiveStorage::VariantRecordResource < Madmin::Resource
+  menu parent: "Sistema"
+
   # Attributes
   attribute :id, form: false
   attribute :variation, index: false, show: false

@@ -1,4 +1,6 @@
 class ActiveStorage::BlobResource < Madmin::Resource
+  menu parent: "Sistema"
+
   # Attributes
   attribute :id, form: false
   attribute :key

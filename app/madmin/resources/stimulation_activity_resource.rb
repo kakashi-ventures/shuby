@@ -1,5 +1,5 @@
 class StimulationActivityResource < Madmin::Resource
-  menu parent: "Resources", position: 6
+  menu parent: "Contenuti Shuby", label: "🎯 Attività Stimolanti", position: 3
 
   # Scopes for filtering by month
   scope :ordered

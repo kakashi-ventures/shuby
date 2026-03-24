@@ -3,12 +3,20 @@
 class ArchiveContent < ApplicationRecord
   include Sluggable
 
+  CATEGORIES = [
+    "Benessere", "Igiene", "Lettura", "Linguaggio", "Motricità",
+    "Nutrizione", "Sensoriale", "Sicurezza", "Sociale", "Sonno", "Sviluppo"
+  ].freeze
+
   # Enums
   enum :content_type, {
     article: 0,
     tip: 1,
     activity: 2
   }, prefix: true
+
+  # Rich text
+  has_rich_text :body
 
   # ActiveStorage
   has_one_attached :cover_image

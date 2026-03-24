@@ -1,5 +1,5 @@
 class DevelopmentAreaResource < Madmin::Resource
-  menu parent: "Resources", position: 2
+  menu parent: "Sviluppo e Questionari", label: "🧠 Aree di Sviluppo", position: 1
 
   # Attributes
   attribute :id, form: false

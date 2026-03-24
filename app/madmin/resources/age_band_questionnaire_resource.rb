@@ -1,5 +1,5 @@
 class AgeBandQuestionnaireResource < Madmin::Resource
-  menu parent: "Resources", position: 3
+  menu parent: "Sviluppo e Questionari", label: "📋 Questionari", position: 2
 
   # Attributes
   attribute :id, form: false
