@@ -31,9 +31,12 @@ require "fileutils"
 # Configuration
 # =============================================================================
 
-API_KEY = ENV.fetch("GEMINI_API_KEY") {
-  abort "ERROR: Set GEMINI_API_KEY environment variable. Get one at https://aistudio.google.com/api-keys"
-}
+API_KEY = ENV["GEMINI_API_KEY"] || begin
+  require_relative "../config/environment"
+  Rails.application.credentials.dig(:google, :api_key)
+rescue => e
+  nil
+end || abort("ERROR: Set GEMINI_API_KEY env var or add google.api_key to Rails credentials")
 
 MODEL = "gemini-3.1-flash-image-preview"
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/#{MODEL}:generateContent"
