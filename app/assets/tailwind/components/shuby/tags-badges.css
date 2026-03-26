@@ -171,7 +171,7 @@
 .shuby-tag-clickable {
     cursor: pointer;
 
-    &:hover { opacity: 0.85; }
+    &:active { opacity: 0.85; }
     &:active { transform: scale(0.98); }
 }
 

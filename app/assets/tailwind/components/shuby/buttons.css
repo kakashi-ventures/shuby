@@ -35,6 +35,7 @@
         color: var(--base-text-disabled);
         cursor: not-allowed;
         border-color: var(--border-disabled);
+        pointer-events: none;
     }
 }
 
@@ -56,9 +57,9 @@
 }
 
 .shuby-btn-sm {
-    padding: var(--space-2) var(--space-4);
-    font-size: 14px;
-    line-height: 18px;
+    padding: 6px var(--space-4);
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 /* =====================================================
@@ -70,7 +71,7 @@
     background-color: var(--bg-primary);
     color: var(--text-on-primary);
 
-    &:hover { background-color: var(--bg-primary-hover); }
+    &:active { background-color: var(--bg-primary-hover); }
 }
 
 /* Primary button - outlined */
@@ -79,7 +80,39 @@
     color: var(--text-primary);
     border: 2px solid var(--text-primary);
 
-    &:hover { background-color: var(--base-bg-hover); }
+    &:active { background-color: var(--base-bg-hover); }
+}
+
+/* Fucsia filled button (Figma: Type=Filled, Colore=Fucsia) */
+.shuby-btn-fucsia {
+    background-color: var(--color-shuby-fucsia-500);
+    color: var(--color-shuby-white);
+
+    &:active { background-color: var(--color-shuby-magenta-500); }
+}
+
+/* White filled button (Figma: Type=Filled, Colore=Bianco) */
+.shuby-btn-white {
+    background-color: var(--color-shuby-white);
+    color: var(--color-shuby-fucsia-500);
+
+    &:active { color: var(--color-shuby-magenta-500); }
+}
+
+/* Gray filled button (Figma: Type=Filled, Colore=Grigio) */
+.shuby-btn-gray {
+    background-color: var(--color-shuby-gray-500);
+    color: var(--color-shuby-black);
+
+    &:active { background-color: var(--color-shuby-gray-400); }
+}
+
+/* Verde/teal filled button (Figma: Type=Filled, Colore=Verde) */
+.shuby-btn-verde {
+    background-color: var(--color-shuby-verde-300);
+    color: var(--color-shuby-blue-800);
+
+    &:active { background-color: var(--color-shuby-verde-200); }
 }
 
 /* Dark button - outlined (Figma: Type=Outline, Colore=Nero) */
@@ -88,7 +121,34 @@
     color: var(--color-shuby-black);
     border: 2px solid var(--color-shuby-black);
 
-    &:hover { background-color: var(--color-shuby-gray-400); }
+    &:active { background-color: var(--color-shuby-gray-400); }
+}
+
+/* Fucsia outline button (Figma: Type=Outline, Colore=Fucsia) */
+.shuby-btn-outline-fucsia {
+    background-color: transparent;
+    color: var(--color-shuby-fucsia-500);
+    border: 2px solid var(--color-shuby-fucsia-500);
+
+    &:active { border-color: var(--color-shuby-magenta-500); color: var(--color-shuby-magenta-500); }
+}
+
+/* White outline button (Figma: Type=Outline, Colore=Bianco — for dark backgrounds) */
+.shuby-btn-outline-white {
+    background-color: transparent;
+    color: var(--color-shuby-white);
+    border: 2px solid var(--color-shuby-white);
+
+    &:active { background-color: rgba(255, 255, 255, 0.1); border-color: var(--color-shuby-gray-400); color: var(--color-shuby-gray-400); }
+}
+
+/* Blu outline button (Figma: Type=Outline, Colore=Blu) */
+.shuby-btn-outline-blu {
+    background-color: transparent;
+    color: var(--color-shuby-blue-800);
+    border: 2px solid var(--color-shuby-blue-800);
+
+    &:active { background-color: var(--color-shuby-blue-700); color: var(--color-shuby-white); border-color: var(--color-shuby-blue-700); }
 }
 
 /* Secondary button */
@@ -97,7 +157,7 @@
     color: var(--text-on-secondary);
     border: 1px solid var(--border-secondary);
 
-    &:hover { background-color: var(--bg-secondary-hover); }
+    &:active { background-color: var(--bg-secondary-hover); }
 }
 
 /* Danger button */
@@ -105,7 +165,7 @@
     background-color: var(--bg-danger);
     color: var(--text-on-danger);
 
-    &:hover { background-color: var(--bg-danger-hover); }
+    &:active { background-color: var(--bg-danger-hover); }
 }
 
 /* =====================================================
@@ -165,7 +225,7 @@
     background-color: var(--color-shuby-verde-scuro-400);
     color: var(--color-shuby-white);
 
-    &:hover { background-color: var(--color-shuby-verde-scuro-500); }
+    &:active { background-color: var(--color-shuby-verde-scuro-500); }
 }
 
 /* Zoom/toggle button (growth chart time range selector) */
@@ -181,7 +241,7 @@
     cursor: pointer;
     transition: all 0.2s ease;
 
-    &:hover {
+    &:active {
         border-color: var(--color-shuby-blue-500);
         color: var(--color-shuby-blue-800);
     }
@@ -199,5 +259,5 @@
     color: var(--color-shuby-white);
     border: 1px solid rgba(255, 255, 255, 0.3);
 
-    &:hover { background-color: rgba(255, 255, 255, 0.25); }
+    &:active { background-color: rgba(255, 255, 255, 0.25); }
 }

@@ -18,11 +18,48 @@
     cursor: pointer;
     transition: color 0.2s ease;
 
-    &:hover { color: var(--color-shuby-blue-700); }
+    &:active { color: var(--color-shuby-blue-700); }
 }
 
 .shuby-btn-text-icon {
     width: 16px;
     height: 16px;
     flex-shrink: 0;
+}
+
+/* White arrow text link (Figma: Type=Testo, Icona=Dx, Colore=Bianco — for dark backgrounds) */
+.shuby-btn-text-white {
+    color: var(--color-shuby-white);
+
+    &:active { opacity: 0.8; }
+}
+
+/* =====================================================
+   UNDERLINED TEXT LINKS
+   Figma: Type=Testo, Icona=Off — text with bottom border
+   ===================================================== */
+
+/* Underlined text link — blue (Figma: Type=Testo, Colore=Blu) */
+.shuby-link-underline {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--color-shuby-blue-800);
+    border-bottom: 2px solid var(--color-shuby-blue-800);
+    padding-bottom: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
+
+    &:active { color: var(--color-shuby-blue-700); border-color: var(--color-shuby-blue-700); }
+}
+
+/* Underlined text link — fucsia (Figma: Type=Testo, Colore=Fucsia) */
+.shuby-link-underline-fucsia {
+    color: var(--color-shuby-fucsia-500);
+    border-bottom-color: var(--color-shuby-fucsia-500);
+
+    &:active { color: var(--color-shuby-magenta-500); border-bottom-color: var(--color-shuby-magenta-500); }
 }

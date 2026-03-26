@@ -29,7 +29,7 @@
     background-color: transparent;
     color: var(--base-text-secondary);
 
-    &:hover {
+    &:active {
         background-color: var(--base-bg-hover);
         color: var(--text-primary);
     }
@@ -39,7 +39,7 @@
         background-color: var(--bg-primary);
         color: var(--text-on-primary);
 
-        &:hover { background-color: var(--bg-primary-hover); }
+        &:active { background-color: var(--bg-primary-hover); }
     }
 }
 
@@ -87,7 +87,7 @@
     border: none;
     cursor: pointer;
 
-    &:hover { color: var(--text-primary); }
+    &:active { color: var(--text-primary); }
     &.active { color: var(--text-primary); }
 }
 
@@ -148,14 +148,14 @@
     background-color: transparent;
     color: var(--base-text-secondary);
 
-    &:hover { color: var(--text-primary); }
+    &:active { color: var(--text-primary); }
 
     &.active,
     &[aria-selected="true"] {
         background-color: var(--bg-primary);
         color: var(--text-on-primary);
 
-        &:hover { background-color: var(--bg-primary-hover); }
+        &:active { background-color: var(--bg-primary-hover); }
     }
 }
 
@@ -174,7 +174,7 @@
     text-decoration: none;
     transition: gap 0.2s ease;
 
-    &:hover { gap: var(--space-2); }
+    &:active { gap: var(--space-2); }
 }
 
 .shuby-link-arrow-icon {
@@ -218,7 +218,7 @@
     cursor: pointer;
     transition: opacity 0.2s ease;
 
-    &:hover { opacity: 0.8; }
+    &:active { opacity: 0.8; }
 }
 
 .shuby-back-link-icon {

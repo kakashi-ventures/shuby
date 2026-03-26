@@ -98,7 +98,7 @@
         background-color: var(--color-shuby-blue-400);
         color: var(--color-shuby-gray-800);
 
-        &:hover { background-color: var(--color-shuby-blue-500); }
+        &:active { background-color: var(--color-shuby-blue-500); }
     }
 }
 

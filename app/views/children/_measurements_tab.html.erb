@@ -3,8 +3,8 @@
   <div class="flex items-center justify-between mb-2">
     <h2 class="shuby-h3"><%= t("measurements.index.title") %></h2>
     <%= link_to new_child_measurement_path(@child),
-        class: "w-10 h-10 rounded-full bg-[var(--color-shuby-blue-400)] flex items-center justify-center hover:opacity-80 transition-opacity" do %>
-      <%= render_svg "shuby/icons/icon-add", size: :lg, styles: "text-shuby-blue-800", decorative: true %>
+        class: "shuby-icon-btn-azzurro" do %>
+      <%= render_svg "shuby/icons/icon-add", size: :md, decorative: true %>
     <% end %>
   </div>
 

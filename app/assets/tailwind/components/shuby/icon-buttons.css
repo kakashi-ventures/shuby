@@ -15,6 +15,9 @@
 .shuby-icon-btn,
 .shuby-icon-btn-ghost,
 .shuby-icon-btn-pink,
+.shuby-icon-btn-azzurro,
+.shuby-icon-btn-fill,
+.shuby-icon-btn-bianca,
 .shuby-action-btn,
 .shuby-member-edit,
 .shuby-header-icon-btn,
@@ -39,7 +42,7 @@
     background-color: var(--bg-primary);
     color: var(--text-on-primary);
 
-    &:hover { background-color: var(--bg-primary-hover); }
+    &:active { background-color: var(--bg-primary-hover); }
 }
 
 .shuby-icon-btn-outline {
@@ -47,7 +50,7 @@
     border: 2px solid var(--text-primary);
     color: var(--text-primary);
 
-    &:hover { background-color: var(--base-bg-hover); }
+    &:active { background-color: var(--base-bg-hover); }
 }
 
 /* =====================================================
@@ -62,7 +65,7 @@
     color: var(--color-shuby-gray-700);
     transition: all 0.2s ease;
 
-    &:hover {
+    &:active {
         background-color: rgba(0, 0, 0, 0.05);
         color: var(--text-primary);
     }
@@ -77,7 +80,7 @@
 .shuby-icon-btn-ghost-primary {
     color: var(--text-primary);
 
-    &:hover { background-color: var(--base-bg-hover); }
+    &:active { background-color: var(--base-bg-hover); }
 }
 
 /* =====================================================
@@ -91,7 +94,7 @@
     background-color: var(--color-shuby-fucsia-500);
     color: var(--color-shuby-white);
 
-    &:hover { background-color: var(--color-shuby-fucsia-700); }
+    &:active { background-color: var(--color-shuby-fucsia-700); }
 
     svg {
         width: 20px;
@@ -125,7 +128,7 @@
     background-color: var(--bg-primary);
     color: var(--text-on-primary);
 
-    &:hover { background-color: var(--bg-primary-hover); }
+    &:active { background-color: var(--bg-primary-hover); }
 
     svg {
         width: 16px;
@@ -145,7 +148,7 @@
     color: var(--text-on-primary);
     flex-shrink: 0;
 
-    &:hover { background-color: var(--bg-primary-hover); }
+    &:active { background-color: var(--bg-primary-hover); }
 
     svg {
         width: 18px;
@@ -164,7 +167,7 @@
     background-color: transparent;
     color: var(--text-primary);
 
-    &:hover { background-color: var(--base-bg-hover); }
+    &:active { background-color: var(--base-bg-hover); }
 
     svg {
         width: 24px;
@@ -182,7 +185,7 @@
     height: 40px;
     background-color: var(--color-shuby-blue-400);
 
-    &:hover { background-color: var(--color-shuby-blue-500); }
+    &:active { background-color: var(--color-shuby-blue-500); }
 }
 
 .shuby-accordion-btn-icon {
@@ -207,10 +210,84 @@
     transition: all 0.2s ease;
     z-index: 10;
 
-    &:hover {
+    &:active {
         background-color: rgba(0, 0, 0, 0.05);
         color: var(--base-text);
     }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* =====================================================
+   ROUND BUTTON COLOR VARIANTS (Figma: Round Button)
+   ===================================================== */
+
+/* Azzurro (light blue) round button (Figma: Color=Azzurro) */
+.shuby-icon-btn-azzurro {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-shuby-blue-400);
+    color: var(--color-shuby-blue-800);
+
+    &:active { background-color: var(--color-shuby-blue-500); }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Fill/outline round button (Figma: Color=Fill — transparent with blue border) */
+.shuby-icon-btn-fill {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 2px solid var(--color-shuby-blue-800);
+    color: var(--color-shuby-blue-800);
+
+    &:active { background-color: var(--color-shuby-blue-300); }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Bianca round button (Figma: Color=Bianca — white with light blue border) */
+.shuby-icon-btn-bianca {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-shuby-white);
+    border: 2px solid var(--color-shuby-blue-300);
+    color: var(--color-shuby-blue-800);
+
+    &:active { background-color: var(--color-shuby-blue-300); border-color: var(--color-shuby-blue-300); }
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* =====================================================
+   ROUND BUTTON STATES
+   ===================================================== */
+
+/* Selected state — fill with blue border (Figma: Stato=Selected) */
+.shuby-icon-btn-selected {
+    background-color: var(--color-shuby-blue-300);
+    border: 2px solid var(--color-shuby-blue-800);
+}
+
+/* Disabled state — gray background, muted icon (Figma: Stato=Disabled) */
+.shuby-icon-btn-disabled {
+    background-color: var(--color-shuby-gray-400);
+    color: var(--color-shuby-gray-600);
+    cursor: not-allowed;
+    pointer-events: none;
 
     svg {
         width: 20px;
@@ -222,7 +299,7 @@
 .shuby-modal-close-light {
     color: var(--color-shuby-white);
 
-    &:hover {
+    &:active {
         background-color: var(--overlay-white-15);
         color: var(--color-shuby-white);
     }

@@ -72,7 +72,7 @@
     margin-bottom: var(--space-3);
     transition: box-shadow 0.2s ease;
 
-    &:hover { box-shadow: var(--shadow-card-hover); }
+    &:active { box-shadow: var(--shadow-card-hover); }
     &:last-child { margin-bottom: 0; }
 }
 

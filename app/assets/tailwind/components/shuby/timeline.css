@@ -40,7 +40,7 @@
     transition: all 0.2s ease;
     flex-shrink: 0;
 
-    &:hover {
+    &:active {
         border-color: var(--border-selection);
         background-color: var(--bg-selection-light);
     }
@@ -51,7 +51,7 @@
         border-color: var(--bg-selection);
         color: var(--text-on-selection);
 
-        &:hover { background-color: var(--bg-selection-hover); }
+        &:active { background-color: var(--bg-selection-hover); }
     }
 
     &.disabled,
@@ -117,7 +117,7 @@
     transition: all 0.2s ease;
     border: none;
 
-    &:hover {
+    &:active {
         background-color: var(--bg-selection-light);
         color: var(--text-selection);
     }
@@ -127,7 +127,7 @@
         background-color: var(--bg-selection);
         color: var(--text-on-selection);
 
-        &:hover { background-color: var(--bg-selection-hover); }
+        &:active { background-color: var(--bg-selection-hover); }
     }
 
     &.completed {
@@ -210,7 +210,7 @@
     transition: all 0.15s ease;
     color: var(--base-text);
 
-    &:hover { background-color: var(--bg-selection-light); }
+    &:active { background-color: var(--bg-selection-light); }
 
     &.selected {
         background-color: var(--bg-selection);
@@ -275,7 +275,7 @@
     flex-shrink: 0;
     border: none;
 
-    &:hover { background-color: var(--base-bg-hover); }
+    &:active { background-color: var(--base-bg-hover); }
 
     &.selected-outline {
         background-color: var(--bg-secondary);
@@ -286,7 +286,7 @@
         background-color: var(--bg-selection);
         color: var(--text-on-selection);
 
-        &:hover { background-color: var(--bg-selection-hover); }
+        &:active { background-color: var(--bg-selection-hover); }
 
         .shuby-timeline-pill-label { color: var(--text-on-selection); }
         .shuby-timeline-pill-number { color: var(--text-on-selection); }
@@ -296,7 +296,7 @@
         background-color: var(--bg-primary);
         color: var(--text-on-primary);
 
-        &:hover { background-color: var(--bg-primary-hover); }
+        &:active { background-color: var(--bg-primary-hover); }
 
         .shuby-timeline-pill-label,
         .shuby-timeline-pill-number { color: var(--text-on-primary); }
@@ -353,7 +353,7 @@
     transition: all 0.2s ease;
     border: none;
 
-    &:hover {
+    &:active {
         background-color: var(--bg-selection-light);
         color: var(--text-selection);
     }
@@ -363,7 +363,7 @@
         background-color: var(--bg-selection);
         color: var(--text-on-selection);
 
-        &:hover { background-color: var(--bg-selection-hover); }
+        &:active { background-color: var(--bg-selection-hover); }
     }
 }
 

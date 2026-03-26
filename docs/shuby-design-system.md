@@ -211,51 +211,124 @@ Based on an 8px unit system:
 
 ### Buttons
 
+**Important:** All interactive states use `:active` (not `:hover`) — this is a mobile-first app (Hotwire Native). Disabled/blocked buttons use `pointer-events: none`.
+
+#### Filled Buttons (Figma: Type=Filled)
+
 ```erb
-<%# Primary filled button %>
+<%# Blu (primary) %>
 <button class="shuby-btn shuby-btn-lg shuby-btn-primary">Comincia</button>
 
-<%# Outlined button %>
-<button class="shuby-btn shuby-btn-lg shuby-btn-outline">Sì</button>
+<%# Fucsia %>
+<button class="shuby-btn shuby-btn-lg shuby-btn-fucsia">Fucsia</button>
 
-<%# Secondary button %>
+<%# Bianco (white bg, fucsia text — for dark backgrounds) %>
+<button class="shuby-btn shuby-btn-lg shuby-btn-white">Bianco</button>
+
+<%# Grigio %>
+<button class="shuby-btn shuby-btn-lg shuby-btn-gray">Grigio</button>
+
+<%# Verde (teal — typically used at Piccolo size) %>
+<button class="shuby-btn shuby-btn-sm shuby-btn-verde">Verde</button>
+
+<%# Secondary / Danger / Teal (app-specific) %>
 <button class="shuby-btn shuby-btn-lg shuby-btn-secondary">No</button>
-
-<%# Danger button %>
 <button class="shuby-btn shuby-btn-lg shuby-btn-danger">Elimina</button>
+<button class="shuby-btn shuby-btn-lg shuby-btn-teal">Teal</button>
 
-<%# Dark outlined button (Figma: Type=Outline, Colore=Nero) %>
+<%# Disabled/Blocked %>
+<button class="shuby-btn shuby-btn-lg shuby-btn-primary" disabled>Bloccato</button>
+```
+
+#### Outline Buttons (Figma: Type=Outline)
+
+```erb
+<%# Blu outline (primary) %>
+<button class="shuby-btn shuby-btn-lg shuby-btn-outline">Blu Outline</button>
+<button class="shuby-btn shuby-btn-sm shuby-btn-outline-blu">Blu Piccolo</button>
+
+<%# Fucsia outline %>
+<button class="shuby-btn shuby-btn-lg shuby-btn-outline-fucsia">Fucsia Outline</button>
+
+<%# Nero outline %>
 <button class="shuby-btn shuby-btn-sm shuby-btn-outline-dark">Elimina bambino/a</button>
 
-<%# Text/Link button (Figma: Type=Testo) %>
+<%# Bianco outline (for dark backgrounds) %>
+<button class="shuby-btn shuby-btn-lg shuby-btn-outline-white">Outline Bianco</button>
+```
+
+#### Buttons with Icons (Figma: Icona=Sx/Dx)
+
+```erb
+<%# Left icon %>
+<button class="shuby-btn shuby-btn-lg shuby-btn-fucsia shuby-btn-icon shuby-btn-icon-left">
+  <%= render_svg "shuby/icons/icon-add", size: :lg, decorative: true %>
+  Aggiungi
+</button>
+```
+
+#### Link Styles (Figma: Type=Testo)
+
+```erb
+<%# Underlined text link — blue (Icona=Off) %>
+<a href="#" class="shuby-link-underline">Bottone</a>
+
+<%# Underlined text link — fucsia %>
+<a href="#" class="shuby-link-underline shuby-link-underline-fucsia">Bottone</a>
+
+<%# Arrow text link — blue (Icona=Dx) %>
 <a href="#" class="shuby-btn-text">
   Tutti gli Articoli
   <svg class="shuby-btn-text-icon"><!-- arrow_forward icon --></svg>
 </a>
 
-<%# Icon button %>
-<button class="shuby-icon-btn">+</button>
-<button class="shuby-icon-btn shuby-icon-btn-outline">✏️</button>
-
-<%# Ghost icon button (no background) %>
-<button class="shuby-icon-btn-ghost">
-  <svg><!-- refresh icon --></svg>
-</button>
-<button class="shuby-icon-btn-ghost shuby-icon-btn-ghost-primary">
-  <svg><!-- icon in primary blue --></svg>
-</button>
+<%# Arrow text link — white (for dark backgrounds) %>
+<a href="#" class="shuby-btn-text shuby-btn-text-white">
+  Bottone
+  <svg class="shuby-btn-text-icon"><!-- arrow_forward icon --></svg>
+</a>
 ```
 
-**Icon Button Variants:**
-- `.shuby-icon-btn` - Primary filled (blue background)
-- `.shuby-icon-btn-outline` - Outlined (transparent with border)
-- `.shuby-icon-btn-ghost` - Ghost (no background, gray icon)
-- `.shuby-icon-btn-ghost-primary` - Ghost with primary blue icon
+#### Round Buttons (Figma: Round Button)
+
+```erb
+<%# Azzurro (light blue) %>
+<button class="shuby-icon-btn-azzurro"><%= render_svg "shuby/icons/icon-calendar", size: :md %></button>
+
+<%# Blu (primary) %>
+<button class="shuby-icon-btn"><%= render_svg "shuby/icons/icon-calendar", size: :md %></button>
+
+<%# Fucsia %>
+<button class="shuby-icon-btn-pink"><%= render_svg "shuby/icons/icon-calendar", size: :md %></button>
+
+<%# Fill (outline with blue border) %>
+<button class="shuby-icon-btn-fill"><%= render_svg "shuby/icons/icon-chevron-right", size: :md %></button>
+
+<%# Bianca (white with light blue border) %>
+<button class="shuby-icon-btn-bianca"><%= render_svg "shuby/icons/icon-chevron-left", size: :sm %></button>
+
+<%# Selected state %>
+<button class="shuby-icon-btn-fill shuby-icon-btn-selected"><%= render_svg "shuby/icons/icon-bookmark-filled", size: :md %></button>
+
+<%# Disabled state %>
+<button class="shuby-icon-btn-azzurro shuby-icon-btn-disabled" disabled><%= render_svg "shuby/icons/icon-calendar", size: :md %></button>
+```
 
 **Button Sizes (Figma aligned):**
-- `.shuby-btn-lg` - Large (12px 24px padding, 20px font) - Figma: Button/Button L
-- `.shuby-btn-md` - Medium (10px 20px padding, 14px font)
-- `.shuby-btn-sm` - Small (8px 16px padding, 16px font) - Figma: Button/Button S
+- `.shuby-btn-lg` - Grande (12px 24px padding, 20px font) - Figma: Button/Button L
+- `.shuby-btn-md` - Medium (10px 20px padding, 14px font) - app-specific
+- `.shuby-btn-sm` - Piccolo (6px 16px padding, 16px font) - Figma: Button/Button S
+
+**Round Button Colors (Figma aligned):**
+- `.shuby-icon-btn` - Blu (blue-800 bg, white icon)
+- `.shuby-icon-btn-azzurro` - Azzurro (blue-400 bg, blue-800 icon)
+- `.shuby-icon-btn-pink` - Fucsia (fucsia-500 bg, white icon)
+- `.shuby-icon-btn-fill` - Fill (transparent, blue-800 border)
+- `.shuby-icon-btn-bianca` - Bianca (white bg, blue-300 border)
+
+**Round Button States:**
+- `.shuby-icon-btn-selected` - Selected (blue-300 bg, blue-800 border)
+- `.shuby-icon-btn-disabled` - Disabled (gray-400 bg, pointer-events: none)
 
 ### Tabs
 

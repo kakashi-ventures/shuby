@@ -217,7 +217,7 @@
     border-radius: var(--radius-md);
     transition: box-shadow 0.2s ease;
 
-    &:hover { box-shadow: var(--shadow-card-hover-strong); }
+    &:active { box-shadow: var(--shadow-card-hover-strong); }
 }
 
 /* Article thumbnail container */
@@ -295,7 +295,7 @@
     cursor: pointer;
     text-decoration: none;
 
-    &:hover .shuby-article-title { color: var(--text-primary); }
+    &:active .shuby-article-title { color: var(--text-primary); }
 }
 
 /* =====================================================

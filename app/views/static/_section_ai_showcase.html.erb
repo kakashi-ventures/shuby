@@ -26,11 +26,11 @@
     </div>
 
     <% if user_signed_in? %>
-      <%= link_to shuby_chats_path, class: "block w-full text-center px-4 py-3 bg-white text-[var(--color-shuby-blue-800)] font-semibold rounded-xl hover:bg-gray-100 transition-colors" do %>
+      <%= link_to shuby_chats_path, class: "shuby-btn shuby-btn-lg shuby-btn-white shuby-btn-block" do %>
         Parla con Shuby
       <% end %>
     <% else %>
-      <%= link_to new_user_registration_path, class: "block w-full text-center px-4 py-3 bg-white text-[var(--color-shuby-blue-800)] font-semibold rounded-xl hover:bg-gray-100 transition-colors" do %>
+      <%= link_to new_user_registration_path, class: "shuby-btn shuby-btn-lg shuby-btn-white shuby-btn-block" do %>
         Prova Shuby Gratis
       <% end %>
     <% end %>
