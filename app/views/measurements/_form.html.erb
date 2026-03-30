@@ -7,7 +7,7 @@
     }) do |form| %>
   <% if @measurement.errors.any? %>
     <div class="shuby-card bg-red-50 border-red-200 mb-4">
-      <ul class="text-sm text-red-600 list-disc list-inside">
+      <ul class="shuby-p1 text-red-600 list-disc list-inside">
         <% @measurement.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>

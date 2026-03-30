@@ -33,15 +33,15 @@
 }
 
 .shuby-info-box-title {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-bold);
     text-transform: uppercase;
     color: var(--text-primary);
 }
 
 .shuby-info-box-content {
-    font-size: 14px;
-    line-height: 150%;
+    font-size: var(--font-size-p1);
+    line-height: var(--line-height-normal);
     color: var(--base-text);
 }
 
@@ -118,13 +118,13 @@
 }
 
 .shuby-list-item-title {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: var(--font-size-btn-s);
+    font-weight: var(--font-weight-medium);
     color: var(--base-text);
 }
 
 .shuby-list-item-subtitle {
-    font-size: 14px;
+    font-size: var(--font-size-p1);
     color: var(--base-text-tertiary);
 }
 
@@ -206,9 +206,9 @@
 }
 
 .shuby-activity-title {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.4;
+    font-size: var(--font-size-btn-s);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
     color: var(--base-text);
 }
 
@@ -216,8 +216,8 @@
     display: inline-flex;
     align-items: center;
     gap: var(--space-1);
-    font-size: 12px;
-    font-weight: 500;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-medium);
     color: var(--base-text-tertiary);
 }
 
@@ -337,10 +337,10 @@
    ===================================================== */
 
 .shuby-author {
-    font-size: 12px;
-    font-weight: 400;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-regular);
     color: var(--base-text-tertiary);
-    line-height: 1.4;
+    line-height: var(--line-height-normal);
 }
 
 .shuby-author-link {
@@ -353,10 +353,10 @@
 
 /* Author primary variant - uppercase, blue */
 .shuby-author-primary {
-    font-size: 10px;
-    font-weight: 500;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
     color: var(--color-shuby-blue-800);
-    line-height: 1.5;
+    line-height: var(--line-height-normal);
     text-transform: uppercase;
 }
 
@@ -410,16 +410,16 @@
 
 /* Consiglio title */
 .shuby-consiglio-title {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.4;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
     color: var(--base-text);
 }
 
 /* Consiglio author/source */
 .shuby-consiglio-author {
-    font-size: 12px;
-    font-weight: 400;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-regular);
     color: var(--base-text-tertiary);
 }
 
@@ -442,12 +442,12 @@
    ===================================================== */
 
 .shuby-date-header {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-semibold);
     text-transform: uppercase;
     color: var(--text-primary);
-    letter-spacing: 0.5px;
-    line-height: 1.5;
+    letter-spacing: var(--letter-spacing-wide);
+    line-height: var(--line-height-normal);
 }
 
 /* =====================================================
@@ -457,14 +457,14 @@
    ===================================================== */
 
 .shuby-age-indicator {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-shuby-verde-500);
-    line-height: 1.5;
+    line-height: var(--line-height-normal);
 }
 
 .shuby-age-indicator-lg {
-    font-size: 16px;
+    font-size: var(--font-size-btn-s);
 }
 
 /* =====================================================
@@ -482,8 +482,8 @@
 }
 
 .shuby-page-header-title {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
     color: var(--text-primary);
 }
 
@@ -513,9 +513,9 @@
 
 /* Section label - uppercase category header (e.g., "MISURE MEDIE") */
 .shuby-section-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-wide);
     text-transform: uppercase;
     color: var(--base-text-secondary);
     margin-bottom: var(--space-3);
@@ -717,21 +717,21 @@
 }
 
 .shuby-ricorda-label {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-bold);
     text-transform: uppercase;
     color: var(--text-primary);
-    letter-spacing: 0.5px;
+    letter-spacing: var(--letter-spacing-wide);
 }
 
 .shuby-ricorda-text {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.6;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
     color: var(--base-text);
 
     strong {
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
         color: var(--base-text);
     }
 }

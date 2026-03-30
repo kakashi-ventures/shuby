@@ -64,11 +64,11 @@
 
 /* Date pill day label (e.g., "Lu", "Ma", "Me") */
 .shuby-date-pill-day {
-    font-size: 11px;
-    font-weight: 500;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-medium);
     text-transform: uppercase;
     opacity: 0.7;
-    line-height: 1;
+    line-height: var(--line-height-none);
 }
 
 .shuby-date-pill.selected .shuby-date-pill-day {
@@ -78,9 +78,9 @@
 
 /* Date pill number (e.g., "12", "13", "14") */
 .shuby-date-pill-number {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: var(--font-size-btn-s);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
 }
 
 .shuby-date-pill.selected .shuby-date-pill-number {
@@ -108,8 +108,8 @@
     justify-content: center;
     padding: var(--space-2) var(--space-4);
     min-width: 44px;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
     border-radius: 20px;
     background-color: transparent;
     color: var(--base-text-secondary);
@@ -137,7 +137,7 @@
         &::before {
             content: "\2713";
             margin-right: var(--space-1);
-            font-size: 12px;
+            font-size: var(--font-size-p2);
         }
     }
 }
@@ -190,8 +190,8 @@
 }
 
 .shuby-calendar-header-day {
-    font-size: 11px;
-    font-weight: 600;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-semibold);
     text-transform: uppercase;
     text-align: center;
     color: var(--base-text-tertiary);
@@ -203,8 +203,8 @@
     align-items: center;
     justify-content: center;
     aspect-ratio: 1;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-medium);
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.15s ease;
@@ -305,19 +305,19 @@
 
 /* Timeline pill label (e.g., "Sett.", "Mese") */
 .shuby-timeline-pill-label {
-    font-size: 11px;
-    font-weight: 500;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-medium);
     text-transform: capitalize;
     color: var(--text-primary);
-    line-height: 1;
+    line-height: var(--line-height-none);
     margin-bottom: 2px;
 }
 
 /* Timeline pill number (e.g., "3", "6") */
 .shuby-timeline-pill-number {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: var(--font-size-btn-s);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
     color: var(--text-primary);
 }
 
@@ -343,8 +343,8 @@
     align-items: center;
     justify-content: center;
     padding: 10px var(--space-5);
-    font-size: 14px;
-    font-weight: 600;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
     white-space: nowrap;
     border-radius: var(--radius-full);
     background-color: transparent;
@@ -369,7 +369,7 @@
 
 /* Progressive state indicator (shows progression through weeks) */
 .shuby-settimana-item.past {
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     color: var(--base-text);
 }
 

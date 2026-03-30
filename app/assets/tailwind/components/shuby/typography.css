@@ -1,5 +1,6 @@
 /* Shuby Typography
  * Display, heading, body, caption, overline, and button text styles
+ * All values reference tokens from themes/shuby.css
  */
 
 /* =====================================================
@@ -9,124 +10,124 @@
 /* Display D1 - Hero text (Figma: Display/D1 - Baloo 2 Bold 48px) */
 .shuby-d1 {
     font-family: var(--font-display);
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: 0;
+    font-size: var(--font-size-d1);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-none);
+    letter-spacing: var(--letter-spacing-normal);
     color: var(--text-primary);
 }
 
 /* Display D2 - Card titles (Figma: Display/D2 - Baloo 2 Bold 20px) */
 .shuby-d2 {
     font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: 0;
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-normal);
     color: var(--text-primary);
 }
 
 /* Heading H1 - Page title (Figma: Headings/H1 - Baloo 2 Bold 38px) */
 .shuby-h1 {
     font-family: var(--font-display);
-    font-size: 38px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: 0;
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-none);
+    letter-spacing: var(--letter-spacing-normal);
     color: var(--base-text);
 }
 
 /* Heading H2 - Section title (Figma: Headings/H2 - Baloo 2 Bold 28px) */
 .shuby-h2 {
     font-family: var(--font-display);
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: 0;
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-none);
+    letter-spacing: var(--letter-spacing-normal);
     color: var(--text-primary);
 }
 
 /* Heading H3 - Subsection (Figma: Headings/H3 - Montserrat Semi-Bold 20px) */
 .shuby-h3 {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0;
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
     color: var(--base-text);
 }
 
 /* Body P1 - Main text (Figma: Body/P1/Light - Montserrat Regular 14px) */
 .shuby-p1 {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
     color: var(--base-text);
 }
 
 /* Body P1 Dark - Emphasized text (Figma: Body/P1/Dark - Montserrat Semi-Bold 14px) */
 .shuby-p1-dark {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
     color: var(--base-text);
 }
 
 /* Body P2 - Secondary text (Figma: Montserrat Regular 12px) */
 .shuby-p2 {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
     color: var(--base-text-secondary);
 }
 
 /* Body P2 Dark - Emphasized secondary text (Figma: Montserrat Semi-Bold 12px) */
 .shuby-p2-dark {
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
     color: var(--base-text);
 }
 
 /* Caption - Labels (Figma: Caption/Span/Light - Montserrat Medium 10px) */
 .shuby-caption {
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 1.5;
-    letter-spacing: 0;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
     text-transform: uppercase;
     color: var(--text-primary);
 }
 
 /* Caption Dark - Emphasized labels (Figma: Caption/Span/Dark - Montserrat Semi-Bold 10px) */
 .shuby-caption-dark {
-    font-size: 10px;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
     text-transform: uppercase;
     color: var(--text-primary);
 }
 
 /* Overline - Tags (Figma: Overline/OL/Light - Montserrat Regular 10px) */
 .shuby-overline {
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0;
+    font-size: var(--font-size-overline);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
     text-transform: uppercase;
     color: var(--text-primary);
 }
 
 /* Overline Dark - Form labels (Figma: Overline/OL/Dark - Montserrat Semi-Bold 10px) */
 .shuby-overline-dark {
-    font-size: 10px;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0;
+    font-size: var(--font-size-overline);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
     text-transform: uppercase;
     color: var(--text-primary);
 }
@@ -140,17 +141,16 @@
 
 /* Button text small - 16px (Figma: Button/Button S) */
 .shuby-btn-text-s {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0;
+    font-size: var(--font-size-btn-s);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
 }
 
 /* Button text large - 20px (Figma: Button/Button L) */
 .shuby-btn-text-l {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0;
+    font-size: var(--font-size-btn-l);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
 }
-

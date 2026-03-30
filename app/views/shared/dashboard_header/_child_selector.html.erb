@@ -7,7 +7,7 @@
           class="flex items-center gap-2 text-[var(--header-text)]">
     <span class="shuby-h3 text-[var(--header-text)]"><%= current_child&.display_name || t("dashboard.header.no_child") %></span>
     <% if current_child&.birth_date %>
-      <span class="shuby-caption text-[var(--header-text-secondary)] text-xs ml-1 self-end mb-0.5"><%= current_child.detailed_corrected_age_display %></span>
+      <span class="shuby-caption text-[var(--header-text-secondary)] ml-1 self-end mb-0.5"><%= current_child.detailed_corrected_age_display %></span>
     <% end %>
     <% if children.size > 1 || children.empty? %>
       <%= render_svg "shuby/icons/icon-chevron-down", styles: "w-4 h-4 fill-[var(--header-icon)]" %>
@@ -37,14 +37,14 @@
                 <% if child.avatar.attached? %>
                   <%= image_tag child.avatar, class: "w-full h-full object-cover" %>
                 <% else %>
-                  <span class="shuby-p1 font-semibold text-[var(--color-shuby-blue-800)]">
+                  <span class="shuby-p1-dark text-[var(--color-shuby-blue-800)]">
                     <%= child.display_name.first.upcase %>
                   </span>
                 <% end %>
               </div>
 
               <%# Child name %>
-              <span class="shuby-p1 font-semibold text-gray-900 flex-1 text-left"><%= child.display_name %></span>
+              <span class="shuby-p1-dark text-gray-900 flex-1 text-left"><%= child.display_name %></span>
 
               <%# Selected indicator %>
               <% if child == current_child %>
@@ -65,7 +65,7 @@
         <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0">
           <%= render_svg "shuby/icons/icon-add", styles: "w-5 h-5 fill-[var(--color-shuby-blue-800)]" %>
         </div>
-        <span class="shuby-p1 font-semibold text-[var(--color-shuby-blue-800)]">
+        <span class="shuby-p1-dark text-[var(--color-shuby-blue-800)]">
           <%= t("dashboard.header.add_child") %>
         </span>
       <% end %>

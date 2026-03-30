@@ -19,9 +19,9 @@
 /* Tab item */
 .shuby-tab {
     padding: var(--space-2) var(--space-5);
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -110,16 +110,16 @@
 
 /* Navigation label - Figma: 10px Montserrat */
 .shuby-bottom-nav-label {
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 1.5;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
     text-align: center;
     min-width: 100%;
 }
 
 /* Active label weight handled via parent .shuby-bottom-nav-item.active nesting */
 .shuby-bottom-nav-item.active .shuby-bottom-nav-label {
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
 }
 
 /* =====================================================
@@ -138,9 +138,9 @@
 
 .shuby-gestione-tab {
     padding: 10px var(--space-5);
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -168,8 +168,8 @@
     display: inline-flex;
     align-items: center;
     gap: var(--space-1);
-    font-size: 14px;
-    font-weight: 600;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
     color: var(--text-primary);
     text-decoration: none;
     transition: gap 0.2s ease;
@@ -194,7 +194,7 @@
 
 /* Small variant */
 .shuby-link-arrow-sm {
-    font-size: 12px;
+    font-size: var(--font-size-p2);
 
     .shuby-link-arrow-icon {
         width: 14px;
@@ -211,8 +211,8 @@
     display: inline-flex;
     align-items: center;
     gap: var(--space-1);
-    font-size: 16px;
-    font-weight: 600;
+    font-size: var(--font-size-btn-s);
+    font-weight: var(--font-weight-semibold);
     color: var(--text-primary);
     text-decoration: none;
     cursor: pointer;
@@ -234,7 +234,7 @@
 
 /* Small back link variant */
 .shuby-back-link-sm {
-    font-size: 14px;
+    font-size: var(--font-size-p1);
 }
 
 .shuby-back-link-sm .shuby-back-link-icon {
@@ -259,8 +259,8 @@
     justify-content: center;
     padding: 10px var(--space-4);
     font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 600;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
     text-decoration: none;
     transition: background-color 0.2s ease, color 0.2s ease;
     border: 1px solid var(--color-shuby-blue-300);

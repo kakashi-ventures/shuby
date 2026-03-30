@@ -17,7 +17,7 @@
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     border-radius: 999px;
     transition: all 0.2s ease;
     cursor: pointer;
@@ -46,20 +46,20 @@
 /* Button sizes (Figma: Button/Button L - 20px, Button/Button S - 16px) */
 .shuby-btn-lg {
     padding: var(--space-3) var(--space-6);
-    font-size: 20px;
-    line-height: 1.5;
+    font-size: var(--font-size-btn-l);
+    line-height: var(--line-height-normal);
 }
 
 .shuby-btn-md {
     padding: 10px var(--space-5);
-    font-size: 14px;
-    line-height: 20px;
+    font-size: var(--font-size-p1);
+    line-height: var(--line-height-normal);
 }
 
 .shuby-btn-sm {
     padding: 6px var(--space-4);
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: var(--font-size-btn-s);
+    line-height: var(--line-height-normal);
 }
 
 /* =====================================================
@@ -231,8 +231,8 @@
 /* Zoom/toggle button (growth chart time range selector) */
 .shuby-growth-chart-zoom-btn {
     font-family: var(--font-sans);
-    font-size: 12px;
-    font-weight: 500;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-medium);
     padding: var(--space-1, 4px) var(--space-3, 12px);
     border-radius: var(--radius-full, 999px);
     border: 1px solid var(--color-shuby-gray-500);

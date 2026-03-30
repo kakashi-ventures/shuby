@@ -56,16 +56,16 @@
 }
 
 .shuby-card-metric-title {
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 150%;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-p1);
+    line-height: var(--line-height-normal);
     color: var(--text-primary);
 }
 
 .shuby-card-metric-date {
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 150%;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-normal);
     color: var(--color-shuby-gray-800);
 }
 
@@ -84,30 +84,30 @@
 
 .shuby-card-metric-value {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-d2);
+    line-height: var(--line-height-tight);
     color: var(--text-primary);
 }
 
 .shuby-card-metric-unit {
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 150%;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-normal);
     color: var(--text-primary);
 }
 
 .shuby-card-metric-percentile {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 150%;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-btn-s);
+    line-height: var(--line-height-normal);
     color: var(--base-text);
 }
 
 .shuby-card-metric-percentile-unit {
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 150%;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-normal);
     color: var(--base-text);
 }
 
@@ -147,13 +147,13 @@
 }
 
 .shuby-nav-card-title {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
     color: var(--text-primary);
 }
 
 .shuby-nav-card-subtitle {
-    font-size: 12px;
+    font-size: var(--font-size-p2);
     color: var(--base-text-secondary);
     overflow: hidden;
     text-overflow: ellipsis;
@@ -194,24 +194,24 @@
 }
 
 .shuby-card-consigli-author {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.5;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
     color: var(--color-shuby-black);
 }
 
 .shuby-card-consigli-title {
     font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
     color: var(--color-shuby-blue-800);
 }
 
 .shuby-card-consigli-publisher {
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 1.5;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
     color: var(--color-shuby-black);
 }
 
@@ -242,9 +242,9 @@
 }
 
 .shuby-card-consigli-time-text {
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 1.5;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
     color: var(--color-shuby-blue-800);
     text-transform: uppercase;
 }
@@ -274,9 +274,9 @@
 
 .shuby-scheda-attivita-title {
     font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
     color: var(--color-shuby-blue-800);
 }
 
@@ -293,9 +293,9 @@
 }
 
 .shuby-scheda-attivita-time-text {
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 1.5;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
     color: var(--color-shuby-blue-800);
     text-transform: uppercase;
 }
@@ -328,9 +328,9 @@
 
 /* Metric range label (e.g., "PESO", "ALTEZZA") */
 .shuby-metric-range-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
     text-transform: uppercase;
     color: var(--base-text-tertiary);
     margin-bottom: var(--space-1);
@@ -346,16 +346,16 @@
 
 /* Individual range value (large number) */
 .shuby-metric-range-value {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
     color: var(--text-primary);
-    line-height: 1.2;
+    line-height: var(--line-height-tight);
 }
 
 /* Metric range unit (e.g., "chilogrammi", "centimetri") */
 .shuby-metric-range-unit {
-    font-size: 10px;
-    font-weight: 400;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
     color: var(--base-text-tertiary);
 }
 
@@ -404,13 +404,13 @@
 }
 
 .shuby-tracking-card-title {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-medium);
     color: var(--base-text-secondary);
 }
 
 .shuby-tracking-card-value {
-    font-size: 12px;
+    font-size: var(--font-size-p2);
     color: var(--base-text-tertiary);
     margin-top: auto;
 }
@@ -443,15 +443,15 @@
 
 .shuby-measurement-card-info-title {
     font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 600;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-shuby-blue-800);
 }
 
 .shuby-measurement-card-info-date {
     font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 400;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
     color: var(--color-shuby-gray-800);
 }
 
@@ -480,16 +480,16 @@
 
 .shuby-measurement-card-number-value {
     font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 700;
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
     color: var(--color-shuby-blue-800);
-    line-height: 1.2;
+    line-height: var(--line-height-tight);
 }
 
 .shuby-measurement-card-number-unit {
     font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 400;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
     color: var(--color-shuby-blue-800);
 }
 
@@ -499,15 +499,15 @@
 
 .shuby-measurement-card-percentile-value {
     font-family: var(--font-sans);
-    font-size: 16px;
-    font-weight: 600;
+    font-size: var(--font-size-btn-s);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-shuby-black);
-    line-height: 1.2;
+    line-height: var(--line-height-tight);
 }
 
 .shuby-measurement-card-percentile-label {
     font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 400;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
     color: var(--color-shuby-black);
 }

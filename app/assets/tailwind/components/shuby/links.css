@@ -11,9 +11,9 @@
     background: transparent;
     border: none;
     padding: 0;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.5;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
     color: var(--color-shuby-blue-800);
     cursor: pointer;
     transition: color 0.2s ease;
@@ -43,9 +43,9 @@
 .shuby-link-underline {
     display: inline-flex;
     align-items: center;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.5;
+    font-size: var(--font-size-btn-s);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
     color: var(--color-shuby-blue-800);
     border-bottom: 2px solid var(--color-shuby-blue-800);
     padding-bottom: 4px;

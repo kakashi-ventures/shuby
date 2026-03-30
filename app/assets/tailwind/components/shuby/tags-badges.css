@@ -11,9 +11,9 @@
     display: inline-flex;
     align-items: center;
     padding: var(--space-1) var(--space-3);
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 16px;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
     border-radius: var(--radius-full);
 }
 
@@ -59,9 +59,9 @@
     align-items: center;
     gap: var(--space-1);
     padding: var(--space-1) var(--space-2);
-    font-size: 10px;
-    font-weight: 600;
-    line-height: 1.5;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
     border-radius: var(--radius-full);
     white-space: nowrap;
     transition: all 0.2s ease;
@@ -197,8 +197,8 @@
 /* Small tag variant */
 .shuby-tag-sm {
     padding: var(--space-1) 10px;
-    font-size: 11px;
-    line-height: 14px;
+    font-size: var(--font-size-p2);
+    line-height: var(--line-height-tight);
     gap: 3px;
 }
 
@@ -255,8 +255,8 @@
 .shuby-badge-fucsia {
     background-color: var(--color-shuby-fucsia-500);
     color: var(--color-shuby-white);
-    font-size: 10px;
-    font-weight: 600;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
     padding: 2px var(--space-2);
     border-radius: var(--radius-tondo);
 }

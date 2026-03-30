@@ -24,9 +24,9 @@
 
 /* Section header (TAPPA DI SVILUPPO) */
 .shuby-tappa-header {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-wide);
     text-transform: uppercase;
     color: var(--text-primary);
     margin-bottom: var(--space-4);
@@ -65,9 +65,9 @@
     align-items: center;
     gap: 6px;
     padding: 6px 12px;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 18px;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
     border-radius: var(--radius-full);
     background-color: var(--color-shuby-blue-800);
     color: var(--color-shuby-white);
@@ -89,9 +89,9 @@
     display: inline-flex;
     align-items: center;
     padding: 6px 12px;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 18px;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
     border-radius: var(--radius-full);
     background-color: var(--color-shuby-white);
     color: var(--color-shuby-gray-700);
@@ -100,17 +100,17 @@
 
 /* Progress subtitle (I progressi di Alessandro su:) */
 .shuby-tappa-subtitle {
-    font-size: 14px;
-    font-weight: 400;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
     color: var(--color-shuby-gray-600);
     margin-bottom: var(--space-1);
 }
 
 /* Category title (Comunicazione e linguaggio) */
 .shuby-tappa-title {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 26px;
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-snug);
     color: var(--text-primary);
     margin-bottom: var(--space-3);
 }
@@ -120,8 +120,8 @@
     display: inline-flex;
     align-items: center;
     gap: var(--space-1);
-    font-size: 12px;
-    font-weight: 500;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-medium);
     color: var(--color-shuby-gray-500);
 }
 
@@ -257,11 +257,11 @@
 }
 
 .shuby-accordion-label {
-    font-size: 10px;
-    font-weight: 500;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
     color: var(--base-text);
     text-transform: uppercase;
-    line-height: 1.5;
+    line-height: var(--line-height-normal);
 }
 
 .shuby-accordion-actions {
@@ -271,8 +271,8 @@
 }
 
 .shuby-accordion-count {
-    font-size: 10px;
-    font-weight: 600;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
     color: var(--base-text);
 }
 
@@ -317,8 +317,8 @@
     display: flex;
     align-items: center;
     gap: var(--space-1);
-    font-size: 10px;
-    font-weight: 500;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
     color: var(--color-shuby-blue-800);
     text-transform: uppercase;
 }
@@ -331,9 +331,9 @@
 
 .shuby-milestone-card-title {
     font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
     color: var(--color-shuby-blue-800);
 }
 
@@ -367,10 +367,10 @@
 }
 
 .shuby-milestone-card-completed-date {
-    font-size: 10px;
-    font-weight: 400;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
     color: var(--color-shuby-white);
-    line-height: 1.5;
+    line-height: var(--line-height-normal);
 }
 
 /* Tag for completed status */
@@ -408,17 +408,17 @@
 
 .shuby-tappa-modal-title {
     font-family: var(--font-display);
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
     color: var(--text-primary);
     margin-bottom: var(--space-4);
 }
 
 .shuby-tappa-modal-description {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.6;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
     color: var(--base-text);
     max-width: 320px;
 }
@@ -494,25 +494,25 @@
    ===================================================== */
 
 .shuby-success-label {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-medium);
     color: var(--overlay-white-80);
     margin-bottom: var(--space-2);
 }
 
 .shuby-success-title {
     font-family: var(--font-display);
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
     color: var(--color-shuby-white);
     margin-bottom: var(--space-4);
 }
 
 .shuby-success-description {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.6;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
     color: var(--overlay-white-90);
     max-width: 320px;
 }
@@ -530,13 +530,13 @@
     color: var(--color-shuby-white);
 
     p {
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.6;
+        font-size: var(--font-size-p1);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-normal);
         color: var(--color-shuby-white);
     }
 
-    strong { font-weight: 600; }
+    strong { font-weight: var(--font-weight-semibold); }
 }
 
 /* Solid light variant */
@@ -547,14 +547,14 @@
     color: var(--base-text);
 
     p {
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.6;
+        font-size: var(--font-size-p1);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-normal);
         color: var(--base-text);
     }
 
     strong {
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
         color: var(--base-text);
     }
 }
@@ -586,25 +586,25 @@
 }
 
 .shuby-tappa-completed-label {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-medium);
     color: var(--overlay-white-80);
     margin-bottom: var(--space-1);
 }
 
 .shuby-tappa-completed-title {
     font-family: var(--font-display);
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
     color: var(--color-shuby-white);
     margin-bottom: var(--space-4);
 }
 
 .shuby-tappa-completed-description {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.6;
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
     color: var(--overlay-white-90);
     max-width: 300px;
 }
@@ -647,14 +647,14 @@
     color: var(--color-shuby-white);
 
     p {
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.6;
+        font-size: var(--font-size-p1);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-normal);
         color: var(--color-shuby-white);
         margin: 0;
     }
 
-    strong { font-weight: 600; }
+    strong { font-weight: var(--font-weight-semibold); }
 }
 
 /* Alternative: Blurred glass effect */
@@ -667,14 +667,14 @@
     color: var(--color-shuby-white);
 
     p {
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.6;
+        font-size: var(--font-size-p1);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-normal);
         color: var(--color-shuby-white);
         margin: 0;
     }
 
-    strong { font-weight: 600; }
+    strong { font-weight: var(--font-weight-semibold); }
 }
 
 /* =====================================================
@@ -697,9 +697,9 @@
 }
 
 .shuby-section-giallo-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-wide);
     text-transform: uppercase;
     color: var(--color-shuby-blue-800);
 }

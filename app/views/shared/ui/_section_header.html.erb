@@ -13,7 +13,7 @@
 
 <% if variant == "overline" %>
   <div class="flex items-center justify-between mb-3 <%= local_assigns[:class] %>">
-    <h2 class="shuby-overline text-gray-500 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider"><%= title %></h2>
+    <h2 class="shuby-overline-dark text-gray-500 dark:text-gray-400"><%= title %></h2>
     <% if link_path.present? %>
       <%= link_to link_path, class: "shuby-link-arrow shuby-link-arrow-sm" do %>
         <%= link_label %>
