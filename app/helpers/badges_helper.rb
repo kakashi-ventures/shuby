@@ -1,9 +1,6 @@
 module BadgesHelper
-  # <%= badge "Active", color: "bg-green-100 text-green-800" %>
-  # <%= badge color: "bg-green-100 text-green-800", data: {controller: "tooltip", tooltip_controller_value: "Hello"} do
-  #   <svg>...</svg>
-  #   Active
-  # <% end %>
+  # DEPRECATED: Prefer shuby_tag() from TagsHelper for design-system tags.
+  # This helper uses raw Tailwind classes outside the Shuby design system.
   def badge(text = nil, options = {}, &block)
     text, options = nil, text || {} if block
     base = options.delete(:base) || "rounded-sm py-0.5 px-2 text-xs inline-block font-semibold leading-normal mr-2"

@@ -25,7 +25,7 @@
   <%= link_to new_child_measurement_path(child, type: box.type), class: "shuby-tracking-card" do %>
     <div class="shuby-tracking-card-header">
       <div>
-        <span class="shuby-tag shuby-tag-yellow shuby-tag-sm mb-2"><%= t("measurements.card.update_badge") %></span>
+        <%= shuby_tag(t("measurements.card.update_badge"), variant: :yellow, size: :small, class: "mb-2") %>
         <span class="shuby-tracking-card-title block"><%= type_label %></span>
       </div>
       <span class="shuby-tracking-card-action">

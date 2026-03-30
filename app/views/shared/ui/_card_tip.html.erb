@@ -10,13 +10,9 @@
     <%= render "archive/favorite_button", content: content, favorited: local_assigns[:favorite_ids]&.include?(content.id) %>
     <div class="shuby-card-consigli-content">
       <div class="shuby-card-consigli-tags">
-        <span class="shuby-tag shuby-tag-giallo">
-          <span class="shuby-tag-icon">
-            <%= render_svg category_icon_for(content.category), size: :xs, decorative: true %>
-          </span>
-          <%= content.category.presence || t("archive.content_types.#{content.content_type}") %>
-        </span>
-        <span class="shuby-tag shuby-tag-light"><%= content.age_range_label %></span>
+        <%= shuby_tag(content.category.presence || t("archive.content_types.#{content.content_type}"),
+                      variant: :giallo, icon: category_icon_for(content.category)) %>
+        <%= shuby_tag(content.age_range_label, variant: :light) %>
       </div>
       <div class="shuby-card-consigli-body">
         <% if content.author.present? %>

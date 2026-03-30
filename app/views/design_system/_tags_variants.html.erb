@@ -1,78 +1,76 @@
+<%# All Figma tag variants rendered via shuby_tag() helper.
+  Data-driven: add a new hash to the array to add a variant. %>
+<% icon = "shuby/icons/icon-barefoot" %>
+
+<% normal_variants = [
+  { label: "Azzurro",       variant: :azzurro,      desc: "Info / Light Blue — #E5F2FF bg" },
+  { label: "Blu",           variant: :blu,          desc: "Primary / Dark Blue — #0159B5 bg" },
+  { label: "Fucsia",        variant: :fucsia,       desc: "Fucsia — #C500A2 bg" },
+  { label: "Giallo",        variant: :giallo,       desc: "Giallo / Light Yellow — #FFF7D4 bg" },
+  { label: "Giallo Scuro",  variant: :giallo_scuro, desc: "Giallo Scuro / Dark Yellow — #FFE882 bg" },
+  { label: "Verde",         variant: :verde,        desc: "Verde / Teal — #D1F8F9 bg" },
+  { label: "Grigio",        variant: :grigio,       desc: "Default / Gray — #F6F8FA bg" },
+  { label: "Bianco",        variant: :bianco,       desc: "Bianco / White bg" },
+] %>
+
+<% small_variants = [
+  { label: "Grigio",       variant: :grigio,       desc: "Small gray — #E2E5E8 bg" },
+  { label: "Giallo",       variant: :giallo,       desc: "Small light yellow" },
+  { label: "Fucsia",       variant: :fucsia,       desc: "Small fucsia" },
+  { label: "Verde",        variant: :verde,        desc: "Small verde" },
+  { label: "Trasparente",  variant: :trasparente,  desc: "Small transparent — no bg" },
+] %>
+
+<% extra_variants = [
+  { label: "Light",           variant: :light,           desc: "White with border" },
+  { label: "Outline",         variant: :outline,         desc: "Blue border only" },
+  { label: "Outline Magenta", variant: :outline_magenta, desc: "Magenta border only" },
+  { label: "Magenta",         variant: :magenta,         desc: "Magenta filled — #FD1EAF bg" },
+  { label: "Yellow",          variant: :yellow,          desc: "Yellow/Amber (warning)" },
+] %>
+
 <div class="shuby-card mb-6">
-  <p class="shuby-caption mb-4">Tag Variants with Footprint Icon</p>
+  <p class="shuby-caption mb-4">Figma Tag Variants — Normal Size (with Icon)</p>
+  <div class="space-y-3">
+    <% normal_variants.each do |v| %>
+      <div class="flex flex-wrap items-center gap-3">
+        <%= shuby_tag(v[:label], variant: v[:variant], icon: icon) %>
+        <%= shuby_tag(v[:label], variant: v[:variant]) %>
+        <p class="shuby-caption self-center"><%= v[:desc] %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-  <div class="space-y-4">
-    <!-- Row 1: Default/Light tags -->
-    <div class="flex flex-wrap gap-3">
-      <span class="shuby-tag shuby-tag-default">
-        <span class="shuby-tag-icon"><%= ds_footprint_icon_svg %></span>
-        Tag
-      </span>
-      <span class="shuby-tag shuby-tag-light">
-        <span class="shuby-tag-icon"><%= ds_footprint_icon_svg %></span>
-        Tag
-      </span>
-      <span class="shuby-tag shuby-tag-outline">
-        <span class="shuby-tag-icon"><%= ds_footprint_icon_svg %></span>
-        Tag
-      </span>
-    </div>
+<div class="shuby-card mb-6">
+  <p class="shuby-caption mb-4">Figma Tag Variants — Small Size</p>
+  <div class="space-y-3">
+    <% small_variants.each do |v| %>
+      <div class="flex flex-wrap items-center gap-3">
+        <%= shuby_tag(v[:label], variant: v[:variant], size: :small) %>
+        <p class="shuby-caption self-center"><%= v[:desc] %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-    <!-- Row 2: Primary Blue -->
-    <div class="flex flex-wrap gap-3">
-      <span class="shuby-tag shuby-tag-primary">
-        <span class="shuby-tag-icon"><%= ds_footprint_icon_svg %></span>
-        Tag
-      </span>
-      <p class="shuby-p2 self-center">Primary Blue - #0159B5</p>
-    </div>
+<div class="shuby-card mb-6">
+  <p class="shuby-caption mb-4">Additional Variants (beyond Figma named set)</p>
+  <div class="space-y-3">
+    <% extra_variants.each do |v| %>
+      <div class="flex flex-wrap items-center gap-3">
+        <%= shuby_tag(v[:label], variant: v[:variant], icon: icon) %>
+        <%= shuby_tag(v[:label], variant: v[:variant]) %>
+        <p class="shuby-caption self-center"><%= v[:desc] %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-    <!-- Row 3: Magenta -->
-    <div class="flex flex-wrap gap-3">
-      <span class="shuby-tag shuby-tag-magenta">
-        <span class="shuby-tag-icon"><%= ds_footprint_icon_svg %></span>
-        Tag
-      </span>
-      <p class="shuby-p2 self-center">Magenta - #FD1EAF</p>
-    </div>
-
-    <!-- Row 4: Info (Light Blue) -->
-    <div class="flex flex-wrap gap-3">
-      <span class="shuby-tag shuby-tag-info">
-        <span class="shuby-tag-icon"><%= ds_footprint_icon_svg %></span>
-        Tag
-      </span>
-      <p class="shuby-p2 self-center">Info (Light Blue) - #D4EDFF bg</p>
-    </div>
-
-    <!-- Row 5: Yellow/Amber -->
-    <div class="flex flex-wrap gap-3">
-      <span class="shuby-tag shuby-tag-yellow">
-        <span class="shuby-tag-icon"><%= ds_footprint_icon_svg %></span>
-        Tag
-      </span>
-      <p class="shuby-p2 self-center">Yellow/Amber (Warning) - #F39C12</p>
-    </div>
-
-    <!-- Row 6: Giallo (Figma bright yellow) -->
-    <div class="flex flex-wrap gap-3">
-      <span class="shuby-tag shuby-tag-giallo">
-        <span class="shuby-tag-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
-          </svg>
-        </span>
-        Lettura
-      </span>
-      <span class="shuby-tag shuby-tag-giallo">
-        <span class="shuby-tag-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 12h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/>
-          </svg>
-        </span>
-        Giochi
-      </span>
-      <p class="shuby-p2 self-center">Giallo (Figma yellow) - #FFE882</p>
-    </div>
+<div class="shuby-card mb-6">
+  <p class="shuby-caption mb-4">Interactive States</p>
+  <div class="flex flex-wrap gap-3">
+    <%= shuby_tag("Clickable", variant: :azzurro, icon: icon, clickable: true) %>
+    <%= shuby_tag("Selected", variant: :azzurro, icon: icon, selected: true) %>
   </div>
 </div>

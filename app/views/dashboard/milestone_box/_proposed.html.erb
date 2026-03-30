@@ -4,13 +4,9 @@
     <%# Tags row %>
     <div class="flex items-center gap-2 px-4 pt-4">
       <%# Type tag %>
-      <span class="shuby-badge shuby-badge-info">
-        <%= t("dashboard.milestone_box.type_tag") %>
-      </span>
+      <%= shuby_tag(t("dashboard.milestone_box.type_tag"), variant: :azzurro, size: :small) %>
       <%# Age tag %>
-      <span class="shuby-badge shuby-badge-primary">
-        <%= milestone.age_band_label %>
-      </span>
+      <%= shuby_tag(milestone.age_band_label, variant: :blu, size: :small) %>
     </div>
 
     <%# Content with illustration %>

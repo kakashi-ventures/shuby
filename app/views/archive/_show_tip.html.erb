@@ -1,13 +1,9 @@
 <div class="px-4 py-6">
   <div class="bg-shuby-giallo-400 rounded-lg p-6 mb-6">
     <div class="flex flex-wrap gap-2 mb-4">
-      <span class="shuby-tag shuby-tag-giallo">
-        <%= render_svg category_icon_for(content.category), size: :xs, styles: "inline mr-1", decorative: true %>
-        <%= content.category.presence || t("archive.content_types.tip") %>
-      </span>
-      <span class="shuby-tag shuby-tag-light">
-        <%= content.age_range_label %>
-      </span>
+      <%= shuby_tag(content.category.presence || t("archive.content_types.tip"),
+                    variant: :giallo, icon: category_icon_for(content.category)) %>
+      <%= shuby_tag(content.age_range_label, variant: :light) %>
     </div>
     <h1 class="shuby-h2 text-shuby-blue-800"><%= content.title %></h1>
     <% if content.duration_minutes.present? %>

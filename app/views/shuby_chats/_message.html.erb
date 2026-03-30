@@ -29,9 +29,8 @@
         <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">📚 <%= t("shuby_chats.message.sources") %></p>
         <div class="flex flex-wrap gap-1">
           <% message.citations.uniq { |c| c[:file_name] || c["file_name"] }.each do |citation| %>
-            <span class="inline-flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded">
-              <%= citation[:file_name] || citation["file_name"] || t("shuby_chats.message.document") %>
-            </span>
+            <%= shuby_tag(citation[:file_name] || citation["file_name"] || t("shuby_chats.message.document"),
+                         variant: :grigio, size: :small) %>
           <% end %>
         </div>
       </div>

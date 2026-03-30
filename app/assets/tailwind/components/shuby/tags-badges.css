@@ -53,15 +53,15 @@
    Based on Figma screenshot: pill-shaped tags with footprint icon
    ===================================================== */
 
-/* Base tag styles */
+/* Base tag styles (Figma: 10px Montserrat Semi Bold, pill-shaped) */
 .shuby-tag {
     display: inline-flex;
     align-items: center;
     gap: var(--space-1);
-    padding: 6px var(--space-3);
-    font-size: 13px;
+    padding: var(--space-1) var(--space-2);
+    font-size: 10px;
     font-weight: 600;
-    line-height: 18px;
+    line-height: 1.5;
     border-radius: var(--radius-full);
     white-space: nowrap;
     transition: all 0.2s ease;
@@ -128,12 +128,52 @@
     .shuby-tag-icon { color: var(--color-shuby-gray-600); }
 }
 
-/* Giallo tag (Figma: Colori/Giallo 500 - bright yellow) */
+/* Giallo tag (Figma: Giallo - light yellow #FFF7D4) */
 .shuby-tag-giallo {
+    background-color: var(--color-shuby-giallo-400);
+    color: var(--color-shuby-blue-800);
+
+    .shuby-tag-icon { color: var(--color-shuby-blue-800); }
+}
+
+/* Giallo Scuro tag (Figma: Giallo Scuro - dark yellow #FFE882) */
+.shuby-tag-giallo-scuro {
     background-color: var(--color-shuby-giallo-500);
     color: var(--color-shuby-blue-800);
 
     .shuby-tag-icon { color: var(--color-shuby-blue-800); }
+}
+
+/* Fucsia tag (Figma: Fucsia - #C500A2) */
+.shuby-tag-fucsia {
+    background-color: var(--color-shuby-fucsia-500);
+    color: var(--color-shuby-white);
+
+    .shuby-tag-icon { color: var(--color-shuby-white); }
+}
+
+/* Verde tag (Figma: Verde - teal #D1F8F9) */
+.shuby-tag-verde {
+    background-color: var(--color-shuby-verde-200);
+    color: var(--color-shuby-blue-800);
+
+    .shuby-tag-icon { color: var(--color-shuby-blue-800); }
+}
+
+/* Bianco tag (Figma: Bianco - white bg) */
+.shuby-tag-bianco {
+    background-color: var(--color-shuby-white);
+    color: var(--color-shuby-blue-800);
+
+    .shuby-tag-icon { color: var(--color-shuby-blue-800); }
+}
+
+/* Transparent tag (Figma: Trasparente - no bg) */
+.shuby-tag-transparent {
+    background-color: transparent;
+    color: var(--color-shuby-gray-800);
+
+    .shuby-tag-icon { color: var(--color-shuby-gray-800); }
 }
 
 /* Outline tag - Border only */
@@ -167,12 +207,20 @@
     height: 14px;
 }
 
+/* Small variant override: gray uses darker bg (Figma: #E2E5E8) */
+.shuby-tag-sm.shuby-tag-default {
+    background-color: var(--color-shuby-gray-500);
+}
+
 /* Tag interactive state (for clickable/selectable tags) */
 .shuby-tag-clickable {
     cursor: pointer;
 
-    &:active { opacity: 0.85; }
-    &:active { transform: scale(0.98); }
+    &:active {
+        opacity: 0.85;
+        transform: scale(0.98);
+        color: var(--color-shuby-fucsia-500);
+    }
 }
 
 /* Tag selected state */

@@ -1,29 +1,60 @@
-<!-- Tag Details -->
+<!-- Tag Component Details -->
 <div class="shuby-card">
-  <h3 class="shuby-h3 mb-4">Tag Component Details</h3>
+  <h3 class="shuby-h3 mb-4">Tag Component — shuby_tag() Helper</h3>
   <div class="grid md:grid-cols-2 gap-6">
     <div>
-      <p class="shuby-caption mb-2">Variants</p>
+      <p class="shuby-caption mb-2">Helper API</p>
+      <pre class="shuby-p2 bg-gray-50 rounded-lg p-3 text-xs leading-relaxed overflow-x-auto"><code>shuby_tag(label,
+  variant: :default,  # colore
+  size: :normal,      # :normal | :small
+  icon: nil,          # SVG name for render_svg
+  clickable: false,   # adds tap state
+  selected: false,    # selected state
+  **html_options)     # extra classes, data-*</code></pre>
+    </div>
+    <div>
+      <p class="shuby-caption mb-2">Figma Variants (Italian → CSS)</p>
       <ul class="shuby-p2 space-y-1">
-        <li><code>.shuby-tag-default</code> - Gray background</li>
-        <li><code>.shuby-tag-light</code> - White with border</li>
-        <li><code>.shuby-tag-primary</code> - Blue filled</li>
-        <li><code>.shuby-tag-magenta</code> - Magenta filled</li>
-        <li><code>.shuby-tag-info</code> - Light blue background</li>
-        <li><code>.shuby-tag-yellow</code> - Yellow/Amber (warning)</li>
-        <li><code>.shuby-tag-giallo</code> - Giallo 500 (Figma yellow)</li>
-        <li><code>.shuby-tag-outline</code> - Blue border only</li>
+        <li><code>:azzurro</code> → <code>.shuby-tag-info</code></li>
+        <li><code>:blu</code> → <code>.shuby-tag-primary</code></li>
+        <li><code>:fucsia</code> → <code>.shuby-tag-fucsia</code></li>
+        <li><code>:giallo</code> → <code>.shuby-tag-giallo</code></li>
+        <li><code>:giallo_scuro</code> → <code>.shuby-tag-giallo-scuro</code></li>
+        <li><code>:verde</code> → <code>.shuby-tag-verde</code></li>
+        <li><code>:grigio</code> → <code>.shuby-tag-default</code></li>
+        <li><code>:bianco</code> → <code>.shuby-tag-bianco</code></li>
+        <li><code>:trasparente</code> → <code>.shuby-tag-transparent</code></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-6 mt-6">
+    <div>
+      <p class="shuby-caption mb-2">Extra Variants (CSS names)</p>
+      <ul class="shuby-p2 space-y-1">
+        <li><code>:light</code> — White with border</li>
+        <li><code>:magenta</code> — Magenta filled</li>
+        <li><code>:yellow</code> — Amber/warning</li>
+        <li><code>:outline</code> — Blue border only</li>
+        <li><code>:outline_magenta</code> — Magenta border only</li>
       </ul>
     </div>
     <div>
-      <p class="shuby-caption mb-2">Structure</p>
+      <p class="shuby-caption mb-2">Modifiers</p>
       <ul class="shuby-p2 space-y-1">
-        <li><code>.shuby-tag</code> - Base tag class</li>
-        <li><code>.shuby-tag-icon</code> - Icon wrapper (16x16px)</li>
-        <li><code>.shuby-tag-sm</code> - Small size variant</li>
-        <li><code>.shuby-tag-clickable</code> - Interactive hover</li>
-        <li><code>.selected</code> - Selected state (magenta)</li>
+        <li><code>size: :small</code> — Compact 14px height</li>
+        <li><code>icon: "path"</code> — Prepends 16×16 icon</li>
+        <li><code>clickable: true</code> — Tap state (fucsia text)</li>
+        <li><code>selected: true</code> — Magenta selected state</li>
+        <li><code>class: "mb-2"</code> — Extra CSS classes</li>
       </ul>
     </div>
+  </div>
+
+  <div class="mt-6">
+    <p class="shuby-caption mb-2">Usage Examples</p>
+    <pre class="shuby-p2 bg-gray-50 rounded-lg p-3 text-xs leading-relaxed overflow-x-auto"><code>&lt;%= shuby_tag("Lettura", variant: :giallo, icon: "shuby/icons/icon-book") %&gt;
+&lt;%= shuby_tag("3-6 mesi", variant: :azzurro, size: :small) %&gt;
+&lt;%= shuby_tag("Attività", variant: :verde, clickable: true) %&gt;</code></pre>
   </div>
 </div>

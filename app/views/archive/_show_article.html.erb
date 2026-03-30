@@ -6,17 +6,10 @@
   <% end %>
   <div class="space-y-3">
     <div class="flex flex-wrap gap-2">
-      <span class="shuby-tag shuby-tag-info">
-        <%= content.category %>
-      </span>
-      <span class="shuby-tag shuby-tag-default">
-        <%= content.age_range_label %>
-      </span>
+      <%= shuby_tag(content.category, variant: :azzurro) %>
+      <%= shuby_tag(content.age_range_label, variant: :grigio) %>
       <% if content.duration_minutes %>
-        <span class="shuby-tag shuby-tag-default">
-          <%= render_svg "shuby/icons/icon-alarm", styles: "w-3 h-3 inline mr-1" %>
-          <%= content.duration_label %>
-        </span>
+        <%= shuby_tag(content.duration_label, variant: :grigio, icon: "shuby/icons/icon-alarm") %>
       <% end %>
     </div>
     <h1 class="shuby-h2 text-shuby-blue-800"><%= content.title %></h1>

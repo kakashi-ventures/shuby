@@ -5,14 +5,10 @@
   <div class="space-y-4">
     <% responses.each do |response| %>
       <div class="flex items-start gap-3 pb-4 border-b border-gray-100 last:border-0 last:pb-0">
-        <% badge_class = case response.answer
-             when "si" then "bg-green-100 text-green-700"
-             when "no" then "bg-red-100 text-red-700"
-             else "bg-gray-100 text-gray-500"
-           end %>
-        <span class="flex-shrink-0 px-2 py-1 rounded text-xs font-medium <%= badge_class %>">
-          <%= t("answer_#{response.answer}", scope: scope) %>
-        </span>
+        <%= shuby_tag(t("answer_#{response.answer}", scope: scope),
+                     variant: answer_tag_variant(response.answer),
+                     size: :small,
+                     class: "flex-shrink-0") %>
         <p class="shuby-p2"><%= response.question.prompt %></p>
       </div>
     <% end %>

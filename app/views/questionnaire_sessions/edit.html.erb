@@ -44,14 +44,8 @@
 
         <%# Answer (disabled, display only) %>
         <div class="mb-4">
-          <% badge_class = case response.answer
-               when "si" then "bg-green-100 text-green-700"
-               when "no" then "bg-red-100 text-red-700"
-               else "bg-gray-100 text-gray-500"
-             end %>
-          <span class="inline-flex px-3 py-1 rounded-full text-sm font-medium <%= badge_class %>">
-            <%= t("questionnaire_sessions.show.answer_#{response.answer}") %>
-          </span>
+          <%= shuby_tag(t("questionnaire_sessions.show.answer_#{response.answer}"),
+                       variant: answer_tag_variant(response.answer)) %>
           <p class="shuby-caption text-gray-500 mt-2">
             <%= t(".answer_locked") %>
           </p>

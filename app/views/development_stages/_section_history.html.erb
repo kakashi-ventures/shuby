@@ -17,9 +17,7 @@
               </p>
             </div>
             <% if session.needs_attention? %>
-              <span class="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs rounded-full">
-                <%= t("attention", scope: scope) %>
-              </span>
+              <%= shuby_tag(t("attention", scope: scope), variant: :giallo, size: :small) %>
             <% end %>
           </div>
         <% end %>

@@ -60,16 +60,11 @@
       <div class="shuby-card-article-content">
         <div class="shuby-card-article-tags">
           <% if content.category.present? %>
-            <span class="shuby-tag shuby-tag-info">
-              <span class="shuby-tag-icon">
-                <%= render_svg category_icon_for(content.category), styles: "w-3 h-3" %>
-              </span>
-              <%= content.category %>
-            </span>
+            <%= shuby_tag(content.category, variant: :azzurro, icon: category_icon_for(content.category)) %>
           <% end %>
-          <span class="shuby-tag shuby-tag-default"><%= content.age_range_label %></span>
+          <%= shuby_tag(content.age_range_label, variant: :grigio) %>
           <% if content.duration_minutes.present? %>
-            <span class="shuby-tag shuby-tag-light"><%= content.duration_label %></span>
+            <%= shuby_tag(content.duration_label, variant: :light) %>
           <% end %>
         </div>
         <p class="shuby-card-article-title"><%= content.title %></p>
