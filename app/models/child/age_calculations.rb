@@ -125,9 +125,8 @@ module Child::AgeCalculations
   end
 
   def current_age_band
-    months = [questionnaire_age_in_months, 36].min
-    AgeBandQuestionnaire::CLINICAL_BANDS.find { |b| months >= b[:min] && months < b[:max] } ||
-      AgeBandQuestionnaire::CLINICAL_BANDS.last
+    age = [questionnaire_age_in_months, 36].min
+    AgeBandQuestionnaire.for_age(age).first
   end
 
   private

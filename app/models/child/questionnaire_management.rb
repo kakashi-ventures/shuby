@@ -35,10 +35,10 @@ module Child::QuestionnaireManagement
   end
 
   def active_questionnaire_session
-    band = current_age_band
+    age = [questionnaire_age_in_months, 36].min
     questionnaire_sessions
       .joins(:age_band_questionnaire)
-      .where(age_band_questionnaires: {min_age_months: band[:min]})
+      .where("age_band_questionnaires.min_age_months <= ? AND age_band_questionnaires.max_age_months > ?", age, age)
       .where(status: :in_progress)
       .first
   end

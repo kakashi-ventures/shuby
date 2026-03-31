@@ -51,6 +51,7 @@ class DevelopmentStagesController < ApplicationController
     @child_age_months = @child.questionnaire_age_in_months
     @age_bands = Timeline::AgeBands::ALL
     @current_band = Timeline::AgeBands.for_child_age(@child_age_months)
+    @current_band_questionnaire = AgeBandQuestionnaire.for_age([@child_age_months, 36].min).first
     @selected_band = if params[:band].present?
       Timeline::AgeBands.find_by_key(params[:band]) || @current_band
     else
@@ -101,9 +102,14 @@ class DevelopmentStagesController < ApplicationController
   end
 
   def timeline_age_relationship(band_age)
-    if band_age < @child_age_months
+    return :current unless @current_band_questionnaire
+
+    selected_q = AgeBandQuestionnaire.for_age(band_age.clamp(0, 36)).first
+    return :current unless selected_q
+
+    if selected_q.min_age_months < @current_band_questionnaire.min_age_months
       :past
-    elsif band_age == @child_age_months
+    elsif selected_q.min_age_months == @current_band_questionnaire.min_age_months
       :current
     else
       :future

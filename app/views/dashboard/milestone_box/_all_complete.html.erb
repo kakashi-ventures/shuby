@@ -14,7 +14,7 @@
         <%= t("dashboard.milestone_box.all_complete_title") %>
       </h3>
       <p class="text-gray-700 text-xs">
-        <%= t("dashboard.milestone_box.all_complete_subtitle", band: child.current_age_band[:label]) %>
+        <%= t("dashboard.milestone_box.all_complete_subtitle", band: child.current_age_band&.label) %>
       </p>
     </div>
   </div>

@@ -37,6 +37,11 @@ class Timeline::AgeBandsTest < ActiveSupport::TestCase
     assert_equal "Sett.", band[:label_type]
   end
 
+  test "for_child_age(2) returns Mese 3 not Sett 8" do
+    band = Timeline::AgeBands.for_child_age(2)
+    assert_equal "mese_3", band[:key]
+  end
+
   test "for_child_age returns month pill for age 6" do
     band = Timeline::AgeBands.for_child_age(6)
     assert_equal "mese_6", band[:key]

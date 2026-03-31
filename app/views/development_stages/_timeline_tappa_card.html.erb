@@ -12,7 +12,8 @@
 
 <% if is_interactive %>
   <%= link_to child_development_stage_path(child, area.slug),
-      class: "block #{bg_class} hover:opacity-90 transition-opacity" do %>
+      class: "block #{bg_class} hover:opacity-90 transition-opacity",
+      data: { turbo_frame: "_top" } do %>
     <%= render "development_stages/timeline_tappa_card_content",
                area: area, session: session,
                age_relationship: age_relationship, is_completed: is_completed %>

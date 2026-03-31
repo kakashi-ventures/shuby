@@ -122,7 +122,7 @@ class QuestionnaireSession < ApplicationRecord
   private
 
   def snapshot_metadata
-    self.child_age_months ||= child.age_in_months
+    self.child_age_months ||= child.questionnaire_age_in_months
     self.questionnaire_version ||= age_band_questionnaire.version
   end
 end

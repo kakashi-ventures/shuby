@@ -37,24 +37,23 @@ class AgeBandQuestionnairTest < ActiveSupport::TestCase
     assert questionnaire.errors[:max_age_months].any?
   end
 
-  test "age_band_label returns clinical band label" do
-    assert_equal "1° Mese",     age_band_questionnaires(:comunicazione_mese_1).age_band_label
-    assert_equal "3° Mese",     age_band_questionnaires(:comunicazione_mese_3).age_band_label
+  test "age_band_label returns label column value" do
+    assert_equal "1° Mese", age_band_questionnaires(:comunicazione_mese_1).age_band_label
+    assert_equal "3° Mese", age_band_questionnaires(:comunicazione_mese_3).age_band_label
     assert_equal "18-24° Mesi", age_band_questionnaires(:comunicazione_mese_18).age_band_label
-    assert_equal "36° Mese",    age_band_questionnaires(:comunicazione_mese_36).age_band_label
+    assert_equal "36° Mese", age_band_questionnaires(:comunicazione_mese_36).age_band_label
+  end
+
+  test "label column is present and non-blank on all fixtures" do
+    AgeBandQuestionnaire.find_each do |q|
+      assert q.label.present?, "Expected label to be present for AgeBandQuestionnaire id=#{q.id}"
+    end
   end
 
   test "active_questions returns only active questions" do
     questionnaire = age_band_questionnaires(:comunicazione_mese_1)
     active_questions = questionnaire.active_questions
     assert active_questions.all?(&:active?)
-  end
-
-  test "CLINICAL_BANDS covers all ages 0 through 36 without gaps" do
-    (0..36).each do |month|
-      band = AgeBandQuestionnaire::CLINICAL_BANDS.find { |b| month >= b[:min] && month < b[:max] }
-      assert band, "No clinical band covers month #{month}"
-    end
   end
 
   test "for_age scope returns correct clinical band" do

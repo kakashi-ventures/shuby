@@ -115,7 +115,17 @@ questions_created = 0
 
 monthly_by_month = data["questionari_mensili"].index_by { |m| m["mese"] }
 
-AgeBandQuestionnaire::CLINICAL_BANDS.each_with_index do |band, position|
+BAND_DEFINITIONS = [
+  {min: 0, max: 2, label: "1° Mese", representative_month: 1, position: 0},
+  {min: 2, max: 5, label: "3° Mese", representative_month: 3, position: 1},
+  {min: 5, max: 8, label: "6° Mese", representative_month: 6, position: 2},
+  {min: 8, max: 11, label: "9° Mese", representative_month: 9, position: 3},
+  {min: 11, max: 18, label: "12° Mese", representative_month: 12, position: 4},
+  {min: 18, max: 36, label: "18-24° Mesi", representative_month: 18, position: 5},
+  {min: 36, max: 37, label: "36° Mese", representative_month: 36, position: 6}
+].freeze
+
+BAND_DEFINITIONS.each do |band|
   month_data = monthly_by_month[band[:representative_month]]
   next unless month_data
 
@@ -131,10 +141,12 @@ AgeBandQuestionnaire::CLINICAL_BANDS.each_with_index do |band, position|
       min_age_months: band[:min]
     ) do |q|
       q.max_age_months = band[:max]
-      q.position = position
+      q.label = band[:label]
+      q.position = band[:position]
       q.title = "#{area_data["titolo"]} - #{band[:label]}"
     end
 
+    questionnaire.update!(label: band[:label]) unless questionnaire.previously_new_record?
     questionnaires_created += 1 if questionnaire.previously_new_record?
 
     # Create questions for this questionnaire

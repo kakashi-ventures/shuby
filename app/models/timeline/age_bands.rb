@@ -48,7 +48,7 @@ module Timeline
         end
         ALL[week_index]
       elsif clamped == 2
-        ALL[7] # Sett. 8 — closest pill before Mese 3
+        MONTHS.first # Mese 3 — first monthly pill; covers the same 2–5 DB band as age 2
       else
         ALL.find { |band| band[:key] == "mese_#{clamped}" } || ALL.last
       end

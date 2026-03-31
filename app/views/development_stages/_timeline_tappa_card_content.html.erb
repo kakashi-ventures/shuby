@@ -1,24 +1,35 @@
 <div class="shuby-milestone-card-content">
-  <div class="shuby-milestone-card-meta">
-    <% if is_completed %>
+  <% if is_completed %>
+    <div class="shuby-milestone-card-completed-meta">
       <%= shuby_tag("Completata", variant: :verde, size: :small) %>
       <% if session.completed_at %>
         <span class="shuby-milestone-card-completed-date">
           <%= l(session.completed_at, format: :short) %>
         </span>
       <% end %>
-    <% elsif age_relationship == :future %>
+    </div>
+  <% elsif age_relationship == :current %>
+    <div class="shuby-milestone-card-time">
+      <span class="shuby-milestone-card-time-icon">
+        <%= render_svg "shuby/icons/icon-alarm", decorative: true %>
+      </span>
+      2 min
+    </div>
+  <% elsif age_relationship == :future %>
+    <div class="shuby-milestone-card-meta">
       <%= shuby_tag(t("timeline.show.tappa_futura"), variant: :grigio, size: :small) %>
-    <% elsif age_relationship == :past %>
+    </div>
+  <% elsif age_relationship == :past %>
+    <div class="shuby-milestone-card-meta">
       <%= shuby_tag(t("timeline.show.tappa_passata"), variant: :grigio, size: :small) %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
   <span class="shuby-milestone-card-title"><%= area.name %></span>
 </div>
 
 <% if age_relationship == :current && !is_completed %>
   <div class="shuby-milestone-card-action">
-    <%= render_svg "shuby/icons/icon-chevron-right", size: :sm, decorative: true %>
+    <%= render_svg "shuby/icons/icon-arrow-right", size: :sm, decorative: true %>
   </div>
 <% elsif is_completed && age_relationship == :current %>
   <div class="shuby-milestone-card-action">

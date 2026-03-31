@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # 7 clinical bands × 5 development areas = 35 fixtures
-# Mirrors AgeBandQuestionnaire::CLINICAL_BANDS
 # Naming: {area}_{band_key} where band_key matches the representative checkpoint
 
 # =============================================================================
@@ -11,30 +10,35 @@ comunicazione_mese_1:
   development_area: comunicazione
   min_age_months: 0
   max_age_months: 2
+  label: "1° Mese"
   position: 0
 
 motricita_mese_1:
   development_area: motricita
   min_age_months: 0
   max_age_months: 2
+  label: "1° Mese"
   position: 0
 
 cognizione_mese_1:
   development_area: cognizione
   min_age_months: 0
   max_age_months: 2
+  label: "1° Mese"
   position: 0
 
 relazione_mese_1:
   development_area: relazione
   min_age_months: 0
   max_age_months: 2
+  label: "1° Mese"
   position: 0
 
 consolidamento_mese_1:
   development_area: consolidamento
   min_age_months: 0
   max_age_months: 2
+  label: "1° Mese"
   position: 0
 
 # =============================================================================
@@ -44,30 +48,35 @@ comunicazione_mese_3:
   development_area: comunicazione
   min_age_months: 2
   max_age_months: 5
+  label: "3° Mese"
   position: 1
 
 motricita_mese_3:
   development_area: motricita
   min_age_months: 2
   max_age_months: 5
+  label: "3° Mese"
   position: 1
 
 cognizione_mese_3:
   development_area: cognizione
   min_age_months: 2
   max_age_months: 5
+  label: "3° Mese"
   position: 1
 
 relazione_mese_3:
   development_area: relazione
   min_age_months: 2
   max_age_months: 5
+  label: "3° Mese"
   position: 1
 
 consolidamento_mese_3:
   development_area: consolidamento
   min_age_months: 2
   max_age_months: 5
+  label: "3° Mese"
   position: 1
 
 # =============================================================================
@@ -77,30 +86,35 @@ comunicazione_mese_6:
   development_area: comunicazione
   min_age_months: 5
   max_age_months: 8
+  label: "6° Mese"
   position: 2
 
 motricita_mese_6:
   development_area: motricita
   min_age_months: 5
   max_age_months: 8
+  label: "6° Mese"
   position: 2
 
 cognizione_mese_6:
   development_area: cognizione
   min_age_months: 5
   max_age_months: 8
+  label: "6° Mese"
   position: 2
 
 relazione_mese_6:
   development_area: relazione
   min_age_months: 5
   max_age_months: 8
+  label: "6° Mese"
   position: 2
 
 consolidamento_mese_6:
   development_area: consolidamento
   min_age_months: 5
   max_age_months: 8
+  label: "6° Mese"
   position: 2
 
 # =============================================================================
@@ -110,30 +124,35 @@ comunicazione_mese_9:
   development_area: comunicazione
   min_age_months: 8
   max_age_months: 11
+  label: "9° Mese"
   position: 3
 
 motricita_mese_9:
   development_area: motricita
   min_age_months: 8
   max_age_months: 11
+  label: "9° Mese"
   position: 3
 
 cognizione_mese_9:
   development_area: cognizione
   min_age_months: 8
   max_age_months: 11
+  label: "9° Mese"
   position: 3
 
 relazione_mese_9:
   development_area: relazione
   min_age_months: 8
   max_age_months: 11
+  label: "9° Mese"
   position: 3
 
 consolidamento_mese_9:
   development_area: consolidamento
   min_age_months: 8
   max_age_months: 11
+  label: "9° Mese"
   position: 3
 
 # =============================================================================
@@ -143,30 +162,35 @@ comunicazione_mese_12:
   development_area: comunicazione
   min_age_months: 11
   max_age_months: 18
+  label: "12° Mese"
   position: 4
 
 motricita_mese_12:
   development_area: motricita
   min_age_months: 11
   max_age_months: 18
+  label: "12° Mese"
   position: 4
 
 cognizione_mese_12:
   development_area: cognizione
   min_age_months: 11
   max_age_months: 18
+  label: "12° Mese"
   position: 4
 
 relazione_mese_12:
   development_area: relazione
   min_age_months: 11
   max_age_months: 18
+  label: "12° Mese"
   position: 4
 
 consolidamento_mese_12:
   development_area: consolidamento
   min_age_months: 11
   max_age_months: 18
+  label: "12° Mese"
   position: 4
 
 # =============================================================================
@@ -176,30 +200,35 @@ comunicazione_mese_18:
   development_area: comunicazione
   min_age_months: 18
   max_age_months: 36
+  label: "18-24° Mesi"
   position: 5
 
 motricita_mese_18:
   development_area: motricita
   min_age_months: 18
   max_age_months: 36
+  label: "18-24° Mesi"
   position: 5
 
 cognizione_mese_18:
   development_area: cognizione
   min_age_months: 18
   max_age_months: 36
+  label: "18-24° Mesi"
   position: 5
 
 relazione_mese_18:
   development_area: relazione
   min_age_months: 18
   max_age_months: 36
+  label: "18-24° Mesi"
   position: 5
 
 consolidamento_mese_18:
   development_area: consolidamento
   min_age_months: 18
   max_age_months: 36
+  label: "18-24° Mesi"
   position: 5
 
 # =============================================================================
@@ -209,28 +238,33 @@ comunicazione_mese_36:
   development_area: comunicazione
   min_age_months: 36
   max_age_months: 37
+  label: "36° Mese"
   position: 6
 
 motricita_mese_36:
   development_area: motricita
   min_age_months: 36
   max_age_months: 37
+  label: "36° Mese"
   position: 6
 
 cognizione_mese_36:
   development_area: cognizione
   min_age_months: 36
   max_age_months: 37
+  label: "36° Mese"
   position: 6
 
 relazione_mese_36:
   development_area: relazione
   min_age_months: 36
   max_age_months: 37
+  label: "36° Mese"
   position: 6
 
 consolidamento_mese_36:
   development_area: consolidamento
   min_age_months: 36
   max_age_months: 37
+  label: "36° Mese"
   position: 6
