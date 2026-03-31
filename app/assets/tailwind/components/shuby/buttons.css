@@ -18,7 +18,7 @@
     justify-content: center;
     gap: var(--space-2);
     font-weight: var(--font-weight-semibold);
-    border-radius: 999px;
+    border-radius: var(--radius-full);
     transition: all 0.2s ease;
     cursor: pointer;
     border: none;
@@ -234,7 +234,7 @@
     font-size: var(--font-size-p2);
     font-weight: var(--font-weight-medium);
     padding: var(--space-1, 4px) var(--space-3, 12px);
-    border-radius: var(--radius-full, 999px);
+    border-radius: var(--radius-full);
     border: 1px solid var(--color-shuby-gray-500);
     color: var(--color-shuby-gray-600);
     background: var(--color-shuby-white);

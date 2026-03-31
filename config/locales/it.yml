@@ -714,6 +714,27 @@ it:
     gestational_age:
       weeks_and_days: "%{weeks} settimane e %{days} giorni"
 
+  timeline:
+    show:
+      title: "Timeline"
+      back: "Dashboard"
+      growth_phase_title: "Fase di crescita"
+      no_growth_phase: "Informazioni non ancora disponibili per questa fascia d'età."
+      measurements_title: "Misure medie"
+      measurements_subtitle: "Valori di riferimento WHO"
+      no_sex_data: "Seleziona il sesso del bambino per vedere i valori di riferimento."
+      weight: "Peso"
+      height: "Altezza"
+      head_circumference: "Circ. Cranica"
+      development_stages_title: "Tappe di Sviluppo"
+      completed_count: "Completate %{completed}/%{total}"
+      tappa_futura: "Tappa futura"
+      tappa_completata: "Completata"
+      tappa_passata: "Tappa passata"
+      tappa_non_completata: "Non completata"
+      start: "Inizia"
+      continue: "Continua"
+
   development_stages:
     title: "Tappe di Sviluppo"
     subtitle: "Monitora le tappe di sviluppo del tuo bambino"
@@ -726,7 +747,8 @@ it:
 
     index:
       title: "Tappe di Sviluppo - %{name}"
-      title_short: "Tappe di Sviluppo"
+      title_short: "Timeline"
+      back: "Dashboard"
       current_band: "Fascia d'età: %{band}"
       completed: "Completato"
       in_progress: "In corso"

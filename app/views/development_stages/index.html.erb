@@ -1,61 +1,47 @@
 <% content_for :title, t(".title", name: @child.name) %>
 
-<div class="container px-4 mx-auto my-8 pb-24">
-  <%# Back link %>
-  <div class="mb-6">
-    <%= link_to child_path(@child), class: "inline-flex items-center shuby-caption hover:text-primary-600" do %>
-      <%= render_svg "shuby/icons/icon-chevron-left", size: :sm, styles: "mr-1", decorative: true %>
-      <%= @child.name %>
-    <% end %>
-  </div>
+<div class="min-h-screen bg-white w-full"
+     data-controller="timeline-carousel"
+     data-timeline-carousel-current-band-key-value="<%= @current_band[:key] %>"
+     data-timeline-carousel-content-url-value="<%= timeline_content_child_development_stages_path(@child) %>">
 
   <%# Header %>
-  <div class="mb-6">
-    <h1 class="shuby-h3"><%= t(".title_short") %></h1>
-    <p class="shuby-p2"><%= t(".current_band", band: @current_band[:label]) %></p>
-  </div>
+  <div class="flex items-center justify-between px-4 py-3">
+    <%= link_to user_root_path, class: "inline-flex items-center shuby-caption hover:text-primary-600" do %>
+      <%= render_svg "shuby/icons/icon-chevron-left", size: :sm, styles: "mr-1", decorative: true %>
+      <%= t(".back") %>
+    <% end %>
 
-  <%# Areas list %>
-  <div class="space-y-4">
-    <% @areas.each do |area| %>
-      <% data = @area_sessions[area.id] %>
-      <% next unless data %>
+    <h1 class="shuby-h3 text-center flex-1"><%= t(".title_short") %></h1>
 
-      <%= link_to child_development_stage_path(@child, area.slug),
-          class: "block shuby-card hover:shadow-md transition-shadow" do %>
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center"
-                 style="background-color: <%= area.color || '#E5F2FF' %>20;">
-              <span style="color: <%= area.color || '#0159B5' %>;">
-                <%= render_svg "shuby/icons/icon-neurodevelopment", size: :lg, decorative: true %>
-              </span>
-            </div>
-            <div>
-              <h3 class="shuby-h3"><%= area.name %></h3>
-              <p class="shuby-caption">
-                <% if data[:session]&.completed? %>
-                  <span class="text-green-600"><%= t(".completed") %></span>
-                <% elsif data[:session]&.in_progress? %>
-                  <span class="text-yellow-600"><%= data[:progress] %></span>
-                <% else %>
-                  <span class="text-gray-400"><%= t(".not_started") %></span>
-                <% end %>
-              </p>
-              <% if data[:past_in_progress] %>
-                <p class="shuby-caption">
-                  <span class="text-amber-600">
-                    <%= t(".past_in_progress", month: data[:past_in_progress].age_band_questionnaire.min_age_months) %>
-                  </span>
-                </p>
-              <% end %>
-            </div>
-          </div>
-          <%= render_svg "shuby/icons/icon-chevron-right", size: :md, styles: "text-gray-400", decorative: true %>
-        </div>
-      <% end %>
+    <%= link_to child_path(@child), class: "shrink-0" do %>
+      <div class="w-8 h-8 rounded-full bg-shuby-blue-400 flex items-center justify-center overflow-hidden">
+        <% if @child.avatar.attached? %>
+          <%= image_tag @child.avatar.variant(resize_to_fill: [32, 32]), class: "w-full h-full object-cover" %>
+        <% else %>
+          <span class="text-xs font-bold text-shuby-blue-800"><%= @child.display_name.first.upcase %></span>
+        <% end %>
+      </div>
     <% end %>
   </div>
+
+  <%# Age band carousel %>
+  <%= render "development_stages/timeline_carousel",
+             age_bands: @age_bands,
+             current_band: @current_band,
+             selected_band: @selected_band,
+             child: @child %>
+
+  <%# Content sections (swapped via Turbo Frame) %>
+  <turbo-frame id="timeline-content">
+    <%= render "development_stages/timeline_content",
+               child: @child,
+               selected_band: @selected_band,
+               current_band: @current_band,
+               growth_phase: @growth_phase,
+               who_ranges: @who_ranges,
+               development_areas: @development_areas %>
+  </turbo-frame>
 </div>
 
 <% content_for :bottom_nav do %>

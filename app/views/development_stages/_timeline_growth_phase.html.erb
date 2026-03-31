@@ -1,0 +1,22 @@
+<section>
+  <h2 class="shuby-caption font-bold uppercase tracking-wide text-shuby-blue-800 mb-3">
+    <%= t("timeline.show.growth_phase_title") %>
+  </h2>
+
+  <% if growth_phase %>
+    <div class="bg-shuby-blue-300 rounded-xl p-5">
+      <h3 class="font-display text-xl font-bold text-shuby-blue-800 mb-2">
+        <%= growth_phase.title %>
+      </h3>
+      <p class="shuby-p2 text-shuby-blue-800">
+        <%= growth_phase.description %>
+      </p>
+    </div>
+  <% else %>
+    <div class="bg-shuby-blue-300 rounded-xl p-5">
+      <p class="shuby-p2 text-shuby-blue-800">
+        <%= t("timeline.show.no_growth_phase") %>
+      </p>
+    </div>
+  <% end %>
+</section>

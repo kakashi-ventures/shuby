@@ -50,12 +50,11 @@ class DevelopmentAreaTest < ActiveSupport::TestCase
     questionnaire = area.questionnaire_for_age(0)
     assert_not_nil questionnaire
     assert_equal 0, questionnaire.min_age_months
-    assert_equal 1, questionnaire.max_age_months
+    assert_equal 2, questionnaire.max_age_months  # Band 1° Mese covers 0-2 months
   end
 
   test "questionnaire_for_age returns nil for age without questionnaire" do
     area = development_areas(:comunicazione)
-    # Only months 0-3 questionnaires exist in fixtures
     questionnaire = area.questionnaire_for_age(100)
     assert_nil questionnaire
   end

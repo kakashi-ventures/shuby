@@ -4,6 +4,9 @@
 resources :children, only: [] do
   # Main development stages pages
   resources :development_stages, path: "tappe-di-sviluppo", only: [:index, :show] do
+    collection do
+      get :timeline_content # Turbo Frame endpoint for age band content
+    end
     member do
       get :start # Start new session for a questionnaire
     end

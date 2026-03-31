@@ -1,0 +1,28 @@
+<%
+  completed_count = development_areas.count { |d| d[:session]&.completed? }
+  total_count = development_areas.count { |d| d[:questionnaire].present? }
+  areas_with_questionnaire = development_areas.select { |d| d[:questionnaire].present? }
+%>
+
+<section>
+  <div class="flex items-center justify-between mb-3">
+    <h2 class="shuby-caption font-bold uppercase tracking-wide text-shuby-blue-800">
+      <%= t("timeline.show.development_stages_title") %>
+    </h2>
+    <% if total_count > 0 %>
+      <span class="shuby-caption font-semibold text-shuby-blue-800">
+        <%= t("timeline.show.completed_count", completed: completed_count, total: total_count) %>
+      </span>
+    <% end %>
+  </div>
+
+  <div class="space-y-2">
+    <% areas_with_questionnaire.each do |data| %>
+      <%= render "development_stages/timeline_tappa_card",
+                 area: data[:area],
+                 session: data[:session],
+                 age_relationship: data[:age_relationship],
+                 child: child %>
+    <% end %>
+  </div>
+</section>

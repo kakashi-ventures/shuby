@@ -105,16 +105,19 @@ AREA_KEY_MAP = {
 }.freeze
 
 # =============================================================================
-# 3. Create Monthly Questionnaires and Questions from JSON
+# 3. Create Clinical Band Questionnaires and Questions from JSON
 # =============================================================================
 
-puts "Creating monthly questionnaires and loading questions..."
+puts "Creating clinical band questionnaires and loading questions..."
 
 questionnaires_created = 0
 questions_created = 0
 
-data["questionari_mensili"].each do |month_data|
-  month = month_data["mese"]
+monthly_by_month = data["questionari_mensili"].index_by { |m| m["mese"] }
+
+AgeBandQuestionnaire::CLINICAL_BANDS.each_with_index do |band, position|
+  month_data = monthly_by_month[band[:representative_month]]
+  next unless month_data
 
   month_data["aree"].each do |area_key, area_data|
     slug = AREA_KEY_MAP[area_key]
@@ -123,14 +126,13 @@ data["questionari_mensili"].each do |month_data|
     area = DevelopmentArea.find_by(slug: slug)
     next unless area
 
-    # Create or find questionnaire for this month/area
     questionnaire = AgeBandQuestionnaire.find_or_create_by!(
       development_area: area,
-      min_age_months: month
+      min_age_months: band[:min]
     ) do |q|
-      q.max_age_months = month + 1
-      q.position = month
-      q.title = "#{area_data["titolo"]} - #{month_data["eta_descrizione"]}"
+      q.max_age_months = band[:max]
+      q.position = position
+      q.title = "#{area_data["titolo"]} - #{band[:label]}"
     end
 
     questionnaires_created += 1 if questionnaire.previously_new_record?
@@ -159,7 +161,7 @@ data["questionari_mensili"].each do |month_data|
     end
   end
 
-  print "." if month % 5 == 0
+  print "."
 end
 
 puts ""

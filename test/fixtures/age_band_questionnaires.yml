@@ -1,110 +1,236 @@
 # frozen_string_literal: true
 
-# NOTE: Monthly questionnaires (min_age_months = month, max_age_months = month + 1)
-# This matches the official JSON structure with 29 months (0-28)
+# 7 clinical bands × 5 development areas = 35 fixtures
+# Mirrors AgeBandQuestionnaire::CLINICAL_BANDS
+# Naming: {area}_{band_key} where band_key matches the representative checkpoint
 
-# Month 0 questionnaires
-comunicazione_month_0:
+# =============================================================================
+# Band 1: 1° Mese (0-2 months)
+# =============================================================================
+comunicazione_mese_1:
   development_area: comunicazione
   min_age_months: 0
-  max_age_months: 1
+  max_age_months: 2
   position: 0
 
-motricita_month_0:
+motricita_mese_1:
   development_area: motricita
   min_age_months: 0
-  max_age_months: 1
+  max_age_months: 2
   position: 0
 
-cognizione_month_0:
+cognizione_mese_1:
   development_area: cognizione
   min_age_months: 0
-  max_age_months: 1
+  max_age_months: 2
   position: 0
 
-relazione_month_0:
+relazione_mese_1:
   development_area: relazione
   min_age_months: 0
-  max_age_months: 1
+  max_age_months: 2
   position: 0
 
-consolidamento_month_0:
+consolidamento_mese_1:
   development_area: consolidamento
   min_age_months: 0
-  max_age_months: 1
+  max_age_months: 2
   position: 0
 
-# Month 1 questionnaires
-comunicazione_month_1:
-  development_area: comunicazione
-  min_age_months: 1
-  max_age_months: 2
-  position: 1
-
-motricita_month_1:
-  development_area: motricita
-  min_age_months: 1
-  max_age_months: 2
-  position: 1
-
-cognizione_month_1:
-  development_area: cognizione
-  min_age_months: 1
-  max_age_months: 2
-  position: 1
-
-relazione_month_1:
-  development_area: relazione
-  min_age_months: 1
-  max_age_months: 2
-  position: 1
-
-consolidamento_month_1:
-  development_area: consolidamento
-  min_age_months: 1
-  max_age_months: 2
-  position: 1
-
-# Month 2 questionnaires
-comunicazione_month_2:
+# =============================================================================
+# Band 2: 3° Mese (2-5 months)
+# =============================================================================
+comunicazione_mese_3:
   development_area: comunicazione
   min_age_months: 2
-  max_age_months: 3
-  position: 2
+  max_age_months: 5
+  position: 1
 
-motricita_month_2:
+motricita_mese_3:
   development_area: motricita
   min_age_months: 2
-  max_age_months: 3
-  position: 2
+  max_age_months: 5
+  position: 1
 
-cognizione_month_2:
+cognizione_mese_3:
   development_area: cognizione
   min_age_months: 2
-  max_age_months: 3
-  position: 2
+  max_age_months: 5
+  position: 1
 
-relazione_month_2:
+relazione_mese_3:
   development_area: relazione
   min_age_months: 2
-  max_age_months: 3
-  position: 2
+  max_age_months: 5
+  position: 1
 
-consolidamento_month_2:
+consolidamento_mese_3:
   development_area: consolidamento
   min_age_months: 2
-  max_age_months: 3
+  max_age_months: 5
+  position: 1
+
+# =============================================================================
+# Band 3: 6° Mese (5-8 months)
+# =============================================================================
+comunicazione_mese_6:
+  development_area: comunicazione
+  min_age_months: 5
+  max_age_months: 8
   position: 2
 
-# Month 3 questionnaires (for testing older children)
-comunicazione_month_3:
+motricita_mese_6:
+  development_area: motricita
+  min_age_months: 5
+  max_age_months: 8
+  position: 2
+
+cognizione_mese_6:
+  development_area: cognizione
+  min_age_months: 5
+  max_age_months: 8
+  position: 2
+
+relazione_mese_6:
+  development_area: relazione
+  min_age_months: 5
+  max_age_months: 8
+  position: 2
+
+consolidamento_mese_6:
+  development_area: consolidamento
+  min_age_months: 5
+  max_age_months: 8
+  position: 2
+
+# =============================================================================
+# Band 4: 9° Mese (8-11 months)
+# =============================================================================
+comunicazione_mese_9:
   development_area: comunicazione
-  min_age_months: 3
-  max_age_months: 4
+  min_age_months: 8
+  max_age_months: 11
   position: 3
 
-motricita_month_3:
+motricita_mese_9:
   development_area: motricita
-  min_age_months: 3
-  max_age_months: 4
+  min_age_months: 8
+  max_age_months: 11
   position: 3
+
+cognizione_mese_9:
+  development_area: cognizione
+  min_age_months: 8
+  max_age_months: 11
+  position: 3
+
+relazione_mese_9:
+  development_area: relazione
+  min_age_months: 8
+  max_age_months: 11
+  position: 3
+
+consolidamento_mese_9:
+  development_area: consolidamento
+  min_age_months: 8
+  max_age_months: 11
+  position: 3
+
+# =============================================================================
+# Band 5: 12° Mese (11-18 months)
+# =============================================================================
+comunicazione_mese_12:
+  development_area: comunicazione
+  min_age_months: 11
+  max_age_months: 18
+  position: 4
+
+motricita_mese_12:
+  development_area: motricita
+  min_age_months: 11
+  max_age_months: 18
+  position: 4
+
+cognizione_mese_12:
+  development_area: cognizione
+  min_age_months: 11
+  max_age_months: 18
+  position: 4
+
+relazione_mese_12:
+  development_area: relazione
+  min_age_months: 11
+  max_age_months: 18
+  position: 4
+
+consolidamento_mese_12:
+  development_area: consolidamento
+  min_age_months: 11
+  max_age_months: 18
+  position: 4
+
+# =============================================================================
+# Band 6: 18-24° Mesi (18-36 months)
+# =============================================================================
+comunicazione_mese_18:
+  development_area: comunicazione
+  min_age_months: 18
+  max_age_months: 36
+  position: 5
+
+motricita_mese_18:
+  development_area: motricita
+  min_age_months: 18
+  max_age_months: 36
+  position: 5
+
+cognizione_mese_18:
+  development_area: cognizione
+  min_age_months: 18
+  max_age_months: 36
+  position: 5
+
+relazione_mese_18:
+  development_area: relazione
+  min_age_months: 18
+  max_age_months: 36
+  position: 5
+
+consolidamento_mese_18:
+  development_area: consolidamento
+  min_age_months: 18
+  max_age_months: 36
+  position: 5
+
+# =============================================================================
+# Band 7: 36° Mese (36-37 months)
+# =============================================================================
+comunicazione_mese_36:
+  development_area: comunicazione
+  min_age_months: 36
+  max_age_months: 37
+  position: 6
+
+motricita_mese_36:
+  development_area: motricita
+  min_age_months: 36
+  max_age_months: 37
+  position: 6
+
+cognizione_mese_36:
+  development_area: cognizione
+  min_age_months: 36
+  max_age_months: 37
+  position: 6
+
+relazione_mese_36:
+  development_area: relazione
+  min_age_months: 36
+  max_age_months: 37
+  position: 6
+
+consolidamento_mese_36:
+  development_area: consolidamento
+  min_age_months: 36
+  max_age_months: 37
+  position: 6

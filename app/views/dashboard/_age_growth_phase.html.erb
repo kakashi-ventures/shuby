@@ -10,7 +10,7 @@
     <%# Growth Phase Card %>
     <% phase = GrowthPhase.for_age(current_child.questionnaire_age_in_months) %>
     <% if phase %>
-      <div class="bg-shuby-blue-400 rounded-2xl p-4 pt-6 flex gap-2 items-end relative overflow-visible">
+      <%= link_to child_development_stages_path(current_child), class: "block bg-shuby-blue-400 rounded-2xl p-4 pt-6 flex gap-2 items-end relative overflow-visible hover:shadow-md transition-shadow" do %>
         <%# Content - Left side %>
         <div class="flex-1 min-w-0 pb-2">
           <%# Age Display inside card (corrected age for premature babies) %>
@@ -37,7 +37,7 @@
         <div class="w-28 shrink-0 -mt-16 -mr-2">
           <%= image_tag phase.illustration_path, class: "w-full h-auto", alt: "" %>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </section>
 <% end %>

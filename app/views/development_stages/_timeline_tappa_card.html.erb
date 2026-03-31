@@ -1,0 +1,26 @@
+<%
+  is_completed = session&.completed?
+  is_current = age_relationship == :current
+  is_interactive = is_current && !is_completed
+
+  bg_class = if is_completed
+    "shuby-milestone-card-completed"
+  else
+    "shuby-milestone-card"
+  end
+%>
+
+<% if is_interactive %>
+  <%= link_to child_development_stage_path(child, area.slug),
+      class: "block #{bg_class} hover:opacity-90 transition-opacity" do %>
+    <%= render "development_stages/timeline_tappa_card_content",
+               area: area, session: session,
+               age_relationship: age_relationship, is_completed: is_completed %>
+  <% end %>
+<% else %>
+  <div class="<%= bg_class %>">
+    <%= render "development_stages/timeline_tappa_card_content",
+               area: area, session: session,
+               age_relationship: age_relationship, is_completed: is_completed %>
+  </div>
+<% end %>

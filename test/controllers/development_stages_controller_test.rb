@@ -14,8 +14,7 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get child_development_stages_path(@child)
     assert_response :success
-    # Match English "Development Stages" or Italian "Tappe di Sviluppo"
-    assert_select "h1", /Development Stages|Tappe di Sviluppo/i
+    assert_select "h1", /Timeline/i
   end
 
   test "should show development area with valid questionnaire" do
@@ -60,6 +59,38 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
     get child_development_stage_path(@child, area.slug)
     assert_response :success
   end
+
+  # --- Timeline carousel tests ---
+
+  test "index renders carousel pills" do
+    get child_development_stages_path(@child)
+    assert_response :success
+    assert_select ".shuby-timeline-pill", minimum: 10
+  end
+
+  test "index renders Stimulus controller data attributes" do
+    get child_development_stages_path(@child)
+    assert_response :success
+    assert_select "[data-controller='timeline-carousel']"
+  end
+
+  test "index pre-selects one pill" do
+    get child_development_stages_path(@child)
+    assert_response :success
+    assert_select ".shuby-timeline-pill[aria-selected='true']", count: 1
+  end
+
+  test "timeline_content returns content for given band" do
+    get timeline_content_child_development_stages_path(@child), params: {band: "mese_6"}
+    assert_response :success
+  end
+
+  test "timeline_content falls back to current band for invalid key" do
+    get timeline_content_child_development_stages_path(@child), params: {band: "invalid"}
+    assert_response :success
+  end
+
+  # --- Start action tests ---
 
   test "start raises error for past age band questionnaire" do
     # Sophia is ~2 months old, motricita_month_0 is past

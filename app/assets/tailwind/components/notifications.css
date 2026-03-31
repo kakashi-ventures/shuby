@@ -8,7 +8,7 @@
     width: 0.5rem;
     height: 0.5rem;
     background: var(--bg-primary);
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
   }
 }
 

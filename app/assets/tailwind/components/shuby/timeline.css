@@ -260,65 +260,75 @@
     &::-webkit-scrollbar { display: none; }
 }
 
-/* Timeline date pill (Sett./Mese style) */
+/* Timeline date pill (Sett./Mese style) — Figma node 211-3621 */
 .shuby-timeline-pill {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 52px;
-    padding: var(--space-2) var(--space-3);
-    border-radius: var(--radius-lg);
+    align-items: flex-start;
+    width: var(--size-timeline-pill);
+    padding: var(--space-3) var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
     background-color: var(--bg-secondary);
     cursor: pointer;
     transition: all 0.2s ease;
     flex-shrink: 0;
-    border: none;
+    border: 1px solid transparent;
 
-    &:active { background-color: var(--base-bg-hover); }
+    &:active { opacity: 0.85; }
 
+    /* Futuro: outline only, no fill */
     &.selected-outline {
-        background-color: var(--bg-secondary);
-        border: 2px solid var(--border-selection-outline);
+        background-color: transparent;
+        border-color: var(--color-shuby-blue-400);
+        color: var(--color-shuby-blue-800);
+
+        .shuby-timeline-pill-label,
+        .shuby-timeline-pill-number { color: var(--color-shuby-blue-800); }
     }
 
+    /* Selected: magenta fill */
     &.selected {
         background-color: var(--bg-selection);
+        border-color: var(--bg-selection);
         color: var(--text-on-selection);
 
         &:active { background-color: var(--bg-selection-hover); }
 
-        .shuby-timeline-pill-label { color: var(--text-on-selection); }
+        .shuby-timeline-pill-label,
         .shuby-timeline-pill-number { color: var(--text-on-selection); }
     }
 
+    /* Oggi: dark blue fill */
     &.selected-primary {
-        background-color: var(--bg-primary);
-        color: var(--text-on-primary);
+        background-color: var(--color-shuby-blue-800);
+        border-color: var(--color-shuby-blue-800);
+        color: white;
 
-        &:active { background-color: var(--bg-primary-hover); }
+        &:active { opacity: 0.85; }
 
         .shuby-timeline-pill-label,
-        .shuby-timeline-pill-number { color: var(--text-on-primary); }
+        .shuby-timeline-pill-number { color: white; }
     }
 }
 
-/* Timeline pill label (e.g., "Sett.", "Mese") */
+/* Timeline pill label — Figma: Overline/OL (Montserrat Semi-Bold 10px) */
 .shuby-timeline-pill-label {
-    font-size: var(--font-size-p2);
-    font-weight: var(--font-weight-medium);
-    text-transform: capitalize;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-overline);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
     color: var(--text-primary);
-    line-height: var(--line-height-none);
-    margin-bottom: 2px;
+    width: 100%;
 }
 
-/* Timeline pill number (e.g., "3", "6") */
+/* Timeline pill number — Figma: Display/D2 (Baloo 2 Bold 20px/24px) */
 .shuby-timeline-pill-number {
-    font-size: var(--font-size-btn-s);
+    font-family: var(--font-display);
+    font-size: var(--font-size-d2);
     font-weight: var(--font-weight-bold);
     line-height: var(--line-height-tight);
     color: var(--text-primary);
+    width: 100%;
 }
 
 /* =====================================================
@@ -371,6 +381,27 @@
 .shuby-settimana-item.past {
     font-weight: var(--font-weight-bold);
     color: var(--base-text);
+}
+
+/* =====================================================
+   TIMELINE CAROUSEL — Past pill state + sticky bar
+   ===================================================== */
+
+/* Passato: light blue fill — ages before child's current */
+.shuby-timeline-pill.past {
+    background-color: var(--color-shuby-blue-400);
+    border-color: var(--color-shuby-blue-400);
+    color: var(--color-shuby-blue-800);
+
+    .shuby-timeline-pill-label,
+    .shuby-timeline-pill-number { color: var(--color-shuby-blue-800); }
+}
+
+/* Sticky carousel bar with frosted glass effect */
+.shuby-timeline-carousel-bar {
+    background-color: rgba(229, 242, 255, 0.9);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 
 /* =====================================================

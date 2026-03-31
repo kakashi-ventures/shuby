@@ -1,209 +1,121 @@
 # frozen_string_literal: true
 
 # NOTE: Using OFFICIAL questions from db/seeds/data/questionari_completi_5_aree.json
+# All questions below belong to clinical band 1° Mese (min=0, max=2)
 
 # =============================================================================
-# Month 0 - Comunicazione e Linguaggio
+# Band 1° Mese - Comunicazione e Linguaggio
 # =============================================================================
 m0_com_1:
-  age_band_questionnaire: comunicazione_month_0
+  age_band_questionnaire: comunicazione_mese_1
   prompt: "Reagisce alla voce della mamma?"
   position: 0
   active: true
 
 m0_com_2:
-  age_band_questionnaire: comunicazione_month_0
+  age_band_questionnaire: comunicazione_mese_1
   prompt: "Piange in modo forte quando ha fame o disagio?"
   position: 1
   active: true
 
 m0_com_3:
-  age_band_questionnaire: comunicazione_month_0
+  age_band_questionnaire: comunicazione_mese_1
   prompt: "Si calma se parlato con voce dolce?"
   position: 2
   active: true
 
 # =============================================================================
-# Month 0 - Motricità
+# Band 1° Mese - Motricità
 # =============================================================================
 m0_mot_1:
-  age_band_questionnaire: motricita_month_0
+  age_band_questionnaire: motricita_mese_1
   prompt: "Muove gambe e braccia in modo simmetrico?"
   position: 0
   active: true
 
 m0_mot_2:
-  age_band_questionnaire: motricita_month_0
+  age_band_questionnaire: motricita_mese_1
   prompt: "Tende a chiudere le mani?"
   position: 1
   active: true
 
 m0_mot_3:
-  age_band_questionnaire: motricita_month_0
+  age_band_questionnaire: motricita_mese_1
   prompt: "Avvicina le mani al volto, per esempio toccando bocca o occhi?"
   position: 2
   active: true
 
 m0_mot_4:
-  age_band_questionnaire: motricita_month_0
+  age_band_questionnaire: motricita_mese_1
   prompt: "Afferra automaticamente un dito se glielo metti nel palmo?"
   position: 3
   active: true
 
 # =============================================================================
-# Month 0 - Cognizione e Attenzione
+# Band 1° Mese - Cognizione e Attenzione
 # =============================================================================
 m0_cog_1:
-  age_band_questionnaire: cognizione_month_0
+  age_band_questionnaire: cognizione_mese_1
   prompt: "Fissa una luce intensa?"
   position: 0
   active: true
 
 m0_cog_2:
-  age_band_questionnaire: cognizione_month_0
+  age_band_questionnaire: cognizione_mese_1
   prompt: "Guarda un volto vicino per qualche secondo?"
   position: 1
   active: true
 
 m0_cog_3:
-  age_band_questionnaire: cognizione_month_0
+  age_band_questionnaire: cognizione_mese_1
   prompt: "Reagisce a rumori forti con un sobbalzo?"
   position: 2
   active: true
 
 # =============================================================================
-# Month 0 - Relazione e Regolazione
+# Band 1° Mese - Relazione e Regolazione
 # =============================================================================
 m0_rel_1:
-  age_band_questionnaire: relazione_month_0
+  age_band_questionnaire: relazione_mese_1
   prompt: "Piange quando ha fame o disagio?"
   position: 0
   active: true
 
 m0_rel_2:
-  age_band_questionnaire: relazione_month_0
+  age_band_questionnaire: relazione_mese_1
   prompt: "Si calma al contatto fisico?"
   position: 1
   active: true
 
 m0_rel_3:
-  age_band_questionnaire: relazione_month_0
+  age_band_questionnaire: relazione_mese_1
   prompt: "Dorme almeno 14-17 ore al giorno?"
   position: 2
   active: true
 
 # =============================================================================
-# Month 0 - Consolidamento (empty at month 0 - initial month)
-# =============================================================================
-# No consolidamento questions at month 0 per official file
-
-# =============================================================================
-# Month 1 - Comunicazione e Linguaggio
-# =============================================================================
-m1_com_1:
-  age_band_questionnaire: comunicazione_month_1
-  prompt: "Emette suoni diversi dal pianto (es. \"ehh\", \"uhh\")?"
-  position: 0
-  active: true
-
-m1_com_2:
-  age_band_questionnaire: comunicazione_month_1
-  prompt: "Vocalizza se tranquillo?"
-  position: 1
-  active: true
-
-m1_com_3:
-  age_band_questionnaire: comunicazione_month_1
-  prompt: "Si calma se gli si parla dolcemente?"
-  position: 2
-  active: true
-
-# =============================================================================
-# Month 1 - Motricità
-# =============================================================================
-m1_mot_1:
-  age_band_questionnaire: motricita_month_1
-  prompt: "Solleva brevemente la testa da prono?"
-  position: 0
-  active: true
-
-m1_mot_2:
-  age_band_questionnaire: motricita_month_1
-  prompt: "Muove braccia e gambe in modo fluido?"
-  position: 1
-  active: true
-
-m1_mot_3:
-  age_band_questionnaire: motricita_month_1
-  prompt: "Stringe i pugni spesso?"
-  position: 2
-  active: true
-
-# =============================================================================
-# Month 1 - Cognizione e Attenzione
-# =============================================================================
-m1_cog_1:
-  age_band_questionnaire: cognizione_month_1
-  prompt: "Segue un oggetto lento con lo sguardo?"
-  position: 0
-  active: true
-
-m1_cog_2:
-  age_band_questionnaire: cognizione_month_1
-  prompt: "Fissa un volto per alcuni secondi?"
-  position: 1
-  active: true
-
-m1_cog_3:
-  age_band_questionnaire: cognizione_month_1
-  prompt: "Si gira verso un suono forte?"
-  position: 2
-  active: true
-
-# =============================================================================
-# Month 1 - Relazione e Regolazione
-# =============================================================================
-m1_rel_1:
-  age_band_questionnaire: relazione_month_1
-  prompt: "Si calma quando viene preso in braccio?"
-  position: 0
-  active: true
-
-m1_rel_2:
-  age_band_questionnaire: relazione_month_1
-  prompt: "Mostra preferenza per il volto della mamma?"
-  position: 1
-  active: true
-
-m1_rel_3:
-  age_band_questionnaire: relazione_month_1
-  prompt: "Ha cicli sonno-veglia più regolari?"
-  position: 2
-  active: true
-
-# =============================================================================
-# Month 1 - Consolidamento (verifies month 0 skills)
+# Band 1° Mese - Consolidamento
 # =============================================================================
 m1_cons_1:
-  age_band_questionnaire: consolidamento_month_1
+  age_band_questionnaire: consolidamento_mese_1
   prompt: "Reagisce alla voce della mamma?"
   position: 0
   active: true
 
 m1_cons_2:
-  age_band_questionnaire: consolidamento_month_1
+  age_band_questionnaire: consolidamento_mese_1
   prompt: "Muove gambe e braccia in modo simmetrico?"
   position: 1
   active: true
 
 m1_cons_3:
-  age_band_questionnaire: consolidamento_month_1
+  age_band_questionnaire: consolidamento_mese_1
   prompt: "Fissa una luce intensa?"
   position: 2
   active: true
 
 m1_cons_4:
-  age_band_questionnaire: consolidamento_month_1
+  age_band_questionnaire: consolidamento_mese_1
   prompt: "Piange quando ha fame o disagio?"
   position: 3
   active: true
@@ -212,7 +124,7 @@ m1_cons_4:
 # Inactive question for testing
 # =============================================================================
 inactive_question:
-  age_band_questionnaire: comunicazione_month_0
+  age_band_questionnaire: comunicazione_mese_1
   prompt: "Domanda inattiva per test"
   position: 99
   active: false

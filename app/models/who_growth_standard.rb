@@ -277,6 +277,25 @@ class WhoGrowthStandard
     WHO_LMS_DATA.dig(sex, type, age)
   end
 
+  # Reference ranges (p3, median, p97) for all measurement types at a given age.
+  # Used by the Timeline page to show average measurements.
+  # Returns nil if sex is not male/female.
+  def self.reference_ranges(sex:, age_months:)
+    return nil unless sex.in?([:male, :female])
+
+    age = age_months.floor.clamp(0, 36)
+    %i[weight height head_circumference].each_with_object({}) do |type, result|
+      lms = WHO_LMS_DATA.dig(sex, type, age)
+      next unless lms
+
+      result[type] = {
+        p3: value_from_lms(lms, PERCENTILE_Z_SCORES[3]).round(1),
+        median: value_from_lms(lms, 0.0).round(1),
+        p97: value_from_lms(lms, PERCENTILE_Z_SCORES[97]).round(1)
+      }
+    end
+  end
+
   # Generate percentile curve data for chart rendering
   # Returns array of hashes: [{ month:, p3:, p10:, p25:, p50:, p75:, p90:, p97: }, ...]
   def self.percentile_curves(sex:, type:, from_month: 0, to_month: 36)

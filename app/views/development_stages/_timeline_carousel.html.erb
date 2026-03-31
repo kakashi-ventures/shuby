@@ -1,0 +1,13 @@
+<div class="sticky top-0 z-30 shuby-timeline-carousel-bar">
+  <div class="flex gap-2 overflow-x-auto px-5 py-2"
+       style="-webkit-overflow-scrolling: touch; scrollbar-width: none;"
+       data-timeline-carousel-target="scroller">
+    <% age_bands.each do |band| %>
+      <%= render "development_stages/timeline_pill",
+                 band: band,
+                 current_band: current_band,
+                 selected_band: selected_band,
+                 child: child %>
+    <% end %>
+  </div>
+</div>

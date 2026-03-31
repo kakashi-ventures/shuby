@@ -125,10 +125,9 @@ module Child::AgeCalculations
   end
 
   def current_age_band
-    months = age_in_months
-    effective_month = [months, 36].min
-    label = I18n.t("children.age.months", count: effective_month)
-    {min: effective_month, max: effective_month + 1, label: label}
+    months = [questionnaire_age_in_months, 36].min
+    AgeBandQuestionnaire::CLINICAL_BANDS.find { |b| months >= b[:min] && months < b[:max] } ||
+      AgeBandQuestionnaire::CLINICAL_BANDS.last
   end
 
   private

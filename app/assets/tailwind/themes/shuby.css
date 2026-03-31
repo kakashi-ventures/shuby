@@ -45,6 +45,11 @@
     --radius-assente: 0;      /* Figma: Radius/Assente (no radius) */
 
     /* =====================================================
+       COMPONENT SIZES
+       ===================================================== */
+    --size-timeline-pill: 41px;   /* Figma: timeline age-band pill width (node 211-3621) */
+
+    /* =====================================================
        SHADOWS (Figma aligned)
        ===================================================== */
     --shadow-dark-blue: 0 0 8px 0 rgba(59, 131, 207, 0.8);    /* Figma: Shadow Dark Blue */
@@ -166,13 +171,13 @@
     --border-accent: var(--color-shuby-verde-500);
     --text-accent: var(--color-shuby-verde-500);
 
-    /* Selection - Magenta/Pink (for date pickers, week selectors) */
-    --bg-selection: var(--color-shuby-magenta-500);
-    --bg-selection-hover: var(--color-shuby-magenta-600);
+    /* Selection - Fucsia (Figma: Colori/Fucsia — for date pickers, week selectors, pills) */
+    --bg-selection: var(--color-shuby-fucsia-500);
+    --bg-selection-hover: var(--color-shuby-fucsia-600);
     --text-on-selection: var(--color-shuby-white);
-    --border-selection: var(--color-shuby-magenta-400);
-    --text-selection: var(--color-shuby-magenta-500);
-    --bg-selection-light: var(--color-shuby-magenta-300);
+    --border-selection: var(--color-shuby-fucsia-400);
+    --text-selection: var(--color-shuby-fucsia-500);
+    --bg-selection-light: var(--color-shuby-fucsia-300);
     --border-selection-outline: var(--color-shuby-purple-300);
 
     /* Timeline Container (lavender bordered container) */

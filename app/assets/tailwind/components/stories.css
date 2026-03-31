@@ -315,7 +315,7 @@
   justify-content: center;
   width: 100%;
   padding: 16px 20px;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   border: 2px solid var(--color-shuby-blue-800);
   font-family: var(--font-sans);
   cursor: pointer;

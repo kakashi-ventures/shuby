@@ -1,5 +1,5 @@
 .pill {
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   padding: 4px 16px;
   font-size: 12px;
   font-weight: 700;

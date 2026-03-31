@@ -5,37 +5,15 @@ class DevelopmentStagesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_child
+  before_action :set_timeline_bands, only: [:index, :timeline_content]
 
   def index
-    @areas = DevelopmentArea.ordered.includes(:age_band_questionnaires)
-    @child_age = @child.questionnaire_age_in_months
-    @current_band = @child.current_age_band
+    load_timeline_content
+  end
 
-    # Get current/active sessions for each area
-    @area_sessions = {}
-    @areas.each do |area|
-      questionnaire = area.questionnaire_for_age(@child_age)
-      next unless questionnaire
-
-      session = @child.session_for(questionnaire) ||
-        @child.questionnaire_sessions
-          .where(age_band_questionnaire: questionnaire)
-          .completed
-          .recent_first
-          .first
-
-      @area_sessions[area.id] = {
-        questionnaire: questionnaire,
-        session: session,
-        progress: session&.progress_fraction || "0/#{questionnaire.questions.count}"
-      }
-    end
-
-    past_in_progress = @child.in_progress_past_sessions
-      .index_by { |s| s.age_band_questionnaire.development_area_id }
-    @area_sessions.each do |area_id, data|
-      data[:past_in_progress] = past_in_progress[area_id]
-    end
+  def timeline_content
+    load_timeline_content
+    render layout: false
   end
 
   def show
@@ -68,4 +46,67 @@ class DevelopmentStagesController < ApplicationController
   end
 
   private
+
+  def set_timeline_bands
+    @child_age_months = @child.questionnaire_age_in_months
+    @age_bands = Timeline::AgeBands::ALL
+    @current_band = Timeline::AgeBands.for_child_age(@child_age_months)
+    @selected_band = if params[:band].present?
+      Timeline::AgeBands.find_by_key(params[:band]) || @current_band
+    else
+      @current_band
+    end
+  end
+
+  def load_timeline_content
+    age = @selected_band[:age_months]
+    @growth_phase = GrowthPhase.for_age(age)
+    @who_ranges = load_who_ranges(age)
+    @development_areas = load_development_areas(age)
+  end
+
+  def load_who_ranges(age_months)
+    sex = @child.sex&.to_sym
+    WhoGrowthStandard.reference_ranges(sex: sex, age_months: age_months)
+  end
+
+  def load_development_areas(age_months)
+    relationship = timeline_age_relationship(age_months)
+    DevelopmentArea.ordered.includes(:age_band_questionnaires).map do |area|
+      questionnaire = area.questionnaire_for_age(age_months)
+      session = find_timeline_session(questionnaire, relationship)
+
+      {
+        area: area,
+        questionnaire: questionnaire,
+        session: session,
+        age_relationship: relationship
+      }
+    end
+  end
+
+  def find_timeline_session(questionnaire, relationship)
+    return nil unless questionnaire
+
+    if relationship == :current
+      @child.session_for(questionnaire) ||
+        @child.questionnaire_sessions
+          .where(age_band_questionnaire: questionnaire)
+          .completed.recent_first.first
+    else
+      @child.questionnaire_sessions
+        .where(age_band_questionnaire: questionnaire)
+        .completed.recent_first.first
+    end
+  end
+
+  def timeline_age_relationship(band_age)
+    if band_age < @child_age_months
+      :past
+    elsif band_age == @child_age_months
+      :current
+    else
+      :future
+    end
+  end
 end

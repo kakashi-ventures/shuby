@@ -730,6 +730,27 @@ en:
     gestational_age:
       weeks_and_days: "%{weeks} weeks, %{days} days"
 
+  timeline:
+    show:
+      title: "Timeline"
+      back: "Dashboard"
+      growth_phase_title: "Growth Phase"
+      no_growth_phase: "Information not yet available for this age band."
+      measurements_title: "Average Measurements"
+      measurements_subtitle: "WHO reference values"
+      no_sex_data: "Select the child's sex to see reference values."
+      weight: "Weight"
+      height: "Height"
+      head_circumference: "Head Circ."
+      development_stages_title: "Development Stages"
+      completed_count: "Completed %{completed}/%{total}"
+      tappa_futura: "Future stage"
+      tappa_completata: "Completed"
+      tappa_passata: "Past stage"
+      tappa_non_completata: "Not completed"
+      start: "Start"
+      continue: "Continue"
+
   development_stages:
     title: "Development Stages"
     subtitle: "Track your child's developmental milestones"
@@ -742,7 +763,8 @@ en:
 
     index:
       title: "Development Stages - %{name}"
-      title_short: "Development Stages"
+      title_short: "Timeline"
+      back: "Dashboard"
       current_band: "Age band: %{band}"
       completed: "Completed"
       in_progress: "In progress"

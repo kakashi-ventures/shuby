@@ -17,7 +17,7 @@ matteo:
 sophia:
   account: company
   name: "Sophia"
-  birth_date: <%= 2.months.ago.to_date %>
+  birth_date: <%= 65.days.ago.to_date %>
   sex: 2
   active: true
 

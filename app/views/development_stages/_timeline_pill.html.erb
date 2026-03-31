@@ -1,0 +1,15 @@
+<%
+  state_class = pill_state_class(band, current_band, selected_band, child)
+  relationship = pill_relationship(band, current_band, child)
+%>
+<button class="shuby-timeline-pill <%= state_class %>"
+        type="button"
+        data-timeline-carousel-target="pill"
+        data-band-key="<%= band[:key] %>"
+        data-band-relationship="<%= relationship %>"
+        data-action="click->timeline-carousel#select"
+        aria-label="<%= band[:label_type] %> <%= band[:label_number] %>"
+        aria-selected="<%= band[:key] == selected_band[:key] %>">
+  <span class="shuby-timeline-pill-label"><%= band[:label_type] %></span>
+  <span class="shuby-timeline-pill-number"><%= band[:label_number] %></span>
+</button>
