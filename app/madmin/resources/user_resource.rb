@@ -1,6 +1,9 @@
 class UserResource < Madmin::Resource
   menu parent: "Users & Accounts", position: 1
 
+  # Scopes for filtering
+  scope :admins, -> { where(admin: true) }
+
   # Attributes
   attribute :id, form: false
   attribute :name
@@ -29,21 +32,23 @@ class UserResource < Madmin::Resource
   attribute :personal_account, form: false
   attribute :connected_accounts, form: false
 
-  # Uncomment this to customize the display name of records in the admin area.
   def self.display_name(record)
-    record.name
+    record.admin? ? "#{record.name} (Admin)" : record.name
   end
-
-  # Uncomment this to customize the default sort column and direction.
-  # def self.default_sort_column
-  #   "created_at"
-  # end
-  #
-  # def self.default_sort_direction
-  #   "desc"
-  # end
 
   member_action do |user|
     button_to "Impersonate", madmin_user_impersonate_path(user), class: "btn btn-secondary"
+
+    if user.admin?
+      button_to "Rimuovi Admin",
+        madmin_user_toggle_admin_path(user),
+        class: "btn btn-danger",
+        data: {turbo_confirm: "Sei sicuro di voler rimuovere i privilegi admin a #{user.name}?"}
+    else
+      button_to "Rendi Admin",
+        madmin_user_toggle_admin_path(user),
+        class: "btn btn-warning",
+        data: {turbo_confirm: "Sei sicuro di voler rendere #{user.name} un Admin? Gli admin hanno accesso completo al pannello di amministrazione."}
+    end
   end
 end
