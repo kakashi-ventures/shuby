@@ -39,9 +39,77 @@
          data-scroll-reveal-target="item"
          data-scroll-reveal-animation-value="landing-scale-in">
       <div class="aspect-[4/3] bg-gradient-to-br from-[var(--color-shuby-blue-300)] to-white rounded-xl flex items-center justify-center">
-        <%= image_tag "shuby/illustrations/illustration-weight-chart.svg",
-            alt: "Grafico percentili WHO esempio",
-            class: "w-3/4 h-auto opacity-80" %>
+        <%# Styled WHO-like growth chart %>
+        <svg viewBox="0 0 320 220" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <%# Background grid %>
+          <defs>
+            <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0159B5" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="#0159B5" stop-opacity="0.02"/>
+            </linearGradient>
+          </defs>
+
+          <%# Grid lines %>
+          <% (0..5).each do |i| %>
+            <line x1="40" y1="<%= 20 + i * 36 %>" x2="300" y2="<%= 20 + i * 36 %>" stroke="#E2E5E8" stroke-width="0.5"/>
+          <% end %>
+          <% (0..6).each do |i| %>
+            <line x1="<%= 40 + i * 43.3 %>" y1="20" x2="<%= 40 + i * 43.3 %>" y2="200" stroke="#E2E5E8" stroke-width="0.5"/>
+          <% end %>
+
+          <%# Y axis labels (kg) %>
+          <text x="30" y="24" text-anchor="end" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">12</text>
+          <text x="30" y="60" text-anchor="end" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">10</text>
+          <text x="30" y="96" text-anchor="end" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">8</text>
+          <text x="30" y="132" text-anchor="end" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">6</text>
+          <text x="30" y="168" text-anchor="end" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">4</text>
+          <text x="30" y="204" text-anchor="end" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">2</text>
+
+          <%# X axis labels (mesi) %>
+          <text x="40" y="215" text-anchor="middle" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">0</text>
+          <text x="83" y="215" text-anchor="middle" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">6</text>
+          <text x="127" y="215" text-anchor="middle" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">12</text>
+          <text x="170" y="215" text-anchor="middle" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">18</text>
+          <text x="213" y="215" text-anchor="middle" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">24</text>
+          <text x="257" y="215" text-anchor="middle" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">30</text>
+          <text x="300" y="215" text-anchor="middle" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8">36</text>
+
+          <%# Axis labels %>
+          <text x="5" y="110" text-anchor="middle" fill="#616467" font-family="Montserrat,sans-serif" font-size="9" font-weight="600" transform="rotate(-90,5,110)">kg</text>
+          <text x="170" y="220" text-anchor="middle" fill="#616467" font-family="Montserrat,sans-serif" font-size="9" font-weight="600">mesi</text>
+
+          <%# 97th percentile band (light) %>
+          <path d="M40,178 C83,138 127,108 170,85 213,68 257,55 300,47" fill="none" stroke="#CAE4FF" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+          <%# 50th percentile band (area fill) %>
+          <path d="M40,190 C83,155 127,125 170,105 213,90 257,78 300,70 L300,200 L40,200 Z" fill="url(#areaGrad)"/>
+
+          <%# 50th percentile line %>
+          <path d="M40,190 C83,155 127,125 170,105 213,90 257,78 300,70" fill="none" stroke="#0159B5" stroke-width="2"/>
+
+          <%# 3rd percentile band (light) %>
+          <path d="M40,197 C83,170 127,148 170,132 213,120 257,110 300,103" fill="none" stroke="#CAE4FF" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+          <%# Baby data points %>
+          <circle cx="40" cy="189" r="4" fill="#0159B5" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="62" cy="178" r="4" fill="#0159B5" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="83" cy="162" r="4" fill="#0159B5" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="105" cy="148" r="4" fill="#0159B5" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="127" cy="132" r="4" fill="#0159B5" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="148" cy="118" r="4" fill="#38A3A5" stroke="#fff" stroke-width="1.5"/>
+
+          <%# Current point highlight %>
+          <circle cx="148" cy="118" r="7" fill="none" stroke="#38A3A5" stroke-width="1.5" stroke-opacity="0.4"/>
+
+          <%# Tooltip for current point %>
+          <rect x="122" y="98" width="52" height="18" rx="4" fill="#0159B5"/>
+          <text x="148" y="110" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="8" font-weight="600">7.2 kg</text>
+
+          <%# Percentile labels %>
+          <text x="303" y="50" fill="#898D91" font-family="Montserrat,sans-serif" font-size="7">97°</text>
+          <text x="303" y="73" fill="#0159B5" font-family="Montserrat,sans-serif" font-size="7" font-weight="600">50°</text>
+          <text x="303" y="106" fill="#898D91" font-family="Montserrat,sans-serif" font-size="7">3°</text>
+        </svg>
       </div>
     </div>
   </div>

@@ -6,9 +6,9 @@
   <div class="bg-gradient-to-br from-[var(--color-shuby-blue-300)] to-[var(--color-shuby-blue-400)] rounded-3xl p-6 text-center mb-8">
     <%# Mascot %>
     <div class="mb-4 landing-float" data-scroll-reveal-target="item">
-      <%= image_tag "shuby/illustrations/mascot-centered.svg",
+      <%= image_tag "shuby/illustrations/mascot-sorriso.png",
           alt: "",
-          class: "w-20 h-auto mx-auto",
+          class: "w-24 h-24 mx-auto object-contain",
           aria: { hidden: true } %>
     </div>
 
@@ -39,10 +39,12 @@
 
   <%# Footer %>
   <footer class="text-center pb-6">
-    <div class="mb-4">
-      <%= image_tag "logo.svg",
-          alt: "Shuby",
-          class: "h-6 mx-auto" %>
+    <div class="mb-4 flex items-center justify-center gap-2">
+      <%= image_tag "mark.svg",
+          alt: "",
+          class: "w-6 h-6",
+          aria: { hidden: true } %>
+      <span class="font-display text-lg font-bold text-[var(--color-shuby-blue-800)]">Shuby</span>
     </div>
     <nav class="flex gap-4 justify-center mb-4" aria-label="Footer">
       <%= link_to "Privacy", privacy_path, class: "font-sans text-xs text-[var(--color-shuby-gray-700)] hover:text-[var(--color-shuby-blue-800)]" %>
