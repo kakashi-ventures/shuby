@@ -1,8 +1,8 @@
 <%
   steps = [
-    { num: "1", title: "Scarica l'app",         desc: "Disponibile su App Store e Google Play", color: "shuby-blue-800" },
-    { num: "2", title: "Crea il profilo",        desc: "Aggiungi nome, data di nascita e inizia",  color: "shuby-verde-scuro-500" },
-    { num: "3", title: "Monitora e cresci",      desc: "Shuby ti guida giorno per giorno",         color: "shuby-fucsia-500" }
+    { num: "1", title: "Scarica l'app",    desc: "Disponibile su App Store e Google Play", hex: "#0159B5" },
+    { num: "2", title: "Crea il profilo",   desc: "Aggiungi nome, data di nascita e inizia",  hex: "#38A3A5" },
+    { num: "3", title: "Monitora e cresci", desc: "Shuby ti guida giorno per giorno",         hex: "#C500A2" }
   ]
 %>
 
@@ -23,8 +23,9 @@
     <div class="space-y-8">
       <% steps.each do |step| %>
         <div class="flex items-start gap-4 relative" data-scroll-reveal-target="item">
-          <%# Number circle %>
-          <div class="w-10 h-10 rounded-full bg-[var(--color-<%= step[:color] %>)] flex items-center justify-center flex-shrink-0 z-10">
+          <%# Number circle — inline style to avoid Tailwind JIT issues with dynamic colors %>
+          <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 z-10"
+               style="background-color: <%= step[:hex] %>">
             <span class="font-display text-lg font-bold text-white"><%= step[:num] %></span>
           </div>
           <%# Text %>
