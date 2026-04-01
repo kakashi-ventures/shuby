@@ -146,5 +146,6 @@
 @import "./components/shuby/content.css" layer(components);
 @import "./components/shuby/layout.css" layer(components);
 @import "./components/shuby/growth-chart.css" layer(components);
+@import "./components/shuby/landing.css" layer(components);
 @import "./components/shuby/utilities.css";
 @import "./components/stories.css" layer(components);
