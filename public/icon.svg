@@ -1,1 +1,16 @@
-<svg fill="#57586E" width="24" height="24" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><path d="M195 120V0L121.65 88.05L45 180H105V300L255 120H195Z" /></svg>
+<svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#0159B5"/>
+    <stop offset="100%" stop-color="#2E8AE6"/>
+  </linearGradient>
+</defs>
+<rect width="512" height="512" fill="url(#bg)"/>
+<g transform="translate(66, 56) scale(2.64)">
+  <path d="M64.9466 5.12465C69.1524 2.06892 74.8476 2.06892 79.0534 5.12465L133.423 44.6262C137.629 47.6819 139.388 53.0983 137.782 58.0426L117.015 121.957C115.408 126.902 110.801 130.249 105.602 130.249H38.398C33.1993 130.249 28.5918 126.902 26.9853 121.957L6.2181 58.0426C4.61161 53.0983 6.37151 47.6819 10.5774 44.6262L64.9466 5.12465Z" fill="#99E0E2"/>
+  <ellipse cx="71.4286" cy="150.857" rx="62.2857" ry="6.85714" fill="rgba(55,163,193,0.4)"/>
+  <path d="M72.4026 74.1934C72.4149 74.4386 72.4212 74.6854 72.4212 74.9336C72.4212 82.9822 65.8965 89.5069 57.8479 89.5069C49.7995 89.5068 43.2747 82.9821 43.2747 74.9336C43.2747 74.6854 43.2809 74.4386 43.2933 74.1934C43.3842 72.3841 45.0282 71.1641 46.8398 71.1641H68.856C70.6677 71.1641 72.3117 72.384 72.4026 74.1934Z" fill="none" stroke="white" stroke-width="3"/>
+  <path d="M45.7143 53.7143V60.5715" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <path d="M68.5714 53.7143V60.5715" stroke="white" stroke-width="3" stroke-linecap="round"/>
+</g>
+</svg>
