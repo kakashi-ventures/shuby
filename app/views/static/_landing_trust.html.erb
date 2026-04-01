@@ -1,0 +1,22 @@
+<%
+  trust_items = [
+    { icon: "shuby/icons/icon-neurodevelopment", text: "Standard WHO" },
+    { icon: "shuby/icons/icon-reading",          text: "100+ articoli" },
+    { icon: "shuby/icons/icon-chatbot",           text: "AI medica" },
+    { icon: "shuby/icons/icon-barefoot",           text: "5 aree sviluppo" }
+  ]
+%>
+
+<section class="py-4 px-4"
+         data-controller="scroll-reveal"
+         data-scroll-reveal-stagger-value="80">
+  <div class="flex gap-3 overflow-x-auto pb-2" style="scrollbar-width: none; -webkit-overflow-scrolling: touch;">
+    <% trust_items.each do |item| %>
+      <div class="flex items-center gap-2 px-4 py-2 bg-white border border-[var(--color-shuby-blue-300)] rounded-full whitespace-nowrap flex-shrink-0"
+           data-scroll-reveal-target="item">
+        <%= render_svg item[:icon], size: :md, decorative: true, styles: "text-[var(--color-shuby-blue-800)]" %>
+        <span class="font-sans text-sm font-semibold text-[var(--color-shuby-gray-800)]"><%= item[:text] %></span>
+      </div>
+    <% end %>
+  </div>
+</section>

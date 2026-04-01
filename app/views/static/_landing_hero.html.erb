@@ -1,0 +1,66 @@
+<section class="relative overflow-hidden pt-8 pb-12 px-4"
+         data-controller="scroll-reveal landing-touch"
+         data-scroll-reveal-stagger-value="120">
+
+  <%# Background gradient with organic shapes %>
+  <div class="absolute inset-0 bg-gradient-to-br from-[var(--color-shuby-blue-300)] via-[var(--color-shuby-blue-400)] to-white -z-10" aria-hidden="true">
+    <div class="absolute top-10 -right-10 w-40 h-40 rounded-full bg-[var(--color-shuby-verde-200)] opacity-30 blur-2xl"></div>
+    <div class="absolute bottom-20 -left-10 w-32 h-32 rounded-full bg-[var(--color-shuby-giallo-400)] opacity-20 blur-2xl"></div>
+  </div>
+
+  <%# Text content %>
+  <div data-scroll-reveal-target="item">
+    <%= shuby_tag("0-36 mesi", variant: :bianco, class: "mb-3 inline-block") %>
+  </div>
+
+  <h1 class="font-display text-[32px] sm:text-[40px] font-bold leading-tight text-[var(--color-shuby-blue-800)] mb-3"
+      data-scroll-reveal-target="item">
+    I primi 1000 giorni,<br>insieme a te.
+  </h1>
+
+  <p class="font-sans text-base text-[var(--color-shuby-gray-800)] mb-6 max-w-sm"
+     data-scroll-reveal-target="item">
+    Crescita, sviluppo e consigli personalizzati &mdash; con un assistente AI dedicato.
+  </p>
+
+  <%# Store badges %>
+  <div class="flex gap-3 mb-8" data-scroll-reveal-target="item">
+    <a href="#" class="inline-block" data-landing-touch-target="pressable">
+      <%= image_tag "shuby/landing/badge-app-store.svg",
+          alt: "Scarica su App Store",
+          class: "h-11" %>
+    </a>
+    <a href="#" class="inline-block" data-landing-touch-target="pressable">
+      <%= image_tag "shuby/landing/badge-google-play.svg",
+          alt: "Disponibile su Google Play",
+          class: "h-11" %>
+    </a>
+  </div>
+
+  <%# Phone mockup + mascot %>
+  <div class="relative flex justify-center items-end mt-4">
+    <%# Phone mockup %>
+    <div class="relative w-52 sm:w-60 landing-scale-bounce" style="animation-delay: 300ms;">
+      <div class="bg-white rounded-[2rem] shadow-lg border-4 border-[var(--color-shuby-gray-500)] p-2 overflow-hidden">
+        <div class="rounded-[1.5rem] overflow-hidden aspect-[9/16] bg-[var(--color-shuby-blue-300)] flex items-center justify-center">
+          <%# Placeholder — replace with Figma screenshot %>
+          <div class="text-center p-4">
+            <%= image_tag "shuby/illustrations/mascot-duo-shapes.png",
+                alt: "",
+                class: "w-24 h-auto mx-auto mb-2",
+                aria: { hidden: true } %>
+            <p class="shuby-p2 text-[var(--color-shuby-blue-800)]">Dashboard Shuby</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%# Floating mascot %>
+    <div class="absolute -right-2 bottom-8 sm:right-4 landing-float cursor-pointer"
+         data-landing-touch-target="mascot">
+      <%= image_tag "shuby/illustrations/mascot-sorriso-tall.png",
+          alt: "Shuby mascotte",
+          class: "w-20 sm:w-24 h-auto drop-shadow-md" %>
+    </div>
+  </div>
+</section>
