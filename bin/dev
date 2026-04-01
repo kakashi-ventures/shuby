@@ -12,8 +12,11 @@ if ! pg_isready -q 2>/dev/null; then
   exit 1
 fi
 
-if ! command -v overmind 2>&1 >/dev/null; then
-  gem install overmind
+if command -v overmind >/dev/null 2>&1 && overmind version >/dev/null 2>&1; then
+  exec overmind start -T -f Procfile.dev "$@"
+else
+  if ! command -v foreman >/dev/null 2>&1 || ! foreman version >/dev/null 2>&1; then
+    gem install foreman
+  fi
+  exec foreman start -f Procfile.dev "$@"
 fi
-
-exec overmind start -T -f Procfile.dev "$@"
