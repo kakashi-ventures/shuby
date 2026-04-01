@@ -27,9 +27,9 @@
     Questionari scientifici personalizzati per ogni fase dello sviluppo del tuo bambino.
   </p>
 
-  <div class="grid grid-cols-2 gap-3">
+  <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
     <% areas.each_with_index do |area, i| %>
-      <div class="<%= 'col-span-2 max-w-[calc(50%-6px)] mx-auto' if i == areas.length - 1 %>"
+      <div class="<%= 'col-span-2 lg:col-span-1 max-w-[calc(50%-6px)] lg:max-w-none mx-auto lg:mx-0' if i == areas.length - 1 %>"
            data-scroll-reveal-target="item">
         <div class="bg-white border border-[var(--color-shuby-gray-500)] rounded-2xl p-4 h-full
                     active:shadow-md transition-shadow"

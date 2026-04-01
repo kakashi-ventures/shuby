@@ -2,43 +2,47 @@
          data-controller="scroll-reveal"
          data-scroll-reveal-stagger-value="120">
 
-  <p class="shuby-overline text-[var(--color-shuby-gray-700)] mb-2"
-     data-scroll-reveal-target="item">
-    MONITORAGGIO CRESCITA
-  </p>
+  <div class="lg:flex lg:items-center lg:gap-10">
+    <div class="lg:flex-1">
+      <p class="shuby-overline text-[var(--color-shuby-gray-700)] mb-2"
+         data-scroll-reveal-target="item">
+        MONITORAGGIO CRESCITA
+      </p>
 
-  <h2 class="font-display text-2xl font-bold text-[var(--color-shuby-blue-800)] mb-3"
-      data-scroll-reveal-target="item">
-    Curve di crescita WHO sempre a portata di mano
-  </h2>
+      <h2 class="font-display text-2xl font-bold text-[var(--color-shuby-blue-800)] mb-3"
+          data-scroll-reveal-target="item">
+        Curve di crescita WHO sempre a portata di mano
+      </h2>
 
-  <p class="font-sans text-sm text-[var(--color-shuby-gray-800)] mb-6 max-w-sm"
-     data-scroll-reveal-target="item">
-    Registra peso, altezza e circonferenza cranica. Visualizza i percentili del tuo bambino rispetto agli standard dell'Organizzazione Mondiale della Sanit&agrave;.
-  </p>
+      <p class="font-sans text-sm text-[var(--color-shuby-gray-800)] mb-6 max-w-sm"
+         data-scroll-reveal-target="item">
+        Registra peso, altezza e circonferenza cranica. Visualizza i percentili del tuo bambino rispetto agli standard dell'Organizzazione Mondiale della Sanit&agrave;.
+      </p>
 
-  <%# Growth chart mockup %>
-  <div class="rounded-2xl overflow-hidden border border-[var(--color-shuby-gray-500)] bg-white p-4"
-       data-scroll-reveal-target="item"
-       data-scroll-reveal-animation-value="landing-scale-in">
-    <div class="aspect-[4/3] bg-gradient-to-br from-[var(--color-shuby-blue-300)] to-white rounded-xl flex items-center justify-center">
-      <%= image_tag "shuby/illustrations/illustration-weight-chart.svg",
-          alt: "Grafico percentili WHO esempio",
-          class: "w-3/4 h-auto opacity-80" %>
-    </div>
-  </div>
-
-  <%# Measurement type pills %>
-  <div class="flex gap-3 mt-4 justify-center" data-scroll-reveal-target="item">
-    <% [
-      { icon: "⚖️", label: "Peso", color: "shuby-blue-400" },
-      { icon: "📏", label: "Altezza", color: "shuby-verde-200" },
-      { icon: "🧠", label: "Testa", color: "shuby-giallo-400" }
-    ].each do |m| %>
-      <div class="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--color-<%= m[:color] %>)] rounded-full">
-        <span class="text-sm"><%= m[:icon] %></span>
-        <span class="font-sans text-xs font-semibold text-[var(--color-shuby-gray-800)]"><%= m[:label] %></span>
+      <%# Measurement type pills %>
+      <div class="flex gap-3 mb-6 lg:mb-0" data-scroll-reveal-target="item">
+        <% [
+          { icon: "⚖️", label: "Peso", color: "shuby-blue-400" },
+          { icon: "📏", label: "Altezza", color: "shuby-verde-200" },
+          { icon: "🧠", label: "Testa", color: "shuby-giallo-400" }
+        ].each do |m| %>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--color-<%= m[:color] %>)] rounded-full">
+            <span class="text-sm"><%= m[:icon] %></span>
+            <span class="font-sans text-xs font-semibold text-[var(--color-shuby-gray-800)]"><%= m[:label] %></span>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
+
+    <%# Growth chart mockup %>
+    <div class="lg:flex-1 rounded-2xl overflow-hidden border border-[var(--color-shuby-gray-500)] bg-white p-4"
+         data-scroll-reveal-target="item"
+         data-scroll-reveal-animation-value="landing-scale-in">
+      <div class="aspect-[4/3] bg-gradient-to-br from-[var(--color-shuby-blue-300)] to-white rounded-xl flex items-center justify-center">
+        <%= image_tag "shuby/illustrations/illustration-weight-chart.svg",
+            alt: "Grafico percentili WHO esempio",
+            class: "w-3/4 h-auto opacity-80" %>
+      </div>
+    </div>
   </div>
 </section>
