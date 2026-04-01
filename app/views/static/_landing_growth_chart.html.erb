@@ -1,0 +1,61 @@
+<svg viewBox="0 0 320 220" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="<%= gradient_id %>" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="<%= area_color %>" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="<%= area_color %>" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <%# Grid lines %>
+  <% (0..5).each do |i| %>
+    <line x1="40" y1="<%= 20 + i * 36 %>" x2="300" y2="<%= 20 + i * 36 %>" stroke="#E2E5E8" stroke-width="0.5"/>
+  <% end %>
+  <% (0..6).each do |i| %>
+    <line x1="<%= 40 + i * 43.3 %>" y1="20" x2="<%= 40 + i * 43.3 %>" y2="200" stroke="#E2E5E8" stroke-width="0.5"/>
+  <% end %>
+
+  <%# Y axis labels %>
+  <% y_labels.each_with_index do |label, i| %>
+    <text x="30" y="<%= 24 + i * 36 %>" text-anchor="end" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8"><%= label %></text>
+  <% end %>
+
+  <%# X axis labels (mesi) %>
+  <% %w[0 6 12 18 24 30 36].each_with_index do |label, i| %>
+    <text x="<%= 40 + i * 43.3 %>" y="215" text-anchor="middle" fill="#898D91" font-family="Montserrat,sans-serif" font-size="8"><%= label %></text>
+  <% end %>
+
+  <%# Axis unit labels %>
+  <text x="5" y="110" text-anchor="middle" fill="#616467" font-family="Montserrat,sans-serif" font-size="9" font-weight="600" transform="rotate(-90,5,110)"><%= unit %></text>
+  <text x="170" y="220" text-anchor="middle" fill="#616467" font-family="Montserrat,sans-serif" font-size="9" font-weight="600">mesi</text>
+
+  <%# 97th percentile (dashed) %>
+  <path d="<%= p97 %>" fill="none" stroke="#CAE4FF" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <%# 50th percentile area fill %>
+  <path d="<%= p50 %> L300,200 L40,200 Z" fill="url(#<%= gradient_id %>)"/>
+
+  <%# 50th percentile line %>
+  <path d="<%= p50 %>" fill="none" stroke="<%= color %>" stroke-width="2"/>
+
+  <%# 3rd percentile (dashed) %>
+  <path d="<%= p3 %>" fill="none" stroke="#CAE4FF" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <%# Data points %>
+  <% points.each_with_index do |pt, i| %>
+    <% is_last = (i == points.length - 1) %>
+    <circle cx="<%= pt[0] %>" cy="<%= pt[1] %>" r="4"
+            fill="<%= is_last ? '#38A3A5' : color %>" stroke="#fff" stroke-width="1.5"/>
+    <% if is_last %>
+      <circle cx="<%= pt[0] %>" cy="<%= pt[1] %>" r="7" fill="none" stroke="#38A3A5" stroke-width="1.5" stroke-opacity="0.4"/>
+    <% end %>
+  <% end %>
+
+  <%# Tooltip %>
+  <rect x="<%= tooltip_x - 26 %>" y="<%= tooltip_y - 20 %>" width="52" height="18" rx="4" fill="<%= color %>"/>
+  <text x="<%= tooltip_x %>" y="<%= tooltip_y - 8 %>" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="8" font-weight="600"><%= tooltip_text %></text>
+
+  <%# Percentile labels %>
+  <text x="303" y="50" fill="#898D91" font-family="Montserrat,sans-serif" font-size="7">97°</text>
+  <text x="303" y="73" fill="<%= color %>" font-family="Montserrat,sans-serif" font-size="7" font-weight="600">50°</text>
+  <text x="303" y="106" fill="#898D91" font-family="Montserrat,sans-serif" font-size="7">3°</text>
+</svg>
