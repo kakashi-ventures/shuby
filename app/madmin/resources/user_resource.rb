@@ -2,7 +2,7 @@ class UserResource < Madmin::Resource
   menu parent: "Users & Accounts", position: 1
 
   # Scopes for filtering
-  scope :admins, -> { where(admin: true) }
+  scope :admins
 
   # Attributes
   attribute :id, form: false
