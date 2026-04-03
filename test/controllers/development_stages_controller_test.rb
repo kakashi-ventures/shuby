@@ -100,4 +100,72 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
     get start_child_development_stage_path(@child, area.slug)
     assert_response :redirect
   end
+
+  # --- BoxTappe card visual state tests ---
+  # Sophia is ~65 days old (2 months), current band = mese_3 (min: 2, max: 5)
+  # Past band: sett_4 (age_months=0, maps to mese_1 questionnaires)
+  # Future band: mese_6 (age_months=6, past max for sophia)
+
+  test "future band cards render gray background class" do
+    get timeline_content_child_development_stages_path(@child), params: {band: "mese_6"}
+    assert_response :success
+    assert_select "[class*='shuby-milestone-card-future']", minimum: 1
+    assert_select "[class*='shuby-milestone-card-completed']", count: 0
+  end
+
+  test "past incomplete cards render gray background class" do
+    # motricita_mese_1 has only an in_progress session (not returned for past bands)
+    # so motricita card at sett_4 has session=nil → gray
+    get timeline_content_child_development_stages_path(@child), params: {band: "sett_4"}
+    assert_response :success
+    assert_select "[class*='shuby-milestone-card-future']", minimum: 1
+  end
+
+  test "past completed card renders dark teal background class" do
+    # comunicazione_mese_1 has a completed_session for sophia → dark teal
+    get timeline_content_child_development_stages_path(@child), params: {band: "sett_4"}
+    assert_response :success
+    assert_select "[class*='shuby-milestone-card-completed']", minimum: 1
+  end
+
+  test "current incomplete cards render verde background class" do
+    # mese_3 is sophia's current band — no completed sessions for mese_3 questionnaires
+    get timeline_content_child_development_stages_path(@child), params: {band: "mese_3"}
+    assert_response :success
+    assert_select "[class*='shuby-milestone-card']", minimum: 1
+    assert_select "[class*='shuby-milestone-card-future']", count: 0
+  end
+
+  test "completed card date uses tappa datetime format" do
+    # sett_4 → comunicazione past band → completed_session → date shown
+    get timeline_content_child_development_stages_path(@child), params: {band: "sett_4"}
+    assert_response :success
+    # Tappa format: DD.MM.YYYY - h.HH:MM
+    assert_select ".shuby-milestone-card-completed-date", text: /\d{2}\.\d{2}\.\d{4} - h\.\d{2}:\d{2}/
+  end
+
+  test "past completed card shows redo icon" do
+    get timeline_content_child_development_stages_path(@child), params: {band: "sett_4"}
+    assert_response :success
+    assert_select ".shuby-milestone-card-completed .shuby-milestone-card-action", minimum: 1
+  end
+
+  test "past completed card renders as a link to session results" do
+    get timeline_content_child_development_stages_path(@child), params: {band: "sett_4"}
+    assert_response :success
+    assert_select "a.shuby-milestone-card-completed", minimum: 1
+    assert_select "div.shuby-milestone-card-completed", count: 0
+  end
+
+  test "current incomplete card has aria-label for starting questionnaire" do
+    get timeline_content_child_development_stages_path(@child), params: {band: "mese_3"}
+    assert_response :success
+    assert_select "a[aria-label*='Inizia']", minimum: 1
+  end
+
+  test "completed card has aria-label for viewing results" do
+    get timeline_content_child_development_stages_path(@child), params: {band: "sett_4"}
+    assert_response :success
+    assert_select "a[aria-label*='risultati']", minimum: 1
+  end
 end

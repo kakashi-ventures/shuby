@@ -4,7 +4,7 @@
       <%= shuby_tag("Completata", variant: :verde, size: :small) %>
       <% if session.completed_at %>
         <span class="shuby-milestone-card-completed-date">
-          <%= l(session.completed_at, format: :short) %>
+          <%= l(session.completed_at, format: :tappa) %>
         </span>
       <% end %>
     </div>
@@ -27,12 +27,12 @@
   <span class="shuby-milestone-card-title"><%= area.name %></span>
 </div>
 
-<% if age_relationship == :current && !is_completed %>
-  <div class="shuby-milestone-card-action">
-    <%= render_svg "shuby/icons/icon-arrow-right", size: :sm, decorative: true %>
-  </div>
-<% elsif is_completed && age_relationship == :current %>
+<% if is_completed %>
   <div class="shuby-milestone-card-action">
     <%= render_svg "shuby/icons/icon-redo", size: :sm, decorative: true %>
+  </div>
+<% elsif age_relationship == :current %>
+  <div class="shuby-milestone-card-action">
+    <%= render_svg "shuby/icons/icon-arrow-right", size: :sm, decorative: true %>
   </div>
 <% end %>
