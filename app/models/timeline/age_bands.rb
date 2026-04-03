@@ -34,21 +34,20 @@ module Timeline
     end
 
     # Find the best-matching band for a child's age in months.
-    # For ages 0-1, maps to weeks; for 2, maps to Sett. 8 (last week);
-    # for 3+, maps to the matching Mese pill.
-    def self.for_child_age(age_in_months)
+    # Pass age_in_weeks: for week-precision selection in the Sett. 1-8 range.
+    # For ages 0-1 without weeks, falls back to a midpoint approximation.
+    # For age 2, maps to Mese 3 (no Mese 2 pill exists).
+    # For ages 3+, maps to the matching Mese pill.
+    def self.for_child_age(age_in_months, age_in_weeks: nil)
       clamped = age_in_months.clamp(0, 36)
 
-      if clamped <= 1
-        # Map to a week pill based on approximate week count
-        week_index = if clamped == 0
-          3 # Sett. 4 (mid-point of first month)
-        else
-          7 # Sett. 8 (end of second month)
-        end
-        ALL[week_index]
+      if clamped <= 1 && age_in_weeks && age_in_weeks <= 8
+        ALL.find { |band| band[:key] == "sett_#{age_in_weeks}" } || ALL[7]
+      elsif clamped <= 1
+        # Fallback approximation when week precision is unavailable
+        ALL[clamped == 0 ? 3 : 7]
       elsif clamped == 2
-        MONTHS.first # Mese 3 — first monthly pill; covers the same 2–5 DB band as age 2
+        MONTHS.first # Mese 3 — first monthly pill; covers the same 2-5 DB band as age 2
       else
         ALL.find { |band| band[:key] == "mese_#{clamped}" } || ALL.last
       end

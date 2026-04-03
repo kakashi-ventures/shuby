@@ -22,6 +22,8 @@ class User < ApplicationRecord
   has_many :archive_favorites, dependent: :destroy
   has_many :favorite_archive_contents, through: :archive_favorites, source: :archive_content
 
+  scope :admins, -> { where(admin: true) }
+
   validates :avatar, resizable_image: true
   validates :name, presence: true
 
