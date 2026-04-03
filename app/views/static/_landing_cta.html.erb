@@ -1,0 +1,58 @@
+<section class="pt-8 pb-4 px-4"
+         data-controller="scroll-reveal landing-touch"
+         data-scroll-reveal-stagger-value="120">
+
+  <%# CTA block %>
+  <div class="bg-gradient-to-br from-[var(--color-shuby-blue-300)] to-[var(--color-shuby-blue-400)] rounded-3xl p-6 text-center mb-8">
+    <%# Mascot %>
+    <div class="mb-4 landing-float" data-scroll-reveal-target="item">
+      <%= image_tag "shuby/illustrations/mascot-sorriso.png",
+          alt: "",
+          class: "w-24 h-24 mx-auto object-contain",
+          aria: { hidden: true } %>
+    </div>
+
+    <h2 class="font-display text-2xl font-bold text-[var(--color-shuby-blue-800)] mb-2"
+        data-scroll-reveal-target="item">
+      Ogni giorno conta.<br>Inizia oggi.
+    </h2>
+
+    <p class="font-sans text-sm text-[var(--color-shuby-gray-800)] mb-5"
+       data-scroll-reveal-target="item">
+      Gratuito. Nessuna carta di credito richiesta.
+    </p>
+
+    <%# Store badges %>
+    <div class="flex items-center gap-3 justify-center" data-scroll-reveal-target="item">
+      <a href="#" class="inline-block" data-landing-touch-target="pressable">
+        <%= image_tag "shuby/landing/badge-app-store.png",
+            alt: "Scarica su App Store",
+            class: "h-10 w-auto" %>
+      </a>
+      <a href="#" class="inline-block" data-landing-touch-target="pressable">
+        <%= image_tag "shuby/landing/badge-google-play2.png",
+            alt: "Disponibile su Google Play",
+            class: "h-10 w-auto" %>
+      </a>
+    </div>
+  </div>
+
+  <%# Footer %>
+  <footer class="text-center pb-6">
+    <div class="mb-4 flex items-center justify-center gap-2">
+      <%= image_tag "shuby/illustrations/mascot-centered.svg",
+          alt: "",
+          class: "w-6 h-6",
+          aria: { hidden: true } %>
+      <span class="font-display text-lg font-bold text-[var(--color-shuby-blue-800)]">Shuby</span>
+    </div>
+    <nav class="flex gap-4 justify-center mb-4" aria-label="Footer">
+      <%= link_to "Privacy", privacy_path, class: "font-sans text-xs text-[var(--color-shuby-gray-700)] hover:text-[var(--color-shuby-blue-800)]" %>
+      <%= link_to "Termini", terms_path, class: "font-sans text-xs text-[var(--color-shuby-gray-700)] hover:text-[var(--color-shuby-blue-800)]" %>
+      <a href="mailto:info@shuby.app" class="font-sans text-xs text-[var(--color-shuby-gray-700)] hover:text-[var(--color-shuby-blue-800)]">Contatti</a>
+    </nav>
+    <p class="font-sans text-[10px] text-[var(--color-shuby-gray-600)]">
+      &copy; <%= Date.today.year %> Shuby S.r.l. &mdash; P.IVA 13408430018
+    </p>
+  </footer>
+</section>

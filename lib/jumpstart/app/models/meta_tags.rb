@@ -39,11 +39,11 @@ class MetaTags
   # Social media
   attribute :current_url
   attribute :og_type, default: "website" # website | profile | article | video.movie
-  attribute :twitter_type, default: "summary" # summary | summary_large_image
+  attribute :twitter_type, default: "summary_large_image" # summary | summary_large_image
   attribute :twitter_site, default: -> { default_twitter_site } # @username
 
   # General meta tags
-  attribute :theme_color, default: "#ffffff"
+  attribute :theme_color, default: "#0159B5"
   attribute :canonical_url
   attribute :next_url
   attribute :prev_url
@@ -88,6 +88,7 @@ class MetaTags
         <%= tag.link rel: :icon, **attributes %>
       <% end %>
       <%= tag.link rel: "apple-touch-icon", href: apple_touch_icon %>
+      <%= tag.meta name: "theme-color", content: theme_color %>
       <%= tag.meta name: "application-name", content: site %>
       <%= tag.meta(name: :robots, content: :noindex) if noindex %>
       <%= tag.meta(name: "mobile-web-app-capable", content: :yes) if web_app_capable %>

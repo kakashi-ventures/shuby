@@ -1,1 +1,9 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+# https://shuby.app
+User-agent: *
+Allow: /
+
+Sitemap: https://shuby.app/sitemap.xml
+
+Disallow: /madmin/
+Disallow: /rails/
+Disallow: /up

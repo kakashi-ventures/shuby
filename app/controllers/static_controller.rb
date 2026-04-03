@@ -2,6 +2,9 @@ class StaticController < ApplicationController
   def index
   end
 
+  def app_preview
+  end
+
   def about
   end
 

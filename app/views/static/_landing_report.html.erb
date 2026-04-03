@@ -1,0 +1,55 @@
+<section class="py-8 px-4"
+         data-controller="scroll-reveal"
+         data-scroll-reveal-stagger-value="120">
+
+  <div class="bg-[var(--color-shuby-blue-300)] rounded-3xl p-5">
+    <div class="flex items-start gap-3 mb-4" data-scroll-reveal-target="item">
+      <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center flex-shrink-0">
+        <%= render_svg "shuby/icons/icon-document", size: :md, decorative: true, styles: "text-[var(--color-shuby-blue-800)]" %>
+      </div>
+      <div>
+        <h2 class="font-display text-xl font-bold text-[var(--color-shuby-blue-800)]">
+          Un report pronto per il pediatra
+        </h2>
+      </div>
+    </div>
+
+    <p class="font-sans text-sm text-[var(--color-shuby-gray-800)] mb-5"
+       data-scroll-reveal-target="item">
+      Genera un PDF completo con misurazioni, tappe raggiunte e domande, da condividere al prossimo appuntamento.
+    </p>
+
+    <%# PDF mockup %>
+    <div class="bg-white rounded-2xl p-4 shadow-sm"
+         data-scroll-reveal-target="item"
+         data-scroll-reveal-animation-value="landing-scale-in">
+      <div class="border-b border-[var(--color-shuby-gray-500)] pb-3 mb-3">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-8 h-8 rounded-full bg-[var(--color-shuby-blue-400)]"></div>
+          <div>
+            <p class="font-sans text-xs font-bold text-[var(--color-shuby-gray-800)]">Marco, 8 mesi</p>
+            <p class="font-sans text-[10px] text-[var(--color-shuby-gray-600)]">Report del 01/04/2026</p>
+          </div>
+        </div>
+      </div>
+      <div class="space-y-2">
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 rounded bg-[var(--color-shuby-verde-200)]"></div>
+          <span class="font-sans text-xs text-[var(--color-shuby-gray-700)]">Peso: 8.2 kg (50&deg; percentile)</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 rounded bg-[var(--color-shuby-blue-400)]"></div>
+          <span class="font-sans text-xs text-[var(--color-shuby-gray-700)]">Altezza: 70 cm (65&deg; percentile)</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 rounded bg-[var(--color-shuby-giallo-400)]"></div>
+          <span class="font-sans text-xs text-[var(--color-shuby-gray-700)]">12 tappe raggiunte su 15</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center gap-2 mt-4" data-scroll-reveal-target="item">
+      <span class="font-sans text-xs font-semibold text-[var(--color-shuby-blue-800)]">Condividi via email o WhatsApp</span>
+    </div>
+  </div>
+</section>

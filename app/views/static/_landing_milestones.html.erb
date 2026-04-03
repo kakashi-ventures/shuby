@@ -1,0 +1,46 @@
+<%
+  areas = [
+    { name: "Generale",       desc: "Crescita e benessere globale",       bg: "shuby-blue-400",    icon: "shuby/icons/icon-barefoot" },
+    { name: "Comunicazione",  desc: "Linguaggio e interazione",           bg: "shuby-verde-200",   icon: "shuby/icons/icon-chatbot" },
+    { name: "Motricità",      desc: "Movimenti e coordinazione",          bg: "shuby-magenta-300", icon: "shuby/icons/icon-neurodevelopment" },
+    { name: "Cognizione",     desc: "Apprendimento e problem solving",    bg: "shuby-giallo-400",  icon: "shuby/icons/icon-reading" },
+    { name: "Relazione",      desc: "Socialità e legami affettivi",       bg: "shuby-blue-300",    icon: "shuby/icons/icon-archive" }
+  ]
+%>
+
+<section class="py-8 px-4"
+         data-controller="scroll-reveal landing-touch"
+         data-scroll-reveal-stagger-value="120">
+
+  <p class="shuby-overline text-[var(--color-shuby-gray-700)] mb-2"
+     data-scroll-reveal-target="item">
+    SVILUPPO NEUROEVOLUTIVO
+  </p>
+
+  <h2 class="font-display text-2xl font-bold text-[var(--color-shuby-blue-800)] mb-2"
+      data-scroll-reveal-target="item">
+    5 aree, un quadro completo
+  </h2>
+
+  <p class="font-sans text-sm text-[var(--color-shuby-gray-800)] mb-6 max-w-sm"
+     data-scroll-reveal-target="item">
+    Questionari scientifici personalizzati per ogni fase dello sviluppo del tuo bambino.
+  </p>
+
+  <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
+    <% areas.each_with_index do |area, i| %>
+      <div class="<%= 'col-span-2 lg:col-span-1 max-w-[calc(50%-6px)] lg:max-w-none mx-auto lg:mx-0' if i == areas.length - 1 %>"
+           data-scroll-reveal-target="item">
+        <div class="bg-white border border-[var(--color-shuby-gray-500)] rounded-2xl p-4 h-full
+                    active:shadow-md transition-shadow"
+             data-landing-touch-target="tiltable">
+          <div class="w-10 h-10 rounded-xl bg-[var(--color-<%= area[:bg] %>)] flex items-center justify-center mb-3">
+            <%= render_svg area[:icon], size: :md, decorative: true %>
+          </div>
+          <h3 class="font-sans text-sm font-bold text-[var(--color-shuby-gray-800)] mb-1"><%= area[:name] %></h3>
+          <p class="font-sans text-xs text-[var(--color-shuby-gray-700)]"><%= area[:desc] %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

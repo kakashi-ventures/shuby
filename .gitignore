@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Superpowers brainstorming sessions
+/.superpowers/
+
 # Ignore all environment files (except templates).
 .env
 .overmind.env
@@ -55,4 +58,3 @@ yarn-debug.log*
 
 # Knowledge base documents (large binary files)
 docs/knowledge_base/
-
