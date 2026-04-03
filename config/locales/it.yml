@@ -732,6 +732,7 @@ it:
       tappa_completata: "Completata"
       tappa_passata: "Tappa passata"
       tappa_non_completata: "Non completata"
+      estimated_time: "2 MIN"
       card_start_aria_label: "Inizia il questionario: %{area}"
       card_results_aria_label: "Vedi i risultati: %{area}"
       start: "Inizia"

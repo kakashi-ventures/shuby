@@ -1,7 +1,7 @@
 <div class="shuby-milestone-card-content">
   <% if is_completed %>
     <div class="shuby-milestone-card-completed-meta">
-      <%= shuby_tag("Completata", variant: :verde, size: :small) %>
+      <%= shuby_tag(t("timeline.show.tappa_completata"), variant: :verde, size: :small) %>
       <% if session.completed_at %>
         <span class="shuby-milestone-card-completed-date">
           <%= l(session.completed_at, format: :tappa) %>
@@ -13,7 +13,7 @@
       <span class="shuby-milestone-card-time-icon">
         <%= render_svg "shuby/icons/icon-alarm", decorative: true %>
       </span>
-      2 min
+      <%= t("timeline.show.estimated_time") %>
     </div>
   <% elsif age_relationship == :future %>
     <div class="shuby-milestone-card-meta">

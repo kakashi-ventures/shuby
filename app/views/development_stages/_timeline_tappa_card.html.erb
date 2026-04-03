@@ -26,7 +26,7 @@
 
 <% if is_interactive %>
   <%= link_to link_path,
-      class: "block #{bg_class} hover:opacity-90 transition-opacity",
+      class: "#{bg_class} hover:opacity-90 transition-opacity",
       aria: { label: aria_label },
       data: { turbo_frame: "_top" } do %>
     <%= render "development_stages/timeline_tappa_card_content",

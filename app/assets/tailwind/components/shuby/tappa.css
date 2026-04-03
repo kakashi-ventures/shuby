@@ -373,6 +373,14 @@
     line-height: var(--line-height-normal);
 }
 
+/* Future / past-not-completed state — light gray background, blue-700 title */
+.shuby-milestone-card-future {
+    background-color: var(--color-shuby-gray-400);
+
+    .shuby-milestone-card-title { color: var(--color-shuby-blue-700); }
+    .shuby-milestone-card-time { color: var(--color-shuby-blue-700); }
+}
+
 /* Tag for completed status */
 .shuby-tag-verde {
     background-color: var(--color-shuby-verde-300);
