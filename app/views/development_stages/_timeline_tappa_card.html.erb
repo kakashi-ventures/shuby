@@ -9,6 +9,12 @@
     child_development_stage_path(child, area.slug)
   end
 
+  aria_label = if is_completed
+    t("timeline.show.card_results_aria_label", area: area.name)
+  else
+    t("timeline.show.card_start_aria_label", area: area.name)
+  end
+
   bg_class = if is_completed
     "shuby-milestone-card shuby-milestone-card-completed"
   elsif age_relationship == :future || age_relationship == :past
@@ -21,6 +27,7 @@
 <% if is_interactive %>
   <%= link_to link_path,
       class: "block #{bg_class} hover:opacity-90 transition-opacity",
+      aria: { label: aria_label },
       data: { turbo_frame: "_top" } do %>
     <%= render "development_stages/timeline_tappa_card_content",
                area: area, session: session,
