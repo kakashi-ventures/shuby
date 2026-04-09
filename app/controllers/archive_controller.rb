@@ -41,12 +41,18 @@ class ArchiveController < ApplicationController
     Set.new(current_user.archive_favorites.pluck(:archive_content_id))
   end
 
-  # Load content for the sectioned home view
+  # Load content for the sectioned home view, age-filtered when a child is selected
   def load_sectioned_content
-    @articles = base_scope.articles.ordered.limit(4)
-    @consigli = base_scope.tips.ordered.limit(4)
-    @activities = base_scope.activities.ordered.limit(4)
+    scope = age_filtered_scope
+    @articles = scope.articles.ordered.limit(4)
+    @consigli = scope.tips.ordered.limit(4)
+    @activities = scope.activities.ordered.limit(4)
     @sectioned_view = true
+  end
+
+  def age_filtered_scope
+    return base_scope unless current_child
+    base_scope.for_age(current_child.questionnaire_age_in_months)
   end
 
   # Load saved/favorited content

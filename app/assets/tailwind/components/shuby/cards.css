@@ -266,10 +266,18 @@
     height: 80px;
 }
 
+/* Ombra (shadow) variant — replaces border with a soft blue glow */
+.shuby-scheda-attivita--ombra {
+    border: none;
+    box-shadow: 0px 0px 10px 0px rgba(158, 198, 240, 0.30);
+}
+
 .shuby-scheda-attivita-content {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    flex: 1;
+    min-width: 0;
 }
 
 .shuby-scheda-attivita-title {
@@ -278,6 +286,9 @@
     font-weight: var(--font-weight-bold);
     line-height: var(--line-height-tight);
     color: var(--color-shuby-blue-800);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .shuby-scheda-attivita-time {

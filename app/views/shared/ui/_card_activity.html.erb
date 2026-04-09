@@ -6,8 +6,7 @@
 %>
 <% card_path = local_assigns[:path] || archive_path(content.slug) %>
 <%= link_to card_path, class: "block", aria: { label: content.title } do %>
-  <div class="shuby-scheda-attivita relative">
-    <%= render "archive/favorite_button", content: content, favorited: local_assigns[:favorite_ids]&.include?(content.id) %>
+  <div class="shuby-scheda-attivita">
     <div class="shuby-scheda-attivita-content">
       <p class="shuby-scheda-attivita-title"><%= content.title %></p>
       <% if content.duration_minutes.present? %>
