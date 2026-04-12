@@ -152,9 +152,9 @@
     .shuby-tag-icon { color: var(--color-shuby-white); }
 }
 
-/* Verde tag (Figma: Verde - teal #D1F8F9) */
+/* Verde tag (Figma: Verde - teal #99E0E2) */
 .shuby-tag-verde {
-    background-color: var(--color-shuby-verde-200);
+    background-color: var(--color-shuby-verde-300);
     color: var(--color-shuby-blue-800);
 
     .shuby-tag-icon { color: var(--color-shuby-blue-800); }

@@ -3,6 +3,7 @@ class StaticController < ApplicationController
   end
 
   def app_preview
+    @preview_activities = ArchiveContent.published.activities.ordered.limit(2)
   end
 
   def about

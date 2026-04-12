@@ -33,7 +33,7 @@ module TimelineHelper
   def pill_state_class(band, current_band, selected_band, child)
     if band[:key] == selected_band[:key]
       "selected"
-    elsif age_relationship_for(band, child) == :past
+    elsif band_before_current?(band, current_band, child)
       "past"
     elsif band[:key] == current_band[:key]
       "selected-primary"
@@ -58,8 +58,26 @@ module TimelineHelper
   def pill_relationship(band, current_band, child)
     if band[:key] == current_band[:key]
       "current"
+    elsif band_before_current?(band, current_band, child)
+      "past"
     else
-      age_relationship_for(band, child).to_s
+      "future"
     end
+  end
+
+  private
+
+  # True when +band+ falls strictly before +current_band+ in the timeline sequence.
+  # Uses age_months for most bands; falls back to ALL-array position for week bands
+  # that share the same age_months (Sett. 1-4 → 0, Sett. 5-8 → 1).
+  def band_before_current?(band, current_band, child)
+    rel = age_relationship_for(band, child)
+    return true if rel == :past
+    return false if rel == :future
+
+    # Same age_months: resolve by position in the canonical sequence
+    all = Timeline::AgeBands::ALL
+    all.index { |b| b[:key] == band[:key] }.to_i <
+      all.index { |b| b[:key] == current_band[:key] }.to_i
   end
 end

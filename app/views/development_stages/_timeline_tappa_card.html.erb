@@ -1,18 +1,33 @@
 <%
   is_completed = session&.completed?
   is_current = age_relationship == :current
-  is_interactive = is_current && !is_completed
+  is_interactive = (is_current && !is_completed) || is_completed
+
+  link_path = if is_completed && !is_current
+    child_questionnaire_session_path(child, session)
+  else
+    child_development_stage_path(child, area.slug)
+  end
+
+  aria_label = if is_completed
+    t("timeline.show.card_results_aria_label", area: area.name)
+  else
+    t("timeline.show.card_start_aria_label", area: area.name)
+  end
 
   bg_class = if is_completed
-    "shuby-milestone-card-completed"
+    "shuby-milestone-card shuby-milestone-card-completed"
+  elsif age_relationship == :future || age_relationship == :past
+    "shuby-milestone-card shuby-milestone-card-future"
   else
     "shuby-milestone-card"
   end
 %>
 
 <% if is_interactive %>
-  <%= link_to child_development_stage_path(child, area.slug),
-      class: "block #{bg_class} hover:opacity-90 transition-opacity",
+  <%= link_to link_path,
+      class: "#{bg_class} hover:opacity-90 transition-opacity",
+      aria: { label: aria_label },
       data: { turbo_frame: "_top" } do %>
     <%= render "development_stages/timeline_tappa_card_content",
                area: area, session: session,

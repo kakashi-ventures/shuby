@@ -61,7 +61,7 @@ module Child::AgeCalculations
   def detailed_corrected_age_display
     return detailed_age_display unless using_corrected_age?
 
-    corrected_birth = birth_date + ((40 - gestational_weeks) * 7 + (7 - (gestational_days || 0))).days
+    corrected_birth = corrected_birth_date
     total_days = (Date.current - corrected_birth).to_i
     return detailed_age_display if total_days < 0
 
@@ -100,10 +100,6 @@ module Child::AgeCalculations
   def corrected_age_in_months(date = Date.current)
     return age_in_months(date) unless premature? && gestational_weeks.present?
 
-    weeks_early = 40 - gestational_weeks
-    days_early = (weeks_early * 7) + (7 - (gestational_days || 0))
-    corrected_birth_date = birth_date + days_early.days
-
     ((date - corrected_birth_date).to_i / 30.44).floor
   end
 
@@ -113,6 +109,11 @@ module Child::AgeCalculations
     else
       age_in_months(date)
     end
+  end
+
+  def questionnaire_age_in_weeks(date = Date.current)
+    origin = (premature? && age_in_months(date) < 24) ? corrected_birth_date : birth_date
+    [((date - origin).to_i / 7).floor + 1, 1].max
   end
 
   def using_corrected_age?
@@ -130,6 +131,12 @@ module Child::AgeCalculations
   end
 
   private
+
+  def corrected_birth_date
+    weeks_early = 40 - gestational_weeks
+    days_early = (weeks_early * 7) + (7 - (gestational_days || 0))
+    birth_date + days_early.days
+  end
 
   def format_months_and_weeks(months, weeks)
     months_key = (months == 1) ? "1" : "other"

@@ -49,8 +49,9 @@ class DevelopmentStagesController < ApplicationController
 
   def set_timeline_bands
     @child_age_months = @child.questionnaire_age_in_months
+    @child_age_weeks  = @child.questionnaire_age_in_weeks
     @age_bands = Timeline::AgeBands::ALL
-    @current_band = Timeline::AgeBands.for_child_age(@child_age_months)
+    @current_band = Timeline::AgeBands.for_child_age(@child_age_months, age_in_weeks: @child_age_weeks)
     @current_band_questionnaire = AgeBandQuestionnaire.for_age([@child_age_months, 36].min).first
     @selected_band = if params[:band].present?
       Timeline::AgeBands.find_by_key(params[:band]) || @current_band
