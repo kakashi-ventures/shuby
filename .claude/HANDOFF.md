@@ -45,7 +45,7 @@ _Last updated: 2026-04-14_
    - "Tappe di sviluppo collegate" in content detail (needs model association)
 
 ## Uncommitted Changes
-- `docs/REMAINING-WORK.md` — updated reports items (DEC-014 done, chart deferred)
+(None — working tree clean, all pushed to origin/main)
 
 ## Recent Commits
 ```
