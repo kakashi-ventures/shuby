@@ -13,17 +13,18 @@ module TimelineHelper
     data = ranges&.dig(type)
     return unless data
 
-    tag.div(class: "flex-1 rounded-lg bg-white p-3 text-center") do
+    tag.div(class: "flex-1 bg-white border border-shuby-blue-300 rounded-grande px-1 py-2 text-center") do
       safe_join([
-        tag.p(t("timeline.show.#{type}"), class: "shuby-caption text-shuby-blue-800 font-semibold uppercase mb-1"),
-        tag.p(class: "font-display font-bold text-lg text-shuby-blue-800") {
+        tag.p(t("timeline.show.#{type}"),
+          class: "shuby-caption font-semibold uppercase text-shuby-blue-800 mb-1"),
+        tag.div(class: "flex items-center justify-center gap-1") {
           safe_join([
-            tag.span(data[:p3], class: "text-base"),
-            tag.span(" "),
-            tag.span(data[:p97], class: "text-base")
+            tag.span(data[:p3], class: "font-display font-bold text-xl text-shuby-blue-800"),
+            tag.span(class: "inline-block w-[5px] border-t border-shuby-blue-800 self-center"),
+            tag.span(data[:p97], class: "font-display font-bold text-xl text-shuby-blue-800")
           ])
         },
-        tag.p(unit, class: "shuby-caption text-shuby-gray-600")
+        tag.p(unit, class: "shuby-caption text-shuby-blue-800")
       ])
     end
   end

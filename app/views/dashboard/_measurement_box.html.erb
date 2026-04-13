@@ -1,5 +1,6 @@
 <%# Compact measurement tracking card for the dashboard grid.
   Renders inside shuby-metric-grid (2-column layout).
+  Figma: SchedaMisurazioni — Versione 3, 50%
 
   Locals:
     box   - MeasurementDashboardService::MeasurementBox (type, state, last_measurement)
@@ -9,46 +10,57 @@
 
 <% case box.state %>
 <% when :start_tracking %>
-  <%= link_to new_child_measurement_path(child, type: box.type), class: "shuby-tracking-card" do %>
-    <p class="shuby-caption mb-1"><%= t("measurements.dashboard.section_start_tracking") %></p>
-    <div class="shuby-tracking-card-header">
-      <span class="shuby-tracking-card-title"><%= type_label %></span>
-      <span class="shuby-tracking-card-action">
-        <span class="shuby-icon-btn shuby-icon-btn-sm">
-          <%= render_svg "shuby/icons/icon-add", decorative: true %>
-        </span>
-      </span>
+  <%= link_to new_child_measurement_path(child, type: box.type),
+        class: "shuby-tracking-card",
+        aria: { label: "#{t('measurements.dashboard.start_tracking')}: #{type_label}" } do %>
+    <div class="w-full">
+      <p class="shuby-caption uppercase text-shuby-blue-800 mb-2">
+        <%= t("measurements.dashboard.section_start_tracking") %>
+      </p>
+      <p class="shuby-tracking-card-title"><%= type_label %></p>
     </div>
-  <% end %>
-
-<% when :update %>
-  <%= link_to new_child_measurement_path(child, type: box.type), class: "shuby-tracking-card" do %>
-    <div class="shuby-tracking-card-header">
-      <div>
-        <%= shuby_tag(t("measurements.card.update_badge"), variant: :yellow, size: :small, class: "mb-2") %>
-        <span class="shuby-tracking-card-title block"><%= type_label %></span>
-      </div>
-      <span class="shuby-tracking-card-action">
-        <span class="shuby-icon-btn-pink shuby-icon-btn-sm">
-          <%= render_svg "shuby/icons/icon-add", decorative: true %>
-        </span>
-      </span>
-    </div>
-    <span class="shuby-tracking-card-value">
-      <%= l(box.last_measurement.measured_at, format: :short) %> - <%= box.last_measurement.display_value %>
+    <span class="shuby-icon-btn shuby-icon-btn-sm shrink-0">
+      <%= render_svg "shuby/icons/icon-add", decorative: true %>
     </span>
   <% end %>
 
-<% when :track %>
-  <%= link_to child_path(child, tab: "misurazioni"), class: "shuby-tracking-card" do %>
-    <div class="shuby-tracking-card-header">
-      <span class="shuby-tracking-card-title"><%= type_label %></span>
-      <span class="shuby-tracking-card-action">
-        <span class="shuby-icon-btn shuby-icon-btn-sm">
-          <%= render_svg "shuby/icons/icon-baby-tracker", decorative: true %>
-        </span>
+<% when :update %>
+  <%= link_to new_child_measurement_path(child, type: box.type),
+        class: "shuby-tracking-card",
+        aria: { label: "#{t('measurements.dashboard.update')}: #{type_label}" } do %>
+    <div class="w-full">
+      <span class="shuby-badge-fucsia mb-2 inline-block">
+        <%= t("measurements.dashboard.section_update") %>
+      </span>
+      <p class="shuby-tracking-card-title"><%= type_label %></p>
+    </div>
+    <div class="flex items-start gap-2 shrink-0">
+      <span class="shuby-tracking-card-value">
+        <%= l(box.last_measurement.measured_at, format: :short) %> - h. <%= box.last_measurement.measured_at.strftime("%H:%M") %>
+      </span>
+      <span class="shuby-icon-btn-pink shuby-icon-btn-sm shrink-0">
+        <%= render_svg "shuby/icons/icon-add", decorative: true %>
       </span>
     </div>
-    <span class="shuby-tracking-card-value"><%= box.last_measurement.display_value %></span>
+  <% end %>
+
+<% when :track %>
+  <%= link_to new_child_measurement_path(child, type: box.type),
+        class: "shuby-tracking-card",
+        aria: { label: "#{t('measurements.dashboard.track')}: #{type_label}" } do %>
+    <div class="w-full">
+      <p class="shuby-caption uppercase text-shuby-blue-800 mb-2">
+        <%= t("measurements.dashboard.section_track") %>
+      </p>
+      <p class="shuby-tracking-card-title"><%= type_label %></p>
+    </div>
+    <div class="flex items-start gap-2 shrink-0">
+      <span class="shuby-tracking-card-value">
+        <%= l(box.last_measurement.measured_at, format: :short) %> - h. <%= box.last_measurement.measured_at.strftime("%H:%M") %>
+      </span>
+      <span class="shuby-icon-btn shuby-icon-btn-sm shrink-0">
+        <%= render_svg "shuby/icons/icon-add", decorative: true %>
+      </span>
+    </div>
   <% end %>
 <% end %>

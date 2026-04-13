@@ -14,19 +14,19 @@
 
 <div class="shuby-measurement-card" role="group" aria-label="<%= title %>">
   <div class="shuby-measurement-card-info">
+    <span class="shuby-measurement-card-info-title"><%= title %></span>
     <div class="flex items-center gap-2">
-      <span class="shuby-measurement-card-info-title"><%= title %></span>
+      <% if measured_at.present? %>
+        <span class="shuby-measurement-card-info-date">
+          <%= l(measured_at, format: :short) %> - h. <%= measured_at.strftime("%H:%M") %>
+        </span>
+      <% elsif !has_data %>
+        <span class="shuby-measurement-card-info-date"><%= t("measurements.card.start_tracking") %></span>
+      <% end %>
       <% if has_data && is_stale %>
         <span class="shuby-badge-fucsia"><%= t("measurements.card.update_badge") %></span>
       <% end %>
     </div>
-    <% if measured_at.present? %>
-      <span class="shuby-measurement-card-info-date">
-        <%= l(measured_at, format: :short) %> - h. <%= measured_at.strftime("%H:%M") %>
-      </span>
-    <% elsif !has_data %>
-      <span class="shuby-measurement-card-info-date"><%= t("measurements.card.start_tracking") %></span>
-    <% end %>
   </div>
 
   <div class="shuby-measurement-card-value <%= has_data && !is_stale ? "updated" : "stale" %>">
