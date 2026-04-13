@@ -12,36 +12,36 @@
 <% is_vertical = local_assigns[:variant] == "vertical" %>
 
 <% if is_vertical %>
-  <%# Vertical variant (featured carousel) using shuby-card-articolo classes %>
+  <%# Vertical variant (featured carousel) using shuby-card-article classes %>
   <%= link_to card_path, class: "block shrink-0", aria: { label: content.title } do %>
-    <div class="shuby-card-articolo <%= local_assigns[:bg_color] %>">
-      <div class="shuby-card-articolo-image">
+    <div class="shuby-card-article <%= local_assigns[:bg_color] %>">
+      <div class="shuby-card-article-image">
         <%= archive_cover_image(content) %>
       </div>
-      <div class="shuby-card-articolo-content">
-        <div class="shuby-card-articolo-tags">
+      <div class="shuby-card-article-content">
+        <div class="shuby-card-article-tags">
           <% if content.category.present? %>
-            <span class="shuby-card-articolo-tag shuby-card-articolo-tag-tipo">
-              <span class="shuby-card-articolo-tag-icon">
+            <span class="shuby-card-article-tag shuby-card-article-tag-type">
+              <span class="shuby-card-article-tag-icon">
                 <%= render_svg category_icon_for(content.category), styles: "w-full h-full" %>
               </span>
               <%= content.category %>
             </span>
           <% end %>
-          <span class="shuby-card-articolo-tag shuby-card-articolo-tag-eta"><%= content.age_range_label %></span>
+          <span class="shuby-card-article-tag shuby-card-article-tag-age"><%= content.age_range_label %></span>
         </div>
-        <div class="shuby-card-articolo-body">
-          <h3 class="shuby-card-articolo-title"><%= content.title %></h3>
+        <div class="shuby-card-article-body">
+          <h3 class="shuby-card-article-title"><%= content.title %></h3>
           <% if content.description.present? %>
-            <p class="shuby-card-articolo-description"><%= content.description %></p>
+            <p class="shuby-card-article-description"><%= content.description %></p>
           <% end %>
         </div>
         <% if content.duration_minutes.present? %>
-          <div class="shuby-card-articolo-time">
-            <span class="shuby-card-articolo-time-icon">
+          <div class="shuby-card-article-time">
+            <span class="shuby-card-article-time-icon">
               <%= render_svg "shuby/icons/icon-alarm", styles: "w-full h-full" %>
             </span>
-            <span class="shuby-card-articolo-time-text"><%= content.duration_label %></span>
+            <span class="shuby-card-article-time-text"><%= content.duration_label %></span>
           </div>
         <% end %>
       </div>

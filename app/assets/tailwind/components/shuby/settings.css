@@ -1,5 +1,5 @@
-/* Shuby Gestione
- * Gestione page, member cards, family section
+/* Shuby Settings
+ * Settings page, member cards, family section
  */
 
 /* =====================================================
@@ -9,13 +9,13 @@
    ===================================================== */
 
 /* Page container */
-.shuby-gestione-page {
+.shuby-settings-page {
     background-color: var(--color-shuby-white);
     min-height: 100vh;
     padding: var(--space-4);
 }
 
-/* Page title (Gestione) */
+/* Page title (Settings) */
 .shuby-page-title {
     font-size: var(--font-size-h2);
     font-weight: var(--font-weight-bold);
@@ -57,7 +57,7 @@
 }
 
 /* =====================================================
-   MEMBER CARD (Gestione list item)
+   MEMBER CARD (Settings list item)
    White rounded card with avatar, info, and edit button
    ===================================================== */
 

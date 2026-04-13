@@ -73,7 +73,7 @@ export default class extends Controller {
   }
 
   async submitAnswer(questionId, answer) {
-    const url = `/children/${this.childIdValue}/questionari/${this.sessionIdValue}/answer`
+    const url = `/children/${this.childIdValue}/questionnaires/${this.sessionIdValue}/answer`
 
     return fetch(url, {
       method: "POST",
@@ -282,7 +282,7 @@ export default class extends Controller {
   exit() {
     const message = this.exitConfirmationValue || "Vuoi uscire dal questionario?"
     if (confirm(message)) {
-      window.location.href = `/children/${this.childIdValue}/tappe-di-sviluppo`
+      window.location.href = `/children/${this.childIdValue}/development-stages`
     }
   }
 

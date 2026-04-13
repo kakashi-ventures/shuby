@@ -1,9 +1,9 @@
 <%# Shuby Bottom Navigation Bar %>
-<%# Usage: render "shared/shuby_bottom_nav", active: "oggi" %>
+<%# Usage: render "shared/shuby_bottom_nav", active: "today" %>
 <% active ||= nil %>
 
 <nav class="shuby-bottom-nav shuby-bottom-nav-fixed">
-  <%= link_to root_path, class: "shuby-bottom-nav-item #{'active' if active == 'oggi'}" do %>
+  <%= link_to root_path, class: "shuby-bottom-nav-item #{'active' if active == 'today'}" do %>
     <div class="shuby-bottom-nav-icon">
       <%= render_svg "shuby/icons/icon-dashboard", size: :lg, decorative: true %>
     </div>
@@ -17,14 +17,14 @@
     <span class="shuby-bottom-nav-label"><%= t("shared.bottom_nav.ai_helper") %></span>
   <% end %>
 
-  <%= link_to archive_index_path, class: "shuby-bottom-nav-item #{'active' if active == 'archivio'}" do %>
+  <%= link_to archive_index_path, class: "shuby-bottom-nav-item #{'active' if active == 'archive'}" do %>
     <div class="shuby-bottom-nav-icon">
       <%= render_svg "shuby/icons/icon-archive", size: :lg, decorative: true %>
     </div>
     <span class="shuby-bottom-nav-label"><%= t("shared.bottom_nav.archive") %></span>
   <% end %>
 
-  <%= link_to settings_path, class: "shuby-bottom-nav-item #{'active' if active == 'gestione'}" do %>
+  <%= link_to settings_path, class: "shuby-bottom-nav-item #{'active' if active == 'settings'}" do %>
     <div class="shuby-bottom-nav-icon">
       <%= render_svg "shuby/icons/icon-settings", size: :lg, decorative: true %>
     </div>

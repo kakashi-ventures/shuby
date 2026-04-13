@@ -34,6 +34,12 @@ paths:
 - Medical/developmental terms should use standard Italian terminology
 - Error messages, labels, placeholders — everything user-facing is Italian
 
+## Language Boundary
+- **User-facing text** (labels, messages, placeholders, content): **Italian**
+- **Code** (routes, URLs, CSS classes, filenames, identifiers, params, locale keys, comments): **English**
+- Italian in code should ONLY appear inside string values displayed to users (e.g., locale `.yml` values, hardcoded UI text)
+- Route `path:` options, CSS class names, partial filenames, tab/active identifiers, JS URLs: always English
+
 ## Specification Compliance
 - Always verify implementations against:
   - `docs/Shuby 1.0 - Specifiche di Prodotto.md` (product spec)

@@ -16,7 +16,7 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
 
   test "index redirects to child show measurements tab" do
     get child_measurements_path(@child)
-    assert_redirected_to child_path(@child, tab: "misurazioni")
+    assert_redirected_to child_path(@child, tab: "measurements")
   end
 
   # === New ===
@@ -45,7 +45,7 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_redirected_to child_path(@child, tab: "misurazioni")
+    assert_redirected_to child_path(@child, tab: "measurements")
   end
 
   test "create fails and reports response on invalid data" do
@@ -74,7 +74,7 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
     patch child_measurement_path(@child, @measurement), params: {
       measurement: {value: "5100"}
     }
-    assert_redirected_to child_path(@child, tab: "misurazioni")
+    assert_redirected_to child_path(@child, tab: "measurements")
     @measurement.reload
     assert_equal 5100, @measurement.value.to_i
   end
@@ -92,7 +92,7 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Measurement.count", -1) do
       delete child_measurement_path(@child, @measurement)
     end
-    assert_redirected_to child_path(@child, tab: "misurazioni")
+    assert_redirected_to child_path(@child, tab: "measurements")
   end
 
   # === Authentication ===

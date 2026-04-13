@@ -3,7 +3,7 @@
     tabs - array of hashes: [{ label:, path: }]
              optional per-tab: active (bool) — if omitted, derived via current_page?
   Optional locals:
-    variant    - "pill" (default), "segmented", or "gestione"
+    variant    - "pill" (default), "segmented", or "settings"
     aria_label - accessible label for the nav element
     class      - additional CSS classes
 %>
@@ -13,9 +13,9 @@
   when "segmented"
     container_class = "shuby-tab-segmented"
     item_class = "shuby-tab-segmented-item"
-  when "gestione"
-    container_class = "shuby-gestione-tabs"
-    item_class = "shuby-gestione-tab"
+  when "settings"
+    container_class = "shuby-settings-tabs"
+    item_class = "shuby-settings-tab"
   else
     container_class = "shuby-tabs"
     item_class = "shuby-tab"

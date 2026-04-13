@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-# Controller for Archivio (Archive) educational content
+# Controller for Archive educational content
 # Displays browsable educational materials for parents about child development
 class ArchiveController < ApplicationController
   before_action :authenticate_user!
   before_action :set_content, only: [:show]
 
-  # GET /archivio
+  # GET /archive
   # Lists all published archive content organized by sections
   def index
     @favorite_ids = current_user_favorite_ids
@@ -25,7 +25,7 @@ class ArchiveController < ApplicationController
     end
   end
 
-  # GET /archivio/:id
+  # GET /archive/:id
   # Displays a single archive content item
   def show
     @favorited = current_user.archive_favorites.exists?(archive_content: @content)

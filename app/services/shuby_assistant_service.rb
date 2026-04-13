@@ -231,7 +231,7 @@ class ShubyAssistantService
 
     lines = []
     lines << "CONTENUTI IN-APP DISPONIBILI:"
-    lines << "Quando pertinente alla domanda del genitore, suggerisci contenuti dell'app usando link markdown: [Titolo](/archivio/slug)"
+    lines << "Quando pertinente alla domanda del genitore, suggerisci contenuti dell'app usando link markdown: [Titolo](/archive/slug)"
     lines << "Inserisci i link in modo naturale nel testo della risposta."
     lines << "Suggerisci massimo 1-3 contenuti per risposta, solo se realmente rilevanti."
     lines << "Usa SOLO i link esatti elencati qui sotto — non inventare slug."
@@ -240,7 +240,7 @@ class ShubyAssistantService
     contents.group_by(&:content_type).each do |type, items|
       lines << "#{type_labels[type] || type.capitalize}:"
       items.each do |item|
-        lines << "- [#{item.title}](/archivio/#{item.slug}) | #{item.category} | #{item.age_range_label}"
+        lines << "- [#{item.title}](/archive/#{item.slug}) | #{item.category} | #{item.age_range_label}"
       end
       lines << ""
     end

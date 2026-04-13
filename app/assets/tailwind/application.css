@@ -138,11 +138,11 @@
 @import "./components/shuby/forms.css" layer(components);
 @import "./components/shuby/tags-badges.css" layer(components);
 @import "./components/shuby/cards.css" layer(components);
-@import "./components/shuby/cards-articolo.css" layer(components);
+@import "./components/shuby/cards-article.css" layer(components);
 @import "./components/shuby/navigation.css" layer(components);
 @import "./components/shuby/timeline.css" layer(components);
-@import "./components/shuby/tappa.css" layer(components);
-@import "./components/shuby/gestione.css" layer(components);
+@import "./components/shuby/stage.css" layer(components);
+@import "./components/shuby/settings.css" layer(components);
 @import "./components/shuby/content.css" layer(components);
 @import "./components/shuby/layout.css" layer(components);
 @import "./components/shuby/growth-chart.css" layer(components);

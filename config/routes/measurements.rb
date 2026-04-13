@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Measurement routes (Italian: misurazioni)
+# Measurement routes
 resources :children, only: [] do
-  resources :measurements, path: "misurazioni"
+  resources :measurements, path: "measurements"
 end

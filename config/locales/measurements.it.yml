@@ -12,8 +12,8 @@ it:
       feeding_weight: "gr"
     tabs:
       info: "Info"
-      misurazioni: "Misurazioni"
-      tappe: "Tappe"
+      measurements: "Misurazioni"
+      milestones: "Tappe"
     card:
       update_badge: "Aggiorna"
       no_data: "-"

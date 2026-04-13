@@ -61,7 +61,7 @@
   <div class="flex gap-3 pt-2">
     <%= form.submit t("measurements.form.save"), class: "shuby-btn shuby-btn-primary flex-1", data: native_haptic_data(:success) %>
     <%= link_to t("measurements.form.cancel"),
-        child_path(@child, tab: "misurazioni"),
+        child_path(@child, tab: "measurements"),
         class: "shuby-btn shuby-btn-outline flex-1 text-center" %>
   </div>
 <% end %>

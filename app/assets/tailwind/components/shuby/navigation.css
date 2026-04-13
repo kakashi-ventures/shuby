@@ -128,11 +128,11 @@ html.hotwire-native .shuby-bottom-nav {
 }
 
 /* =====================================================
-   GESTIONE TABS (Famiglia, Impostazioni, Piano)
+   SETTINGS TABS (Famiglia, Impostazioni, Piano)
    Pill-style tabs matching the Figma screenshot
    ===================================================== */
 
-.shuby-gestione-tabs {
+.shuby-settings-tabs {
     display: inline-flex;
     gap: var(--space-1);
     padding: var(--space-1);
@@ -141,7 +141,7 @@ html.hotwire-native .shuby-bottom-nav {
     margin-bottom: var(--space-4);
 }
 
-.shuby-gestione-tab {
+.shuby-settings-tab {
     padding: 10px var(--space-5);
     font-size: var(--font-size-p1);
     font-weight: var(--font-weight-semibold);

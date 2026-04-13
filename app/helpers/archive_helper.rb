@@ -25,10 +25,10 @@ module ArchiveHelper
     CATEGORY_ICONS[category] || DEFAULT_CATEGORY_ICON
   end
 
-  ARCHIVIO_PLACEHOLDER_IMAGES = [
-    "shuby/illustrations/archivio-1.svg",
-    "shuby/illustrations/archivio-2.svg",
-    "shuby/illustrations/archivio-3.svg"
+  ARCHIVE_PLACEHOLDER_IMAGES = [
+    "shuby/illustrations/archive-1.svg",
+    "shuby/illustrations/archive-2.svg",
+    "shuby/illustrations/archive-3.svg"
   ].freeze
 
   # Returns the cover image tag for an ArchiveContent, falling back to a
@@ -37,7 +37,7 @@ module ArchiveHelper
     if content.cover_image.attached?
       image_tag(content.cover_image, alt: content.title, **)
     else
-      image_tag(ARCHIVIO_PLACEHOLDER_IMAGES[content.id % 3], alt: "", **)
+      image_tag(ARCHIVE_PLACEHOLDER_IMAGES[content.id % 3], alt: "", **)
     end
   end
 

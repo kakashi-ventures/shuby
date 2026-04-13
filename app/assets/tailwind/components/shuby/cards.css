@@ -3,7 +3,7 @@
  *
  * Shared patterns:
  * - Time indicator: inline-flex row with 12px icon + uppercase 10px text
- *   Used in: consigli-time, scheda-attivita-time (see also cards-articolo.css)
+ *   Used in: consigli-time, scheda-attivita-time (see also cards-article.css)
  * - Two-part card: info section + colored value section (metric card, measurement card)
  */
 

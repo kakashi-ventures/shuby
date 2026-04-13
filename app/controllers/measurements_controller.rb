@@ -9,7 +9,7 @@ class MeasurementsController < ApplicationController
 
   def index
     authorize Measurement
-    redirect_to child_path(@child, tab: "misurazioni")
+    redirect_to child_path(@child, tab: "measurements")
   end
 
   def new
@@ -25,7 +25,7 @@ class MeasurementsController < ApplicationController
     authorize @measurement
 
     if @measurement.save
-      redirect_to child_path(@child, tab: "misurazioni"), notice: t(".created")
+      redirect_to child_path(@child, tab: "measurements"), notice: t(".created")
     else
       render :new, status: :unprocessable_content
     end
@@ -36,7 +36,7 @@ class MeasurementsController < ApplicationController
 
   def update
     if @measurement.update(measurement_params)
-      redirect_to child_path(@child, tab: "misurazioni"), notice: t(".updated")
+      redirect_to child_path(@child, tab: "measurements"), notice: t(".updated")
     else
       render :edit, status: :unprocessable_content
     end
@@ -44,7 +44,7 @@ class MeasurementsController < ApplicationController
 
   def destroy
     @measurement.destroy
-    redirect_to child_path(@child, tab: "misurazioni"), status: :see_other, notice: t(".destroyed")
+    redirect_to child_path(@child, tab: "measurements"), status: :see_other, notice: t(".destroyed")
   end
 
   private

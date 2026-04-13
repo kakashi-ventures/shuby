@@ -7,7 +7,7 @@
    Card with image on top and content below
    ===================================================== */
 
-.shuby-card-articolo {
+.shuby-card-article {
     display: flex;
     flex-direction: column;
     width: 290px;
@@ -16,7 +16,7 @@
     overflow: hidden;
 }
 
-.shuby-card-articolo-image {
+.shuby-card-article-image {
     width: 290px;
     height: 200px;
     border-radius: var(--radius-md) var(--radius-md) 0 0;
@@ -30,7 +30,7 @@
     }
 }
 
-.shuby-card-articolo-content {
+.shuby-card-article-content {
     flex: 1;
     min-height: 0;
     overflow: hidden;
@@ -45,14 +45,14 @@
     border-radius: 0 0 var(--radius-md) var(--radius-md);
 }
 
-.shuby-card-articolo-tags {
+.shuby-card-article-tags {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: var(--space-2);
 }
 
-.shuby-card-articolo-tag {
+.shuby-card-article-tag {
     display: inline-flex;
     align-items: center;
     padding: var(--space-1) var(--space-2);
@@ -66,7 +66,7 @@
     white-space: nowrap;
 }
 
-.shuby-card-articolo-tag-icon {
+.shuby-card-article-tag-icon {
     width: 16px;
     height: 16px;
     flex-shrink: 0;
@@ -78,15 +78,15 @@
     }
 }
 
-.shuby-card-articolo-tag-tipo {
+.shuby-card-article-tag-type {
     background-color: var(--color-shuby-blue-300);
 }
 
-.shuby-card-articolo-tag-eta {
+.shuby-card-article-tag-age {
     background-color: var(--color-shuby-gray-400);
 }
 
-.shuby-card-articolo-body {
+.shuby-card-article-body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -94,7 +94,7 @@
     align-self: stretch;
 }
 
-.shuby-card-articolo-title {
+.shuby-card-article-title {
     font-family: var(--font-display);
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-d2);
@@ -105,7 +105,7 @@
     align-self: stretch;
 }
 
-.shuby-card-articolo-description {
+.shuby-card-article-description {
     font-weight: var(--font-weight-regular);
     font-size: var(--font-size-p1);
     line-height: var(--line-height-normal);
@@ -115,14 +115,14 @@
     align-self: stretch;
 }
 
-.shuby-card-articolo-time {
+.shuby-card-article-time {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: var(--space-1);
 }
 
-.shuby-card-articolo-time-icon {
+.shuby-card-article-time-icon {
     width: 24px;
     height: 24px;
     flex-shrink: 0;
@@ -134,7 +134,7 @@
     }
 }
 
-.shuby-card-articolo-time-text {
+.shuby-card-article-time-text {
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-caption);
     line-height: var(--line-height-normal);

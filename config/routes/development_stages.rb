@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# Development Stages routes (Italian: tappe-di-sviluppo)
+# Development Stages routes
 resources :children, only: [] do
   # Main development stages pages
-  resources :development_stages, path: "tappe-di-sviluppo", only: [:index, :show] do
+  resources :development_stages, path: "development-stages", only: [:index, :show] do
     collection do
       get :timeline_content # Turbo Frame endpoint for age band content
     end
@@ -13,7 +13,7 @@ resources :children, only: [] do
   end
 
   # Questionnaire session flow
-  resources :questionnaire_sessions, path: "questionari", only: [:show, :edit, :update] do
+  resources :questionnaire_sessions, path: "questionnaires", only: [:show, :edit, :update] do
     member do
       get :continue # Resume questionnaire (fallback)
       get :stories # Stories-style questionnaire (default)

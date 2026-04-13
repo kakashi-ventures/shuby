@@ -12,7 +12,7 @@ class ShubyAssistantServiceArticleCatalogTest < ActiveSupport::TestCase
     prompt = @service.send(:build_system_prompt)
 
     assert_includes prompt, "CONTENUTI IN-APP DISPONIBILI:"
-    assert_includes prompt, "[Titolo](/archivio/slug)"
+    assert_includes prompt, "[Titolo](/archive/slug)"
   end
 
   test "build_system_prompt omits catalog when no published content" do
@@ -36,8 +36,8 @@ class ShubyAssistantServiceArticleCatalogTest < ActiveSupport::TestCase
   test "article catalog formats slug-based URLs correctly" do
     prompt = @service.send(:build_system_prompt)
 
-    assert_includes prompt, "[Routine della nanna per neonati](/archivio/routine-nanna-neonati)"
-    assert_includes prompt, "[Tummy time guidato](/archivio/tummy-time-guidato)"
+    assert_includes prompt, "[Routine della nanna per neonati](/archive/routine-nanna-neonati)"
+    assert_includes prompt, "[Tummy time guidato](/archive/tummy-time-guidato)"
   end
 
   test "article catalog groups by content type" do

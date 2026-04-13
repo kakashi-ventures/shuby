@@ -13,7 +13,7 @@ class ChildrenController < ApplicationController
   # GET /children/:id
   def show
     @tab = params[:tab] || "info"
-    if @tab == "misurazioni"
+    if @tab == "measurements"
       @measurements_by_type = Measurement.measurement_types.keys.map do |type|
         [type, @child.latest_measurement(type)]
       end

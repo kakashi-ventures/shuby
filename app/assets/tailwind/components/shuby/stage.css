@@ -1,29 +1,29 @@
-/* Shuby Tappa
- * Tappa section, milestone cards, accordion, tappa modals, completed states
+/* Shuby Stage
+ * Stage section, milestone cards, accordion, stage modals, completed states
  *
  * Shared patterns:
  * - Pentagon mascot: clip-path polygon shape with gradient fill and face elements
  *   Color variants: teal (.shuby-mascot-pentagon-teal in layout.css)
  * - Dark modal: gradient background + --overlay-white-* tokens for text hierarchy
- * - Completed variant: .shuby-tappa-completed-teal inherits layout from
- *   .shuby-tappa-completed, only overriding background + label color
+ * - Completed variant: .shuby-stage-completed-teal inherits layout from
+ *   .shuby-stage-completed, only overriding background + label color
  */
 
 /* =====================================================
-   TAPPA DI SVILUPPO (Developmental Milestone Card)
+   DEVELOPMENT STAGE (Developmental Milestone Card)
    Full-width hero card for displaying child progress
    Based on Figma screenshot with verde/teal background
    ===================================================== */
 
 /* Section container with verde/teal background */
-.shuby-tappa-section {
+.shuby-stage-section {
     background-color: var(--color-shuby-blue-400);
     padding: var(--space-6);
     border-radius: var(--radius-lg);
 }
 
 /* Section header (TAPPA DI SVILUPPO) */
-.shuby-tappa-header {
+.shuby-stage-header {
     font-size: var(--font-size-p2);
     font-weight: var(--font-weight-bold);
     letter-spacing: var(--letter-spacing-wide);
@@ -33,7 +33,7 @@
 }
 
 /* Main card container - white card on verde/teal background */
-.shuby-tappa-card {
+.shuby-stage-card {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -46,13 +46,13 @@
 }
 
 /* Left content area */
-.shuby-tappa-content {
+.shuby-stage-content {
     flex: 1;
     max-width: 70%;
 }
 
 /* Tags row (Tappa di sviluppo + Mese 1) */
-.shuby-tappa-tags {
+.shuby-stage-tags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2);
@@ -60,7 +60,7 @@
 }
 
 /* Calendar icon tag (blue filled) */
-.shuby-tappa-tag {
+.shuby-stage-tag {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -73,7 +73,7 @@
     color: var(--color-shuby-white);
 }
 
-.shuby-tappa-tag-icon {
+.shuby-stage-tag-icon {
     width: 14px;
     height: 14px;
     flex-shrink: 0;
@@ -85,7 +85,7 @@
 }
 
 /* Month tag (white with border) */
-.shuby-tappa-tag-month {
+.shuby-stage-tag-month {
     display: inline-flex;
     align-items: center;
     padding: 6px 12px;
@@ -99,7 +99,7 @@
 }
 
 /* Progress subtitle (I progressi di Alessandro su:) */
-.shuby-tappa-subtitle {
+.shuby-stage-subtitle {
     font-size: var(--font-size-p1);
     font-weight: var(--font-weight-regular);
     color: var(--color-shuby-gray-600);
@@ -107,7 +107,7 @@
 }
 
 /* Category title (Comunicazione e linguaggio) */
-.shuby-tappa-title {
+.shuby-stage-title {
     font-size: var(--font-size-d2);
     font-weight: var(--font-weight-bold);
     line-height: var(--line-height-snug);
@@ -116,7 +116,7 @@
 }
 
 /* Duration indicator (⏱ 2 MIN) */
-.shuby-tappa-duration {
+.shuby-stage-duration {
     display: inline-flex;
     align-items: center;
     gap: var(--space-1);
@@ -125,13 +125,13 @@
     color: var(--color-shuby-gray-500);
 }
 
-.shuby-tappa-duration-icon {
+.shuby-stage-duration-icon {
     width: 14px;
     height: 14px;
 }
 
 /* Mascot/character container (right side) */
-.shuby-tappa-mascot {
+.shuby-stage-mascot {
     flex-shrink: 0;
     width: 80px;
     height: 80px;
@@ -145,7 +145,7 @@
 }
 
 /* Pentagon mascot shape with face */
-.shuby-tappa-mascot-shape {
+.shuby-stage-mascot-shape {
     width: 80px;
     height: 80px;
     background: linear-gradient(135deg, var(--color-shuby-mascot-teal-light) 0%, var(--color-shuby-mascot-teal) 100%);
@@ -158,7 +158,7 @@
 }
 
 /* Mascot face expression */
-.shuby-tappa-mascot-face {
+.shuby-stage-mascot-face {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -166,19 +166,19 @@
     margin-top: 10px;
 }
 
-.shuby-tappa-mascot-eyes {
+.shuby-stage-mascot-eyes {
     display: flex;
     gap: 10px;
 }
 
-.shuby-tappa-mascot-eye {
+.shuby-stage-mascot-eye {
     width: 8px;
     height: 10px;
     background-color: var(--color-shuby-white);
     border-radius: 50%;
 }
 
-.shuby-tappa-mascot-smile {
+.shuby-stage-mascot-smile {
     width: 16px;
     height: 8px;
     border: 3px solid var(--color-shuby-white);
@@ -186,14 +186,14 @@
     border-radius: 0 0 10px 10px;
 }
 
-/* Responsive adjustments nested in .shuby-tappa-card */
-.shuby-tappa-card {
+/* Responsive adjustments nested in .shuby-stage-card */
+.shuby-stage-card {
     @media (max-width: 480px) {
         flex-direction: column;
 
-        .shuby-tappa-content { max-width: 100%; }
+        .shuby-stage-content { max-width: 100%; }
 
-        .shuby-tappa-mascot {
+        .shuby-stage-mascot {
             margin-left: 0;
             margin-top: var(--space-4);
             align-self: flex-end;
@@ -202,21 +202,21 @@
 }
 
 /* =====================================================
-   TAPPA CARD VARIANTS
+   STAGE CARD VARIANTS
    ===================================================== */
 
 /* Compact variant (smaller padding) */
-.shuby-tappa-card-compact {
+.shuby-stage-card-compact {
     padding: var(--space-4);
 
-    .shuby-tappa-mascot {
+    .shuby-stage-mascot {
         width: 60px;
         height: 60px;
     }
 }
 
 /* Full-width section variant */
-.shuby-tappa-section-full {
+.shuby-stage-section-full {
     border-radius: 0;
     margin: 0 calc(-1 * var(--space-4));
     padding: var(--space-6) var(--space-4);
@@ -225,7 +225,7 @@
 /* =====================================================
    ACCORDION COMPONENT
    Expandable section with header and collapsible content
-   Based on Figma "Settimana" accordion in Tappe section
+   Based on Figma "Settimana" accordion in Stages section
    ===================================================== */
 
 .shuby-accordion {
@@ -389,18 +389,18 @@
 
 
 /* =====================================================
-   TAPPA MODAL SPECIFIC STYLES
+   STAGE MODAL SPECIFIC STYLES
    Styles specific to the milestone detail modal
    ===================================================== */
 
-.shuby-tappa-modal {
+.shuby-stage-modal {
     background-color: var(--color-shuby-blue-400);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-.shuby-tappa-modal-header {
+.shuby-stage-modal-header {
     padding: var(--space-6);
     padding-top: calc(var(--space-8) + 32px);
     display: flex;
@@ -410,11 +410,11 @@
     position: relative;
 }
 
-.shuby-tappa-modal-mascot {
+.shuby-stage-modal-mascot {
     margin-bottom: var(--space-6);
 }
 
-.shuby-tappa-modal-title {
+.shuby-stage-modal-title {
     font-family: var(--font-display);
     font-size: var(--font-size-h2);
     font-weight: var(--font-weight-bold);
@@ -423,7 +423,7 @@
     margin-bottom: var(--space-4);
 }
 
-.shuby-tappa-modal-description {
+.shuby-stage-modal-description {
     font-size: var(--font-size-p1);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
@@ -431,12 +431,12 @@
     max-width: 320px;
 }
 
-.shuby-tappa-modal-content {
+.shuby-stage-modal-content {
     padding: var(--space-4) var(--space-6);
     flex: 1;
 }
 
-.shuby-tappa-modal-footer {
+.shuby-stage-modal-footer {
     padding: var(--space-4) var(--space-6);
     padding-bottom: var(--space-8);
 }
@@ -444,21 +444,21 @@
 /* =====================================================
    DARK BLUE MODAL (Success/Completion State)
    Dark gradient background for celebration screens
-   Based on Figma "Tappa completata" screen
+   Based on Figma completion screen
    ===================================================== */
 
 .shuby-modal-dark {
     background: linear-gradient(180deg, var(--color-shuby-blue-700) 0%, var(--color-shuby-blue-800) 100%);
 }
 
-.shuby-tappa-modal-dark {
+.shuby-stage-modal-dark {
     background: linear-gradient(180deg, var(--color-shuby-blue-600) 0%, var(--color-shuby-blue-800) 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     color: var(--color-shuby-white);
 
-    .shuby-tappa-modal-header {
+    .shuby-stage-modal-header {
         padding: var(--space-6);
         padding-top: calc(var(--space-8) + 32px);
         display: flex;
@@ -468,8 +468,8 @@
         position: relative;
     }
 
-    .shuby-tappa-modal-title { color: var(--color-shuby-white); }
-    .shuby-tappa-modal-description { color: var(--overlay-white-90); }
+    .shuby-stage-modal-title { color: var(--color-shuby-white); }
+    .shuby-stage-modal-description { color: var(--overlay-white-90); }
 }
 
 /* =====================================================
@@ -568,11 +568,11 @@
 }
 
 /* =====================================================
-   TAPPA COMPLETED MODAL (Full Pattern)
+   STAGE COMPLETED MODAL (Full Pattern)
    Complete success modal layout
    ===================================================== */
 
-.shuby-tappa-completed {
+.shuby-stage-completed {
     background: linear-gradient(180deg, var(--color-shuby-blue-700) 0%, var(--color-shuby-blue-800) 100%);
     min-height: 100vh;
     display: flex;
@@ -580,7 +580,7 @@
     position: relative;
 }
 
-.shuby-tappa-completed-header {
+.shuby-stage-completed-header {
     padding: var(--space-6);
     padding-top: calc(var(--space-10) + 32px);
     display: flex;
@@ -589,18 +589,18 @@
     text-align: center;
 }
 
-.shuby-tappa-completed-mascot {
+.shuby-stage-completed-mascot {
     margin-bottom: var(--space-5);
 }
 
-.shuby-tappa-completed-label {
+.shuby-stage-completed-label {
     font-size: var(--font-size-p1);
     font-weight: var(--font-weight-medium);
     color: var(--overlay-white-80);
     margin-bottom: var(--space-1);
 }
 
-.shuby-tappa-completed-title {
+.shuby-stage-completed-title {
     font-family: var(--font-display);
     font-size: var(--font-size-h2);
     font-weight: var(--font-weight-bold);
@@ -609,7 +609,7 @@
     margin-bottom: var(--space-4);
 }
 
-.shuby-tappa-completed-description {
+.shuby-stage-completed-description {
     font-size: var(--font-size-p1);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
@@ -617,27 +617,27 @@
     max-width: 300px;
 }
 
-.shuby-tappa-completed-content {
+.shuby-stage-completed-content {
     padding: var(--space-4) var(--space-6);
     flex: 1;
 }
 
-.shuby-tappa-completed-footer {
+.shuby-stage-completed-footer {
     padding: var(--space-4) var(--space-6);
     padding-bottom: var(--space-8);
 }
 
 /* =====================================================
-   TAPPA COMPLETED - TEAL/VERDE VARIANT
-   Inherits layout from .shuby-tappa-completed, only overrides
-   background gradient and label color for the verde color scheme.
-   Usage: <div class="shuby-tappa-completed shuby-tappa-completed-teal">
+   STAGE COMPLETED - TEAL VARIANT
+   Inherits layout from .shuby-stage-completed, only overrides
+   background gradient and label color for the teal color scheme.
+   Usage: <div class="shuby-stage-completed shuby-stage-completed-teal">
    ===================================================== */
 
-.shuby-tappa-completed-teal {
+.shuby-stage-completed-teal {
     background: linear-gradient(180deg, var(--color-shuby-verde-scuro-400) 0%, var(--color-shuby-verde-scuro-500) 100%);
 
-    .shuby-tappa-completed-label {
+    .shuby-stage-completed-label {
         color: var(--overlay-white-85);
     }
 }
@@ -686,7 +686,7 @@
 }
 
 /* =====================================================
-   YELLOW SECTION CONTAINER (TAPPE DI SVILUPPO)
+   YELLOW SECTION CONTAINER (DEVELOPMENT STAGES)
    Yellow background section for linked development stages
    ===================================================== */
 

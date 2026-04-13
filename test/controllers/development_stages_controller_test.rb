@@ -27,7 +27,7 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
     area = development_areas(:relazione)
     get start_child_development_stage_path(@child, area.slug)
     assert_response :redirect
-    assert_match(/questionari/, response.redirect_url)
+    assert_match(/questionnaires/, response.redirect_url)
   end
 
   test "index requires authentication" do

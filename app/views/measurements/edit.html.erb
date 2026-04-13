@@ -2,7 +2,7 @@
 
 <div class="container px-4 mx-auto my-8 pb-24">
   <div class="mb-6">
-    <%= link_to child_path(@child, tab: "misurazioni"), class: "inline-flex items-center shuby-caption hover:text-primary-600" do %>
+    <%= link_to child_path(@child, tab: "measurements"), class: "inline-flex items-center shuby-caption hover:text-primary-600" do %>
       <%= render_svg "shuby/icons/icon-chevron-left", size: :sm, styles: "mr-1", decorative: true %>
       <%= @child.display_name %>
     <% end %>
