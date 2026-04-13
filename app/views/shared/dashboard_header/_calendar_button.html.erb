@@ -1,11 +1,10 @@
-<%# Calendar/Development Stages button %>
+<%# Calendar/Development Stages button — Figma: Round Button (Color=Blu, node 198:3046) %>
 <% if current_child %>
-  <%= link_to child_development_stages_path(current_child),
-              class: "w-10 h-10 rounded-full bg-[var(--header-btn-bg)] flex items-center justify-center hover:bg-[var(--header-btn-bg-hover)] transition-colors" do %>
-    <%= render_svg "shuby/icons/icon-calendar", size: :md, styles: "fill-[var(--header-icon)]" %>
+  <%= link_to child_development_stages_path(current_child), class: "shuby-icon-btn" do %>
+    <%= render_svg "shuby/icons/icon-calendar", size: :md, styles: "fill-[var(--color-shuby-white)]" %>
   <% end %>
 <% else %>
-  <div class="w-10 h-10 rounded-full bg-[var(--header-btn-bg)] flex items-center justify-center opacity-50">
-    <%= render_svg "shuby/icons/icon-calendar", size: :md, styles: "fill-[var(--header-icon)]" %>
+  <div class="shuby-icon-btn shuby-icon-btn-disabled">
+    <%= render_svg "shuby/icons/icon-calendar", size: :md, styles: "fill-[var(--color-shuby-white)]" %>
   </div>
 <% end %>

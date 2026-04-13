@@ -738,25 +738,29 @@
 
 /* =====================================================
    DASHBOARD HEADER
+   Figma: Header component (node 379:5503)
+   Default = Azzurro variant (light blue frosted glass)
+   Scrolled = Bianco + ombra variant (white + Shadow Blu)
    ===================================================== */
 
-/* Dashboard header base styles with CSS custom properties for scroll transition */
 .shuby-dashboard-header {
+    /* Figma: Azzurro — blue-300 at 95% opacity + backdrop blur */
+    background-color: color-mix(in srgb, var(--color-shuby-blue-300) 95%, transparent);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    --header-text: var(--color-shuby-white);
-    --header-text-secondary: var(--overlay-white-80);
-    --header-icon: var(--color-shuby-white);
-    --header-btn-bg: rgba(255, 255, 255, 0.2);
-    --header-btn-bg-hover: rgba(255, 255, 255, 0.3);
-}
 
-/* Scrolled state - applied via JS when user scrolls past sentinel */
-.shuby-header-scrolled {
-    background-color: var(--color-shuby-white);
-    box-shadow: var(--shadow-card-hover-strong);
+    /* Token cascade — dark text/icons on light blue background */
     --header-text: var(--color-shuby-blue-800);
     --header-text-secondary: var(--base-text-secondary);
     --header-icon: var(--color-shuby-blue-800);
-    --header-btn-bg: var(--color-shuby-blue-400);
-    --header-btn-bg-hover: var(--color-shuby-blue-500);
+    --header-btn-bg: var(--color-shuby-blue-800);
+    --header-btn-bg-hover: var(--color-shuby-blue-700);
+}
+
+/* Scrolled state — Figma: Bianco + ombra=true */
+.shuby-header-scrolled {
+    background-color: color-mix(in srgb, var(--color-shuby-white) 95%, transparent);
+    box-shadow: var(--shadow-blu);
+    /* token cascade unchanged — blue-800 text/icons remain correct on white */
 }

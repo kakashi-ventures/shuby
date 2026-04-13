@@ -1,6 +1,6 @@
-<%# Child profile button with avatar %>
+<%# Child profile button with avatar — Figma: Avatar component (node 159:935) %>
 <%= link_to (current_child ? child_path(current_child) : children_path),
-            class: "w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden border-2 border-white shadow-sm" do %>
+            class: "shuby-avatar-btn" do %>
   <% if current_child&.avatar&.attached? %>
     <%= image_tag current_child.avatar, class: "w-full h-full object-cover" %>
   <% elsif current_child %>
@@ -8,6 +8,6 @@
       <%= current_child.display_name.first.upcase %>
     </span>
   <% else %>
-    <%= render_svg "shuby/icons/icon-account", size: :md, styles: "text-gray-400", decorative: true %>
+    <%= render_svg "shuby/icons/icon-account", size: :md, styles: "fill-[var(--base-icon)]", decorative: true %>
   <% end %>
 <% end %>

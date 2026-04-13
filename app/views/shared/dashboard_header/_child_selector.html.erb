@@ -6,9 +6,6 @@
           data-action="click->dropdown#toggle click@window->dropdown#hide"
           class="flex items-center gap-2 text-[var(--header-text)]">
     <span class="shuby-h3 text-[var(--header-text)]"><%= current_child&.display_name || t("dashboard.header.no_child") %></span>
-    <% if current_child&.birth_date %>
-      <span class="shuby-caption text-[var(--header-text-secondary)] ml-1 self-end mb-0.5"><%= current_child.detailed_corrected_age_display %></span>
-    <% end %>
     <% if children.size > 1 || children.empty? %>
       <%= render_svg "shuby/icons/icon-chevron-down", styles: "w-4 h-4 fill-[var(--header-icon)]" %>
     <% end %>
@@ -22,7 +19,7 @@
        data-transition-leave="transition ease-in duration-150"
        data-transition-leave-from="opacity-100 translate-y-0"
        data-transition-leave-to="opacity-0 -translate-y-2"
-       class="hidden absolute left-0 top-full mt-2 w-64 bg-[#E8F4FD] rounded-2xl shadow-lg overflow-hidden z-50">
+       class="hidden absolute left-0 top-full mt-2 w-64 bg-[var(--color-shuby-blue-300)] rounded-2xl shadow-lg overflow-hidden z-50">
 
     <%# Children list %>
     <% if children.any? %>
@@ -33,7 +30,7 @@
                           method: :patch,
                           class: "w-full flex items-center gap-3 px-4 py-3 hover:bg-white/50 transition-colors #{child == current_child ? 'bg-white/30' : ''}" do %>
               <%# Child avatar/icon %>
-              <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden flex-shrink-0 border-2 <%= child == current_child ? 'border-[var(--color-shuby-blue-800)]' : 'border-transparent' %>">
+              <div class="shuby-avatar-btn <%= child == current_child ? 'border-[var(--color-shuby-blue-800)]' : 'border-[var(--color-shuby-blue-400)]' %>">
                 <% if child.avatar.attached? %>
                   <%= image_tag child.avatar, class: "w-full h-full object-cover" %>
                 <% else %>
@@ -44,7 +41,7 @@
               </div>
 
               <%# Child name %>
-              <span class="shuby-p1-dark text-gray-900 flex-1 text-left"><%= child.display_name %></span>
+              <span class="shuby-p1-dark text-[var(--base-text)] flex-1 text-left"><%= child.display_name %></span>
 
               <%# Selected indicator %>
               <% if child == current_child %>
@@ -62,7 +59,7 @@
     <%# Add child button %>
     <div class="py-2">
       <%= link_to new_child_path, class: "flex items-center gap-3 px-4 py-3 hover:bg-white/50 transition-colors" do %>
-        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+        <div class="w-10 h-10 rounded-full bg-[var(--color-shuby-white)] flex items-center justify-center flex-shrink-0">
           <%= render_svg "shuby/icons/icon-add", styles: "w-5 h-5 fill-[var(--color-shuby-blue-800)]" %>
         </div>
         <span class="shuby-p1-dark text-[var(--color-shuby-blue-800)]">

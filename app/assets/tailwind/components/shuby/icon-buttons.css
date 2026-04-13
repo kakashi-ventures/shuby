@@ -18,6 +18,7 @@
 .shuby-icon-btn-azzurro,
 .shuby-icon-btn-fill,
 .shuby-icon-btn-bianca,
+.shuby-avatar-btn,
 .shuby-action-btn,
 .shuby-member-edit,
 .shuby-header-icon-btn,
@@ -293,6 +294,24 @@
         width: 20px;
         height: 20px;
     }
+}
+
+/* =====================================================
+   AVATAR BUTTON
+   Profile photo / child avatar — circular with blue ring
+   Figma: Avatar component (node 159:935), stato Default/On tap
+   ===================================================== */
+
+.shuby-avatar-btn {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-shuby-white);
+    border: 2px solid var(--color-shuby-blue-400);
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: border-color 0.2s ease;
+
+    &:active { border-color: var(--color-shuby-blue-500); }
 }
 
 /* Close button on dark/colored background */
