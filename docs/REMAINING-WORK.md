@@ -27,7 +27,7 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 ## P1: Dashboard & Timeline Completeness
 
 - [x] ~~24-Hour Guidelines table~~ — Not in Figma as separate table. Guidelines embedded in growth phase narrative text. Verify growth phase texts include these tips.
-- [ ] Dashboard: article band should be horizontal carousel of 4+ items (FA 3.6, confirmed in Figma)
+- [x] Dashboard: article carousel bumped to 4 items (was 3, carousel already horizontal)
 - [ ] Timeline: related content links per age band (PRD 3.3) — **needs design**: not in current Figma, ask design team if intended for v1.0
 
 ## P1: Questionnaire Integration
@@ -45,11 +45,11 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 ## P1: Archive Improvements (Figma-verified)
 
 - [ ] Full-text keyword search (FA 6.1.1.1 — filter icon visible in Figma Archive header)
-- [ ] Article detail: scroll-overlap effect with sticky title (FA 6.2.1 — confirmed in Figma)
-- [ ] Activity detail: white header without image (confirmed in Figma 05.03)
-- [ ] Game/advice detail: yellow header band for no-image content (confirmed in Figma 05.04)
-- [ ] Content detail: "Tappe di sviluppo collegate" section at bottom (confirmed in Figma 05.02)
-- [ ] Content detail: "Articoli collegati" horizontal carousel at bottom (confirmed in Figma 05.02, 05.03, 05.04)
+- [x] Article detail: scroll-overlap effect with sticky title (Stimulus `article-scroll` controller)
+- [x] Activity detail: white header without image (hero partial variant)
+- [x] Game/advice detail: yellow/blue header band for content type (hero partial variant)
+- [ ] Content detail: "Tappe di sviluppo collegate" section at bottom — **needs design**: requires association between content and development areas, not yet modeled
+- [x] Content detail: "Articoli collegati" horizontal carousel at bottom (age-range matching)
 
 ## P1: Notification System
 

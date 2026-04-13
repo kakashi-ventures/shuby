@@ -1,0 +1,13 @@
+<%# Tip/game hero: colored band header (Figma 05.04 — yellow for games, blue for reading) %>
+<% bg_class = content.category&.match?(/gioch|game/i) ? "bg-shuby-giallo-400" : "bg-shuby-blue-400" %>
+<div class="relative <%= bg_class %> pt-4 pb-10">
+  <%= link_to archive_index_path, class: "ml-4 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm inline-flex items-center justify-center shadow-sm", aria: { label: t("back") } do %>
+    <%= render_svg "shuby/icons/icon-chevron-left", size: :md, styles: "text-shuby-blue-800" %>
+  <% end %>
+
+  <% if content.cover_image.attached? %>
+    <div class="flex justify-center mt-4">
+      <%= image_tag content.cover_image, alt: content.title, class: "max-h-48 rounded-lg shadow-lg" %>
+    </div>
+  <% end %>
+</div>

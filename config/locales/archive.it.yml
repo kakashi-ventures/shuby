@@ -37,6 +37,7 @@ it:
 
     show:
       title: "Dettaglio contenuto"
+      related_articles: "ARTICOLI COLLEGATI"
 
     back_to_archive: "Archivio"
     not_found: "Contenuto non trovato"

@@ -68,9 +68,9 @@ class DashboardContentServiceTest < ActiveSupport::TestCase
   end
 
   test "rotation: different dates produce different results when pool exceeds count" do
-    # Use two dates far enough apart to guarantee different offsets
+    # Use dates far apart so offset % pool_size differs even with small pools
     date1 = Date.new(2026, 1, 1)
-    date2 = Date.new(2026, 1, 2)
+    date2 = Date.new(2026, 6, 15)
 
     result1 = DashboardContentService.call(@child, date: date1)
     result2 = DashboardContentService.call(@child, date: date2)

@@ -29,6 +29,7 @@ class ArchiveController < ApplicationController
   # Displays a single archive content item
   def show
     @favorited = current_user.archive_favorites.exists?(archive_content: @content)
+    @related_articles = load_related_articles
   end
 
   private
@@ -89,6 +90,14 @@ class ArchiveController < ApplicationController
       .compact
       .sort
     @sectioned_view = false
+  end
+
+  def load_related_articles
+    base_scope
+      .where.not(id: @content.id)
+      .where(min_age_months: ..@content.max_age_months, max_age_months: @content.min_age_months..)
+      .ordered
+      .limit(4)
   end
 
   def set_content

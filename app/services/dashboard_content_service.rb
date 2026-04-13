@@ -6,7 +6,7 @@
 class DashboardContentService
   ACTIVITIES_COUNT = 3
   TIPS_COUNT = 3
-  ARTICLES_COUNT = 3
+  ARTICLES_COUNT = 4
 
   def self.call(child, date: Date.current)
     new(child, date).call

@@ -1,0 +1,18 @@
+<%# Related articles carousel at bottom of content detail (Figma 05.02, 05.03, 05.04) %>
+<% if related_articles.present? %>
+  <section class="mt-8 mb-6">
+    <h2 class="shuby-carousel-title px-4 mb-4">
+      <%= t("archive.show.related_articles") %>
+    </h2>
+
+    <%= render layout: "shared/featured_carousel" do %>
+      <% related_articles.each do |article| %>
+        <%= render partial: "shared/ui/card_article", locals: {
+          content: article,
+          variant: "vertical",
+          favorite_ids: Set.new
+        } %>
+      <% end %>
+    <% end %>
+  </section>
+<% end %>

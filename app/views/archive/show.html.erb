@@ -1,16 +1,77 @@
 <% content_for :title, @content.title %>
+<% content_for :hide_navbar, true %>
 
-<div class="pb-24">
-  <div class="px-4 py-3 flex items-center justify-between">
-    <%= render "shared/ui/back_link", path: archive_index_path, label: t("archive.back_to_archive") %>
-    <%= render "archive/favorite_button", content: @content, favorited: @favorited, inline: true %>
+<div class="pb-24 min-h-screen bg-white" data-controller="article-scroll">
+  <%# Hero image / colored header %>
+  <div data-article-scroll-target="hero">
+    <% if @content.content_type_article? %>
+      <%= render "archive/show_hero_image", content: @content %>
+    <% elsif @content.content_type_tip? %>
+      <%= render "archive/show_hero_tip", content: @content %>
+    <% else %>
+      <%= render "archive/show_hero_activity", content: @content %>
+    <% end %>
   </div>
 
-  <% if @content.content_type_article? || @content.content_type_activity? %>
-    <%= render "archive/show_article", content: @content %>
-  <% elsif @content.content_type_tip? %>
-    <%= render "archive/show_tip", content: @content %>
-  <% end %>
+  <%# Sticky compact header (hidden by default, shown on scroll) %>
+  <div data-article-scroll-target="stickyHeader"
+       class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 opacity-0 translate-y-[-100%] transition-all duration-200">
+    <div class="flex items-center gap-3 px-4 py-3">
+      <%= link_to archive_index_path, class: "shrink-0", aria: { label: t("back") } do %>
+        <%= render_svg "shuby/icons/icon-chevron-left", size: :md, styles: "text-shuby-blue-800" %>
+      <% end %>
+      <h2 class="shuby-h4 text-shuby-blue-800 flex-1 truncate"><%= @content.title %></h2>
+      <%= render "archive/favorite_button", content: @content, favorited: @favorited, inline: true %>
+    </div>
+  </div>
+
+  <%# Content body — slides up over the hero on scroll via negative margin %>
+  <div class="relative bg-white rounded-t-3xl -mt-6 pt-6 px-4">
+    <%# Tags %>
+    <div class="flex flex-wrap gap-2 mb-3">
+      <% if @content.category.present? %>
+        <%= shuby_tag(@content.category, variant: :azzurro, icon: category_icon_for(@content.category)) %>
+      <% end %>
+      <%= shuby_tag(@content.age_range_label, variant: :grigio) %>
+      <% if @content.duration_minutes %>
+        <%= shuby_tag(@content.duration_label, variant: :light, icon: "shuby/icons/icon-alarm") %>
+      <% end %>
+    </div>
+
+    <%# Bookmark row %>
+    <div class="flex items-start justify-between gap-3 mb-4">
+      <h1 class="shuby-h2 text-shuby-blue-800"><%= @content.title %></h1>
+      <%= render "archive/favorite_button", content: @content, favorited: @favorited, inline: true %>
+    </div>
+
+    <%# Tip-specific metadata (author, publisher) %>
+    <% if @content.content_type_tip? %>
+      <%= render "archive/show_tip_metadata", content: @content %>
+    <% end %>
+
+    <%# Description %>
+    <% if @content.description.present? %>
+      <p class="shuby-p1 text-gray-600 mb-4"><%= @content.description %></p>
+    <% end %>
+
+    <%# Materials (activities) %>
+    <% if @content.materials.present? %>
+      <div class="mb-4 p-4 bg-shuby-giallo-400 rounded-lg">
+        <p class="shuby-p1-dark"><%= t("archive.activity.materials") %>:</p>
+        <p class="shuby-p1"><%= @content.materials %></p>
+      </div>
+    <% end %>
+
+    <%# Rich text body %>
+    <% if @content.body.present? %>
+      <div class="prose prose-sm max-w-none mb-8">
+        <%= @content.body %>
+      </div>
+    <% end %>
+  </div>
+
+  <%# Related articles carousel (Figma 05.02) %>
+  <%= render "archive/show_related", related_articles: @related_articles %>
 </div>
 
 <% content_for :bottom_nav do %>
