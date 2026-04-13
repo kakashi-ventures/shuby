@@ -900,3 +900,12 @@ it:
     formats:
       long: "%d %B %Y"
       dashboard_day: "%A, %d %B"
+
+  premium:
+    upgrade_button: "Passa a Premium"
+    children:
+      limit_title: "Limite bambini raggiunto"
+      limit_description: "Con il piano gratuito puoi seguire 1 bambino. Passa a Premium per aggiungerne fino a 3."
+    timeline:
+      locked_title: "Timeline completa"
+      locked_description: "Sblocca la timeline futura per scoprire cosa aspettarti nelle prossime fasi di sviluppo."

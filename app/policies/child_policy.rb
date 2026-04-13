@@ -12,7 +12,11 @@ class ChildPolicy < ApplicationPolicy
   end
 
   def create?
-    account_user.present?
+    account_user.present? && under_children_limit?
+  end
+
+  def at_children_limit?
+    account_user.present? && !under_children_limit?
   end
 
   def update?
@@ -27,5 +31,12 @@ class ChildPolicy < ApplicationPolicy
     def resolve
       scope.where(account_id: account_user.account_id)
     end
+  end
+
+  private
+
+  def under_children_limit?
+    account = account_user.account
+    account.children.active.count < account.children_limit
   end
 end

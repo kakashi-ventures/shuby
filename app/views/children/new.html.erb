@@ -9,8 +9,15 @@
     <% end %>
   </div>
 
-  <div class="shuby-card">
-    <h1 class="shuby-h3 mb-6"><%= t(".title") %></h1>
-    <%= render "form", child: @child %>
-  </div>
+  <% if @at_children_limit %>
+    <%= render "shared/paywall_banner",
+      title: t("premium.children.limit_title"),
+      description: t("premium.children.limit_description"),
+      icon: :lock %>
+  <% else %>
+    <div class="shuby-card">
+      <h1 class="shuby-h3 mb-6"><%= t(".title") %></h1>
+      <%= render "form", child: @child %>
+    </div>
+  <% end %>
 </div>

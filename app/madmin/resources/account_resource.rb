@@ -26,7 +26,21 @@ class AccountResource < Madmin::Resource
 
   # Uncomment this to customize the display name of records in the admin area.
   def self.display_name(record)
-    record.name
+    record.premium? ? "#{record.name} (Premium)" : record.name
+  end
+
+  member_action do |account|
+    if account.premium?
+      button_to "Rimuovi Premium",
+        madmin_account_toggle_premium_path(account),
+        class: "btn btn-danger",
+        data: {turbo_confirm: "Sei sicuro di voler rimuovere Premium da #{account.name}?"}
+    else
+      button_to "Rendi Premium",
+        madmin_account_toggle_premium_path(account),
+        class: "btn btn-warning",
+        data: {turbo_confirm: "Attivare Premium per #{account.name}?"}
+    end
   end
 
   # Uncomment this to customize the default sort column and direction.

@@ -17,7 +17,9 @@ namespace :madmin, path: :admin do
     resource :toggle_admin, module: :user, only: :create
   end
   resources :connected_accounts
-  resources :accounts
+  resources :accounts do
+    resource :toggle_premium, module: :account, only: :create, controller: :toggle_premiums
+  end
   resources :account_users
   resources :account_invitations
   resources :plans

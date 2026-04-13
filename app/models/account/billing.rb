@@ -15,6 +15,17 @@ module Account::Billing
     billing_email? ? billing_email : owner.email
   end
 
+  # Returns true if this account has an active premium subscription.
+  # Centralised check — use this instead of querying payment_processor directly.
+  def premium?
+    payment_processor&.subscribed? || false
+  end
+
+  # Maximum number of children allowed for this account's plan tier.
+  def children_limit
+    premium? ? 3 : 1
+  end
+
   # Used for per-unit subscriptions on create and update
   # Returns the quantity that should be on the subscription
   def per_unit_quantity

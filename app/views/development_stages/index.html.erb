@@ -32,6 +32,16 @@
              selected_band: @selected_band,
              child: @child %>
 
+  <%# Paywall banner for locked future pills (hidden by default) %>
+  <% if not_subscribed? %>
+    <div id="timeline-paywall" class="hidden px-4 pt-4">
+      <%= render "shared/paywall_banner",
+        title: t("premium.timeline.locked_title"),
+        description: t("premium.timeline.locked_description"),
+        icon: :star %>
+    </div>
+  <% end %>
+
   <%# Content sections (swapped via Turbo Frame) %>
   <turbo-frame id="timeline-content">
     <%= render "development_stages/timeline_content",

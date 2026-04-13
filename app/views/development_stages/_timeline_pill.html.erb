@@ -1,15 +1,23 @@
 <%
   state_class = pill_state_class(band, current_band, selected_band, child)
   relationship = pill_relationship(band, current_band, child)
+  locked = relationship == "future" && not_subscribed?
 %>
-<button class="shuby-timeline-pill <%= state_class %>"
+<button class="shuby-timeline-pill <%= state_class %> <%= 'locked' if locked %>"
         type="button"
         data-timeline-carousel-target="pill"
         data-band-key="<%= band[:key] %>"
         data-band-relationship="<%= relationship %>"
+        data-band-locked="<%= locked %>"
         data-action="click->timeline-carousel#select"
         aria-label="<%= band[:label_type] %> <%= band[:label_number] %>"
-        aria-selected="<%= band[:key] == selected_band[:key] %>">
+        aria-selected="<%= band[:key] == selected_band[:key] %>"
+        <%= 'aria-disabled=true' if locked %>>
   <span class="shuby-timeline-pill-label"><%= band[:label_type] %></span>
   <span class="shuby-timeline-pill-number"><%= band[:label_number] %></span>
+  <% if locked %>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-3 h-3 opacity-60" aria-hidden="true">
+      <path fill-rule="evenodd" d="M8 1a3.5 3.5 0 0 0-3.5 3.5V7H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-.5V4.5A3.5 3.5 0 0 0 8 1Zm2 6V4.5a2 2 0 1 0-4 0V7h4Z" clip-rule="evenodd" />
+    </svg>
+  <% end %>
 </button>

@@ -397,6 +397,15 @@
     .shuby-timeline-pill-number { color: var(--color-shuby-blue-800); }
 }
 
+/* Locked pill — premium-only future bands */
+.shuby-timeline-pill.locked {
+    opacity: 0.45;
+    cursor: not-allowed;
+
+    .shuby-timeline-pill-label,
+    .shuby-timeline-pill-number { color: var(--color-shuby-blue-500); }
+}
+
 /* Sticky carousel bar with frosted glass effect */
 .shuby-timeline-carousel-bar {
     background-color: rgba(229, 242, 255, 0.9);

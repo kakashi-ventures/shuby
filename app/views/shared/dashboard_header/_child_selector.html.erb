@@ -56,17 +56,19 @@
     <%# Divider %>
     <div class="border-t border-white/50"></div>
 
-    <%# Add child button %>
-    <div class="py-2">
-      <%= link_to new_child_path, class: "flex items-center gap-3 px-4 py-3 hover:bg-white/50 transition-colors" do %>
-        <div class="w-10 h-10 rounded-full bg-[var(--color-shuby-white)] flex items-center justify-center flex-shrink-0">
-          <%= render_svg "shuby/icons/icon-add", styles: "w-5 h-5 fill-[var(--color-shuby-blue-800)]" %>
-        </div>
-        <span class="shuby-p1-dark text-[var(--color-shuby-blue-800)]">
-          <%= t("dashboard.header.add_child") %>
-        </span>
-      <% end %>
-    </div>
+    <%# Add child button (hidden when at plan limit) %>
+    <% if policy(Child).create? %>
+      <div class="py-2">
+        <%= link_to new_child_path, class: "flex items-center gap-3 px-4 py-3 hover:bg-white/50 transition-colors" do %>
+          <div class="w-10 h-10 rounded-full bg-[var(--color-shuby-white)] flex items-center justify-center flex-shrink-0">
+            <%= render_svg "shuby/icons/icon-add", styles: "w-5 h-5 fill-[var(--color-shuby-blue-800)]" %>
+          </div>
+          <span class="shuby-p1-dark text-[var(--color-shuby-blue-800)]">
+            <%= t("dashboard.header.add_child") %>
+          </span>
+        <% end %>
+      </div>
+    <% end %>
 
     <%# Account management link %>
     <div class="border-t border-white/50 py-2">

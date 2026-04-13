@@ -38,6 +38,6 @@ module User::ChatRateLimit
   #
   # @return [Boolean]
   def chat_premium?
-    personal_account&.payment_processor&.subscribed? || false
+    personal_account&.premium? || false
   end
 end

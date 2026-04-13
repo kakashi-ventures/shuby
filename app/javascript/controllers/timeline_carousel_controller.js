@@ -33,6 +33,18 @@ export default class extends Controller {
     const pill = event.currentTarget
     const bandKey = pill.dataset.bandKey
 
+    // Block navigation to locked (premium) pills
+    if (pill.dataset.bandLocked === "true") {
+      const paywall = document.getElementById("timeline-paywall")
+      if (paywall) paywall.classList.remove("hidden")
+      this.centerPill(pill)
+      return
+    }
+
+    // Hide paywall if visible
+    const paywall = document.getElementById("timeline-paywall")
+    if (paywall) paywall.classList.add("hidden")
+
     // Update visual state on all pills
     this.pillTargets.forEach(p => this.updatePillState(p, bandKey))
 

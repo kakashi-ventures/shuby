@@ -2,9 +2,11 @@
 
 <div class="container px-4 mx-auto my-8 pb-24">
   <%= render "shared/ui/page_header", title: t(".title"), subtitle: t(".subtitle"), title_class: "shuby-h3", class: "pt-0 mb-6" do %>
-    <%= link_to new_child_path, class: "shuby-btn shuby-btn-md shuby-btn-primary" do %>
-      <%= render_svg "shuby/icons/icon-add", size: :md, styles: "mr-2" %>
-      <%= t("children.index.add_child") %>
+    <% if policy(Child).create? %>
+      <%= link_to new_child_path, class: "shuby-btn shuby-btn-md shuby-btn-primary" do %>
+        <%= render_svg "shuby/icons/icon-add", size: :md, styles: "mr-2" %>
+        <%= t("children.index.add_child") %>
+      <% end %>
     <% end %>
   <% end %>
 

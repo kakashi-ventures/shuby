@@ -25,6 +25,9 @@ class ChildrenController < ApplicationController
   def new
     @child = Child.new
     authorize @child
+  rescue Pundit::NotAuthorizedError
+    @at_children_limit = true
+    render :new
   end
 
   # GET /children/:id/edit
@@ -42,6 +45,8 @@ class ChildrenController < ApplicationController
     else
       render :new, status: :unprocessable_content
     end
+  rescue Pundit::NotAuthorizedError
+    redirect_to children_path, alert: t("premium.children.limit_title")
   end
 
   # PATCH/PUT /children/:id

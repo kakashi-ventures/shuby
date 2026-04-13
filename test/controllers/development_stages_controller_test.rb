@@ -106,11 +106,25 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
   # Past band: sett_4 (age_months=0, maps to mese_1 questionnaires)
   # Future band: mese_6 (age_months=6, past max for sophia)
 
-  test "future band cards render gray background class" do
-    get timeline_content_child_development_stages_path(@child), params: {band: "mese_6"}
+  test "future band cards render gray background class for premium user" do
+    # Premium users can access future timeline bands
+    premium_user = users(:subscribed)
+    premium_account = accounts(:subscribed)
+    sign_in premium_user
+    switch_account(premium_account)
+    child = premium_account.children.create!(name: "Test", birth_date: 65.days.ago, sex: 2)
+
+    get timeline_content_child_development_stages_path(child), params: {band: "mese_6"}
     assert_response :success
     assert_select "[class*='shuby-milestone-card-future']", minimum: 1
     assert_select "[class*='shuby-milestone-card-completed']", count: 0
+  end
+
+  test "free user future band request falls back to current band" do
+    get timeline_content_child_development_stages_path(@child), params: {band: "mese_6"}
+    assert_response :success
+    # Should NOT render future cards — clamped to current band
+    assert_select "[class*='shuby-milestone-card-future']", count: 0
   end
 
   test "past incomplete cards render gray background class" do
