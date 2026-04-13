@@ -22,8 +22,13 @@ paths:
 ## Forms
 - `<%= native_form_tag %>` on form pages
 - `data: native_haptic_data(:success)` on submit buttons
-- auto_route: `/children/*` -> Oggi tab. NEVER route `/users/*`
+- auto_route: `/children/*` -> Oggi tab
+
+## CRITICAL: auto_route pitfall
+- **NEVER** add `/users/*` as an auto_route prefix — it intercepts Devise auth paths (`/users/sign_in`, `/users/sign_out`) and breaks pre-auth navigation completely
+- Keep auto_route entries minimal and specific
 
 ## Conditionals
 - Use `hotwire_native_app?` (not `native_app?`)
+- Jumpstart bridge controllers (`bridge--form`, `bridge--sign-out`) do NOT load in Ruby Native — the `shouldLoad` mechanism finds no registered components. This is fine.
 - Test both web and native when modifying layouts
