@@ -9,6 +9,7 @@ module TagsHelper
     giallo: "giallo",
     giallo_scuro: "giallo-scuro",
     verde: "verde",
+    verde_200: "verde-chiaro",
     grigio: "default",
     bianco: "bianco",
     trasparente: "transparent",

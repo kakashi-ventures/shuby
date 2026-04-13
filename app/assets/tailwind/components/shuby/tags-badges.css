@@ -112,12 +112,20 @@
     .shuby-tag-icon { color: var(--color-shuby-white); }
 }
 
-/* Info tag - Light blue background */
+/* Info tag - Light blue background (Figma: Colori/Blu 300 = #E5F2FF) */
 .shuby-tag-info {
-    background-color: var(--color-shuby-blue-400);
+    background-color: var(--color-shuby-blue-300);
     color: var(--color-shuby-blue-800);
 
     .shuby-tag-icon { color: var(--color-shuby-blue-500); }
+}
+
+/* Verde chiaro tag (Figma: Verde 200 = #D1F8F9, used on timeline type tag) */
+.shuby-tag-verde-chiaro {
+    background-color: var(--color-shuby-verde-200);
+    color: var(--color-shuby-blue-800);
+
+    .shuby-tag-icon { color: var(--color-shuby-blue-800); }
 }
 
 /* Yellow/Amber tag (warning style) */

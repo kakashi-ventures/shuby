@@ -10,10 +10,12 @@
     </div>
     <%# Message %>
     <div class="flex-1 min-w-0">
-      <h3 class="font-semibold text-gray-900">
+      <%# Title — Figma: Body/P1/Dark (14 Semi-Bold, black default) %>
+      <h3 class="shuby-p1-dark">
         <%= t("dashboard.milestone_box.all_complete_title") %>
       </h3>
-      <p class="text-gray-700 text-xs">
+      <%# Subtitle — Figma: Body/P2/Light (12 Regular, gray-700 default) %>
+      <p class="shuby-p2">
         <%= t("dashboard.milestone_box.all_complete_subtitle", band: child.current_age_band&.label) %>
       </p>
     </div>

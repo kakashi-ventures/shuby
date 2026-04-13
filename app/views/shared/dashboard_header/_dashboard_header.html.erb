@@ -4,9 +4,12 @@
      data-header-scroll-scrolled-class="shuby-header-scrolled"
      class="sticky top-0 z-40">
 
-  <%# Header content container %>
+  <%# Header content container.
+      Top padding is owned by .shuby-dashboard-header (12px web,
+      env(safe-area-inset-top)+12px in Hotwire Native) so it isn't
+      clobbered by a utility-layer pt-* class. %>
   <header data-header-scroll-target="header"
-          class="shuby-dashboard-header px-5 pb-2 pt-3">
+          class="shuby-dashboard-header px-5 pb-2">
     <div class="flex items-center justify-between max-w-lg mx-auto">
 
       <%# Left: Greeting and Child Selector %>

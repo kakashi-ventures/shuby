@@ -6,8 +6,10 @@
           <%= render_svg "shuby/icons/icon-account", size: :md, styles: "text-gray-800", decorative: true %>
         </div>
         <div class="flex-1 min-w-0">
-          <h3 class="shuby-p1 font-semibold text-gray-900"><%= t("dashboard.show.complete_profile.title") %></h3>
-          <p class="shuby-p2 text-gray-700 text-xs"><%= t("dashboard.show.complete_profile.subtitle") %></p>
+          <%# Title — Figma: Body/P1/Dark (14 Semi-Bold, black default) %>
+          <h3 class="shuby-p1-dark"><%= t("dashboard.show.complete_profile.title") %></h3>
+          <%# Subtitle — Figma: Body/P2/Light (12 Regular, gray-700 default) %>
+          <p class="shuby-p2"><%= t("dashboard.show.complete_profile.subtitle") %></p>
         </div>
         <%= render_svg "shuby/icons/icon-chevron-right", size: :md, styles: "text-gray-600 shrink-0", decorative: true %>
       </div>

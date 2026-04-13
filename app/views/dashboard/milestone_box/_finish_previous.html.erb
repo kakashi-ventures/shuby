@@ -12,16 +12,16 @@
     <%# Content with illustration %>
     <div class="flex items-end gap-4 p-4 pt-3">
       <div class="flex-1 min-w-0">
-        <%# Title %>
-        <p class="text-sm text-shuby-blue-800 mb-1">
+        <%# Title — Figma: Body/P1/Light (blue-800 override, default is black) %>
+        <p class="shuby-p1 text-shuby-blue-800 mb-1">
           <%= t("dashboard.milestone_box.finish_previous_title") %>
         </p>
-        <%# Area name — Figma: 20px bold Baloo2 blue-800 %>
-        <h3 class="font-display text-[20px] font-bold text-shuby-blue-800 mb-1 leading-tight">
+        <%# Area name — Figma: Display/D2 (20 Baloo2 Bold, blue-800 default) %>
+        <h3 class="shuby-d2 mb-1">
           <%= milestone.development_area.name %>
         </h3>
-        <%# Progress %>
-        <p class="text-[10px] text-shuby-blue-800 mb-4">
+        <%# Progress — Figma: Overline/OL/Light (10 Regular uppercase, blue-800 default) %>
+        <p class="shuby-overline mb-4">
           <%= t("dashboard.milestone_box.finish_previous_progress",
                 answered: session.answered_count, total: session.questions_count) %>
         </p>

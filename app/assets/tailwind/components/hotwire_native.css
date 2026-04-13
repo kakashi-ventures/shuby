@@ -18,7 +18,9 @@ html.hotwire-native .minimal-top-nav {
   padding-top: env(safe-area-inset-top);
 }
 
-/* Dashboard sticky header: same treatment */
+/* Dashboard sticky header: status bar inset + 12px breathing room.
+   Selector specificity (0,1,1,2) beats .shuby-dashboard-header (0,0,1,0) —
+   both rules are in @layer components, so specificity decides the winner. */
 html.hotwire-native #dashboard-header > header {
-  padding-top: env(safe-area-inset-top);
+  padding-top: calc(env(safe-area-inset-top) + var(--space-3));
 }

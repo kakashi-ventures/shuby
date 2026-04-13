@@ -1,8 +1,12 @@
+<%# BoxTappe — Figma node 322:5699
+    Da fare    (current, !completed): 2 MIN + title + → icon
+    Completata (completed):           "Completata" tag + date + title + ↺ icon
+    Futura     (future/past):         "Tappa futura/passata" tag + title, no icon %>
 <div class="shuby-milestone-card-content">
   <% if is_completed %>
     <div class="shuby-milestone-card-completed-meta">
       <%= shuby_tag(t("timeline.show.tappa_completata"), variant: :verde, size: :small) %>
-      <% if session.completed_at %>
+      <% if session&.completed_at %>
         <span class="shuby-milestone-card-completed-date">
           <%= l(session.completed_at, format: :tappa) %>
         </span>

@@ -750,6 +750,10 @@
     -webkit-backdrop-filter: blur(2px);
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
+    /* Default top padding for web. On Hotwire Native this is overridden
+       in hotwire_native.css to add env(safe-area-inset-top) on top. */
+    padding-top: var(--space-3);
+
     /* Token cascade — Figma: all text/icons use var(--colori/nero, black) on the light blue bg */
     --header-text: var(--color-shuby-black);
     --header-text-secondary: var(--color-shuby-black);

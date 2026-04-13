@@ -11,6 +11,17 @@
       <%= t("continue_questionnaire", scope: scope) %>
     <% end %>
   </div>
+<% elsif current_session&.not_started? %>
+  <%# Session exists but no answers yet — link directly to stories to avoid creating a duplicate %>
+  <div class="flex items-center justify-between p-4 bg-shuby-blue-300 rounded-[var(--radius-md)] mb-4">
+    <div>
+      <p class="shuby-p1-dark text-shuby-blue-800"><%= t("not_started", scope: scope) %></p>
+    </div>
+    <%= link_to stories_child_questionnaire_session_path(child, current_session),
+        class: "shuby-btn shuby-btn-sm shuby-btn-primary" do %>
+      <%= t("start_questionnaire", scope: scope) %>
+    <% end %>
+  </div>
 <% elsif current_session&.completed? %>
   <div class="flex items-center justify-between p-4 bg-green-50 rounded-lg mb-4">
     <div>
@@ -26,7 +37,7 @@
   </div>
 <% end %>
 
-<% unless current_session&.in_progress? %>
+<% unless current_session&.in_progress? || current_session&.not_started? %>
   <%= link_to start_child_development_stage_path(child, area.slug),
       class: "shuby-btn shuby-btn-md shuby-btn-primary w-full" do %>
     <%= current_session&.completed? ? t("restart_questionnaire", scope: scope) : t("start_questionnaire", scope: scope) %>
