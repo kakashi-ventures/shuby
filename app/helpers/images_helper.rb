@@ -31,6 +31,32 @@ module ImagesHelper
     inline_svg_tag("#{name}.svg", options)
   end
 
+  LOGO_VARIANTS = {
+    default: "shuby/logos/shuby_logo.png",
+    white: "shuby/logos/shuby_white_logo.png",
+    whitepink: "shuby/logos/shuby_whitepink_logo.png"
+  }.freeze
+
+  ICON_VARIANTS = {
+    default: "shuby/logos/shuby_icon.png",
+    whitepink: "shuby/logos/shuby_whitepink_icon.png"
+  }.freeze
+
+  # Renders the official Shuby brand logo (cloud-flower icon + "Shuby" text).
+  # Per brand book: use :default on white, :white on dark, :whitepink on colored backgrounds.
+  def shuby_logo(size: "h-7", variant: :default, **options)
+    path = LOGO_VARIANTS.fetch(variant)
+    css = [size, "w-auto", options.delete(:class)].compact.join(" ")
+    image_tag path, alt: "Shuby", class: css, **options
+  end
+
+  # Renders the Shuby icon only (cloud-flower, no text). For favicons, small spaces.
+  def shuby_icon(size: "h-8", variant: :default, **options)
+    path = ICON_VARIANTS.fetch(variant)
+    css = [size, "w-auto", options.delete(:class)].compact.join(" ")
+    image_tag path, alt: "Shuby", class: css, **options
+  end
+
   # Font Awesome icon helper
   # fa_icon "thumbs-up", weight: "fa-solid"
   # <i class="fa-solid fa-thumbs-up"></i>

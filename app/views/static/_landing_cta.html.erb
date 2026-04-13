@@ -39,12 +39,8 @@
 
   <%# Footer %>
   <footer class="text-center pb-6">
-    <div class="mb-4 flex items-center justify-center gap-2">
-      <%= image_tag "shuby/illustrations/mascot-centered.svg",
-          alt: "",
-          class: "w-6 h-6",
-          aria: { hidden: true } %>
-      <span class="font-display text-lg font-bold text-[var(--color-shuby-blue-800)]">Shuby</span>
+    <div class="mb-4 flex items-center justify-center">
+      <%= shuby_logo(size: "h-5") %>
     </div>
     <nav class="flex gap-4 justify-center mb-4" aria-label="Footer">
       <%= link_to "Privacy", privacy_path, class: "font-sans text-xs text-[var(--color-shuby-gray-700)] hover:text-[var(--color-shuby-blue-800)]" %>
