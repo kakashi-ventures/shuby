@@ -88,7 +88,6 @@ class MetaTags
         <%= tag.link rel: :icon, **attributes %>
       <% end %>
       <%= tag.link rel: "apple-touch-icon", href: apple_touch_icon %>
-      <%= tag.meta name: "theme-color", content: theme_color %>
       <%= tag.meta name: "application-name", content: site %>
       <%= tag.meta(name: :robots, content: :noindex) if noindex %>
       <%= tag.meta(name: "mobile-web-app-capable", content: :yes) if web_app_capable %>
