@@ -74,6 +74,9 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", ">= 3.39"
   gem "selenium-webdriver", ">= 4.20.1"
+
+  # Required by minitest 6+ (split from core)
+  gem "minitest-mock"
 end
 
 # Use Redis adapter to run Action Cable in production
