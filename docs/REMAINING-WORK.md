@@ -6,20 +6,23 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 
 ## P0: Premium Feature Gating (LAUNCH BLOCKER)
 
-- [ ] Create `Account#premium?` centralized helper (currently does not exist)
-- [ ] Child limit: free = 1 child, premium = 3 (no enforcement in `ChildrenController#create`)
-- [ ] Timeline gating: free = Past + Today only, premium = includes Future (no gating in `DevelopmentStagesController`)
-- [ ] Paywall UI components (Italian: "Sblocca con Premium") with blurred/preview content
-- [ ] Configure Stripe/payment processor with Shuby subscription plans
-- [ ] AI chat limit: currently 30 msgs/month (DEC-005) — code matches, verify with client
+- [x] Create `Account#premium?` centralized helper (`Account::Billing`)
+- [x] `Account#children_limit` (free=1, premium=3)
+- [x] Child limit enforcement in `ChildPolicy#create?` + controller + views
+- [x] Timeline gating: future pills locked for free users (JS + CSS + server guard)
+- [x] Paywall UI: reusable `shared/_paywall_banner.html.erb` (Italian, 3 icon variants)
+- [x] Madmin admin toggle: "Rendi/Rimuovi Premium" on account page
 - [x] AI chat rate limiting + CTA UI (`_rate_limit_reached.html.erb`)
+- [ ] Configure Stripe with actual Shuby plans (blocked on pricing confirmation: 6 vs 7.99/mo)
+- [ ] AI chat limit: currently 30 msgs/month (DEC-005) — verify with client (PDF says 8)
 
 ## P0: GDPR Compliance (LAUNCH BLOCKER)
 
-- [ ] Data export: user can download their personal data (right to portability)
-- [ ] Account deletion: user can request account + all data deletion (right to erasure)
-- [ ] Cookie consent banner
+- [x] Data export: JSON download with all personal data (`GdprDataExportService`)
+- [x] Account deletion: confirmation dialog with email verification (Devise)
 - [x] Data sharing consent toggle in onboarding + settings
+- [x] Privacy page redesigned with export + deletion sections
+- [ ] Cookie consent banner (skipped for beta — no tracking cookies in use)
 
 ## P1: Dashboard & Timeline Completeness
 
@@ -105,3 +108,5 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 - Ruby Native iOS integration (tab bar, safe areas, haptics)
 - Multi-tenancy via Account scoping + Pundit policies
 - Italian UI throughout
+- **Premium gating**: Account#premium?, child limit, timeline future lock, paywall UI, admin toggle
+- **GDPR**: data export (JSON), account deletion, privacy settings page
