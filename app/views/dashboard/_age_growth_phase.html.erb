@@ -1,41 +1,41 @@
 <% if current_child.present? %>
-  <section class="mb-6">
-    <%# Date and Age Display %>
+  <% phase = GrowthPhase.for_age(current_child.questionnaire_age_in_months) %>
+  <section>
+    <%# Date + Age — Figma: 10px overline (black) + 14px semibold blue-800 %>
     <div class="mb-4">
-      <p class="shuby-overline text-gray-500 uppercase tracking-wider">
+      <p class="text-[10px] font-medium uppercase text-black leading-relaxed">
         <%= l(Date.current, format: :dashboard_day).upcase %>
       </p>
+      <p class="text-sm font-semibold text-shuby-blue-800">
+        <%= current_child.detailed_corrected_age_display %>
+      </p>
+      <% if current_child.using_corrected_age? %>
+        <p class="text-[10px] text-shuby-blue-600 mt-0.5">
+          <%= t("dashboard.age_growth_phase.corrected_age_label") %>
+          <span class="text-shuby-blue-400">·</span>
+          <%= t("dashboard.age_growth_phase.chronological_age", age: current_child.detailed_age_display) %>
+        </p>
+      <% end %>
     </div>
 
-    <%# Growth Phase Card %>
-    <% phase = GrowthPhase.for_age(current_child.questionnaire_age_in_months) %>
+    <%# Hero content — Figma: fuchsia title (28px Baloo2 bold) + overflowing illustration %>
     <% if phase %>
-      <%= link_to child_development_stages_path(current_child), class: "block bg-shuby-blue-400 rounded-2xl p-4 pt-6 flex gap-2 items-end relative overflow-visible hover:shadow-md transition-shadow" do %>
-        <%# Content - Left side %>
-        <div class="flex-1 min-w-0 pb-2">
-          <%# Age Display inside card (corrected age for premature babies) %>
-          <h1 class="shuby-h2 text-shuby-blue-800 mb-2 leading-tight">
-            <%= current_child.detailed_corrected_age_display %>
-          </h1>
-          <% if current_child.using_corrected_age? %>
-            <p class="shuby-caption text-shuby-blue-600 mb-1">
-              <%= t("dashboard.age_growth_phase.corrected_age_label") %>
-              <span class="text-gray-400">·</span>
-              <%= t("dashboard.age_growth_phase.chronological_age", age: current_child.detailed_age_display) %>
+      <%= link_to child_development_stages_path(current_child), class: "block",
+              aria: { label: t("dashboard.age_growth_phase.phase_link_label") } do %>
+        <div class="flex items-end gap-2">
+          <%# Left: fuchsia title + description %>
+          <div class="flex-1 min-w-0">
+            <h2 class="font-display text-[28px] font-bold text-shuby-fucsia-500 leading-tight mb-3">
+              <%= phase.title %>
+            </h2>
+            <p class="text-sm text-black leading-relaxed">
+              <%= phase.description %>
             </p>
-          <% end %>
-
-          <h3 class="shuby-p1 font-semibold text-gray-900 mb-1">
-            <%= phase.title %>
-          </h3>
-          <p class="shuby-p2 text-gray-600 leading-relaxed">
-            <%= phase.description %>
-          </p>
-        </div>
-
-        <%# Illustration - Right side, extending above card %>
-        <div class="w-28 shrink-0 -mt-16 -mr-2">
-          <%= image_tag phase.illustration_path, class: "w-full h-auto", alt: "" %>
+          </div>
+          <%# Right: illustration overflowing top — Figma: 123px wide %>
+          <div class="w-[123px] shrink-0 -mt-10 overflow-hidden">
+            <%= image_tag phase.illustration_path, class: "w-full h-auto", alt: "" %>
+          </div>
         </div>
       <% end %>
     <% end %>

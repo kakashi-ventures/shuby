@@ -176,6 +176,7 @@ it:
     age_growth_phase:
       corrected_age_label: "Età corretta"
       chronological_age: "età cronologica: %{age}"
+      phase_link_label: "Scopri la fase di sviluppo"
     show:
       title: "Oggi"
       complete_profile:
@@ -188,10 +189,12 @@ it:
         title: "Attività suggerite"
       todays_tips:
         title: "Consigli di oggi"
+        view_all: "Tutti i Consigli"
       featured_articles:
         title: "Articoli in primo piano"
         view_all: "Tutti gli Articoli"
     milestone_box:
+      section_label: "Tappa di sviluppo"
       type_tag: "Tappa di sviluppo"
       progress_intro: "I progressi di %{name} su:"
       estimated_time: "2 MIN"

@@ -8,7 +8,7 @@
       <header class="native-inset-top">
         <%= impersonation_banner %>
         <%= render "flash" %>
-        <%= render "navbar" %>
+        <%= render "navbar" unless content_for?(:hide_navbar) %>
       </header>
 
       <main>

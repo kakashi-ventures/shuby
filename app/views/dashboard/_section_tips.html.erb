@@ -9,5 +9,12 @@
         } %>
       <% end %>
     </div>
+    <%# Figma: "Tutti i Consigli →" link after tip cards %>
+    <div class="text-right mt-3">
+      <%= link_to archive_index_path, class: "shuby-link-arrow" do %>
+        <%= t("dashboard.show.todays_tips.view_all") %>
+        <span class="shuby-link-arrow-icon"><%= render_svg "shuby/icons/icon-arrow-right" %></span>
+      <% end %>
+    </div>
   </section>
 <% end %>

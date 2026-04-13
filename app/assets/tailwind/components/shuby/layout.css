@@ -750,10 +750,10 @@
     -webkit-backdrop-filter: blur(2px);
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
-    /* Token cascade — dark text/icons on light blue background */
-    --header-text: var(--color-shuby-blue-800);
-    --header-text-secondary: var(--base-text-secondary);
-    --header-icon: var(--color-shuby-blue-800);
+    /* Token cascade — Figma: all text/icons use var(--colori/nero, black) on the light blue bg */
+    --header-text: var(--color-shuby-black);
+    --header-text-secondary: var(--color-shuby-black);
+    --header-icon: var(--color-shuby-black);
     --header-btn-bg: var(--color-shuby-blue-800);
     --header-btn-bg-hover: var(--color-shuby-blue-700);
 }

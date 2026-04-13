@@ -1,11 +1,18 @@
 <% Current.meta_tags.set(title: t(".title")) %>
+<% content_for :hide_navbar, true %>
 
-<div class="min-h-screen bg-white dark:bg-gray-900 w-full max-w-full">
+<div class="min-h-screen w-full bg-white dark:bg-gray-900">
   <%= render "shared/dashboard_header/dashboard_header" %>
 
-  <div class="w-full mx-auto px-4 py-6 pb-24 lg:max-w-lg">
+  <%# Zone 1: Full-bleed blue hero background (Figma: blue-300 / #E5F2FF) %>
+  <div class="bg-shuby-blue-300 w-full">
+    <div class="mx-auto max-w-lg px-4 pt-4 pb-8">
+      <%= render "dashboard/age_growth_phase" %>
+    </div>
+  </div>
 
-    <%= render "dashboard/age_growth_phase" %>
+  <%# Zone 2: White content area %>
+  <div class="w-full mx-auto px-4 pb-24 lg:max-w-lg">
 
     <%= render "dashboard/milestone_box" if current_child.present? %>
 
