@@ -7,17 +7,18 @@ class Settings::PrivacyController < ApplicationController
   end
 
   def update
-    Rails.logger.info "=== Privacy Update ==="
-    Rails.logger.info "Params: #{user_params.inspect}"
-    Rails.logger.info "Before: #{current_user.data_sharing_consent.inspect}"
-
     if current_user.update(user_params)
-      Rails.logger.info "After: #{current_user.data_sharing_consent.inspect}"
       redirect_to settings_privacy_path, notice: t(".updated")
     else
-      Rails.logger.info "Errors: #{current_user.errors.full_messages}"
       render :show, status: :unprocessable_content
     end
+  end
+
+  def export
+    json = GdprDataExportService.new(current_user).call
+    send_data json,
+      filename: "shuby-dati-#{current_user.name.parameterize}-#{Date.current}.json",
+      type: "application/json"
   end
 
   private

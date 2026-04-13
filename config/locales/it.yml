@@ -233,6 +233,15 @@ it:
         data_sharing:
           title: "Condivisione dati anonimi"
           description: "Aiutaci a migliorare Shuby condividendo dati anonimi sull'utilizzo. Le tue informazioni personali restano private."
+        export:
+          title: "Scarica i tuoi dati"
+          description: "Scarica una copia di tutti i dati personali che Shuby ha raccolto sul tuo account, inclusi profilo, bambini, misurazioni e conversazioni."
+          button: "Scarica dati"
+        delete:
+          title: "Elimina account"
+          description: "Elimina permanentemente il tuo account e tutti i dati associati. Questa azione non può essere annullata."
+          button: "Elimina il mio account"
+          confirm_description: "Questo eliminerà permanentemente tutti i tuoi dati, inclusi profili bambini, misurazioni, questionari e conversazioni. Digita il tuo indirizzo email per confermare."
         save: "Salva"
       update:
         updated: "Preferenze privacy aggiornate."

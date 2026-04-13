@@ -45,7 +45,9 @@ Rails.application.routes.draw do
     get "today", to: "dashboard#show"  # Dedicated path for Ruby Native iOS tab
     get "settings", to: "settings#show"
     namespace :settings do
-      resource :privacy, only: [:show, :update], controller: "privacy"
+      resource :privacy, only: [:show, :update], controller: "privacy" do
+        post :export, on: :member
+      end
     end
     resources :child_selections, only: [:update]
     # Alternate route to use if logged in users should still see public root
