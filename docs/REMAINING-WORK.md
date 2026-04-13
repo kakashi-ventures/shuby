@@ -26,9 +26,9 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 
 ## P1: Dashboard & Timeline Completeness
 
-- [x] ~~24-Hour Guidelines table~~ — **NOT in Figma**. Guidelines (tummy time, sleep, screens) are embedded in growth phase narrative text, not a separate table. PRD mentioned it but Figma/FA take precedence. Verify growth phase texts include these tips.
+- [x] ~~24-Hour Guidelines table~~ — Not in Figma as separate table. Guidelines embedded in growth phase narrative text. Verify growth phase texts include these tips.
 - [ ] Dashboard: article band should be horizontal carousel of 4+ items (FA 3.6, confirmed in Figma)
-- [x] ~~Timeline: related content links per age band~~ — **NOT in Figma**. Timeline shows only phase + WHO ranges + milestones. No article/activity links designed. Deprioritized.
+- [ ] Timeline: related content links per age band (PRD 3.3) — **needs design**: not in current Figma, ask design team if intended for v1.0
 
 ## P1: Questionnaire Integration
 
