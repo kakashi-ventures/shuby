@@ -10,7 +10,7 @@ gem "propshaft", "~> 1.0"
 # Use postgresql as the database for Active Record
 gem "pg"
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 7.0"
+gem "puma", "~> 8.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
@@ -74,23 +74,30 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", ">= 3.39"
   gem "selenium-webdriver", ">= 4.20.1"
-
-  # Required by minitest 6+ (split from core)
-  gem "minitest-mock"
 end
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 5.1"
 
-# Use the latest Trix
-gem "action_text-trix", "~> 2.1"
+# ActionText editor
+gem "lexxy", "~> 0.9.0.beta"
 
 # Jumpstart Pro dependencies
 require_relative "lib/jumpstart/lib/jumpstart/configuration"
+begin
+  load "config/jumpstart"
+rescue LoadError
+end
 eval_gemfile "Gemfile.jumpstart"
 
 # We recommend using strong migrations when your app is in production
 # gem "strong_migrations"
+
+# Core Rails I18n translations (Italian time/date/number formats)
+gem "rails-i18n", "~> 8.0"
+
+# Inline SVG rendering for icons (used by render_svg helper)
+gem "inline_svg", "~> 1.6"
 
 # Shuby Chat Assistant - AI integration
 gem "ruby_llm", "~> 1.2"
