@@ -14,8 +14,7 @@
 <% if is_vertical %>
   <%# Vertical variant (featured carousel) using shuby-card-articolo classes %>
   <%= link_to card_path, class: "block shrink-0", aria: { label: content.title } do %>
-    <div class="shuby-card-articolo relative <%= local_assigns[:bg_color] %>">
-      <%= render "archive/favorite_button", content: content, favorited: local_assigns[:favorite_ids]&.include?(content.id) %>
+    <div class="shuby-card-articolo <%= local_assigns[:bg_color] %>">
       <div class="shuby-card-articolo-image">
         <%= archive_cover_image(content) %>
       </div>
@@ -52,8 +51,7 @@
 <% else %>
   <%# Horizontal variant (default) using shuby-card-article classes %>
   <%= link_to card_path, class: "block", aria: { label: content.title } do %>
-    <div class="shuby-card-article relative">
-      <%= render "archive/favorite_button", content: content, favorited: local_assigns[:favorite_ids]&.include?(content.id) %>
+    <div class="shuby-card-article">
       <div class="shuby-card-article-image">
         <%= archive_cover_image(content) %>
       </div>
