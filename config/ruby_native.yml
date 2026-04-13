@@ -11,13 +11,11 @@ appearance:
 
 tabs:
   - title: Oggi
-    path: /
+    path: /today
     icon: house.fill
     auto_route:
+      - /today
       - /children/
-      - /development-stages/
-      - /questionnaires/
-      - /onboarding
   - title: Shuby
     path: /shuby
     icon: bubble.left.and.text.bubble.right.fill
@@ -28,10 +26,3 @@ tabs:
   - title: Gestione
     path: /settings
     icon: gearshape.fill
-    auto_route:
-      - /settings
-      - /family_profile
-      - /users/
-      - /billing
-      - /accounts/
-      - /notifications
