@@ -823,6 +823,8 @@ it:
       report_updated: "Il Report di Crescita è stato aggiornato. Puoi aprirlo e condividerlo con il pediatra per un confronto durante le visite di controllo."
       view_report: "Apri il Report di Crescita"
       download_report_pdf: "Scarica Report PDF"
+      attention_hint: "Alcune risposte suggeriscono di approfondire con il pediatra. Consulta i campanelli d'allarme nel rapporto."
+      view_activities: "Attività di stimolazione"
       ask_shuby: "Chiedi a Shuby AI"
       back_to_stages: "Torna alle Tappe"
       exit_confirmation: "Vuoi uscire dal questionario? I progressi saranno salvati."

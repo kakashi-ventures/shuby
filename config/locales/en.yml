@@ -847,6 +847,8 @@ en:
       report_updated: "The Growth Report has been updated. You can open it and share it with your pediatrician for discussion during check-ups."
       view_report: "Open Growth Report"
       download_report_pdf: "Download Report PDF"
+      attention_hint: "Some answers suggest following up with your pediatrician. Check the warning signs in the report."
+      view_activities: "Stimulation activities"
       ask_shuby: "Ask Shuby AI"
       back_to_stages: "Back to Milestones"
       exit_confirmation: "Do you want to exit the questionnaire? Progress will be saved."

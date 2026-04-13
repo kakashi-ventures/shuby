@@ -1,7 +1,7 @@
 <% scope = "questionnaire_sessions.show" %>
 
 <% if stimulation_activities.any? %>
-  <div class="shuby-card mb-6 border-green-200 bg-green-50">
+  <div id="stimulation-activities" class="shuby-card mb-6 border-green-200 bg-green-50">
     <div class="flex gap-3">
       <div class="flex-shrink-0">
         <%= render_svg "shuby/icons/icon-tips", size: :lg, styles: "text-green-500", decorative: true %>

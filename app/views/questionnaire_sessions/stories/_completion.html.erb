@@ -17,6 +17,14 @@
       <%= completion_summary(session, child, area) %>
     </p>
 
+    <% if session.needs_attention? %>
+      <div class="stories-completion-attention">
+        <p class="stories-completion-attention-text">
+          <%= t("questionnaire_sessions.stories.attention_hint") %>
+        </p>
+      </div>
+    <% end %>
+
     <%# Info card with PDF report link %>
     <div class="stories-completion-info">
       <p class="stories-completion-info-text">
@@ -38,6 +46,11 @@
     <%= link_to child_questionnaire_session_path(child, session),
                 class: "stories-completion-btn-primary" do %>
       <%= t("questionnaire_sessions.stories.view_report") %>
+    <% end %>
+
+    <%= link_to child_questionnaire_session_path(child, session, anchor: "stimulation-activities"),
+                class: "stories-completion-btn-secondary" do %>
+      <%= t("questionnaire_sessions.stories.view_activities") %>
     <% end %>
 
     <%= link_to shuby_chats_path,

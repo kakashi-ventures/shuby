@@ -32,9 +32,9 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 
 ## P1: Questionnaire Integration
 
-- [ ] Warning signs: data exists in DB (`WarningSign` model + seeds), needs UI integration in questionnaire flow
-- [ ] Stimulation activities: data exists in DB (`StimulationActivity` model + seeds), needs linking from questionnaire completion screen
-- [ ] Verify post-completion flow matches DEC-010 (report link + AI link + activities)
+- [x] Warning signs: show page has `_section_warning_signs` partial; completion slide shows attention hint when `needs_attention?`
+- [x] Stimulation activities: show page has `_section_stimulation_activities` partial; completion slide links to activities section
+- [x] Post-completion flow matches DEC-010: report PDF + AI link + activities link + attention hint
 
 ## P1: Reports Enhancement
 
