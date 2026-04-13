@@ -40,9 +40,8 @@ module JumpstartApp
     # Use default language as fallback if translation is missing
     config.i18n.fallbacks = true
 
-    # Prevent sassc-rails from setting sass as the compressor
-    # Libsass is deprecated and doesn't support modern CSS syntax used by TailwindCSS
-    config.assets.css_compressor = nil
+    # Ensure Jumpstart is higher priority than other gems for overrides
+    config.railties_order = [:main_app, Jumpstart::Engine, :all]
 
     # Rails 7 defaults to libvips as the variant processor
     # libvips is up to 10x faster and consumes 1/10th the memory of imagemagick
