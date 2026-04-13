@@ -63,6 +63,7 @@ openai:
 ## Technology Stack
 
 - **Rails 8** with Hotwire (Turbo + Stimulus) and Hotwire Native
+- **Ruby Native v0.7** for iOS App Store deployment (rubynative.com)
 - **PostgreSQL** (primary), **SolidQueue** (jobs), **SolidCache** (cache), **SolidCable** (websockets)
 - **Import Maps** for JavaScript (no Node.js dependency)
 - **TailwindCSS v4** via tailwindcss-rails gem
@@ -70,6 +71,37 @@ openai:
 - **Pundit** for authorization
 - **RubyLLM** for AI chat with OpenAI
 - **Minitest** for testing with parallel execution
+
+## Ruby Native (iOS App)
+
+Shuby is deployed as a native iOS app via **Ruby Native** (rubynative.com, app.shuby.rubynative). The gem `ruby_native` (~> 0.7) wraps the Rails web app in a native iOS shell with native tab bar, haptics, badges, and safe area handling.
+
+### CRITICAL: Web must not break
+All native-specific CSS must be scoped to `html.hotwire-native`. This class is only present when running inside the iOS shell. Never add native-only styles without this selector. The `env(safe-area-inset-*)` values resolve to `0px` in browsers — safe to use unconditionally but always scope behavior changes.
+
+### Key files
+```
+config/ruby_native.yml                     # Tabs, appearance, mode config
+app/assets/tailwind/components/hotwire_native.css  # iOS safe area insets + bridge CSS
+app/views/layouts/application.html.erb     # native_tabs_tag, native_badge_tag, native-inset-top
+```
+
+### Design decisions (from Figma analysis)
+- **NO `native_navbar_tag`** — all pages use custom web headers matching the Figma design
+- **Native iOS tab bar** replaces the web bottom nav (`_shuby_bottom_nav.html.erb` is hidden via CSS in native)
+- **Custom headers preserved as-is** — Dashboard "Ciao [nome] e [bambino]", Archivio filters, etc.
+
+### Rules for new views
+- **Form pages**: add `<%= native_form_tag %>` as the first line (signals back-stack skip after submit)
+- **Submit buttons**: add `data: native_haptic_data(:success)` for haptic feedback
+- **Safe area**: if adding a new sticky/fixed header, add `padding-top: env(safe-area-inset-top)` scoped to `html.hotwire-native` in `hotwire_native.css`
+- **Tab routing**: child-related paths (`/children/*`) auto-switch to the Oggi tab. See `auto_route` in `ruby_native.yml`
+
+### Coexistence with Jumpstart Hotwire Native
+- Jumpstart's bridge controllers (`bridge--form`, `bridge--sign-out`, etc.) do NOT load in Ruby Native — the `shouldLoad` mechanism in `@hotwired/hotwire-native-bridge` checks User-Agent and finds no registered components
+- `hotwire_native_app?` returns `true` in the Ruby Native shell — all existing conditionals work
+- Do NOT replace `hotwire_native_app?` with `native_app?` — both work, avoid regressions
+- The `/today` route is a dedicated path for the iOS Oggi tab (avoids root `/` ambiguity)
 
 ## Architecture (Jumpstart Pro Foundation)
 
