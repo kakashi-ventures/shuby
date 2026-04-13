@@ -4,15 +4,13 @@ module ArchiveHelper
   # Maps category names to icon paths
   CATEGORY_ICONS = {
     "Abilità motorie" => "shuby/icons/icon-barefoot",
-    "Motricità" => "shuby/icons/icon-barefoot",
-    "Benessere familiare" => "shuby/icons/icon-heart-filled",
-    "Benessere" => "shuby/icons/icon-heart-filled",
-    "Neurosviluppo" => "shuby/icons/icon-neurodevelopment",
     "Attaccamento" => "shuby/icons/icon-attachment",
+    "Benessere familiare" => "shuby/icons/icon-heart-filled",
     "Comunicazione" => "shuby/icons/icon-document",
-    "Linguaggio" => "shuby/icons/icon-document",
-    "Lettura" => "shuby/icons/icon-reading",
-    "Giochi" => "shuby/icons/icon-barefoot"
+    "Neurosviluppo" => "shuby/icons/icon-neurodevelopment",
+    "Sonno" => "shuby/icons/icon-moon",
+    "Giochi" => "shuby/icons/icon-barefoot",
+    "Lettura" => "shuby/icons/icon-reading"
   }.freeze
 
   DEFAULT_CATEGORY_ICON = "shuby/icons/icon-document"

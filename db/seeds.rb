@@ -337,7 +337,7 @@ ARCHIVE_CONTENTS = [
     title: "Benessere emotivo della famiglia",
     description: "Tutto quello che c'è da sapere sulla salute emotiva della famiglia nel post-partum",
     content_type: :article,
-    category: "Benessere famigliare",
+    category: "Benessere familiare",
     min_age_months: 0,
     max_age_months: 6,
     published: true
@@ -406,7 +406,6 @@ ARCHIVE_CONTENTS = [
   {
     title: "Tummy time musicale",
     content_type: :activity,
-    category: "Attività",
     min_age_months: 0,
     max_age_months: 6,
     duration_minutes: 5,
@@ -415,7 +414,6 @@ ARCHIVE_CONTENTS = [
   {
     title: "Massaggio mani e piedi",
     content_type: :activity,
-    category: "Attività",
     min_age_months: 0,
     max_age_months: 12,
     duration_minutes: 5,
@@ -424,7 +422,6 @@ ARCHIVE_CONTENTS = [
   {
     title: "Musica classica",
     content_type: :activity,
-    category: "Attività",
     min_age_months: 0,
     max_age_months: 36,
     duration_minutes: 5,
@@ -433,7 +430,6 @@ ARCHIVE_CONTENTS = [
   {
     title: 'Momento "viso a viso"',
     content_type: :activity,
-    category: "Attività",
     min_age_months: 0,
     max_age_months: 6,
     duration_minutes: 5,

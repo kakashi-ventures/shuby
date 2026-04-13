@@ -1,5 +1,9 @@
 <%= form_with model: [:madmin, record], url: (record.persisted? ? resource.show_path(record) : resource.index_path), local: true,
-    data: { controller: "admin-archive-form", action: "change->admin-archive-form#toggle" } do |form| %>
+    data: {
+      controller: "admin-archive-form",
+      action: "change->admin-archive-form#toggle",
+      admin_archive_form_categories_value: ArchiveContent::CATEGORIES_BY_TYPE.to_json
+    } do |form| %>
 
   <%# Helper to render a single Madmin field by attribute name %>
   <% render_field = ->(name) do
@@ -45,10 +49,18 @@
   </fieldset>
 
   <%# ── Section 3: Categorizzazione ── %>
-  <fieldset class="admin-section">
+  <fieldset class="admin-section" data-admin-archive-form-target="categoryFields">
     <legend>Categorizzazione</legend>
 
-    <% render_field.call(:category) %>
+    <%# Plain native select — bypasses Tom Select so JS option.hidden filtering works %>
+    <div class="form-group">
+      <label class="form-label" for="archive_content_category">Categoria</label>
+      <%= form.select :category,
+            ArchiveContent::CATEGORIES_BY_TYPE.values.flatten.uniq.sort,
+            { prompt: "Seleziona una categoria", selected: record.category },
+            { id: "archive_content_category", class: "form-control" } %>
+      <div class="form-description">Articoli: Abilità motorie, Attaccamento, Benessere familiare, Comunicazione, Neurosviluppo, Sonno · Consigli: Giochi, Lettura</div>
+    </div>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
       <div><% render_field.call(:min_age_months) %></div>

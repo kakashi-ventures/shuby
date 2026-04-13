@@ -17,7 +17,7 @@ article_nutrizione:
   title: "Allattamento e nutrizione nei primi mesi"
   slug: "allattamento-nutrizione"
   content_type: 0
-  category: "Nutrizione"
+  category: "Benessere familiare"
   description: "Guida completa all'alimentazione"
   min_age_months: 0
   max_age_months: 12
@@ -28,7 +28,7 @@ article_sviluppo:
   title: "Lo sviluppo motorio nel primo anno"
   slug: "sviluppo-motorio-primo-anno"
   content_type: 0
-  category: "Sviluppo"
+  category: "Abilità motorie"
   description: "Tappe dello sviluppo motorio"
   min_age_months: 0
   max_age_months: 12
@@ -39,7 +39,7 @@ article_sicurezza:
   title: "Sicurezza in casa con il neonato"
   slug: "sicurezza-casa-neonato"
   content_type: 0
-  category: "Sicurezza"
+  category: "Neurosviluppo"
   description: "Rendere la casa sicura"
   min_age_months: 0
   max_age_months: 36
@@ -63,7 +63,6 @@ activity_tummy_time:
   title: "Tummy time guidato"
   slug: "tummy-time-guidato"
   content_type: 2
-  category: "Motricità"
   description: "Esercizi di tummy time"
   min_age_months: 0
   max_age_months: 6
@@ -75,7 +74,6 @@ activity_sonagli:
   title: "Gioco con sonagli"
   slug: "gioco-sonagli"
   content_type: 2
-  category: "Sensoriale"
   description: "Stimolazione uditiva con sonagli"
   min_age_months: 0
   max_age_months: 6
@@ -87,7 +85,6 @@ activity_specchio:
   title: "Gioco dello specchio"
   slug: "gioco-specchio"
   content_type: 2
-  category: "Sociale"
   description: "Riconoscimento allo specchio"
   min_age_months: 0
   max_age_months: 12
@@ -99,7 +96,6 @@ activity_canzoncine:
   title: "Canzoncine e filastrocche"
   slug: "canzoncine-filastrocche"
   content_type: 2
-  category: "Linguaggio"
   description: "Canzoni per stimolare il linguaggio"
   min_age_months: 0
   max_age_months: 36
@@ -113,7 +109,7 @@ tip_pianto:
   title: "Interpretare il pianto del neonato"
   slug: "interpretare-pianto"
   content_type: 1
-  category: "Benessere"
+  category: "Giochi"
   description: "Capire i diversi tipi di pianto"
   min_age_months: 0
   max_age_months: 6
@@ -124,7 +120,7 @@ tip_bagnetto:
   title: "Il bagnetto sicuro"
   slug: "bagnetto-sicuro"
   content_type: 1
-  category: "Igiene"
+  category: "Lettura"
   description: "Consigli per il bagnetto"
   min_age_months: 0
   max_age_months: 12
@@ -135,7 +131,7 @@ tip_massaggio:
   title: "Massaggio neonatale"
   slug: "massaggio-neonatale"
   content_type: 1
-  category: "Benessere"
+  category: "Giochi"
   description: "Tecniche di massaggio per neonati"
   min_age_months: 0
   max_age_months: 6
@@ -146,7 +142,7 @@ tip_sonno:
   title: "Ambiente ideale per il sonno"
   slug: "ambiente-sonno"
   content_type: 1
-  category: "Sonno"
+  category: "Lettura"
   description: "Creare l'ambiente giusto per dormire"
   min_age_months: 0
   max_age_months: 12
@@ -172,7 +168,6 @@ activity_out_of_range:
   title: "Gioco per bambini grandi"
   slug: "gioco-bambini-grandi"
   content_type: 2
-  category: "Motricità"
   description: "Attività per 24-36 mesi"
   min_age_months: 24
   max_age_months: 36

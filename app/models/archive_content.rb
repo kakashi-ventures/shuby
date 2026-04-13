@@ -3,10 +3,19 @@
 class ArchiveContent < ApplicationRecord
   include Sluggable
 
-  CATEGORIES = [
-    "Benessere", "Igiene", "Lettura", "Linguaggio", "Motricità",
-    "Nutrizione", "Sensoriale", "Sicurezza", "Sociale", "Sonno", "Sviluppo"
+  ARTICLE_CATEGORIES = [
+    "Abilità motorie", "Attaccamento", "Benessere familiare",
+    "Comunicazione", "Neurosviluppo", "Sonno"
   ].freeze
+
+  TIP_CATEGORIES = [
+    "Giochi", "Lettura"
+  ].freeze
+
+  CATEGORIES_BY_TYPE = {
+    "article" => ARTICLE_CATEGORIES,
+    "tip" => TIP_CATEGORIES
+  }.freeze
 
   # Enums
   enum :content_type, {
@@ -28,6 +37,10 @@ class ArchiveContent < ApplicationRecord
   validates :title, presence: true
   validates :slug, presence: true
   validates :content_type, presence: true
+  validates :category, inclusion: {
+    in: ->(record) { ArchiveContent::CATEGORIES_BY_TYPE.fetch(record.content_type.to_s, []) },
+    message: "non è valida per questo tipo di contenuto"
+  }, allow_blank: true, unless: :content_type_activity?
   validates :min_age_months, numericality: {
     greater_than_or_equal_to: 0,
     less_than_or_equal_to: 36

@@ -16,9 +16,9 @@ class ArchiveContentResource < Madmin::Resource
     label: "Tipo",
     description: "Articolo = approfondimento, Tip = consiglio rapido o libro, Attività = esercizio pratico"
   attribute :category, :select, index: true,
-    collection: ArchiveContent::CATEGORIES,
+    collection: ArchiveContent::CATEGORIES_BY_TYPE.values.flatten.uniq.sort,
     label: "Categoria",
-    description: "Categoria tematica visualizzata sull'app"
+    description: "Articoli: Abilità motorie, Attaccamento, Benessere familiare, Comunicazione, Neurosviluppo, Sonno · Consigli: Giochi, Lettura · Attività: nessuna categoria"
   attribute :published, :boolean, index: true,
     label: "Pubblicato",
     description: "Solo i contenuti pubblicati appaiono nell'app"
