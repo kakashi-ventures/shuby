@@ -40,6 +40,11 @@ paths:
 - Italian in code should ONLY appear inside string values displayed to users (e.g., locale `.yml` values, hardcoded UI text)
 - Route `path:` options, CSS class names, partial filenames, tab/active identifiers, JS URLs: always English
 
+## Subscription & Premium
+- Source of truth for free vs premium limits: `docs/SHUBY PIANO DI ABBONAMENTO.pdf`
+- Cross-check `docs/DECISIONS.md` but note it may be partially outdated
+- See `.claude/rules/premium-gating.md` for implementation patterns
+
 ## Specification Compliance
 - Always verify implementations against:
   - `docs/Shuby 1.0 - Specifiche di Prodotto.md` (product spec)

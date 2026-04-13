@@ -30,11 +30,11 @@ Save session context for the next developer/session.
    (List of modified/untracked files, if any)
    ```
 
-3. Read `docs/PROGRESS.md` and update it:
-   - Mark any newly completed features as `[x]`
-   - Move any started features to "In Progress"
+3. Read `docs/REMAINING-WORK.md` and update it:
+   - Mark any newly completed items as `[x]`
    - Add any discovered work items
+   - Update the "Last verified" date
 
 4. Remind the user:
-   - "Remember to commit the handoff file: `git add .claude/HANDOFF.md docs/PROGRESS.md`"
+   - "Remember to commit: `git add .claude/HANDOFF.md docs/REMAINING-WORK.md`"
    - If there are other uncommitted changes, remind about those too

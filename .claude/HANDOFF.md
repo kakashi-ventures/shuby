@@ -12,8 +12,8 @@ _Last updated: (not yet)_
 (None)
 
 ## Next Steps
-Run `/shuby-status` to see remaining v1.0 work.
-Start with growth chart visualizations per docs/PROGRESS.md.
+Run `/shuby-audit` for a code-vs-specs gap analysis, or `/shuby-next` to pick the next task.
+See `docs/REMAINING-WORK.md` for current priorities.
 
 ## Uncommitted Changes
 (None)

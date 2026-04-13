@@ -177,14 +177,13 @@ bin/jobs                     # Start SolidQueue worker
 Run `/shuby-status` to see current progress, or `/shuby-next` to pick up the next task.
 The SessionStart hook automatically loads the last session's handoff context.
 
-### Feature Development Priority (v1.0 Remaining)
-See `docs/PROGRESS.md` for the current checklist. Priority order:
-1. Growth chart visualizations
-2. Pediatrician report PDF generation
-3. Premium feature gating
-4. Notification system
-5. Advanced analytics
-6. Test coverage & technical debt
+### Remaining Work & Progress
+
+- **Current state**: Run `/shuby-audit` to get a code-vs-specs gap analysis (source of truth)
+- **Progress tracking**: `docs/REMAINING-WORK.md` — maintained by `/shuby-audit` and `/shuby-handoff`
+- **Subscription plan**: `docs/SHUBY PIANO DI ABBONAMENTO.pdf` — definitive free/premium matrix
+- **Pending decisions**: See `docs/DECISIONS.md` entries with status `to-confirm` (file may be partially outdated)
+- `docs/PROGRESS.md` has been removed — use `docs/REMAINING-WORK.md` instead
 
 ### Quality Gates (Automated)
 - **Auto-RuboCop**: Ruby files are auto-formatted after every edit
@@ -204,13 +203,76 @@ All code must follow `.claude/rules/code-composition.md`:
 3. Use `/commit` to create a well-formatted commit
 
 ### Session End
-Run `/shuby-handoff` to save context for the next developer. This writes to `.claude/HANDOFF.md` and updates `docs/PROGRESS.md`.
+Run `/shuby-handoff` to save context for the next developer. This writes to `.claude/HANDOFF.md` and updates `docs/REMAINING-WORK.md`.
 
 ### For New Team Members
 1. Read this CLAUDE.md
 2. Read `docs/Shuby 1.0 - Specifiche di Prodotto.md` for product context
-3. Run `/shuby-status` to understand current state
-4. Expected project permissions (for `.claude/settings.local.json`):
+3. Run `/shuby-audit` to understand current state vs specs
+4. Run `/shuby-status` for session context
+5. Expected project permissions (for `.claude/settings.local.json`):
    - `bin/rails test`, `bin/rubocop`, `bundle exec`, `bin/rails generate/db:migrate`
    - `git add/commit/log/diff/status/stash/branch`
-   - Playwright and Figma MCP tools
+   - Playwright CLI, Figma MCP, Render MCP tools
+
+## Document Hierarchy (conflict resolution)
+
+1. **DECISIONS.md** — client meeting overrides (highest priority)
+2. **SHUBY PIANO DI ABBONAMENTO.pdf** — definitive free/premium feature matrix
+3. **Analisi Funzionale PDF** — screen-by-screen behavior details
+4. **Specifiche di Prodotto.md** — product-level requirements
+5. **Figma design** — visual source of truth for all UI
+6. **The codebase** — determines actual state (generated docs may be stale)
+
+When documents conflict: follow the hierarchy. When something is TBD in all docs, use Italian UX best practices and flag the decision in the commit message.
+
+## Figma Design (Visual Source of Truth)
+
+- **Main file**: https://www.figma.com/design/qriF7HfsvoG8VUSdjUETBd/Shuby_App (fileKey: `qriF7HfsvoG8VUSdjUETBd`)
+- **MANDATORY**: Before modifying ANY screen, check the Figma design first
+- **MANDATORY**: After UI changes, verify with Playwright CLI screenshot (mobile 390x844) + Figma comparison
+- Use `/shuby-figma-check [section]` for systematic visual comparison
+- When Figma conflicts with FA/PRD on visual details, Figma wins
+
+### Figma Tools
+- **Figma MCP**: `get_design_context` (code + screenshot + hints), `get_screenshot` (visual), `get_metadata` (structure)
+- **Playwright CLI**: `playwright-cli screenshot` for local app screenshots (more efficient than Playwright MCP)
+- The Figma file is large and complex. Always use `get_metadata` first to navigate to the right nodeId, then `get_design_context` on the specific node.
+
+### Figma Node Map (main screens)
+
+| Screen | Figma nodeId | Figma Name |
+|--------|-------------|------------|
+| Dashboard (blue header) | `375:5429` | 01.01_Hero/Azzurra |
+| Dashboard (white header) | `434:12577` | 01.01_Hero/Bianca |
+| Dashboard variant 2 | `499:6713` | 01.03_Hero/Azzurra 2 |
+| Timeline (current) | `211:2608` | 02.01_Timeline |
+| Timeline (past) | `322:7818` | 02.02_Timeline_Passato |
+| Timeline (future) | `322:8041` | 02.03_Timeline_Futuro |
+| Child profile - Info | `434:13573` | 03.01_Scheda bambino_Info |
+| Child profile - Measurements 1 | `436:4638` | 03.02_Scheda bambino_Misurazioni_01 |
+| Child profile - Measurements 2 | `451:5043` | 03.03_Scheda bambino_Misurazioni_02 |
+| Child profile - Stages 1 | `451:5546` | 03.04_Scheda bambino_Tappe/01 |
+| Child profile - Stages 2 | `541:7850` | 03.04_Scheda bambino_Tappe/02 |
+| AI Helper | `463:5386` | 04.01_AI_helper |
+| Archive | `463:6063` | 05.01_Archivio |
+| Article detail | `510:22491` | 05.02_Articolo |
+| Activity detail | `532:24578` | 05.03_Attività |
+| Game detail | `532:25861` | 05.04_Gioco |
+| Book detail | `532:26226` | 05.05_Libro |
+| Settings/Account | `455:5017` | 06.01_Gestione |
+| Add measurement overlay | `621:9860` | 00.05_Overlay_Aggiungi Altezza |
+
+### Figma Components (design system)
+Colors section, Typography section, plus: Header (`379:5503`), Button (`65:38`), Timeline (`322:6922`), Cards (Scheda Test `413:3498`, Scheda Attività `413:3570`, Scheda Misurazioni `413:3671`, Scheda Consigli `413:3942`), Tab (`436:4918`), Form (`220:2532`), Chat (`230:1824`), Child selector (`220:2341`), Menu (`198:3262`).
+
+## Pending Decisions (need client confirmation)
+
+| ID | Question | Current Approach |
+|----|----------|-----------------|
+| DEC-005 | AI chat free limit: 8 dom/mese (PDF) vs 10 (PRD) vs 30 (meeting) | **Implement PDF version (8/mese o 1/giorno) — most recent** |
+| DEC-012 | Stage proposal: AI-driven vs sequential | Sequential for v1.0, flag for future |
+| DEC-015 | Content: all generic free (PDF) vs 20 free (PRD) | **Implement PDF version** |
+| DEC-017 | Launch language: IT only vs IT+EN+FR | IT only, translations as bonus if ready |
+
+**Rule**: For to-confirm decisions, implement the most recent document version (PDF > meeting > PRD) but keep limits configurable.
