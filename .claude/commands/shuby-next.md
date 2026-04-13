@@ -12,7 +12,7 @@ Pick up the next work item intelligently and start working.
    - Note `deferred` decisions that remove scope from v1.0
    - Note `to-confirm` decisions that need client confirmation before implementing
 4. Scan the actual codebase for existing related code (models, controllers, views, tests) to verify the gap still exists
-5. Check the Figma design for the target UI using the Figma Node Map in CLAUDE.md
+5. Check the Figma design for the target UI using the Figma Node Map in docs/FIGMA-REFERENCE.md
 6. Propose a concrete implementation plan:
    - Files to create or modify
    - Key decisions to make

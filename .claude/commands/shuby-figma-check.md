@@ -12,7 +12,7 @@ $ARGUMENTS — Optional: specific page/section (e.g., "dashboard", "timeline", "
 
 3. For each page:
    a. Use Playwright CLI: `playwright-cli goto [url]` then `playwright-cli screenshot --filename=/tmp/shuby-[page].png` (mobile viewport 390x844)
-   b. Use Figma MCP: `get_design_context` with the nodeId from the Figma Node Map in CLAUDE.md
+   b. Use Figma MCP: `get_design_context` with the nodeId from the Figma Node Map in docs/FIGMA-REFERENCE.md
    c. The Figma file is large — always look up the correct nodeId from the map, don't guess
    d. Compare visually and report:
       - Layout and spacing differences

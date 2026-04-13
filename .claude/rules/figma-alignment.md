@@ -10,7 +10,7 @@ paths:
 
 ## Before modifying any view
 - Check Figma design FIRST: `get_design_context` with fileKey `qriF7HfsvoG8VUSdjUETBd`
-- Look up the correct nodeId from the Figma Node Map in CLAUDE.md
+- Look up the correct nodeId from the Figma Node Map in docs/FIGMA-REFERENCE.md
 - If unsure of nodeId, use `get_metadata` to browse file structure
 
 ## After modifying any view

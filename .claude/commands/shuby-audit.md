@@ -24,7 +24,7 @@ Determine feature completion solely by reading the actual code.
 
 4. Use Figma MCP + Playwright CLI to spot-check key screens visually:
    - `playwright-cli screenshot --filename=/tmp/shuby-[screen].png` for local app
-   - Figma MCP `get_design_context` with nodeId from Figma Node Map in CLAUDE.md
+   - Figma MCP `get_design_context` with nodeId from Figma Node Map in docs/FIGMA-REFERENCE.md
 
 5. Check non-functional requirements (PRD section 5):
    - Rate limiting, GDPR export, accessibility, performance
