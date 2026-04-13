@@ -1,0 +1,19 @@
+<div class="mt-8 mb-4 flex flex-col items-center gap-4">
+  <%= link_to root_path, class: "flex items-center" do %>
+    <%= shuby_logo(size: "h-6") %>
+  <% end %>
+  <p class="shuby-caption text-gray-400">
+    <%= t("application.footer.tagline") %>
+  </p>
+
+  <nav class="flex flex-wrap justify-center gap-4">
+    <%= link_to t("application.footer.announcements"), announcements_path, class: "shuby-caption text-gray-500 hover:text-[var(--color-shuby-blue-800)] transition-colors" %>
+    <%= link_to t("application.footer.about"), about_path, class: "shuby-caption text-gray-500 hover:text-[var(--color-shuby-blue-800)] transition-colors" %>
+    <%= link_to t("application.footer.privacy"), privacy_path, class: "shuby-caption text-gray-500 hover:text-[var(--color-shuby-blue-800)] transition-colors" %>
+    <%= link_to t("application.footer.terms"), terms_path, class: "shuby-caption text-gray-500 hover:text-[var(--color-shuby-blue-800)] transition-colors" %>
+  </nav>
+
+  <p class="shuby-caption text-gray-300">
+    &copy; <%= Date.current.year %> Shuby S.r.l. &mdash; P.IVA 13408430018
+  </p>
+</div>

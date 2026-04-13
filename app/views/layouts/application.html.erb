@@ -15,7 +15,7 @@
         <%= content_for?(:content) ? yield(:content) : yield %>
       </main>
 
-      <%= render "footer" unless hotwire_native_app? || content_for?(:hide_footer) %>
+      <%= render "footer" unless hotwire_native_app? || content_for?(:hide_footer) || content_for?(:bottom_nav) %>
     </div>
 
     <%= native_tabs_tag if user_signed_in? %>
