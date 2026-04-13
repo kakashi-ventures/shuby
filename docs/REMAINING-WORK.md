@@ -26,9 +26,9 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 
 ## P1: Dashboard & Timeline Completeness
 
-- [ ] 24-Hour Guidelines table: age-personalized movement/sleep/screen limits (PRD 3.2, 3.3)
-- [ ] Dashboard: article band should be horizontal carousel of 4+ items (FA 3.6)
-- [ ] Timeline: related content links (articles, activities) per age band (PRD 3.3)
+- [x] ~~24-Hour Guidelines table~~ — **NOT in Figma**. Guidelines (tummy time, sleep, screens) are embedded in growth phase narrative text, not a separate table. PRD mentioned it but Figma/FA take precedence. Verify growth phase texts include these tips.
+- [ ] Dashboard: article band should be horizontal carousel of 4+ items (FA 3.6, confirmed in Figma)
+- [x] ~~Timeline: related content links per age band~~ — **NOT in Figma**. Timeline shows only phase + WHO ranges + milestones. No article/activity links designed. Deprioritized.
 
 ## P1: Questionnaire Integration
 
@@ -42,11 +42,14 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 - [ ] PDF: per-period report scope per DEC-014 (currently generates overall child report)
 - [ ] Report section selection UI: parent chooses what to include (PRD 3.8)
 
-## P1: Archive Improvements
+## P1: Archive Improvements (Figma-verified)
 
-- [ ] Full-text keyword search (FA 6.1.1.1 describes search bar in filter overlay)
-- [ ] Article detail: scroll-overlap effect with sticky title (FA 6.2.1)
-- [ ] Advice/activity detail: colored band header variant for no-image content (FA 6.2.2)
+- [ ] Full-text keyword search (FA 6.1.1.1 — filter icon visible in Figma Archive header)
+- [ ] Article detail: scroll-overlap effect with sticky title (FA 6.2.1 — confirmed in Figma)
+- [ ] Activity detail: white header without image (confirmed in Figma 05.03)
+- [ ] Game/advice detail: yellow header band for no-image content (confirmed in Figma 05.04)
+- [ ] Content detail: "Tappe di sviluppo collegate" section at bottom (confirmed in Figma 05.02)
+- [ ] Content detail: "Articoli collegati" horizontal carousel at bottom (confirmed in Figma 05.02, 05.03, 05.04)
 
 ## P1: Notification System
 
