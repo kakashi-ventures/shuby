@@ -1,0 +1,37 @@
+<% scope = "archive.index" %>
+
+<div data-controller="archive-filter">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="shuby-h2 text-shuby-blue-800"><%= t("heading", scope: scope) %></h1>
+    <div class="flex items-center gap-3">
+      <button type="button" class="shuby-header-icon-btn" data-action="click->archive-filter#toggle">
+        <%= render_svg "shuby/icons/icon-filter-list", size: :lg, decorative: true %>
+      </button>
+      <%= link_to archive_index_path(type: "saved"), class: "shuby-header-icon-btn" do %>
+        <%= render_svg "shuby/icons/icon-bookmark", size: :lg %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= render "archive/search_filter_panel", search_query: search_query, active_type: active_type %>
+
+  <%# Results count %>
+  <p class="shuby-overline-dark mb-4">
+    <%= t("search.results_count", scope: scope, count: contents.size, query: search_query) %>
+  </p>
+
+  <div id="archive-content" class="space-y-3">
+    <% if contents.any? %>
+      <% contents.each do |content| %>
+        <%= render "shared/ui/content_card", content: content, favorite_ids: favorite_ids %>
+      <% end %>
+    <% else %>
+      <div class="text-center py-12 shuby-card">
+        <%= render_svg "shuby/icons/icon-search", styles: "w-16 h-16 mx-auto mb-4 text-shuby-blue-300" %>
+        <h3 class="shuby-h3 mt-4"><%= t("search.no_results", scope: scope) %></h3>
+        <p class="shuby-p2 mt-2"><%= t("search.no_results_hint", scope: scope) %></p>
+        <%= link_to t("search.clear_search", scope: scope), archive_index_path, class: "shuby-btn shuby-btn-md shuby-btn-outline mt-4" %>
+      </div>
+    <% end %>
+  </div>
+</div>

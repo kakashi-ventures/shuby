@@ -1,0 +1,45 @@
+<%# Search and filter panel — toggled by the filter button in the archive header %>
+<% scope = "archive.index" %>
+
+<% panel_visible = local_assigns[:search_query].present? %>
+<div data-archive-filter-target="panel" class="<%= "hidden" unless panel_visible %> mb-6">
+  <div class="bg-white rounded-2xl shadow-sm border border-shuby-gray-100 p-4 space-y-4">
+    <%# Search input %>
+    <%= form_with url: archive_index_path, method: :get, data: { archive_filter_target: "form", turbo_frame: "_top" }, class: "space-y-4" do |f| %>
+      <div class="relative">
+        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-shuby-gray-400">
+          <%= render_svg "shuby/icons/icon-search", size: :sm, decorative: true %>
+        </span>
+        <%= f.search_field :search,
+            value: local_assigns[:search_query],
+            placeholder: t("search.placeholder", scope: scope),
+            class: "shuby-input pl-10",
+            data: { archive_filter_target: "input", action: "input->archive-filter#search" },
+            autocomplete: "off" %>
+      </div>
+
+      <%# Type filter pills %>
+      <div class="flex gap-2 flex-wrap">
+        <% type_options = [
+          [t("tabs.all", scope: scope), nil],
+          [t("tabs.articles", scope: scope), "article"],
+          [t("tabs.tips", scope: scope), "tip"],
+          [t("tabs.activities", scope: scope), "activity"]
+        ] %>
+        <% type_options.each do |label, type_value| %>
+          <label class="cursor-pointer">
+            <input type="radio" name="type" value="<%= type_value %>"
+              class="peer sr-only"
+              <%= "checked" if local_assigns[:active_type] == type_value %>
+              data-action="change->archive-filter#submit">
+            <span class="inline-block px-4 py-2 rounded-full text-sm font-medium transition-colors
+              peer-checked:bg-shuby-blue-600 peer-checked:text-white
+              bg-shuby-gray-100 text-shuby-gray-600 hover:bg-shuby-gray-200">
+              <%= label %>
+            </span>
+          </label>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

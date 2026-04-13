@@ -44,7 +44,7 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 
 ## P1: Archive Improvements (Figma-verified)
 
-- [ ] Full-text keyword search (FA 6.1.1.1 — filter icon visible in Figma Archive header)
+- [x] Full-text keyword search (FA 6.1.1.1 — filter icon toggles search panel with keyword input + type pills)
 - [x] Article detail: scroll-overlap effect with sticky title (Stimulus `article-scroll` controller)
 - [x] Activity detail: white header without image (hero partial variant)
 - [x] Game/advice detail: yellow/blue header band for content type (hero partial variant)

@@ -30,6 +30,14 @@ en:
         no_activities: "No activities available"
         saved: "Your saved items"
         no_saved: "You haven't saved any content yet"
+      search:
+        placeholder: "Search by keyword..."
+        results_count:
+          one: "%{count} result for \"%{query}\""
+          other: "%{count} results for \"%{query}\""
+        no_results: "No results found"
+        no_results_hint: "Try different keywords"
+        clear_search: "Clear search"
       empty:
         title: "No content found"
         description: "Try adjusting your search filters"

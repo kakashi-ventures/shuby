@@ -11,7 +11,9 @@ class ArchiveController < ApplicationController
   def index
     @favorite_ids = current_user_favorite_ids
 
-    if params[:type] == "saved"
+    if params[:search].present?
+      load_search_results
+    elsif params[:type] == "saved"
       load_saved_content
     elsif params[:type].present?
       load_filtered_content
@@ -63,7 +65,21 @@ class ArchiveController < ApplicationController
     @sectioned_view = false
   end
 
-  # Load filtered content for type-specific views
+  # Load search results across all content types
+  def load_search_results
+    @search_query = params[:search].to_s.strip
+    @contents = base_scope.search_by_keyword(@search_query)
+
+    if params[:type].present? && ArchiveContent.content_types.key?(params[:type])
+      @active_type = params[:type]
+      @contents = @contents.by_type(@active_type)
+    end
+
+    @contents = @contents.ordered
+    @sectioned_view = false
+    @search_active = true
+  end
+
   def load_filtered_content
     @contents = base_scope
     @active_type = params[:type] if ArchiveContent.content_types.key?(params[:type])

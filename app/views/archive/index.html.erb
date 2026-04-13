@@ -1,7 +1,13 @@
 <% content_for :title, t(".title") %>
 
 <div class="container px-4 mx-auto my-8 pb-24">
-  <% if @sectioned_view %>
+  <% if @search_active %>
+    <%= render "archive/section_search_results",
+        search_query: @search_query,
+        active_type: @active_type,
+        contents: @contents,
+        favorite_ids: @favorite_ids %>
+  <% elsif @sectioned_view %>
     <%= render "archive/section_home_view",
         articles: @articles,
         consigli: @consigli,

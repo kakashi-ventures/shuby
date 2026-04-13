@@ -59,6 +59,10 @@ class ArchiveContent < ApplicationRecord
     where("min_age_months <= ? AND max_age_months >= ?", months, months)
   }
   scope :by_type, ->(type) { where(content_type: type) }
+  scope :search_by_keyword, ->(query) {
+    sanitized = "%#{sanitize_sql_like(query)}%"
+    where("title ILIKE :q OR description ILIKE :q", q: sanitized)
+  }
   scope :articles, -> { content_type_article }
   scope :tips, -> { content_type_tip }
   scope :activities, -> { content_type_activity }

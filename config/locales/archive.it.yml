@@ -30,6 +30,14 @@ it:
         no_activities: "Nessuna attività disponibile"
         saved: "I tuoi salvati"
         no_saved: "Non hai ancora salvato nessun contenuto"
+      search:
+        placeholder: "Cerca per parola chiave..."
+        results_count:
+          one: "%{count} risultato per \"%{query}\""
+          other: "%{count} risultati per \"%{query}\""
+        no_results: "Nessun risultato trovato"
+        no_results_hint: "Prova con altre parole chiave"
+        clear_search: "Cancella ricerca"
       empty:
         title: "Nessun contenuto trovato"
         description: "Prova a modificare i filtri di ricerca"
