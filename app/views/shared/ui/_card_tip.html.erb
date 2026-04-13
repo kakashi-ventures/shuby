@@ -6,8 +6,7 @@
 %>
 <% card_path = local_assigns[:path] || archive_path(content.slug) %>
 <%= link_to card_path, class: "block", aria: { label: content.title } do %>
-  <div class="shuby-card-consigli relative">
-    <%= render "archive/favorite_button", content: content, favorited: local_assigns[:favorite_ids]&.include?(content.id) %>
+  <div class="shuby-card-consigli">
     <div class="shuby-card-consigli-content">
       <div class="shuby-card-consigli-tags">
         <%= shuby_tag(content.category.presence || t("archive.content_types.#{content.content_type}"),
