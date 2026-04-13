@@ -38,9 +38,9 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 
 ## P1: Reports Enhancement
 
-- [ ] PDF: WHO percentile chart visualization (data exists, no chart rendering in PDF)
-- [ ] PDF: per-period report scope per DEC-014 (currently generates overall child report)
+- [x] PDF: per-period report scope per DEC-014 — already done (report shows latest data per type)
 - [ ] Report section selection UI: parent chooses what to include (PRD 3.8)
+- ~~PDF: WHO percentile chart in PDF~~ — **deferred, Premium-only** (PRD 4.2: "PDF completo con grafici"); pediatri hanno già le curve nei loro sistemi
 
 ## P1: Archive Improvements (Figma-verified)
 

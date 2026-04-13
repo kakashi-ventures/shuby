@@ -1,41 +1,30 @@
 # Session Handoff
 
-_Last updated: 2026-04-13_
+_Last updated: 2026-04-14_
 
 ## What Was Done
 
-### Audit
-- Full gap analysis of codebase vs PRD + FA + Subscription PDF + DECISIONS.md
-- Generated `docs/AUDIT-REPORT.md` with structured tables
-- Updated `docs/REMAINING-WORK.md` with Figma-verified priorities
+### Archive Full-Text Keyword Search (FA 6.1.1.1) — `024639bb`
+- `ArchiveContent.search_by_keyword` scope (PostgreSQL ILIKE on title + description)
+- Stimulus `archive-filter` controller: toggles search/filter panel, debounced 300ms input
+- Search panel with keyword input + type filter pills (Tutto/Articoli/Consigli/Attivita)
+- Search results view with count, empty state, clear button
+- Wired the dead filter icon button in archive header
+- IT/EN translations
 
-### P0: Premium Feature Gating (DONE)
-- `Account#premium?` + `children_limit` in `Account::Billing`
-- Child limit enforcement: `ChildPolicy#create?` + controller + views (index, new, child selector)
-- Timeline future gating: locked pills (CSS + JS intercept) + server-side guard in controller
-- Reusable `shared/_paywall_banner.html.erb` (3 icon variants, Italian copy)
-- Madmin admin toggle: "Rendi/Rimuovi Premium" via fake processor
-- Refactored `User#chat_premium?` to delegate to `Account#premium?`
+### Questionnaire Post-Completion Flow (DEC-010) — `ce38c85b`
+- Added "Attivita di stimolazione" link on stories completion slide (links to anchored section on show page)
+- Added attention hint banner when `session.needs_attention?` (2+ "no" answers)
+- Added `id="stimulation-activities"` anchor to the stimulation activities partial
+- IT/EN translations + CSS for attention banner
 
-### P0: GDPR Compliance (DONE for beta)
-- `GdprDataExportService` — JSON download with profile, children, measurements, questionnaires, chats
-- Account deletion via Devise with email confirmation
-- Privacy settings page redesigned with export + deletion sections
-- Cookie consent skipped (no tracking cookies in use)
+### Reports Triage
+- Verified DEC-014 (per-period report) is already done — report shows latest data
+- Deferred PDF percentile chart to Premium-only (PRD 4.2) — pediatricians already have growth curves
 
-### P1: Archive & Dashboard Improvements (DONE)
-- Dashboard article carousel: bumped from 3 to 4 items
-- Article detail: scroll-overlap effect with sticky title (Stimulus `article-scroll` controller)
-- Three hero variants: image (articles), white (activities), colored band (tips/games)
-- "Articoli collegati" horizontal carousel at bottom of detail pages
-- Tip metadata partial (author, publisher, illustrator, ISBN)
-
-### Team Rules & Process
-- `.claude/rules/progress-tracking.md` — update REMAINING-WORK.md after every commit
-- `.claude/rules/figma-alignment.md` — Figma-first verification before scheduling UI work
-- `.claude/rules/fa-ui-behaviors.md` — FA screen-level details for all team members
-- `.claude/rules/premium-gating.md` — full matrix + Jumpstart helpers + patterns
-- `.claude/rules/ruby-native-ios.md` — added auto_route `/users/` pitfall
+### Tooling
+- Installed `playwright-cli` skills (`.claude/skills/playwright-cli/`)
+- Established workflow: use `playwright-cli` (not Playwright MCP) for visual testing
 
 ## In Progress
 (Nothing in progress — all work committed and pushed)
@@ -47,27 +36,22 @@ _Last updated: 2026-04-13_
 
 ## Next Steps
 1. Run `/shuby-next` to pick the next P1 item
-2. Remaining P1 (Figma-verified):
-   - Archive full-text keyword search (FA 6.1.1.1)
-   - Questionnaire integration: warning signs + stimulation activities UI
-   - Reports: PDF percentile chart rendering
-3. Items needing design team input:
+2. Remaining P1:
+   - Report section selection UI: parent chooses what to include (PRD 3.8)
+   - Notification system (push, triggers, preferences, in-app center) — larger scope
+3. P2: Visual & UX Polish (Figma comparison, dashboard scroll behavior, etc.)
+4. Items needing design team input:
    - Timeline related content links (not in Figma)
    - "Tappe di sviluppo collegate" in content detail (needs model association)
-4. Run `/shuby-audit` periodically to re-verify state
 
 ## Uncommitted Changes
-(None — working tree clean, all pushed to origin/main)
+- `docs/REMAINING-WORK.md` — updated reports items (DEC-014 done, chart deferred)
 
 ## Recent Commits
 ```
-48899fe9 feat: P1 archive improvements — scroll-overlap, hero variants, related articles
-bad13f68 docs: refine Figma-first rule
-482ff86b docs: cross-check P1 items against Figma
-e6551081 chore: promote local learnings to shared team rules
-6e56193e chore: add progress-tracking rule for team workflow
-0892c383 docs: update REMAINING-WORK.md with premium gating and GDPR progress
-1daf8910 feat: add GDPR data export and account deletion to privacy settings
-10f4e7f9 feat: implement premium feature gating infrastructure
-b1d4087e docs: add comprehensive audit report and update remaining work
+ce38c85b feat: complete questionnaire post-completion flow (DEC-010)
+efe2c56f feat: remove website footer from app pages, add info section to Gestione
+81ae6037 feat: integrate official Shuby brand logos per brand book guidelines
+024639bb feat: add archive full-text keyword search (FA 6.1.1.1)
+d18751e8 docs: session handoff — P0 complete, P1 archive done, next steps documented
 ```
