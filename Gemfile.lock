@@ -244,7 +244,7 @@ GEM
       activesupport (>= 7.0.0)
     jmespath (1.6.2)
     json (2.16.0)
-    jwt (3.1.2)
+    jwt (2.10.2)
       base64
     kamal (2.8.2)
       activesupport (>= 7.0)
@@ -509,6 +509,10 @@ GEM
       ruby_llm-schema (~> 0.2.1)
       zeitwerk (~> 2)
     ruby_llm-schema (0.2.5)
+    ruby_native (0.7.0)
+      jwt (~> 2.0)
+      rails (>= 7.1)
+      rqrcode (~> 3.0)
     rubyzip (3.2.2)
     securerandom (0.4.1)
     selenium-webdriver (4.38.0)
@@ -666,6 +670,7 @@ DEPENDENCIES
   ruby-oembed (~> 0.18.0)
   ruby-openai (~> 7.0)
   ruby_llm (~> 1.2)
+  ruby_native (~> 0.7)
   selenium-webdriver (>= 4.20.1)
   solid_cable
   solid_cache
@@ -765,7 +770,7 @@ CHECKSUMS
   jmespath (1.6.2) sha256=238d774a58723d6c090494c8879b5e9918c19485f7e840f2c1c7532cf84ebcb1
   json (2.16.0) sha256=ca5630320bb5ca23ebfd0bac84532fab56eb357575653b815b9df42c051e1525
   jumpstart (0.1.0)
-  jwt (3.1.2) sha256=af6991f19a6bb4060d618d9add7a66f0eeb005ac0bc017cd01f63b42e122d535
+  jwt (2.10.2) sha256=31e1ee46f7359883d5e622446969fe9c118c3da87a0b1dca765ce269c3a0c4f4
   kamal (2.8.2) sha256=5193d7a6be85c8eb7b0a27aa43ab49128f1500e9a818a730c5eb66d809a842c8
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
@@ -870,6 +875,7 @@ CHECKSUMS
   ruby-vips (2.2.5) sha256=f3c547a172c36ba26b8614c809f5823bc6199623ec6204ec7c3bce29037f7758
   ruby_llm (1.9.1) sha256=f7d3c72489c70041ee73d7bfe4250a989f801fbba1fad2200904091e433ba511
   ruby_llm-schema (0.2.5) sha256=b08cd42e8de7100325e2e868672a56f1915eb23692bb808f51f214e41392104f
+  ruby_native (0.7.0) sha256=34017ae942edc5d258ba790d815952222802b9fecd888589b5302d806f6b050a
   rubyzip (3.2.2) sha256=c0ed99385f0625415c8f05bcae33fe649ed2952894a95ff8b08f26ca57ea5b3c
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.38.0) sha256=0a84e71fef66394ae8d9290d3a5bc24b33de49d45a7aa57fc09f246218bf102f

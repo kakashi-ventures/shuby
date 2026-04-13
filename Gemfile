@@ -17,6 +17,8 @@ gem "importmap-rails"
 gem "turbo-rails", "~> 2.0.3"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails", "~> 1.0", ">= 1.0.2"
+# Ruby Native — wrap Rails app in native iOS shell [https://rubynative.com]
+gem "ruby_native", "~> 0.7"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "~> 2.14"
 

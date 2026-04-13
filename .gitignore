@@ -58,3 +58,6 @@ yarn-debug.log*
 
 # Knowledge base documents (large binary files)
 docs/knowledge_base/
+
+# Ruby Native (Playwright, screenshots, session data)
+.ruby_native/

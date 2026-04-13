@@ -121,6 +121,12 @@ export default class extends Controller {
 
   // Update the mobile device with the current unread count
   syncCountToNative() {
+    // Ruby Native badge (no-op on web)
+    if (typeof RubyNative !== 'undefined' && RubyNative.setBadge) {
+      RubyNative.setBadge(this.totalUnreadValue)
+    }
+
+    // Legacy Hotwire Native bridge badge
     if (this.hasNativeBadgeTarget) {
       this.nativeBadgeTarget.setAttribute("data-bridge--notification-badge-total-value", this.totalUnreadValue)
       this.nativeBadgeTarget.setAttribute("data-bridge--notification-badge-account-value", this.accountUnreadValue)

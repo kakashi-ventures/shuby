@@ -1,0 +1,26 @@
+app:
+  mode: normal
+  entry_path: /
+
+appearance:
+  tint_color: "#0159B5"
+  background_color:
+    light: "#FFFFFF"
+    dark: "#1F2937"
+  theme: auto
+
+tabs:
+  - title: Oggi
+    path: /
+    icon: house.fill
+    auto_route: false
+  - title: Shuby
+    path: /shuby
+    icon: bubble.left.and.text.bubble.right.fill
+    eager: true
+  - title: Archivio
+    path: /archive
+    icon: books.vertical.fill
+  - title: Gestione
+    path: /settings
+    icon: gearshape.fill

@@ -49,6 +49,11 @@
    Aligned with Figma design tokens
    ===================================================== */
 
+/* Hide web bottom nav in Ruby Native shell (native tab bar replaces it) */
+html.hotwire-native .shuby-bottom-nav {
+    display: none !important;
+}
+
 /* Navigation bar container */
 .shuby-bottom-nav {
     display: flex;
