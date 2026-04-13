@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   authenticated :user do
     root to: "dashboard#show", as: :user_root
+    get "today", to: "dashboard#show"  # Dedicated path for Ruby Native iOS tab
     get "settings", to: "settings#show"
     namespace :settings do
       resource :privacy, only: [:show, :update], controller: "privacy"
