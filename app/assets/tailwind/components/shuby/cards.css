@@ -1,5 +1,5 @@
 /* Shuby Cards
- * Base card, consigli card, scheda attivita, tracking cards, measurement card
+ * Base card, tip card, activity card, tracking cards, measurement card
  *
  * Shared patterns:
  * - Time indicator: inline-flex row with 12px icon + uppercase 10px text
@@ -82,11 +82,11 @@
 }
 
 /* =====================================================
-   CONSIGLI CARD (Figma: Scheda Consigli)
+   TIP CARD (Figma: Scheda Consigli)
    Yellow card for tips/advice with optional thumbnail
    ===================================================== */
 
-.shuby-card-consigli {
+.shuby-card-tip {
     display: flex;
     align-items: center;
     padding: var(--space-4);
@@ -95,33 +95,33 @@
     width: 100%;
 }
 
-.shuby-card-consigli-content {
+.shuby-card-tip-content {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 14px;
 }
 
-.shuby-card-consigli-tags {
+.shuby-card-tip-tags {
     display: flex;
     gap: var(--space-2);
     align-items: center;
 }
 
-.shuby-card-consigli-body {
+.shuby-card-tip-body {
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
 
-.shuby-card-consigli-author {
+.shuby-card-tip-author {
     font-size: var(--font-size-p2);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
     color: var(--color-shuby-black);
 }
 
-.shuby-card-consigli-title {
+.shuby-card-tip-title {
     font-family: var(--font-display);
     font-size: var(--font-size-d2);
     font-weight: var(--font-weight-bold);
@@ -129,18 +129,19 @@
     color: var(--color-shuby-blue-800);
 }
 
-.shuby-card-consigli-publisher {
+.shuby-card-tip-publisher {
     font-size: var(--font-size-caption);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
     color: var(--color-shuby-black);
 }
 
-.shuby-card-consigli-thumbnail {
+.shuby-card-tip-thumbnail {
     width: 78px;
     height: 99px;
     flex-shrink: 0;
     overflow: hidden;
+    border-radius: 0 var(--radius-grande) var(--radius-grande) 0;
 
     img {
         width: 100%;
@@ -150,19 +151,19 @@
 }
 
 /* Consigli card with time indicator (games/activities) */
-.shuby-card-consigli-time {
+.shuby-card-tip-time {
     display: flex;
     align-items: center;
     gap: var(--space-1);
 }
 
-.shuby-card-consigli-time-icon {
+.shuby-card-tip-time-icon {
     width: 12px;
     height: 12px;
     color: var(--color-shuby-blue-800);
 }
 
-.shuby-card-consigli-time-text {
+.shuby-card-tip-time-text {
     font-size: var(--font-size-caption);
     font-weight: var(--font-weight-medium);
     line-height: var(--line-height-normal);
@@ -170,12 +171,32 @@
     text-transform: uppercase;
 }
 
+/* Featured variant — white bg + soft blue shadow (Figma: Scheda Consigli Versione 2) */
+.shuby-card-tip--featured {
+    background-color: var(--color-shuby-white);
+    box-shadow: var(--shadow-blu);
+}
+
+/* Large thumbnail for Lettura featured (Figma Versione 2: 112×144px) */
+.shuby-card-tip-thumbnail--large {
+    width: 112px;
+    height: 144px;
+}
+
+/* Subtitle text for Generale category (14px body, blue-800) */
+.shuby-card-tip-subtitle {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-blue-800);
+}
+
 /* =====================================================
-   SCHEDA ATTIVITA (Figma: Scheda Attività)
+   ACTIVITY CARD (Figma: Scheda Attività)
    Activity list item with title, time, and arrow
    ===================================================== */
 
-.shuby-scheda-attivita {
+.shuby-card-activity {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -187,13 +208,13 @@
     height: 80px;
 }
 
-/* Ombra (shadow) variant — replaces border with a soft blue glow */
-.shuby-scheda-attivita--ombra {
+/* Shadow variant — replaces border with a soft blue glow */
+.shuby-card-activity--shadow {
     border: none;
     box-shadow: 0px 0px 10px 0px rgba(158, 198, 240, 0.30);
 }
 
-.shuby-scheda-attivita-content {
+.shuby-card-activity-content {
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -201,7 +222,7 @@
     min-width: 0;
 }
 
-.shuby-scheda-attivita-title {
+.shuby-card-activity-title {
     font-family: var(--font-display);
     font-size: var(--font-size-d2);
     font-weight: var(--font-weight-bold);
@@ -212,19 +233,19 @@
     white-space: nowrap;
 }
 
-.shuby-scheda-attivita-time {
+.shuby-card-activity-time {
     display: flex;
     align-items: center;
     gap: var(--space-1);
 }
 
-.shuby-scheda-attivita-time-icon {
+.shuby-card-activity-time-icon {
     width: 12px;
     height: 12px;
     color: var(--color-shuby-blue-800);
 }
 
-.shuby-scheda-attivita-time-text {
+.shuby-card-activity-time-text {
     font-size: var(--font-size-caption);
     font-weight: var(--font-weight-medium);
     line-height: var(--line-height-normal);
@@ -232,7 +253,7 @@
     text-transform: uppercase;
 }
 
-.shuby-scheda-attivita-arrow {
+.shuby-card-activity-arrow {
     width: 24px;
     height: 24px;
     color: var(--color-shuby-blue-800);

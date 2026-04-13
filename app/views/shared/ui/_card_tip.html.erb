@@ -1,36 +1,72 @@
-<%# Tip/consigli card using shuby-card-consigli design
+<%# Tip/consigli card — Figma: Scheda Consigli
   Locals:
     content      - (required) ArchiveContent record
+    variant      - (optional) :featured (white bg, shadow) or :compact (yellow bg). Default: :compact
     path         - (optional) override link target (default: archive_path(content.slug))
     favorite_ids - (optional) Set of favorited content IDs
 %>
-<% card_path = local_assigns[:path] || archive_path(content.slug) %>
+<%
+  card_variant = local_assigns[:variant] || :compact
+  is_general  = content.category.blank?
+  is_reading   = content.category == "Lettura"
+
+  card_modifier      = (is_general || card_variant == :featured) ? "shuby-card-tip--featured" : nil
+  show_thumbnail     = is_reading
+  thumbnail_modifier = (card_variant == :featured) ? "shuby-card-tip-thumbnail--large" : nil
+
+  if is_general
+    type_tag_variant = :azzurro
+    age_tag_variant  = :azzurro
+  elsif card_variant == :featured
+    type_tag_variant = :giallo
+    age_tag_variant  = :grigio
+  else
+    type_tag_variant = :giallo_scuro
+    age_tag_variant  = :bianco
+  end
+
+  category_label = content.category.presence || t("archive.content_types.#{content.content_type}")
+  card_path      = local_assigns[:path] || archive_path(content.slug)
+%>
 <%= link_to card_path, class: "block", aria: { label: content.title } do %>
-  <div class="shuby-card-consigli">
-    <div class="shuby-card-consigli-content">
-      <div class="shuby-card-consigli-tags">
-        <%= shuby_tag(content.category.presence || t("archive.content_types.#{content.content_type}"),
-                      variant: :giallo, icon: category_icon_for(content.category)) %>
-        <%= shuby_tag(content.age_range_label, variant: :light) %>
+  <div class="<%= class_names("shuby-card-tip", card_modifier) %>">
+    <div class="shuby-card-tip-content">
+      <div class="shuby-card-tip-tags">
+        <%= shuby_tag(category_label, variant: type_tag_variant, icon: category_icon_for(content.category)) %>
+        <%= shuby_tag(content.age_range_label, variant: age_tag_variant) %>
       </div>
-      <div class="shuby-card-consigli-body">
-        <% if content.author.present? %>
-          <p class="shuby-card-consigli-author"><%= content.author %></p>
-        <% end %>
-        <p class="shuby-card-consigli-title"><%= content.title %></p>
-        <% if content.publisher.present? %>
-          <p class="shuby-card-consigli-publisher"><%= content.publisher %></p>
-        <% end %>
-        <% if content.duration_minutes.present? %>
-          <div class="shuby-card-consigli-time">
-            <%= render_svg "shuby/icons/icon-alarm", size: :xs, decorative: true %>
-            <span class="shuby-card-consigli-time-text"><%= content.duration_label %></span>
-          </div>
+      <div class="shuby-card-tip-body">
+        <% if is_general %>
+          <% if content.description.present? %>
+            <p class="shuby-card-tip-subtitle"><%= content.description %></p>
+          <% end %>
+          <p class="shuby-card-tip-title"><%= content.title %></p>
+          <% if content.publisher.present? %>
+            <p class="shuby-card-tip-publisher"><%= content.publisher %></p>
+          <% end %>
+        <% elsif is_reading %>
+          <% if content.author.present? %>
+            <p class="shuby-card-tip-author"><%= content.author %></p>
+          <% end %>
+          <p class="shuby-card-tip-title"><%= content.title %></p>
+          <% if content.publisher.present? %>
+            <p class="shuby-card-tip-publisher"><%= content.publisher %></p>
+          <% end %>
+        <% else %>
+          <p class="shuby-card-tip-title"><%= content.title %></p>
+          <% if content.duration_minutes.present? %>
+            <div class="shuby-card-tip-time">
+              <%= render_svg "shuby/icons/icon-alarm", size: :xs, decorative: true %>
+              <span class="shuby-card-tip-time-text"><%= content.duration_label %></span>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
-    <div class="shuby-card-consigli-thumbnail">
-      <%= archive_cover_image(content, class: "w-full h-full object-cover rounded") %>
-    </div>
+    <% if show_thumbnail %>
+      <div class="shuby-card-tip-thumbnail <%= thumbnail_modifier %>">
+        <%= archive_cover_image(content, class: "w-full h-full object-cover") %>
+      </div>
+    <% end %>
   </div>
 <% end %>

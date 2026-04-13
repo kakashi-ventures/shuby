@@ -20,7 +20,7 @@ module ArchiveHelper
   # @param category [String] The category name
   # @return [String] The icon path
   def category_icon_for(category)
-    return DEFAULT_CATEGORY_ICON if category.blank?
+    return "shuby/icons/icon-tips" if category.blank?
 
     CATEGORY_ICONS[category] || DEFAULT_CATEGORY_ICON
   end

@@ -1,11 +1,12 @@
 <% scope = "archive.index" %>
+<% card_locals_hash = local_assigns.fetch(:card_locals, {}) %>
 
 <section class="mb-8">
   <%= render "shared/ui/section_header", title: t("sections.#{section_key}", scope: scope) %>
   <% if items.any? %>
     <div class="space-y-3">
       <% items.each do |item| %>
-        <%= render card_partial, content: item, favorite_ids: local_assigns[:favorite_ids] %>
+        <%= render card_partial, content: item, favorite_ids: local_assigns[:favorite_ids], **card_locals_hash %>
       <% end %>
     </div>
     <div class="text-right mt-4">

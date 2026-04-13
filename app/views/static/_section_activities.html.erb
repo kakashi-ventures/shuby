@@ -5,17 +5,17 @@
   <div class="space-y-3">
     <% @preview_activities.each do |activity| %>
       <a href="<%= archive_path(activity.slug) %>" class="block" aria-label="<%= activity.title %>">
-        <div class="shuby-scheda-attivita">
-          <div class="shuby-scheda-attivita-content">
-            <p class="shuby-scheda-attivita-title"><%= activity.title %></p>
+        <div class="shuby-card-activity">
+          <div class="shuby-card-activity-content">
+            <p class="shuby-card-activity-title"><%= activity.title %></p>
             <% if activity.duration_minutes.present? %>
-              <div class="shuby-scheda-attivita-time">
+              <div class="shuby-card-activity-time">
                 <%= render_svg "shuby/icons/icon-alarm", size: :xs, decorative: true %>
-                <span class="shuby-scheda-attivita-time-text"><%= activity.duration_label %></span>
+                <span class="shuby-card-activity-time-text"><%= activity.duration_label %></span>
               </div>
             <% end %>
           </div>
-          <%= render_svg "shuby/icons/icon-arrow-right", styles: "shuby-scheda-attivita-arrow" %>
+          <%= render_svg "shuby/icons/icon-arrow-right", styles: "shuby-card-activity-arrow" %>
         </div>
       </a>
     <% end %>

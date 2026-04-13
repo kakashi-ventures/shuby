@@ -1,4 +1,4 @@
-<%# Activity/game card using shuby-scheda-attivita design
+<%# Activity/game card using shuby-card-activity design
   Locals:
     content      - (required) ArchiveContent record
     path         - (optional) override link target (default: archive_path(content.slug))
@@ -6,16 +6,16 @@
 %>
 <% card_path = local_assigns[:path] || archive_path(content.slug) %>
 <%= link_to card_path, class: "block", aria: { label: content.title } do %>
-  <div class="shuby-scheda-attivita">
-    <div class="shuby-scheda-attivita-content">
-      <p class="shuby-scheda-attivita-title"><%= content.title %></p>
+  <div class="shuby-card-activity">
+    <div class="shuby-card-activity-content">
+      <p class="shuby-card-activity-title"><%= content.title %></p>
       <% if content.duration_minutes.present? %>
-        <div class="shuby-scheda-attivita-time">
+        <div class="shuby-card-activity-time">
           <%= render_svg "shuby/icons/icon-alarm", size: :xs, decorative: true %>
-          <span class="shuby-scheda-attivita-time-text"><%= content.duration_label %></span>
+          <span class="shuby-card-activity-time-text"><%= content.duration_label %></span>
         </div>
       <% end %>
     </div>
-    <%= render_svg "shuby/icons/icon-arrow-right", styles: "shuby-scheda-attivita-arrow" %>
+    <%= render_svg "shuby/icons/icon-arrow-right", styles: "shuby-card-activity-arrow" %>
   </div>
 <% end %>

@@ -7,7 +7,7 @@
    Card with image on top and content below
    ===================================================== */
 
-.shuby-card-article {
+.shuby-card-article-vertical {
     display: flex;
     flex-direction: column;
     width: 290px;
@@ -16,7 +16,7 @@
     overflow: hidden;
 }
 
-.shuby-card-article-image {
+.shuby-card-article-vertical-image {
     width: 290px;
     height: 200px;
     border-radius: var(--radius-md) var(--radius-md) 0 0;
@@ -30,7 +30,7 @@
     }
 }
 
-.shuby-card-article-content {
+.shuby-card-article-vertical-content {
     flex: 1;
     min-height: 0;
     overflow: hidden;
@@ -45,14 +45,14 @@
     border-radius: 0 0 var(--radius-md) var(--radius-md);
 }
 
-.shuby-card-article-tags {
+.shuby-card-article-vertical-tags {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: var(--space-2);
 }
 
-.shuby-card-article-tag {
+.shuby-card-article-vertical-tag {
     display: inline-flex;
     align-items: center;
     padding: var(--space-1) var(--space-2);
@@ -66,7 +66,7 @@
     white-space: nowrap;
 }
 
-.shuby-card-article-tag-icon {
+.shuby-card-article-vertical-tag-icon {
     width: 16px;
     height: 16px;
     flex-shrink: 0;
@@ -78,15 +78,15 @@
     }
 }
 
-.shuby-card-article-tag-type {
+.shuby-card-article-vertical-tag-type {
     background-color: var(--color-shuby-blue-300);
 }
 
-.shuby-card-article-tag-age {
+.shuby-card-article-vertical-tag-age {
     background-color: var(--color-shuby-gray-400);
 }
 
-.shuby-card-article-body {
+.shuby-card-article-vertical-body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -94,7 +94,7 @@
     align-self: stretch;
 }
 
-.shuby-card-article-title {
+.shuby-card-article-vertical-title {
     font-family: var(--font-display);
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-d2);
@@ -105,7 +105,7 @@
     align-self: stretch;
 }
 
-.shuby-card-article-description {
+.shuby-card-article-vertical-description {
     font-weight: var(--font-weight-regular);
     font-size: var(--font-size-p1);
     line-height: var(--line-height-normal);
@@ -115,14 +115,14 @@
     align-self: stretch;
 }
 
-.shuby-card-article-time {
+.shuby-card-article-vertical-time {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: var(--space-1);
 }
 
-.shuby-card-article-time-icon {
+.shuby-card-article-vertical-time-icon {
     width: 24px;
     height: 24px;
     flex-shrink: 0;
@@ -134,7 +134,7 @@
     }
 }
 
-.shuby-card-article-time-text {
+.shuby-card-article-vertical-time-text {
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-caption);
     line-height: var(--line-height-normal);
