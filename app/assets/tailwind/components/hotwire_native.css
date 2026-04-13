@@ -4,3 +4,21 @@
 [type="submit"] {
   display: none;
 }
+
+/* =====================================================
+   Ruby Native — iOS safe area insets (edge-to-edge)
+   Only applies when running inside the native iOS shell.
+   On web browsers html never has .hotwire-native class,
+   and env(safe-area-inset-*) resolves to 0px anyway.
+   ===================================================== */
+
+/* Main navbar and minimal navbar: push content below status bar / Dynamic Island */
+html.hotwire-native .top-nav,
+html.hotwire-native .minimal-top-nav {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Dashboard sticky header: same treatment */
+html.hotwire-native #dashboard-header > header {
+  padding-top: env(safe-area-inset-top);
+}
