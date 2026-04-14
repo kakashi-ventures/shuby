@@ -9,7 +9,7 @@
   }
 }
 
-.form-control, trix-editor, trix-toolbar {
+.form-control, lexxy-editor {
   background-color: var(--base-bg-low);
   border: 1px solid var(--base-border-tertiary);
   border-radius: 6px;
@@ -59,17 +59,6 @@
   background-color: var(--color-shuby-blue-300);
   border: 1px solid var(--color-shuby-blue-300);
   color: var(--base-text);
-}
-
-trix-toolbar {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom: 0;
-}
-
-trix-editor {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 
 select {
