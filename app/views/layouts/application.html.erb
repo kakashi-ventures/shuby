@@ -21,5 +21,6 @@
     <%= native_tabs_tag if user_signed_in? %>
     <%= native_badge_tag(@notification_counts&.values&.sum || 0) if user_signed_in? && defined?(@notification_counts) %>
     <%= yield :bottom_nav %>
+    <%= render "shared/beta_feedback_button" if user_signed_in? && current_user.beta_tester? %>
   </body>
 </html>

@@ -15,7 +15,9 @@ namespace :madmin, path: :admin do
   resources :users do
     resource :impersonate, module: :user
     resource :toggle_admin, module: :user, only: :create
+    resource :toggle_beta_tester, module: :user, only: :create
   end
+  resources :beta_feedbacks
   resources :connected_accounts
   resources :accounts do
     resource :toggle_premium, module: :account, only: :create, controller: :toggle_premiums

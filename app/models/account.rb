@@ -6,6 +6,7 @@ class Account < ApplicationRecord
   include Transfer
   include Types
 
+  has_many :beta_feedbacks, dependent: :destroy
   has_many :children, dependent: :destroy
   has_many :shuby_chats, dependent: :destroy
   has_one :family_profile, dependent: :destroy

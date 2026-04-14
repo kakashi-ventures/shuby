@@ -24,3 +24,8 @@ html.hotwire-native .minimal-top-nav {
 html.hotwire-native #dashboard-header > header {
   padding-top: calc(env(safe-area-inset-top) + var(--space-3));
 }
+
+/* Beta feedback FAB — clear native tab bar */
+html.hotwire-native .beta-feedback-fab {
+  bottom: calc(env(safe-area-inset-bottom) + 96px);
+}

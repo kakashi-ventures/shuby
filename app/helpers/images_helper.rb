@@ -28,11 +28,17 @@ module ImagesHelper
     css_classes << "fill-current" if css_classes.empty?
     options[:class] = css_classes.join(" ")
 
-    # Set explicit width/height attributes for reliable sizing
+    # Set explicit width/height attributes for reliable sizing.
+    # Without these, SVGs with only viewBox (no intrinsic size) expand
+    # to fill their container — causing giant icon overflow.
     if size && ICON_DIMENSIONS[size]
       dim = ICON_DIMENSIONS[size]
       options[:width] ||= dim
       options[:height] ||= dim
+    else
+      # Default to 24px (lg) when no size specified — prevents unbounded SVG expansion
+      options[:width] ||= 24
+      options[:height] ||= 24
     end
 
     if decorative

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_31_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_14_104718) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -172,6 +172,26 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_31_100000) do
     t.index ["archive_content_id"], name: "index_archive_favorites_on_archive_content_id"
     t.index ["user_id", "archive_content_id"], name: "index_archive_favorites_on_user_id_and_archive_content_id", unique: true
     t.index ["user_id"], name: "index_archive_favorites_on_user_id"
+  end
+
+  create_table "beta_feedbacks", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.text "admin_notes"
+    t.datetime "created_at", null: false
+    t.text "description", null: false
+    t.integer "feedback_type", default: 0, null: false
+    t.jsonb "metadata", default: {}
+    t.string "page_url", null: false
+    t.string "section", null: false
+    t.integer "severity", default: 0
+    t.integer "status", default: 0
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["account_id"], name: "index_beta_feedbacks_on_account_id"
+    t.index ["feedback_type"], name: "index_beta_feedbacks_on_feedback_type"
+    t.index ["section"], name: "index_beta_feedbacks_on_section"
+    t.index ["status"], name: "index_beta_feedbacks_on_status"
+    t.index ["user_id"], name: "index_beta_feedbacks_on_user_id"
   end
 
   create_table "child_health_profiles", force: :cascade do |t|
@@ -586,6 +606,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_31_100000) do
     t.datetime "accepted_terms_at", precision: nil
     t.boolean "admin"
     t.datetime "announcements_read_at", precision: nil
+    t.boolean "beta_tester", default: false
     t.datetime "confirmation_sent_at", precision: nil
     t.string "confirmation_token"
     t.datetime "confirmed_at", precision: nil
@@ -645,6 +666,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_31_100000) do
   add_foreign_key "api_tokens", "users"
   add_foreign_key "archive_favorites", "archive_contents"
   add_foreign_key "archive_favorites", "users"
+  add_foreign_key "beta_feedbacks", "accounts"
+  add_foreign_key "beta_feedbacks", "users"
   add_foreign_key "child_health_profiles", "children"
   add_foreign_key "children", "accounts"
   add_foreign_key "family_profiles", "accounts"

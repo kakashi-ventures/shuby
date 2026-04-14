@@ -1,0 +1,21 @@
+one:
+  user: one
+  account: one
+  page_url: "/today"
+  section: "dashboard"
+  feedback_type: 0
+  description: "Il pulsante non risponde al tap sulla dashboard"
+  severity: 1
+  status: 0
+  metadata: {}
+
+two:
+  user: one
+  account: one
+  page_url: "/archive"
+  section: "archive"
+  feedback_type: 1
+  description: "Sarebbe utile poter filtrare per eta del bambino"
+  severity: 0
+  status: 2
+  metadata: {}

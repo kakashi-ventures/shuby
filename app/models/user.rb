@@ -2,6 +2,7 @@ class User < ApplicationRecord
   include User::Accounts
   include User::Agreements
   include User::Authenticatable
+  include User::BetaTester
   include User::ChatRateLimit
   include User::DataSharingConsent
   include User::Mentions

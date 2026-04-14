@@ -1,0 +1,67 @@
+<dialog data-beta-feedback-target="modal"
+        data-action="click->beta-feedback#backdropClose"
+        class="modal modal-md"
+        style="max-height: 90vh;">
+  <div class="modal-card overflow-y-auto" style="max-height: 85vh;">
+    <button type="button" data-action="beta-feedback#close:prevent">
+      <%= render_svg "shuby/icons/icon-close", size: :sm, decorative: true %>
+      <span class="sr-only">Chiudi</span>
+    </button>
+
+    <div class="modal-title">Feedback Beta</div>
+    <p class="text-sm text-[var(--base-text-secondary)] mb-4">Aiutaci a migliorare Shuby!</p>
+
+    <%= form_with url: beta_feedbacks_path, scope: :beta_feedback, method: :post,
+                  data: { beta_feedback_target: "form", action: "submit->beta-feedback#submit" } do |f| %>
+
+      <%= f.hidden_field :page_url, value: "", data: { beta_feedback_target: "urlField" } %>
+      <%= f.hidden_field :section, value: "", data: { beta_feedback_target: "sectionField" } %>
+
+      <div class="mb-4">
+        <label class="block text-xs font-semibold text-[var(--base-text-secondary)] mb-2">Tipo di feedback</label>
+        <div class="grid grid-cols-2 gap-2">
+          <% BetaFeedback::FEEDBACK_TYPE_LABELS.each do |value, label| %>
+            <label class="flex items-center gap-2 p-2 rounded-lg border border-[var(--base-border-tertiary)]
+                          has-[:checked]:border-[var(--color-shuby-fucsia-500)] has-[:checked]:bg-[var(--color-shuby-fucsia-500)]/5
+                          cursor-pointer transition-colors">
+              <%= f.radio_button :feedback_type, value, class: "sr-only" %>
+              <span class="text-sm"><%= label %></span>
+            </label>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-xs font-semibold text-[var(--base-text-secondary)] mb-2" for="beta_feedback_description">Descrizione</label>
+        <%= f.text_area :description, rows: 4,
+            placeholder: "Descrivi il problema o il tuo suggerimento...",
+            class: "shuby-input", required: true,
+            minlength: 10, maxlength: 2000 %>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-xs font-semibold text-[var(--base-text-secondary)] mb-2" for="beta_feedback_severity">Gravita</label>
+        <%= f.select :severity,
+            BetaFeedback::SEVERITY_LABELS.map { |k, v| [v, k] },
+            {}, class: "shuby-input" %>
+      </div>
+
+      <div class="mb-4 hidden" data-beta-feedback-target="screenshotSection">
+        <p class="text-xs text-[var(--base-text-disabled)] mb-1">Screenshot catturato</p>
+        <img data-beta-feedback-target="preview"
+             class="w-full rounded-lg border border-[var(--base-border-tertiary)] max-h-32 object-contain"
+             alt="Screenshot della pagina" />
+      </div>
+
+      <div class="flex gap-3">
+        <button type="button" data-action="beta-feedback#close"
+                class="shuby-btn shuby-btn-sm shuby-btn-gray flex-1">
+          Annulla
+        </button>
+        <%= f.submit "Invia Feedback",
+            class: "shuby-btn shuby-btn-sm shuby-btn-fucsia flex-1",
+            data: native_haptic_data(:success) %>
+      </div>
+    <% end %>
+  </div>
+</dialog>

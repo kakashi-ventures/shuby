@@ -50,5 +50,17 @@ class UserResource < Madmin::Resource
         class: "btn btn-warning",
         data: {turbo_confirm: "Sei sicuro di voler rendere #{user.name} un Admin? Gli admin hanno accesso completo al pannello di amministrazione."}
     end
+
+    if user.beta_tester?
+      button_to "Rimuovi Beta Tester",
+        madmin_user_toggle_beta_tester_path(user),
+        class: "btn btn-danger",
+        data: {turbo_confirm: "Rimuovere #{user.name} dai Beta Tester?"}
+    else
+      button_to "Rendi Beta Tester",
+        madmin_user_toggle_beta_tester_path(user),
+        class: "btn btn-info",
+        data: {turbo_confirm: "Abilitare #{user.name} come Beta Tester?"}
+    end
   end
 end
