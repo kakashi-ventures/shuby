@@ -1,7 +1,5 @@
 # Jumpstart Pro dependencies
-gem "devise", "~> 4.9.0"
-gem "devise-i18n", "~> 1.10"
-gem "inline_svg", "~> 1.6"
+gem "devise", "~> 5.0.0.rc"
 gem "invisible_captcha", "~> 2.0"
 gem "jumpstart", path: "lib/jumpstart"
 gem "local_time", "~> 3.0"
@@ -9,17 +7,15 @@ gem "hotwire_combobox", "~> 0.3"
 gem "madmin", "~> 2.0"
 gem "name_of_person", "~> 1.0"
 gem "nokogiri", ">= 1.12.5" # Security update
-gem "noticed", "~> 2.2"
-gem "openssl", "~> 3.3"
-gem "pagy", "~> 43.0.0.rc2"
+gem "noticed", "~> 3.0"
+gem "pagy", "~> 43.0"
 gem "pay", "~> 11.0"
 gem "prefixed_ids", "~> 1.2"
-gem "pretender", "~> 0.4"
+gem "pretender", "~> 1.0"
 gem "pundit", "~> 2.1"
 gem "receipts", "~> 2.1"
 gem "rotp", "~> 6.2"
 gem "rqrcode", "~> 3.0"
-gem "ruby-oembed", "~> 0.18.0", require: "oembed"
 gem "tailwindcss-rails", "~> 4.0"
 
 group :development, :test do
@@ -28,17 +24,18 @@ group :development, :test do
 end
 
 group :test do
+  gem "minitest-mock"
   # Test HTTP requests [https://github.com/bblimke/webmock]
   gem "webmock"
 end
 
 gem "acts_as_tenant", "~> 1.0" if Jumpstart.config.gems.include?("acts_as_tenant")
-gem "refer", "~> 0.5.0" if Jumpstart.config.gems.include?("refer")
+gem "refer", "~> 1.0" if Jumpstart.config.gems.include?("refer")
 gem "whenever", "~> 1.0", require: false if Jumpstart.config.gems.include?("whenever")
 
 omniauth_providers = Jumpstart.config.omniauth_providers
 gem "omniauth", "~> 2.1" if omniauth_providers.any?
-gem "omniauth-rails_csrf_protection", "~> 1.0" if omniauth_providers.any?
+gem "omniauth-rails_csrf_protection", "~> 2.0" if omniauth_providers.any?
 gem "omniauth-twitter", github: "excid3/omniauth-twitter" if omniauth_providers.include?("twitter")
 gem "omniauth-facebook", github: "excid3/omniauth-facebook" if omniauth_providers.include?("facebook")
 gem "omniauth-github" if omniauth_providers.include?("github")
@@ -71,7 +68,7 @@ if Jumpstart.config.background_job_processor == "solid_queue"
 end
 
 # Payment processors
-gem "stripe", "~> 17.0" if Jumpstart.config.stripe?
+gem "stripe", "~> 19.0" if Jumpstart.config.stripe?
 gem "lemonsqueezy", "~> 1.0" if Jumpstart.config.lemon_squeezy?
 gem "paddle", "~> 2.1" if Jumpstart.config.paddle_billing? || Jumpstart.config.paddle_classic?
 gem "braintree", "~> 4.20" if Jumpstart.config.braintree? || Jumpstart.config.paypal?

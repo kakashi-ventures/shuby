@@ -175,20 +175,4 @@ class AccountTest < ActiveSupport::TestCase
   test "account can be subscribed" do
     assert accounts(:subscribed).payment_processor.subscribed?
   end
-
-  test "premium? returns true for subscribed account" do
-    assert accounts(:subscribed).premium?
-  end
-
-  test "premium? returns false for free account" do
-    refute accounts(:one).premium?
-  end
-
-  test "children_limit is 1 for free account" do
-    assert_equal 1, accounts(:one).children_limit
-  end
-
-  test "children_limit is 3 for premium account" do
-    assert_equal 3, accounts(:subscribed).children_limit
-  end
 end

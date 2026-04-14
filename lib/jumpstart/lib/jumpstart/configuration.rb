@@ -1,4 +1,4 @@
-# Gems cannot be loaded here since this runs during bundler/setup
+require "pp"
 
 module Jumpstart
   def self.config = @config ||= Configuration.load!
@@ -7,74 +7,12 @@ module Jumpstart
     @config = value
   end
 
-  module YAMLSerializer
-    # A simple YAML serializer that does not support nested elements
-
-    module_function
-
-    def load(path)
-      result = {}
-      key = nil
-      multiline = false
-
-      File.readlines(path, chomp: true).each do |line|
-        # multiline hash key
-        if (match = /^(\w+):\s*\|-/.match(line))
-          multiline = true
-          key = match[1]
-          result[key] = ""
-
-        # hash keys
-        elsif (match = /^(\w+):\s*(.*)/.match(line))
-          multiline = false
-          key, value = match[1], match[2]
-          result[key] = value unless value.empty?
-
-        # array entries
-        elsif line.start_with? "- "
-          result[key] ||= []
-          result[key] << line.delete_prefix("- ")
-
-        # multiline string
-        elsif multiline
-          result[key] += "\n" unless result[key].empty?
-          result[key] += line.strip
-        end
-      end
-
-      result
-    end
-
-    def dump(object)
-      yaml = "---\n"
-      object.instance_variables.each do |ivar|
-        key = ivar.to_s.delete_prefix("@")
-        value = object.instance_variable_get(ivar)
-        yaml << key << ":"
-
-        if value.is_a?(Array)
-          yaml << value.map { |e| "\n- #{e.to_s.gsub(/\s+/, " ")}" }.join << "\n"
-        elsif value.is_a?(String) && value.include?("\n")
-          yaml << " |-\n  " << value.split("\n").join("\n  ") << "\n"
-        else
-          yaml << " " << value.to_s.gsub(/\s+/, " ") << "\n"
-        end
-      end
-
-      yaml
-    end
-
-    def dump_to_file(path, object)
-      File.write(path, dump(object))
-    end
-  end
-
   class Configuration
     QUEUE_ADAPTERS = {
       "I'll configure my own" => nil,
-      "Async" => :async,
-      "SolidQueue" => :solid_queue,
-      "Sidekiq" => :sidekiq
+      "Async" => "async",
+      "SolidQueue" => "solid_queue",
+      "Sidekiq" => "sidekiq"
     }.freeze
 
     def job_command(processor)
@@ -207,18 +145,17 @@ module Jumpstart
     attr_writer :omniauth_providers
 
     def self.load!
-      if File.exist?(config_path)
-        new(YAMLSerializer.load(config_path)).apply_upgrades
+      if config_exists?
+        load config_path
+        Jumpstart.config.apply_upgrades
       else
         new
       end
     end
 
-    def self.config_path = File.join("config", "jumpstart.yml")
+    def self.config_path = File.join("config", "jumpstart.rb")
 
-    def self.create_default_config
-      FileUtils.cp File.join(File.dirname(__FILE__), "../templates/jumpstart.yml"), config_path
-    end
+    def self.config_exists? = File.exist?(config_path)
 
     def initialize(options = {})
       @application_name = options["application_name"] || "My App"
@@ -227,7 +164,7 @@ module Jumpstart
       @domain = options["domain"] || "example.com"
       @support_email = options["support_email"] || "support@example.com"
       @default_from_email = options["default_from_email"] || "My App <no-reply@example.com>"
-      @background_job_processor = QUEUE_ADAPTERS.values.map(&:to_s).include?(options["background_job_processor"]) ? options["background_job_processor"] : nil
+      @background_job_processor = QUEUE_ADAPTERS.values.include?(options["background_job_processor"]) ? options["background_job_processor"] : nil
       @email_provider = options["email_provider"]
       @account_types = options["account_types"] || (cast_to_boolean(options["personal_accounts"], default: true) ? "both" : "team")
       @apns = cast_to_boolean(options["apns"])
@@ -253,7 +190,9 @@ module Jumpstart
     end
 
     def write_config
-      YAMLSerializer.dump_to_file(self.class.config_path, self)
+      File.write self.class.config_path, <<~CONFIG
+        Jumpstart.config = Jumpstart::Configuration.new(#{instance_values.pretty_inspect.strip})
+      CONFIG
     end
 
     def save
@@ -310,7 +249,7 @@ module Jumpstart
       end
 
       if appsignal?
-        copy_template("config/appsignal.yml")
+        copy_template("config/appsignal.rb")
       end
 
       if bugsnag?
