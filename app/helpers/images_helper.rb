@@ -1,4 +1,9 @@
 module ImagesHelper
+  # Override Jumpstart's SvgHelper#render_svg with Shuby's version (which supports
+  # size:, styles:, decorative: options). Including SvgHelper here ensures our
+  # render_svg always takes precedence regardless of helper inclusion order.
+  include SvgHelper
+
   ICON_SIZES = {
     xs: "w-3 h-3",   # 12px — metadata icons (alarm, category in cards)
     sm: "w-4 h-4",   # 16px — small UI (chevrons in selectors)
@@ -6,6 +11,10 @@ module ImagesHelper
     lg: "w-6 h-6",   # 24px — bottom nav, section headers
     xl: "w-8 h-8",   # 32px — showcase/featured
     xxl: "w-10 h-10" # 40px — page hero icons
+  }.freeze
+
+  ICON_DIMENSIONS = {
+    xs: 12, sm: 16, md: 20, lg: 24, xl: 32, xxl: 40
   }.freeze
 
   def render_svg(name, options = {})
@@ -18,6 +27,13 @@ module ImagesHelper
     css_classes << styles if styles.present?
     css_classes << "fill-current" if css_classes.empty?
     options[:class] = css_classes.join(" ")
+
+    # Set explicit width/height attributes for reliable sizing
+    if size && ICON_DIMENSIONS[size]
+      dim = ICON_DIMENSIONS[size]
+      options[:width] ||= dim
+      options[:height] ||= dim
+    end
 
     if decorative
       options[:aria_hidden] = true
