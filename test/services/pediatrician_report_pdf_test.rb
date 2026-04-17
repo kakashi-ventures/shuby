@@ -135,4 +135,39 @@ class PediatricianReportPdfTest < ActiveSupport::TestCase
   test "responds to call class method" do
     assert_respond_to PediatricianReportPdf, :call
   end
+
+  # === Measurement photo embedding ===
+
+  test "renders PDF when a measurement has an attached photo" do
+    m = @child.measurements.first
+    m.photo.attach(
+      io: File.open(Rails.root.join("test/fixtures/files/avatar.jpg")),
+      filename: "scale.jpg",
+      content_type: "image/jpeg"
+    )
+
+    data = ReportDataAggregator.call(@child)
+    pdf = PediatricianReportPdf.call(data)
+
+    assert pdf.start_with?("%PDF")
+    assert pdf.length > 1000
+  end
+
+  test "renders PDF gracefully when photo variant fails" do
+    m = @child.measurements.first
+    fake_photo = Object.new
+    def fake_photo.variant(*) = raise StandardError, "boom"
+    row = {
+      type: m.measurement_type,
+      display_value: m.display_value,
+      percentile: m.percentile,
+      measured_at: m.measured_at,
+      photo: fake_photo
+    }
+    data = @data.deep_dup
+    data[:measurements][:recent] = [row]
+
+    pdf = PediatricianReportPdf.call(data)
+    assert pdf.start_with?("%PDF")
+  end
 end

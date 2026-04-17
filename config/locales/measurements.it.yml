@@ -38,6 +38,11 @@ it:
       measured_at: "Data e ora"
       notes: "Note"
       notes_placeholder: "Note aggiuntive (opzionale)"
+      photo: "Foto (opzionale)"
+      photo_select: "Scegli foto"
+      photo_hint: "Aggiungi una foto (es. bilancia). JPEG, PNG, HEIC, WebP. Max 10 MB."
+      photo_alt: "Foto della misurazione"
+      remove_photo: "Rimuovi foto"
       save: "Salva"
       cancel: "Annulla"
       placeholders:
@@ -80,3 +85,6 @@ it:
               in: "deve essere tra 0 e 100"
             value:
               out_of_range: "non rientra nell'intervallo valido"
+            photo:
+              invalid_content_type: "deve essere un'immagine JPEG, PNG, HEIC o WebP"
+              too_large: "non può superare %{max}"

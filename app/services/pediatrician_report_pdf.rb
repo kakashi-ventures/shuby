@@ -152,17 +152,28 @@ class PediatricianReportPdf
       t("measurements.type"),
       t("measurements.value"),
       t("measurements.percentile"),
-      t("measurements.date")
+      t("measurements.date"),
+      t("measurements.photo")
     ]
 
     data_rows = measurements[:recent].map do |m|
       percentile_text = m[:percentile] ? "P#{m[:percentile]}" : "-"
       date_text = m[:measured_at] ? I18n.l(m[:measured_at].to_date, format: :short) : "-"
-      [measurement_type_label(m[:type]), m[:display_value], percentile_text, date_text]
+      [measurement_type_label(m[:type]), m[:display_value], percentile_text, date_text, photo_cell(m[:photo])]
     end
 
     styled_table(pdf, [header_row] + data_rows)
     pdf.move_down 15
+  end
+
+  def photo_cell(photo)
+    return "" if photo.nil?
+
+    variant = photo.variant(resize_to_limit: [120, 120], format: "jpg", saver: {quality: 85}).processed
+    {image: StringIO.new(variant.download), fit: [50, 50], position: :center}
+  rescue StandardError, LoadError => e
+    Rails.logger.warn("[PediatricianReportPdf] Failed to embed measurement photo: #{e.class} #{e.message}")
+    ""
   end
 
   def render_development(pdf)

@@ -42,6 +42,7 @@ it:
       value: "Valore"
       percentile: "Percentile"
       date: "Data"
+      photo: "Foto"
       no_data: "Nessuna misurazione registrata"
       alert_low: "Sotto il 3° percentile"
       alert_high: "Sopra il 97° percentile"

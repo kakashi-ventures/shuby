@@ -226,4 +226,57 @@ class MeasurementTest < ActiveSupport::TestCase
     m.update!(value: 6000) # significantly higher weight
     assert_not_equal old_percentile, m.percentile
   end
+
+  # === Photo attachment ===
+
+  test "valid measurement without a photo" do
+    m = build_measurement
+    assert m.valid?
+    assert_not m.photo.attached?
+  end
+
+  test "accepts a JPEG photo" do
+    m = build_measurement
+    m.photo.attach(
+      io: File.open(Rails.root.join("test/fixtures/files/avatar.jpg")),
+      filename: "scale.jpg",
+      content_type: "image/jpeg"
+    )
+    assert m.valid?, m.errors.full_messages.inspect
+  end
+
+  test "rejects a non-image content type" do
+    m = build_measurement
+    m.photo.attach(
+      io: StringIO.new("not really an image"),
+      filename: "doc.pdf",
+      content_type: "application/pdf"
+    )
+    assert_not m.valid?
+    assert m.errors[:photo].any?
+  end
+
+  test "rejects a photo larger than MAX_PHOTO_SIZE" do
+    m = build_measurement
+    m.photo.attach(
+      io: File.open(Rails.root.join("test/fixtures/files/avatar.jpg")),
+      filename: "scale.jpg",
+      content_type: "image/jpeg"
+    )
+    m.photo.blob.stub(:byte_size, Measurement::MAX_PHOTO_SIZE + 1) do
+      assert_not m.valid?
+      assert m.errors[:photo].any?
+    end
+  end
+
+  private
+
+  def build_measurement
+    Measurement.new(
+      child: children(:sophia),
+      measurement_type: :weight,
+      value: 4000,
+      measured_at: 1.day.ago
+    )
+  end
 end

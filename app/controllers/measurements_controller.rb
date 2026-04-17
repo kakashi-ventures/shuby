@@ -35,6 +35,7 @@ class MeasurementsController < ApplicationController
   end
 
   def update
+    @measurement.photo.purge_later if remove_photo?
     if @measurement.update(measurement_params)
       redirect_to child_path(@child, tab: "measurements"), notice: t(".updated")
     else
@@ -55,6 +56,10 @@ class MeasurementsController < ApplicationController
   end
 
   def measurement_params
-    params.expect(measurement: [:measurement_type, :value, :measured_at, :notes])
+    params.expect(measurement: [:measurement_type, :value, :measured_at, :notes, :photo])
+  end
+
+  def remove_photo?
+    ActiveModel::Type::Boolean.new.cast(params.dig(:measurement, :remove_photo))
   end
 end

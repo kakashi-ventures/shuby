@@ -111,7 +111,8 @@ class ReportDataAggregator
       type: m.measurement_type,
       display_value: m.display_value,
       percentile: m.percentile,
-      measured_at: m.measured_at
+      measured_at: m.measured_at,
+      photo: m.photo.attached? ? m.photo : nil
     }
   end
 

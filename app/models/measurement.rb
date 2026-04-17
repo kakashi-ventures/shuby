@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Measurement < ApplicationRecord
+  MAX_PHOTO_SIZE = 10.megabytes
+  ALLOWED_PHOTO_CONTENT_TYPES = %w[image/jpeg image/png image/heic image/heif image/webp].freeze
+
   belongs_to :child
+  has_one_attached :photo
 
   enum :measurement_type, {weight: 0, height: 1, head_circumference: 2, feeding_weight: 3}
 
@@ -11,6 +15,8 @@ class Measurement < ApplicationRecord
   validates :percentile, numericality: {in: 0..100}, allow_nil: true
   validate :measured_at_not_in_future
   validate :value_within_range
+  validate :photo_content_type
+  validate :photo_size
 
   before_save :calculate_percentile, if: -> { value_changed? || measurement_type_changed? || measured_at_changed? }
 
@@ -92,6 +98,20 @@ class Measurement < ApplicationRecord
     when "feeding_weight"
       errors.add(:value, :out_of_range) unless value.between?(1, 500)
     end
+  end
+
+  def photo_content_type
+    return unless photo.attached?
+    return if ALLOWED_PHOTO_CONTENT_TYPES.include?(photo.blob.content_type)
+
+    errors.add(:photo, :invalid_content_type)
+  end
+
+  def photo_size
+    return unless photo.attached?
+    return if photo.blob.byte_size <= MAX_PHOTO_SIZE
+
+    errors.add(:photo, :too_large, max: ActiveSupport::NumberHelper.number_to_human_size(MAX_PHOTO_SIZE))
   end
 
   def format_decimal(val)

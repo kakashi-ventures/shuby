@@ -95,6 +95,59 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to child_path(@child, tab: "measurements")
   end
 
+  # === Photo attachment ===
+
+  test "creates measurement with an attached photo" do
+    assert_difference("Measurement.count", 1) do
+      post child_measurements_path(@child), params: {
+        measurement: {
+          measurement_type: "weight",
+          value: "5000",
+          measured_at: 1.day.ago.strftime("%Y-%m-%dT%H:%M"),
+          photo: fixture_file_upload("avatar.jpg", "image/jpeg")
+        }
+      }
+    end
+    assert_redirected_to child_path(@child, tab: "measurements")
+    assert Measurement.last.photo.attached?
+  end
+
+  test "update with remove_photo=1 purges existing photo" do
+    @measurement.photo.attach(
+      io: File.open(Rails.root.join("test/fixtures/files/avatar.jpg")),
+      filename: "scale.jpg",
+      content_type: "image/jpeg"
+    )
+    assert @measurement.photo.attached?
+
+    perform_enqueued_jobs do
+      patch child_measurement_path(@child, @measurement), params: {
+        measurement: {
+          measurement_type: @measurement.measurement_type,
+          value: @measurement.value,
+          measured_at: @measurement.measured_at.strftime("%Y-%m-%dT%H:%M"),
+          remove_photo: "1"
+        }
+      }
+    end
+    assert_redirected_to child_path(@child, tab: "measurements")
+    assert_not @measurement.reload.photo.attached?
+  end
+
+  test "rejects non-image photo upload" do
+    assert_no_difference("Measurement.count") do
+      post child_measurements_path(@child), params: {
+        measurement: {
+          measurement_type: "weight",
+          value: "5000",
+          measured_at: 1.day.ago.strftime("%Y-%m-%dT%H:%M"),
+          photo: fixture_file_upload("not_an_image.txt", "text/plain")
+        }
+      }
+    end
+    assert_response :unprocessable_content
+  end
+
   # === Authentication ===
 
   test "requires authentication for index" do
