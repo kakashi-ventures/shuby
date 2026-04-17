@@ -25,6 +25,20 @@ html.hotwire-native #dashboard-header > header {
   padding-top: calc(env(safe-area-inset-top) + var(--space-3));
 }
 
+/* Hide web bottom nav — native tab bar replaces it.
+   Primary guard is server-side (yield :bottom_nav unless hotwire_native_app?).
+   This CSS is a belt-and-suspenders fallback. */
+html.hotwire-native .shuby-bottom-nav {
+  display: none !important;
+}
+
+/* Main content: clear the native iOS tab bar (~49pt + home indicator).
+   In web mode the fixed .shuby-bottom-nav-fixed is cleared by pb-24 on
+   individual page wrappers; in native mode we pad <main> globally instead. */
+html.hotwire-native main {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 56px);
+}
+
 /* Beta feedback FAB — clear native tab bar */
 html.hotwire-native .beta-feedback-fab {
   bottom: calc(env(safe-area-inset-bottom) + 96px);
