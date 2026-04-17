@@ -39,24 +39,6 @@ if (generale_area = DevelopmentArea.find_by(slug: "generale"))
   puts "Deprecated 'Generale' area removed."
 end
 
-# Clear existing questions to ensure clean data from official file (covers 0-36 months)
-# (This removes old placeholder questions that differ from official file)
-# Must also clear responses and sessions first due to foreign key constraints
-if QuestionResponse.exists?
-  puts "Clearing #{QuestionResponse.count} existing question responses..."
-  QuestionResponse.delete_all
-end
-
-if QuestionnaireSession.exists?
-  puts "Clearing #{QuestionnaireSession.count} existing questionnaire sessions..."
-  QuestionnaireSession.delete_all
-end
-
-if Question.exists?
-  puts "Clearing #{Question.count} existing questions for fresh import..."
-  Question.delete_all
-end
-
 # =============================================================================
 # 1. Create Development Areas (5 areas - matches official file, 0-36 months)
 # =============================================================================
@@ -149,25 +131,20 @@ BAND_DEFINITIONS.each do |band|
     questionnaire.update!(label: band[:label]) unless questionnaire.previously_new_record?
     questionnaires_created += 1 if questionnaire.previously_new_record?
 
-    # Create questions for this questionnaire
+    # Create or update questions for this questionnaire
     questions_array = area_data["domande"] || []
     questions_array.each_with_index do |q_data, index|
       prompt = q_data["domanda"]
       next if prompt.blank?
 
-      question = Question.find_or_create_by!(
+      question = Question.find_or_initialize_by(
         age_band_questionnaire: questionnaire,
         prompt: prompt
-      ) do |question|
-        question.position = index
-        question.active = true
-        question.illustration_key = q_data["id"]
-      end
-
-      # Backfill illustration_key for existing questions
-      if question.illustration_key.blank? && q_data["id"].present?
-        question.update!(illustration_key: q_data["id"])
-      end
+      )
+      question.position = index
+      question.active = true
+      question.illustration_key = q_data["id"] if q_data["id"].present?
+      question.save!
 
       questions_created += 1 if question.previously_new_record?
     end
@@ -190,41 +167,33 @@ json_file = Rails.root.join("db", "seeds", "data", "campanelli_attivita.json")
 if File.exist?(json_file)
   json_data = JSON.parse(File.read(json_file))
 
-  # Clear existing data for fresh import
-  WarningSign.delete_all
-  StimulationActivity.delete_all
-
   warning_signs_created = 0
   activities_created = 0
 
-  # Load Warning Signs
+  # Load Warning Signs (upsert by month + position)
   json_data["warning_signs"].each do |month_data|
     month = month_data["month"]
     month_data["items"].each_with_index do |description, index|
-      WarningSign.create!(
-        month: month,
-        description: description,
-        position: index
-      )
-      warning_signs_created += 1
+      sign = WarningSign.find_or_initialize_by(month: month, position: index)
+      sign.description = description
+      sign.save!
+      warning_signs_created += 1 if sign.previously_new_record?
     end
   end
 
-  # Load Stimulation Activities
+  # Load Stimulation Activities (upsert by month + position)
   json_data["stimulation_activities"].each do |month_data|
     month = month_data["month"]
     month_data["items"].each_with_index do |description, index|
-      StimulationActivity.create!(
-        month: month,
-        description: description,
-        position: index
-      )
-      activities_created += 1
+      activity = StimulationActivity.find_or_initialize_by(month: month, position: index)
+      activity.description = description
+      activity.save!
+      activities_created += 1 if activity.previously_new_record?
     end
   end
 
-  puts "  - Warning Signs: #{warning_signs_created}"
-  puts "  - Stimulation Activities: #{activities_created}"
+  puts "  - Warning Signs: #{warning_signs_created} new"
+  puts "  - Stimulation Activities: #{activities_created} new"
 else
   puts "WARNING: campanelli_attivita.json not found. Skipping warning signs and stimulation activities loading."
 end

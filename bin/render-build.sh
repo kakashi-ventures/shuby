@@ -20,4 +20,7 @@ if [[ $SKIP_MIGRATE != true ]]; then
   bundle exec rails db:schema:load:cache 2>/dev/null || true
   bundle exec rails db:schema:load:queue 2>/dev/null || true
   # Cable table is now created via migration, no need for db:schema:load:cable
+
+  # Seed reference data (idempotent — safe to run on every deploy)
+  bundle exec rails db:seed
 fi
