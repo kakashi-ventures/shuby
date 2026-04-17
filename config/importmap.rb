@@ -25,4 +25,6 @@ pin "@floating-ui/core", to: "@floating-ui--core.js" # @1.7.5
 pin "@floating-ui/utils", to: "@floating-ui--utils.js" # @0.2.11
 pin "@floating-ui/utils/dom", to: "@floating-ui--utils--dom.js" # @0.2.11
 pin "chart.js" # @4.5.1 — self-contained bundle from esm.sh (includes @kurkle/color)
-pin "modern-screenshot", to: "https://esm.sh/modern-screenshot@4.4.39"
+# modern-screenshot: removed external CDN pin — breaks iOS WKWebView importmap.
+# TODO: vendor locally with `bin/importmap pin modern-screenshot --download`
+# The beta feedback controller handles the missing module gracefully (try-catch).

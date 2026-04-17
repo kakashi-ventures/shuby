@@ -18,6 +18,14 @@ html.hotwire-native .minimal-top-nav {
   padding-top: env(safe-area-inset-top);
 }
 
+/* Jumpstart's native navbar variant (.top-nav.native.fixed) renders as a
+   position:fixed element covering the top ~50px with safe-area padding but
+   NO visible content on mobile (its child is hidden lg:flex). Without this
+   rule the empty nav silently intercepts all taps in that zone. */
+html.hotwire-native .top-nav.native.fixed {
+  pointer-events: none;
+}
+
 /* Dashboard sticky header: status bar inset + 12px breathing room.
    Selector specificity (0,1,1,2) beats .shuby-dashboard-header (0,0,1,0) —
    both rules are in @layer components, so specificity decides the winner. */
