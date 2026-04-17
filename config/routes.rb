@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     get :privacy
     get :reset_app
     get :app_preview
+    get :native_debug
   end
 
   match "/404", via: :all, to: "errors#not_found"
