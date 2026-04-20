@@ -86,12 +86,23 @@
     background-color: var(--color-shuby-gray-400);
 }
 
+/* Body + alarm group — Figma: text-block + alarm-row wrapper (gap 4) */
+.shuby-card-article-vertical-body-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+    align-self: stretch;
+    width: 100%;
+}
+
 .shuby-card-article-vertical-body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 2px;
     align-self: stretch;
+    height: 99px;
 }
 
 .shuby-card-article-vertical-title {
@@ -123,8 +134,8 @@
 }
 
 .shuby-card-article-vertical-time-icon {
-    width: 24px;
-    height: 24px;
+    width: 12px;
+    height: 12px;
     flex-shrink: 0;
     color: var(--text-primary);
 

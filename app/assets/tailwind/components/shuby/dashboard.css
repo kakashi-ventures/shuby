@@ -1,0 +1,180 @@
+/* Shuby Dashboard
+ * Classes scoped to the /today page: hero band (Zone 1), dashboard-specific
+ * header variant, and supporting layout slots. Used by:
+ *   - app/views/dashboard/show.html.erb
+ *   - app/views/dashboard/_age_growth_phase.html.erb
+ *   - app/views/shared/dashboard_header/_dashboard_header.html.erb
+ * Figma references: 375:5429 (blue), 434:12577 (white), 499:6713 (variant 2).
+ */
+
+/* =====================================================
+   DASHBOARD HERO (Zone 1 — blue band with date/age + illustration+title)
+   ===================================================== */
+
+/* Full-bleed blue hero band — Zone 1 of the Dashboard.
+   Pair with .shuby-dashboard-hero-band-content for content padding. */
+.shuby-dashboard-hero-band {
+    background-color: var(--color-shuby-blue-300);
+    width: 100%;
+}
+
+.shuby-dashboard-hero-band-content {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-8);
+}
+
+/* Hero content stack (inside the blue band): date/age meta,
+   illustration+title row, then description below. */
+.shuby-dashboard-hero {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+/* Date + age dateline above the hero headline. */
+.shuby-dashboard-hero-dateline {
+    margin-bottom: var(--space-4);
+    text-align: center;
+}
+
+/* Headline row: growth-phase illustration on the left, phase title on the right. */
+.shuby-dashboard-hero-headline {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+/* Fluid illustration box — Figma spec 123×117 at 390px viewport.
+   Uses min() to cap at the spec value on ≥ 384px viewports and scale
+   down fluidly on narrower devices (e.g. iPhone SE 320px → ~102px).
+   aspect-ratio preserves the 123:117 proportions at every size. */
+.shuby-dashboard-hero-illustration {
+    width: min(123px, 32vw);
+    aspect-ratio: 123 / 117;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+/* Hero title — composes the .shuby-h2 typography tokens with
+   hero-specific color (fucsia) and layout (flex-1, centered).
+   NOTE: keep in sync with .shuby-h2 in typography.css if that class
+   changes font-size or line-height. min-width:0 + overflow-wrap:anywhere
+   keep long phase titles from pushing the illustration off the row on
+   narrow iPhones. */
+.shuby-dashboard-hero-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-none);
+    letter-spacing: var(--letter-spacing-normal);
+    color: var(--color-shuby-fucsia-500);
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+/* Hero description — composes .shuby-p1 with hero-specific black color. */
+.shuby-dashboard-hero-description {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+    color: var(--color-shuby-black);
+}
+
+/* Ensure illustration image fills the fixed-size box proportionally. */
+.shuby-dashboard-hero-illustration img {
+    width: 100%;
+    height: auto;
+}
+
+/* Date line above the hero title — Figma: Overline/OL/Dark, black override. */
+.shuby-dashboard-hero-date {
+    font-size: var(--font-size-overline);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+    text-transform: uppercase;
+    color: var(--color-shuby-black);
+}
+
+/* Age line — Figma: Body/P1/Dark, blue-800 override. */
+.shuby-dashboard-hero-age {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+    color: var(--color-shuby-blue-800);
+}
+
+/* Full-card anchor element wrapping the hero content (the whole hero
+   is clickable; linked to the growth-phase detail page). */
+.shuby-dashboard-hero-anchor {
+    display: block;
+    color: inherit;
+}
+
+/* =====================================================
+   DASHBOARD HEADER
+   Figma: Header component (node 379:5503)
+   Default = Azzurro variant (light blue frosted glass)
+   Scrolled = Bianco + ombra variant (white + Shadow Blu)
+   ===================================================== */
+
+.shuby-dashboard-header {
+    /* Figma: Azzurro — blue-300 at 95% opacity + backdrop blur */
+    background-color: color-mix(in srgb, var(--color-shuby-blue-300) 95%, transparent);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+    /* Default top padding for web. On Hotwire Native this is overridden
+       in hotwire_native.css to add env(safe-area-inset-top) on top. */
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-2);
+
+    /* Token cascade — Figma: all text/icons use var(--colori/nero, black) on the light blue bg */
+    --header-text: var(--color-shuby-black);
+    --header-text-secondary: var(--color-shuby-black);
+    --header-icon: var(--color-shuby-black);
+    --header-btn-bg: var(--color-shuby-blue-800);
+    --header-btn-bg-hover: var(--color-shuby-blue-700);
+}
+
+/* Scrolled state — Figma: Bianco + ombra=true */
+.shuby-header-scrolled {
+    background-color: color-mix(in srgb, var(--color-shuby-white) 95%, transparent);
+    box-shadow: var(--shadow-blu);
+    /* token cascade unchanged — blue-800 text/icons remain correct on white */
+}
+
+/* Dashboard header inner layout: greeting on the left, action icons on the right. */
+.shuby-dashboard-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shuby-dashboard-header-greeting {
+    flex: 1;
+    min-width: 0;
+}
+
+.shuby-dashboard-header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+/* Greeting intro line above the child selector — "Ciao {name} e".
+   Figma: Overline/OL/Light typography (Montserrat Regular 10px) — uses
+   overline size token without the uppercase transform that .shuby-overline
+   applies. Color cascades through --header-text-secondary so it follows
+   the header's blue→white scroll transition. */
+.shuby-dashboard-greeting-intro {
+    font-size: var(--font-size-overline);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--header-text-secondary);
+}

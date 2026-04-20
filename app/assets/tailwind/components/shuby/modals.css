@@ -1,0 +1,72 @@
+/* Shuby Modals
+ * Full-screen modals for milestone details, onboarding, and overlay flows.
+ * Based on Figma "Tappa" detail screen.
+ */
+
+/* =====================================================
+   MODAL / OVERLAY
+   ===================================================== */
+
+.shuby-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: var(--space-4);
+}
+
+.shuby-modal {
+    background-color: var(--color-shuby-white);
+    border-radius: var(--radius-lg);
+    /* Cap at the design max (480px) OR the viewport minus the overlay's
+       own inset padding — whichever is smaller. Prevents the modal from
+       butting against the overlay edge on narrow iPhones. */
+    max-width: min(480px, calc(100vw - 2 * var(--space-4)));
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Full-screen modal (like Tappa detail) */
+.shuby-modal-fullscreen {
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-shuby-blue-400);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    overflow-y: auto;
+}
+
+/* Modal with blue background */
+.shuby-modal-blue {
+    background-color: var(--color-shuby-blue-400);
+}
+
+/* Modal header area */
+.shuby-modal-header {
+    position: relative;
+    padding: var(--space-6);
+    padding-top: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Modal content area */
+.shuby-modal-content {
+    padding: var(--space-6);
+    flex: 1;
+}
+
+/* Modal footer with buttons */
+.shuby-modal-footer {
+    padding: var(--space-4) var(--space-6);
+    padding-bottom: var(--space-6);
+    margin-top: auto;
+}

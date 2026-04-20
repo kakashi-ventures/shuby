@@ -1,0 +1,112 @@
+/* Shuby Mascots
+ * Decorative mascot illustrations used across the app — cloud characters
+ * for hero sections and pentagon-shaped mascot with stylable face.
+ */
+
+/* =====================================================
+   CLOUD MASCOT
+   Cute cloud character for hero sections
+   ===================================================== */
+
+.shuby-mascot-cloud {
+    width: 100px;
+    height: 80px;
+
+    img, svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.shuby-mascot-cloud-sm {
+    width: 60px;
+    height: 48px;
+}
+
+.shuby-mascot-cloud-lg {
+    width: 140px;
+    height: 112px;
+}
+
+/* =====================================================
+   WHITE PENTAGON MASCOT
+   White variant for use on colored backgrounds
+   ===================================================== */
+
+/* Default pentagon size — Figma spec 120×120 at 390px viewport. Scales down
+   on narrow iPhones (e.g. 375px → ~120px, still capped; 360px → ~115px);
+   aspect-ratio keeps the polygon clip-path from distorting. The -sm (80px)
+   and -lg (160px) variants below stay fixed — they're used only in larger
+   modal contexts where viewport room is guaranteed. */
+.shuby-mascot-pentagon {
+    width: min(120px, 32vw);
+    aspect-ratio: 1;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.shuby-mascot-pentagon-shape {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-shuby-white);
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-overlay);
+}
+
+/* Pentagon face */
+.shuby-mascot-pentagon-face {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.shuby-mascot-pentagon-eyes {
+    display: flex;
+    gap: var(--space-4);
+}
+
+.shuby-mascot-pentagon-eye {
+    width: 10px;
+    height: 12px;
+    background-color: var(--color-shuby-verde-500);
+    border-radius: 50%;
+}
+
+.shuby-mascot-pentagon-smile {
+    width: 20px;
+    height: 10px;
+    border: 3px solid var(--color-shuby-verde-500);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+}
+
+/* Small pentagon variant */
+.shuby-mascot-pentagon-sm {
+    width: 80px;
+    height: 80px;
+
+    .shuby-mascot-pentagon-face { gap: 5px; margin-top: 10px; }
+    .shuby-mascot-pentagon-eyes { gap: 10px; }
+    .shuby-mascot-pentagon-eye { width: 7px; height: 9px; }
+    .shuby-mascot-pentagon-smile { width: 14px; height: 7px; border-width: 2px; }
+}
+
+/* Large pentagon variant */
+.shuby-mascot-pentagon-lg {
+    width: 160px;
+    height: 160px;
+
+    .shuby-mascot-pentagon-face { gap: 10px; margin-top: var(--space-5); }
+    .shuby-mascot-pentagon-eyes { gap: var(--space-5); }
+    .shuby-mascot-pentagon-eye { width: 14px; height: 16px; }
+    .shuby-mascot-pentagon-smile { width: 26px; height: 13px; border-width: 4px; }
+}

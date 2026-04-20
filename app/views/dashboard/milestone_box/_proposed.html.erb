@@ -1,46 +1,42 @@
-<%# Proposed milestone — Figma: SchedaTest/Versione 1
-    Background:  verde-300 (#99E0E2) + Shadow Dark Blue
-    Tags:        both azzurro (blue-300 bg); type tag has calendar icon
-    Illustration: mascot-sorriso-tall.png, top-right overflow (120px wide)
-    Bottom row:  fuchsia button LEFT | time indicator RIGHT
-    Radius:      12px (Figma: radius-grande / --radius-md) %>
+<%# Proposed milestone — Figma: SchedaTest Dashboard instance (node 463:6220).
+    Uses the .shuby-milestone-card design system family with the -proposed
+    variant: verde-300 bg + Shadow Dark Blue + single flex-col with uniform
+    8px gap between children (tags row, progress intro, area title,
+    alarm+time row). Per-area illustration overflows the right edge.
+    The whole card is wrapped in link_to — the card itself is the CTA. %>
 <%= link_to start_child_development_stage_path(child, milestone.development_area.slug),
             class: "block",
             aria: { label: t("dashboard.milestone_box.cta_aria_label", area: milestone.development_area.name) } do %>
-  <div class="bg-shuby-verde-300 rounded-[var(--radius-md)] overflow-hidden shadow-[var(--shadow-dark-blue)]">
-    <%# Top section: content left / large illustration right %>
-    <div class="flex items-start gap-3 p-4 pb-2">
-      <div class="flex-1 min-w-0">
-        <%# Tags — both azzurro (blue-300 bg); type tag includes calendar icon %>
-        <div class="flex items-center gap-2 mb-3">
-          <%= shuby_tag(t("dashboard.milestone_box.type_tag"), variant: :azzurro, size: :small,
-                        icon: "shuby/icons/icon-calendar") %>
-          <%= shuby_tag(milestone.age_band_label, variant: :azzurro, size: :small) %>
-        </div>
-        <%# Intro text — Figma: Body/P1/Light (blue-800 override, default is black) %>
-        <p class="shuby-p1 text-shuby-blue-800 mb-1">
-          <%= t("dashboard.milestone_box.progress_intro", name: child.display_name) %>
-        </p>
-        <%# Milestone title — Figma: Display/D2 (20 Baloo2 Bold, blue-800 default) %>
-        <h3 class="shuby-d2">
-          <%= milestone.development_area.name %>
-        </h3>
-      </div>
-      <%# Large illustration — overflows top edge (-mt-4) and right edge (-mr-2) %>
-      <div class="shrink-0 w-[120px] -mt-4 -mr-2">
-        <%= image_tag "shuby/illustrations/mascot-sorriso-tall.png", class: "w-full h-auto", alt: "" %>
-      </div>
+  <div class="shuby-milestone-card shuby-milestone-card-proposed">
+    <%# Per-area illustration. DevelopmentArea#illustration_path returns
+        categories/{illustration_key}.png with a growth-phase-mascot fallback. %>
+    <div class="shuby-milestone-card-illustration">
+      <%= image_tag milestone.development_area.illustration_path, alt: "" %>
     </div>
-    <%# Bottom row: CTA button (left) + estimated time (right) %>
-    <div class="flex items-center justify-between px-4 pb-4 pt-2">
-      <span class="shuby-btn shuby-btn-sm shuby-btn-primary">
-        <%= t("dashboard.milestone_box.cta_button") %>
-      </span>
-      <div class="flex items-center gap-1">
-        <%= render_svg "shuby/icons/icon-alarm", size: :sm, styles: "text-shuby-blue-800", decorative: true %>
-        <span class="shuby-caption">
-          <%= t("dashboard.milestone_box.estimated_time") %>
+
+    <%# Text block — single flex-col with uniform 8px gap (Figma spec). %>
+    <div class="shuby-milestone-card-text-block">
+      <%# Figma node 463:6220: type tag uses verde-200 bg + calendar icon;
+          age-band tag uses bianco (white) bg. Both with blu-800 text. %>
+      <div class="shuby-milestone-card-meta">
+        <%= shuby_tag(t("dashboard.milestone_box.type_tag"), variant: :verde_200, size: :small,
+                      icon: "shuby/icons/icon-calendar") %>
+        <%= shuby_tag(milestone.age_band_label, variant: :bianco, size: :small) %>
+      </div>
+
+      <p class="shuby-milestone-card-progress-intro">
+        <%= t("dashboard.milestone_box.progress_intro", name: child.display_name) %>
+      </p>
+
+      <h3 class="shuby-milestone-card-title break-words line-clamp-2">
+        <%= milestone.development_area.name %>
+      </h3>
+
+      <div class="shuby-milestone-card-time">
+        <span class="shuby-milestone-card-time-icon">
+          <%= render_svg "shuby/icons/icon-alarm", decorative: true %>
         </span>
+        <%= t("dashboard.milestone_box.estimated_time") %>
       </div>
     </div>
   </div>

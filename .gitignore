@@ -61,3 +61,13 @@ docs/knowledge_base/
 
 # Ruby Native (Playwright, screenshots, session data)
 .ruby_native/
+
+# Playwright MCP (screenshots, snapshot YAMLs, console logs — verification artifacts)
+.playwright-mcp/
+
+# Loose screenshots at repo root (verification artifacts, Figma comparisons).
+# Anchored to root so app/assets/images/**/*.png stays tracked.
+/*.png
+
+# Session-scoped audit notes (not part of the v1.0 tracker)
+/docs/DASHBOARD-P2-FIGMA-AUDIT.md

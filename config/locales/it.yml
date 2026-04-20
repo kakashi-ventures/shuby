@@ -174,8 +174,6 @@ it:
       add_child: "+ Aggiungi bambino/a"
       account_management: "Gestione account"
     age_growth_phase:
-      corrected_age_label: "Età corretta"
-      chronological_age: "età cronologica: %{age}"
       phase_link_label: "Scopri la fase di sviluppo"
     show:
       title: "Oggi"
@@ -186,7 +184,7 @@ it:
         title: "Shuby AI"
         subtitle: "Chatta con il tuo assistente AI"
       suggested_activities:
-        title: "Attività suggerite"
+        title: "Attività"
       todays_tips:
         title: "Consigli di oggi"
         view_all: "Tutti i Consigli"
@@ -724,7 +722,10 @@ it:
       years:
         one: "%{count} anno"
         other: "%{count} anni"
-      years_and_months: "%{years} anni e %{months} mesi"
+      years_and_months_1_1: "1 anno e 1 mese"
+      years_and_months_1_other: "1 anno e %{months} mesi"
+      years_and_months_other_1: "%{years} anni e 1 mese"
+      years_and_months_other_other: "%{years} anni e %{months} mesi"
     gestational_age:
       weeks_and_days: "%{weeks} settimane e %{days} giorni"
 
@@ -905,7 +906,7 @@ it:
 
   time:
     formats:
-      tappa: "%d.%m.%Y - h.%H:%M"
+      date_with_hour: "%d.%m.%Y - h.%H:%M"
 
   date:
     formats:

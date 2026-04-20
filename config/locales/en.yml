@@ -205,8 +205,7 @@ en:
       add_child: "+ Add child"
       account_management: "Account management"
     age_growth_phase:
-      corrected_age_label: "Corrected age"
-      chronological_age: "chronological age: %{age}"
+      phase_link_label: "Discover the development phase"
     show:
       title: "Dashboard"
       complete_profile:
@@ -726,7 +725,10 @@ en:
       years:
         one: "%{count} year"
         other: "%{count} years"
-      years_and_months: "%{years} years, %{months} months"
+      years_and_months_1_1: "1 year, 1 month"
+      years_and_months_1_other: "1 year, %{months} months"
+      years_and_months_other_1: "%{years} years, 1 month"
+      years_and_months_other_other: "%{years} years, %{months} months"
     gestational_age:
       weeks_and_days: "%{weeks} weeks, %{days} days"
 
@@ -852,3 +854,7 @@ en:
       ask_shuby: "Ask Shuby AI"
       back_to_stages: "Back to Milestones"
       exit_confirmation: "Do you want to exit the questionnaire? Progress will be saved."
+
+  time:
+    formats:
+      date_with_hour: "%m/%d/%Y - %H:%M"

@@ -82,6 +82,62 @@
 }
 
 /* =====================================================
+   PROFILE NUDGE BANNER
+   Dashboard banner nudging the user to complete the family profile.
+   Standalone component — NOT a nav-card variant (different domain role).
+   ===================================================== */
+.shuby-profile-nudge-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background-color: var(--color-shuby-giallo-400);
+    border-radius: var(--radius-grande);
+    transition: box-shadow 0.2s ease;
+
+    &:active { box-shadow: var(--shadow-card-hover-strong); }
+}
+
+.shuby-profile-nudge-banner-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background-color: var(--overlay-white-80);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.shuby-profile-nudge-banner-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.shuby-profile-nudge-banner-title {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+}
+
+.shuby-profile-nudge-banner-subtitle {
+    font-size: var(--font-size-p2);
+    color: var(--base-text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* "Last activity" row for .shuby-tracking-card in :update / :track states —
+   holds the last-measurement timestamp on the left and the update icon-btn on the right. */
+.shuby-tracking-card-last-activity {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    flex-shrink: 0;
+}
+
+/* =====================================================
    TIP CARD (Figma: Scheda Consigli)
    Yellow card for tips/advice with optional thumbnail
    ===================================================== */
@@ -99,7 +155,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: var(--space-3);
 }
 
 .shuby-card-tip-tags {
@@ -111,7 +167,7 @@
 .shuby-card-tip-body {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--space-1);
 }
 
 .shuby-card-tip-author {
@@ -136,9 +192,14 @@
     color: var(--color-shuby-black);
 }
 
+/* Fluid thumbnail — Figma spec 78×99 at 390px viewport. Scales down on
+   narrower iPhones via min()/vw; aspect-ratio preserves the 78:99
+   proportions at every width. Matches the fluid pattern used on the
+   dashboard hero illustration (min(123px, 32vw)). */
 .shuby-card-tip-thumbnail {
-    width: 78px;
-    height: 99px;
+    width: min(78px, 22vw);
+    aspect-ratio: 78 / 99;
+    height: auto;
     flex-shrink: 0;
     overflow: hidden;
     border-radius: 0 var(--radius-grande) var(--radius-grande) 0;
@@ -177,10 +238,13 @@
     box-shadow: var(--shadow-blu);
 }
 
-/* Large thumbnail for Lettura featured (Figma Versione 2: 112×144px) */
+/* Large thumbnail for Lettura featured (Figma Versione 2: 112×144 at 390px).
+   Uses the same fluid pattern as the base thumbnail — scales down on narrow
+   widths while preserving the 112:144 aspect ratio. */
 .shuby-card-tip-thumbnail--large {
-    width: 112px;
-    height: 144px;
+    width: min(112px, 30vw);
+    aspect-ratio: 112 / 144;
+    height: auto;
 }
 
 /* Subtitle text for Generale category (14px body, blue-800) */
@@ -317,10 +381,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-2);
-
-    @media (max-width: 360px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
 /* =====================================================
@@ -349,6 +409,43 @@
     align-items: flex-end;
     gap: var(--space-2);
     min-height: 140px;
+
+    /* Icon buttons inside tracking cards should not shrink in the column flex. */
+    .shuby-icon-btn,
+    .shuby-icon-btn-pink {
+        flex-shrink: 0;
+    }
+
+    /* Badge inside tracking card needs inline-block so padding + radius render,
+       and bottom spacing to separate it from the title below. */
+    .shuby-badge-fucsia {
+        display: inline-block;
+        margin-bottom: var(--space-2);
+    }
+}
+
+/* Heading block inside the tracking card — holds the state label / badge
+   and the measurement-type name. Full width so the name isn't pushed right
+   by the parent's align-items: flex-end. */
+.shuby-tracking-card-heading {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+}
+
+/* Section label above the measurement type (e.g. "COMINCIA A TRACCIARE:", "TRACCIA:").
+   Figma Caption/Span/Light: Montserrat Medium 10px, black — same style in both
+   `Nuovo` (413:3667) and `In corso` (463:5649) states. Only `Aggiorna` uses the
+   fucsia pill badge variant (`.shuby-badge-fucsia`). */
+.shuby-tracking-card-label {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+    text-transform: uppercase;
+    color: var(--color-shuby-black);
 }
 
 .shuby-tracking-card-title {
@@ -401,8 +498,13 @@
     color: var(--color-shuby-gray-800);
 }
 
+/* Right-hand value column of the measurement card. Figma spec is 131px at
+   390px viewport; on narrower iPhones (375px) a fixed 131px overflows the
+   card's left block. clamp() keeps the column at spec above 374px, shrinks
+   it to ~131→108px below, and never drops past the 108px floor (still wide
+   enough for "000,0 kg" + icon without wrapping). */
 .shuby-measurement-card-value {
-    width: 131px;
+    width: clamp(108px, 35vw, 131px);
     flex-shrink: 0;
     padding: var(--space-4);
     display: flex;

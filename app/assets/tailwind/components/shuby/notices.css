@@ -1,0 +1,114 @@
+/* Shuby Notice Boxes
+ * Alert-style boxes: info, warning, success, and ricorda reminder box.
+ * Each shares the pattern: colored background + optional icon/header + content.
+ */
+
+/* =====================================================
+   INFO BOX / NOTICE COMPONENTS
+   ===================================================== */
+
+/* Info box (like RICORDA) */
+.shuby-info-box {
+    background-color: var(--bg-info);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+}
+
+.shuby-info-box-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.shuby-info-box-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-on-primary);
+}
+
+.shuby-info-box-title {
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+
+.shuby-info-box-content {
+    font-size: var(--font-size-p1);
+    line-height: var(--line-height-normal);
+    color: var(--base-text);
+}
+
+/* Warning box */
+.shuby-warning-box {
+    background-color: var(--bg-warning-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+}
+
+/* Success box */
+.shuby-success-box {
+    background-color: var(--bg-success-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+}
+
+/* =====================================================
+   RICORDA INFO BOX (Enhanced)
+   Info box with mascot icon for reminders
+   ===================================================== */
+
+.shuby-ricorda-box {
+    background-color: var(--color-shuby-blue-300);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+}
+
+.shuby-ricorda-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.shuby-ricorda-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--color-shuby-blue-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    img, svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.shuby-ricorda-label {
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    color: var(--text-primary);
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.shuby-ricorda-text {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--base-text);
+
+    strong {
+        font-weight: var(--font-weight-semibold);
+        color: var(--base-text);
+    }
+}

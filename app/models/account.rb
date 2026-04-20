@@ -13,4 +13,11 @@ class Account < ApplicationRecord
 
   accepts_nested_attributes_for :family_profile
   accepts_nested_attributes_for :children, allow_destroy: true
+
+  # True when either the family profile isn't complete OR any child's profile
+  # is below the nudge threshold. Used by the dashboard profile banner.
+  def needs_profile_completion_nudge?
+    !family_profile&.profile_complete? ||
+      children.any?(&:profile_below_nudge_threshold?)
+  end
 end

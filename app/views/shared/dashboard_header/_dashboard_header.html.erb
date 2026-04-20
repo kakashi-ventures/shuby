@@ -1,31 +1,26 @@
-<%# Dashboard Header with child selector and scroll behavior %>
-<div id="dashboard-header"
-     data-controller="header-scroll"
-     data-header-scroll-scrolled-class="shuby-header-scrolled"
-     class="sticky top-0 z-40">
-
-  <%# Header content container.
-      Top padding is owned by .shuby-dashboard-header (12px web,
-      env(safe-area-inset-top)+12px in Hotwire Native) so it isn't
-      clobbered by a utility-layer pt-* class. %>
-  <header data-header-scroll-target="header"
-          class="shuby-dashboard-header px-5 pb-2">
-    <div class="flex items-center justify-between max-w-lg mx-auto">
+<%# Dashboard sticky header. The Stimulus `header-scroll` controller and
+    the scroll-target sentinel live in the host page (show.html.erb) so the
+    controller scope spans the whole dashboard — this keeps the sticky
+    pinned for the entire page (otherwise the sticky's containing block
+    would only be the wrapper div and sticky would release after ~68px). %>
+<div id="dashboard-header" class="shuby-sticky-header">
+  <%# Padding (top + bottom) is owned by .shuby-dashboard-header so it isn't
+      clobbered by a utility-layer pt-*/pb-* class. Native adds
+      env(safe-area-inset-top) on top via hotwire_native.css. %>
+  <header data-header-scroll-target="header" class="shuby-dashboard-header">
+    <div class="shuby-container shuby-dashboard-header-row">
 
       <%# Left: Greeting and Child Selector %>
-      <div class="flex-1">
+      <div class="shuby-dashboard-header-greeting">
         <%= render "shared/dashboard_header/greeting" %>
         <%= render "shared/dashboard_header/child_selector" %>
       </div>
 
       <%# Right: Calendar and Profile buttons %>
-      <div class="flex items-center gap-3">
+      <div class="shuby-dashboard-header-actions">
         <%= render "shared/dashboard_header/calendar_button" %>
         <%= render "shared/dashboard_header/profile_button" %>
       </div>
     </div>
   </header>
-
-  <%# Sentinel element for scroll detection - placed after header %>
-  <div data-header-scroll-target="sentinel" class="h-0 -mt-1"></div>
 </div>

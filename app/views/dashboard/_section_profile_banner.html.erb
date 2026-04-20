@@ -1,18 +1,18 @@
-<% if profile_incomplete %>
+<% if current_account.needs_profile_completion_nudge? %>
   <section class="mb-4">
-    <%= link_to edit_family_profile_path, class: "block p-4 bg-shuby-giallo-400 rounded-2xl hover:shadow-md transition-shadow" do %>
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-white/50 flex items-center justify-center shrink-0">
-          <%= render_svg "shuby/icons/icon-account", size: :md, styles: "text-gray-800", decorative: true %>
-        </div>
-        <div class="flex-1 min-w-0">
-          <%# Title — Figma: Body/P1/Dark (14 Semi-Bold, black default) %>
-          <h3 class="shuby-p1-dark"><%= t("dashboard.show.complete_profile.title") %></h3>
-          <%# Subtitle — Figma: Body/P2/Light (12 Regular, gray-700 default) %>
-          <p class="shuby-p2"><%= t("dashboard.show.complete_profile.subtitle") %></p>
-        </div>
-        <%= render_svg "shuby/icons/icon-chevron-right", size: :md, styles: "text-gray-600 shrink-0", decorative: true %>
+    <%= link_to edit_family_profile_path, class: "shuby-profile-nudge-banner" do %>
+      <div class="shuby-profile-nudge-banner-icon">
+        <%= render_svg "shuby/icons/icon-account", size: :md, decorative: true %>
       </div>
+      <div class="shuby-profile-nudge-banner-content">
+        <h3 class="shuby-profile-nudge-banner-title">
+          <%= t("dashboard.show.complete_profile.title") %>
+        </h3>
+        <p class="shuby-profile-nudge-banner-subtitle">
+          <%= t("dashboard.show.complete_profile.subtitle") %>
+        </p>
+      </div>
+      <%= render_svg "shuby/icons/icon-chevron-right", size: :md, decorative: true %>
     <% end %>
   </section>
 <% end %>

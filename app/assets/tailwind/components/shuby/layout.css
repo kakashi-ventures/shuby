@@ -1,62 +1,58 @@
 /* Shuby Layout
- * Section backgrounds, page headers, list items, progress, avatar, info boxes,
- * modals, mascots, activity/consiglio items, dashboard header
+ * Page-layout primitives shared across every page: page shell, content
+ * container, sticky header positioning, scroll sentinel, page headers,
+ * section labels, avatars, progress bars, and generic shadow utilities.
+ *
+ * Page-specific or component-specific layout lives in sibling files:
+ *   - dashboard.css  — Dashboard-specific hero/header
+ *   - list-items.css — list row patterns (activity, consiglio, author, age)
+ *   - notices.css    — info/warning/success/ricorda boxes
+ *   - mascots.css    — cloud and pentagon mascot illustrations
+ *   - modals.css     — modal/overlay components
  */
 
 /* =====================================================
-   INFO BOX / NOTICE COMPONENTS
+   PAGE SHELL
+   Outermost wrapper for app pages — full viewport height, white bg.
+   Uses 100dvh (dynamic) so iOS address-bar collapse doesn't truncate.
    ===================================================== */
-
-/* Info box (like RICORDA) */
-.shuby-info-box {
-    background-color: var(--bg-info);
-    border-radius: var(--radius-md);
-    padding: var(--space-4);
+.shuby-page-shell {
+    min-height: 100dvh;
+    width: 100%;
+    background-color: var(--color-shuby-white);
 }
 
-.shuby-info-box-header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-2);
+/* =====================================================
+   PAGE CONTENT CONTAINER
+   Mobile-first, centered, capped at max-w-lg (32rem ≈ 512px) on wider screens.
+   Use on any page's inner content wrapper to keep horizontal layout consistent.
+   ===================================================== */
+.shuby-container {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 32rem;
+    padding-inline: var(--space-4);
 }
 
-.shuby-info-box-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background-color: var(--bg-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-on-primary);
+/* =====================================================
+   STICKY HEADER POSITIONING
+   Reusable sticky-at-top positioning for page headers.
+   Pair with a header component class (e.g. .shuby-dashboard-header).
+   ===================================================== */
+.shuby-sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
 }
 
-.shuby-info-box-title {
-    font-size: var(--font-size-p2);
-    font-weight: var(--font-weight-bold);
-    text-transform: uppercase;
-    color: var(--text-primary);
-}
-
-.shuby-info-box-content {
-    font-size: var(--font-size-p1);
-    line-height: var(--line-height-normal);
-    color: var(--base-text);
-}
-
-/* Warning box */
-.shuby-warning-box {
-    background-color: var(--bg-warning-secondary);
-    border-radius: var(--radius-md);
-    padding: var(--space-4);
-}
-
-/* Success box */
-.shuby-success-box {
-    background-color: var(--bg-success-secondary);
-    border-radius: var(--radius-md);
-    padding: var(--space-4);
+/* =====================================================
+   SCROLL SENTINEL
+   Zero-height marker element — IntersectionObserver scroll target.
+   Used by Stimulus `header-scroll` controller to detect when the
+   user has scrolled past a section (e.g. Dashboard blue hero band).
+   ===================================================== */
+.shuby-scroll-sentinel {
+    height: 0;
 }
 
 /* =====================================================
@@ -92,49 +88,6 @@
 }
 
 /* =====================================================
-   LIST ITEM
-   ===================================================== */
-
-.shuby-list-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--space-4) 0;
-    border-bottom: 1px solid var(--base-border-tertiary);
-
-    &:last-child { border-bottom: none; }
-}
-
-.shuby-list-item-content {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-}
-
-.shuby-list-item-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.shuby-list-item-title {
-    font-size: var(--font-size-btn-s);
-    font-weight: var(--font-weight-medium);
-    color: var(--base-text);
-}
-
-.shuby-list-item-subtitle {
-    font-size: var(--font-size-p1);
-    color: var(--base-text-tertiary);
-}
-
-/* =====================================================
-   SECTION BACKGROUNDS
-   ===================================================== */
-
-/* shuby-bg-section and shuby-bg-white moved to utilities.css as @utility */
-
-/* =====================================================
    PROGRESS INDICATOR
    ===================================================== */
 
@@ -158,284 +111,6 @@
 }
 
 /* =====================================================
-   CLOUD MASCOT
-   Cute cloud character for hero sections
-   ===================================================== */
-
-.shuby-mascot-cloud {
-    width: 100px;
-    height: 80px;
-
-    img, svg {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-}
-
-.shuby-mascot-cloud-sm {
-    width: 60px;
-    height: 48px;
-}
-
-.shuby-mascot-cloud-lg {
-    width: 140px;
-    height: 112px;
-}
-
-/* =====================================================
-   ACTIVITY LIST ITEM
-   Activity cards with title, duration, and arrow
-   Based on Figma "Tummy time musicale" pattern
-   ===================================================== */
-
-.shuby-activity-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--space-4) 0;
-    border-bottom: 1px solid var(--base-border-tertiary);
-
-    &:last-child { border-bottom: none; }
-}
-
-.shuby-activity-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-}
-
-.shuby-activity-title {
-    font-size: var(--font-size-btn-s);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--line-height-normal);
-    color: var(--base-text);
-}
-
-.shuby-activity-duration {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-1);
-    font-size: var(--font-size-p2);
-    font-weight: var(--font-weight-medium);
-    color: var(--base-text-tertiary);
-}
-
-.shuby-activity-duration-icon {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-
-    svg {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-.shuby-activity-arrow {
-    color: var(--text-primary);
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-
-    svg {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-/* Activity item clickable variant */
-.shuby-activity-item-clickable {
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin: 0 calc(-1 * var(--space-4));
-    padding: var(--space-4);
-    border-radius: var(--radius-md);
-
-    &:active { background-color: var(--base-bg-hover); }
-}
-
-/* Activity item with thumbnail */
-.shuby-activity-item-with-thumb {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    padding: var(--space-3) 0;
-    border-bottom: 1px solid var(--base-border-tertiary);
-
-    &:last-child { border-bottom: none; }
-}
-
-/* Activity thumbnail (circular) */
-.shuby-activity-thumbnail {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    background-color: var(--color-shuby-blue-400);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    svg {
-        width: 60%;
-        height: 60%;
-        color: var(--text-primary);
-    }
-}
-
-/* Small activity thumbnail */
-.shuby-activity-thumbnail-sm {
-    width: 40px;
-    height: 40px;
-}
-
-/* Large activity thumbnail */
-.shuby-activity-thumbnail-lg {
-    width: 56px;
-    height: 56px;
-}
-
-/* Activity item content (for items with thumbnail) */
-.shuby-activity-item-content {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-/* Activity item with arrow on right */
-.shuby-activity-item-with-thumb .shuby-activity-arrow {
-    flex-shrink: 0;
-    margin-left: auto;
-}
-
-/* Clickable variant */
-.shuby-activity-item-with-thumb.shuby-activity-item-clickable {
-    cursor: pointer;
-    margin: 0 calc(-1 * var(--space-3));
-    padding: var(--space-3);
-    border-radius: var(--radius-md);
-    border-bottom: none;
-}
-
-.shuby-activity-item-with-thumb.shuby-activity-item-clickable:hover {
-    background-color: var(--base-bg-hover);
-}
-
-/* =====================================================
-   AUTHOR / SOURCE TEXT
-   Subtitle text for content attribution
-   ===================================================== */
-
-.shuby-author {
-    font-size: var(--font-size-p2);
-    font-weight: var(--font-weight-regular);
-    color: var(--base-text-tertiary);
-    line-height: var(--line-height-normal);
-}
-
-.shuby-author-link {
-    color: var(--base-text-tertiary);
-    text-decoration: none;
-    transition: color 0.2s ease;
-
-    &:active { color: var(--text-primary); }
-}
-
-/* Author primary variant - uppercase, blue */
-.shuby-author-primary {
-    font-size: var(--font-size-caption);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-shuby-blue-800);
-    line-height: var(--line-height-normal);
-    text-transform: uppercase;
-}
-
-/* =====================================================
-   CONSIGLIO (TIP) ITEM
-   List item with avatar, tags, title, and author
-   Based on Figma "Consigli per te" section
-   ===================================================== */
-
-.shuby-consiglio-item {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-3);
-    padding: var(--space-3) 0;
-    border-bottom: 1px solid var(--base-border-tertiary);
-
-    &:last-child { border-bottom: none; }
-}
-
-/* Consiglio thumbnail */
-.shuby-consiglio-thumbnail {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    background-color: var(--color-shuby-blue-400);
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-}
-
-/* Consiglio content */
-.shuby-consiglio-content {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-}
-
-/* Consiglio tags row */
-.shuby-consiglio-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-1);
-}
-
-/* Consiglio title */
-.shuby-consiglio-title {
-    font-size: var(--font-size-p1);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--line-height-normal);
-    color: var(--base-text);
-}
-
-/* Consiglio author/source */
-.shuby-consiglio-author {
-    font-size: var(--font-size-p2);
-    font-weight: var(--font-weight-regular);
-    color: var(--base-text-tertiary);
-}
-
-/* Clickable consiglio item */
-.shuby-consiglio-item-clickable {
-    cursor: pointer;
-    margin: 0 calc(-1 * var(--space-3));
-    padding: var(--space-3);
-    border-radius: var(--radius-md);
-    border-bottom: none;
-    transition: background-color 0.2s ease;
-
-    &:active { background-color: var(--base-bg-hover); }
-}
-
-/* =====================================================
    DATE HEADER
    Day and date display styling
    e.g., "GIOVEDÌ, 28 AGOSTO"
@@ -448,23 +123,6 @@
     color: var(--text-primary);
     letter-spacing: var(--letter-spacing-wide);
     line-height: var(--line-height-normal);
-}
-
-/* =====================================================
-   AGE INDICATOR
-   Child age display in verde/teal color
-   e.g., "1 mese e 2 settimane"
-   ===================================================== */
-
-.shuby-age-indicator {
-    font-size: var(--font-size-p1);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-shuby-verde-500);
-    line-height: var(--line-height-normal);
-}
-
-.shuby-age-indicator-lg {
-    font-size: var(--font-size-btn-s);
 }
 
 /* =====================================================
@@ -492,7 +150,6 @@
     align-items: center;
     gap: var(--space-2);
 }
-
 
 /* =====================================================
    SECTION HEADER
@@ -536,235 +193,4 @@
 
 .shuby-shadow-blu-hover:hover {
     box-shadow: 0 0 14px 0 rgba(158, 198, 240, 0.4);
-}
-
-/* =====================================================
-   MODAL / OVERLAY
-   Full-screen modal for milestone details, onboarding, etc.
-   Based on Figma "Tappa" detail screen
-   ===================================================== */
-
-.shuby-modal-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    padding: var(--space-4);
-}
-
-.shuby-modal {
-    background-color: var(--color-shuby-white);
-    border-radius: var(--radius-lg);
-    max-width: 480px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-}
-
-/* Full-screen modal (like Tappa detail) */
-.shuby-modal-fullscreen {
-    position: fixed;
-    inset: 0;
-    background-color: var(--color-shuby-blue-400);
-    display: flex;
-    flex-direction: column;
-    z-index: 100;
-    overflow-y: auto;
-}
-
-/* Modal with blue background */
-.shuby-modal-blue {
-    background-color: var(--color-shuby-blue-400);
-}
-
-/* Modal header area */
-.shuby-modal-header {
-    position: relative;
-    padding: var(--space-6);
-    padding-top: var(--space-8);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* Modal content area */
-.shuby-modal-content {
-    padding: var(--space-6);
-    flex: 1;
-}
-
-/* Modal footer with buttons */
-.shuby-modal-footer {
-    padding: var(--space-4) var(--space-6);
-    padding-bottom: var(--space-6);
-    margin-top: auto;
-}
-
-
-/* =====================================================
-   WHITE PENTAGON MASCOT
-   White variant for use on colored backgrounds
-   ===================================================== */
-
-.shuby-mascot-pentagon {
-    width: 120px;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.shuby-mascot-pentagon-shape {
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-shuby-white);
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-overlay);
-}
-
-/* Pentagon face */
-.shuby-mascot-pentagon-face {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-2);
-    margin-top: 15px;
-}
-
-.shuby-mascot-pentagon-eyes {
-    display: flex;
-    gap: var(--space-4);
-}
-
-.shuby-mascot-pentagon-eye {
-    width: 10px;
-    height: 12px;
-    background-color: var(--color-shuby-verde-500);
-    border-radius: 50%;
-}
-
-.shuby-mascot-pentagon-smile {
-    width: 20px;
-    height: 10px;
-    border: 3px solid var(--color-shuby-verde-500);
-    border-top: none;
-    border-radius: 0 0 12px 12px;
-}
-
-/* Small pentagon variant */
-.shuby-mascot-pentagon-sm {
-    width: 80px;
-    height: 80px;
-
-    .shuby-mascot-pentagon-face { gap: 5px; margin-top: 10px; }
-    .shuby-mascot-pentagon-eyes { gap: 10px; }
-    .shuby-mascot-pentagon-eye { width: 7px; height: 9px; }
-    .shuby-mascot-pentagon-smile { width: 14px; height: 7px; border-width: 2px; }
-}
-
-/* Large pentagon variant */
-.shuby-mascot-pentagon-lg {
-    width: 160px;
-    height: 160px;
-
-    .shuby-mascot-pentagon-face { gap: 10px; margin-top: var(--space-5); }
-    .shuby-mascot-pentagon-eyes { gap: var(--space-5); }
-    .shuby-mascot-pentagon-eye { width: 14px; height: 16px; }
-    .shuby-mascot-pentagon-smile { width: 26px; height: 13px; border-width: 4px; }
-}
-
-/* =====================================================
-   RICORDA INFO BOX (Enhanced)
-   Info box with mascot icon for reminders
-   ===================================================== */
-
-.shuby-ricorda-box {
-    background-color: var(--color-shuby-blue-300);
-    border-radius: var(--radius-lg);
-    padding: var(--space-5);
-}
-
-.shuby-ricorda-header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin-bottom: var(--space-3);
-}
-
-.shuby-ricorda-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: var(--color-shuby-blue-800);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-
-    img, svg {
-        width: 20px;
-        height: 20px;
-    }
-}
-
-.shuby-ricorda-label {
-    font-size: var(--font-size-p2);
-    font-weight: var(--font-weight-bold);
-    text-transform: uppercase;
-    color: var(--text-primary);
-    letter-spacing: var(--letter-spacing-wide);
-}
-
-.shuby-ricorda-text {
-    font-size: var(--font-size-p1);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--line-height-normal);
-    color: var(--base-text);
-
-    strong {
-        font-weight: var(--font-weight-semibold);
-        color: var(--base-text);
-    }
-}
-
-/* =====================================================
-   DASHBOARD HEADER
-   Figma: Header component (node 379:5503)
-   Default = Azzurro variant (light blue frosted glass)
-   Scrolled = Bianco + ombra variant (white + Shadow Blu)
-   ===================================================== */
-
-.shuby-dashboard-header {
-    /* Figma: Azzurro — blue-300 at 95% opacity + backdrop blur */
-    background-color: color-mix(in srgb, var(--color-shuby-blue-300) 95%, transparent);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-
-    /* Default top padding for web. On Hotwire Native this is overridden
-       in hotwire_native.css to add env(safe-area-inset-top) on top. */
-    padding-top: var(--space-3);
-
-    /* Token cascade — Figma: all text/icons use var(--colori/nero, black) on the light blue bg */
-    --header-text: var(--color-shuby-black);
-    --header-text-secondary: var(--color-shuby-black);
-    --header-icon: var(--color-shuby-black);
-    --header-btn-bg: var(--color-shuby-blue-800);
-    --header-btn-bg-hover: var(--color-shuby-blue-700);
-}
-
-/* Scrolled state — Figma: Bianco + ombra=true */
-.shuby-header-scrolled {
-    background-color: color-mix(in srgb, var(--color-shuby-white) 95%, transparent);
-    box-shadow: var(--shadow-blu);
-    /* token cascade unchanged — blue-800 text/icons remain correct on white */
 }

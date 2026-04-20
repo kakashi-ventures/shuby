@@ -1,41 +1,38 @@
 <% if current_child.present? %>
   <% phase = GrowthPhase.for_age(current_child.questionnaire_age_in_months) %>
   <section>
-    <%# Date + Age — Figma: Overline/OL/Dark (black override) + Body/P1/Dark (blue-800 default) %>
-    <div class="mb-4">
-      <p class="shuby-overline-dark text-black">
+    <%# Date + Age metadata above the hero title.
+        Figma (375:5429, 434:12577, 499:6713): 2 lines only — Overline/OL/Dark
+        (black date) + Body/P1/Dark (blu-800 age). The corrected-age line for
+        premature babies is not in the current Figma; flagged for design input. %>
+    <div class="shuby-dashboard-hero-dateline">
+      <p class="shuby-dashboard-hero-date">
         <%= l(Date.current, format: :dashboard_day).upcase %>
       </p>
-      <p class="shuby-p1-dark text-shuby-blue-800">
+      <p class="shuby-dashboard-hero-age">
         <%= current_child.detailed_corrected_age_display %>
       </p>
-      <% if current_child.using_corrected_age? %>
-        <p class="shuby-overline text-shuby-blue-600 mt-0.5">
-          <%= t("dashboard.age_growth_phase.corrected_age_label") %>
-          <span class="text-shuby-blue-400">·</span>
-          <%= t("dashboard.age_growth_phase.chronological_age", age: current_child.detailed_age_display) %>
-        </p>
-      <% end %>
     </div>
 
-    <%# Hero content — Figma: H2 title (fuchsia override) + P1 description (black default) %>
+    <%# Hero content — Figma 375:5429:
+        Row 1: illustration (left, 123x117) + H2 fuchsia title (right, centered)
+        Row 2: description (full width, below) %>
     <% if phase %>
-      <%= link_to child_development_stages_path(current_child), class: "block",
+      <%= link_to child_development_stages_path(current_child),
+              class: "shuby-dashboard-hero-anchor",
               aria: { label: t("dashboard.age_growth_phase.phase_link_label") } do %>
-        <div class="flex items-end gap-2">
-          <%# Left: fuchsia title + description %>
-          <div class="flex-1 min-w-0">
-            <h2 class="shuby-h2 text-shuby-fucsia-500 mb-3">
+        <div class="shuby-dashboard-hero">
+          <div class="shuby-dashboard-hero-headline">
+            <div class="shuby-dashboard-hero-illustration">
+              <%= image_tag phase.illustration_path, alt: "" %>
+            </div>
+            <h2 class="shuby-dashboard-hero-title min-w-0">
               <%= phase.title %>
             </h2>
-            <p class="shuby-p1">
-              <%= phase.description %>
-            </p>
           </div>
-          <%# Right: illustration overflowing top — Figma: 123px wide %>
-          <div class="w-[123px] shrink-0 -mt-10 overflow-hidden">
-            <%= image_tag phase.illustration_path, class: "w-full h-auto", alt: "" %>
-          </div>
+          <p class="shuby-dashboard-hero-description">
+            <%= phase.description %>
+          </p>
         </div>
       <% end %>
     <% end %>

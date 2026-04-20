@@ -1,18 +1,8 @@
 module SvgHelper
-  def render_svg(name, options = {})
-    if (asset_path = Rails.application.assets.load_path.find("#{name}.svg"))
-      document = File.open(asset_path.path) { Nokogiri::XML(it) }
-
-      svg = document.at_css("svg")
-      svg.search("title").each { it.remove }
-      svg.prepend_child(document.create_element("title", name.underscore.humanize))
-
-      svg["role"] = "img"
-      svg["class"] = safe_join((svg["class"] || "").split(" ") + Array.wrap(options.fetch(:class, "fill-current")), " ")
-
-      document.to_s.html_safe
-    else
-      raise NameError, "Unable to find SVG asset named: #{name}.svg"
-    end
-  end
+  # Stubbed out — Shuby's ImagesHelper#render_svg (in app/helpers/images_helper.rb)
+  # is the canonical implementation and handles both the Shuby API
+  # (:size, :styles, :decorative) and the legacy Jumpstart :class option.
+  #
+  # This module is kept as an empty no-op so that any legacy `include SvgHelper`
+  # or Rails helper auto-load references resolve without error.
 end

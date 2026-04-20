@@ -45,10 +45,12 @@
     overflow: hidden;
 }
 
-/* Left content area */
+/* Left content area. The sibling illustration is absolutely positioned and
+   width-capped, so this column just needs to flex and allow its long-text
+   children to shrink (min-width:0 overrides the flex-child auto minimum). */
 .shuby-stage-content {
     flex: 1;
-    max-width: 70%;
+    min-width: 0;
 }
 
 /* Tags row (Tappa di sviluppo + Mese 1) */
@@ -327,6 +329,11 @@
     width: 12px;
     height: 12px;
     flex-shrink: 0;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .shuby-milestone-card-title {
@@ -381,6 +388,67 @@
     .shuby-milestone-card-time { color: var(--color-shuby-blue-700); }
 }
 
+/* Proposed (daily) dashboard variant — Figma: SchedaTest/Versione 1.
+   Overrides the flat timeline card with Shadow Dark Blue, stacked column
+   layout (tags/title above, button/time below), and an illustration area
+   that overflows the right edge. */
+.shuby-milestone-card-proposed {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-dark-blue);
+}
+
+/* Per-area illustration pinned to the right edge of the proposed card.
+   Fluid width — Figma spec 100px at 390px viewport. Uses min() to cap at
+   the spec value on ≥ 400px viewports and scale down on narrow phones
+   (e.g. iPhone SE 320px → ~80px), which gives the tags row more breathing
+   room so "Tappa di sviluppo" + age tag can stay on one line. */
+.shuby-milestone-card-illustration {
+    position: absolute;
+    top: var(--space-2);
+    right: 0;
+    width: min(100px, 25vw);
+    pointer-events: none;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Progress intro line ("I progressi di {name} su:") above the card's area name.
+   Named to match the i18n key `dashboard.milestone_box.progress_intro`. */
+.shuby-milestone-card-progress-intro {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-blue-800);
+}
+
+/* Text block holding the tags row + progress intro + area name + time row.
+   Figma Dashboard instance (375:5429) uses a single flex column with
+   uniform 8px gap between ALL four children. Max-width is the tighter of
+   the Figma spec (220px) OR whatever remains after reserving room for the
+   absolutely-positioned illustration on the right (100px + small gutter).
+   This keeps the text block from ever overlapping the illustration at
+   narrow widths, without changing layout on the 390px reference. */
+.shuby-milestone-card-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    max-width: min(220px, calc(100% - 100px));
+}
+
+/* Figma uses 8px gap between the two tags in the proposed-variant milestone
+   card (vs 4px in the timeline version that the base .shuby-milestone-card-meta
+   class ships). Scope the override to this variant only. */
+.shuby-milestone-card-proposed .shuby-milestone-card-meta {
+    gap: var(--space-2);
+}
+
 /* Tag for completed status */
 .shuby-tag-verde {
     background-color: var(--color-shuby-verde-300);
@@ -428,7 +496,8 @@
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
     color: var(--base-text);
-    max-width: 320px;
+    max-width: min(320px, 100%);
+    margin-inline: auto;
 }
 
 .shuby-stage-modal-content {

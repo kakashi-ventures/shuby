@@ -1,26 +1,35 @@
 <% Current.meta_tags.set(title: t(".title")) %>
 <% content_for :hide_navbar, true %>
 
-<div class="min-h-screen w-full bg-white dark:bg-gray-900">
+<%# The header-scroll controller is hosted here (not in the header partial)
+    so its Stimulus scope spans the whole dashboard — that way the sticky
+    header has a full-page containing block and stays pinned during scroll. %>
+<div class="shuby-page-shell"
+     data-controller="header-scroll"
+     data-header-scroll-scrolled-class="shuby-header-scrolled">
   <%= render "shared/dashboard_header/dashboard_header" %>
 
-  <%# Zone 1: Full-bleed blue hero background (Figma: blue-300 / #E5F2FF) %>
-  <div class="bg-shuby-blue-300 w-full">
-    <div class="mx-auto max-w-lg px-4 pt-4 pb-8">
+  <%# Zone 1: Full-bleed blue hero band %>
+  <div class="shuby-dashboard-hero-band">
+    <div class="shuby-container shuby-dashboard-hero-band-content">
       <%= render "dashboard/age_growth_phase" %>
     </div>
   </div>
 
-  <%# Zone 2: White content area %>
-  <div class="w-full mx-auto px-4 pb-24 lg:max-w-lg">
+  <%# Sentinel at the end of the blue hero band. Once it scrolls out of
+      the viewport, the sticky header flips to the white + shadow state
+      (per FA 3.1: "blue -> white after scrolling past first band"). %>
+  <div class="shuby-scroll-sentinel" data-header-scroll-target="sentinel"></div>
+
+  <%# Zone 2: White content area. Bottom-nav clearance is handled globally
+      in hotwire_native.css (native shell); no per-page padding needed. %>
+  <div class="shuby-container">
 
     <%= render "dashboard/milestone_box" if current_child.present? %>
 
     <%= render "dashboard/section_activities" %>
 
-    <% family_profile = current_account.family_profile %>
-    <% profile_incomplete = !family_profile&.profile_complete? || current_account.children.any? { |c| c.profile_completeness_percentage < 50 } %>
-    <%= render "dashboard/section_profile_banner", profile_incomplete: profile_incomplete %>
+    <%= render "dashboard/section_profile_banner" %>
 
     <%= render "dashboard/measurement_boxes" if current_child.present? %>
 

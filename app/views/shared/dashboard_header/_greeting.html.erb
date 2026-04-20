@@ -1,6 +1,7 @@
-<%# Personalized greeting with caregiver name %>
+<%# Personalized greeting intro line above the child selector.
+    "Ciao {name} e" — styled by .shuby-dashboard-greeting-intro (dashboard.css). %>
 <% greeting_name = current_user.first_name.presence || current_user.name&.split&.first || current_user.email.split("@").first %>
 
-<p class="shuby-p2 text-[var(--header-text-secondary)]">
+<p class="shuby-dashboard-greeting-intro truncate">
   <%= t("dashboard.header.greeting", name: greeting_name) %> e
 </p>

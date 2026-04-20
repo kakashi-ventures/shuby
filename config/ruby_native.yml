@@ -16,7 +16,7 @@ tabs:
     auto_route:
       - /today
       - /children/
-  - title: Shuby
+  - title: Shuby AI
     path: /shuby
     icon: bubble.left.and.text.bubble.right.fill
     eager: true

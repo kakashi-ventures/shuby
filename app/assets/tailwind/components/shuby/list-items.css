@@ -1,0 +1,311 @@
+/* Shuby List Items
+ * Row-style list item patterns: generic list-item, activity list items,
+ * consiglio (tip) items, author blocks, and age indicators. All share
+ * a content + optional thumbnail + optional arrow/tags structure.
+ */
+
+/* =====================================================
+   GENERIC LIST ITEM
+   ===================================================== */
+
+.shuby-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--base-border-tertiary);
+
+    &:last-child { border-bottom: none; }
+}
+
+.shuby-list-item-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.shuby-list-item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.shuby-list-item-title {
+    font-size: var(--font-size-btn-s);
+    font-weight: var(--font-weight-medium);
+    color: var(--base-text);
+}
+
+.shuby-list-item-subtitle {
+    font-size: var(--font-size-p1);
+    color: var(--base-text-tertiary);
+}
+
+/* =====================================================
+   ACTIVITY LIST ITEM
+   Activity cards with title, duration, and arrow
+   Based on Figma "Tummy time musicale" pattern
+   ===================================================== */
+
+.shuby-activity-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--base-border-tertiary);
+
+    &:last-child { border-bottom: none; }
+}
+
+.shuby-activity-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.shuby-activity-title {
+    font-size: var(--font-size-btn-s);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    color: var(--base-text);
+}
+
+.shuby-activity-duration {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-medium);
+    color: var(--base-text-tertiary);
+}
+
+.shuby-activity-duration-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.shuby-activity-arrow {
+    color: var(--text-primary);
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Activity item clickable variant */
+.shuby-activity-item-clickable {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin: 0 calc(-1 * var(--space-4));
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+
+    &:active { background-color: var(--base-bg-hover); }
+}
+
+/* Activity item with thumbnail */
+.shuby-activity-item-with-thumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--base-border-tertiary);
+
+    &:last-child { border-bottom: none; }
+}
+
+/* Activity thumbnail (circular) */
+.shuby-activity-thumbnail {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: var(--color-shuby-blue-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    svg {
+        width: 60%;
+        height: 60%;
+        color: var(--text-primary);
+    }
+}
+
+/* Small activity thumbnail */
+.shuby-activity-thumbnail-sm {
+    width: 40px;
+    height: 40px;
+}
+
+/* Large activity thumbnail */
+.shuby-activity-thumbnail-lg {
+    width: 56px;
+    height: 56px;
+}
+
+/* Activity item content (for items with thumbnail) */
+.shuby-activity-item-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* Activity item with arrow on right */
+.shuby-activity-item-with-thumb .shuby-activity-arrow {
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+/* Clickable variant */
+.shuby-activity-item-with-thumb.shuby-activity-item-clickable {
+    cursor: pointer;
+    margin: 0 calc(-1 * var(--space-3));
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    border-bottom: none;
+}
+
+.shuby-activity-item-with-thumb.shuby-activity-item-clickable:hover {
+    background-color: var(--base-bg-hover);
+}
+
+/* =====================================================
+   AUTHOR / SOURCE TEXT
+   Subtitle text for content attribution
+   ===================================================== */
+
+.shuby-author {
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-regular);
+    color: var(--base-text-tertiary);
+    line-height: var(--line-height-normal);
+}
+
+.shuby-author-link {
+    color: var(--base-text-tertiary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:active { color: var(--text-primary); }
+}
+
+/* Author primary variant - uppercase, blue */
+.shuby-author-primary {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-shuby-blue-800);
+    line-height: var(--line-height-normal);
+    text-transform: uppercase;
+}
+
+/* =====================================================
+   CONSIGLIO (TIP) ITEM
+   List item with avatar, tags, title, and author
+   Based on Figma "Consigli per te" section
+   ===================================================== */
+
+.shuby-consiglio-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--base-border-tertiary);
+
+    &:last-child { border-bottom: none; }
+}
+
+/* Consiglio thumbnail */
+.shuby-consiglio-thumbnail {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: var(--color-shuby-blue-400);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* Consiglio content */
+.shuby-consiglio-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+/* Consiglio tags row */
+.shuby-consiglio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+}
+
+/* Consiglio title */
+.shuby-consiglio-title {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    color: var(--base-text);
+}
+
+/* Consiglio author/source */
+.shuby-consiglio-author {
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-regular);
+    color: var(--base-text-tertiary);
+}
+
+/* Clickable consiglio item */
+.shuby-consiglio-item-clickable {
+    cursor: pointer;
+    margin: 0 calc(-1 * var(--space-3));
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    border-bottom: none;
+    transition: background-color 0.2s ease;
+
+    &:active { background-color: var(--base-bg-hover); }
+}
+
+/* =====================================================
+   AGE INDICATOR
+   Child age display in verde/teal color
+   e.g., "1 mese e 2 settimane"
+   ===================================================== */
+
+.shuby-age-indicator {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-shuby-verde-500);
+    line-height: var(--line-height-normal);
+}
+
+.shuby-age-indicator-lg {
+    font-size: var(--font-size-btn-s);
+}

@@ -21,7 +21,7 @@ module Child::AgeCalculations
       if remaining_months.zero?
         I18n.t("children.age.years", count: years)
       else
-        I18n.t("children.age.years_and_months", years: years, months: remaining_months)
+        format_years_and_months(years, remaining_months)
       end
     end
   end
@@ -53,7 +53,7 @@ module Child::AgeCalculations
       if remaining_months.zero?
         I18n.t("children.age.years", count: years)
       else
-        I18n.t("children.age.years_and_months", years: years, months: remaining_months)
+        format_years_and_months(years, remaining_months)
       end
     end
   end
@@ -88,7 +88,7 @@ module Child::AgeCalculations
       if remaining_months.zero?
         I18n.t("children.age.years", count: years)
       else
-        I18n.t("children.age.years_and_months", years: years, months: remaining_months)
+        format_years_and_months(years, remaining_months)
       end
     end
   end
@@ -142,5 +142,11 @@ module Child::AgeCalculations
     months_key = (months == 1) ? "1" : "other"
     weeks_key = (weeks == 1) ? "1" : "other"
     I18n.t("children.age.months_and_weeks_#{months_key}_#{weeks_key}", months: months, weeks: weeks)
+  end
+
+  def format_years_and_months(years, months)
+    years_key = (years == 1) ? "1" : "other"
+    months_key = (months == 1) ? "1" : "other"
+    I18n.t("children.age.years_and_months_#{years_key}_#{months_key}", years: years, months: months)
   end
 end

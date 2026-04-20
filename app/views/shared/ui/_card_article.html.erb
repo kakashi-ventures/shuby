@@ -30,20 +30,22 @@
           <% end %>
           <span class="shuby-card-article-vertical-tag shuby-card-article-vertical-tag-age"><%= content.age_range_label %></span>
         </div>
-        <div class="shuby-card-article-vertical-body">
-          <h3 class="shuby-card-article-vertical-title"><%= content.title %></h3>
-          <% if content.description.present? %>
-            <p class="shuby-card-article-vertical-description"><%= content.description %></p>
+        <div class="shuby-card-article-vertical-body-group">
+          <div class="shuby-card-article-vertical-body">
+            <h3 class="shuby-card-article-vertical-title"><%= content.title %></h3>
+            <% if content.description.present? %>
+              <p class="shuby-card-article-vertical-description"><%= content.description %></p>
+            <% end %>
+          </div>
+          <% if content.duration_minutes.present? %>
+            <div class="shuby-card-article-vertical-time">
+              <span class="shuby-card-article-vertical-time-icon">
+                <%= render_svg "shuby/icons/icon-alarm", styles: "w-full h-full" %>
+              </span>
+              <span class="shuby-card-article-vertical-time-text"><%= content.duration_label %></span>
+            </div>
           <% end %>
         </div>
-        <% if content.duration_minutes.present? %>
-          <div class="shuby-card-article-vertical-time">
-            <span class="shuby-card-article-vertical-time-icon">
-              <%= render_svg "shuby/icons/icon-alarm", styles: "w-full h-full" %>
-            </span>
-            <span class="shuby-card-article-vertical-time-text"><%= content.duration_label %></span>
-          </div>
-        <% end %>
       </div>
     </div>
   <% end %>

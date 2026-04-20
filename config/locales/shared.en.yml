@@ -2,7 +2,7 @@ en:
   shared:
     bottom_nav:
       today: "Today"
-      ai_helper: "AI-helper"
+      ai_helper: "Shuby AI"
       archive: "Archive"
       settings: "Settings"
 

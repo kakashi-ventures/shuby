@@ -2,7 +2,7 @@ it:
   shared:
     bottom_nav:
       today: "Oggi"
-      ai_helper: "AI-helper"
+      ai_helper: "Shuby AI"
       archive: "Archivio"
       settings: "Gestione"
 

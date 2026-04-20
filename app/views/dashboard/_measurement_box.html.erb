@@ -13,13 +13,13 @@
   <%= link_to new_child_measurement_path(child, type: box.type),
         class: "shuby-tracking-card",
         aria: { label: "#{t('measurements.dashboard.start_tracking')}: #{type_label}" } do %>
-    <div class="w-full">
-      <p class="shuby-caption uppercase text-shuby-blue-800 mb-2">
+    <div class="shuby-tracking-card-heading">
+      <p class="shuby-tracking-card-label">
         <%= t("measurements.dashboard.section_start_tracking") %>
       </p>
       <p class="shuby-tracking-card-title"><%= type_label %></p>
     </div>
-    <span class="shuby-icon-btn shuby-icon-btn-sm shrink-0">
+    <span class="shuby-icon-btn">
       <%= render_svg "shuby/icons/icon-add", decorative: true %>
     </span>
   <% end %>
@@ -28,17 +28,17 @@
   <%= link_to new_child_measurement_path(child, type: box.type),
         class: "shuby-tracking-card",
         aria: { label: "#{t('measurements.dashboard.update')}: #{type_label}" } do %>
-    <div class="w-full">
-      <span class="shuby-badge-fucsia mb-2 inline-block">
+    <div class="shuby-tracking-card-heading">
+      <span class="shuby-badge-fucsia">
         <%= t("measurements.dashboard.section_update") %>
       </span>
       <p class="shuby-tracking-card-title"><%= type_label %></p>
     </div>
-    <div class="flex items-start gap-2 shrink-0">
-      <span class="shuby-tracking-card-value">
-        <%= l(box.last_measurement.measured_at, format: :short) %> - h. <%= box.last_measurement.measured_at.strftime("%H:%M") %>
+    <div class="shuby-tracking-card-last-activity min-w-0">
+      <span class="shuby-tracking-card-value truncate">
+        <%= l(box.last_measurement.measured_at, format: :date_with_hour) %>
       </span>
-      <span class="shuby-icon-btn-pink shuby-icon-btn-sm shrink-0">
+      <span class="shuby-icon-btn-pink">
         <%= render_svg "shuby/icons/icon-add", decorative: true %>
       </span>
     </div>
@@ -48,17 +48,17 @@
   <%= link_to new_child_measurement_path(child, type: box.type),
         class: "shuby-tracking-card",
         aria: { label: "#{t('measurements.dashboard.track')}: #{type_label}" } do %>
-    <div class="w-full">
-      <p class="shuby-caption uppercase text-shuby-blue-800 mb-2">
+    <div class="shuby-tracking-card-heading">
+      <p class="shuby-tracking-card-label">
         <%= t("measurements.dashboard.section_track") %>
       </p>
       <p class="shuby-tracking-card-title"><%= type_label %></p>
     </div>
-    <div class="flex items-start gap-2 shrink-0">
-      <span class="shuby-tracking-card-value">
-        <%= l(box.last_measurement.measured_at, format: :short) %> - h. <%= box.last_measurement.measured_at.strftime("%H:%M") %>
+    <div class="shuby-tracking-card-last-activity min-w-0">
+      <span class="shuby-tracking-card-value truncate">
+        <%= l(box.last_measurement.measured_at, format: :date_with_hour) %>
       </span>
-      <span class="shuby-icon-btn shuby-icon-btn-sm shrink-0">
+      <span class="shuby-icon-btn">
         <%= render_svg "shuby/icons/icon-add", decorative: true %>
       </span>
     </div>
