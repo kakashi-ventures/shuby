@@ -1,25 +1,17 @@
 <section>
-  <h2 class="shuby-caption font-bold uppercase tracking-wide text-shuby-blue-800 mb-1">
+  <h2 class="shuby-timeline-section-title">
     <%= t("timeline.show.measurements_title") %>
   </h2>
-  <p class="shuby-caption text-shuby-gray-600 mb-3">
-    <%= t("timeline.show.measurements_subtitle") %>
-  </p>
 
   <% if who_ranges.present? %>
-    <div class="flex gap-3">
-      <% TimelineHelper::MEASUREMENT_CONFIG.each do |config| %>
-        <%= timeline_measurement_box(
-              type: config[:type],
-              ranges: who_ranges,
-              unit: config[:unit]) %>
+    <div class="shuby-who-box-grid">
+      <% TimelineHelper::MEASUREMENT_TYPES.each do |type| %>
+        <%= timeline_measurement_box(type: type, ranges: who_ranges) %>
       <% end %>
     </div>
   <% else %>
-    <div class="bg-shuby-blue-300 rounded-xl p-4">
-      <p class="shuby-p2 text-shuby-blue-800">
-        <%= t("timeline.show.no_sex_data") %>
-      </p>
+    <div class="shuby-info-card-solid">
+      <p><%= t("timeline.show.no_sex_data") %></p>
     </div>
   <% end %>
 </section>

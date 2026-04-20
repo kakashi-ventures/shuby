@@ -1,27 +1,25 @@
 <% content_for :title, t(".title", name: @child.name) %>
 
-<div class="min-h-screen bg-white w-full"
+<div class="shuby-timeline-page"
      data-controller="timeline-carousel"
      data-timeline-carousel-current-band-key-value="<%= @current_band[:key] %>"
      data-timeline-carousel-content-url-value="<%= timeline_content_child_development_stages_path(@child) %>">
 
-  <%# Header %>
-  <div class="flex items-center justify-between px-4 py-3">
-    <%= link_to user_root_path, class: "inline-flex items-center shuby-caption hover:text-primary-600" do %>
-      <%= render_svg "shuby/icons/icon-chevron-left", size: :sm, styles: "mr-1", decorative: true %>
-      <%= t(".back") %>
+  <%# Header — Figma node 211:2618 %>
+  <div class="shuby-timeline-page-header">
+    <%= link_to user_root_path,
+                class: "shuby-timeline-page-header-back",
+                aria: { label: t(".back") } do %>
+      <%= render_svg "shuby/icons/icon-chevron-left", size: :sm, decorative: true %>
+      <h1 class="shuby-h3"><%= t(".title_short") %></h1>
     <% end %>
 
-    <h1 class="shuby-h3 text-center flex-1"><%= t(".title_short") %></h1>
-
-    <%= link_to child_path(@child), class: "shrink-0" do %>
-      <div class="w-8 h-8 rounded-full bg-shuby-blue-400 flex items-center justify-center overflow-hidden">
-        <% if @child.avatar.attached? %>
-          <%= image_tag @child.avatar.variant(resize_to_fill: [32, 32]), class: "w-full h-full object-cover" %>
-        <% else %>
-          <span class="text-xs font-bold text-shuby-blue-800"><%= @child.display_name.first.upcase %></span>
-        <% end %>
-      </div>
+    <%= link_to child_path(@child), class: "shuby-avatar-btn" do %>
+      <% if @child.avatar.attached? %>
+        <%= image_tag @child.avatar %>
+      <% else %>
+        <span class="shuby-avatar-initials"><%= @child.display_name.first.upcase %></span>
+      <% end %>
     <% end %>
   </div>
 
@@ -32,17 +30,9 @@
              selected_band: @selected_band,
              child: @child %>
 
-  <%# Paywall banner for locked future pills (hidden by default) %>
-  <% if not_subscribed? %>
-    <div id="timeline-paywall" class="hidden px-4 pt-4">
-      <%= render "shared/paywall_banner",
-        title: t("premium.timeline.locked_title"),
-        description: t("premium.timeline.locked_description"),
-        icon: :star %>
-    </div>
-  <% end %>
-
-  <%# Content sections (swapped via Turbo Frame) %>
+  <%# Content sections (swapped via Turbo Frame).
+      When free users view a future band, the frame's partial renders a
+      premium overlay absolutely positioned over the 3 sections. %>
   <turbo-frame id="timeline-content">
     <%= render "development_stages/timeline_content",
                child: @child,

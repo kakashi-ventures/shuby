@@ -17,12 +17,15 @@ module ImagesHelper
     styles = options.delete(:styles)
     decorative = options.delete(:decorative)
     legacy_class = options.delete(:class)
+    preserve_fill = options.delete(:preserve_fill)
 
     css_classes = []
     css_classes << ICON_SIZES[size] if size
     css_classes << styles if styles.present?
     css_classes << legacy_class if legacy_class.present?
-    css_classes << "fill-current" if css_classes.empty?
+    # Default to `fill-current` for monochrome icons so they inherit the text color;
+    # pass `preserve_fill: true` for SVGs that carry their own fill (e.g. gradients).
+    css_classes << "fill-current" if css_classes.empty? && !preserve_fill
     options[:class] = css_classes.join(" ")
 
     # Set explicit width/height attributes for reliable sizing.

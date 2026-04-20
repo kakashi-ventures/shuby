@@ -202,8 +202,8 @@
 
 .shuby-modal-close {
     position: absolute;
-    top: var(--space-4);
-    right: var(--space-4);
+    top: max(var(--space-4), env(safe-area-inset-top));
+    right: max(var(--space-4), env(safe-area-inset-right));
     width: 32px;
     height: 32px;
     background-color: transparent;
@@ -312,6 +312,22 @@
     transition: border-color 0.2s ease;
 
     &:active { border-color: var(--color-shuby-blue-500); }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* Fallback text shown inside avatar buttons when no image is attached
+   (first letter of child's display_name). Used by timeline header, dashboard
+   profile button, child selector. */
+.shuby-avatar-initials {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-shuby-blue-800);
+    line-height: var(--line-height-normal);
 }
 
 /* Close button on dark/colored background */
@@ -321,5 +337,46 @@
     &:active {
         background-color: var(--overlay-white-15);
         color: var(--color-shuby-white);
+    }
+}
+
+/* =====================================================
+   TAP-TARGET HIT-AREA EXPANSION (Apple HIG 44×44 minimum)
+   Visual 32px buttons below extend their pointer-hit surface to 44×44 via
+   a transparent ::before. Designed size stays intact; iOS accessibility met.
+   ===================================================== */
+
+.shuby-icon-btn-ghost,
+.shuby-icon-btn-sm {
+    position: relative;
+}
+
+.shuby-icon-btn-ghost::before,
+.shuby-icon-btn-sm::before,
+.shuby-modal-close::before {
+    content: "";
+    position: absolute;
+    inset: -6px; /* 32 + 12 = 44 */
+}
+
+/* =====================================================
+   iPhone SE NARROW MODE (≤320px)
+   Shrinks 40px round buttons to 36px so multiple icons can share a tight
+   row without forcing horizontal overflow. SVG sizes stay — icon contrast
+   matters more than button chrome at this width.
+   ===================================================== */
+
+@media (max-width: 320px) {
+    .shuby-icon-btn,
+    .shuby-icon-btn-pink,
+    .shuby-icon-btn-azzurro,
+    .shuby-icon-btn-fill,
+    .shuby-icon-btn-bianca,
+    .shuby-header-icon-btn,
+    .shuby-accordion-btn,
+    .shuby-avatar-btn,
+    .shuby-member-edit {
+        width: 36px;
+        height: 36px;
     }
 }

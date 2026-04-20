@@ -5,20 +5,20 @@
 %>
 
 <section>
-  <div class="flex items-center justify-between mb-3">
-    <h2 class="shuby-caption font-bold uppercase tracking-wide text-shuby-blue-800">
+  <div class="shuby-section-header-row">
+    <h2 class="shuby-timeline-section-title">
       <%= t("timeline.show.development_stages_title") %>
     </h2>
     <% if total_count > 0 %>
-      <span class="shuby-caption font-semibold text-shuby-blue-800">
+      <span class="shuby-timeline-section-counter">
         <%= t("timeline.show.completed_count", completed: completed_count, total: total_count) %>
       </span>
     <% end %>
   </div>
 
-  <div class="space-y-2">
+  <div class="shuby-timeline-milestone-list">
     <% areas_with_questionnaire.each do |data| %>
-      <%= render "development_stages/timeline_tappa_card",
+      <%= render "development_stages/timeline_milestone_card",
                  area: data[:area],
                  session: data[:session],
                  age_relationship: data[:age_relationship],

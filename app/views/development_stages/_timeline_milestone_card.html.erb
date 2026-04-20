@@ -29,13 +29,13 @@
       class: "#{bg_class} hover:opacity-90 transition-opacity",
       aria: { label: aria_label },
       data: { turbo_frame: "_top" } do %>
-    <%= render "development_stages/timeline_tappa_card_content",
+    <%= render "development_stages/timeline_milestone_card_content",
                area: area, session: session,
                age_relationship: age_relationship, is_completed: is_completed %>
   <% end %>
 <% else %>
   <div class="<%= bg_class %>">
-    <%= render "development_stages/timeline_tappa_card_content",
+    <%= render "development_stages/timeline_milestone_card_content",
                area: area, session: session,
                age_relationship: age_relationship, is_completed: is_completed %>
   </div>

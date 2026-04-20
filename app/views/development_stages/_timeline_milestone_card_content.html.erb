@@ -5,7 +5,7 @@
 <div class="shuby-milestone-card-content">
   <% if is_completed %>
     <div class="shuby-milestone-card-completed-meta">
-      <%= shuby_tag(t("timeline.show.tappa_completata"), variant: :verde, size: :small) %>
+      <%= shuby_tag(t("timeline.show.milestone_completed"), variant: :verde, size: :small) %>
       <% if session&.completed_at %>
         <span class="shuby-milestone-card-completed-date">
           <%= l(session.completed_at, format: :date_with_hour) %>
@@ -21,11 +21,11 @@
     </div>
   <% elsif age_relationship == :future %>
     <div class="shuby-milestone-card-meta">
-      <%= shuby_tag(t("timeline.show.tappa_futura"), variant: :grigio, size: :small) %>
+      <%= shuby_tag(t("timeline.show.milestone_future"), variant: :grigio, size: :small) %>
     </div>
   <% elsif age_relationship == :past %>
     <div class="shuby-milestone-card-meta">
-      <%= shuby_tag(t("timeline.show.tappa_passata"), variant: :grigio, size: :small) %>
+      <%= shuby_tag(t("timeline.show.milestone_past"), variant: :grigio, size: :small) %>
     </div>
   <% end %>
   <span class="shuby-milestone-card-title line-clamp-2 min-w-0"><%= area.name %></span>

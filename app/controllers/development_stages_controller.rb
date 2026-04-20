@@ -12,11 +12,6 @@ class DevelopmentStagesController < ApplicationController
   end
 
   def timeline_content
-    # Free users cannot load future timeline content — fall back to current band
-    if not_subscribed? && timeline_age_relationship(@selected_band[:age_months]) == :future
-      @selected_band = @current_band
-    end
-
     load_timeline_content
     render layout: false
   end

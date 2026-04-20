@@ -1,32 +1,36 @@
 # frozen_string_literal: true
 
 module TimelineHelper
-  MEASUREMENT_CONFIG = [
-    {type: :weight, label_key: "timeline.show.weight", unit: "kg"},
-    {type: :height, label_key: "timeline.show.height", unit: "cm"},
-    {type: :head_circumference, label_key: "timeline.show.head_circumference", unit: "cm"}
-  ].freeze
+  MEASUREMENT_TYPES = %i[weight height head_circumference].freeze
 
   # Renders a single WHO reference measurement box.
-  # Called 3 times in _section_measurements to avoid repetition.
-  def timeline_measurement_box(type:, ranges:, unit:)
+  # Called once per type in _timeline_measurements to avoid repetition.
+  # Visual spec: .shuby-who-box component (see timeline.css).
+  def timeline_measurement_box(type:, ranges:)
     data = ranges&.dig(type)
     return unless data
 
-    tag.div(class: "flex-1 bg-white border border-shuby-blue-300 rounded-grande px-1 py-2 text-center") do
+    tag.div(class: "shuby-who-box") do
       safe_join([
-        tag.p(t("timeline.show.#{type}"),
-          class: "shuby-caption font-semibold uppercase text-shuby-blue-800 mb-1"),
-        tag.div(class: "flex items-center justify-center gap-1") {
+        tag.p(t("timeline.show.#{type}"), class: "shuby-who-box-label"),
+        tag.div(class: "shuby-who-box-range") {
           safe_join([
-            tag.span(data[:p3], class: "font-display font-bold text-xl text-shuby-blue-800"),
-            tag.span(class: "inline-block w-[5px] border-t border-shuby-blue-800 self-center"),
-            tag.span(data[:p97], class: "font-display font-bold text-xl text-shuby-blue-800")
+            tag.span(data[:p3], class: "shuby-who-box-value"),
+            tag.span(class: "shuby-who-box-separator"),
+            tag.span(data[:p97], class: "shuby-who-box-value")
           ])
         },
-        tag.p(unit, class: "shuby-caption text-shuby-blue-800")
+        tag.p(t("timeline.show.#{type}_unit"), class: "shuby-who-box-unit")
       ])
     end
+  end
+
+  # Full-word H2 label for the age band displayed above the narrative.
+  # Figma shows the expanded form (e.g., "Settimana 6" / "Mese 5"); the abbreviated
+  # label stored in band[:label_type] is used only inside pills.
+  def timeline_band_title(band)
+    scale = band[:key].start_with?("sett_") ? "week" : "month"
+    t("timeline.show.band_title.#{scale}", number: band[:label_number])
   end
 
   # Determines the CSS class for a pill based on its relationship to the child's age
@@ -43,16 +47,22 @@ module TimelineHelper
     end
   end
 
-  # Returns :past, :current, or :future relative to the child's actual age.
+  # Returns :past, :current, or :future relative to the child's carousel-current
+  # band (not their exact age). Uses the same mapping as Timeline::AgeBands.for_child_age
+  # so the "selected-current" pill in the carousel and the overlay condition agree —
+  # e.g. a 2-month-old whose current band is Mese 3 does not see the future-band
+  # paywall on their own current pill.
   def age_relationship_for(band, child)
-    child_age = child.questionnaire_age_in_months
-    if band[:age_months] < child_age
-      :past
-    elsif band[:age_months] == child_age
-      :current
-    else
-      :future
-    end
+    current = Timeline::AgeBands.for_child_age(
+      child.questionnaire_age_in_months,
+      age_in_weeks: child.questionnaire_age_in_weeks
+    )
+    return :current if band[:key] == current[:key]
+
+    all = Timeline::AgeBands::ALL
+    band_idx = all.index { |b| b[:key] == band[:key] } || 0
+    current_idx = all.index { |b| b[:key] == current[:key] } || 0
+    (band_idx < current_idx) ? :past : :future
   end
 
   # Returns the data-band-relationship attribute value for a pill.

@@ -60,7 +60,14 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 
 ## P2: Visual & UX Polish
 
-- [ ] Systematic Figma comparison for every screen (Dashboard, Timeline, Archive, Chat, Measurements, Onboarding, Child Profile)
+- Systematic Figma comparison per screen:
+  - [x] Timeline 
+  - [ ] Dashboard
+  - [ ] Archive
+  - [ ] Chat (AI Helper)
+  - [ ] Measurements
+  - [ ] Onboarding
+  - [ ] Child Profile
 - [ ] Dashboard header: verify scroll bg transition blue-to-white (FA 3.1)
 - [x] Measurement photo upload (PRD 3.5.2 — optional photo attachment) — Active Storage `has_one_attached :photo` on `Measurement`, form field with Stimulus preview, embedded as JPEG thumbnail in pediatrician PDF
 - [ ] Unit of measure preference (metric/imperial) in settings

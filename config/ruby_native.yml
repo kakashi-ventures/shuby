@@ -1,6 +1,9 @@
 app:
   mode: normal
   entry_path: /
+  # Portrait-only is the Ruby Native default. Do NOT add `landscape: true` —
+  # Shuby is designed mobile-portrait at 320–430px; landscape layouts are not
+  # in Figma and are explicitly out of scope.
 
 appearance:
   tint_color: "#0159B5"

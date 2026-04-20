@@ -32,11 +32,13 @@
     margin-bottom: var(--space-4);
 }
 
-/* Main card container - white card on verde/teal background */
+/* Main card container - white card on verde/teal background.
+   Column layout is the only real behavior on iOS (portrait 320–430px);
+   the old `@media (max-width: 480px)` fallback below for a row layout was
+   dead code since 480 > max iPhone width (430). Inlined as the base rule. */
 .shuby-stage-card {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
     background-color: var(--color-shuby-white);
     border-radius: var(--radius-lg);
     padding: var(--space-5);
@@ -132,12 +134,13 @@
     height: 14px;
 }
 
-/* Mascot/character container (right side) */
+/* Mascot/character container — aligns to card's end in the column layout. */
 .shuby-stage-mascot {
     flex-shrink: 0;
     width: 80px;
     height: 80px;
-    margin-left: var(--space-4);
+    margin-top: var(--space-4);
+    align-self: flex-end;
 
     img, svg {
         width: 100%;
@@ -186,21 +189,6 @@
     border: 3px solid var(--color-shuby-white);
     border-top: none;
     border-radius: 0 0 10px 10px;
-}
-
-/* Responsive adjustments nested in .shuby-stage-card */
-.shuby-stage-card {
-    @media (max-width: 480px) {
-        flex-direction: column;
-
-        .shuby-stage-content { max-width: 100%; }
-
-        .shuby-stage-mascot {
-            margin-left: 0;
-            margin-top: var(--space-4);
-            align-self: flex-end;
-        }
-    }
 }
 
 /* =====================================================
@@ -380,12 +368,13 @@
     line-height: var(--line-height-normal);
 }
 
-/* Future / past-not-completed state — light gray background, blue-700 title */
+/* Future / past-not-completed state — light blue (blu-300) background, blue-800 title.
+   Figma 02.03_Timeline_Futuro shows cards at #e5f2ff on the white page background. */
 .shuby-milestone-card-future {
-    background-color: var(--color-shuby-gray-400);
+    background-color: var(--color-shuby-blue-300);
 
-    .shuby-milestone-card-title { color: var(--color-shuby-blue-700); }
-    .shuby-milestone-card-time { color: var(--color-shuby-blue-700); }
+    .shuby-milestone-card-title { color: var(--color-shuby-blue-800); }
+    .shuby-milestone-card-time { color: var(--color-shuby-blue-800); }
 }
 
 /* Proposed (daily) dashboard variant — Figma: SchedaTest/Versione 1.
@@ -464,6 +453,7 @@
 .shuby-stage-modal {
     background-color: var(--color-shuby-blue-400);
     min-height: 100vh;
+    min-height: 100dvh; /* iOS 15.4+ — handles Safari URL-bar collapse */
     display: flex;
     flex-direction: column;
 }
@@ -496,6 +486,7 @@
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
     color: var(--base-text);
+    /* Cap at 320 on 390+ viewports, but never exceed iPhone SE's 320px width. */
     max-width: min(320px, 100%);
     margin-inline: auto;
 }
@@ -523,6 +514,7 @@
 .shuby-stage-modal-dark {
     background: linear-gradient(180deg, var(--color-shuby-blue-600) 0%, var(--color-shuby-blue-800) 100%);
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     color: var(--color-shuby-white);
@@ -591,7 +583,7 @@
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
     color: var(--overlay-white-90);
-    max-width: 320px;
+    max-width: min(320px, 100%);
 }
 
 /* =====================================================
@@ -644,6 +636,7 @@
 .shuby-stage-completed {
     background: linear-gradient(180deg, var(--color-shuby-blue-700) 0%, var(--color-shuby-blue-800) 100%);
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -683,7 +676,7 @@
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
     color: var(--overlay-white-90);
-    max-width: 300px;
+    max-width: min(300px, 100%);
 }
 
 .shuby-stage-completed-content {
@@ -785,4 +778,38 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
+}
+
+/* =====================================================
+   NATIVE SHELL SAFE-AREA (html.hotwire-native)
+   Modal headers push down for the notch only inside the Ruby Native shell;
+   dev browsers keep the designed 64px padding so the mascot sits correctly.
+   ===================================================== */
+
+html.hotwire-native .shuby-stage-modal-header,
+html.hotwire-native .shuby-stage-modal-dark .shuby-stage-modal-header,
+html.hotwire-native .shuby-stage-completed-header {
+    padding-top: calc(var(--space-8) + 32px + env(safe-area-inset-top));
+}
+
+/* =====================================================
+   iPhone SE NARROW MODE (≤320px)
+   Tightens stage-card padding and shrinks the mascot so content still fits
+   inside the 320px viewport without overlap.
+   ===================================================== */
+
+@media (max-width: 320px) {
+    .shuby-stage-card {
+        padding: var(--space-4);
+    }
+
+    .shuby-stage-mascot {
+        width: 64px;
+        height: 64px;
+    }
+
+    .shuby-stage-card-compact .shuby-stage-mascot {
+        width: 48px;
+        height: 48px;
+    }
 }

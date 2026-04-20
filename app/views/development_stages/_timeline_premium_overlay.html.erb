@@ -1,0 +1,15 @@
+<%# Premium overlay shown over future timeline content for free users.
+    Figma: 02.03_Timeline_Futuro — Rectangle 408 (node 2002:9122) + Frame 97 (2002:9123). %>
+<div class="shuby-timeline-premium-overlay" role="dialog" aria-labelledby="timeline-premium-title">
+  <%= image_tag "shuby/illustrations/Nome=Shuby Premium.png",
+                class: "shuby-timeline-premium-illustration",
+                alt: "" %>
+  <div class="shuby-timeline-premium-prompt">
+    <p id="timeline-premium-title" class="shuby-timeline-premium-text">
+      <%= t("premium.timeline.locked_body") %>
+    </p>
+    <%= link_to t("premium.timeline.locked_cta"),
+                pricing_path,
+                class: "shuby-btn shuby-btn-fucsia shuby-btn-sm shuby-timeline-premium-cta" %>
+  </div>
+</div>

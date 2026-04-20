@@ -18,7 +18,7 @@
 | Dashboard variant 2 | `499:6713` | 01.03_Hero/Azzurra 2 |
 | Timeline (current) | `211:2608` | 02.01_Timeline |
 | Timeline (past) | `322:7818` | 02.02_Timeline_Passato |
-| Timeline (future) | `322:8041` | 02.03_Timeline_Futuro |
+| Timeline (future, free user) | `2002:8929` | 02.03_Timeline_Futuro (supersedes `322:8041`) |
 | Child profile - Info | `434:13573` | 03.01_Scheda bambino_Info |
 | Child profile - Measurements 1 | `436:4638` | 03.02_Scheda bambino_Misurazioni_01 |
 | Child profile - Measurements 2 | `451:5043` | 03.03_Scheda bambino_Misurazioni_02 |
@@ -51,3 +51,17 @@ Colors section, Typography section, plus:
 | Chat | `230:1824` |
 | Child selector | `220:2341` |
 | Menu | `198:3262` |
+
+## Sub-nodes (detailed screen breakdowns)
+
+### 02.03_Timeline_Futuro (free-user paywall over future bands) — `2002:8929`
+
+| Sub-element | nodeId | Notes |
+|-------------|--------|-------|
+| Overlay backdrop (frosted glass) | `2002:9122` | `backdrop-blur: 7.5px`, `bg: rgba(255,255,255,0.76)`, no radius. Positioned inset 4px from page edges. |
+| Prompt + CTA frame | `2002:9123` | Flex column, `gap: 16px`. |
+| Prompt text | `2002:9126` | "Questi contenuti sono visibili..." — Montserrat Regular 14/1.5, Colori/Nero. |
+| CTA button | `2002:9127` | "Passa alla versione Premium" — bg Fucsia-500 `#C500A2`, h=36, `px=20 py=9`, radius 999px, Montserrat Semi-Bold 16/1.5 white. |
+| Mascot illustration instance | `2002:9137` | Cloud+star, 121×115, sourced from `Nome=Shuby Premium` component (`NouAcPBMzhwsaS0hMMmJlu` → `309:2269`). |
+| Timeline carousel | `2002:8945` | 390×86; 41×60 pills at py-8 px-20, gap 8px; blue-400 bg for past, blue-800 for current, fucsia-500 for selected, transparent+blu-400 border for future. Gold star (19×18) centered on top edge of each future pill. |
+| Header | `2002:8946` | 390×102 (44 iOS status bar + 8 gap + 42 nav + 8 pb); `bg: rgba(229,242,255,0.95)` + `backdrop-blur: 2px`; 350px-wide nav row with chevron-left + "Timeline" (Button L 20px) + 40px avatar. |

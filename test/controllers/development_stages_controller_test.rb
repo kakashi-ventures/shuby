@@ -120,12 +120,9 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
     assert_select "[class*='shuby-milestone-card-completed']", count: 0
   end
 
-  test "free user future band request falls back to current band" do
-    get timeline_content_child_development_stages_path(@child), params: {band: "mese_6"}
-    assert_response :success
-    # Should NOT render future cards — clamped to current band
-    assert_select "[class*='shuby-milestone-card-future']", count: 0
-  end
+  # Whether content is rendered behind the overlay (today: faded silhouettes,
+  # marked `aria-hidden inert`) or skipped entirely is an implementation detail —
+  # asserted only via the paywall contract tests below (overlay iff free+future).
 
   test "past incomplete cards render gray background class" do
     # motricita_mese_1 has only an in_progress session (not returned for past bands)
@@ -181,5 +178,49 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
     get timeline_content_child_development_stages_path(@child), params: {band: "sett_4"}
     assert_response :success
     assert_select "a[aria-label*='risultati']", minimum: 1
+  end
+
+  # --- Premium paywall overlay tests (Figma 02.03_Timeline_Futuro — node 2002:8929) ---
+  # Free user selecting a future band triggers the frosted-glass paywall over the
+  # content area (node 2002:9122 + 2002:9123). Sophia is ~2mo → mese_6 is future.
+
+  test "free user sees premium overlay on future band" do
+    get timeline_content_child_development_stages_path(@child), params: {band: "mese_6"}
+    assert_response :success
+    assert_select ".shuby-timeline-premium-overlay[role='dialog']", count: 1
+    assert_select ".shuby-timeline-premium-illustration", count: 1
+    assert_select ".shuby-timeline-premium-text", text: I18n.t("premium.timeline.locked_body")
+    assert_select "a.shuby-timeline-premium-cta[href=?]", pricing_path, text: I18n.t("premium.timeline.locked_cta")
+  end
+
+  test "free user does not see overlay on current band" do
+    get timeline_content_child_development_stages_path(@child), params: {band: "mese_3"}
+    assert_response :success
+    assert_select ".shuby-timeline-premium-overlay", count: 0
+  end
+
+  test "free user does not see overlay on past band" do
+    get timeline_content_child_development_stages_path(@child), params: {band: "sett_4"}
+    assert_response :success
+    assert_select ".shuby-timeline-premium-overlay", count: 0
+  end
+
+  test "premium user does not see overlay on future band" do
+    premium_user = users(:subscribed)
+    premium_account = accounts(:subscribed)
+    sign_in premium_user
+    switch_account(premium_account)
+    child = premium_account.children.create!(name: "Test", birth_date: 65.days.ago, sex: 2)
+
+    get timeline_content_child_development_stages_path(child), params: {band: "mese_6"}
+    assert_response :success
+    assert_select ".shuby-timeline-premium-overlay", count: 0
+  end
+
+  test "future band pills carry the locked-star badge for free users" do
+    get child_development_stages_path(@child)
+    assert_response :success
+    # Locked pill must have the star SVG inside; at least one future pill should exist
+    assert_select ".shuby-timeline-pill.locked .shuby-timeline-pill-star", minimum: 1
   end
 end

@@ -1,16 +1,27 @@
-<div class="px-4 py-6 pb-24 space-y-6">
-  <%= render "development_stages/timeline_growth_phase",
-             growth_phase: growth_phase,
-             selected_band: selected_band %>
+<% show_paywall = not_subscribed? && age_relationship_for(selected_band, child) == :future %>
+<div class="shuby-timeline-content">
+  <%# aria-hidden + inert mark the ghosted-silhouette content as unfocusable
+      and hidden from screen readers when the paywall is showing, so VoiceOver
+      doesn't announce content users visually cannot read. %>
+  <%= tag.div(class: "shuby-timeline-sections",
+              **(show_paywall ? { aria: { hidden: true }, inert: true } : {})) do %>
+    <%= render "development_stages/timeline_growth_phase",
+               growth_phase: growth_phase,
+               selected_band: selected_band %>
 
-  <%= render "development_stages/timeline_measurements",
-             who_ranges: who_ranges,
-             selected_band: selected_band,
-             child: child %>
+    <%= render "development_stages/timeline_measurements",
+               who_ranges: who_ranges,
+               selected_band: selected_band,
+               child: child %>
 
-  <%= render "development_stages/timeline_stages",
-             development_areas: development_areas,
-             selected_band: selected_band,
-             current_band: current_band,
-             child: child %>
+    <%= render "development_stages/timeline_stages",
+               development_areas: development_areas,
+               selected_band: selected_band,
+               current_band: current_band,
+               child: child %>
+  <% end %>
+
+  <% if show_paywall %>
+    <%= render "development_stages/timeline_premium_overlay" %>
+  <% end %>
 </div>

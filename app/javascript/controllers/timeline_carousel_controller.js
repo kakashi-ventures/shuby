@@ -33,25 +33,15 @@ export default class extends Controller {
     const pill = event.currentTarget
     const bandKey = pill.dataset.bandKey
 
-    // Block navigation to locked (premium) pills
-    if (pill.dataset.bandLocked === "true") {
-      const paywall = document.getElementById("timeline-paywall")
-      if (paywall) paywall.classList.remove("hidden")
-      this.centerPill(pill)
-      return
-    }
-
-    // Hide paywall if visible
-    const paywall = document.getElementById("timeline-paywall")
-    if (paywall) paywall.classList.add("hidden")
-
     // Update visual state on all pills
     this.pillTargets.forEach(p => this.updatePillState(p, bandKey))
 
     // Center the selected pill
     this.centerPill(pill)
 
-    // Load new content via Turbo Frame
+    // Load new content via Turbo Frame. The partial itself renders a premium
+    // overlay when a free user selects a future band, so no client-side gating
+    // is needed here — every pill loads its band's content.
     const frame = document.getElementById("timeline-content")
     if (frame) {
       const url = new URL(this.contentUrlValue, window.location.origin)
