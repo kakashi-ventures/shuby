@@ -19,6 +19,13 @@ module Authentication
 
   protected
 
+  # Override turbo-rails helper: its default regex /(Turbo|Hotwire) Native/ does not
+  # match Ruby Native's UA ("Ruby Native" / "RubyNative/x.y.z"), silently breaking
+  # every html.hotwire-native CSS rule and every server-side native guard.
+  def hotwire_native_app?
+    request.user_agent.to_s.match?(/(Turbo|Hotwire|Ruby) Native/)
+  end
+
   # Use minimal layout for all devise views except registrations#edit
   def set_layout
     if turbo_frame_request?
