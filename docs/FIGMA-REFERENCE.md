@@ -101,6 +101,98 @@ Seed list — populate with additional nodes as new interactions are discovered 
 | Timeline future paywall CTA | `2002:8929` | CTA "Passa alla versione Premium" → upgrade flow |
 | Onboarding | TBD | Multi-step flow; populate on first inspection |
 
+## Animation integration workflow
+
+End-to-end recipe for a future Claude session that needs to audit/implement a Figma animation. Follow the three phases in order.
+
+### Phase 1 — Discover
+
+Goal: find which Shuby screens actually have interactions worth implementing.
+
+1. For each nodeId in the "Node Map" table above, run:
+   ```bash
+   bin/figma_prototype_info <nodeId> > /tmp/fig-<slug>.md
+   ```
+   Batch example:
+   ```bash
+   for id in 375:5429 434:12577 211:2608 463:5386 463:6063 455:5017; do
+     echo "=== $id ==="
+     bin/figma_prototype_info "$id"
+   done
+   ```
+2. Interpret the output:
+   - `destinationId: (no destination set)` → **skip**, the designer left the trigger unconfigured. Flag to the design team; do not implement a dead link.
+   - `transition=SMART_ANIMATE` → worth implementing (this is where visual polish lives).
+   - `transition=null` with `NAVIGATE` → standard page navigation, Turbo Drive handles it automatically.
+   - `transition=MOVE_IN/MOVE_OUT/SLIDE_IN/SLIDE_OUT` → needs a small Stimulus controller or CSS class.
+   - `transition=DISSOLVE` → CSS `opacity` transition on the target Turbo frame.
+3. Record discoveries in the "Animated screens" table with the nodeId, the transition kind, and a short note.
+
+### Phase 2 — Map to Shuby code
+
+| Figma transition                         | Shuby implementation                                                    |
+|------------------------------------------|-------------------------------------------------------------------------|
+| `SMART_ANIMATE` (CHANGE_TO same variant) | View Transitions API on the Turbo frame — `view-transition-name: foo` + `::view-transition-*` CSS rules (Turbo 8 enables it via `<meta name="view-transition">`) |
+| `SMART_ANIMATE` across navigation        | Turbo cross-document view transitions (`data-turbo-visit-control="reload"` off) + CSS pseudo-elements |
+| `DISSOLVE`                               | Tailwind `transition-opacity duration-[Xms] ease-[easing]` on the element |
+| `MOVE_IN` / `MOVE_OUT`                   | Stimulus controller with `transform: translate*` + `transition: transform Xms easing` |
+| `SLIDE_IN` / `SLIDE_OUT`                 | Same as MOVE but along a single axis — check the `direction` field      |
+| `PUSH`                                   | Default Turbo Drive page transition (nothing to implement)              |
+| `NAVIGATE` + no transition               | Plain `link_to` / `button_to`                                           |
+| `SCROLL_TO`                              | `element.scrollIntoView({ behavior: "smooth" })` or CSS `scroll-behavior: smooth` |
+| `OVERLAY`                                | Existing `Overlay` component or Turbo frame with `data-turbo-permanent` |
+| `CHANGE_TO` (variant swap)               | Stimulus class toggle — the variants are different frames in the same component |
+| `DRAG` trigger                           | Stimulus controller with pointerdown/move/up handlers                   |
+| `AFTER_TIMEOUT` trigger                  | `setTimeout` inside a Stimulus `connect()`                              |
+| `ON_HOVER` trigger                       | CSS `:hover` (no JS needed)                                             |
+
+Easing mapping: Figma `EASE_OUT` → CSS `ease-out`, `EASE_IN` → `ease-in`, `EASE_IN_OUT` → `ease-in-out`, `LINEAR` → `linear`, `SLOW` → `cubic-bezier(0.4,0,0.6,1)`. Keep the duration in ms exactly as extracted.
+
+Example — mapping the Dashboard SMART_ANIMATE found on `434:11336 → 434:10538` (300ms, EASE_OUT):
+
+```erb
+<%# Enable cross-document view transitions (layouts/application.html.erb) %>
+<meta name="view-transition" content="same-origin">
+```
+
+```erb
+<%# Target element on both source and destination pages — same name = morphs %>
+<div style="view-transition-name: dashboard-hero"
+     class="transition-all duration-300 ease-out">
+  <%= render "shared/dashboard_hero" %>
+</div>
+```
+
+```css
+/* app/assets/tailwind/application.css — tune duration/easing per transition */
+::view-transition-old(dashboard-hero),
+::view-transition-new(dashboard-hero) {
+  animation-duration: 300ms;
+  animation-timing-function: ease-out;
+}
+```
+
+### Phase 3 — Verify
+
+1. Start the dev server: `bin/dev`
+2. Record the Shuby flow:
+   ```bash
+   # See .claude/skills/playwright-cli/references/video-recording.md for details
+   playwright-cli goto http://localhost:3000/<path>
+   playwright-cli video record --filename=/tmp/shuby-<flow>.webm
+   # perform the interaction
+   playwright-cli video stop
+   ```
+3. Open the Figma prototype in Present mode on the same starting frame and record the same interaction (Cmd-Shift-5 on macOS, or a Figma plugin like "Export to GIF/Video").
+4. Compare side-by-side. Timing mismatches can be verified in DevTools → Performance (durations should match the ms extracted by `bin/figma_prototype_info`).
+5. If SMART_ANIMATE mapping is ambiguous (which layers morph into which), take frames at t=0%, 50%, 100% from both videos and feed them to Claude vision for a frame-level diff.
+
+### Known limitations
+
+- **Per-layer smart-animate mapping is not exposed** by the REST API. The script only reports that SMART_ANIMATE is used with a given duration/easing; the *which layer → which layer* decision remains on the designer side and must be inferred visually.
+- **Multiple reactions per node**: the script reads `interactions[]` (complete); the legacy `transitionNodeID` field reports only the first.
+- **Prototype drafts**: `destinationId: null` means the designer has not yet wired the link. Do not guess a target — ask the design team.
+
 ### 02.03_Timeline_Futuro (free-user paywall over future bands) — `2002:8929`
 
 | Sub-element | nodeId | Notes |
