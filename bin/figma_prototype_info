@@ -1,0 +1,101 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Prints prototype interactions, transition timings and target frames for one
+# or more Figma nodes. Complements the Figma MCP server, which only exposes
+# static design data (layout, tokens, screenshots).
+#
+# Usage:
+#   bin/figma_prototype_info <nodeId> [<nodeId2> ...]
+#
+# File key defaults to the Shuby design file; override with FIGMA_FILE_KEY.
+# Auth: see lib/figma_rest_client.rb.
+
+APP_ROOT = File.expand_path("..", __dir__)
+
+if ARGV.empty?
+  warn "Usage: bin/figma_prototype_info <nodeId> [<nodeId2> ...]"
+  warn "Example: bin/figma_prototype_info 2002:8929"
+  exit 64
+end
+
+# Boot Rails only when we need credentials (ENV token skips the cold start)
+if ENV["FIGMA_PERSONAL_ACCESS_TOKEN"].to_s.empty?
+  require File.join(APP_ROOT, "config/environment")
+end
+require File.join(APP_ROOT, "lib/figma_rest_client")
+
+FILE_KEY = ENV.fetch("FIGMA_FILE_KEY", "qriF7HfsvoG8VUSdjUETBd")
+
+def walk(node, name_map, collected)
+  name_map[node["id"]] = node["name"] if node["id"] && node["name"]
+  interactions = node["interactions"]
+  if interactions.is_a?(Array) && interactions.any?
+    collected << {id: node["id"], name: node["name"], interactions: interactions,
+                  transition_node_id: node["transitionNodeID"],
+                  transition_duration: node["transitionDuration"],
+                  transition_easing: node["transitionEasing"]}
+  end
+  (node["children"] || []).each { |c| walk(c, name_map, collected) }
+end
+
+def format_action(action, name_map)
+  verb = action["navigation"] || action["type"] || "?"
+  dest = action["destinationId"]
+  target = if dest
+    name = name_map[dest]
+    name ? "#{dest} \"#{name}\"" : dest
+  else
+    "(no destination set)"
+  end
+  parts = ["#{verb} → #{target}"]
+  if action["transition"]
+    t = action["transition"]
+    duration_ms = t["duration"] ? (t["duration"].to_f * 1000).round : nil
+    parts << "transition=#{t["type"]} duration=#{duration_ms}ms easing=#{t["easing"]&.dig("type")}"
+  end
+  parts.join(", ")
+end
+
+def format_trigger(trigger)
+  type = trigger["type"] || "?"
+  extras = []
+  extras << "delay=#{trigger["delay"]}ms" if trigger["delay"]
+  extras << "timeout=#{trigger["timeout"]}ms" if trigger["timeout"]
+  extras.empty? ? type : "#{type} (#{extras.join(", ")})"
+end
+
+begin
+  payload = FigmaRestClient.fetch_nodes(file_key: FILE_KEY, node_ids: ARGV)
+rescue FigmaRestClient::AuthError, FigmaRestClient::RateLimited, FigmaRestClient::Error => e
+  warn "Error: #{e.message}"
+  warn "Retry-After: #{e.retry_after}s" if e.respond_to?(:retry_after) && e.retry_after
+  exit 1
+end
+
+nodes = payload.fetch("nodes", {})
+name_map = {}
+collected = []
+nodes.each_value { |n| walk(n["document"], name_map, collected) if n && n["document"] }
+
+if collected.empty?
+  puts "No prototype interactions in subtree (nodes: #{ARGV.join(", ")})."
+  exit 0
+end
+
+collected.each do |entry|
+  puts "## Prototype interactions — #{entry[:id]} \"#{entry[:name]}\""
+  puts
+  entry[:interactions].each do |interaction|
+    trigger = interaction["trigger"] || {}
+    puts "- Trigger: #{format_trigger(trigger)}"
+    Array(interaction["actions"]).compact.each do |action|
+      puts "  Action: #{format_action(action, name_map)}"
+    end
+  end
+  if entry[:transition_node_id] && entry[:interactions].empty?
+    puts "- Legacy transitionNodeID → #{entry[:transition_node_id]} " \
+      "(duration=#{entry[:transition_duration]}ms easing=#{entry[:transition_easing]})"
+  end
+  puts
+end

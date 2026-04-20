@@ -54,6 +54,53 @@ Colors section, Typography section, plus:
 
 ## Sub-nodes (detailed screen breakdowns)
 
+## Prototype REST API helper
+
+The Figma MCP server only returns **static** data (layout, tokens, screenshots). For prototype interactions, transition timings, easing and target frames — which live in the Figma file but are not exposed by the MCP — use the REST API helper:
+
+```bash
+bin/figma_prototype_info <nodeId> [<nodeId2> ...]
+# Example:
+bin/figma_prototype_info 2002:8929
+```
+
+### Setup (one-time)
+
+1. Create a personal access token at https://www.figma.com/developers/api#access-tokens with scope `files:read`
+2. Add it to Rails credentials:
+   ```bash
+   bin/rails credentials:edit
+   ```
+   ```yaml
+   figma:
+     personal_access_token: figd_...
+   ```
+   (Alternatively, set `ENV["FIGMA_PERSONAL_ACCESS_TOKEN"]` — useful in CI.)
+3. Override the file key per invocation with `FIGMA_FILE_KEY=...` if you need to inspect a different file.
+
+### Rate limits
+
+Figma's REST API rate-limit tier depends on the plan of the file owner, not the token owner. On a Starter plan file, a personal token is capped to ~6 requests/month *per file* for the files endpoint. Pro/Org/Enterprise plans are much more generous. The script warns on `X-Figma-Rate-Limit-Type: low` and exits non-zero with `Retry-After` on 429.
+
+### What it extracts
+
+- `interactions[]` — triggers (ON_CLICK, ON_HOVER, AFTER_TIMEOUT, etc.) + actions (NAVIGATE, OVERLAY, SWAP, CHANGE_TO, SCROLL_TO)
+- `transition.duration`, `transition.easing`, `transition.type` (smart-animate / dissolve / slide)
+- Resolved target frame names (not just IDs)
+- Legacy `transitionNodeID` + `transitionDuration` + `transitionEasing` (fallback for older files)
+
+Not exposed by Figma REST API (REST limitations, not ours): per-layer smart-animate property mapping (which layers morph into which). For that level of detail, screen-record the Present mode and analyze frames with Claude vision.
+
+## Animated screens (prototype interactions)
+
+Seed list — populate with additional nodes as new interactions are discovered during `/shuby-figma-check` runs.
+
+| Screen | nodeId | Notes |
+|--------|--------|-------|
+| Dashboard hero transition (Azzurra ↔ Bianca) | `375:5429` ↔ `434:12577` | Scroll-driven header color change |
+| Timeline future paywall CTA | `2002:8929` | CTA "Passa alla versione Premium" → upgrade flow |
+| Onboarding | TBD | Multi-step flow; populate on first inspection |
+
 ### 02.03_Timeline_Futuro (free-user paywall over future bands) — `2002:8929`
 
 | Sub-element | nodeId | Notes |

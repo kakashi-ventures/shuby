@@ -21,6 +21,7 @@ paths:
 - Check Figma design FIRST: `get_design_context` with fileKey `qriF7HfsvoG8VUSdjUETBd`
 - Look up the correct nodeId from the Figma Node Map in docs/FIGMA-REFERENCE.md
 - If unsure of nodeId, use `get_metadata` to browse file structure
+- If the view has animations/transitions/prototype interactions, run `bin/figma_prototype_info <nodeId>` for exact timings and target frames (MCP returns only static data)
 
 ## After modifying any view
 - Screenshot with Playwright CLI: `playwright-cli screenshot --filename=/tmp/shuby-[page].png` (mobile 390x844)
