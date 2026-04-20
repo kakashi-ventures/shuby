@@ -22,5 +22,6 @@
     <%= native_badge_tag(@notification_counts&.values&.sum || 0) if user_signed_in? && defined?(@notification_counts) %>
     <%= yield :bottom_nav unless hotwire_native_app? %>
     <%= render "shared/beta_feedback_button" if user_signed_in? && current_user.beta_tester? %>
+    <%= render "shared/debug_panel" if params[:debug] == "1" %>
   </body>
 </html>
