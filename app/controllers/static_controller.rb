@@ -22,6 +22,19 @@ class StaticController < ApplicationController
     # We can't head: 200 because we also need the Turbo JavaScript in <head>.
   end
 
+  # Toggle cookie that activates the in-app debug panel (see
+  # app/javascript/controllers/debug_panel_controller.js). Beta testers only.
+  # Persistent cookie so the panel survives app launches in TestFlight.
+  def toggle_debug
+    head :forbidden and return unless current_user&.beta_tester?
+    if cookies[:shuby_debug] == "1"
+      cookies.delete(:shuby_debug)
+    else
+      cookies.permanent[:shuby_debug] = "1"
+    end
+    redirect_back fallback_location: settings_path
+  end
+
   # Temporary diagnostic page for debugging native navigation
   def native_debug
     render inline: <<~HTML, layout: "application"

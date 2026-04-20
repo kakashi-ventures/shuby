@@ -1,0 +1,17 @@
+<%# Beta-tester-only debug panel toggle. Activates the on-screen log overlay
+    defined in debug_panel_controller.js via a persistent cookie. %>
+<% if current_user.beta_tester? %>
+  <% enabled = cookies[:shuby_debug] == "1" %>
+  <section class="mt-6 p-4 border border-[var(--base-border-tertiary)] rounded-lg">
+    <p class="shuby-overline-dark mb-2">Debug</p>
+    <p class="text-sm text-[var(--base-text-secondary)] mb-3">
+      Pannello di log a schermo per diagnostica (solo beta tester).
+      <%= enabled ? "Attivo." : "Disattivato." %>
+    </p>
+    <%= button_to toggle_debug_path,
+                  method: :post,
+                  class: "shuby-btn shuby-btn-sm #{enabled ? 'shuby-btn-gray' : 'shuby-btn-fucsia'}" do %>
+      <%= enabled ? "Disattiva pannello debug" : "Attiva pannello debug" %>
+    <% end %>
+  </section>
+<% end %>
