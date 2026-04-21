@@ -1,8 +1,6 @@
 <%# Finish previous state - in-progress session from past month needs completion %>
-<%# See _proposed.html.erb — same stories layout, same Turbo freeze on iOS. %>
 <%= link_to stories_child_questionnaire_session_path(child, session),
-            class: "block rounded-2xl overflow-hidden hover:shadow-md transition-shadow",
-            data: { turbo: false } do %>
+            class: "block rounded-2xl overflow-hidden hover:shadow-md transition-shadow" do %>
   <div class="bg-shuby-giallo-400 rounded-2xl relative">
     <%# Tags row — Figma: verde type tag, giallo_scuro age tag for in-progress state %>
     <div class="flex items-center gap-2 px-4 pt-4">

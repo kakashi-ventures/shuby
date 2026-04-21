@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html class="<%= class_names("hotwire-native": hotwire_native_app?) %>" lang="<%= I18n.locale %>">
   <head>
+    <%# See stories layout — same guard against iOS Turbo-visit layout-swap freeze. %>
+    <%= tag.meta(name: "turbo-visit-control", content: "reload") if hotwire_native_app? %>
     <%= render "head" %>
   </head>
 

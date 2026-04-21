@@ -5,14 +5,24 @@ const TURBO_EVENTS = [
   "turbo:click",
   "turbo:before-visit",
   "turbo:visit",
+  "turbo:before-cache",
   "turbo:before-fetch-request",
   "turbo:before-fetch-response",
   "turbo:fetch-request-error",
-  "turbo:load",
+  "turbo:before-render",
   "turbo:render",
+  "turbo:before-morph-element",
+  "turbo:before-morph-attribute",
+  "turbo:morph",
+  "turbo:morph-element",
+  "turbo:load",
   "turbo:frame-missing",
+  "turbo:frame-load",
+  "turbo:frame-render",
+  "turbo:before-frame-render",
   "turbo:submit-start",
-  "turbo:submit-end"
+  "turbo:submit-end",
+  "turbo:before-stream-render"
 ]
 
 export default class extends Controller {
