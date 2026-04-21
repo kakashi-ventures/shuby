@@ -44,7 +44,12 @@ module Authentication
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    return "/reset_app" if hotwire_native_app?
+    # /reset_app is a Hotwire Native convention: returns an empty page that the
+    # iOS shell intercepts to re-route the auth response into the tab stack.
+    # Ruby Native has no such interceptor — landing on /reset_app just shows
+    # "Redirecting..." forever on the Oggi tab. Skip it for Ruby Native and
+    # use the normal post-login redirect.
+    return "/reset_app" if hotwire_native_app? && !native_app?
 
     # Redirect to onboarding if not completed
     if resource_or_scope.is_a?(User) && !resource_or_scope.onboarding_completed?
