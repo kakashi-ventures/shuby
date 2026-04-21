@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_14_104718) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_21_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -544,7 +544,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_14_104718) do
     t.bigint "account_id", null: false
     t.bigint "child_id"
     t.datetime "created_at", null: false
-    t.string "model", default: "gpt-5-mini", null: false
+    t.string "model", default: "gpt-5.4-mini", null: false
     t.string "previous_response_id"
     t.string "title"
     t.datetime "updated_at", null: false

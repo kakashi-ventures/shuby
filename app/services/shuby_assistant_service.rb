@@ -72,10 +72,10 @@ class ShubyAssistantService
   PROMPT
 
   # Default model to use - Single source of truth for model name
-  DEFAULT_MODEL = "gpt-5-mini"
+  DEFAULT_MODEL = "gpt-5.4-mini"
 
   # Display name for the model (used in UI)
-  MODEL_DISPLAY_NAME = "GPT-5 Mini"
+  MODEL_DISPLAY_NAME = "GPT-5.4 Mini"
 
   # Initialize the service with a ShubyChat record
   #
