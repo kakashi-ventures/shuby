@@ -13,7 +13,8 @@
       </p>
     </div>
     <%= link_to stories_child_questionnaire_session_path(child, session),
-        class: "shuby-btn shuby-btn-sm shuby-btn-primary" do %>
+        class: "shuby-btn shuby-btn-sm shuby-btn-primary",
+        data: { turbo: false } do %>
       <%= t("finish_past_questionnaire", scope: scope) %>
     <% end %>
   </div>

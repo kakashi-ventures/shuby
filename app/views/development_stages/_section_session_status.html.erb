@@ -7,7 +7,8 @@
       <p class="shuby-caption text-yellow-600"><%= current_session.progress_fraction %> <%= t("questions_answered", scope: scope) %></p>
     </div>
     <%= link_to stories_child_questionnaire_session_path(child, current_session),
-        class: "shuby-btn shuby-btn-sm shuby-btn-primary" do %>
+        class: "shuby-btn shuby-btn-sm shuby-btn-primary",
+        data: { turbo: false } do %>
       <%= t("continue_questionnaire", scope: scope) %>
     <% end %>
   </div>
@@ -18,7 +19,8 @@
       <p class="shuby-p1-dark text-shuby-blue-800"><%= t("not_started", scope: scope) %></p>
     </div>
     <%= link_to stories_child_questionnaire_session_path(child, current_session),
-        class: "shuby-btn shuby-btn-sm shuby-btn-primary" do %>
+        class: "shuby-btn shuby-btn-sm shuby-btn-primary",
+        data: { turbo: false } do %>
       <%= t("start_questionnaire", scope: scope) %>
     <% end %>
   </div>
@@ -39,7 +41,8 @@
 
 <% unless current_session&.in_progress? || current_session&.not_started? %>
   <%= link_to start_child_development_stage_path(child, area.slug),
-      class: "shuby-btn shuby-btn-md shuby-btn-primary w-full" do %>
+      class: "shuby-btn shuby-btn-md shuby-btn-primary w-full",
+      data: { turbo: false } do %>
     <%= current_session&.completed? ? t("restart_questionnaire", scope: scope) : t("start_questionnaire", scope: scope) %>
   <% end %>
 <% end %>
