@@ -1,5 +1,5 @@
 <%= turbo_stream.append "pediatrician_questions_list" do %>
-  <%= render "pediatrician_questions/question", question: @question, child: @child %>
+  <%= render "pediatrician_questions/question", question: @question, child: @child, streamed: true %>
 <% end %>
 
 <%= turbo_stream.replace "pediatrician_question_form" do %>

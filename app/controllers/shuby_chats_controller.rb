@@ -80,7 +80,7 @@ class ShubyChatsController < ApplicationController
         streams << turbo_stream.remove("welcome-message")
 
         # Append user message
-        streams << turbo_stream.append("messages", partial: "shuby_chats/message", locals: {message: user_message})
+        streams << turbo_stream.append("messages", partial: "shuby_chats/message", locals: {message: user_message, streamed: true})
 
         # Append assistant placeholder
         streams << turbo_stream.append("messages", partial: "shuby_chats/assistant_message_placeholder", locals: {message_id: streaming_message_id})

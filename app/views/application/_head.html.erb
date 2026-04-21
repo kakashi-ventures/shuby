@@ -9,6 +9,15 @@
     keeps the cache for instant-back. %>
 <%= tag.meta(name: "turbo-cache-control", content: "no-cache") if hotwire_native_app? %>
 
+<%# Turbo 8 View Transitions API — crossfade + subtle zoom tra visit same-origin.
+    Safari 18.2+ (WKWebView iOS 18.2+) e Chrome 111+ lo supportano nativamente;
+    browser più vecchi degradano senza animazione (graceful). %>
+<%= tag.meta(name: "view-transition", content: "same-origin") %>
+
+<%# Turbo morphing per page refresh: update DOM per diff (idiomorph), preserva
+    scroll position e data-turbo-permanent elements (incluso #native-tabs-signal). %>
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
 <%= javascript_importmap_tags %>
 <%= stylesheet_link_tag "tailwind", media: "all", "data-turbo-track": "reload" %>
 <%= stylesheet_link_tag :ruby_native, "data-turbo-track": "reload" %>
