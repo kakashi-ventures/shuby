@@ -10,5 +10,6 @@
   </head>
   <body class="stories-layout" data-controller="theme">
     <%= yield %>
+    <%= render "shared/debug_panel" if params[:debug] == "1" || cookies[:shuby_debug] == "1" %>
   </body>
 </html>

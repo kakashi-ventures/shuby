@@ -21,5 +21,6 @@
     <main class="max-w-md mx-auto px-4 py-8">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
+    <%= render "shared/debug_panel" if params[:debug] == "1" || cookies[:shuby_debug] == "1" %>
   </body>
 </html>

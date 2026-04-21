@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 const MAX_LINES = 200
+const STORAGE_KEY = "shuby_debug_log"
 const TURBO_EVENTS = [
   "turbo:click",
   "turbo:before-visit",
@@ -27,14 +28,16 @@ const TURBO_EVENTS = [
 
 export default class extends Controller {
   connect() {
-    this.lines = []
+    this.lines = this.loadPersisted()
     this.mount()
+    this.renderAllLines()
     this.boundClick = this.logClick.bind(this)
     this.boundTurbo = this.logTurbo.bind(this)
 
     document.addEventListener("click", this.boundClick, true)
     TURBO_EVENTS.forEach(t => document.addEventListener(t, this.boundTurbo))
     this.wrapBridge()
+    this.push("nfo", `─── page load (${this.lines.length} prior lines) ───`)
     this.snapshot()
   }
 
@@ -100,7 +103,7 @@ export default class extends Controller {
       if (!act) return
       e.stopPropagation()
       if (act === "toggle") wrap.classList.toggle("shuby-debug-panel-collapsed")
-      if (act === "clear") { this.lines = []; this.logEl.textContent = "" }
+      if (act === "clear") { this.lines = []; this.logEl.textContent = ""; this.persist() }
       if (act === "copy") this.copy()
     })
   }
@@ -166,19 +169,45 @@ export default class extends Controller {
   push(cls, msg) {
     const ts = new Date().toISOString().slice(11, 23)
     const line = `${ts} ${msg}`
-    this.lines.push(line)
+    this.lines.push({ cls, line })
     if (this.lines.length > MAX_LINES) this.lines.shift()
+    this.persist()
     if (!this.logEl) return
-    const row = document.createElement("div")
-    row.className = cls
-    row.textContent = line
-    this.logEl.appendChild(row)
+    this.appendRow(cls, line)
     while (this.logEl.children.length > MAX_LINES) this.logEl.firstChild.remove()
     this.logEl.scrollTop = this.logEl.scrollHeight
   }
 
+  appendRow(cls, line) {
+    const row = document.createElement("div")
+    row.className = cls
+    row.textContent = line
+    this.logEl.appendChild(row)
+  }
+
+  renderAllLines() {
+    if (!this.logEl) return
+    this.logEl.textContent = ""
+    this.lines.forEach(({ cls, line }) => this.appendRow(cls, line))
+    this.logEl.scrollTop = this.logEl.scrollHeight
+  }
+
+  loadPersisted() {
+    try {
+      const raw = window.sessionStorage?.getItem(STORAGE_KEY)
+      if (!raw) return []
+      const parsed = JSON.parse(raw)
+      return Array.isArray(parsed) ? parsed.slice(-MAX_LINES) : []
+    } catch { return [] }
+  }
+
+  persist() {
+    try { window.sessionStorage?.setItem(STORAGE_KEY, JSON.stringify(this.lines)) }
+    catch { /* quota or private mode — silently skip */ }
+  }
+
   async copy() {
-    const text = this.lines.join("\n")
+    const text = this.lines.map(l => typeof l === "string" ? l : l.line).join("\n")
     try {
       await navigator.clipboard.writeText(text)
       this.push("nfo", "copied to clipboard")
