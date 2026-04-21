@@ -3,6 +3,12 @@
 <%= csp_meta_tag %>
 <%= viewport_meta_tag %>
 
+<%# Disable Turbo's restoration cache in the Ruby Native iOS shell. Each
+    cached page triggers a preview→fresh double render on revisit, which
+    desyncs the native tab controller after a handful of navigations. Web
+    keeps the cache for instant-back. %>
+<%= tag.meta(name: "turbo-cache-control", content: "no-cache") if hotwire_native_app? %>
+
 <%= javascript_importmap_tags %>
 <%= stylesheet_link_tag "tailwind", media: "all", "data-turbo-track": "reload" %>
 <%= stylesheet_link_tag :ruby_native, "data-turbo-track": "reload" %>

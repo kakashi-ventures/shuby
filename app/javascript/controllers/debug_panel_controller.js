@@ -116,8 +116,27 @@ export default class extends Controller {
       const hist = window.Turbo?.session?.history
       this.push("nfo", `Turbo: ${!!window.Turbo} idx=${hist?.currentIndex} len=${hist?.entries?.length}`)
     } catch (e) { this.push("err", `Turbo probe: ${e.message}`) }
-    const bridge = window.webkit?.messageHandlers
-    this.push("nfo", `bridge: ${bridge ? Object.keys(bridge).join(",") : "none"}`)
+    const mh = window.webkit?.messageHandlers
+    // WKWebView exposes handlers as an unenumerable proxy — probe known names.
+    const known = ["rubyNative", "webBridge", "nativeApp", "RubyNative"]
+    const found = mh ? known.filter(n => !!mh[n]) : []
+    this.push("nfo", `bridge: ${mh ? (found.length ? found.join(",") : "present-but-no-known-handlers") : "none"}`)
+    this.wrapTurboVisit()
+  }
+
+  // iOS may call Turbo.visit() directly (e.g. on native tab tap). Wrap it so
+  // we see those calls even when they don't originate from a DOM click.
+  wrapTurboVisit() {
+    if (!window.Turbo?.visit || window.Turbo.__shubyWrapped) return
+    const original = window.Turbo.visit.bind(window.Turbo)
+    const debug = this
+    window.Turbo.visit = function(...args) {
+      const url = args[0]
+      const opts = args[1] ? JSON.stringify(args[1]).slice(0, 80) : ""
+      debug.push("brg", `Turbo.visit(${url}) ${opts}`)
+      return original(...args)
+    }
+    window.Turbo.__shubyWrapped = true
   }
 
   logClick(e) {

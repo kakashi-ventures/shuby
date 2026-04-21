@@ -3,7 +3,12 @@
 
 <div class="container mx-auto px-4 pb-24">
   <div class="my-8">
-    <%= link_to settings_path, class: "flex items-center gap-2 text-gray-500 mb-6" do %>
+    <%# data-turbo-action=replace keeps the back link from growing the history
+        stack — the "Indietro" link is semantically a restore, not a forward
+        advance. Helps keep Turbo history shallow under the native tab stack. %>
+    <%= link_to settings_path,
+                class: "flex items-center gap-2 text-gray-500 mb-6",
+                data: { turbo_action: "replace" } do %>
       <%= render_svg "shuby/icons/icon-chevron-left", size: :md, decorative: true %>
       <%= t("back") %>
     <% end %>
