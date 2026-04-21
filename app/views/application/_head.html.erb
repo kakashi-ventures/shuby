@@ -1,7 +1,10 @@
 <%= render Current.meta_tags %>
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
-<%= viewport_meta_tag %>
+<%# ruby_native 0.8 breaking change: the native bridge no longer injects
+    viewport-fit=cover automatically — WebKit could resolve safe area insets
+    before the JS ran, leaving env(safe-area-inset-*) at 0. %>
+<%= viewport_meta_tag content: "width=device-width, initial-scale=1, viewport-fit=cover" %>
 
 <%# Disable Turbo's restoration cache in the Ruby Native iOS shell. Each
     cached page triggers a preview→fresh double render on revisit, which
