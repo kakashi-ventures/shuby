@@ -4,7 +4,7 @@
     <%= render "head" %>
   </head>
 
-  <body data-controller="theme" data-theme-preference-value="shuby">
+  <body data-controller="theme" data-theme-preference-value="shuby" <%= 'data-turbo-prefetch="false"'.html_safe if hotwire_native_app? %>>
     <header class="native-inset-top">
       <%= impersonation_banner %>
       <%= render "flash" %>

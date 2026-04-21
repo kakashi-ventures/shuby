@@ -6,7 +6,7 @@
     <%= render "head" %>
   </head>
 
-  <body class="bg-white min-h-screen" data-controller="theme" data-theme-preference-value="light">
+  <body class="bg-white min-h-screen" data-controller="theme" data-theme-preference-value="light" <%= 'data-turbo-prefetch="false"'.html_safe if hotwire_native_app? %>>
     <header class="native-inset-top">
       <%= impersonation_banner %>
       <%= render "flash" %>

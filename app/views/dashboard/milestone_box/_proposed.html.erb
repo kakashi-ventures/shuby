@@ -4,15 +4,8 @@
     8px gap between children (tags row, progress intro, area title,
     alarm+time row). Per-area illustration overflows the right edge.
     The whole card is wrapped in link_to — the card itself is the CTA. %>
-<%# data-turbo-prefetch=false — /start is a GET that server-redirects to the
-    stories fullscreen layout. Turbo 8 prefetch + redirect-to-different-URL +
-    iOS WKWebView freezes the visit silently. Desktop Chrome is fine, so we
-    disable only prefetch (not the whole Turbo visit). The stories layout also
-    sets turbo-visit-control=reload under hotwire_native_app? as a belt-and-
-    suspenders guard against the iOS layout-swap path. %>
 <%= link_to start_child_development_stage_path(child, milestone.development_area.slug),
             class: "block",
-            data: { turbo_prefetch: false },
             aria: { label: t("dashboard.milestone_box.cta_aria_label", area: milestone.development_area.name) } do %>
   <div class="shuby-milestone-card shuby-milestone-card-proposed">
     <%# Per-area illustration. DevelopmentArea#illustration_path returns

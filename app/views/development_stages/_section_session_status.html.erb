@@ -38,10 +38,8 @@
 <% end %>
 
 <% unless current_session&.in_progress? || current_session&.not_started? %>
-  <%# See dashboard/milestone_box/_proposed — /start redirect + iOS prefetch bug. %>
   <%= link_to start_child_development_stage_path(child, area.slug),
-      class: "shuby-btn shuby-btn-md shuby-btn-primary w-full",
-      data: { turbo_prefetch: false } do %>
+      class: "shuby-btn shuby-btn-md shuby-btn-primary w-full" do %>
     <%= current_session&.completed? ? t("restart_questionnaire", scope: scope) : t("start_questionnaire", scope: scope) %>
   <% end %>
 <% end %>
