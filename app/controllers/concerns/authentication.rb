@@ -56,7 +56,7 @@ module Authentication
       return onboarding_path
     end
 
-    stored_location_for(resource_or_scope) || super
+    stored_location_for(resource_or_scope) || today_path
   end
 
   # Helper method for verifying authentication in a before_action, but redirecting to sign up instead of login
