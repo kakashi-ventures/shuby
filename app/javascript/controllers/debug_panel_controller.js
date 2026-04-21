@@ -130,7 +130,14 @@ export default class extends Controller {
     const d = e.detail || {}
     const url = d.url?.href || d.url || d.fetchResponse?.response?.url || d.response?.url || ""
     const cls = e.type.includes("error") || e.type.includes("missing") ? "err" : "trb"
-    this.push(cls, `${e.type} ${url}`)
+    const def = e.defaultPrevented ? " def=1" : ""
+    // Use microtask to capture whether the event was preventDefault'd *after*
+    // all sync listeners ran (Ruby Native shell may cancel turbo:before-visit).
+    queueMicrotask(() => {
+      const finalDef = e.defaultPrevented ? " def=1" : ""
+      if (finalDef && !def) this.push(cls, `${e.type}${finalDef} (post-prevent) ${url}`)
+    })
+    this.push(cls, `${e.type}${def} ${url}`)
   }
 
   wrapBridge() {

@@ -18,7 +18,12 @@ tabs:
     icon: house.fill
     auto_route:
       - /today
-      - /children/
+      # NOTE: /children/ removed 2026-04-21 — it appeared to trigger a
+      # Ruby Native 0.7 iOS interceptor that cancelled turbo:before-visit
+      # on links into child-scoped URLs (stuck click, no visit, no fetch).
+      # Tradeoff: tapping a /children/* link from Archivio/Gestione no
+      # longer auto-switches to Oggi — navigation stays in the current
+      # tab. Acceptable for now; can re-enable once upstream confirms.
   - title: Shuby AI
     path: /shuby
     icon: bubble.left.and.text.bubble.right.fill
