@@ -24,7 +24,17 @@
       <%= render "footer" unless hotwire_native_app? || content_for?(:hide_footer) || content_for?(:bottom_nav) %>
     </div>
 
-    <%= native_tabs_tag if user_signed_in? %>
+    <%# Wrap native_tabs_tag in a data-turbo-permanent container so the signal
+        element survives Turbo's <body> swap across visits. Ruby Native uses a
+        MutationObserver (per 0.5.3 CHANGELOG) to watch data-native-* signals —
+        swapping body would detach the observer's target and desync the iOS
+        tab controller after a few navigations. native_badge_tag must update
+        per-page (unread count), so it stays outside the permanent wrapper. %>
+    <% if user_signed_in? %>
+      <div id="native-tabs-signal" data-turbo-permanent>
+        <%= native_tabs_tag %>
+      </div>
+    <% end %>
     <%= native_badge_tag(@notification_counts&.values&.sum || 0) if user_signed_in? && defined?(@notification_counts) %>
     <%= yield :bottom_nav unless hotwire_native_app? %>
     <%= render "shared/beta_feedback_button" if user_signed_in? && current_user.beta_tester? %>
