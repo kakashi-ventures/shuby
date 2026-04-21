@@ -15,6 +15,7 @@ paths:
 - Use Turbo Frames (`<turbo-frame>`) for partial page updates
 - Use Turbo Streams for server-pushed updates (create, update, destroy actions)
 - Use Stimulus controllers for JavaScript behavior — no inline JS
+- **Page transitions**: tag new drill-down/wizard views with `<% content_for :page_type, "detail" %>` (or `"wizard"` / `"immersive"`). Omit for tab roots. See `.claude/rules/view-transitions.md` for the full pattern, `streamed:` local contract for Turbo Stream partials, and the non-obvious body+`:has()` CSS approach.
 
 ## View Components
 - Use view components (`app/components/`) for reusable UI elements
