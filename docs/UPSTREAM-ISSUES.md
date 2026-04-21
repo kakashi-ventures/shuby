@@ -10,39 +10,46 @@ needed, and the upstream link (once an issue is open).
 
 ---
 
-## [FIXED in 0.8.0] ruby_native — `turbo:before-visit` cancelled on same-tab match
+## [PARTIALLY FIXED in 0.8.0, REOPENED] ruby_native — same-tab auto_route cancel
 
-**Symptom.** Tap on a link whose URL matches the **currently active** tab's
-`path`/`auto_route` triggers `event.preventDefault()` on `turbo:before-visit`
-inside the iOS shell. The visit never starts. After 3–9 occurrences the
-native liquid-glass tab bar stops forwarding any tap to the webview.
+**Symptom.** Tap on a link whose URL matches the currently active tab's
+`path`/`auto_route` still triggers `event.preventDefault()` on
+`turbo:before-visit` inside the iOS shell. Visit never starts. After 2–9
+occurrences the native liquid-glass tab bar stops forwarding any tap to
+the webview.
 
-**Evidence (2026-04-21, iPad iOS 18.7, Ruby Native 0.7.0).** Debug panel
-captured `turbo:before-visit def=1` on a tap from the Oggi tab to `/today`
-(Oggi's own path). Desktop Chrome reproduces the flow correctly — bug is
-purely iOS-side.
+**Evidence (2026-04-22, iPad iOS 18.7, Ruby Native 0.8.0).** After the
+0.8.0 upgrade, re-enabling `auto_route: [/today, /children/]` on the
+Oggi tab froze the tab bar within 2–3 taps on dashboard widgets
+(milestone card → `/children/:id/development-stages/.../start`,
+measurement → `/children/:id/measurements/new?type=weight`). Archive
+articles (`/archive/:slug`) stayed responsive. The pattern correlates
+with deep paths that match the `/children/` trailing-slash prefix.
 
-**Root cause (per upstream release notes).** `_tabPaths` was a flat array
-instead of grouped-by-tab-index, so `_shouldRouteToOtherTab` misidentified
-same-tab navigations as cross-tab. Trailing-slash patterns (`/children/`)
-also did not match the bare path, compounding the issue. Triggered an
-infinite routing loop when Turbo.js was present in Normal Mode.
+**What 0.8.0 fixed.** Per release notes + issue #47: trailing-slash
+patterns like `/breweries/` now match the bare path `/breweries`, and
+`_tabPaths` is grouped by tab index. That addresses one symptom of the
+misidentification but the deep-path-match-against-trailing-prefix case
+evidently still cancels `turbo:before-visit`.
 
-**Upstream.** https://github.com/ruby-native/gem/issues/47 (closed
-2026-04-21). Fixed in v0.8.0 released the same day — see CHANGELOG
-entry *"Tab auto-routing with trailing-slash patterns no longer breaks
-Normal Mode navigation."*
+**Upstream.** https://github.com/ruby-native/gem/issues/47 — the 0.8.0
+fix is real but incomplete. Need a new issue (or a comment on #47)
+with the 0.8.0 repro captured above.
 
-**Resolved.** Upgraded to ruby_native 0.8.0 (Gemfile `~> 0.8`). Restored
-`auto_route: [/today, /children/]` on the Oggi tab and default prefix
-match on the other three. `viewport-fit=cover` added to the viewport
-meta tag per the v0.8.0 breaking change (`app/views/application/_head.html.erb`).
+**Workaround (current).** `config/ruby_native.yml` sets
+`auto_route: false` on every tab. Disables the interceptor entirely.
+Same tradeoff as before — cross-tab deep-links no longer auto-switch
+tabs; users tap the native tab bar manually.
 
-**How to verify the fix holds.** Activate debug panel (`?debug=1` or
-`cookies[:shuby_debug]`), tap through several `/children/*` links from
-within the Oggi tab and from other tabs. Confirm `turbo:before-visit`
-never logs `def=1` and the native tab bar stays responsive across many
-navigations.
+**Files carrying the workaround.**
+- `config/ruby_native.yml` — `auto_route: false` on all four tabs.
+
+**Remove workaround when.** A future ruby_native release notes that the
+iOS shell's interceptor no longer cancels `turbo:before-visit` for
+deep-path matches against trailing-slash auto_route prefixes. Verify
+with the debug panel: re-enable `auto_route: [/today, /children/]` on
+Oggi, tap through the dashboard milestone + measurement widgets, and
+confirm `turbo:before-visit` never logs `def=1` across 10+ navigations.
 
 ---
 
