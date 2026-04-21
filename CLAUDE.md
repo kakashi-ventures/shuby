@@ -103,6 +103,9 @@ app/views/layouts/application.html.erb     # native_tabs_tag, native_badge_tag, 
 - Do NOT replace `hotwire_native_app?` with `native_app?` — both work, avoid regressions
 - The `/today` route is a dedicated path for the iOS Oggi tab (avoids root `/` ambiguity)
 
+### Upstream bugs & workarounds
+- `docs/UPSTREAM-ISSUES.md` — registry of third-party bugs we work around in the codebase. Re-read on every `bundle update ruby_native` / major iOS release. Each entry lists the files carrying the workaround and the removal checklist.
+
 ## Architecture (Jumpstart Pro Foundation)
 
 ### Multi-tenancy

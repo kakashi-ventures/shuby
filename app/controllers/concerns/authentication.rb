@@ -22,6 +22,7 @@ module Authentication
   # Override turbo-rails helper: its default regex /(Turbo|Hotwire) Native/ does not
   # match Ruby Native's UA ("Ruby Native" / "RubyNative/x.y.z"), silently breaking
   # every html.hotwire-native CSS rule and every server-side native guard.
+  # Upstream context + removal checklist: docs/UPSTREAM-ISSUES.md
   def hotwire_native_app?
     request.user_agent.to_s.match?(/(Turbo|Hotwire|Ruby) Native/)
   end

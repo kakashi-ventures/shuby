@@ -30,6 +30,7 @@ appearance:
 # iOS tab-app idiom anyway. Preferable to random webview freezes.
 #
 # Revisit once upstream (ruby_native gem) fixes the same-tab-match cancel.
+# Full context + removal checklist: docs/UPSTREAM-ISSUES.md
 
 tabs:
   - title: Oggi
