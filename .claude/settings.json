@@ -4,5 +4,19 @@
   },
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/check-doc-updates.sh\"",
+            "timeout": 10,
+            "statusMessage": "Checking if docs need updating..."
+          }
+        ]
+      }
+    ]
   }
 }
