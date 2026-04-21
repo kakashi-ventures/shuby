@@ -12,25 +12,40 @@ appearance:
     dark: "#1F2937"
   theme: auto
 
+# NOTE (2026-04-21) — auto_route disabled on every tab.
+#
+# Ruby Native 0.7's iOS shell injects JS that listens for turbo:before-visit
+# and cancels the event (event.preventDefault()) whenever the destination URL
+# matches a tab's auto_route. Per gem docs it should only intercept cross-tab
+# links and let same-tab matches proceed normally, but in practice it also
+# cancels when the URL matches the CURRENT tab's auto_route or path — leaving
+# the webview stuck (visit cancelled, no navigation, no fetch). Captured in
+# debug panel log 2026-04-21: `turbo:before-visit def=1 .../today` on a link
+# click from the Oggi tab to /today (Oggi's own path).
+#
+# Setting auto_route: false on each tab disables the interceptor entirely for
+# that tab. Tradeoff: cross-tab links no longer auto-switch — e.g. tapping a
+# /children/* link from Archivio stays in Archivio rather than jumping to
+# Oggi. User has to use the native tab bar manually, which is the standard
+# iOS tab-app idiom anyway. Preferable to random webview freezes.
+#
+# Revisit once upstream (ruby_native gem) fixes the same-tab-match cancel.
+
 tabs:
   - title: Oggi
     path: /today
     icon: house.fill
-    auto_route:
-      - /today
-      # NOTE: /children/ removed 2026-04-21 — it appeared to trigger a
-      # Ruby Native 0.7 iOS interceptor that cancelled turbo:before-visit
-      # on links into child-scoped URLs (stuck click, no visit, no fetch).
-      # Tradeoff: tapping a /children/* link from Archivio/Gestione no
-      # longer auto-switches to Oggi — navigation stays in the current
-      # tab. Acceptable for now; can re-enable once upstream confirms.
+    auto_route: false
   - title: Shuby AI
     path: /shuby
     icon: bubble.left.and.text.bubble.right.fill
     eager: true
+    auto_route: false
   - title: Archivio
     path: /archive
     icon: books.vertical.fill
+    auto_route: false
   - title: Gestione
     path: /settings
     icon: gearshape.fill
+    auto_route: false
