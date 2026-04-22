@@ -74,36 +74,37 @@ on iOS (see `/native_debug` route).
 
 ---
 
-## [OPEN] turbo-rails pinned to `< 2.0.21` — Turbo JS 8.0.21 removed isSamePage
+## [RESOLVED, was likely a false positive] turbo-rails `< 2.0.21` pin
 
-**Symptom.** Turbo 8.0.21 removed the `isSamePage` logic that Ruby
-Native's iOS WKWebView adapter relied on. Observed (commit `abc3768a`,
-2026-04-17): buttons/links showed `:active` state on tap but navigation
-never completed inside the native shell.
+**History.** Commit `abc3768a` (2026-04-17) pinned turbo-rails to
+`< 2.0.21` with the rationale *"Turbo 8.0.21+ removed isSamePage logic,
+breaking how visit proposals reach the Ruby Native WKWebView adapter.
+Buttons showed :active state but navigation never completed."* Same
+commit also added `pointer-events: none` on the invisible native
+navbar overlay and removed an unreliable CDN importmap pin.
 
-**Workaround.** `Gemfile` pins `turbo-rails "~> 2.0.3", "< 2.0.21"`,
-keeping us on turbo-rails 2.0.20 / Turbo JS 8.0.20. Every subsequent
-turbo-rails release (2.0.21, 2.0.22, 2.0.23) bundles Turbo JS 8.0.21+,
-so we can't bump within the pin range.
+**Re-evaluation 2026-04-22.** Timeline doesn't support the isSamePage
+hypothesis:
+- Turbo 8.0.21 (isSamePage removed): released 2026-01-16
+- Ruby Native 0.7.0: released 2026-04-10 — three months *after* the
+  Turbo removal
+- If the gem's iOS adapter depended on isSamePage it would never have
+  worked against any current Turbo. Upstream CI would have caught it.
 
-**Checked 2026-04-22.** ruby_native 0.8.0 CHANGELOG makes no mention of
-Turbo adapter changes; the gem's own source has no `isSamePage` /
-`visitProposedToLocation` references (adapter lives in the closed iOS
-Swift side). No evidence the native shell works with Turbo 8.0.21+.
+The "button :active but no navigation" symptom matches exactly the
+invisible-overlay-intercept fix that shipped in the same commit
+(`html.hotwire-native .top-nav.native.fixed { pointer-events: none }`
+in `app/assets/tailwind/components/hotwire_native.css`). Most likely
+the pin was a coincidental cargo-culted change alongside the actual
+fix — both landed together, the pointer-events rule solved it, the
+pin got credit.
 
-**Remove workaround when.** A future ruby_native release notes explicit
-support for Turbo 8.0.21+ (post-isSamePage), OR turbo-rails itself
-re-introduces an equivalent same-page signal. Test by lifting the pin
-to `~> 2.0.3`, running `bundle update turbo-rails`, building TestFlight,
-and confirming that dashboard link taps still navigate (not just
-:active then sit).
-
-**Files carrying the workaround.**
-- `Gemfile` — line 17: `gem "turbo-rails", "~> 2.0.3", "< 2.0.21"`.
-
-**Patches we're missing while pinned.** As of 2026-04-22: 2.0.23.
-Mostly dependency freshening and one `session.navigator` rename. Low
-severity — no known critical fixes in this window.
+**Resolution.** Pin removed 2026-04-22. `Gemfile` back to
+`gem "turbo-rails", "~> 2.0.3"` — tracking 2.0.23 now (Turbo JS 8.0.23).
+No code in this repo referenced the renamed `Turbo.session.navigator`
+(only this registry doc mentioned it). Verify on next TestFlight build
+that taps still navigate cleanly. If a regression surfaces, re-pin and
+reopen with better evidence.
 
 ---
 

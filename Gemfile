@@ -14,9 +14,7 @@ gem "puma", "~> 8.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-# Pinned to avoid Turbo 8.0.21+ isSamePage removal that breaks Ruby
-# Native iOS navigation. Revisit: docs/UPSTREAM-ISSUES.md
-gem "turbo-rails", "~> 2.0.3", "< 2.0.21"
+gem "turbo-rails", "~> 2.0.3"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails", "~> 1.0", ">= 1.0.2"
 # Ruby Native — wrap Rails app in native iOS shell [https://rubynative.com]
