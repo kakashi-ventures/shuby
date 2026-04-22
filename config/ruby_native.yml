@@ -12,37 +12,20 @@ appearance:
     dark: "#1F2937"
   theme: auto
 
-# NOTE (2026-04-22) — auto_route disabled on every tab.
-#
-# ruby_native 0.8.0 fixed issue #47 (trailing-slash pattern not matching
-# bare path + _tabPaths grouped by tab index), but deep child paths like
-# /children/18/measurements/new still trigger the same-tab-match cancel
-# bug on iOS 18.7 TestFlight. Re-enabling auto_route: [/today, /children/]
-# on the Oggi tab froze the native tab bar within 2–3 taps of the dashboard
-# milestone or measurement widgets. Backed out.
-#
-# Tradeoff acknowledged: cross-tab deep-links no longer auto-switch — e.g.
-# tapping /children/* from Archivio stays in Archivio rather than jumping
-# to Oggi. User switches tabs manually via the native tab bar, which is
-# the standard iOS idiom anyway.
-#
-# Full context + removal checklist: docs/UPSTREAM-ISSUES.md
-
 tabs:
   - title: Oggi
     path: /today
     icon: house.fill
-    auto_route: false
+    auto_route:
+      - /today
+      - /children/
   - title: Shuby AI
     path: /shuby
     icon: bubble.left.and.text.bubble.right.fill
     eager: true
-    auto_route: false
   - title: Archivio
     path: /archive
     icon: books.vertical.fill
-    auto_route: false
   - title: Gestione
     path: /settings
     icon: gearshape.fill
-    auto_route: false

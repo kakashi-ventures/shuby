@@ -514,7 +514,7 @@ GEM
       ruby_llm-schema (~> 0)
       zeitwerk (~> 2)
     ruby_llm-schema (0.3.0)
-    ruby_native (0.8.0)
+    ruby_native (0.8.1)
       jwt (~> 2.0)
       rails (>= 7.1)
       rqrcode (~> 3.0)
@@ -879,7 +879,7 @@ CHECKSUMS
   ruby-vips (2.3.0) sha256=e685ec02c13969912debbd98019e50492e12989282da5f37d05f5471442f5374
   ruby_llm (1.14.1) sha256=7487d0f0bb9e86836d9233d656e10637370a6b22eb2555343c0a4c179ce7c500
   ruby_llm-schema (0.3.0) sha256=a591edc5ca1b7f0304f0e2261de61ba4b3bea17be09f5cf7558153adfda3dec6
-  ruby_native (0.8.0) sha256=b7cfbbbee9e8c1e2a5612655cf2330fe021aa1b85acad89ed69d98e84f1b9fb6
+  ruby_native (0.8.1) sha256=b3f13d68c677624bf702bb17915035fe33fc6efec38ee0fc3394439ba4bd5cae
   rubyzip (3.2.2) sha256=c0ed99385f0625415c8f05bcae33fe649ed2952894a95ff8b08f26ca57ea5b3c
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.43.0) sha256=a634377b964b701c6ac0a009ce3a08fa34ec1e1e7fe9a6d57e3088d14529a65c

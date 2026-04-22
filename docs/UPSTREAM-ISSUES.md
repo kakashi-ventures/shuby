@@ -10,46 +10,40 @@ needed, and the upstream link (once an issue is open).
 
 ---
 
-## [PARTIALLY FIXED in 0.8.0, REOPENED] ruby_native — same-tab auto_route cancel
+## [FIXED in 0.8.1] ruby_native — auto_route cancel from unclaimed URLs in Normal Mode
 
-**Symptom.** Tap on a link whose URL matches the currently active tab's
-`path`/`auto_route` still triggers `event.preventDefault()` on
-`turbo:before-visit` inside the iOS shell. Visit never starts. After 2–9
-occurrences the native liquid-glass tab bar stops forwarding any tap to
-the webview.
+**Root cause (per upstream #50).** `_shouldRouteToOtherTab` inferred the
+current tab from `window.location.pathname` via `_matchTab`. When the
+webview was on a URL not claimed by any tab's `auto_route` (e.g. after
+navigating deep from the Oggi tab to a URL under `/children/` while the
+tab's auto_route was `[/today]`, before we added `/children/`), `_matchTab`
+returned `null`. A link to a URL that *did* match a tab caused the
+interceptor to see `destinationTab !== null` and classify it as a
+cross-tab navigation — even though the user was still on the origin tab.
+It cancelled `turbo:before-visit` and posted `{action:"visit", url}` to
+native. Native saw `matchingTabIndex == selectedIndex` (already on the
+correct tab), didn't switch, and called `RubyNative.visit(url)` back
+into the same webview, which repeated the cycle. Infinite JS ↔ native
+round-trip → `turbo:before-visit def=1` we captured in the debug log.
 
-**Evidence (2026-04-22, iPad iOS 18.7, Ruby Native 0.8.0).** After the
-0.8.0 upgrade, re-enabling `auto_route: [/today, /children/]` on the
-Oggi tab froze the tab bar within 2–3 taps on dashboard widgets
-(milestone card → `/children/:id/development-stages/.../start`,
-measurement → `/children/:id/measurements/new?type=weight`). Archive
-articles (`/archive/:slug`) stayed responsive. The pattern correlates
-with deep paths that match the `/children/` trailing-slash prefix.
+**Upstream fix.** https://github.com/ruby-native/gem/issues/50 (closed
+2026-04-22). Ruby Native 0.8.1 injects `window.RubyNative._myTabIndex`
+per-webview from the tab bar controller, so the interceptor compares the
+destination against the webview's *actual* tab instead of inferring from
+URL. **The fix lives in the native binary**, not the gem — bumping
+`ruby_native` alone isn't enough. A fresh TestFlight build via
+`ruby_native deploy` is required to pick up the new JS bridge.
 
-**What 0.8.0 fixed.** Per release notes + issue #47: trailing-slash
-patterns like `/breweries/` now match the bare path `/breweries`, and
-`_tabPaths` is grouped by tab index. That addresses one symptom of the
-misidentification but the deep-path-match-against-trailing-prefix case
-evidently still cancels `turbo:before-visit`.
+**Resolved 2026-04-22.** Upgraded to ruby_native 0.8.1. Restored
+`auto_route: [/today, /children/]` on Oggi and default prefix match on
+the other three tabs in `config/ruby_native.yml`.
 
-**Upstream.** https://github.com/ruby-native/gem/issues/47 — the 0.8.0
-fix is real but incomplete. Need a new issue (or a comment on #47)
-with the 0.8.0 repro captured above.
-
-**Workaround (current).** `config/ruby_native.yml` sets
-`auto_route: false` on every tab. Disables the interceptor entirely.
-Same tradeoff as before — cross-tab deep-links no longer auto-switch
-tabs; users tap the native tab bar manually.
-
-**Files carrying the workaround.**
-- `config/ruby_native.yml` — `auto_route: false` on all four tabs.
-
-**Remove workaround when.** A future ruby_native release notes that the
-iOS shell's interceptor no longer cancels `turbo:before-visit` for
-deep-path matches against trailing-slash auto_route prefixes. Verify
-with the debug panel: re-enable `auto_route: [/today, /children/]` on
-Oggi, tap through the dashboard milestone + measurement widgets, and
-confirm `turbo:before-visit` never logs `def=1` across 10+ navigations.
+**How to verify the fix holds.** Activate debug panel (`?debug=1` or
+`cookies[:shuby_debug]`) on a new TestFlight build. From the Oggi tab
+navigate to a non-`auto_route`-claimed URL (e.g. `/children/:id/development-stages`
+once the Oggi tab stack is deep), then tap a link back to something
+under `/children/`. Confirm `turbo:before-visit` never logs `def=1` and
+the native tab bar stays responsive across many navigations.
 
 ---
 
