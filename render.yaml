@@ -2,7 +2,7 @@
 services:
   - type: web
     name: rails
-    plan: free
+    plan: standard # Starter 512MB è sotto il fabbisogno (Rails 8 + Jumpstart + RubyLLM)
     runtime: ruby
     region: frankfurt # the region must be consistent across all services for the internal keys to be read
     buildCommand: "./bin/render-build.sh"
@@ -11,8 +11,10 @@ services:
     envVars:
       - key: RAILS_MASTER_KEY
         sync: false
-      - key: SOLID_QUEUE_IN_PUMA
-        value: true
+      # SolidQueue runs in a dedicated worker service below — keep it out of the web process
+      # to avoid tying 80–150 MB of supervisor/dispatcher/worker memory to the Puma baseline.
+      - key: WEB_CONCURRENCY
+        value: 0 # single-mode Puma (no master fork); see config/puma.rb
       - key: DATABASE_URL
         fromDatabase:
           name: primary
@@ -44,26 +46,35 @@ services:
   #   plan: free # optional (defaults to starter)
   #   maxmemoryPolicy: noeviction # optional (defaults to allkeys-lru)
 
-  # Uncomment the following blueprint if you want to enable a Sidekiq worker
-  # - type: worker
-  #   name: sidekiq-worker
-  #   env: ruby
-  #   plan: starter # no free option for bg workers
-  #   region: oregon # the region must be consistent across all services for the internal keys to be read
-  #   buildCommand: "./bin/render-build.sh --skip-migrate"
-  #   startCommand: bundle exec sidekiq -e production
-  #   envVars:
-  #     - key: DATABASE_URL
-  #       fromDatabase:
-  #         name: postgres
-  #         property: connectionString
-  #     - key: REDIS_URL
-  #       fromService:
-  #         name: redis
-  #         type: redis
-  #         property: connectionString
-  #     - key: RAILS_MASTER_KEY
-  #       sync: false
+  # Dedicated SolidQueue worker — keeps job supervisor/dispatcher/workers
+  # out of the Puma process so the web baseline stays lean.
+  # Start command is `bin/jobs` (already in Procfile), which runs the SolidQueue supervisor.
+  - type: worker
+    name: solid-queue-worker
+    runtime: ruby
+    plan: starter
+    region: frankfurt # must match the web service region for internal DB connections
+    buildCommand: "./bin/render-build.sh --skip-migrations"
+    startCommand: bundle exec bin/jobs
+    envVars:
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: primary
+          property: connectionString
+      - key: QUEUE_DATABASE_URL
+        fromDatabase:
+          name: solid_queue
+          property: connectionString
+      - key: CACHE_DATABASE_URL
+        fromDatabase:
+          name: solid_cache
+          property: connectionString
+      - key: CABLE_DATABASE_URL
+        fromDatabase:
+          name: solid_cable
+          property: connectionString
 
 # Render's "free" databases are deleted after 30 days unless upgraded and only one per workspace. Instead, default to the smallest paid size.
 databases:
