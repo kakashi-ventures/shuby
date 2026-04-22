@@ -1,59 +1,41 @@
-# Example Render configuration. You will need to adjust this for the different services you run.
+# Render configuration for Shuby production.
+#
+# Note: this file documents the desired state. Actual prod config lives on
+# the Render Dashboard (Blueprint sync is NOT enabled). Keep this in sync
+# manually when tweaking the Dashboard so it stays a useful reference /
+# starter template in case Blueprint sync is ever turned on.
+#
+# Single-Postgres setup: Rails uses one shuby-db for every logical DB
+# (primary, queue, cache, cable). See config/database.yml — in production
+# CACHE_DATABASE_URL / QUEUE_DATABASE_URL / CABLE_DATABASE_URL all fall
+# back to DATABASE_URL when unset, so we only need to inject DATABASE_URL.
 services:
   - type: web
-    name: rails
-    plan: standard # Starter 512MB è sotto il fabbisogno (Rails 8 + Jumpstart + RubyLLM)
+    name: shuby-ruby
+    plan: standard # Starter 512MB non basta per Rails 8 + Jumpstart + RubyLLM
     runtime: ruby
-    region: frankfurt # the region must be consistent across all services for the internal keys to be read
+    region: frankfurt # must match DB region for internal connection strings
     buildCommand: "./bin/render-build.sh"
     startCommand: bundle exec rails s
     healthCheckPath: "/up"
     envVars:
       - key: RAILS_MASTER_KEY
         sync: false
-      # SolidQueue runs in a dedicated worker service below — keep it out of the web process
-      # to avoid tying 80–150 MB of supervisor/dispatcher/worker memory to the Puma baseline.
       - key: WEB_CONCURRENCY
         value: 0 # single-mode Puma (no master fork); see config/puma.rb
       - key: DATABASE_URL
         fromDatabase:
-          name: primary
+          name: shuby-db
           property: connectionString
-      - key: CABLE_DATABASE_URL
-        fromDatabase:
-          name: solid_cable
-          property: connectionString
-      - key: CACHE_DATABASE_URL
-        fromDatabase:
-          name: solid_cache
-          property: connectionString
-      - key: QUEUE_DATABASE_URL
-        fromDatabase:
-          name: solid_queue
-          property: connectionString
-      # Uncomment the following config if you want to use Redis
-      # - key: REDIS_URL
-      #   fromService:
-      #     type: redis
-      #     name: redis
-      #     property: connectionString
 
-  # Uncomment the following blueprint if you want to use Redis
-  # - type: redis
-  #   name: redis
-  #   region: oregon # the region must be consistent across all services for the internal keys to be read
-  #   ipAllowList: [] # only allow internal connections
-  #   plan: free # optional (defaults to starter)
-  #   maxmemoryPolicy: noeviction # optional (defaults to allkeys-lru)
-
-  # Dedicated SolidQueue worker — keeps job supervisor/dispatcher/workers
-  # out of the Puma process so the web baseline stays lean.
-  # Start command is `bin/jobs` (already in Procfile), which runs the SolidQueue supervisor.
+  # Dedicated SolidQueue worker — runs supervisor/dispatcher/workers
+  # outside the Puma process so the web baseline stays lean.
+  # Start command is `bin/jobs` (already in Procfile).
   - type: worker
     name: solid-queue-worker
     runtime: ruby
-    plan: starter
-    region: frankfurt # must match the web service region for internal DB connections
+    plan: starter # SolidQueue is lightweight; scale up only if jobs become heavy
+    region: frankfurt
     buildCommand: "./bin/render-build.sh --skip-migrations"
     startCommand: bundle exec bin/jobs
     envVars:
@@ -61,39 +43,9 @@ services:
         sync: false
       - key: DATABASE_URL
         fromDatabase:
-          name: primary
-          property: connectionString
-      - key: QUEUE_DATABASE_URL
-        fromDatabase:
-          name: solid_queue
-          property: connectionString
-      - key: CACHE_DATABASE_URL
-        fromDatabase:
-          name: solid_cache
-          property: connectionString
-      - key: CABLE_DATABASE_URL
-        fromDatabase:
-          name: solid_cable
+          name: shuby-db
           property: connectionString
 
-# Render's "free" databases are deleted after 30 days unless upgraded and only one per workspace. Instead, default to the smallest paid size.
-databases:
-  - name: primary
-    plan: basic-256mb
-    region: frankfurt # the region must be consistent across all services for the internal keys to be read
-    ipAllowList: [] # only allow internal connections
-
-  - name: solid_cable
-    plan: basic-256mb
-    region: frankfurt # the region must be consistent across all services for the internal keys to be read
-    ipAllowList: [] # only allow internal connections
-
-  - name: solid_cache
-    plan: basic-256mb
-    region: frankfurt # the region must be consistent across all services for the internal keys to be read
-    ipAllowList: [] # only allow internal connections
-
-  - name: solid_queue
-    plan: basic-256mb
-    region: frankfurt # the region must be consistent across all services for the internal keys to be read
-    ipAllowList: [] # only allow internal connections
+# The shuby-db Postgres instance is managed via the Render Dashboard
+# (PostgreSQL 16, Frankfurt). Intentionally not declared here to avoid a
+# Blueprint apply from trying to create a duplicate.
