@@ -15,18 +15,14 @@ npm install
 bundle exec rails assets:precompile
 bundle exec rails assets:clean
 if [[ $SKIP_MIGRATE != true ]]; then
+  # db:prepare applies pending migrations for every logical DB configured
+  # (primary, queue, cache, cable). Schema drift from gem upgrades (e.g. new
+  # tables in Solid Queue releases) is handled via regular migrations in
+  # db/migrate/ with if_not_exists guards — NOT via db:schema:load, which
+  # is destructive (force: :cascade drops & recreates tables on every deploy,
+  # blowing away queued jobs and cached entries, and is blocked in production
+  # by Rails' ProtectedEnvironmentError).
   bundle exec rails db:prepare
-  # Load schemas for secondary "logical" DBs (cache, queue). These share the
-  # same physical DB as primary but have their own schema files
-  # (db/cache_schema.rb, db/queue_schema.rb) with `force: :cascade`, so
-  # re-running is idempotent (drops + recreates the tables). Re-running is
-  # REQUIRED when new tables are added upstream (e.g. Solid Queue 1.0 added
-  # solid_queue_recurring_tasks) — previously these errors were silenced
-  # with `2>/dev/null || true`, which masked schema drift and left the
-  # worker unable to start. Let failures surface so the deploy fails fast.
-  bundle exec rails db:schema:load:cache
-  bundle exec rails db:schema:load:queue
-  # Cable table is now created via migration, no need for db:schema:load:cable
 
   # Seed reference data (idempotent — safe to run on every deploy)
   bundle exec rails db:seed
