@@ -1,6 +1,5 @@
 <% Current.meta_tags.set(title: t(".title")) %>
 <% content_for :hide_navbar, true %>
-<%= native_overscroll_tag(top: "#E5F2FF") %>
 
 <%# The header-scroll controller is hosted here (not in the header partial)
     so its Stimulus scope spans the whole dashboard — that way the sticky
