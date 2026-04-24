@@ -3,7 +3,13 @@
   <head>
     <%= render "head" %>
   </head>
-  <body data-controller="theme bridge--menu-button <%= "bridge--notification-token" if user_signed_in? %>" data-theme-preference-value="shuby">
+  <%# data-turbo-prefetch=false on <body> when hotwire_native_app? disables Turbo 8
+      link prefetching app-wide in the Ruby Native iOS shell. Prefetch on
+      touchstart + WKWebView has produced a double-render pattern (prefetched
+      response rendered, then the visit fetch re-renders) that appears to
+      desync the native tab controller so subsequent native tab taps no
+      longer drive Turbo.visit. Web is unaffected. %>
+  <body data-controller="theme bridge--menu-button <%= "bridge--notification-token" if user_signed_in? %>" data-theme-preference-value="shuby" data-page-type="<%= page_transition_type %>" <%= 'data-turbo-prefetch="false"'.html_safe if hotwire_native_app? %>>
     <div class="grid-layout-wrapper">
       <header class="native-inset-top">
         <%= impersonation_banner %>
@@ -18,7 +24,17 @@
       <%= render "footer" unless hotwire_native_app? || content_for?(:hide_footer) || content_for?(:bottom_nav) %>
     </div>
 
-    <%= native_tabs_tag if user_signed_in? %>
+    <%# Wrap native_tabs_tag in a data-turbo-permanent container so the signal
+        element survives Turbo's <body> swap across visits. Ruby Native uses a
+        MutationObserver (per 0.5.3 CHANGELOG) to watch data-native-* signals —
+        swapping body would detach the observer's target and desync the iOS
+        tab controller after a few navigations. native_badge_tag must update
+        per-page (unread count), so it stays outside the permanent wrapper. %>
+    <% if user_signed_in? %>
+      <div id="native-tabs-signal" data-turbo-permanent>
+        <%= native_tabs_tag %>
+      </div>
+    <% end %>
     <%= native_badge_tag(@notification_counts&.values&.sum || 0) if user_signed_in? && defined?(@notification_counts) %>
     <%= yield :bottom_nav unless hotwire_native_app? %>
     <%= render "shared/beta_feedback_button" if user_signed_in? && current_user.beta_tester? %>

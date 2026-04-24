@@ -6,7 +6,7 @@ RubyLLM.configure do |config|
   config.openai_api_key = Rails.application.credentials.dig(:openai, :api_key)
 
   # Default model for chat
-  config.default_model = "gpt-5-mini"
+  config.default_model = "gpt-5.4-mini"
 
   # Request timeout in seconds
   config.request_timeout = 120

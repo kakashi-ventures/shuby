@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>" data-theme="shuby">
+<html class="<%= class_names("hotwire-native": hotwire_native_app?) %>" lang="<%= I18n.locale %>" data-theme="shuby">
   <head>
+    <%# iOS Ruby Native WKWebView: Turbo visit into this fullscreen layout (no
+        native_tabs_tag, different body controllers) freezes silently when
+        reached from the application layout. Desktop is unaffected. Scope the
+        full-reload hint to the native shell so web still gets Turbo benefits. %>
+    <%= tag.meta(name: "turbo-visit-control", content: "reload") if hotwire_native_app? %>
     <%= render "head" %>
   </head>
-  <body class="stories-layout" data-controller="theme">
+  <body class="stories-layout" data-controller="theme" data-page-type="<%= page_transition_type %>" <%= 'data-turbo-prefetch="false"'.html_safe if hotwire_native_app? %>>
     <%= yield %>
+    <%= render "shared/debug_panel" if params[:debug] == "1" || cookies[:shuby_debug] == "1" %>
   </body>
 </html>

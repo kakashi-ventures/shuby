@@ -64,6 +64,7 @@ docs/knowledge_base/
 
 # Playwright MCP (screenshots, snapshot YAMLs, console logs — verification artifacts)
 .playwright-mcp/
+.playwright-cli/
 
 # Loose screenshots at repo root (verification artifacts, Figma comparisons).
 # Anchored to root so app/assets/images/**/*.png stays tracked.

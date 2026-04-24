@@ -23,7 +23,7 @@ Built on **Jumpstart Pro Rails 8** — a multi-tenant SaaS starter that provides
 - **OpenAI Vector Store** for RAG (Retrieval Augmented Generation)
 - **FileSearchTool**: custom tool that searches the hosted Vector Store
 - **Turbo Streams** for real-time message streaming
-- Default model: `gpt-5-mini` (configurable in `ShubyAssistantService::DEFAULT_MODEL`)
+- Default model: `gpt-5.4-mini` (configurable in `ShubyAssistantService::DEFAULT_MODEL`)
 
 ### Key Shuby Files
 
@@ -102,6 +102,9 @@ app/views/layouts/application.html.erb     # native_tabs_tag, native_badge_tag, 
 - `hotwire_native_app?` returns `true` in the Ruby Native shell — all existing conditionals work
 - Do NOT replace `hotwire_native_app?` with `native_app?` — both work, avoid regressions
 - The `/today` route is a dedicated path for the iOS Oggi tab (avoids root `/` ambiguity)
+
+### Upstream bugs & workarounds
+- `docs/UPSTREAM-ISSUES.md` — registry of third-party bugs we work around in the codebase. Re-read on every `bundle update ruby_native` / major iOS release. Each entry lists the files carrying the workaround and the removal checklist.
 
 ## Architecture (Jumpstart Pro Foundation)
 

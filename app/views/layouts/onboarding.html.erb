@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html class="<%= class_names("hotwire-native": hotwire_native_app?) %>" lang="<%= I18n.locale %>">
   <head>
+    <%# See stories layout — same guard against iOS Turbo-visit layout-swap freeze. %>
+    <%= tag.meta(name: "turbo-visit-control", content: "reload") if hotwire_native_app? %>
     <%= render "head" %>
   </head>
 
-  <body class="bg-white min-h-screen" data-controller="theme" data-theme-preference-value="light">
+  <body class="bg-white min-h-screen" data-controller="theme" data-theme-preference-value="light" data-page-type="<%= page_transition_type %>" <%= 'data-turbo-prefetch="false"'.html_safe if hotwire_native_app? %>>
     <header class="native-inset-top">
       <%= impersonation_banner %>
       <%= render "flash" %>
@@ -19,5 +21,6 @@
     <main class="max-w-md mx-auto px-4 py-8">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
+    <%= render "shared/debug_panel" if params[:debug] == "1" || cookies[:shuby_debug] == "1" %>
   </body>
 </html>

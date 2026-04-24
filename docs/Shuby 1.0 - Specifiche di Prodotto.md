@@ -113,7 +113,7 @@ Strutture Dati Chiave:
 
 ### **2.3 Integrazione AI**
 
-Provider: OpenAI (gpt-5-mini o superiore)
+Provider: OpenAI (gpt-5.4-mini o superiore)
 
 * Sistema RAG (Retrieval Augmented Generation)  
 * Vector store con knowledge base scientifica  

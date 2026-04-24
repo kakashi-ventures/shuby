@@ -4,13 +4,8 @@
     8px gap between children (tags row, progress intro, area title,
     alarm+time row). Per-area illustration overflows the right edge.
     The whole card is wrapped in link_to — the card itself is the CTA. %>
-<%# data:turbo:false — /start redirects server-side to the stories fullscreen layout
-    (no native_tabs_tag). The Turbo prefetch+redirect+layout-swap combo reliably
-    freezes the visit in Ruby Native iOS WKWebView (see debug panel log 2026-04-21).
-    A full browser navigation is actually cleaner for entering immersive flows. %>
 <%= link_to start_child_development_stage_path(child, milestone.development_area.slug),
             class: "block",
-            data: { turbo: false },
             aria: { label: t("dashboard.milestone_box.cta_aria_label", area: milestone.development_area.name) } do %>
   <div class="shuby-milestone-card shuby-milestone-card-proposed">
     <%# Per-area illustration. DevelopmentArea#illustration_path returns

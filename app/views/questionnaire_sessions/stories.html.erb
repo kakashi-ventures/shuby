@@ -1,4 +1,5 @@
 <% content_for :title, t("questionnaire_sessions.stories.title", area: @area.name) %>
+<% content_for :page_type, "immersive" %>
 
 <div data-controller="questionnaire-stories"
      data-questionnaire-stories-child-id-value="<%= @child.id %>"

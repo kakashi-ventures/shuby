@@ -14,11 +14,11 @@ gem "puma", "~> 8.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails", "~> 2.0.3", "< 2.0.21" # Pin to avoid Turbo 8.0.21+ isSamePage removal that breaks native navigation
+gem "turbo-rails", "~> 2.0.3"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails", "~> 1.0", ">= 1.0.2"
 # Ruby Native — wrap Rails app in native iOS shell [https://rubynative.com]
-gem "ruby_native", "~> 0.7"
+gem "ruby_native", "~> 0.8"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "~> 2.14"
 

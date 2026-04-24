@@ -1,4 +1,5 @@
-<%= tag.div id: dom_id(question), class: "flex items-center justify-between py-2 border-b border-gray-100 last:border-0" do %>
+<% enter_class = local_assigns[:streamed] ? " turbo-stream-enter" : "" %>
+<%= tag.div id: dom_id(question), class: "flex items-center justify-between py-2 border-b border-gray-100 last:border-0#{enter_class}" do %>
   <span class="shuby-p2 flex-1"><%= question.body %></span>
   <%= button_to child_pediatrician_question_path(child, question),
       method: :delete,

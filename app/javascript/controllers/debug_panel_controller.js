@@ -1,30 +1,43 @@
 import { Controller } from "@hotwired/stimulus"
 
 const MAX_LINES = 200
+const STORAGE_KEY = "shuby_debug_log"
 const TURBO_EVENTS = [
   "turbo:click",
   "turbo:before-visit",
   "turbo:visit",
+  "turbo:before-cache",
   "turbo:before-fetch-request",
   "turbo:before-fetch-response",
   "turbo:fetch-request-error",
-  "turbo:load",
+  "turbo:before-render",
   "turbo:render",
+  "turbo:before-morph-element",
+  "turbo:before-morph-attribute",
+  "turbo:morph",
+  "turbo:morph-element",
+  "turbo:load",
   "turbo:frame-missing",
+  "turbo:frame-load",
+  "turbo:frame-render",
+  "turbo:before-frame-render",
   "turbo:submit-start",
-  "turbo:submit-end"
+  "turbo:submit-end",
+  "turbo:before-stream-render"
 ]
 
 export default class extends Controller {
   connect() {
-    this.lines = []
+    this.lines = this.loadPersisted()
     this.mount()
+    this.renderAllLines()
     this.boundClick = this.logClick.bind(this)
     this.boundTurbo = this.logTurbo.bind(this)
 
     document.addEventListener("click", this.boundClick, true)
     TURBO_EVENTS.forEach(t => document.addEventListener(t, this.boundTurbo))
     this.wrapBridge()
+    this.push("nfo", `─── page load (${this.lines.length} prior lines) ───`)
     this.snapshot()
   }
 
@@ -90,7 +103,7 @@ export default class extends Controller {
       if (!act) return
       e.stopPropagation()
       if (act === "toggle") wrap.classList.toggle("shuby-debug-panel-collapsed")
-      if (act === "clear") { this.lines = []; this.logEl.textContent = "" }
+      if (act === "clear") { this.lines = []; this.logEl.textContent = ""; this.persist() }
       if (act === "copy") this.copy()
     })
   }
@@ -103,8 +116,27 @@ export default class extends Controller {
       const hist = window.Turbo?.session?.history
       this.push("nfo", `Turbo: ${!!window.Turbo} idx=${hist?.currentIndex} len=${hist?.entries?.length}`)
     } catch (e) { this.push("err", `Turbo probe: ${e.message}`) }
-    const bridge = window.webkit?.messageHandlers
-    this.push("nfo", `bridge: ${bridge ? Object.keys(bridge).join(",") : "none"}`)
+    const mh = window.webkit?.messageHandlers
+    // WKWebView exposes handlers as an unenumerable proxy — probe known names.
+    const known = ["rubyNative", "webBridge", "nativeApp", "RubyNative"]
+    const found = mh ? known.filter(n => !!mh[n]) : []
+    this.push("nfo", `bridge: ${mh ? (found.length ? found.join(",") : "present-but-no-known-handlers") : "none"}`)
+    this.wrapTurboVisit()
+  }
+
+  // iOS may call Turbo.visit() directly (e.g. on native tab tap). Wrap it so
+  // we see those calls even when they don't originate from a DOM click.
+  wrapTurboVisit() {
+    if (!window.Turbo?.visit || window.Turbo.__shubyWrapped) return
+    const original = window.Turbo.visit.bind(window.Turbo)
+    const debug = this
+    window.Turbo.visit = function(...args) {
+      const url = args[0]
+      const opts = args[1] ? JSON.stringify(args[1]).slice(0, 80) : ""
+      debug.push("brg", `Turbo.visit(${url}) ${opts}`)
+      return original(...args)
+    }
+    window.Turbo.__shubyWrapped = true
   }
 
   logClick(e) {
@@ -120,7 +152,14 @@ export default class extends Controller {
     const d = e.detail || {}
     const url = d.url?.href || d.url || d.fetchResponse?.response?.url || d.response?.url || ""
     const cls = e.type.includes("error") || e.type.includes("missing") ? "err" : "trb"
-    this.push(cls, `${e.type} ${url}`)
+    const def = e.defaultPrevented ? " def=1" : ""
+    // Use microtask to capture whether the event was preventDefault'd *after*
+    // all sync listeners ran (Ruby Native shell may cancel turbo:before-visit).
+    queueMicrotask(() => {
+      const finalDef = e.defaultPrevented ? " def=1" : ""
+      if (finalDef && !def) this.push(cls, `${e.type}${finalDef} (post-prevent) ${url}`)
+    })
+    this.push(cls, `${e.type}${def} ${url}`)
   }
 
   wrapBridge() {
@@ -149,19 +188,45 @@ export default class extends Controller {
   push(cls, msg) {
     const ts = new Date().toISOString().slice(11, 23)
     const line = `${ts} ${msg}`
-    this.lines.push(line)
+    this.lines.push({ cls, line })
     if (this.lines.length > MAX_LINES) this.lines.shift()
+    this.persist()
     if (!this.logEl) return
-    const row = document.createElement("div")
-    row.className = cls
-    row.textContent = line
-    this.logEl.appendChild(row)
+    this.appendRow(cls, line)
     while (this.logEl.children.length > MAX_LINES) this.logEl.firstChild.remove()
     this.logEl.scrollTop = this.logEl.scrollHeight
   }
 
+  appendRow(cls, line) {
+    const row = document.createElement("div")
+    row.className = cls
+    row.textContent = line
+    this.logEl.appendChild(row)
+  }
+
+  renderAllLines() {
+    if (!this.logEl) return
+    this.logEl.textContent = ""
+    this.lines.forEach(({ cls, line }) => this.appendRow(cls, line))
+    this.logEl.scrollTop = this.logEl.scrollHeight
+  }
+
+  loadPersisted() {
+    try {
+      const raw = window.sessionStorage?.getItem(STORAGE_KEY)
+      if (!raw) return []
+      const parsed = JSON.parse(raw)
+      return Array.isArray(parsed) ? parsed.slice(-MAX_LINES) : []
+    } catch { return [] }
+  }
+
+  persist() {
+    try { window.sessionStorage?.setItem(STORAGE_KEY, JSON.stringify(this.lines)) }
+    catch { /* quota or private mode — silently skip */ }
+  }
+
   async copy() {
-    const text = this.lines.join("\n")
+    const text = this.lines.map(l => typeof l === "string" ? l : l.line).join("\n")
     try {
       await navigator.clipboard.writeText(text)
       this.push("nfo", "copied to clipboard")

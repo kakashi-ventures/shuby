@@ -128,6 +128,7 @@
 @import "./components/tooltips.css" layer(components);
 @import "./components/top_nav.css" layer(components);
 @import "./components/typography.css" layer(components);
+@import "./components/view_transitions.css" layer(components);
 @import "./components/wells.css" layer(components);
 @import "./components/braintree.css" layer(components);
 /* Shuby Design System Components */

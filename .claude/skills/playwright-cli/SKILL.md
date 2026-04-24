@@ -6,6 +6,27 @@ allowed-tools: Bash(playwright-cli:*) Bash(npx:*) Bash(npm:*)
 
 # Browser Automation with playwright-cli
 
+## WSL2 prerequisiti (preflight)
+
+Su WSL2 `playwright-cli` crasha silenziosamente quando il browser headless non riesce ad allocare memoria. **Prima di qualsiasi `open`**, eseguire il preflight:
+
+```bash
+# 1) Controlla memoria libera. Chrome headless vuole >= 500 MB liberi.
+free -m | awk 'NR==2 {if ($7 < 1500) printf "[WARN] Only %d MB available — rischio crash\n", $7; else printf "[OK] %d MB available\n", $7}'
+
+# 2) Conta processi MCP zombie (leftover di sessioni Claude precedenti)
+zombies=$(ps aux | grep -cE "(@playwright/mcp|chrome-devtools-mcp)" | head -1)
+if [ "$zombies" -gt 5 ]; then
+  echo "[WARN] $zombies zombie MCP processes — esegui cleanup:"
+  echo "  ps aux | grep -E '(@playwright/mcp|chrome-devtools-mcp)' | grep -v grep | awk '{print \$2}' | xargs -r kill -9"
+fi
+
+# 3) Reset playwright-cli daemon in caso di stato stantio
+playwright-cli close-all 2>/dev/null
+```
+
+Se dopo il cleanup `MemAvailable` è ancora < 1500 MB, chiudere VSCode o altre istanze Claude prima di aprire il browser.
+
 ## Quick start
 
 ```bash

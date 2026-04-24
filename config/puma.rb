@@ -28,6 +28,12 @@
 threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
 threads threads_count, threads_count
 
+# On Render (and other PaaS) WEB_CONCURRENCY is sometimes set to 1 by default,
+# which forces Puma into cluster mode with a single worker — doubling memory
+# overhead for the master + worker fork with no concurrency benefit. Default
+# to single mode (workers = 0) unless explicitly overridden.
+workers ENV.fetch("WEB_CONCURRENCY", 0).to_i
+
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 port ENV.fetch("PORT", 3000)
 

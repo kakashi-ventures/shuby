@@ -46,7 +46,7 @@ class Jumpstart::AccountInvitationsTest < ActionDispatch::IntegrationTest
     assert_difference "User.count" do
       post user_registration_path(invite: @account_invitation.token), params: {user: {name: "Invited User", email: "new@inviteduser.com", password: "password", password_confirmation: "password", terms_of_service: "1"}}
     end
-    assert_redirected_to user_root_path
+    assert_redirected_to onboarding_path
 
     user = User.order(created_at: :asc).last
     # Depending on configuration, may have a personal account

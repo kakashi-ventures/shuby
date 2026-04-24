@@ -3,7 +3,7 @@
 # Model for Shuby chat conversations
 #
 # @example Create a new chat for a user
-#   chat = current_user.shuby_chats.create!(model: "gpt-5-mini")
+#   chat = current_user.shuby_chats.create!(model: "gpt-5.4-mini")
 #   chat.to_llm.ask("What is child development?")
 #
 class ShubyChat < ApplicationRecord

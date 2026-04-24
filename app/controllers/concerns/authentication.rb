@@ -22,6 +22,7 @@ module Authentication
   # Override turbo-rails helper: its default regex /(Turbo|Hotwire) Native/ does not
   # match Ruby Native's UA ("Ruby Native" / "RubyNative/x.y.z"), silently breaking
   # every html.hotwire-native CSS rule and every server-side native guard.
+  # Upstream context + removal checklist: docs/UPSTREAM-ISSUES.md
   def hotwire_native_app?
     request.user_agent.to_s.match?(/(Turbo|Hotwire|Ruby) Native/)
   end
@@ -44,14 +45,19 @@ module Authentication
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    return "/reset_app" if hotwire_native_app?
+    # /reset_app is a Hotwire Native convention: returns an empty page that the
+    # iOS shell intercepts to re-route the auth response into the tab stack.
+    # Ruby Native has no such interceptor — landing on /reset_app just shows
+    # "Redirecting..." forever on the Oggi tab. Skip it for Ruby Native and
+    # use the normal post-login redirect.
+    return "/reset_app" if hotwire_native_app? && !native_app?
 
     # Redirect to onboarding if not completed
     if resource_or_scope.is_a?(User) && !resource_or_scope.onboarding_completed?
       return onboarding_path
     end
 
-    stored_location_for(resource_or_scope) || super
+    stored_location_for(resource_or_scope) || today_path
   end
 
   # Helper method for verifying authentication in a before_action, but redirecting to sign up instead of login

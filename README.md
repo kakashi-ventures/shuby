@@ -20,7 +20,7 @@ Shuby is a mobile-first web application for parents tracking their child's devel
 - **TailwindCSS v4** via `tailwindcss-rails`
 - **PostgreSQL** + **SolidQueue** / **SolidCache** / **SolidCable**
 - **Ruby Native v0.7** — native iOS shell wrapping the Rails app ([rubynative.com](https://rubynative.com))
-- **RubyLLM 1.2** + **ruby-openai** (Vector Store RAG, default model `gpt-5-mini`)
+- **RubyLLM 1.2** + **ruby-openai** (Vector Store RAG, default model `gpt-5.4-mini`)
 - **Prawn** + **prawn-table** for pediatrician PDF reports
 - **Devise** (auth), **Pundit** (authz), **Pay** (billing)
 - **Minitest** + Capybara/Selenium for system tests; **RuboCop** (omakase)

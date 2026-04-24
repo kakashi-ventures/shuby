@@ -1,8 +1,11 @@
-<%# Renders a single chat message (user or assistant) %>
+<%# Renders a single chat message (user or assistant).
+    Pass `streamed: true` from the controller when appending via Turbo Stream
+    to fade the new message in; omit on initial page render. %>
 <% is_user = message.user? %>
 <% message_dom_id = local_assigns[:message_id] || dom_id(message) %>
+<% enter_class = local_assigns[:streamed] ? " turbo-stream-enter" : "" %>
 
-<div id="<%= message_dom_id %>" class="flex <%= is_user ? 'justify-end' : 'justify-start' %>">
+<div id="<%= message_dom_id %>" class="flex <%= is_user ? 'justify-end' : 'justify-start' %><%= enter_class %>">
   <div class="<%= is_user ? 'bg-[var(--bg-primary)] text-white' : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700' %> rounded-2xl px-4 py-3 max-w-[85%] shadow-sm">
     <% unless is_user %>
       <div class="flex items-center gap-2 mb-2">

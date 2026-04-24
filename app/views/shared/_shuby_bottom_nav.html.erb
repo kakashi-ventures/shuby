@@ -3,7 +3,7 @@
 <% active ||= nil %>
 
 <nav class="shuby-bottom-nav shuby-bottom-nav-fixed">
-  <%= link_to root_path, class: "shuby-bottom-nav-item #{'active' if active == 'today'}" do %>
+  <%= link_to today_path, class: "shuby-bottom-nav-item #{'active' if active == 'today'}" do %>
     <div class="shuby-bottom-nav-icon">
       <%= render_svg "shuby/icons/icon-dashboard", size: :lg, decorative: true %>
     </div>

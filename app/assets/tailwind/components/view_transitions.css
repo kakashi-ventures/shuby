@@ -1,0 +1,90 @@
+/* =============================================================
+   Turbo 8 View Transitions — 4 page-type buckets:
+   - root      (default): crossfade + subtle zoom
+   - detail    : iOS-style slide-in from right (forward) / left (back)
+   - wizard    : same as detail (linear step flow)
+   - immersive : no Turbo VT (lets custom Stimulus animations run alone)
+   ============================================================= */
+
+/* --- DEFAULT: crossfade + subtle zoom ---------------------- */
+::view-transition-old(root) {
+  animation: shuby-fade-out 200ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+::view-transition-new(root) {
+  animation: shuby-fade-in 200ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes shuby-fade-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.98); }
+}
+@keyframes shuby-fade-in {
+  from { opacity: 0; transform: scale(1.02); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* --- DETAIL / WIZARD: iOS-style slide parallax ------------- */
+/* We read data-page-type from <body> (Turbo swaps body each visit) via :has().
+   data-turbo-visit-direction stays on <html> because Turbo writes it there. */
+
+/* Forward: new page slides in from right; old page pushes -30% with fade */
+html[data-turbo-visit-direction="forward"]:has(body[data-page-type="detail"])::view-transition-old(root),
+html[data-turbo-visit-direction="forward"]:has(body[data-page-type="wizard"])::view-transition-old(root) {
+  animation: shuby-push-out-left 280ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+html[data-turbo-visit-direction="forward"]:has(body[data-page-type="detail"])::view-transition-new(root),
+html[data-turbo-visit-direction="forward"]:has(body[data-page-type="wizard"])::view-transition-new(root) {
+  animation: shuby-slide-in-right 280ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* Back: old page slides out to right; new page reveals from -30% */
+html[data-turbo-visit-direction="back"]:has(body[data-page-type="detail"])::view-transition-old(root),
+html[data-turbo-visit-direction="back"]:has(body[data-page-type="wizard"])::view-transition-old(root) {
+  animation: shuby-slide-out-right 280ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+html[data-turbo-visit-direction="back"]:has(body[data-page-type="detail"])::view-transition-new(root),
+html[data-turbo-visit-direction="back"]:has(body[data-page-type="wizard"])::view-transition-new(root) {
+  animation: shuby-push-in-right 280ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+@keyframes shuby-slide-in-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes shuby-slide-out-right {
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
+}
+@keyframes shuby-push-out-left {
+  from { transform: translateX(0);    opacity: 1; }
+  to   { transform: translateX(-30%); opacity: 0.3; }
+}
+@keyframes shuby-push-in-right {
+  from { transform: translateX(-30%); opacity: 0.3; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* --- IMMERSIVE: disable Turbo VT (Stimulus handles animations) */
+html:has(body[data-page-type="immersive"])::view-transition-old(root),
+html:has(body[data-page-type="immersive"])::view-transition-new(root) {
+  animation: none;
+}
+
+/* --- Turbo Stream insertions: fade-in con classe .turbo-stream-enter --- */
+.turbo-stream-enter {
+  animation: shuby-stream-enter 300ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes shuby-stream-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Accessibility: respect prefers-reduced-motion -------- */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+  .turbo-stream-enter {
+    animation: none;
+  }
+}

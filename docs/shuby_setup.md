@@ -61,7 +61,7 @@ Rails.application.credentials.dig(:openai, :vector_store_id)
 - **Citations** - Sources are displayed for each response
 
 ### Models Used
-- **Chat Model**: `gpt-4-mini` (configurable in `ShubyAssistantService`)
+- **Chat Model**: `gpt-5.4-mini` (configurable in `ShubyAssistantService`)
 - **Embeddings**: Uses your existing OpenAI Vector Store
 
 ## Architecture
@@ -150,7 +150,7 @@ db/
 Edit `app/services/shuby_assistant_service.rb`:
 
 ```ruby
-DEFAULT_MODEL = "gpt-5-mini"  # or any other OpenAI model
+DEFAULT_MODEL = "gpt-5.4-mini"  # or any other OpenAI model
 ```
 
 ### Modifying the System Prompt
@@ -208,7 +208,7 @@ For manual testing:
 ```ruby
 # In Rails console
 user = User.first
-chat = user.shuby_chats.create!(model: "gpt-5-mini")
+chat = user.shuby_chats.create!(model: "gpt-5.4-mini")
 service = ShubyAssistantService.new(chat)
 response = service.ask("Quali sono le tappe di sviluppo a 6 mesi?")
 puts response.content

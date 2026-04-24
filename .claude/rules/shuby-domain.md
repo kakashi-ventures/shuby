@@ -24,7 +24,7 @@ paths:
 - Store measurement date alongside values for accurate plotting
 
 ## AI Chat (Shuby Assistant)
-- Uses RubyLLM with OpenAI (gpt-5-mini default)
+- Uses RubyLLM with OpenAI (gpt-5.4-mini default)
 - FileSearchTool for RAG against OpenAI Vector Store
 - System prompt configured in `ShubyAssistantService`
 - Stream responses via Turbo Streams
