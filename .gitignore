@@ -10,6 +10,9 @@
 # Superpowers brainstorming sessions
 /.superpowers/
 
+# Claude Code stop-hook ack files (session-local, not committed)
+.claude/.hook-state/
+
 # Ignore all environment files (except templates).
 .env
 .overmind.env
