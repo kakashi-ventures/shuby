@@ -231,11 +231,22 @@ When documents conflict: follow the hierarchy. When something is TBD in all docs
 
 ## Figma Design (Visual Source of Truth)
 
-- **MANDATORY**: Before modifying ANY screen, check the Figma design first
-- **MANDATORY**: After UI changes, verify with Playwright CLI screenshot (mobile 390x844) + Figma comparison
-- When Figma conflicts with FA/PRD on visual details, Figma wins
-- **Node map, tools, components**: see `docs/FIGMA-REFERENCE.md`
-- Use `/shuby-figma-check [section]` for systematic visual comparison
+Consult Figma **only for major visual work**. The trigger is the SCOPE of the change, not its existence.
+
+- **Do NOT consult Figma for minor edits:** single card, component, icon, badge, label, text/i18n, one-element spacing tweak, localized bug fix, helper/controller/policy/model logic, tests, or any refactor that preserves rendered output. Go straight to implementation; trust the local dev server for visual confirmation if needed.
+- **Do consult Figma for major edits:** a whole page, a new screen, a redesign, or a coordinated refactor across multiple components.
+
+When a Figma call is warranted:
+1. Start with `docs/FIGMA-REFERENCE.md` (local node map — free).
+2. For quick visual reference, use `get_screenshot` (image only — medium cost).
+3. Reserve `get_design_context` (code + screenshot + metadata — heavy) for net-new screens, redesigns, or genuinely ambiguous components where steps 1–2 don't resolve the question.
+4. Cache within a session: if a nodeId's context was already fetched this session, don't re-fetch it.
+
+Post-change verification (Playwright screenshot + Figma comparison):
+- Skip for minor edits (single card/component/icon/badge).
+- Run once, before PR, when the change is a whole-page or multi-component piece of work.
+
+When Figma conflicts with FA/PRD on visual details, Figma wins. Node map and tool details live in `docs/FIGMA-REFERENCE.md`. `/shuby-figma-check [section]` is the systematic visual audit — it is user-invoked and expensive; do not invoke it as a routine verification step.
 
 ## Pending Decisions
 
