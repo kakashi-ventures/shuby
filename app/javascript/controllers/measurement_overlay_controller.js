@@ -82,10 +82,16 @@ export default class extends Controller {
   onSubmitEnd(event) {
     if (!event.detail?.success) return
     this.close()
-    if (window.Turbo?.visit) {
+    const redirectUrl = event.detail.fetchResponse?.response?.url
+    if (redirectUrl && window.Turbo?.visit) {
+      // `advance` adds a history entry (so Back returns to the dashboard)
+      // and scrolls the new page to top — `replace` preserves the caller's
+      // scroll offset, which lands the user at the bottom of the new page.
+      window.Turbo.visit(redirectUrl, { action: "advance" })
+    } else if (window.Turbo?.visit) {
       window.Turbo.visit(window.location.href, { action: "replace" })
     } else {
-      window.location.reload()
+      window.location.assign(redirectUrl || window.location.href)
     }
   }
 

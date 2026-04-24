@@ -1,0 +1,26 @@
+<%# Measurement history section. Figma: nodes 621:10594 (title) + 621:10637 (edit button) + 621:10642 (row).
+  Excludes the featured measurement from the list (Figma shows distinct dates
+  between the card at the top and the history rows below).
+  Locals:
+    measurement            - the featured measurement (used for the edit link)
+    same_type_measurements - ActiveRecord::Relation of same-type measurements (history)
+    child                  - the child record (used to compute age at each measurement)
+%>
+<section class="shuby-measurement-detail-history mt-8">
+  <div class="shuby-measurement-detail-history__header">
+    <h2 class="shuby-h3 text-shuby-blue-800">
+      <%= t("measurements.show.history_title") %>
+    </h2>
+    <%= link_to edit_child_measurement_path(child, measurement),
+        class: "shuby-measurement-detail-history__edit",
+        aria: { label: t("measurements.show.edit") } do %>
+      <%= render_svg "shuby/icons/icon-edit", decorative: true %>
+    <% end %>
+  </div>
+
+  <ul class="shuby-measurement-detail-history__list">
+    <% same_type_measurements.each do |entry| %>
+      <%= render "measurements/detail_history_row", measurement: entry, child: child %>
+    <% end %>
+  </ul>
+</section>

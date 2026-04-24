@@ -28,6 +28,11 @@ it:
         illustration_alt: "Illustrazione bilancia"
     new:
       title: "Nuova misurazione"
+    show:
+      percentiles_title: "Tabella percentili"
+      history_title: "Storico misurazioni"
+      add_more: "Aggiungi misurazione"
+      edit: "Modifica"
     overlay:
       close: "Chiudi"
     create:

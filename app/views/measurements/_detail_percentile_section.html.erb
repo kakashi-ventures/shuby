@@ -1,0 +1,41 @@
+<%# Percentile chart section. Figma: nodes 621:10346 (title) + 621:10427-10594 (chart).
+  Shown only for WHO-backed types (weight / height / head_circumference) and when
+  the child has a sex that maps to WHO standards.
+  Locals:
+    measurement - the measurement being viewed (used for its type)
+    child       - the child record
+%>
+<% type = measurement.measurement_type %>
+<% is_feeding = type == "feeding_weight" %>
+<% has_sex = child.sex.in?(%w[male female]) %>
+
+<% unless is_feeding %>
+  <section class="shuby-measurement-detail-percentiles mt-8">
+    <div class="shuby-measurement-detail-percentiles__header">
+      <h2 class="shuby-h3 text-shuby-blue-800">
+        <%= t("measurements.show.percentiles_title") %>
+      </h2>
+      <% if has_sex %>
+        <%= render "measurements/detail_unit_toggle",
+            type: type,
+            preferred: current_user.measurement_unit %>
+      <% end %>
+    </div>
+
+    <% if has_sex %>
+      <% chart_data = growth_chart_data(child: child, type: type) %>
+      <% if chart_data[:measurements].any? %>
+        <%= render "children/growth_chart", child: child, chart_data: chart_data %>
+      <% end %>
+    <% else %>
+      <div class="shuby-card text-center py-6">
+        <p class="shuby-p1 text-shuby-gray-600 mb-3">
+          <%= t("measurements.chart.sex_required") %>
+        </p>
+        <%= link_to t("measurements.chart.update_profile"),
+            edit_child_path(child),
+            class: "shuby-btn shuby-btn-sm shuby-btn-outline" %>
+      </div>
+    <% end %>
+  </section>
+<% end %>

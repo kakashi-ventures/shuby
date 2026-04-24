@@ -1,0 +1,31 @@
+<%# Cm/in unit toggle for the detail page percentile section.
+  Figma: node 621:10357 (sits next to "Tabella percentili" heading).
+  Unlike `_unit_toggle.html.erb` (which lives inside the measurement form
+  and converts the visible input on the fly), this one persists the user's
+  `measurement_unit` preference globally and reloads the page so the
+  featured card and the WHO chart both re-render in the new unit.
+
+  Locals:
+    type      - current measurement_type ("height" / "weight" / "head_circumference")
+    preferred - "metric" | "imperial" — current user preference
+%>
+<% metric_label = t("measurements.units.#{type}") %>
+<% imperial_label =
+  case type.to_s
+  when "height", "head_circumference" then t("measurements.form.units.in")
+  when "feeding_weight" then t("measurements.form.units.oz")
+  else t("measurements.form.units.lb")
+  end %>
+<% active_side = (preferred.to_s == "imperial") ? "right" : "left" %>
+
+<button type="button"
+        class="shuby-unit-toggle"
+        data-controller="unit-preference"
+        data-unit-preference-url-value="<%= settings_privacy_path %>"
+        data-active="<%= active_side %>"
+        data-action="click->unit-preference#toggle"
+        aria-label="<%= t("measurements.form.unit_toggle.aria") %>">
+  <span class="shuby-unit-toggle-slider" aria-hidden="true"></span>
+  <span class="shuby-unit-toggle-option <%= "active" if preferred.to_s == "metric" %>" data-unit="metric"><%= metric_label %></span>
+  <span class="shuby-unit-toggle-option <%= "active" if preferred.to_s == "imperial" %>" data-unit="imperial"><%= imperial_label %></span>
+</button>

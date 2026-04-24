@@ -28,6 +28,11 @@ en:
         illustration_alt: "Scale illustration"
     new:
       title: "New measurement"
+    show:
+      percentiles_title: "Percentile chart"
+      history_title: "Measurement history"
+      add_more: "Add measurement"
+      edit: "Edit"
     overlay:
       close: "Close"
     create:

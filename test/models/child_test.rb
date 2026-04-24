@@ -94,4 +94,27 @@ class ChildTest < ActiveSupport::TestCase
     assert_includes Child.active, children(:sophia)
     assert_not_includes Child.active, children(:marco_inactive)
   end
+
+  test "detailed_age_display_at uses corrected birth date for premature babies under 24 months" do
+    # Luca is preterm (34w2d gestational) and 18 months chronological → corrected-age regime.
+    child = children(:luca)
+    # Pick a date that makes the chronological vs corrected difference visible:
+    # 100 days after birth_date. Chronological = 100 days ≈ 14 weeks 2 days.
+    # Corrected removes (40 - 34) * 7 + (7 - 2) = 47 days of prematurity,
+    # yielding ~53 days ≈ 7 weeks 4 days.
+    measured = child.birth_date + 100.days
+
+    chronological_weeks = 100 / 7                     # 14
+    corrected_weeks = (100 - 47) / 7              # 7
+    display = child.detailed_age_display_at(measured)
+
+    assert_match(/\b#{corrected_weeks}\b/, display, "expected corrected-age weeks (#{corrected_weeks})")
+    refute_match(/\b#{chronological_weeks}\b/, display, "chronological-age weeks (#{chronological_weeks}) must not leak through")
+  end
+
+  test "detailed_age_display_at uses chronological age for term babies" do
+    child = children(:sophia) # term baby (no gestational_weeks)
+    measured = child.birth_date + 42.days          # 6 weeks exactly
+    assert_match(/\b6\b/, child.detailed_age_display_at(measured))
+  end
 end

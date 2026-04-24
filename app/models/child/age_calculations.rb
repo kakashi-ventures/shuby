@@ -93,6 +93,45 @@ module Child::AgeCalculations
     end
   end
 
+  # Age as of a specific date, formatted for measurement history rows.
+  # Uses "weeks + days" granularity for babies under ~3 months (matches Figma
+  # node 621:10644 — "6 settimane, 2 giorni"), then falls back to the same
+  # months+weeks / years+months progression as `detailed_age_display`.
+  #
+  # Premature babies under 24 months chronological are displayed at corrected
+  # age, mirroring `questionnaire_age_in_months` and `PercentileCalculator`
+  # (chart plotting). This keeps the history row and the chart consistent.
+  def detailed_age_display_at(date)
+    return nil unless birth_date && date
+
+    reference_date = (premature? && age_in_months(date) < 24) ? corrected_birth_date : birth_date
+    total_days = (date.to_date - reference_date).to_i
+    return nil if total_days.negative?
+
+    if total_days < 7
+      I18n.t("children.age.days", count: total_days)
+    elsif total_days < 91
+      weeks = total_days / 7
+      remaining_days = total_days - (weeks * 7)
+      if remaining_days.zero?
+        I18n.t("children.age.weeks", count: weeks)
+      else
+        format_weeks_and_days(weeks, remaining_days)
+      end
+    else
+      months_at_date = (total_days / 30.44).floor
+      if months_at_date < 12
+        remaining_days = total_days - (months_at_date * 30.44).to_i
+        weeks = (remaining_days / 7).floor.clamp(0, 3)
+        weeks.zero? ? I18n.t("children.age.months", count: months_at_date) : format_months_and_weeks(months_at_date, weeks)
+      else
+        years = months_at_date / 12
+        remaining_months = months_at_date % 12
+        remaining_months.zero? ? I18n.t("children.age.years", count: years) : format_years_and_months(years, remaining_months)
+      end
+    end
+  end
+
   def premature?
     gestational_weeks.present? && gestational_weeks < 37
   end
@@ -148,5 +187,11 @@ module Child::AgeCalculations
     years_key = (years == 1) ? "1" : "other"
     months_key = (months == 1) ? "1" : "other"
     I18n.t("children.age.years_and_months_#{years_key}_#{months_key}", years: years, months: months)
+  end
+
+  def format_weeks_and_days(weeks, days)
+    weeks_key = (weeks == 1) ? "1" : "other"
+    days_key = (days == 1) ? "1" : "other"
+    I18n.t("children.age.weeks_and_days_#{weeks_key}_#{days_key}", weeks: weeks, days: days)
   end
 end
