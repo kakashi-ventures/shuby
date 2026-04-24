@@ -106,10 +106,13 @@ class ReportDataAggregator
     end
   end
 
+  # Pediatrician PDF intentionally renders metric regardless of the user's
+  # in-app unit_system preference. Italian pediatric medicine uses SI units;
+  # rendering imperial would force the clinician to convert back.
   def measurement_row(m)
     {
       type: m.measurement_type,
-      display_value: m.display_value,
+      display_value: m.display_value(unit_system: "metric"),
       percentile: m.percentile,
       measured_at: m.measured_at,
       photo: m.photo.attached? ? m.photo : nil

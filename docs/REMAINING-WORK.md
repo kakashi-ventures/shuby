@@ -62,15 +62,15 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 
 - Systematic Figma comparison per screen:
   - [x] Timeline 
-  - [ ] Dashboard
+  - [x] Dashboard
   - [ ] Archive
   - [ ] Chat (AI Helper)
-  - [ ] Measurements
+  - [x] Measurements
   - [ ] Onboarding
   - [ ] Child Profile
-- [ ] Dashboard header: verify scroll bg transition blue-to-white (FA 3.1)
+- [x] Dashboard header: verify scroll bg transition blue-to-white (FA 3.1)
 - [x] Measurement photo upload (PRD 3.5.2 — optional photo attachment) — Active Storage `has_one_attached :photo` on `Measurement`, form field with Stimulus preview, embedded as JPEG thumbnail in pediatrician PDF
-- [ ] Unit of measure preference (metric/imperial) in settings
+- [x] Unit of measure preference (metric/imperial) in settings — `User::MeasurementUnit` preference module, segmented toggle in `/settings/privacy`, inline overlay toggle syncs via async PATCH, display respects pref across measurements tab (PDF intentionally stays metric for Italian pediatric medical convention)
 - [ ] Verify 3-state milestone box in dashboard (proposed/completed/all-done per FA 3.3)
 
 ## P2: Non-Functional Requirements

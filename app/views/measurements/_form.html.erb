@@ -1,110 +1,62 @@
-<%= form_with(model: [@child, @measurement], class: "space-y-6", multipart: true,
+<%# Measurement form.
+  Visual spec: Figma 621:9860 — underline fields, per-type unit toggle, single Salva.
+
+  Locals:
+    context - :overlay (default — minimal per Figma) or :full (Edit page,
+              keeps the type picker + Notes).
+%>
+<% form_context = (local_assigns[:context] || :overlay).to_sym %>
+<% current_type = (@measurement.measurement_type.presence || "weight").to_s %>
+<% default_unit = t("measurements.units.#{current_type}") %>
+<% imperial_unit_for = ->(type) {
+  case type.to_s
+  when "height", "head_circumference" then t("measurements.form.units.in")
+  when "weight" then t("measurements.form.units.lb")
+  when "feeding_weight" then t("measurements.form.units.oz")
+  end
+} %>
+
+<%= form_with(model: [@child, @measurement], multipart: true,
+    class: "shuby-measurement-form flex flex-col flex-1",
     data: {
       controller: "measurement-form",
       measurement_form_placeholders_value: Measurement.measurement_types.keys.index_with { |type|
         t("measurements.form.placeholders.#{type}")
-      }.to_json
+      }.to_json,
+      measurement_form_titles_value: Measurement.measurement_types.keys.index_with { |type|
+        t("measurements.types.#{type}")
+      }.to_json,
+      measurement_form_metric_units_value: Measurement.measurement_types.keys.index_with { |type|
+        t("measurements.units.#{type}")
+      }.to_json,
+      measurement_form_imperial_units_value: Measurement.measurement_types.keys.index_with { |type|
+        imperial_unit_for.call(type)
+      }.to_json,
+      measurement_form_preferred_unit_value: current_user.measurement_unit,
+      measurement_form_persist_url_value: settings_privacy_path
     }) do |form| %>
-  <% if @measurement.errors.any? %>
-    <div class="shuby-card bg-red-50 border-red-200 mb-4">
-      <ul class="shuby-p1 text-red-600 list-disc list-inside">
-        <% @measurement.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+
+  <%= render "measurements/form_errors" %>
+
+  <% if form_context == :full %>
+    <%= render "measurements/form_type_picker", form: form, current_type: current_type %>
+  <% else %>
+    <%= form.hidden_field :measurement_type %>
   <% end %>
 
-  <%# Measurement type selector - segmented control %>
-  <div>
-    <label class="shuby-caption block mb-2"><%= t("measurements.form.type") %></label>
-    <div class="shuby-tab-segmented">
-      <% Measurement.measurement_types.keys.each do |type| %>
-        <label class="shuby-tab-segmented-item <%= "active" if @measurement.measurement_type == type %>" style="cursor: pointer;">
-          <%= form.radio_button :measurement_type, type, class: "sr-only", data: { action: "change->measurement-form#typeChanged" } %>
-          <%= t("measurements.types.#{type}") %>
-        </label>
-      <% end %>
-    </div>
+  <div class="flex flex-col gap-6">
+    <%= render "measurements/form_date_field", form: form %>
+    <%= render "measurements/form_value_field",
+        form: form,
+        current_type: current_type,
+        default_unit: default_unit %>
+
+    <% if form_context == :full %>
+      <%= render "measurements/form_notes_field", form: form %>
+    <% end %>
+
+    <%= render "measurements/form_photo_field", form: form %>
   </div>
 
-  <%# Value input %>
-  <div>
-    <label class="shuby-caption block mb-2" for="measurement_value"><%= t("measurements.form.value") %></label>
-    <%= form.number_field :value,
-        class: "shuby-input w-full",
-        step: "0.01",
-        min: "0",
-        inputmode: "decimal",
-        placeholder: t("measurements.form.placeholders.#{@measurement.measurement_type || 'weight'}"),
-        data: { measurement_form_target: "valueInput" } %>
-  </div>
-
-  <%# Date/time input %>
-  <div>
-    <label class="shuby-caption block mb-2" for="measurement_measured_at"><%= t("measurements.form.measured_at") %></label>
-    <%= form.datetime_local_field :measured_at,
-        class: "shuby-input w-full",
-        value: @measurement.measured_at&.strftime("%Y-%m-%dT%H:%M") || Time.current.strftime("%Y-%m-%dT%H:%M") %>
-  </div>
-
-  <%# Notes %>
-  <div>
-    <label class="shuby-caption block mb-2" for="measurement_notes"><%= t("measurements.form.notes") %></label>
-    <%= form.text_area :notes,
-        class: "shuby-input w-full",
-        rows: 3,
-        placeholder: t("measurements.form.notes_placeholder") %>
-  </div>
-
-  <%# Photo (optional) %>
-  <div>
-    <label class="shuby-caption block mb-2"><%= t("measurements.form.photo") %></label>
-    <div class="flex items-center gap-3">
-      <% persisted_photo = @measurement.persisted? && @measurement.photo.attached? %>
-      <div class="relative w-20 h-20 rounded-lg bg-shuby-blue-100 flex items-center justify-center overflow-hidden border border-shuby-blue-200">
-        <% if persisted_photo %>
-          <%= image_tag @measurement.photo,
-              alt: t("measurements.form.photo_alt"),
-              class: "w-full h-full object-cover",
-              data: {measurement_form_target: "photoPreview"} %>
-        <% else %>
-          <img src=""
-               alt=""
-               class="w-full h-full object-cover hidden"
-               data-measurement-form-target="photoPreview">
-        <% end %>
-        <div class="absolute inset-0 flex items-center justify-center <%= "hidden" if persisted_photo %>"
-             data-measurement-form-target="photoPlaceholder">
-          <%= render_svg "shuby/icons/icon-attachment", size: :md, decorative: true %>
-        </div>
-      </div>
-      <div class="flex-1 flex flex-col gap-2">
-        <%= form.label :photo, t("measurements.form.photo_select"),
-            class: "shuby-btn shuby-btn-outline text-center cursor-pointer" %>
-        <%= form.file_field :photo,
-            accept: Measurement::ALLOWED_PHOTO_CONTENT_TYPES.join(","),
-            direct_upload: true,
-            class: "hidden",
-            data: {action: "change->measurement-form#photoChanged"} %>
-        <button type="button"
-                class="shuby-btn-text text-sm text-red-600 <%= "hidden" unless persisted_photo %>"
-                data-measurement-form-target="removePhoto"
-                data-action="click->measurement-form#removePhoto">
-          <%= t("measurements.form.remove_photo") %>
-        </button>
-        <%= hidden_field_tag "measurement[remove_photo]", "0",
-            data: {measurement_form_target: "removePhotoField"} %>
-      </div>
-    </div>
-    <p class="shuby-caption text-shuby-gray-500 mt-2"><%= t("measurements.form.photo_hint") %></p>
-  </div>
-
-  <%# Actions %>
-  <div class="flex gap-3 pt-2">
-    <%= form.submit t("measurements.form.save"), class: "shuby-btn shuby-btn-primary flex-1", data: native_haptic_data(:success) %>
-    <%= link_to t("measurements.form.cancel"),
-        child_path(@child, tab: "measurements"),
-        class: "shuby-btn shuby-btn-outline flex-1 text-center" %>
-  </div>
+  <%= render "measurements/form_submit_row", form: form %>
 <% end %>

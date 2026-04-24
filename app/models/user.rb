@@ -5,6 +5,7 @@ class User < ApplicationRecord
   include User::BetaTester
   include User::ChatRateLimit
   include User::DataSharingConsent
+  include User::MeasurementUnit
   include User::Mentions
   include User::Notifiable
   include User::Onboarding

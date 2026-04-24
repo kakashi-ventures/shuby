@@ -231,6 +231,11 @@ it:
         data_sharing:
           title: "Condivisione dati anonimi"
           description: "Aiutaci a migliorare Shuby condividendo dati anonimi sull'utilizzo. Le tue informazioni personali restano private."
+        measurement_unit:
+          title: "Unità di misura"
+          description: "Scegli se visualizzare peso e lunghezza in unità metriche (gr, cm) o imperiali (lb, in). I PDF per i pediatri restano sempre in unità metriche."
+          metric: "Metriche"
+          imperial: "Imperiali"
         export:
           title: "Scarica i tuoi dati"
           description: "Scarica una copia di tutti i dati personali che Shuby ha raccolto sul tuo account, inclusi profilo, bambini, misurazioni e conversazioni."

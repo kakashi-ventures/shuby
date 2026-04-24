@@ -1,0 +1,25 @@
+<%# Unit toggle pill (Figma: Toggle unit - cm/in).
+  Locals:
+    type           - current measurement_type key ("weight" | "height" | "head_circumference" | "feeding_weight")
+    default_unit   - the SI unit label ("gr" | "cm")
+    preferred_unit - "metric" (default) or "imperial"; sets the initial active side
+%>
+<% preferred_unit = (local_assigns[:preferred_unit] || "metric").to_s %>
+<% imperial_unit = case type.to_s
+                   when "height", "head_circumference" then t("measurements.form.units.in")
+                   when "feeding_weight" then t("measurements.form.units.oz")
+                   else t("measurements.form.units.lb")
+                   end %>
+<% metric_unit = default_unit %>
+<% initial_side = (preferred_unit == "imperial") ? "right" : "left" %>
+
+<button type="button"
+        class="shuby-unit-toggle"
+        data-measurement-form-target="unitToggle"
+        data-action="click->measurement-form#toggleUnit"
+        data-active="<%= initial_side %>"
+        aria-label="<%= t("measurements.form.unit_toggle.aria") %>">
+  <span class="shuby-unit-toggle-slider" aria-hidden="true"></span>
+  <span class="shuby-unit-toggle-option <%= "active" if preferred_unit == "metric" %>" data-unit="metric"><%= metric_unit %></span>
+  <span class="shuby-unit-toggle-option <%= "active" if preferred_unit == "imperial" %>" data-unit="imperial"><%= imperial_unit %></span>
+</button>

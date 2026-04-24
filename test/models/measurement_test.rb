@@ -154,6 +154,50 @@ class MeasurementTest < ActiveSupport::TestCase
     assert_equal "gr", measurements(:sophia_feeding).unit
   end
 
+  # === Imperial display ===
+
+  test "display_value converts weight to lb" do
+    # 4500 gr / 453.59237 = 9.9208...
+    m = measurements(:sophia_weight_recent)
+    assert_equal "9,92 lb", m.display_value(unit_system: "imperial")
+  end
+
+  test "display_value converts height to in" do
+    # 56.5 cm / 2.54 = 22.244...
+    m = measurements(:sophia_height)
+    assert_equal "22,2 in", m.display_value(unit_system: "imperial")
+  end
+
+  test "display_value converts head_circumference to in" do
+    # 37.2 cm / 2.54 = 14.645...
+    m = measurements(:sophia_head)
+    assert_equal "14,6 in", m.display_value(unit_system: "imperial")
+  end
+
+  test "display_value converts feeding_weight to oz with plus prefix" do
+    # 80 gr / 28.3495 = 2.822...
+    m = measurements(:sophia_feeding)
+    assert_equal "+2,82 oz", m.display_value(unit_system: "imperial")
+  end
+
+  test "unit returns imperial labels when unit_system: imperial" do
+    assert_equal "lb", measurements(:sophia_weight_recent).unit(unit_system: "imperial")
+    assert_equal "in", measurements(:sophia_height).unit(unit_system: "imperial")
+    assert_equal "in", measurements(:sophia_head).unit(unit_system: "imperial")
+    assert_equal "oz", measurements(:sophia_feeding).unit(unit_system: "imperial")
+  end
+
+  test "formatted_value returns imperial-converted value" do
+    assert_equal "9,92", measurements(:sophia_weight_recent).formatted_value(unit_system: "imperial")
+    assert_equal "22,2", measurements(:sophia_height).formatted_value(unit_system: "imperial")
+    assert_equal "+2,82 oz", measurements(:sophia_feeding).display_value(unit_system: "imperial")
+  end
+
+  test "display_value defaults to metric when unit_system omitted" do
+    m = measurements(:sophia_weight_recent)
+    assert_equal m.display_value(unit_system: "metric"), m.display_value
+  end
+
   # === Staleness ===
 
   test "STALENESS_THRESHOLDS constant is defined and frozen" do

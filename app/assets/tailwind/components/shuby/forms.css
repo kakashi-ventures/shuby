@@ -41,7 +41,8 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
 
-    &.active {
+    &.active,
+    &:has(input:checked) {
         background-color: var(--bg-primary);
 
         .shuby-toggle-knob { transform: translateX(20px); }
@@ -215,4 +216,122 @@
     border-radius: var(--radius-tondo);
     transition: transform 0.2s ease;
     box-shadow: 0 0 2px var(--color-shuby-blue-500);
+}
+
+/* =====================================================
+   UNDERLINE FIELD (Figma: Form component, Overlay_Aggiungi)
+   Uppercase dark label over a bottom-border-only input.
+   Used inside the measurement overlay.
+   ===================================================== */
+
+.shuby-field-underline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    width: 100%;
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-shuby-blue-700);
+}
+
+.shuby-field-underline-label {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-black);
+    text-transform: uppercase;
+}
+
+.shuby-field-underline-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-right: var(--space-1);
+}
+
+.shuby-field-underline-input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-black);
+
+    &::placeholder { color: var(--color-shuby-gray-800); }
+
+    &:focus { outline: none; }
+
+    /* Hide the native date / datetime-local indicator so Figma's custom
+       calendar icon (rendered in .shuby-field-underline-icon) is the only
+       visible affordance. The underlying native picker still fires on tap. */
+    &[type="date"]::-webkit-calendar-picker-indicator,
+    &[type="datetime-local"]::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+    }
+}
+
+.shuby-field-underline-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    color: var(--color-shuby-black);
+    pointer-events: none;
+}
+
+/* =====================================================
+   MEASUREMENT PHOTO PREVIEW
+   64x64 thumbnail on the measurement form; holds either the
+   attached image or an attachment-icon placeholder.
+   ===================================================== */
+
+.shuby-measurement-photo-preview {
+    position: relative;
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    background-color: var(--color-shuby-blue-300);
+    border: 1px solid var(--color-shuby-blue-400);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shuby-measurement-photo-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.shuby-measurement-photo-preview-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =====================================================
+   FORM ERROR LIST + SUBMIT ROW
+   Shared layout for the validation summary and for the
+   bottom-anchored Save button inside form partials.
+   ===================================================== */
+
+.shuby-form-error-list {
+    color: var(--color-shuby-red-600);
+    list-style: disc inside;
+}
+
+.shuby-form-submit-row {
+    margin-top: auto;
+    padding-top: var(--space-8);
+    display: flex;
+    justify-content: center;
 }

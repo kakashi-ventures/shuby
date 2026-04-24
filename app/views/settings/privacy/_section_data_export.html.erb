@@ -1,0 +1,17 @@
+<%# GDPR data-export card. Posts to GdprDataExportService via the
+  settings/privacy#export action. %>
+<div class="shuby-card">
+  <div class="flex items-start gap-4">
+    <div class="shuby-settings-icon-badge shuby-settings-icon-badge--info">
+      <%= render_svg "shuby/icons/icon-download", size: :md, decorative: true %>
+    </div>
+    <div class="flex-1">
+      <h3 class="shuby-h4 mb-1"><%= t("settings.privacy.show.export.title") %></h3>
+      <p class="shuby-caption text-gray-500 mb-3"><%= t("settings.privacy.show.export.description") %></p>
+      <%= button_to t("settings.privacy.show.export.button"),
+          export_settings_privacy_path,
+          method: :post,
+          class: "shuby-btn shuby-btn-secondary shuby-btn-sm" %>
+    </div>
+  </div>
+</div>

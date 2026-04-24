@@ -17,13 +17,19 @@ it:
     card:
       update_badge: "Aggiorna"
       no_data: "-"
+      percentile_unavailable: "-"
       start_tracking: "Inizia a tracciare"
     index:
       title: "Misurazioni"
       add_new: "Aggiungi misurazione"
       empty: "Nessuna misurazione registrata"
+      empty_state:
+        body_html: "Al momento non sono presenti misurazioni.<br>Comincia a tracciare la crescita di %{child_name}!"
+        illustration_alt: "Illustrazione bilancia"
     new:
       title: "Nuova misurazione"
+    overlay:
+      close: "Chiudi"
     create:
       created: "Misurazione salvata con successo"
     edit:
@@ -35,6 +41,7 @@ it:
     form:
       type: "Tipo"
       value: "Valore"
+      date_label: "Data misurazione"
       measured_at: "Data e ora"
       notes: "Note"
       notes_placeholder: "Note aggiuntive (opzionale)"
@@ -43,13 +50,23 @@ it:
       photo_hint: "Aggiungi una foto (es. bilancia). JPEG, PNG, HEIC, WebP. Max 10 MB."
       photo_alt: "Foto della misurazione"
       remove_photo: "Rimuovi foto"
-      save: "Salva"
+      save: "Salva modifiche"
       cancel: "Annulla"
+      value_placeholder: "Inserisci"
       placeholders:
         weight: "es. 3900"
         height: "es. 54,3"
         head_circumference: "es. 34,2"
         feeding_weight: "es. 106"
+      unit_toggle:
+        aria: "Unità di misura"
+      units:
+        gr: "gr"
+        kg: "kg"
+        lb: "lb"
+        oz: "oz"
+        cm: "cm"
+        in: "in"
     chart:
       title: "Grafici di crescita"
       what_is_percentile: "Cos'è il percentile?"

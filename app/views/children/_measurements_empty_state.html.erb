@@ -1,0 +1,36 @@
+<%# Empty state for the Misurazioni tab.
+  Shows the illustration + copy above a 4-type tracking grid where each card
+  pre-scopes the overlay to its measurement type (Peso / Altezza / Circ. / Peso pre-post).
+  Required locals:
+    child - Child record
+%>
+<div class="shuby-measurements-empty">
+  <%= render_svg "shuby/illustrations/mascot-scale",
+      preserve_fill: true,
+      decorative: true,
+      width: 178,
+      height: 201,
+      styles: "shuby-measurements-empty-illustration" %>
+  <p class="shuby-measurements-empty-copy">
+    <%= t("measurements.index.empty_state.body_html", child_name: child.display_name) %>
+  </p>
+</div>
+
+<div class="shuby-metric-grid">
+  <% Measurement.measurement_types.keys.each do |type| %>
+    <%= link_to new_child_measurement_path(child, type: type),
+        class: "shuby-tracking-card",
+        aria: { label: "#{t('measurements.dashboard.start_tracking')}: #{t("measurements.types.#{type}")}" },
+        data: measurement_overlay_link_data(type) do %>
+      <div class="shuby-tracking-card-heading">
+        <p class="shuby-tracking-card-label">
+          <%= t("measurements.dashboard.section_start_tracking") %>
+        </p>
+        <p class="shuby-tracking-card-title"><%= t("measurements.types.#{type}") %></p>
+      </div>
+      <span class="shuby-icon-btn">
+        <%= render_svg "shuby/icons/icon-add", decorative: true %>
+      </span>
+    <% end %>
+  <% end %>
+</div>

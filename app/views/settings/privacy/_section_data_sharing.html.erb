@@ -1,0 +1,15 @@
+<%# Anonymous-data-sharing consent toggle. Auto-submits on change. %>
+<%= form_with model: current_user, url: settings_privacy_path, method: :patch do |form| %>
+  <div class="shuby-card">
+    <div class="flex items-start justify-between gap-4">
+      <div class="flex-1">
+        <h3 class="shuby-h4 mb-1"><%= t("settings.privacy.show.data_sharing.title") %></h3>
+        <p class="shuby-caption text-gray-500"><%= t("settings.privacy.show.data_sharing.description") %></p>
+      </div>
+      <label class="shuby-toggle shrink-0">
+        <%= form.check_box :data_sharing_consent, class: "sr-only", onchange: "this.form.requestSubmit()" %>
+        <span class="shuby-toggle-knob" aria-hidden="true"></span>
+      </label>
+    </div>
+  </div>
+<% end %>

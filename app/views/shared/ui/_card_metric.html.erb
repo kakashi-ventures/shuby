@@ -12,7 +12,10 @@
 <% has_data = value.present? %>
 <% is_stale = stale || !has_data %>
 
-<div class="shuby-measurement-card" role="group" aria-label="<%= title %>">
+<%= link_to new_child_measurement_path(child, type: type),
+    class: "shuby-measurement-card",
+    aria: { label: "#{t('measurements.dashboard.track')}: #{title}" },
+    data: measurement_overlay_link_data(type) do %>
   <div class="shuby-measurement-card-info">
     <span class="shuby-measurement-card-info-title"><%= title %></span>
     <div class="flex items-center gap-2">
@@ -29,15 +32,20 @@
     </div>
   </div>
 
+  <% shows_percentile_column = type.to_s != "feeding_weight" %>
   <div class="shuby-measurement-card-value <%= has_data && !is_stale ? "updated" : "stale" %>">
     <% if has_data %>
       <div class="shuby-measurement-card-number">
         <div class="shuby-measurement-card-number-value"><%= value %></div>
         <div class="shuby-measurement-card-number-unit"><%= unit %></div>
       </div>
-      <% if percentile.present? %>
+      <% if shows_percentile_column %>
         <div class="shuby-measurement-card-percentile">
-          <div class="shuby-measurement-card-percentile-value <%= percentile_color_class(percentile) %>"><%= percentile %>&deg;</div>
+          <% if percentile.present? %>
+            <div class="shuby-measurement-card-percentile-value <%= percentile_color_class(percentile) %>"><%= percentile %>&deg;</div>
+          <% else %>
+            <div class="shuby-measurement-card-percentile-value"><%= t("measurements.card.percentile_unavailable") %></div>
+          <% end %>
           <div class="shuby-measurement-card-percentile-label">%</div>
         </div>
       <% end %>
@@ -48,4 +56,4 @@
       </div>
     <% end %>
   </div>
-</div>
+<% end %>

@@ -7,9 +7,13 @@ paths:
 # Rails View & Component Conventions
 
 ## Styling
-- Use TailwindCSS v4 utility classes exclusively — no custom CSS unless absolutely necessary
-- Mobile-first responsive design (Hotwire Native compatibility)
-- Follow existing color palette and spacing patterns in the codebase
+- Default to TailwindCSS v4 utility classes for one-off layout and spacing
+- For named design-system elements (buttons, cards, toggles, badges, etc.) or any pattern that repeats, use or add a semantic class in `app/assets/tailwind/components/shuby/`
+  - Class names describe the domain role, not the HTML shape (e.g. `.shuby-btn-danger-subtle`, not `.shuby-red-button`)
+  - Before adding a new class, grep the existing `shuby/*.css` files — many variants already exist
+  - Prefer existing tokens (`--bg-danger-secondary`, `--color-shuby-blue-600`, etc.) over hardcoded colors
+- Avoid long inline utility chains that reimplement an existing component (e.g. rebuilding the toggle switch with `peer-checked:after:*` when `.shuby-toggle` already exists)
+- Mobile-first responsive design (Hotwire Native compatibility); native-only rules scoped to `html.hotwire-native` in `hotwire_native.css`
 
 ## Hotwire
 - Use Turbo Frames (`<turbo-frame>`) for partial page updates

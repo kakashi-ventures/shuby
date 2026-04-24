@@ -17,13 +17,19 @@ en:
     card:
       update_badge: "Update"
       no_data: "-"
+      percentile_unavailable: "-"
       start_tracking: "Start tracking"
     index:
       title: "Measurements"
       add_new: "Add measurement"
       empty: "No measurements recorded"
+      empty_state:
+        body_html: "No measurements yet.<br>Start tracking %{child_name}'s growth!"
+        illustration_alt: "Scale illustration"
     new:
       title: "New measurement"
+    overlay:
+      close: "Close"
     create:
       created: "Measurement saved successfully"
     edit:
@@ -35,15 +41,26 @@ en:
     form:
       type: "Type"
       value: "Value"
+      date_label: "Measurement date"
       measured_at: "Date and time"
       notes: "Notes"
       notes_placeholder: "Additional notes (optional)"
+      value_placeholder: "Enter value"
+      unit_toggle:
+        aria: "Unit of measure"
+      units:
+        gr: "g"
+        kg: "kg"
+        lb: "lb"
+        oz: "oz"
+        cm: "cm"
+        in: "in"
       photo: "Photo (optional)"
       photo_select: "Choose photo"
       photo_hint: "Attach a photo (e.g. scale readout). JPEG, PNG, HEIC, WebP. Max 10 MB."
       photo_alt: "Measurement photo"
       remove_photo: "Remove photo"
-      save: "Save"
+      save: "Save changes"
       cancel: "Cancel"
       placeholders:
         weight: "e.g. 3900"

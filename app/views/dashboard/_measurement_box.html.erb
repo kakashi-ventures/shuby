@@ -12,7 +12,8 @@
 <% when :start_tracking %>
   <%= link_to new_child_measurement_path(child, type: box.type),
         class: "shuby-tracking-card",
-        aria: { label: "#{t('measurements.dashboard.start_tracking')}: #{type_label}" } do %>
+        aria: { label: "#{t('measurements.dashboard.start_tracking')}: #{type_label}" },
+        data: measurement_overlay_link_data(box.type) do %>
     <div class="shuby-tracking-card-heading">
       <p class="shuby-tracking-card-label">
         <%= t("measurements.dashboard.section_start_tracking") %>
@@ -27,7 +28,8 @@
 <% when :update %>
   <%= link_to new_child_measurement_path(child, type: box.type),
         class: "shuby-tracking-card",
-        aria: { label: "#{t('measurements.dashboard.update')}: #{type_label}" } do %>
+        aria: { label: "#{t('measurements.dashboard.update')}: #{type_label}" },
+        data: measurement_overlay_link_data(box.type) do %>
     <div class="shuby-tracking-card-heading">
       <span class="shuby-badge-fucsia">
         <%= t("measurements.dashboard.section_update") %>
@@ -47,7 +49,8 @@
 <% when :track %>
   <%= link_to new_child_measurement_path(child, type: box.type),
         class: "shuby-tracking-card",
-        aria: { label: "#{t('measurements.dashboard.track')}: #{type_label}" } do %>
+        aria: { label: "#{t('measurements.dashboard.track')}: #{type_label}" },
+        data: measurement_overlay_link_data(box.type) do %>
     <div class="shuby-tracking-card-heading">
       <p class="shuby-tracking-card-label">
         <%= t("measurements.dashboard.section_track") %>

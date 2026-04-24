@@ -1,0 +1,29 @@
+<%# Numeric value input + adjacent unit toggle (cm/in, gr/lb, ...).
+  The unit toggle delegates to measurement-form Stimulus controller
+  which also converts the visible value on toggle.
+
+  Required locals:
+    form         - FormBuilder for the measurement form
+    current_type - string, the active measurement_type (drives label + placeholder)
+    default_unit - string, the metric unit label for the current type
+%>
+<div class="shuby-field-underline" data-measurement-form-target="valueField">
+  <label class="shuby-field-underline-label"
+         for="measurement_value"
+         data-measurement-form-target="valueLabel">
+    <%= t("measurements.types.#{current_type}") %>
+  </label>
+  <div class="shuby-field-underline-row">
+    <%= form.number_field :value,
+        class: "shuby-field-underline-input",
+        step: "0.01",
+        min: "0",
+        inputmode: "decimal",
+        placeholder: t("measurements.form.value_placeholder"),
+        data: { measurement_form_target: "valueInput" } %>
+    <%= render "measurements/unit_toggle",
+        type: current_type,
+        default_unit: default_unit,
+        preferred_unit: current_user.measurement_unit %>
+  </div>
+</div>

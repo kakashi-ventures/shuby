@@ -1,0 +1,29 @@
+<%# Bottom-sheet overlay for adding / editing a measurement.
+  The sheet opens optimistically on +-button tap (see
+  measurement-overlay#openWithFrame): the sheet animates in first, a
+  skeleton shows while the Rails form loads into the frame, then the
+  real form replaces the skeleton.
+
+  Figma: node 621:9860 (Overlay_Aggiungi Altezza).
+%>
+<div class="shuby-measurement-overlay"
+     data-measurement-overlay-target="overlay"
+     aria-hidden="true">
+  <div class="shuby-measurement-overlay-backdrop"
+       data-action="click->measurement-overlay#close"></div>
+  <div class="shuby-measurement-overlay-sheet"
+       data-measurement-overlay-target="sheet"
+       role="dialog"
+       aria-modal="true"
+       aria-label="<%= t("measurements.index.add_new") %>">
+    <div class="shuby-measurement-overlay-handle" aria-hidden="true"></div>
+    <%= turbo_frame_tag "measurement_form",
+        data: { measurement_overlay_target: "frame" },
+        class: "block" do %>
+      <%= render "measurements/overlay_skeleton" %>
+    <% end %>
+    <template data-measurement-overlay-target="skeletonTemplate">
+      <%= render "measurements/overlay_skeleton" %>
+    </template>
+  </div>
+</div>

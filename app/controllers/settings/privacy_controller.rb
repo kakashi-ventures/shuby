@@ -8,9 +8,15 @@ class Settings::PrivacyController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to settings_privacy_path, notice: t(".updated")
+      respond_to do |format|
+        format.html { redirect_to settings_privacy_path, notice: t(".updated") }
+        format.json { head :no_content }
+      end
     else
-      render :show, status: :unprocessable_content
+      respond_to do |format|
+        format.html { render :show, status: :unprocessable_content }
+        format.json { render json: current_user.errors, status: :unprocessable_content }
+      end
     end
   end
 
@@ -24,6 +30,6 @@ class Settings::PrivacyController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:data_sharing_consent)
+    params.require(:user).permit(:data_sharing_consent, :measurement_unit)
   end
 end

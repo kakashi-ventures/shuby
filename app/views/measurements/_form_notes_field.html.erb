@@ -1,0 +1,14 @@
+<%# Free-text notes field — only rendered on the full Edit page.
+
+  Required locals:
+    form - FormBuilder for the measurement form
+%>
+<div class="shuby-field-underline">
+  <label class="shuby-field-underline-label" for="measurement_notes">
+    <%= t("measurements.form.notes") %>
+  </label>
+  <%= form.text_area :notes,
+      class: "shuby-field-underline-input resize-none",
+      rows: 2,
+      placeholder: t("measurements.form.notes_placeholder") %>
+</div>

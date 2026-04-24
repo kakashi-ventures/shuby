@@ -27,33 +27,44 @@ class Measurement < ApplicationRecord
       .order(:measurement_type, measured_at: :desc)
   }
 
-  # Human-readable display value
-  def display_value
-    case measurement_type
-    when "weight"
-      "#{value.to_i} gr"
-    when "height"
-      "#{format_decimal(value)} cm"
-    when "head_circumference"
-      "#{format_decimal(value)} cm"
-    when "feeding_weight"
-      "+#{value.to_i} gr"
+  # Imperial conversion table keyed by measurement_type.
+  # scalar: divide stored SI value by this to get imperial value.
+  IMPERIAL = {
+    "weight" => {scalar: 453.59237, label: "lb", decimals: 2},
+    "feeding_weight" => {scalar: 28.3495, label: "oz", decimals: 2},
+    "height" => {scalar: 2.54, label: "in", decimals: 1},
+    "head_circumference" => {scalar: 2.54, label: "in", decimals: 1}
+  }.freeze
+
+  # Human-readable display value. Pass unit_system: "imperial" to convert.
+  def display_value(unit_system: "metric")
+    prefix = (measurement_type == "feeding_weight") ? "+" : ""
+    "#{prefix}#{formatted_value(unit_system: unit_system)} #{unit(unit_system: unit_system)}"
+  end
+
+  # Unit label for display.
+  def unit(unit_system: "metric")
+    if unit_system == "imperial"
+      IMPERIAL[measurement_type][:label]
+    else
+      case measurement_type
+      when "weight", "feeding_weight" then "gr"
+      when "height", "head_circumference" then "cm"
+      end
     end
   end
 
-  # Unit label for display
-  def unit
-    case measurement_type
-    when "weight", "feeding_weight" then "gr"
-    when "height", "head_circumference" then "cm"
-    end
-  end
-
-  # Formatted value without unit
-  def formatted_value
-    case measurement_type
-    when "weight", "feeding_weight" then value.to_i.to_s
-    when "height", "head_circumference" then format_decimal(value)
+  # Formatted value without unit. In imperial mode the stored SI value is
+  # converted and rounded to the type's display precision (see IMPERIAL).
+  def formatted_value(unit_system: "metric")
+    if unit_system == "imperial"
+      converted = value / IMPERIAL[measurement_type][:scalar]
+      format_decimal(converted.round(IMPERIAL[measurement_type][:decimals]))
+    else
+      case measurement_type
+      when "weight", "feeding_weight" then value.to_i.to_s
+      when "height", "head_circumference" then format_decimal(value)
+      end
     end
   end
 

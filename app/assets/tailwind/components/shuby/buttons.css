@@ -168,6 +168,17 @@
     &:active { background-color: var(--bg-danger-hover); }
 }
 
+/* Subtle danger: light red fill + red border, for destructive actions
+   inside cards where the solid danger would be too aggressive. */
+.shuby-btn-danger-subtle {
+    background-color: var(--bg-danger-secondary);
+    color: var(--text-on-danger-secondary);
+    border: 1px solid var(--border-danger);
+
+    &:hover,
+    &:active { background-color: var(--border-danger); color: var(--text-on-danger); }
+}
+
 /* =====================================================
    FULL-WIDTH BUTTON
    Button that spans container width
@@ -260,4 +271,39 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
 
     &:active { background-color: rgba(255, 255, 255, 0.25); }
+}
+
+/* =====================================================
+   BUTTON WIDTH MODIFIERS
+   ===================================================== */
+
+/* Sheet CTA width (Figma: Salva modifiche in bottom-sheet overlays).
+   Full width, capped to 230px, never narrower than 150px. */
+.shuby-btn--sheet-cta {
+    width: 100%;
+    max-width: 230px;
+    min-width: 150px;
+}
+
+/* =====================================================
+   TEXT BUTTON — no bg, no border
+   ===================================================== */
+
+/* Inline destructive action button (e.g. "Rimuovi foto" on the
+   measurement form). Not to be confused with .shuby-btn-danger
+   which is a full filled danger CTA. */
+.shuby-btn-text {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-red-600);
+    cursor: pointer;
+    text-align: left;
+
+    &:hover { text-decoration: underline; }
+    &:focus { outline: 2px solid var(--base-border-focus); outline-offset: 2px; }
 }

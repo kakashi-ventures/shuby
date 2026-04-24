@@ -1,0 +1,13 @@
+<%# Validation summary shown at the top of the measurement form.
+  Renders nothing when there are no errors so the caller can include
+  it unconditionally.
+%>
+<% if @measurement.errors.any? %>
+  <div class="shuby-card shuby-card-danger shuby-card-danger--filled mb-4">
+    <ul class="shuby-form-error-list">
+      <% @measurement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

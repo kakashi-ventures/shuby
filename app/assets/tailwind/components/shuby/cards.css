@@ -31,6 +31,18 @@
     padding: var(--space-4);
 }
 
+/* Danger card: red-tinted border (settings destructive sections).
+   Add --filled modifier for error/validation surfaces that also need
+   a light red fill. */
+.shuby-card-danger {
+    border-color: var(--color-shuby-red-100);
+
+    &.shuby-card-danger--filled {
+        background-color: var(--bg-danger-secondary);
+        border-color: var(--border-danger);
+    }
+}
+
 
 /* =====================================================
    NAV CARD (Dashboard navigation link cards)
@@ -471,12 +483,21 @@
 .shuby-measurement-card {
     display: flex;
     width: 100%;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+
+    &:hover, &:focus-visible {
+        text-decoration: none;
+    }
 }
 
 .shuby-measurement-card-info {
     flex: 1;
     padding: var(--space-4) var(--space-2) var(--space-4) var(--space-4);
-    border: 1px solid var(--color-shuby-blue-300);
+    border-top: 1px solid var(--color-shuby-blue-300);
+    border-bottom: 1px solid var(--color-shuby-blue-300);
+    border-left: 1px solid var(--color-shuby-blue-300);
     border-radius: var(--radius-grande) 0 0 var(--radius-grande);
     display: flex;
     flex-direction: column;
@@ -558,4 +579,34 @@
     font-size: var(--font-size-caption);
     font-weight: var(--font-weight-regular);
     color: var(--color-shuby-black);
+}
+
+/* =====================================================
+   MEASUREMENTS — EMPTY STATE
+   Shown in the Misurazioni tab when no measurements exist.
+   Matches Figma node 436:4638 (mascot-scale illustration + copy).
+   ===================================================== */
+
+.shuby-measurements-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    padding-block: var(--space-10);
+    text-align: center;
+}
+
+.shuby-measurements-empty-illustration {
+    width: 178px;
+    height: auto;
+    max-width: 60%;
+}
+
+.shuby-measurements-empty-copy {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-gray-800);
+    max-width: 320px;
 }

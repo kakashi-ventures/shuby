@@ -188,3 +188,31 @@
     font-size: var(--font-size-p1);
     line-height: var(--line-height-normal);
 }
+
+/* =====================================================
+   ICON BADGE (Settings row leading icon in a circle)
+   Used on privacy/settings cards to prefix rows with a
+   colored circular icon container.
+   ===================================================== */
+
+.shuby-settings-icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+
+    & > svg { width: 20px; height: 20px; }
+
+    &.shuby-settings-icon-badge--info {
+        background-color: var(--color-shuby-blue-100);
+        color: var(--color-shuby-blue-600);
+    }
+
+    &.shuby-settings-icon-badge--danger {
+        background-color: var(--bg-danger-secondary);
+        color: var(--icon-on-danger-secondary);
+    }
+}

@@ -1,0 +1,12 @@
+<%# Save button at the bottom of the measurement form. In the overlay
+  context, .shuby-form-submit-row's `margin-top: auto` pushes the
+  button to the sheet bottom; on the edit page it just renders below.
+
+  Required locals:
+    form - FormBuilder for the measurement form
+%>
+<div class="shuby-form-submit-row">
+  <%= form.submit t("measurements.form.save"),
+      class: "shuby-btn shuby-btn-primary shuby-btn--sheet-cta",
+      data: native_haptic_data(:success) %>
+</div>

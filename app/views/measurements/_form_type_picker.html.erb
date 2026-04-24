@@ -1,0 +1,17 @@
+<%# Segmented type picker used on the full Edit page.
+  Hidden in the overlay flow — the overlay passes the type via the
+  query string and sends it as a hidden field instead.
+
+  Required locals:
+    form         - FormBuilder for the measurement form
+    current_type - string, the active measurement_type
+%>
+<div class="shuby-tab-segmented mb-6">
+  <% Measurement.measurement_types.keys.each do |type| %>
+    <label class="shuby-tab-segmented-item <%= "active" if current_type == type %>">
+      <%= form.radio_button :measurement_type, type, class: "sr-only",
+          data: { action: "change->measurement-form#typeChanged" } %>
+      <%= t("measurements.types.#{type}") %>
+    </label>
+  <% end %>
+</div>

@@ -1,0 +1,20 @@
+
+<%# Date picker row for the measurement form. Underline field with
+  an inline calendar icon (the native date picker still fires on tap).
+
+  Required locals:
+    form - FormBuilder for the measurement form
+%>
+<div class="shuby-field-underline">
+  <label class="shuby-field-underline-label" for="measurement_measured_at">
+    <%= t("measurements.form.date_label") %>
+  </label>
+  <div class="shuby-field-underline-row">
+    <%= form.date_field :measured_at,
+        class: "shuby-field-underline-input",
+        value: (@measurement.measured_at || Time.current).to_date.iso8601 %>
+    <span class="shuby-field-underline-icon" aria-hidden="true">
+      <%= render_svg "shuby/icons/icon-calendar", size: :sm, decorative: true %>
+    </span>
+  </div>
+</div>
