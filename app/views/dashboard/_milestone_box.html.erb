@@ -1,10 +1,12 @@
 <%# Development Milestone Box - Daily milestone for child's age range %>
 <% if @milestone_state.present? %>
   <section class="mb-4 mt-6">
-    <%# Section label — Figma: Overline/OL/Dark (10 Semi-Bold uppercase) %>
-    <p class="shuby-overline-dark mb-3">
-      <%= t("dashboard.milestone_box.section_label") %>
-    </p>
+    <%# Band heading — routed through the shared section_header partial so
+        "Tappa di sviluppo" renders identically to Attività / Consigli /
+        Articoli in primo piano (gray overline instead of dark blue). %>
+    <%= render "shared/ui/section_header",
+               title: t("dashboard.milestone_box.section_label"),
+               variant: "overline" %>
     <% case @milestone_state
        when :finish_previous %>
       <%= render "dashboard/milestone_box/finish_previous",
