@@ -731,6 +731,10 @@ it:
       years_and_months_1_other: "1 anno e %{months} mesi"
       years_and_months_other_1: "%{years} anni e 1 mese"
       years_and_months_other_other: "%{years} anni e %{months} mesi"
+      weeks_and_days_1_1: "1 settimana, 1 giorno"
+      weeks_and_days_1_other: "1 settimana, %{days} giorni"
+      weeks_and_days_other_1: "%{weeks} settimane, 1 giorno"
+      weeks_and_days_other_other: "%{weeks} settimane, %{days} giorni"
     gestational_age:
       weeks_and_days: "%{weeks} settimane e %{days} giorni"
 

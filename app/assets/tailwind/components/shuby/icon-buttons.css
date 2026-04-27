@@ -88,7 +88,10 @@
    ICON BUTTON COLOR VARIANTS
    ===================================================== */
 
-/* Pink/Fucsia icon button */
+/* Pink/Fucsia icon button — sizes the circle only, icon size is set by
+   the call site (pass `size:` to render_svg). Keeps the container generic
+   so it can host any glyph (`+`, calendar, etc.) at the Figma-specified
+   per-icon size. */
 .shuby-icon-btn-pink {
     width: 40px;
     height: 40px;
@@ -96,11 +99,6 @@
     color: var(--color-shuby-white);
 
     &:active { background-color: var(--color-shuby-fucsia-700); }
-
-    svg {
-        width: 20px;
-        height: 20px;
-    }
 }
 
 /* =====================================================

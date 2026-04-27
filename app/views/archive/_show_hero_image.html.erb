@@ -1,12 +1,10 @@
-<%# Article hero: full-width cover image with overlaid back button (Figma 05.02) %>
+<%# Article hero: full-width cover image (Figma 05.02). Back button lives in
+    the page-level floating wrapper in archive/show.html.erb so it persists
+    during scroll — don't render it here. %>
 <div class="relative">
   <% if content.cover_image.attached? %>
     <%= image_tag content.cover_image, alt: "", class: "w-full h-56 object-cover" %>
   <% else %>
     <div class="w-full h-56 bg-shuby-blue-400"></div>
-  <% end %>
-
-  <%= link_to archive_index_path, class: "absolute top-4 left-4 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm", aria: { label: t("back") } do %>
-    <%= render_svg "shuby/icons/icon-chevron-left", size: :md, styles: "text-shuby-blue-800" %>
   <% end %>
 </div>

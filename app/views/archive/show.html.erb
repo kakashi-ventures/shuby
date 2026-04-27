@@ -3,6 +3,17 @@
 <% content_for :page_type, "detail" %>
 
 <div class="pb-24 min-h-screen bg-white" data-controller="article-scroll">
+  <%# Floating back button — sticky top-left, persistent during scroll.
+      Figma 05.02_Articolo node 510:23114. Reuses .shuby-icon-btn-bianca for
+      the white-with-blue-border circle. %>
+  <div class="shuby-floating-back-wrapper">
+    <%= link_to archive_index_path,
+          class: "shuby-icon-btn-bianca shuby-floating-back",
+          aria: { label: t("back") } do %>
+      <%= render_svg "shuby/icons/icon-chevron-left", size: :sm, decorative: true %>
+    <% end %>
+  </div>
+
   <%# Hero image / colored header %>
   <div data-article-scroll-target="hero">
     <% if @content.content_type_article? %>
@@ -14,14 +25,13 @@
     <% end %>
   </div>
 
-  <%# Sticky compact header (hidden by default, shown on scroll) %>
+  <%# Sticky compact header (hidden by default, shown on scroll).
+      No back button here — the floating button above owns that affordance.
+      pl-14 clears space under the floating button so the title doesn't collide. %>
   <div data-article-scroll-target="stickyHeader"
        class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 opacity-0 translate-y-[-100%] transition-all duration-200">
-    <div class="flex items-center gap-3 px-4 py-3">
-      <%= link_to archive_index_path, class: "shrink-0", aria: { label: t("back") } do %>
-        <%= render_svg "shuby/icons/icon-chevron-left", size: :md, styles: "text-shuby-blue-800" %>
-      <% end %>
-      <h2 class="shuby-h4 text-shuby-blue-800 flex-1 truncate"><%= @content.title %></h2>
+    <div class="flex items-center gap-3 pl-14 pr-4 py-3">
+      <h2 class="shuby-h3 text-shuby-blue-800 flex-1 truncate"><%= @content.title %></h2>
       <%= render "archive/favorite_button", content: @content, favorited: @favorited, inline: true %>
     </div>
   </div>

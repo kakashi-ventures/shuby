@@ -1,17 +1,7 @@
-<%# Streaming content for assistant message %>
-<div id="<%= message_id %>" class="flex justify-start">
-  <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 rounded-2xl px-4 py-3 max-w-[85%] shadow-sm">
-    <div class="flex items-center gap-2 mb-2">
-      <span class="text-xs font-medium text-primary-600 dark:text-primary-400">Shuby</span>
-      <span class="flex gap-1">
-        <span class="w-1.5 h-1.5 bg-primary-500 rounded-full animate-pulse"></span>
-      </span>
-    </div>
-
-    <div class="prose prose-sm dark:prose-invert max-w-none shuby-message-content">
-      <div data-controller="markdown" data-markdown-content-value="<%= content %>">
-        <div data-markdown-target="output"><%= simple_format(content) %></div>
-      </div>
-    </div>
+<%# Streaming content for an assistant message. Plain-text style matches
+    the final _message.html.erb assistant rendering — no card chrome. %>
+<div id="<%= message_id %>" class="shuby-chat-assistant shuby-p1">
+  <div data-controller="markdown" data-markdown-content-value="<%= content %>">
+    <div data-markdown-target="output" class="shuby-message-content"><%= simple_format(content) %></div>
   </div>
 </div>

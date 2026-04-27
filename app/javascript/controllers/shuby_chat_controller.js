@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Controller for Shuby chat interface
-// Handles scrolling, suggestions, and message input
+// Stimulus controller for the Shuby chat surface — keeps the messages
+// container scrolled to the latest message as new messages stream in.
 export default class extends Controller {
     static targets = ["messages", "input"]
     static values = { chatId: Number }
@@ -17,43 +17,19 @@ export default class extends Controller {
         }
     }
 
-    // Observe new messages and scroll to bottom
     observeMessages() {
-        const messagesContainer = document.getElementById("messages")
+        const messagesContainer = this.hasMessagesTarget
+            ? this.messagesTarget
+            : document.getElementById("messages")
         if (!messagesContainer) return
 
-        this.observer = new MutationObserver(() => {
-            this.scrollToBottom()
-        })
-
-        this.observer.observe(messagesContainer, {
-            childList: true,
-            subtree: true
-        })
+        this.observer = new MutationObserver(() => this.scrollToBottom())
+        this.observer.observe(messagesContainer, { childList: true, subtree: true })
     }
 
-    // Scroll messages to the bottom
     scrollToBottom() {
         if (this.hasMessagesTarget) {
             this.messagesTarget.scrollTop = this.messagesTarget.scrollHeight
-        }
-    }
-
-    // Insert a suggestion into the input field
-    insertSuggestion(event) {
-        const suggestion = event.currentTarget.dataset.suggestion
-        if (this.hasInputTarget && suggestion) {
-            this.inputTarget.value = suggestion
-            this.inputTarget.focus()
-
-            // Trigger auto-resize if available
-            this.inputTarget.dispatchEvent(new Event("input"))
-
-            // Remove welcome message when a suggestion is clicked
-            const welcomeMessage = document.getElementById("welcome-message")
-            if (welcomeMessage) {
-                welcomeMessage.remove()
-            }
         }
     }
 }

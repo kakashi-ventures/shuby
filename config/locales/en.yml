@@ -716,6 +716,9 @@ en:
         mixed: "Mixed"
         feeding_other: "Other"
     age:
+      days:
+        one: "%{count} day"
+        other: "%{count} days"
       weeks:
         one: "%{count} week"
         other: "%{count} weeks"
@@ -729,6 +732,10 @@ en:
       years_and_months_1_other: "1 year, %{months} months"
       years_and_months_other_1: "%{years} years, 1 month"
       years_and_months_other_other: "%{years} years, %{months} months"
+      weeks_and_days_1_1: "1 week, 1 day"
+      weeks_and_days_1_other: "1 week, %{days} days"
+      weeks_and_days_other_1: "%{weeks} weeks, 1 day"
+      weeks_and_days_other_other: "%{weeks} weeks, %{days} days"
     gestational_age:
       weeks_and_days: "%{weeks} weeks, %{days} days"
 

@@ -1,0 +1,35 @@
+<% content_for :title, t("shuby_chats.history.title") %>
+<% content_for :page_type, "detail" %>
+<% content_for :hide_navbar, true %>
+
+<div class="shuby-chat-page-history">
+  <header class="shuby-chat-header">
+    <div class="shuby-chat-topbar-row gap-2">
+      <%= link_to shuby_chats_path, class: "shuby-chat-back", aria: { label: t("common.back") } do %>
+        <%= render_svg "shuby/icons/icon-chevron-left", size: :sm, decorative: true %>
+      <% end %>
+      <h1 class="shuby-h3"><%= t("shuby_chats.history.title") %></h1>
+    </div>
+  </header>
+
+  <div class="flex-1">
+    <% if @shuby_chats.any? %>
+      <div class="flex flex-col">
+        <% @shuby_chats.each do |chat| %>
+          <%= render "shuby_chats/history_row", chat: chat %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="shuby-chat-welcome">
+        <%= render_svg "shuby/icons/icon-chatbot", size: :xxl, styles: "text-shuby-blue-800", decorative: true %>
+        <h2 class="shuby-d2"><%= t("shuby_chats.history.empty.title") %></h2>
+        <p class="shuby-p1"><%= t("shuby_chats.history.empty.description") %></p>
+        <%= link_to t("shuby_chats.history.empty.cta"), shuby_chats_path, class: "shuby-btn shuby-btn-md shuby-btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :bottom_nav do %>
+  <%= render "shared/shuby_bottom_nav", active: "ai-helper" %>
+<% end %>

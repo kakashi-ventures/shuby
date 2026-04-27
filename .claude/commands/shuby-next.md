@@ -12,7 +12,7 @@ Pick up the next work item intelligently and start working.
    - Note `deferred` decisions that remove scope from v1.0
    - Note `to-confirm` decisions that need client confirmation before implementing
 4. Scan the actual codebase for existing related code (models, controllers, views, tests) to verify the gap still exists
-5. Check the Figma design for the target UI using the Figma Node Map in docs/FIGMA-REFERENCE.md
+5. Check Figma ONLY if the selected item is a major visual work item (whole page, new screen, redesign, or multi-component refactor). For minor edits (single card/component/icon/badge/label/text tweak) and for non-visual work (backend, data-model, logic, tooling, tests), skip this step. When Figma is warranted, use the Node Map in `docs/FIGMA-REFERENCE.md` first (local, free) before any MCP call.
 6. Propose a concrete implementation plan:
    - Files to create or modify
    - Key decisions to make

@@ -377,17 +377,17 @@
     .shuby-milestone-card-time { color: var(--color-shuby-blue-800); }
 }
 
-/* Proposed (daily) dashboard variant — Figma: SchedaTest/Versione 1.
-   Overrides the flat timeline card with Shadow Dark Blue, stacked column
-   layout (tags/title above, button/time below), and an illustration area
-   that overflows the right edge. */
+/* Proposed (daily) dashboard variant — Figma: Dashboard node 375:5429,
+   instance node 463:6220. Renders flat (no shadow) with stacked column
+   layout (tags/title above, button/time below) and an illustration
+   pinned flush with the right edge via .shuby-milestone-card-illustration.
+   The Dashboard instance overrides the isolated Versione 1 component,
+   dropping its Shadow Dark Blue — so no `box-shadow` here. */
 .shuby-milestone-card-proposed {
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
     position: relative;
-    overflow: hidden;
-    box-shadow: var(--shadow-dark-blue);
 }
 
 /* Per-area illustration pinned to the right edge of the proposed card.

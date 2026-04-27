@@ -9,7 +9,7 @@
       response rendered, then the visit fetch re-renders) that appears to
       desync the native tab controller so subsequent native tab taps no
       longer drive Turbo.visit. Web is unaffected. %>
-  <body data-controller="theme bridge--menu-button <%= "bridge--notification-token" if user_signed_in? %>" data-theme-preference-value="shuby" data-page-type="<%= page_transition_type %>" <%= 'data-turbo-prefetch="false"'.html_safe if hotwire_native_app? %>>
+  <body data-controller="theme bridge--menu-button <%= "bridge--notification-token" if user_signed_in? %>" data-theme-preference-value="shuby" data-page-type="<%= page_transition_type %>" data-body-background="<%= content_for(:body_background) %>" <%= 'data-turbo-prefetch="false"'.html_safe if hotwire_native_app? %>>
     <div class="grid-layout-wrapper">
       <header class="native-inset-top">
         <%= impersonation_banner %>

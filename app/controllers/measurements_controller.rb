@@ -5,11 +5,18 @@ class MeasurementsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_child
-  before_action :set_measurement, only: [:edit, :update, :destroy]
+  before_action :set_measurement, only: [:show, :edit, :update, :destroy]
 
   def index
     authorize Measurement
     redirect_to child_path(@child, tab: "measurements")
+  end
+
+  def show
+    @same_type_measurements = @child.measurements
+      .by_type(@measurement.measurement_type)
+      .where.not(id: @measurement.id)
+      .ordered
   end
 
   def new
@@ -25,7 +32,7 @@ class MeasurementsController < ApplicationController
     authorize @measurement
 
     if @measurement.save
-      redirect_to child_path(@child, tab: "measurements"), notice: t(".created")
+      redirect_to child_measurement_path(@child, @measurement), notice: t(".created")
     else
       render :new, status: :unprocessable_content
     end
@@ -37,7 +44,7 @@ class MeasurementsController < ApplicationController
   def update
     @measurement.photo.purge_later if remove_photo?
     if @measurement.update(measurement_params)
-      redirect_to child_path(@child, tab: "measurements"), notice: t(".updated")
+      redirect_to child_measurement_path(@child, @measurement), notice: t(".updated")
     else
       render :edit, status: :unprocessable_content
     end

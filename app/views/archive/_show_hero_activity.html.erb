@@ -1,6 +1,5 @@
-<%# Activity hero: white/light header without image (Figma 05.03) %>
-<div class="relative bg-white pt-4 pb-10">
-  <%= link_to archive_index_path, class: "ml-4 w-10 h-10 rounded-full bg-gray-100 inline-flex items-center justify-center", aria: { label: t("back") } do %>
-    <%= render_svg "shuby/icons/icon-chevron-left", size: :md, styles: "text-shuby-blue-800" %>
-  <% end %>
-</div>
+<%# Activity hero: white/light header without image (Figma 05.03).
+    Back button lives in the page-level floating wrapper in archive/show.html.erb
+    so it persists during scroll — don't render it here. The pt-16 leaves
+    headroom under the floating button. %>
+<div class="relative bg-white pt-16 pb-10"></div>

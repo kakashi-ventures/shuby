@@ -1,34 +1,27 @@
 en:
   shuby_chats:
     default_title: "New Chat"
-    index:
-      title: "Shuby - Chat Assistant"
-      heading: "Shuby"
-      subtitle: "Your assistant for child development"
-      new_conversation: "New conversation"
-      messages_count:
-        one: "%{count} message"
-        other: "%{count} messages"
-      time_ago: "%{time} ago"
-      no_conversations: "No conversations"
-      start_prompt: "Start a new conversation with Shuby"
-      start_chat_button: "Start chatting"
     show:
-      back: "Back"
-      new_button: "New"
-      delete_confirm: "Are you sure you want to delete this conversation?"
-      powered_by: "Powered by %{model}"
-      child_context: "Chat about %{child_name}"
+      title: "Shuby AI"
       welcome:
-        greeting: "Hello! I'm Shuby"
-        description: "I'm here to help you with questions about your child's development (0-36 months). Ask me anything!"
-      suggestions:
-        milestones_6m: "Milestones at 6 months"
-        milestones_6m_full: "What are the development milestones at 6 months?"
-        sleep_tips: "Sleep tips"
-        sleep_tips_full: "How can I help my baby sleep better?"
-        tummy_time: "Tummy time"
-        tummy_time_full: "What is tummy time and how to do it?"
+        greeting: "How can I help you?"
+        description: "Type a question or ask for advice."
+      greeting:
+        title: "Meet Shuby AI"
+        tagline: "Your AI assistant for every question, 24/7"
+      disclaimer: "Answers based on verified medical sources"
+      actions:
+        new_chat: "New conversation"
+        history: "Conversation history"
+    history:
+      title: "History"
+      message_count:
+        one: "1 message"
+        other: "%{count} messages"
+      empty:
+        title: "No conversations"
+        description: "Start chatting with Shuby AI to see them here."
+        cta: "Back to chat"
     rate_limit:
       reached: "You have reached the monthly free message limit."
       reached_title: "Messages exhausted"
@@ -39,19 +32,14 @@ en:
         zero: "No messages remaining out of %{total} this month"
         one: "%{count} message remaining out of %{total} this month"
         other: "%{count} messages remaining out of %{total} this month"
-    message:
-      shuby_name: "Shuby"
-      sources: "Sources:"
-      document: "Document"
     message_form:
-      placeholder: "Write a message..."
-      send: "Send"
-      disclaimer: "Shuby can make mistakes. Always verify important information with your pediatrician."
+      placeholder: "Ask a question"
+      send: "Send message"
     error_message:
       error_title: "Error"
       retry_suggestion: "Try sending the message again."
     placeholder:
-      thinking: "Thinking..."
+      thinking: "Shuby is thinking…"
 
   file_search_tool:
     query_blank: "Query cannot be blank"

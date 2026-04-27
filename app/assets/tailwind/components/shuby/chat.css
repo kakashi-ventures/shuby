@@ -1,0 +1,393 @@
+/* Shuby Chat (AI Helper) — domain styles
+ *
+ * Maps to Figma:
+ *   463:5386  04.01_AI_helper (landing / empty state)
+ *   2030:8799 04.01_AI_helper (active conversation)
+ *   2006:8829 04.01_AI_helper (history)
+ *   230:1822  Chat component (composer pill)
+ *
+ * All tokens come from app/assets/tailwind/themes/shuby.css (radius, space,
+ * shadows, overlay) and the @theme block in application.css (color scale).
+ * Typography pulls from .shuby-d2 / .shuby-h3 / .shuby-p1 / .shuby-caption.
+ */
+
+/* =====================================================
+   PAGE WRAPPERS
+   Full-viewport flex column with 86 px bottom-nav offset on web (the iOS
+   Ruby Native shell replaces the bottom nav with a native tab bar, so the
+   offset collapses to 0 there).
+   ===================================================== */
+
+.shuby-chat-page,
+.shuby-chat-page-history {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 86px;
+}
+
+.shuby-chat-page {
+    background-color: var(--color-shuby-blue-300);
+    height: 100dvh;
+}
+
+.shuby-chat-page-history {
+    background-color: var(--color-shuby-white);
+    min-height: 100dvh;
+}
+
+html.hotwire-native .shuby-chat-page,
+html.hotwire-native .shuby-chat-page-history {
+    padding-bottom: 0;
+}
+
+/* =====================================================
+   HEADER (Figma 463:5396 / 2006:8831)
+   Outer Header carries Shadow Blu + 8 px vertical padding (Figma's
+   `padding: 0 0 8px` plus a matching 8 px on top to mirror the iOS
+   status-bar gap on web). On iOS native, padding-top becomes the
+   safe-area inset so the status bar lives inside the white chrome.
+   ===================================================== */
+
+.shuby-chat-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: var(--space-2) 0;
+    background-color: var(--overlay-white-95);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    box-shadow: var(--shadow-blu);
+}
+
+html.hotwire-native .shuby-chat-header {
+    padding-top: env(safe-area-inset-top);
+}
+
+/* Top Navigation row — Figma 436:4742.
+   350 px-wide centered band, 42 px tall. Consumers add `justify-between`
+   (AI Helper) or `gap-2` (History back+title) on the markup. */
+.shuby-chat-topbar-row {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    width: 350px;
+    max-width: calc(100% - 40px);
+    margin-inline: auto;
+}
+
+/* Bare 16 px back chevron used by the history header — Figma 2006:8916
+   shows the chevron as a plain icon, not wrapped in a 32×32 button.
+   Transparent ::before pseudo extends the tap target to 44×44 (HIG). */
+.shuby-chat-back {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    color: var(--base-text);
+    flex-shrink: 0;
+}
+
+.shuby-chat-back::before {
+    content: "";
+    position: absolute;
+    inset: -14px;
+}
+
+.shuby-chat-back svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* =====================================================
+   WELCOME EMPTY STATE (Figma 463:5386 lower half)
+   Centered robot mascot + headline + tagline. Reused by the History
+   empty-state with an extra CTA button appended.
+   ===================================================== */
+
+.shuby-chat-welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-5);
+    padding-inline: var(--space-5);
+    padding-top: 4rem;
+}
+
+/* =====================================================
+   GREETING BLOCK (Figma 2030:8866-8871 — robot avatar + intro)
+   Persistent header above the message stream during an active chat.
+   ===================================================== */
+
+.shuby-chat-greeting {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding-inline: var(--space-5);
+    padding-top: var(--space-6);
+}
+
+.shuby-chat-greeting-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex: 1;
+    min-width: 0;
+}
+
+.shuby-chat-avatar {
+    width: 53px;
+    height: 53px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-shuby-blue-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-chat-avatar svg {
+    width: 26px;
+    height: 29px;
+}
+
+/* =====================================================
+   MESSAGE STACK
+   Vertical list of user/assistant messages — gap and horizontal padding
+   are intrinsic; vertical padding is consumer-driven (greeted vs empty
+   contexts have different rhythms).
+   ===================================================== */
+
+.shuby-chat-message-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-inline: var(--space-5);
+}
+
+/* =====================================================
+   USER MESSAGE BUBBLE (Figma 2030:8874)
+   Blu-400 chip; rounded except top-right (speech-bubble nub).
+   ===================================================== */
+
+.shuby-chat-bubble-user {
+    background-color: var(--color-shuby-blue-400);
+    color: var(--base-text);
+    border-radius: var(--radius-sm) 0 var(--radius-sm) var(--radius-sm);
+    padding: var(--space-3);
+    max-width: 286px;
+    align-self: flex-end;
+}
+
+/* =====================================================
+   ASSISTANT MESSAGE (Figma 2030:8875)
+   No bubble — plain text on the page background.
+   ===================================================== */
+
+.shuby-chat-assistant {
+    color: var(--base-text);
+    align-self: stretch;
+}
+
+.shuby-chat-assistant .shuby-message-content,
+.shuby-chat-assistant p {
+    margin: 0;
+}
+
+/* Thinking dots — minimal, no card chrome. */
+.shuby-chat-thinking {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-chat-thinking-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-shuby-blue-800);
+    animation: shuby-chat-bounce 1.2s infinite ease-in-out both;
+}
+
+.shuby-chat-thinking-dot:nth-child(2) { animation-delay: -0.16s; }
+.shuby-chat-thinking-dot:nth-child(3) { animation-delay: 0s; }
+.shuby-chat-thinking-dot:nth-child(1) { animation-delay: -0.32s; }
+
+@keyframes shuby-chat-bounce {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+    40% { transform: scale(1); opacity: 1; }
+}
+
+/* =====================================================
+   COMPOSER PILL (Figma 230:1822)
+   Rounded full, white bg, Shadow Blu, mic/send button on the right.
+   `.shuby-chat-composer-wrap` holds the surrounding page padding so the
+   ERB stays free of layout utilities.
+   ===================================================== */
+
+.shuby-chat-composer-wrap {
+    padding-inline: var(--space-5);
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-3);
+}
+
+.shuby-chat-composer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-shuby-white);
+    border-radius: var(--radius-full);
+    padding: var(--space-1) var(--space-1) var(--space-1) var(--space-4);
+    box-shadow: var(--shadow-blu);
+    width: 100%;
+}
+
+.shuby-chat-composer-input {
+    flex: 1 0 0;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+    color: var(--base-text);
+    font-size: var(--font-size-p1);
+    line-height: var(--line-height-normal);
+    padding: 6px var(--space-2) 6px 0;
+    max-height: 120px;
+}
+
+.shuby-chat-composer-input:focus,
+.shuby-chat-composer-input:focus-visible {
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-ring-color: transparent;
+}
+
+.shuby-chat-composer-input::placeholder {
+    color: var(--color-shuby-gray-800);
+}
+
+.shuby-chat-composer-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    border: none;
+    background-color: var(--color-shuby-blue-300);
+    color: var(--color-shuby-blue-800);
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    flex-shrink: 0;
+}
+
+.shuby-chat-composer-button:active {
+    background-color: var(--color-shuby-blue-400);
+}
+
+.shuby-chat-composer-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.shuby-chat-composer-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Mic/send icon swap — controlled by data-icon-state on the button. */
+.shuby-chat-composer-button[data-icon-state="empty"] .shuby-chat-composer-icon-send,
+.shuby-chat-composer-button[data-icon-state="typing"] .shuby-chat-composer-icon-mic {
+    display: none;
+}
+
+/* =====================================================
+   DISCLAIMER (Figma 2030:8881)
+   "Risposte basate su fonti mediche verificate" — caption blu-800.
+   ===================================================== */
+
+.shuby-chat-disclaimer {
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-blue-800);
+    text-align: center;
+    text-transform: none;
+}
+
+/* Meta caption used in the composer footer (remaining-count, errors).
+   Mirrors .shuby-caption sizing but without uppercase — the chat surface
+   uses sentence-case Italian in that slot. */
+.shuby-chat-meta {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--base-text-secondary);
+    text-align: center;
+    text-transform: none;
+}
+
+.shuby-chat-meta-warn {
+    color: var(--color-shuby-orange-600);
+    font-weight: var(--font-weight-semibold);
+}
+
+.shuby-chat-meta-error {
+    color: var(--color-shuby-red-600);
+}
+
+/* =====================================================
+   HISTORY ROW (Figma 2006:8915 .. 8931)
+   Plain row: title, "%{count} messaggi", chevron-right, divider.
+   Page horizontal padding is now intrinsic to the row.
+   ===================================================== */
+
+.shuby-chat-history-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-shuby-gray-500);
+    color: var(--base-text);
+}
+
+.shuby-chat-history-row:active {
+    background-color: var(--color-shuby-blue-300);
+}
+
+.shuby-chat-history-row-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.shuby-chat-history-row-title {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--base-text);
+}
+
+.shuby-chat-history-row-meta {
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-normal);
+    color: var(--base-text);
+    margin-top: 2px;
+}
+
+.shuby-chat-history-row-chevron {
+    color: var(--color-shuby-blue-800);
+    flex-shrink: 0;
+    margin-left: var(--space-3);
+}
+
+.shuby-chat-history-row-chevron svg {
+    width: 16px;
+    height: 16px;
+}

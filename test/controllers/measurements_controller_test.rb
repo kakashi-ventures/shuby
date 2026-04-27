@@ -31,6 +31,40 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  # === Show ===
+
+  test "should get show" do
+    get child_measurement_path(@child, @measurement)
+    assert_response :success
+  end
+
+  test "show renders same-type history and excludes the featured measurement" do
+    get child_measurement_path(@child, @measurement)
+    assert_response :success
+    # Stale weight belongs in the history list (same type, different id)
+    assert_match measurements(:sophia_weight_stale).measured_at.strftime("%d . %m . %Y"),
+      response.body,
+      "expected the stale weight row in the history list"
+    # Height is a different type and must NOT appear on the weight detail page
+    refute_match measurements(:sophia_height).measured_at.strftime("%d . %m . %Y"),
+      response.body,
+      "history must be scoped to the featured measurement's type"
+  end
+
+  test "requires authentication for show" do
+    sign_out @user
+    get child_measurement_path(@child, @measurement)
+    assert_response :redirect
+  end
+
+  test "cannot show measurement for child in another account" do
+    sign_out @user
+    sign_in users(:two)
+    switch_account(accounts(:two))
+    get child_measurement_path(@child, @measurement)
+    assert_response :not_found
+  end
+
   # === Create ===
 
   test "should create measurement" do
@@ -45,7 +79,7 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_redirected_to child_path(@child, tab: "measurements")
+    assert_redirected_to child_measurement_path(@child, Measurement.last)
   end
 
   test "create fails and reports response on invalid data" do
@@ -74,7 +108,7 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
     patch child_measurement_path(@child, @measurement), params: {
       measurement: {value: "5100"}
     }
-    assert_redirected_to child_path(@child, tab: "measurements")
+    assert_redirected_to child_measurement_path(@child, @measurement)
     @measurement.reload
     assert_equal 5100, @measurement.value.to_i
   end
@@ -108,7 +142,7 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_redirected_to child_path(@child, tab: "measurements")
+    assert_redirected_to child_measurement_path(@child, Measurement.last)
     assert Measurement.last.photo.attached?
   end
 
@@ -130,7 +164,7 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_redirected_to child_path(@child, tab: "measurements")
+    assert_redirected_to child_measurement_path(@child, @measurement)
     assert_not @measurement.reload.photo.attached?
   end
 

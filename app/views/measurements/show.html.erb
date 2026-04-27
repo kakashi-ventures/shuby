@@ -1,0 +1,36 @@
+<%# Figma: node 621:10252 — "Scheda bambino_Misurazioni" (spike file NouAcPBMzhwsaS0hMMmJlu).
+  Landing page after a measurement is saved via the dashboard overlay. Scoped
+  to the measurement-overlay Stimulus controller so the header (+) button can
+  reopen the overlay for another entry of the same type.
+%>
+<% content_for :title, t("measurements.types.#{@measurement.measurement_type}") %>
+<% content_for :page_type, "detail" %>
+
+<% type = @measurement.measurement_type %>
+
+<div class="shuby-measurement-detail container px-4 mx-auto my-8 pb-24"
+     data-controller="measurement-overlay"
+     data-measurement-overlay-open-class="shuby-measurement-overlay--open">
+
+  <div class="shuby-measurement-detail-header mb-6">
+    <%= render "shared/ui/back_link",
+        path: child_path(@child, tab: "measurements"),
+        label: t("measurements.types.#{type}") %>
+
+    <%= link_to new_child_measurement_path(@child, type: type),
+        class: "shuby-measurement-detail-add",
+        aria: { label: t("measurements.show.add_more") },
+        data: measurement_overlay_link_data(type) do %>
+      <%= render_svg "shuby/icons/icon-add", size: :sm, decorative: true %>
+    <% end %>
+  </div>
+
+  <%= render "measurements/detail_current_card", measurement: @measurement %>
+  <%= render "measurements/detail_percentile_section", measurement: @measurement, child: @child %>
+  <%= render "measurements/detail_history",
+      measurement: @measurement,
+      same_type_measurements: @same_type_measurements,
+      child: @child %>
+
+  <%= render "measurements/overlay" %>
+</div>

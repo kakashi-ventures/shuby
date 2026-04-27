@@ -243,6 +243,33 @@
 }
 
 /* =====================================================
+   FLOATING BACK BUTTON (Figma 05.02_Articolo node 510:23114)
+   Persists at top-left through the full scroll of a hero-detail page,
+   so the back affordance never disappears even during the gap between
+   the hero scrolling off and the compact sticky header sliding in.
+   Pairs with .shuby-icon-btn-bianca for the visual styling.
+   ===================================================== */
+
+.shuby-floating-back-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    width: fit-content;
+    padding: 10px 0 0 10px;
+    /* Let taps pass through the surrounding dead space so the sticky
+       header beneath remains interactive — only the button itself clicks. */
+    pointer-events: none;
+}
+
+.shuby-floating-back {
+    pointer-events: auto;
+}
+
+html.hotwire-native .shuby-floating-back-wrapper {
+    padding-top: calc(env(safe-area-inset-top) + 10px);
+}
+
+/* =====================================================
    SEGMENTED TAB BAR
    Figma-style segmented control for profile tabs
    ===================================================== */

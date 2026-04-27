@@ -1,0 +1,41 @@
+<%# Featured measurement card. Figma: nodes 621:10582 (meta pane) + 621:10586 (value pane).
+  Locals:
+    measurement - the Measurement being shown
+%>
+<% shows_percentile = measurement.measurement_type != "feeding_weight" %>
+<div class="shuby-measurement-detail-current">
+  <div class="shuby-measurement-detail-current__meta">
+    <span class="shuby-measurement-detail-current__title">
+      <%= t("measurements.types.#{measurement.measurement_type}") %>
+    </span>
+    <span class="shuby-measurement-detail-current__timestamp">
+      <%= l(measurement.measured_at, format: :short) %> - h. <%= measurement.measured_at.strftime("%H:%M") %>
+    </span>
+  </div>
+
+  <div class="shuby-measurement-detail-current__value">
+    <div class="shuby-measurement-detail-current__number">
+      <div class="shuby-measurement-detail-current__number-value">
+        <%= measurement_formatted_value(measurement) %>
+      </div>
+      <div class="shuby-measurement-detail-current__number-unit">
+        <%= measurement_unit_label(measurement) %>
+      </div>
+    </div>
+
+    <% if shows_percentile %>
+      <div class="shuby-measurement-detail-current__percentile">
+        <% if measurement.percentile.present? %>
+          <div class="shuby-measurement-detail-current__percentile-value <%= percentile_color_class(measurement.percentile) %>">
+            <%= measurement.percentile %>&deg;
+          </div>
+        <% else %>
+          <div class="shuby-measurement-detail-current__percentile-value">
+            <%= t("measurements.card.percentile_unavailable") %>
+          </div>
+        <% end %>
+        <div class="shuby-measurement-detail-current__percentile-label">%</div>
+      </div>
+    <% end %>
+  </div>
+</div>

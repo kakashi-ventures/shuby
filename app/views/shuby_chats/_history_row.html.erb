@@ -1,0 +1,13 @@
+<%# A single row in the chat history list — Figma 2006:8915 .. 2006:8931.
+    Title + "%{count} messaggi" caption + chevron-right + thin divider. %>
+<%= link_to shuby_chat_path(chat), class: "shuby-chat-history-row" do %>
+  <div class="shuby-chat-history-row-text">
+    <h3 class="shuby-chat-history-row-title truncate"><%= chat.display_title %></h3>
+    <p class="shuby-chat-history-row-meta">
+      <%= t("shuby_chats.history.message_count", count: chat.messages.count) %>
+    </p>
+  </div>
+  <span class="shuby-chat-history-row-chevron">
+    <%= render_svg "shuby/icons/icon-chevron-right", size: :sm, decorative: true %>
+  </span>
+<% end %>

@@ -1,5 +1,8 @@
 <% Current.meta_tags.set(title: t(".title")) %>
 <% content_for :hide_navbar, true %>
+<%# Paint the iOS safe-area zone (status bar) blue so it matches the dashboard
+    hero band — see hotwire_native.css for the matching selector. %>
+<% content_for :body_background, "shuby-blue-300" %>
 
 <%# The header-scroll controller is hosted here (not in the header partial)
     so its Stimulus scope spans the whole dashboard — that way the sticky

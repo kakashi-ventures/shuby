@@ -21,7 +21,7 @@
       <p class="shuby-tracking-card-title"><%= type_label %></p>
     </div>
     <span class="shuby-icon-btn">
-      <%= render_svg "shuby/icons/icon-add", decorative: true %>
+      <%= render_svg "shuby/icons/icon-add", size: :sm, decorative: true %>
     </span>
   <% end %>
 
@@ -41,7 +41,7 @@
         <%= l(box.last_measurement.measured_at, format: :date_with_hour) %>
       </span>
       <span class="shuby-icon-btn-pink">
-        <%= render_svg "shuby/icons/icon-add", decorative: true %>
+        <%= render_svg "shuby/icons/icon-add", size: :sm, decorative: true %>
       </span>
     </div>
   <% end %>
@@ -62,7 +62,7 @@
         <%= l(box.last_measurement.measured_at, format: :date_with_hour) %>
       </span>
       <span class="shuby-icon-btn">
-        <%= render_svg "shuby/icons/icon-add", decorative: true %>
+        <%= render_svg "shuby/icons/icon-add", size: :sm, decorative: true %>
       </span>
     </div>
   <% end %>

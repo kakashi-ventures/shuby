@@ -1,0 +1,12 @@
+<%# Persistent greeting block on the chat surface — Figma 2030:8866-8871.
+    Round blu-400 avatar + intro headline + tagline. Stays visible above
+    the message stream throughout the conversation. %>
+<div class="shuby-chat-greeting">
+  <div class="shuby-chat-avatar">
+    <%= render_svg "shuby/icons/icon-chatbot", decorative: true %>
+  </div>
+  <div class="shuby-chat-greeting-text">
+    <h2 class="shuby-d2"><%= t("shuby_chats.show.greeting.title") %></h2>
+    <p class="shuby-p2 text-black"><%= t("shuby_chats.show.greeting.tagline") %></p>
+  </div>
+</div>
