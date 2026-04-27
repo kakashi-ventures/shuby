@@ -82,7 +82,7 @@
 - **Overrides**: Not present in specs
 - **Decision**: Upon completing a stage, show: (1) **"Updated clinical report"**, (2) **link to download the report**, (3) **link to the AI helper** or to **stimulation activities**.
 - **Status**: done
-- **Note**: Stories completion slide shows report-updated message, PDF download link, AI helper link, and session report link.
+- **Note**: Per Figma `499:5853` (source of truth), the completion overlay shows a single PDF CTA ("Apri il Report di Crescita"). AI Helper and session Storico remain reachable via the global tab bar and the development_stages show page; the simplified design intentionally avoids stacked CTAs on the completion slide.
 
 ### DEC-011: Skipped stages — jump to current period
 
