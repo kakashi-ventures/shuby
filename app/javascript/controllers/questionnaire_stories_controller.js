@@ -63,6 +63,14 @@ export default class extends Controller {
       if (response.ok) {
         const data = await response.json()
 
+        // Signal the outer overlay controller that this answer completed
+        // the session, so it knows to refresh the caller page on close
+        // (e.g. dashboard milestone box rotates to the next area or
+        // flips to the all-complete state).
+        if (data.completed) {
+          window.dispatchEvent(new CustomEvent("questionnaire-overlay:session-completed"))
+        }
+
         // Brief delay for visual feedback, then advance
         setTimeout(() => {
           this.next()

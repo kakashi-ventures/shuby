@@ -21,17 +21,21 @@ export default class extends Controller {
   static classes = ["open"]
 
   connect() {
+    this.sessionCompletedDuringOpen = false
     this.onKeydown = this.onKeydown.bind(this)
     this.onCloseEvent = this.onCloseEvent.bind(this)
     this.onSlideChanged = this.onSlideChanged.bind(this)
+    this.onSessionCompleted = this.onSessionCompleted.bind(this)
     window.addEventListener("questionnaire-overlay:close", this.onCloseEvent)
     window.addEventListener("questionnaire-overlay:slide-changed", this.onSlideChanged)
+    window.addEventListener("questionnaire-overlay:session-completed", this.onSessionCompleted)
   }
 
   disconnect() {
     document.removeEventListener("keydown", this.onKeydown)
     window.removeEventListener("questionnaire-overlay:close", this.onCloseEvent)
     window.removeEventListener("questionnaire-overlay:slide-changed", this.onSlideChanged)
+    window.removeEventListener("questionnaire-overlay:session-completed", this.onSessionCompleted)
     document.body.classList.remove("shuby-questionnaire-overlay-scroll-lock")
   }
 
@@ -51,6 +55,9 @@ export default class extends Controller {
   }
 
   open() {
+    // Reset per-open flag — opening to view an already-completed session
+    // shouldn't trigger a refresh on close.
+    this.sessionCompletedDuringOpen = false
     this.overlayElement.classList.add(this.openClass)
     this.overlayElement.setAttribute("aria-hidden", "false")
     document.body.classList.add("shuby-questionnaire-overlay-scroll-lock")
@@ -72,6 +79,19 @@ export default class extends Controller {
       this.frameTarget.replaceChildren(...this.skeletonTemplate())
       this.frameTarget.removeAttribute("src")
     }
+
+    // Refresh the caller page if the user just completed the session in
+    // this overlay open, so the dashboard milestone box rotates to the
+    // next area (or flips to all-complete) and the development_stages
+    // history list picks up the new session.
+    if (this.sessionCompletedDuringOpen) {
+      this.sessionCompletedDuringOpen = false
+      window.Turbo.visit(window.location.href, {action: "replace"})
+    }
+  }
+
+  onSessionCompleted() {
+    this.sessionCompletedDuringOpen = true
   }
 
   closeOnBackdrop(event) {
