@@ -51,3 +51,23 @@ html.hotwire-native main {
 html.hotwire-native .beta-feedback-fab {
   bottom: calc(env(safe-area-inset-bottom) + 96px);
 }
+
+/* Per-page <body> background match. Driven by `content_for :body_background`
+   in a view → `data-body-background` on <body> (see application.html.erb).
+   The body sits behind the WKWebView safe-area zone, so painting it the same
+   color as the page's top band hides the white seam between the iOS status
+   bar and the page header. Only on dashboard for now.
+
+   The :has() override re-paints body white once the dashboard sticky header
+   flips to its scrolled state (.shuby-header-scrolled toggled by the
+   header_scroll Stimulus controller). Without it, body would stay blue while
+   the header turns white, leaving a blue stripe over the status bar that
+   doesn't match the page below. Transition mirrors .shuby-dashboard-header. */
+html.hotwire-native body[data-body-background="shuby-blue-300"] {
+  background-color: var(--color-shuby-blue-300);
+  transition: background-color 0.3s ease-in-out;
+}
+
+html.hotwire-native body[data-body-background="shuby-blue-300"]:has(#dashboard-header > header.shuby-header-scrolled) {
+  background-color: var(--color-shuby-white);
+}
