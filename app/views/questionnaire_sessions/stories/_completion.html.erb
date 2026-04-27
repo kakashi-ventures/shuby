@@ -1,15 +1,21 @@
 <div class="stories-slide-content stories-completion">
   <div class="stories-completion-visual">
-    <%# Happy mascot %>
-    <%= image_tag "shuby/illustrations/mascot-cloud-happy.png",
-                  alt: "",
-                  class: "stories-completion-mascot" %>
+    <%# Pentagon mascot (Figma 499:5822 uses the same logo-pentagon as intro) %>
+    <div class="shuby-mascot-pentagon shuby-mascot-pentagon-lg">
+      <div class="shuby-mascot-pentagon-shape">
+        <div class="shuby-mascot-pentagon-face">
+          <div class="shuby-mascot-pentagon-eyes">
+            <div class="shuby-mascot-pentagon-eye"></div>
+            <div class="shuby-mascot-pentagon-eye"></div>
+          </div>
+          <div class="shuby-mascot-pentagon-smile"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="stories-completion-content">
-    <span class="stories-completion-label">
-      <%= area.name %>
-    </span>
+    <span class="stories-completion-label"><%= area.name %></span>
     <h1 class="stories-completion-title">
       <%= t("questionnaire_sessions.stories.completed_title") %>
     </h1>
@@ -24,43 +30,23 @@
         </p>
       </div>
     <% end %>
+  </div>
 
-    <%# Info card with PDF report link %>
-    <div class="stories-completion-info">
-      <p class="stories-completion-info-text">
-        <%= t("questionnaire_sessions.stories.report_updated") %>
-      </p>
-      <%= link_to child_pediatrician_report_path(child),
-                  target: "_blank",
-                  rel: "noopener",
-                  data: { turbo: false },
-                  aria: { label: t("questionnaire_sessions.stories.download_report_pdf") },
-                  class: "stories-completion-info-link" do %>
-        <%= render_svg "shuby/icons/icon-document", size: :sm, decorative: true %>
-        <%= t("questionnaire_sessions.stories.download_report_pdf") %>
-      <% end %>
-    </div>
+  <%# Info card — solid blue-800 with blue-300 text (Figma 499:5799). %>
+  <div class="stories-completion-info">
+    <p class="stories-completion-info-text">
+      <%= t("questionnaire_sessions.stories.report_updated_html").html_safe %>
+    </p>
   </div>
 
   <div class="stories-completion-actions">
-    <%= link_to child_questionnaire_session_path(child, session),
+    <%= link_to child_pediatrician_report_path(child),
+                target: "_blank",
+                rel: "noopener",
+                data: { turbo: false, turbo_frame: "_top" },
                 class: "stories-completion-btn-primary" do %>
+      <%= render_svg "shuby/icons/icon-document", size: :sm, decorative: true %>
       <%= t("questionnaire_sessions.stories.view_report") %>
-    <% end %>
-
-    <%= link_to child_questionnaire_session_path(child, session, anchor: "stimulation-activities"),
-                class: "stories-completion-btn-secondary" do %>
-      <%= t("questionnaire_sessions.stories.view_activities") %>
-    <% end %>
-
-    <%= link_to shuby_chats_path,
-                class: "stories-completion-btn-secondary" do %>
-      <%= t("questionnaire_sessions.stories.ask_shuby") %>
-    <% end %>
-
-    <%= link_to child_development_stages_path(child),
-                class: "stories-completion-btn-secondary" do %>
-      <%= t("questionnaire_sessions.stories.back_to_stages") %>
     <% end %>
   </div>
 </div>

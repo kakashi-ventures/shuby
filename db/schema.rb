@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_22_161500) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_27_083921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -136,6 +136,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_22_161500) do
     t.index ["user_id"], name: "index_api_tokens_on_user_id"
   end
 
+  create_table "archive_categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "for_content_type", null: false
+    t.string "name", null: false
+    t.integer "position", default: 0
+    t.datetime "updated_at", null: false
+    t.index ["for_content_type", "name"], name: "index_archive_categories_on_for_content_type_and_name", unique: true
+  end
+
   create_table "archive_contents", force: :cascade do |t|
     t.string "author"
     t.string "category"
@@ -174,6 +183,32 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_22_161500) do
     t.index ["user_id"], name: "index_archive_favorites_on_user_id"
   end
 
+  create_table "archive_page_sections", force: :cascade do |t|
+    t.bigint "archive_section_id", null: false
+    t.datetime "created_at", null: false
+    t.string "display_label_override"
+    t.integer "limit_override"
+    t.string "page_identifier", null: false
+    t.integer "position", default: 0
+    t.datetime "updated_at", null: false
+    t.index ["archive_section_id"], name: "index_archive_page_sections_on_archive_section_id"
+    t.index ["page_identifier", "archive_section_id"], name: "idx_page_sections_on_page_and_section", unique: true
+    t.index ["page_identifier", "position"], name: "idx_page_sections_on_page_and_position"
+  end
+
+  create_table "archive_sections", force: :cascade do |t|
+    t.boolean "active", default: true
+    t.string "card_partial", null: false
+    t.string "content_types", null: false
+    t.datetime "created_at", null: false
+    t.integer "default_limit", default: 4
+    t.string "filter_type"
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_archive_sections_on_slug", unique: true
+  end
+
   create_table "beta_feedbacks", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.text "admin_notes"
@@ -192,6 +227,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_22_161500) do
     t.index ["section"], name: "index_beta_feedbacks_on_section"
     t.index ["status"], name: "index_beta_feedbacks_on_status"
     t.index ["user_id"], name: "index_beta_feedbacks_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "icon_key"
+    t.string "name", null: false
+    t.integer "position", default: 0
+    t.boolean "published", default: true
+    t.string "slug", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
+    t.index ["position"], name: "index_categories_on_position"
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "child_health_profiles", force: :cascade do |t|
@@ -283,12 +332,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_22_161500) do
   end
 
   create_table "growth_phases", force: :cascade do |t|
+    t.string "carousel_label"
     t.datetime "created_at", null: false
     t.text "description", null: false
     t.string "illustration_key"
     t.integer "max_age_months", default: 36, null: false
     t.integer "min_age_months", default: 0, null: false
     t.integer "position", default: 0
+    t.string "timeline_title"
     t.string "title", null: false
     t.datetime "updated_at", null: false
     t.index ["min_age_months", "max_age_months"], name: "index_growth_phases_on_min_age_months_and_max_age_months"
@@ -534,6 +585,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_22_161500) do
     t.string "illustration_key"
     t.integer "position", default: 0, null: false
     t.text "prompt", null: false
+    t.string "uncertain_label"
     t.datetime "updated_at", null: false
     t.index ["age_band_questionnaire_id", "position"], name: "index_questions_on_age_band_questionnaire_id_and_position"
     t.index ["age_band_questionnaire_id"], name: "index_questions_on_age_band_questionnaire_id"
@@ -549,6 +601,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_22_161500) do
     t.string "title"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.index ["account_id", "user_id"], name: "index_shuby_chats_on_account_id_and_user_id"
     t.index ["account_id"], name: "index_shuby_chats_on_account_id"
     t.index ["child_id"], name: "index_shuby_chats_on_child_id"
     t.index ["created_at"], name: "index_shuby_chats_on_created_at"
@@ -722,6 +775,24 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_22_161500) do
     t.index ["month", "position"], name: "index_stimulation_activities_on_month_and_position"
   end
 
+  create_table "timeline_periods", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.bigint "growth_phase_id", null: false
+    t.decimal "head_circ_max_cm"
+    t.decimal "head_circ_min_cm"
+    t.decimal "height_max_cm"
+    t.decimal "height_min_cm"
+    t.integer "period_number"
+    t.string "period_type"
+    t.integer "position"
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.decimal "weight_max_kg"
+    t.decimal "weight_min_kg"
+    t.index ["growth_phase_id"], name: "index_timeline_periods_on_growth_phase_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "accepted_privacy_at", precision: nil
     t.datetime "accepted_terms_at", precision: nil
@@ -745,6 +816,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_22_161500) do
     t.string "invited_by_type"
     t.string "last_name"
     t.integer "last_otp_timestep"
+    t.integer "monthly_messages_count", default: 0, null: false
+    t.datetime "monthly_messages_reset_at"
     t.virtual "name", type: :string, as: "(((first_name)::text || ' '::text) || (COALESCE(last_name, ''::character varying))::text)", stored: true
     t.datetime "onboarding_completed_at"
     t.integer "onboarding_step", default: 0
@@ -787,6 +860,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_22_161500) do
   add_foreign_key "api_tokens", "users"
   add_foreign_key "archive_favorites", "archive_contents"
   add_foreign_key "archive_favorites", "users"
+  add_foreign_key "archive_page_sections", "archive_sections"
   add_foreign_key "beta_feedbacks", "accounts"
   add_foreign_key "beta_feedbacks", "users"
   add_foreign_key "child_health_profiles", "children"
@@ -814,4 +888,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_22_161500) do
   add_foreign_key "solid_queue_ready_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_recurring_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_scheduled_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
+  add_foreign_key "timeline_periods", "growth_phases"
 end

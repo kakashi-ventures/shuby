@@ -6,7 +6,8 @@
     The whole card is wrapped in link_to — the card itself is the CTA. %>
 <%= link_to start_child_development_stage_path(child, milestone.development_area.slug),
             class: "block",
-            aria: { label: t("dashboard.milestone_box.cta_aria_label", area: milestone.development_area.name) } do %>
+            aria: { label: t("dashboard.milestone_box.cta_aria_label", area: milestone.development_area.name) },
+            data: { action: "click->questionnaire-overlay#openWithFrame" } do %>
   <div class="shuby-milestone-card shuby-milestone-card-proposed">
     <%# Per-area illustration. DevelopmentArea#illustration_path returns
         categories/{illustration_key}.png with a growth-phase-mascot fallback. %>

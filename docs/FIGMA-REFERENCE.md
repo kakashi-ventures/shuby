@@ -32,6 +32,11 @@
 | Book detail | `532:26226` | 05.05_Libro |
 | Settings/Account | `455:5017` | 06.01_Gestione |
 | Add measurement overlay | `621:9860` | 00.05_Overlay_Aggiungi Altezza |
+| Questionnaire overlay — intro | `499:5449` | 07.01_Test_01 (Comunicazione e linguaggio cover) |
+| Questionnaire overlay — Q1 | `499:5450` | 07.01_Test_01 (Domanda 1, area-specific illustration) |
+| Questionnaire overlay — Q2 | `499:5511` | 07.01_Test_01 (Domanda 2, area-specific illustration) |
+| Questionnaire overlay — Q3 | `499:5540` | 07.01_Test_01 (Domanda 3, area-specific illustration) |
+| Questionnaire overlay — completion | `499:5853` | 07.01_Test_01 (Tappa completata, verde-scuro-500 bg) |
 
 ## Components (design system)
 

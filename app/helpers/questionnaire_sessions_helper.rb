@@ -7,18 +7,16 @@ module QuestionnaireSessionsHelper
 
     yes_percentage = (session.yes_count.to_f / session.questions_count * 100).round
 
-    if yes_percentage >= 80
-      t("questionnaire_sessions.stories.summary_excellent",
-        name: child.display_name,
-        area: area.name.downcase)
+    key = if yes_percentage >= 80
+      "summary_excellent_html"
     elsif yes_percentage >= 50
-      t("questionnaire_sessions.stories.summary_good",
-        name: child.display_name,
-        area: area.name.downcase)
+      "summary_good_html"
     else
-      t("questionnaire_sessions.stories.summary_developing",
-        name: child.display_name,
-        area: area.name.downcase)
+      "summary_developing_html"
     end
+
+    t("questionnaire_sessions.stories.#{key}",
+      name: child.display_name,
+      area: area.name.downcase)
   end
 end

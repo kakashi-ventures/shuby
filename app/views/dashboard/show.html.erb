@@ -5,8 +5,9 @@
     so its Stimulus scope spans the whole dashboard — that way the sticky
     header has a full-page containing block and stays pinned during scroll. %>
 <div class="shuby-page-shell"
-     data-controller="header-scroll"
-     data-header-scroll-scrolled-class="shuby-header-scrolled">
+     data-controller="header-scroll questionnaire-overlay"
+     data-header-scroll-scrolled-class="shuby-header-scrolled"
+     data-questionnaire-overlay-open-class="shuby-questionnaire-overlay--open">
   <%= render "shared/dashboard_header/dashboard_header" %>
 
   <%# Zone 1: Full-bleed blue hero band %>
@@ -38,6 +39,8 @@
     <%= render "dashboard/section_featured" %>
 
   </div>
+
+  <%= render "questionnaire_sessions/overlay" if current_child.present? %>
 </div>
 
 <% content_for :bottom_nav do %>

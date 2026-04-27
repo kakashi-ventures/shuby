@@ -2,9 +2,10 @@
 <% content_for :hide_navbar, true %>
 
 <div class="shuby-timeline-page"
-     data-controller="timeline-carousel"
+     data-controller="timeline-carousel questionnaire-overlay"
      data-timeline-carousel-current-band-key-value="<%= @current_band[:key] %>"
-     data-timeline-carousel-content-url-value="<%= timeline_content_child_development_stages_path(@child) %>">
+     data-timeline-carousel-content-url-value="<%= timeline_content_child_development_stages_path(@child) %>"
+     data-questionnaire-overlay-open-class="shuby-questionnaire-overlay--open">
 
   <%# Header — Figma node 211:2618 %>
   <div class="shuby-timeline-page-header">
@@ -43,6 +44,8 @@
                who_ranges: @who_ranges,
                development_areas: @development_areas %>
   </turbo-frame>
+
+  <%= render "questionnaire_sessions/overlay" %>
 </div>
 
 <% content_for :bottom_nav do %>

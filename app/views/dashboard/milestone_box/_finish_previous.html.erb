@@ -1,40 +1,36 @@
-<%# Finish previous state - in-progress session from past month needs completion %>
-<%= link_to stories_child_questionnaire_session_path(child, session),
-            class: "block rounded-2xl overflow-hidden hover:shadow-md transition-shadow" do %>
-  <div class="bg-shuby-giallo-400 rounded-2xl relative">
-    <%# Tags row — Figma: verde type tag, giallo_scuro age tag for in-progress state %>
-    <div class="flex items-center gap-2 px-4 pt-4">
-      <%# Type tag %>
+<%# Finish-previous milestone — Dashboard surface that prompts the parent
+    to resume an in-progress session from a prior month. Shares the
+    `.shuby-milestone-card` family root with `_proposed.html.erb` but uses
+    the `-finish-previous` modifier (giallo-400 background, side-by-side
+    text + mascot layout). %>
+<%= link_to overlay_frame_child_questionnaire_session_path(child, session),
+            class: "block",
+            data: { action: "click->questionnaire-overlay#openWithFrame" } do %>
+  <div class="shuby-milestone-card shuby-milestone-card-finish-previous">
+    <div class="shuby-milestone-card-finish-previous-tags">
       <%= shuby_tag(t("dashboard.milestone_box.type_tag"), variant: :verde, size: :small) %>
-      <%# Age tag %>
       <%= shuby_tag(milestone.age_band_label, variant: :giallo_scuro, size: :small) %>
     </div>
 
-    <%# Content with illustration %>
-    <div class="flex items-end gap-4 p-4 pt-3">
-      <div class="flex-1 min-w-0">
-        <%# Title — Figma: Body/P1/Light (blue-800 override, default is black) %>
-        <p class="shuby-p1 text-shuby-blue-800 mb-1">
+    <div class="shuby-milestone-card-finish-previous-body">
+      <div class="shuby-milestone-card-finish-previous-text">
+        <p class="shuby-milestone-card-finish-previous-intro shuby-p1">
           <%= t("dashboard.milestone_box.finish_previous_title") %>
         </p>
-        <%# Area name — Figma: Display/D2 (20 Baloo2 Bold, blue-800 default) %>
-        <h3 class="shuby-d2 mb-1">
+        <h3 class="shuby-milestone-card-finish-previous-title shuby-d2">
           <%= milestone.development_area.name %>
         </h3>
-        <%# Progress — Figma: Overline/OL/Light (10 Regular uppercase, blue-800 default) %>
-        <p class="shuby-overline mb-4">
+        <p class="shuby-milestone-card-finish-previous-progress shuby-overline">
           <%= t("dashboard.milestone_box.finish_previous_progress",
                 answered: session.answered_count, total: session.questions_count) %>
         </p>
-        <%# CTA Button %>
         <div class="shuby-btn shuby-btn-sm shuby-btn-primary">
           <%= t("dashboard.milestone_box.finish_previous_cta") %>
         </div>
       </div>
 
-      <%# Illustration %>
-      <div class="flex flex-col items-end gap-2 shrink-0">
-        <%= image_tag "shuby/illustrations/mascot-sorriso-small.png", class: "w-20 h-20 object-contain", alt: "" %>
+      <div class="shuby-milestone-card-finish-previous-illustration">
+        <%= image_tag "shuby/illustrations/mascot-sorriso-small.png", alt: "" %>
       </div>
     </div>
   </div>

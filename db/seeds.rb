@@ -40,16 +40,17 @@ if (generale_area = DevelopmentArea.find_by(slug: "generale"))
 end
 
 # =============================================================================
-# 1. Create Development Areas (5 areas - matches official file, 0-36 months)
+# 1. Create Development Areas (6 areas - matches Figma timeline, 0-36 months)
 # =============================================================================
 
 puts "Creating development areas..."
 AREAS = [
-  {name: "Comunicazione e Linguaggio", slug: "comunicazione-linguaggio", color: "#EC4899", position: 1},
-  {name: "Motricità", slug: "motricita", color: "#10B981", position: 2},
-  {name: "Cognizione e Attenzione", slug: "cognizione-attenzione", color: "#F59E0B", position: 3},
-  {name: "Relazione e Regolazione", slug: "relazione-regolazione", color: "#3B82F6", position: 4},
-  {name: "Consolidamento", slug: "consolidamento", color: "#6366F1", position: 5}
+  {name: "Generale", slug: "generale", color: "#0891B2", position: 1},
+  {name: "Comunicazione e Linguaggio", slug: "comunicazione-linguaggio", color: "#EC4899", position: 2},
+  {name: "Motricità", slug: "motricita", color: "#10B981", position: 3},
+  {name: "Cognizione e Attenzione", slug: "cognizione-attenzione", color: "#F59E0B", position: 4},
+  {name: "Relazione e Regolazione", slug: "relazione-regolazione", color: "#3B82F6", position: 5},
+  {name: "Consolidamento", slug: "consolidamento", color: "#6366F1", position: 6}
 ].freeze
 
 AREAS.each do |data|

@@ -15,6 +15,10 @@ export default class extends Controller {
     this.updateProgress()
     this.setupSwipeGestures()
     this.setupKeyboardNavigation()
+    // Notify the outer overlay controller of the initial slide so the
+    // background color matches (e.g. reopening a completed session lands
+    // on the completion slide directly).
+    this.dispatchSlideChanged(this.currentValue)
   }
 
   disconnect() {
@@ -94,33 +98,31 @@ export default class extends Controller {
     return meta ? meta.content : ""
   }
 
-  // Slide transitions
-  transitionTo(newIndex, direction) {
+  // Slide transitions are INSTANT per Figma prototype (SWAP action with
+  // no transition data on every intra-overlay transition). The `direction`
+  // param is preserved in the signature for callers but unused — kept in
+  // case future motion is reintroduced.
+  transitionTo(newIndex, _direction) {
     const currentSlide = this.slideTargets[this.currentValue]
     const nextSlide = this.slideTargets[newIndex]
 
-    // Exit animation for current slide
-    const exitClass = direction === "forward" ? "slide-out-left" : "slide-out-right"
-    const enterClass = direction === "forward" ? "slide-in-right" : "slide-in-left"
+    currentSlide.classList.remove("active")
+    nextSlide.classList.add("active")
 
-    currentSlide.classList.add(exitClass)
+    this.currentValue = newIndex
+    this.updateProgress()
+    this.dispatchSlideChanged(newIndex)
+    this.focusFirstInteractive(nextSlide)
+  }
 
-    // After exit animation
-    setTimeout(() => {
-      currentSlide.classList.remove("active", exitClass)
-      nextSlide.classList.add("active", enterClass)
-
-      // After enter animation
-      setTimeout(() => {
-        nextSlide.classList.remove(enterClass)
-      }, 300)
-
-      this.currentValue = newIndex
-      this.updateProgress()
-
-      // Focus management for accessibility
-      this.focusFirstInteractive(nextSlide)
-    }, 300)
+  // Broadcast to the outer overlay controller so it can flip background
+  // color + close-button contrast when the user lands on the completion
+  // slide (last index). See `questionnaire_overlay_controller#onSlideChanged`.
+  dispatchSlideChanged(index) {
+    const total = this.slideTargets.length
+    window.dispatchEvent(new CustomEvent("questionnaire-overlay:slide-changed", {
+      detail: { index, total, isCompletion: index === total - 1 }
+    }))
   }
 
   showSlide(index) {
@@ -278,12 +280,11 @@ export default class extends Controller {
     }
   }
 
-  // Exit handling
+  // Exit handling — progress persists per-answer via AJAX, so closing is
+  // non-destructive. Bubble a close event the outer overlay controller
+  // listens for.
   exit() {
-    const message = this.exitConfirmationValue || "Vuoi uscire dal questionario?"
-    if (confirm(message)) {
-      window.location.href = `/children/${this.childIdValue}/development-stages`
-    }
+    window.dispatchEvent(new CustomEvent("questionnaire-overlay:close"))
   }
 
   handleError() {

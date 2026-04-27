@@ -21,7 +21,7 @@ class QuestionnaireSessionPolicy < ApplicationPolicy
     show?
   end
 
-  def stories?
+  def overlay_frame?
     show?
   end
 

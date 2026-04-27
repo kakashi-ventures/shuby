@@ -1,0 +1,739 @@
+/* Shuby Questionnaire Overlay
+ *
+ * Full-screen takeover overlay for the tappa (milestone) developmental
+ * questionnaire. Rendered by `questionnaire_sessions/_overlay` on caller
+ * pages (Dashboard, Tappe timeline, stage detail), opened via
+ * `questionnaire_overlay_controller`. Content loads into the inner
+ * Turbo Frame once the user taps a trigger link.
+ *
+ * Visual design follows Figma nodes on file qriF7HfsvoG8VUSdjUETBd:
+ *   - Cover/intro:    499:5449 (verde-300 bg)
+ *   - Domanda 1:      499:5450 (verde-300 bg, area-specific illustration)
+ *   - Domanda 2:      499:5511 (verde-300 bg, area-specific illustration)
+ *   - Domanda 3:      499:5540 (verde-300 bg, area-specific illustration)
+ *   - Conclusione:    499:5853 (verde-scuro-500 bg)
+ *
+ * The inner `.stories-*` slide classes drive the Instagram-Stories-style
+ * intro → questions → completion slide mechanics. The outer shell swaps
+ * background + close-button color by toggling `--on-completion` on the
+ * overlay root — driven by a Stimulus `questionnaire-overlay:slide-changed`
+ * event dispatched from the inner slide controller.
+ */
+
+/* =====================================================
+   OVERLAY SHELL
+   ===================================================== */
+
+/* Outer overlay: transparent positioning context that holds the
+   backdrop (behind) and the rounded sheet (in front). Does NOT carry a
+   background — the sheet does. Figma: 370x752 artboard inside a 390x844
+   viewport implies ~10px visible margin + safe-area inset margin; the
+   sheet element below takes care of that positioning. */
+.shuby-questionnaire-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1250ms cubic-bezier(0.4, 0, 0.6, 1),
+                visibility 1250ms cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.shuby-questionnaire-overlay--open {
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+}
+
+.shuby-questionnaire-overlay-scroll-lock {
+    overflow: hidden;
+    touch-action: none;
+}
+
+/* Backdrop — dims the caller page behind the sheet. Per Figma 463:6220
+   prototype interaction "Open overlay / Animate: Instant", the backdrop
+   appears immediately with NO fade. The sheet alone carries the spring
+   slide-up motion. */
+.shuby-questionnaire-overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transition: none;
+}
+
+.shuby-questionnaire-overlay--open .shuby-questionnaire-overlay-backdrop {
+    opacity: 1;
+}
+
+/* Sheet — the rounded card that carries the verde-300 background (or
+   verde-scuro-500 on completion). Sits inside the viewport with ~12px
+   horizontal margin and safe-area-inset-respecting vertical margins.
+   Figma: 12px radius = var(--radius-grande).
+   Animation per Figma 463:6220 prototype:
+   transition=MOVE_IN duration=1250ms easing=SLOW.
+   FIGMA-REFERENCE.md maps SLOW → cubic-bezier(0.4, 0, 0.6, 1).
+   The verde-300 → verde-scuro-500 swap on the completion slide uses
+   Figma SWAP (instant) — no background-color transition is animated.
+   Defensive: solid background-color (no gradient/image), explicit
+   text/button alignment direction so children that absolute-position
+   from the left won't flip. */
+.shuby-questionnaire-overlay .shuby-questionnaire-overlay-sheet,
+.shuby-questionnaire-overlay-sheet {
+    position: absolute;
+    top: max(var(--space-2), env(safe-area-inset-top));
+    bottom: max(var(--space-2), env(safe-area-inset-bottom));
+    left: var(--space-3);
+    right: var(--space-3);
+    background-color: var(--color-shuby-verde-300);
+    background-image: none;
+    border-radius: var(--radius-grande);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform: translateY(100%);
+    opacity: 1;
+    direction: ltr;
+    text-align: left;
+    transition: transform 1250ms cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.shuby-questionnaire-overlay--open .shuby-questionnaire-overlay-sheet {
+    transform: translateY(0);
+}
+
+/* Dark teal variant for the completion slide. Class toggles on the
+   overlay root (no Stimulus change needed) — this selector cascades
+   the bg swap to the sheet. Defensive: kill any background-image too. */
+.shuby-questionnaire-overlay--on-completion .shuby-questionnaire-overlay-sheet,
+.shuby-questionnaire-overlay--on-completion.shuby-questionnaire-overlay .shuby-questionnaire-overlay-sheet {
+    background-color: var(--color-shuby-verde-scuro-500);
+    background-image: none;
+}
+
+/* Frame wrapper — fills the sheet so slide content can absolute-position
+   relative to the sheet. */
+.shuby-questionnaire-overlay-frame {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+/* Close button: top-right of the sheet, no bubble, just the X. Color
+   flips to white on the completion slide (dark teal bg). The sheet
+   already clears the safe area, so no env() calc needed here.
+   Defensive `left: auto` defeats any upstream rule that might place
+   icon-buttons at the left. */
+.shuby-questionnaire-overlay .shuby-questionnaire-overlay-close,
+.shuby-questionnaire-overlay-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    left: auto;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    z-index: 120;
+    color: var(--color-shuby-blue-800);
+    transition: color 0.2s ease, transform 0.2s ease;
+    /* 44x44 hit-area for accessibility via padding; visual size stays 24 */
+    padding: 10px;
+    box-sizing: content-box;
+    margin: -10px;
+    box-shadow: none;
+}
+
+.shuby-questionnaire-overlay-close:active {
+    transform: scale(0.92);
+}
+
+.shuby-questionnaire-overlay-close svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.shuby-questionnaire-overlay--on-completion .shuby-questionnaire-overlay-close {
+    color: var(--color-shuby-white);
+}
+
+/* =====================================================
+   LOADING SKELETON
+   ===================================================== */
+
+@keyframes shuby-questionnaire-overlay-shimmer {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+}
+
+.shuby-questionnaire-overlay-skeleton {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 80px var(--space-6) var(--space-8);
+    gap: var(--space-6);
+    animation: shuby-questionnaire-overlay-shimmer 1.2s ease-in-out infinite alternate;
+}
+
+.shuby-questionnaire-overlay-skeleton-mascot {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--color-shuby-verde-200);
+    margin: 0 auto var(--space-4);
+}
+
+.shuby-questionnaire-overlay-skeleton-title {
+    height: 28px;
+    border-radius: var(--radius-tondo);
+    background: var(--color-shuby-verde-200);
+    margin: 0 auto;
+    width: 70%;
+}
+
+.shuby-questionnaire-overlay-skeleton-line {
+    height: 14px;
+    border-radius: var(--radius-tondo);
+    background: var(--color-shuby-verde-200);
+    width: 90%;
+    margin-inline: auto;
+}
+
+.shuby-questionnaire-overlay-skeleton-line--short {
+    width: 60%;
+}
+
+.shuby-questionnaire-overlay-skeleton-button {
+    margin-top: auto;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background: var(--color-shuby-verde-200);
+}
+
+/* =====================================================
+   PROGRESS STEPPER
+   Figma: 2px-tall segments, verde-200 inactive, blue-800 completed-or-current.
+   ===================================================== */
+
+/* Progress stepper — Figma 499:5449 inset[2.66% 5.41% 97.07% 5.41%] →
+   top: 20px, left: 20px, right: 20px on the 752×370 sheet. The sheet
+   already clears safe-area, so no env() calc needed. */
+.stories-progress {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    gap: 2px;
+    padding: 0;
+    z-index: 100;
+}
+
+.stories-progress-segment {
+    flex: 1;
+    height: 2px;
+    background-color: var(--color-shuby-verde-200);
+    border-radius: var(--radius-tondo);
+    transition: background-color 0.3s ease;
+}
+
+/* Single-current model: ONLY the active segment is filled blue. Completed
+   segments revert to verde-200. Applies on every slide including the
+   completion slide — Figma 499:5449/5450/5511/5540/5853 each show only
+   one filled segment matching the current step, not a cumulative bar. */
+.stories-progress-segment.current {
+    background-color: var(--color-shuby-blue-800);
+}
+
+/* =====================================================
+   SLIDES (shared)
+   ===================================================== */
+
+/* Slide-to-slide transitions are INSTANT per Figma prototype: every
+   intra-overlay transition (intro→Q1, Q1→Q2, Q2→Q3, Q3→completion)
+   uses a SWAP action with no transition data — i.e., a frame replace
+   with no animation. The verde-300 → verde-scuro-500 background change
+   on the completion slide therefore happens instantly too, since SWAP
+   replaces the entire frame at once. */
+.stories-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.stories-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Slide content padding — top clears the stepper (16+2+margin) + close
+   button, bottom leaves breathing room. The sheet handles safe-area
+   offsets, so no env() calc needed here. */
+.stories-slide-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 72px 20px 24px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* =====================================================
+   INTRO SLIDE
+   Figma 499:5195 — verde-300 bg, 38px title, verde-200 RICORDA box
+   with fucsia-500 label, blue-800 "Comincia" button at bottom.
+   ===================================================== */
+
+.stories-intro {
+    justify-content: space-between;
+}
+
+.stories-intro-visual {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.stories-intro-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.stories-intro-title {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-shuby-blue-800);
+    line-height: 1;
+    margin: 0;
+}
+
+.stories-intro-description {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-blue-800);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.stories-intro-action {
+    flex-shrink: 0;
+    padding-top: var(--space-4);
+}
+
+/* RICORDA box override when rendered inside the intro slide.
+   Default palette (notices.css) uses blue-300 bg + blue-800 label;
+   Figma cover uses verde-200 bg + fucsia-500 label. */
+.stories-intro .shuby-ricorda-box {
+    background-color: var(--color-shuby-verde-200);
+    padding: var(--space-4);
+}
+
+.stories-intro .shuby-ricorda-icon {
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    color: var(--color-shuby-fucsia-500);
+}
+
+.stories-intro .shuby-ricorda-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-shuby-fucsia-500);
+    fill: currentColor;
+}
+
+.stories-intro .shuby-ricorda-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-shuby-fucsia-500);
+    text-transform: uppercase;
+    letter-spacing: 0;
+}
+
+.stories-intro .shuby-ricorda-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-shuby-blue-800);
+}
+
+.stories-intro .shuby-ricorda-text strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-shuby-blue-800);
+}
+
+/* =====================================================
+   QUESTION SLIDE — absolute positioning per Figma
+   Figma 499:5450/5511/5540 — verde-300 bg, illustration top, counter+
+   prompt mid (top:259px), 3 outlined answer buttons (top:422px).
+   The 370×752 sheet is mobile-portrait-only, so pixel-exact offsets
+   are safe and match Figma spec 1:1.
+   ===================================================== */
+
+.stories-question {
+    /* Override slide-content's flex layout so children can absolute-position */
+    display: block;
+    padding: 0;
+    overflow: visible;
+}
+
+.stories-question .stories-question-illustration {
+    position: absolute;
+    top: 8.24%;
+    bottom: 70.88%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 165px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+/* Per-question PNG (Figma 499:5450/5511/5540) — area-specific scenes that
+   include the pentagon plus decorative elements. Fills the illustration
+   slot, preserving aspect ratio. */
+.stories-question-illustration-asset {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.stories-question .stories-question-text {
+    position: absolute;
+    top: 259px;
+    left: 20px;
+    width: 330px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.stories-question-counter,
+.stories-question-counter-text {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-shuby-black);
+    text-transform: uppercase;
+    letter-spacing: 0;
+    line-height: 1.5;
+    text-align: left;
+    margin: 0;
+}
+
+.stories-question-prompt {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-shuby-blue-800);
+    line-height: 1.5;
+    text-align: left;
+    margin: 0;
+}
+
+.stories-question-help {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--color-shuby-blue-800);
+    opacity: 0.75;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* Answer buttons stack — Figma 499:5450 positions the group at top:422px,
+   width 330px, 16px vertical gap. Each button is a 36px-tall transparent
+   pill with a 2px blu-800 outline. */
+.stories-question .stories-answer-buttons {
+    position: absolute;
+    top: 422px;
+    left: 20px;
+    width: 330px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+.stories-answer-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 36px;
+    padding: 9px 20px;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-shuby-blue-800);
+    background-color: transparent;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.stories-answer-btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.stories-answer-btn:focus-visible {
+    outline: 2px solid var(--color-shuby-blue-800);
+    outline-offset: 2px;
+}
+
+.stories-answer-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.stories-answer-btn.selected {
+    background-color: var(--color-shuby-blue-800);
+}
+
+.stories-answer-btn.selected .stories-answer-label {
+    color: var(--color-shuby-white);
+}
+
+.stories-answer-label {
+    font-size: 16px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-shuby-blue-800);
+    line-height: 1.5;
+}
+
+/* =====================================================
+   COMPLETION SLIDE — absolute positioning per Figma 499:5853
+   Flat verde-scuro-500 bg, white text, pentagon mascot at top,
+   subtitle (259px) + title (288px) + body (350px) on the upper
+   half, info card visually centered around 610px, CTA bottom (690px).
+   ===================================================== */
+
+.stories-completion {
+    /* Override slide-content's flex layout so children can absolute-position */
+    display: block;
+    padding: 0;
+    overflow: visible;
+    color: var(--color-shuby-white);
+}
+
+.stories-completion .stories-completion-visual {
+    position: absolute;
+    top: 8.24%;
+    bottom: 70.88%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 165px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+/* Three text blocks — subtitle, title, body — at fixed Figma offsets,
+   left-aligned (defeats any centered-text cascade). */
+.stories-completion .stories-completion-label {
+    position: absolute;
+    top: 259px;
+    left: 20px;
+    width: 330px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-white);
+    line-height: 1.5;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+.stories-completion .stories-completion-title {
+    position: absolute;
+    top: 288px;
+    left: 20px;
+    width: 330px;
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-shuby-white);
+    line-height: 1;
+    text-align: left;
+    margin: 0;
+}
+
+.stories-completion .stories-completion-summary {
+    position: absolute;
+    top: 350px;
+    left: 20px;
+    width: 330px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-white);
+    line-height: 1.5;
+    text-align: left;
+    margin: 0;
+}
+
+/* Attention warning — kept for sessions where needs_attention? is true.
+   Figma 499:5853 doesn't show this state; we anchor it just under the
+   summary block so it doesn't fight the info card position. */
+.stories-completion .stories-completion-attention {
+    position: absolute;
+    top: 440px;
+    left: 20px;
+    width: 330px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-left: 3px solid var(--color-shuby-giallo-600);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    margin: 0;
+}
+
+.stories-completion-attention-text {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--color-shuby-white);
+    line-height: 1.5;
+    margin: 0;
+    text-align: left;
+}
+
+/* Info card — solid blu-800 bg with blu-300 text. Figma positions the
+   card centered around y=610 (calc(50% + 234px) with translateY(-50%)).
+   Embeds the report-sharing sentence with a bolded phrase. */
+.stories-completion .stories-completion-info {
+    position: absolute;
+    top: calc(50% + 234px);
+    transform: translateY(-50%);
+    left: 20px;
+    right: 20px;
+    background-color: var(--color-shuby-blue-800);
+    border-radius: var(--radius-grande);
+    padding: 16px;
+    margin: 0;
+}
+
+.stories-completion-info-text {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-blue-300);
+    line-height: 1.5;
+    margin: 0;
+    text-align: left;
+}
+
+.stories-completion-info-text strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-shuby-blue-300);
+}
+
+/* Single CTA at 91.76% (≈ 690px of 752 sheet) — solid blu-800 pill with
+   white text + white document icon. Padding 6px 16px (compact, not the
+   answer-button's 9px 20px). */
+.stories-completion .stories-completion-actions {
+    position: absolute;
+    top: 91.76%;
+    left: 20px;
+    right: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Anchor selector (`a.…`) deliberately raises specificity over generic
+   link styling (Tailwind preflight, daisyUI defaults) so the white text
+   sticks. The partial uses `link_to`, which always renders an <a>. */
+a.stories-completion-btn-primary,
+.stories-completion-btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 6px 16px;
+    background-color: var(--color-shuby-blue-800);
+    color: var(--color-shuby-white);
+    border: none;
+    border-radius: var(--radius-full);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.5;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+a.stories-completion-btn-primary:hover,
+.stories-completion-btn-primary:hover {
+    background-color: var(--color-shuby-blue-700);
+    color: var(--color-shuby-white);
+}
+
+a.stories-completion-btn-primary:visited,
+a.stories-completion-btn-primary:focus,
+a.stories-completion-btn-primary:active {
+    color: var(--color-shuby-white);
+}
+
+.stories-completion-btn-primary:active {
+    transform: scale(0.98);
+}
+
+.stories-completion-btn-primary svg,
+.stories-completion-btn-primary svg path {
+    width: 20px;
+    height: 20px;
+    color: var(--color-shuby-white);
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .shuby-questionnaire-overlay,
+    .shuby-questionnaire-overlay-close,
+    .stories-answer-btn,
+    .stories-progress-segment,
+    .stories-completion-btn-primary {
+        transition: none;
+    }
+
+    /* Fall back from the 1250ms slide-up to a short opacity fade —
+       same end-state, no slide motion. */
+    .shuby-questionnaire-overlay-sheet {
+        transform: none;
+        opacity: 0;
+        transition: opacity 150ms linear;
+    }
+
+    .shuby-questionnaire-overlay--open .shuby-questionnaire-overlay-sheet {
+        opacity: 1;
+    }
+
+    .shuby-questionnaire-overlay-skeleton {
+        animation: none;
+    }
+}

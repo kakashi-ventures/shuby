@@ -1,32 +1,34 @@
 <% scope = "development_stages.show" %>
 
 <% if current_session&.in_progress? %>
-  <div class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg mb-4">
-    <div>
-      <p class="shuby-p1-dark text-yellow-700"><%= t("in_progress", scope: scope) %></p>
-      <p class="shuby-caption text-yellow-600"><%= current_session.progress_fraction %> <%= t("questions_answered", scope: scope) %></p>
+  <div class="shuby-stage-status-card shuby-stage-status-card--in-progress">
+    <div class="shuby-stage-status-card-text">
+      <p class="shuby-stage-status-card-title shuby-p1-dark"><%= t("in_progress", scope: scope) %></p>
+      <p class="shuby-stage-status-card-meta shuby-caption"><%= current_session.progress_fraction %> <%= t("questions_answered", scope: scope) %></p>
     </div>
-    <%= link_to stories_child_questionnaire_session_path(child, current_session),
-        class: "shuby-btn shuby-btn-sm shuby-btn-primary" do %>
+    <%= link_to overlay_frame_child_questionnaire_session_path(child, current_session),
+        class: "shuby-btn shuby-btn-sm shuby-btn-primary",
+        data: { action: "click->questionnaire-overlay#openWithFrame" } do %>
       <%= t("continue_questionnaire", scope: scope) %>
     <% end %>
   </div>
 <% elsif current_session&.not_started? %>
-  <%# Session exists but no answers yet — link directly to stories to avoid creating a duplicate %>
-  <div class="flex items-center justify-between p-4 bg-shuby-blue-300 rounded-[var(--radius-md)] mb-4">
-    <div>
-      <p class="shuby-p1-dark text-shuby-blue-800"><%= t("not_started", scope: scope) %></p>
+  <%# Session exists but no answers yet — open the overlay directly to avoid creating a duplicate %>
+  <div class="shuby-stage-status-card shuby-stage-status-card--not-started">
+    <div class="shuby-stage-status-card-text">
+      <p class="shuby-stage-status-card-title shuby-p1-dark"><%= t("not_started", scope: scope) %></p>
     </div>
-    <%= link_to stories_child_questionnaire_session_path(child, current_session),
-        class: "shuby-btn shuby-btn-sm shuby-btn-primary" do %>
+    <%= link_to overlay_frame_child_questionnaire_session_path(child, current_session),
+        class: "shuby-btn shuby-btn-sm shuby-btn-primary",
+        data: { action: "click->questionnaire-overlay#openWithFrame" } do %>
       <%= t("start_questionnaire", scope: scope) %>
     <% end %>
   </div>
 <% elsif current_session&.completed? %>
-  <div class="flex items-center justify-between p-4 bg-green-50 rounded-lg mb-4">
-    <div>
-      <p class="shuby-p1-dark text-green-700"><%= t("completed_status", scope: scope) %></p>
-      <p class="shuby-caption text-green-600">
+  <div class="shuby-stage-status-card shuby-stage-status-card--completed">
+    <div class="shuby-stage-status-card-text">
+      <p class="shuby-stage-status-card-title shuby-p1-dark"><%= t("completed_status", scope: scope) %></p>
+      <p class="shuby-stage-status-card-meta shuby-caption">
         <%= t("completed_on", scope: scope, date: l(current_session.completed_at.to_date, format: :long)) %>
       </p>
     </div>
@@ -39,7 +41,8 @@
 
 <% unless current_session&.in_progress? || current_session&.not_started? %>
   <%= link_to start_child_development_stage_path(child, area.slug),
-      class: "shuby-btn shuby-btn-md shuby-btn-primary w-full" do %>
+      class: "shuby-btn shuby-btn-md shuby-btn-primary w-full",
+      data: { action: "click->questionnaire-overlay#openWithFrame" } do %>
     <%= current_session&.completed? ? t("restart_questionnaire", scope: scope) : t("start_questionnaire", scope: scope) %>
   <% end %>
 <% end %>

@@ -36,7 +36,7 @@ class QuestionnaireSessionsController < ApplicationController
     @total = @session.questions_count
   end
 
-  def stories
+  def overlay_frame
     @questionnaire = @session.age_band_questionnaire
     @area = @questionnaire.development_area
     @questions = @questionnaire.questions.active.ordered.to_a
@@ -47,7 +47,7 @@ class QuestionnaireSessionsController < ApplicationController
       return
     end
 
-    render layout: "stories"
+    render layout: false
   end
 
   def answer

@@ -16,12 +16,16 @@
 
   <div class="stories-intro-content">
     <h1 class="stories-intro-title"><%= area.name %></h1>
-    <p class="stories-intro-description">
-      <%= questionnaire.description.presence || t("questionnaire_sessions.stories.intro_description_default", area: area.name.downcase, name: child.display_name) %>
-    </p>
+    <% if questionnaire.description.present? %>
+      <p class="stories-intro-description">
+        <%= questionnaire.description %>
+      </p>
+    <% end %>
 
-    <%# RICORDA box %>
-    <%= render "shared/ui/ricorda_box", label: t("questionnaire_sessions.stories.ricorda") do %>
+    <%# RICORDA box — flower-burst icon per Figma 499:5449 %>
+    <%= render "shared/ui/ricorda_box",
+               label: t("questionnaire_sessions.stories.ricorda"),
+               icon: "shuby/icons/icon-remember" do %>
       <%= t("questionnaire_sessions.stories.ricorda_message") %>
     <% end %>
   </div>

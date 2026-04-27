@@ -16,7 +16,7 @@ resources :children, only: [] do
   resources :questionnaire_sessions, path: "questionnaires", only: [:show, :edit, :update] do
     member do
       get :continue # Resume questionnaire (fallback)
-      get :stories # Stories-style questionnaire (default)
+      get :overlay_frame # Turbo-frame content loaded into the questionnaire overlay
       post :answer # Submit answer to a question
       patch :complete # Mark as complete
     end

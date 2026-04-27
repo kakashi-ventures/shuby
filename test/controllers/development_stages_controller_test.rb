@@ -23,11 +23,11 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should redirect to questionnaire when starting" do
+  test "should redirect to overlay_frame when starting" do
     area = development_areas(:relazione)
     get start_child_development_stage_path(@child, area.slug)
     assert_response :redirect
-    assert_match(/questionnaires/, response.redirect_url)
+    assert_match(%r{/questionnaires/\d+/overlay_frame\z}, response.redirect_url)
   end
 
   test "index requires authentication" do
@@ -71,7 +71,7 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
   test "index renders Stimulus controller data attributes" do
     get child_development_stages_path(@child)
     assert_response :success
-    assert_select "[data-controller='timeline-carousel']"
+    assert_select "[data-controller~='timeline-carousel']"
   end
 
   test "index pre-selects one pill" do

@@ -22,8 +22,9 @@ class DevelopmentArea < ApplicationRecord
   end
 
   def illustration_path
-    if illustration_key.present?
-      "shuby/illustrations/categories/#{illustration_key}.png"
+    candidate = "shuby/illustrations/categories/#{illustration_key}.png" if illustration_key.present?
+    if candidate && Rails.root.join("app/assets/images", candidate).file?
+      candidate
     else
       "shuby/illustrations/growth-phase-mascot.svg"
     end

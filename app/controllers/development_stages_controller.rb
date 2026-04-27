@@ -42,7 +42,7 @@ class DevelopmentStagesController < ApplicationController
     # Reuse existing active session, or start a new one
     @session = @child.session_for(@questionnaire) || @child.start_new_session(@questionnaire)
 
-    redirect_to stories_child_questionnaire_session_path(@child, @session)
+    redirect_to overlay_frame_child_questionnaire_session_path(@child, @session)
   end
 
   private

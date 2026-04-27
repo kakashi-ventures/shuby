@@ -813,3 +813,142 @@ html.hotwire-native .shuby-stage-completed-header {
         height: 48px;
     }
 }
+
+/* =====================================================
+   STAGE STATUS CARDS
+   Compact horizontal card on the dev-stage detail page that surfaces
+   the current session's state (in-progress / not-started / completed)
+   plus a single CTA. Tone-coloured per state so users can scan their
+   place at a glance. Past-in-progress is the same shape with an amber
+   border to flag the bleed-over from the previous month's session.
+   ===================================================== */
+
+.shuby-stage-status-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-4);
+}
+
+.shuby-stage-status-card-text {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Typography flows from `shuby-p1-dark` / `shuby-caption` on the elements;
+   these classes only zero margins and let the per-state modifier set color. */
+.shuby-stage-status-card-title,
+.shuby-stage-status-card-meta {
+    margin: 0;
+}
+
+.shuby-stage-status-card--in-progress {
+    background-color: var(--bg-warning-secondary);
+}
+
+.shuby-stage-status-card--in-progress .shuby-stage-status-card-title {
+    color: var(--text-on-warning-secondary);
+}
+
+.shuby-stage-status-card--in-progress .shuby-stage-status-card-meta {
+    color: var(--icon-on-warning-secondary);
+}
+
+.shuby-stage-status-card--not-started {
+    background-color: var(--color-shuby-blue-300);
+}
+
+.shuby-stage-status-card--not-started .shuby-stage-status-card-title {
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-stage-status-card--completed {
+    background-color: var(--bg-success-secondary);
+}
+
+.shuby-stage-status-card--completed .shuby-stage-status-card-title {
+    color: var(--text-on-success-secondary);
+}
+
+.shuby-stage-status-card--completed .shuby-stage-status-card-meta {
+    color: var(--text-success);
+}
+
+/* Past-in-progress shares the warning palette with `--in-progress`; the
+   border is what visually flags "older session bleeding into the current
+   month" so it remains distinguishable without a unique bg shade. */
+.shuby-stage-status-card--past-in-progress {
+    background-color: var(--bg-warning-secondary);
+    border: 1px solid var(--color-shuby-orange-100);
+}
+
+.shuby-stage-status-card--past-in-progress .shuby-stage-status-card-title {
+    color: var(--text-on-warning-secondary);
+}
+
+.shuby-stage-status-card--past-in-progress .shuby-stage-status-card-meta {
+    color: var(--icon-on-warning-secondary);
+}
+
+/* =====================================================
+   MILESTONE CARD — FINISH PREVIOUS variant
+   Dashboard surface that prompts the parent to resume an in-progress
+   session from a prior month. Shares the family root with
+   .shuby-milestone-card-proposed but uses a giallo-400 background and
+   a side-by-side text + mascot layout (vs proposed's stacked layout).
+   ===================================================== */
+
+.shuby-milestone-card-finish-previous {
+    position: relative;
+    background-color: var(--color-shuby-giallo-400);
+    border-radius: var(--radius-grande);
+    overflow: hidden;
+}
+
+.shuby-milestone-card-finish-previous-tags {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-4) 0;
+}
+
+.shuby-milestone-card-finish-previous-body {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4) var(--space-4);
+}
+
+.shuby-milestone-card-finish-previous-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.shuby-milestone-card-finish-previous-intro {
+    color: var(--color-shuby-blue-800);
+    margin: 0 0 var(--space-1);
+}
+
+.shuby-milestone-card-finish-previous-title {
+    margin: 0 0 var(--space-1);
+}
+
+.shuby-milestone-card-finish-previous-progress {
+    margin: 0 0 var(--space-4);
+}
+
+.shuby-milestone-card-finish-previous-illustration {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-2);
+}
+
+.shuby-milestone-card-finish-previous-illustration img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}

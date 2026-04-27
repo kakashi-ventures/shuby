@@ -1,18 +1,36 @@
 <div class="stories-slide-content stories-question">
-  <%# Illustration %>
+  <%# Per-question illustration (Figma 499:5450/5511/5540 — area-specific scenes
+      with the pentagon plus decorative elements like "EEH UUH" text or a
+      secondary character). Falls back to a plain pentagon mascot when the
+      asset hasn't been delivered yet. %>
   <div class="stories-question-illustration">
-    <%= image_tag "shuby/illustrations/mascot-sorriso.png", alt: "", class: "stories-illustration-img" %>
+    <% if question.illustration_available? %>
+      <%= image_tag question.illustration_path,
+            alt: "",
+            role: "presentation",
+            class: "stories-question-illustration-asset" %>
+    <% else %>
+      <div class="shuby-mascot-pentagon">
+        <div class="shuby-mascot-pentagon-shape">
+          <div class="shuby-mascot-pentagon-face">
+            <div class="shuby-mascot-pentagon-eyes">
+              <div class="shuby-mascot-pentagon-eye"></div>
+              <div class="shuby-mascot-pentagon-eye"></div>
+            </div>
+            <div class="shuby-mascot-pentagon-smile"></div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 
-  <%# Question counter %>
-  <div class="stories-question-counter">
-    <span class="stories-question-counter-text">
-      <%= t("questionnaire_sessions.stories.question_of", current: index, total: total) %>
-    </span>
-  </div>
-
-  <%# Question text %>
+  <%# Counter + question prompt — Figma 499:5450 places them in a single
+      wrapper at top:259px with an 8px vertical gap, so they live together
+      inside `.stories-question-text` rather than as separate blocks. %>
   <div class="stories-question-text">
+    <p class="stories-question-counter-text">
+      <%= t("questionnaire_sessions.stories.question_of", current: index, total: total) %>
+    </p>
     <p class="stories-question-prompt"><%= question.prompt %></p>
     <% if question.help_text.present? %>
       <p class="stories-question-help"><%= question.help_text %></p>
@@ -44,7 +62,9 @@
             data-answer="incerto"
             data-question-id="<%= question.id %>"
             class="stories-answer-btn">
-      <span class="stories-answer-label"><%= t("questionnaire_sessions.stories.answer_unknown") %></span>
+      <span class="stories-answer-label">
+        <%= question.uncertain_label.presence || t("questionnaire_sessions.stories.answer_unknown") %>
+      </span>
     </button>
   </div>
 </div>

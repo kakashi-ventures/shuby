@@ -35,6 +35,9 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 - [x] Warning signs: show page has `_section_warning_signs` partial; completion slide shows attention hint when `needs_attention?`
 - [x] Stimulation activities: show page has `_section_stimulation_activities` partial; completion slide links to activities section
 - [x] Post-completion flow matches DEC-010: report PDF + AI link + activities link + attention hint
+- [ ] **Seed audit**: weekly age-band granularity for months 0–2 (FA requires per-week, current seed is monthly only)
+- [ ] **Question content**: per-question `uncertain_label` copy from product/design (column added in `worktree-elegant-mixing-eclipse`; falls back to "Non lo so" when nil)
+- [ ] **Question illustrations**: design-team delivery of remaining per-question PNGs under `app/assets/images/shuby/illustrations/questions/<area_slug>/<key>.png` (only `comunicazione-linguaggio` months 0–10 currently shipped)
 
 ## P1: Reports Enhancement
 
@@ -68,6 +71,7 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
   - [x] Measurements
   - [ ] Onboarding
   - [ ] Child Profile
+  - [x] Questionnaire overlay (Figma `499:5449/5450/5511/5540/5853`) — single-current progress bar, all-complete state on completion, per-question `uncertain_label` infra, per-question illustration rendering with graceful asset fallback
 - [x] Dashboard header: verify scroll bg transition blue-to-white (FA 3.1)
 - [x] Measurement photo upload (PRD 3.5.2 — optional photo attachment) — Active Storage `has_one_attached :photo` on `Measurement`, form field with Stimulus preview, embedded as JPEG thumbnail in pediatrician PDF
 - [x] Unit of measure preference (metric/imperial) in settings — `User::MeasurementUnit` preference module, segmented toggle in `/settings/privacy`, inline overlay toggle syncs via async PATCH, display respects pref across measurements tab (PDF intentionally stays metric for Italian pediatric medical convention)

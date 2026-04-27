@@ -1,20 +1,19 @@
 <% scope = "development_stages.show" %>
 
-<div class="shuby-card mb-4 border border-amber-200">
-  <div class="flex items-center justify-between p-4 bg-amber-50 rounded-lg">
-    <div>
-      <p class="shuby-p1-dark text-amber-700">
-        <%= t("past_in_progress_title", scope: scope,
-              month: session.age_band_questionnaire.min_age_months) %>
-      </p>
-      <p class="shuby-caption text-amber-600">
-        <%= t("past_in_progress_progress", scope: scope,
-              progress: session.progress_fraction) %>
-      </p>
-    </div>
-    <%= link_to stories_child_questionnaire_session_path(child, session),
-        class: "shuby-btn shuby-btn-sm shuby-btn-primary" do %>
-      <%= t("finish_past_questionnaire", scope: scope) %>
-    <% end %>
+<div class="shuby-stage-status-card shuby-stage-status-card--past-in-progress">
+  <div class="shuby-stage-status-card-text">
+    <p class="shuby-stage-status-card-title shuby-p1-dark">
+      <%= t("past_in_progress_title", scope: scope,
+            month: session.age_band_questionnaire.min_age_months) %>
+    </p>
+    <p class="shuby-stage-status-card-meta shuby-caption">
+      <%= t("past_in_progress_progress", scope: scope,
+            progress: session.progress_fraction) %>
+    </p>
   </div>
+  <%= link_to overlay_frame_child_questionnaire_session_path(child, session),
+      class: "shuby-btn shuby-btn-sm shuby-btn-primary",
+      data: { action: "click->questionnaire-overlay#openWithFrame" } do %>
+    <%= t("finish_past_questionnaire", scope: scope) %>
+  <% end %>
 </div>

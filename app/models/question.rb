@@ -16,4 +16,13 @@ class Question < ApplicationRecord
       "shuby/illustrations/questions/#{area_slug}/#{illustration_key}.png"
     end
   end
+
+  # Many seeded questions point at illustration assets that have not yet been
+  # delivered by design. Guard the view render against broken images by
+  # checking the source PNG actually exists in the assets pipeline.
+  def illustration_available?
+    path = illustration_path
+    return false if path.blank?
+    Rails.root.join("app/assets/images", path).file?
+  end
 end

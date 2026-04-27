@@ -1,0 +1,38 @@
+<%# Full-screen overlay shell for the tappa (milestone) questionnaire.
+  Rendered on caller pages (Dashboard, Tappe timeline, stage detail)
+  inside a wrapper with `data-controller="questionnaire-overlay"`.
+  The overlay is hidden by default and animates in when a trigger link
+  with `data-action="click->questionnaire-overlay#openWithFrame"` is
+  tapped — the controller sets `src` on the inner Turbo Frame, which
+  loads the `overlay_frame` action's response (slides + progress bar).
+  A skeleton placeholder fills the frame while the response resolves. %>
+<div class="shuby-questionnaire-overlay"
+     data-questionnaire-overlay-target="overlay"
+     aria-hidden="true">
+  <%# Backdrop dims the caller page (Dashboard / Timeline / Stage detail).
+      Click anywhere outside the sheet closes the overlay. %>
+  <div class="shuby-questionnaire-overlay-backdrop"
+       data-action="click->questionnaire-overlay#closeOnBackdrop"></div>
+
+  <%# Sheet: rounded card that carries the verde-300 (or verde-scuro-500 on
+      completion) background, safe-area-respecting margins, and the inner
+      slide content. Sits above the backdrop, below the close button. %>
+  <div class="shuby-questionnaire-overlay-sheet">
+    <button type="button"
+            class="shuby-questionnaire-overlay-close"
+            data-action="click->questionnaire-overlay#close"
+            aria-label="<%= t('questionnaire_sessions.stories.exit') %>">
+      <%= render_svg "shuby/icons/icon-close", size: :md, decorative: true %>
+    </button>
+
+    <%= turbo_frame_tag "questionnaire_overlay",
+        class: "shuby-questionnaire-overlay-frame",
+        data: { questionnaire_overlay_target: "frame" } do %>
+      <%= render "questionnaire_sessions/overlay_skeleton" %>
+    <% end %>
+
+    <template data-questionnaire-overlay-target="skeletonTemplate">
+      <%= render "questionnaire_sessions/overlay_skeleton" %>
+    </template>
+  </div>
+</div>
