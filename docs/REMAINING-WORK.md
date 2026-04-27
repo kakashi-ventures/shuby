@@ -15,6 +15,7 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 - [x] AI chat rate limiting + CTA UI (`_rate_limit_reached.html.erb`)
 - [ ] Configure Stripe with actual Shuby plans (blocked on pricing confirmation: 6 vs 7.99/mo)
 - [ ] AI chat limit: currently 30 msgs/month (DEC-005) — verify with client (PDF says 8)
+- [ ] AI chat: daily cap (1 question/day) not implemented — Subscription PDF row "AI-Helper" (free) reads "8 domande al mese, **oppure** 1 domanda al giorno". Currently only the monthly bound exists in `User::ChatRateLimit`. Suggest pre-prepping `DAILY_MESSAGE_LIMIT = nil` so the client decision becomes a one-line flip.
 
 ## P0: GDPR Compliance (LAUNCH BLOCKER)
 
@@ -64,11 +65,11 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
   - [x] Timeline 
   - [x] Dashboard
   - [ ] Archive
-  - [ ] Chat (AI Helper)
+  - [x] Chat (AI Helper)
   - [x] Measurements
   - [ ] Onboarding
   - [ ] Child Profile
-- [x] Dashboard header: verify scroll bg transition blue-to-white (FA 3.1)
+- [ ] Dashboard header: verify scroll bg transition blue-to-white (FA 3.1)
 - [x] Measurement photo upload (PRD 3.5.2 — optional photo attachment) — Active Storage `has_one_attached :photo` on `Measurement`, form field with Stimulus preview, embedded as JPEG thumbnail in pediatrician PDF
 - [x] Unit of measure preference (metric/imperial) in settings — `User::MeasurementUnit` preference module, segmented toggle in `/settings/privacy`, inline overlay toggle syncs via async PATCH, display respects pref across measurements tab (PDF intentionally stays metric for Italian pediatric medical convention)
 - [ ] Verify 3-state milestone box in dashboard (proposed/completed/all-done per FA 3.3)
@@ -79,6 +80,9 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 - [ ] WCAG 2.1 Level AA accessibility audit
 - [ ] Performance measurement: app load < 2s, API < 500ms p95
 - [ ] Screen reader compatibility testing
+- [ ] AI chat streaming: replace `Thread.new` fire-and-forget at `app/controllers/shuby_chats_controller.rb:106` with a SolidQueue job. Current pattern loses the assistant response if the puma worker dies mid-stream; SolidQueue is already configured per CLAUDE.md.
+- [ ] Stub `https://api.openai.com/v1/responses` in `test/test_helper.rb` to silence WebMock thread-leak noise from `ShubyBroadcastService` background streaming during `ShubyChatsControllerTest` runs (tests pass, but stderr fills with the system prompt on every test run).
+- [ ] `ShubyChatPolicy` (Pundit) — controller currently does manual `current_user.shuby_chats.find` + rescue `RecordNotFound`. A `show?/destroy?` policy would centralize the rule and match the project's Pundit-everywhere pattern (`.claude/rules/rails-controllers.md`).
 
 ## P3: Post-Launch / Deferred
 
@@ -89,6 +93,7 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 - [ ] Gift subscriptions (DEC-016: to-do)
 - [ ] Multi-caregiver support (DEC-004: single in v1.0)
 - [ ] Proactive AI suggestions — premium feature (Phase 2)
+- [ ] AI Specialist (premium tier) — Subscription PDF lists "AI Specialist" in the premium AI-Helper column; current code runs the same generalist system prompt regardless of subscription tier (DEC-066 explicitly chose a single generalist for v1.0, so this is a Phase-2 deferral, but tracking it here so it isn't lost)
 - [ ] Advanced insights / predictive insights (Phase 2)
 - [ ] Pre/post feeding weight premium gating
 - [ ] Premium PDF report enhancements (evolved layout, annual summary, auto-diary)
