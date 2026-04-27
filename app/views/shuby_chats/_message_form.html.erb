@@ -1,37 +1,50 @@
-<%# Message input form %>
-<div id="message_form">
-  <%= form_with url: message_shuby_chat_path(shuby_chat), method: :post, data: { controller: "shuby-form", action: "submit->shuby-form#submit keydown.enter->shuby-form#handleKeydown" }, class: "flex gap-3 items-end" do |f| %>
-    <div class="flex-1">
-      <% if local_assigns[:error] %>
-        <p class="text-sm text-red-600 dark:text-red-400 mb-2"><%= error %></p>
-      <% end %>
+<%# Composer pill (Figma 230:1822). White rounded pill with drop-shadow blu;
+    mic icon when empty, send-arrow icon when typing. The page-level
+    native_form_tag is rendered by show.html.erb (one tag per page suffices). %>
+<div id="message_form" class="flex flex-col gap-1">
+  <% if local_assigns[:show_disclaimer] %>
+    <p class="shuby-chat-disclaimer mb-1"><%= t("shuby_chats.show.disclaimer") %></p>
+  <% end %>
 
-      <%= f.text_area :message,
+  <%= form_with url: message_shuby_chat_path(shuby_chat),
+        method: :post,
+        data: { controller: "shuby-form", action: "submit->shuby-form#submit" },
+        class: "shuby-chat-composer" do |f| %>
+    <%= f.text_area :message,
           rows: 1,
           placeholder: t("shuby_chats.message_form.placeholder"),
-          class: "w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none",
+          class: "shuby-chat-composer-input",
           data: {
             shuby_form_target: "input",
             shuby_chat_target: "input",
-            action: "input->shuby-form#autoResize"
+            action: "input->shuby-form#onInput keydown.enter->shuby-form#handleKeydown"
           },
           autofocus: true %>
-    </div>
 
-    <button type="submit"
-            class="btn btn-primary rounded-xl px-4 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
-            data-shuby-form-target="submit">
-      <%= render_svg "shuby/icons/icon-arrow-right", size: :md, decorative: true %>
-      <span class="sr-only"><%= t("shuby_chats.message_form.send") %></span>
-    </button>
+    <%= button_tag type: :submit,
+          class: "shuby-chat-composer-button",
+          data: native_haptic_data(:success).merge(
+            shuby_form_target: "submit",
+            icon_state: "empty"
+          ),
+          aria: { label: t("shuby_chats.message_form.send") } do %>
+      <span class="shuby-chat-composer-icon-mic">
+        <%= render_svg "shuby/icons/icon-microphone", size: :md, decorative: true %>
+      </span>
+      <span class="shuby-chat-composer-icon-send">
+        <%= render_svg "shuby/icons/icon-arrow-right", size: :md, decorative: true %>
+      </span>
+    <% end %>
   <% end %>
 
-  <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">
-    <%= t("shuby_chats.message_form.disclaimer") %>
-  </p>
+  <% if local_assigns[:error].present? %>
+    <p class="shuby-chat-meta shuby-chat-meta-error" role="alert">
+      <%= error %>
+    </p>
+  <% end %>
 
   <% if local_assigns[:messages_remaining] && messages_remaining != Float::INFINITY %>
-    <p class="text-xs mt-1 text-center <%= messages_remaining <= 5 ? 'text-amber-600 dark:text-amber-400 font-medium' : 'text-gray-500 dark:text-gray-400' %>" aria-live="polite">
+    <p class="shuby-chat-meta<%= " shuby-chat-meta-warn" if messages_remaining <= 5 %>" aria-live="polite">
       <%= t("shuby_chats.rate_limit.remaining", count: messages_remaining, total: User::ChatRateLimit::FREE_MONTHLY_MESSAGE_LIMIT) %>
     </p>
   <% end %>

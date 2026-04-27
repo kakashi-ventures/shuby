@@ -66,6 +66,7 @@
     --overlay-white-80: rgba(255, 255, 255, 0.80);
     --overlay-white-85: rgba(255, 255, 255, 0.85);
     --overlay-white-90: rgba(255, 255, 255, 0.90);
+    --overlay-white-95: rgba(255, 255, 255, 0.95);
 
     /* =====================================================
        FONT SIZE SCALE (Figma aligned)

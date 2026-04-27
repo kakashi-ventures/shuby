@@ -1,13 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Controller for Shuby chat form
-// Handles form submission, auto-resize, and keyboard shortcuts for streaming chat
+// Stimulus controller for the Shuby chat composer pill.
+// Handles submission, keyboard shortcut, autoresize, and the mic↔send
+// icon swap driven by `data-icon-state` on the submit button.
 export default class extends Controller {
     static targets = ["input", "submit"]
 
     connect() {
+        this.syncIconState()
         this.autoResize()
-        // Listen for turbo:submit-end to reset form after streaming starts
         this.element.addEventListener("turbo:submit-end", this.onSubmitEnd.bind(this))
     }
 
@@ -15,33 +16,26 @@ export default class extends Controller {
         this.element.removeEventListener("turbo:submit-end", this.onSubmitEnd.bind(this))
     }
 
-    // Handle form submission - validate and disable button
     submit(event) {
         const message = this.inputTarget.value.trim()
         if (!message) {
             event.preventDefault()
             return
         }
-
-        // Disable button while submitting
         if (this.hasSubmitTarget) {
             this.submitTarget.disabled = true
         }
     }
 
-    // Called after Turbo processes the form submission
     onSubmitEnd(event) {
-        // Clear input immediately after submission
         this.inputTarget.value = ""
         this.autoResize()
-
-        // Re-enable button (it will be in the replaced form partial)
+        this.syncIconState()
         if (this.hasSubmitTarget) {
             this.submitTarget.disabled = false
         }
     }
 
-    // Handle Enter key to submit (Shift+Enter for new line)
     handleKeydown(event) {
         if (event.key === "Enter" && !event.shiftKey) {
             event.preventDefault()
@@ -54,12 +48,23 @@ export default class extends Controller {
         }
     }
 
-    // Auto-resize textarea based on content
+    // Combined input handler: keep textarea sized to content and toggle the
+    // mic↔send icon based on whether there's text to send.
+    onInput() {
+        this.autoResize()
+        this.syncIconState()
+    }
+
     autoResize() {
         if (!this.hasInputTarget) return
-
         const input = this.inputTarget
         input.style.height = "auto"
-        input.style.height = Math.min(input.scrollHeight, 200) + "px"
+        input.style.height = Math.min(input.scrollHeight, 120) + "px"
+    }
+
+    syncIconState() {
+        if (!this.hasSubmitTarget || !this.hasInputTarget) return
+        const hasText = this.inputTarget.value.trim().length > 0
+        this.submitTarget.dataset.iconState = hasText ? "typing" : "empty"
     }
 }

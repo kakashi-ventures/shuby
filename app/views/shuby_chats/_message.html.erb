@@ -1,47 +1,25 @@
-<%# Renders a single chat message (user or assistant).
-    Pass `streamed: true` from the controller when appending via Turbo Stream
-    to fade the new message in; omit on initial page render. %>
+<%# Renders a single chat message — Figma 2030:8874 / 2030:8875.
+    User messages render as a blu-400 chip aligned right (top-right corner
+    squared as a speech-bubble nub). Assistant messages render as plain
+    text on the page background — no card, label, timestamp, or citations
+    chrome (per the Figma design). Pass `streamed: true` from the controller
+    for fade-in when appended via Turbo Stream. %>
 <% is_user = message.user? %>
 <% message_dom_id = local_assigns[:message_id] || dom_id(message) %>
 <% enter_class = local_assigns[:streamed] ? " turbo-stream-enter" : "" %>
 
-<div id="<%= message_dom_id %>" class="flex <%= is_user ? 'justify-end' : 'justify-start' %><%= enter_class %>">
-  <div class="<%= is_user ? 'bg-[var(--bg-primary)] text-white' : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700' %> rounded-2xl px-4 py-3 max-w-[85%] shadow-sm">
-    <% unless is_user %>
-      <div class="flex items-center gap-2 mb-2">
-        <span class="text-xs font-medium text-primary-600 dark:text-primary-400"><%= t("shuby_chats.message.shuby_name") %></span>
-      </div>
-    <% end %>
-
-    <div class="<%= is_user ? '' : 'prose prose-sm dark:prose-invert max-w-none' %> shuby-message-content">
-      <% if message.content.present? %>
-        <% if is_user %>
-          <%= simple_format(message.content, {}, wrapper_tag: 'span') %>
-        <% else %>
-          <%# Render markdown for assistant messages %>
-          <div data-controller="markdown" data-markdown-content-value="<%= message.content %>">
-            <div data-markdown-target="output"><%= simple_format(message.content) %></div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-    <%# Citations for assistant messages %>
-    <% if !is_user && message.respond_to?(:citations) && message.citations.any? %>
-      <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-600">
-        <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">📚 <%= t("shuby_chats.message.sources") %></p>
-        <div class="flex flex-wrap gap-1">
-          <% message.citations.uniq { |c| c[:file_name] || c["file_name"] }.each do |citation| %>
-            <%= shuby_tag(citation[:file_name] || citation["file_name"] || t("shuby_chats.message.document"),
-                         variant: :grigio, size: :small) %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-
-    <%# Timestamp %>
-    <div class="<%= is_user ? 'text-white/70' : 'text-gray-400 dark:text-gray-500' %> text-xs mt-2">
-      <%= message.created_at&.strftime("%H:%M") || Time.current.strftime("%H:%M") %>
+<% if is_user %>
+  <div id="<%= message_dom_id %>" class="flex justify-end<%= enter_class %>">
+    <div class="shuby-chat-bubble-user shuby-p1">
+      <%= simple_format(message.content, {}, wrapper_tag: "span") %>
     </div>
   </div>
-</div>
+<% else %>
+  <div id="<%= message_dom_id %>" class="shuby-chat-assistant shuby-p1<%= enter_class %>">
+    <% if message.content.present? %>
+      <div data-controller="markdown" data-markdown-content-value="<%= message.content %>">
+        <div data-markdown-target="output" class="shuby-message-content"><%= simple_format(message.content) %></div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -45,7 +45,35 @@ class ShubyChatsControllerTest < ActionDispatch::IntegrationTest
       delete shuby_chat_path(@chat)
     end
 
-    assert_redirected_to shuby_chats_path
+    assert_redirected_to history_shuby_chats_path
+  end
+
+  test "history action lists conversations" do
+    get history_shuby_chats_path
+    assert_response :success
+  end
+
+  test "create reuses existing empty chat instead of stacking new ones" do
+    @user.shuby_chats.destroy_all
+    empty = @user.shuby_chats.create!(model: "gpt-4o-mini", account: accounts(:one))
+
+    assert_no_difference("ShubyChat.count") do
+      post shuby_chats_path
+    end
+
+    assert_redirected_to shuby_chat_path(empty)
+  end
+
+  test "history hides chats with no user or assistant messages" do
+    @user.shuby_chats.destroy_all
+    @user.shuby_chats.create!(model: "gpt-4o-mini", account: accounts(:one)) # empty stub
+    real = @user.shuby_chats.create!(model: "gpt-4o-mini", account: accounts(:one))
+    real.messages.create!(role: "user", content: "Ciao Shuby")
+
+    get history_shuby_chats_path
+    assert_response :success
+    assert_match real.display_title, response.body
+    assert_no_match(/Nuova Chat/, response.body)
   end
 
   test "should not destroy other user's chat" do

@@ -1,34 +1,27 @@
 it:
   shuby_chats:
     default_title: "Nuova Chat"
-    index:
-      title: "Shuby - Assistente Chat"
-      heading: "Shuby"
-      subtitle: "Il tuo assistente per lo sviluppo infantile"
-      new_conversation: "Nuova conversazione"
-      messages_count:
-        one: "%{count} messaggio"
-        other: "%{count} messaggi"
-      time_ago: "%{time} fa"
-      no_conversations: "Nessuna conversazione"
-      start_prompt: "Inizia una nuova conversazione con Shuby"
-      start_chat_button: "Inizia a chattare"
     show:
-      back: "Indietro"
-      new_button: "Nuova"
-      delete_confirm: "Sei sicuro di voler eliminare questa conversazione?"
-      powered_by: "Powered by %{model}"
-      child_context: "Chat su %{child_name}"
+      title: "Shuby AI"
       welcome:
-        greeting: "Ciao! Sono Shuby"
-        description: "Sono qui per aiutarti con domande sullo sviluppo del tuo bambino (0-36 mesi). Chiedimi qualsiasi cosa!"
-      suggestions:
-        milestones_6m: "Tappe a 6 mesi"
-        milestones_6m_full: "Quali sono le tappe di sviluppo a 6 mesi?"
-        sleep_tips: "Consigli sul sonno"
-        sleep_tips_full: "Come posso aiutare il mio bambino a dormire meglio?"
-        tummy_time: "Tummy time"
-        tummy_time_full: "Cos'è il tummy time e come farlo?"
+        greeting: "Come posso aiutarti?"
+        description: "Puoi scrivere una domanda o chiedere un consiglio."
+      greeting:
+        title: "Incontra Shuby AI"
+        tagline: "Il tuo assistente AI per ogni domanda, 24/7"
+      disclaimer: "Risposte basate su fonti mediche verificate"
+      actions:
+        new_chat: "Nuova conversazione"
+        history: "Cronologia conversazioni"
+    history:
+      title: "Cronologia"
+      message_count:
+        one: "1 messaggio"
+        other: "%{count} messaggi"
+      empty:
+        title: "Nessuna conversazione"
+        description: "Inizia a chattare con Shuby AI per vederla qui."
+        cta: "Torna alla chat"
     rate_limit:
       reached: "Hai raggiunto il limite mensile di messaggi gratuiti."
       reached_title: "Messaggi esauriti"
@@ -39,19 +32,14 @@ it:
         zero: "Nessun messaggio rimasto su %{total} questo mese"
         one: "%{count} messaggio rimasto su %{total} questo mese"
         other: "%{count} messaggi rimasti su %{total} questo mese"
-    message:
-      shuby_name: "Shuby"
-      sources: "Fonti:"
-      document: "Documento"
     message_form:
-      placeholder: "Scrivi un messaggio..."
-      send: "Invia"
-      disclaimer: "Shuby può commettere errori. Verifica sempre le informazioni importanti con il pediatra."
+      placeholder: "Fai una domanda"
+      send: "Invia messaggio"
     error_message:
       error_title: "Errore"
       retry_suggestion: "Prova a inviare di nuovo il messaggio."
     placeholder:
-      thinking: "Sto pensando..."
+      thinking: "Shuby sta pensando…"
 
   file_search_tool:
     query_blank: "La query non può essere vuota"

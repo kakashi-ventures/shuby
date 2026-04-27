@@ -147,6 +147,7 @@
 @import "./components/shuby/content.css" layer(components);
 @import "./components/shuby/layout.css" layer(components);
 @import "./components/shuby/dashboard.css" layer(components);
+@import "./components/shuby/chat.css" layer(components);
 @import "./components/shuby/list-items.css" layer(components);
 @import "./components/shuby/notices.css" layer(components);
 @import "./components/shuby/mascots.css" layer(components);

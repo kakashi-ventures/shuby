@@ -1,18 +1,10 @@
-<%# Loading placeholder for assistant message. Only ever rendered via
-    Turbo Stream append, so always fade in. %>
-<div id="<%= message_id %>" class="flex justify-start turbo-stream-enter">
-  <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 rounded-2xl px-4 py-3 max-w-[85%] shadow-sm">
-    <div class="flex items-center gap-2 mb-2">
-      <span class="text-xs font-medium text-primary-600 dark:text-primary-400"><%= t("shuby_chats.message.shuby_name") %></span>
-    </div>
-
-    <div class="flex items-center gap-2">
-      <div class="flex gap-1">
-        <span class="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0ms;"></span>
-        <span class="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style="animation-delay: 150ms;"></span>
-        <span class="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style="animation-delay: 300ms;"></span>
-      </div>
-      <span class="text-sm text-gray-500 dark:text-gray-400"><%= t("shuby_chats.placeholder.thinking") %></span>
-    </div>
-  </div>
+<%# Loading placeholder for assistant message — three small dots in plain
+    text style (no white card) to match the Figma assistant-message styling.
+    Always rendered via Turbo Stream append, so always fade in. %>
+<div id="<%= message_id %>" class="shuby-chat-assistant turbo-stream-enter">
+  <span class="shuby-chat-thinking" aria-label="<%= t("shuby_chats.placeholder.thinking") %>">
+    <span class="shuby-chat-thinking-dot"></span>
+    <span class="shuby-chat-thinking-dot"></span>
+    <span class="shuby-chat-thinking-dot"></span>
+  </span>
 </div>

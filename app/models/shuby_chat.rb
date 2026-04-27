@@ -30,6 +30,13 @@ class ShubyChat < ApplicationRecord
     title.presence || first_user_message_preview || I18n.t("shuby_chats.default_title")
   end
 
+  # True when the chat has no user or assistant messages — i.e. the user
+  # opened the surface but never sent a message. Used to keep "+ new chat"
+  # idempotent and to hide stub chats from history.
+  def empty?
+    messages.where(role: %w[user assistant]).none?
+  end
+
   private
 
   def child_belongs_to_account

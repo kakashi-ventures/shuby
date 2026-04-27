@@ -1,24 +1,16 @@
-<%# Rate limit reached — replaces the message form %>
-<div id="message_form" class="text-center py-6 px-4" role="alert">
-  <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900/30 mb-3">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 text-amber-600 dark:text-amber-400" aria-hidden="true">
-      <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
-    </svg>
-  </div>
-
-  <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-    <%= t("shuby_chats.rate_limit.reached_title") %>
-  </h3>
-
-  <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+<%# Rate-limit reached — replaces the composer pill when the user has hit the
+    monthly free tier. Card-shaped notice with upgrade CTA. %>
+<div id="message_form" class="shuby-card text-center px-4 py-5" role="alert">
+  <h3 class="shuby-h3 mb-1"><%= t("shuby_chats.rate_limit.reached_title") %></h3>
+  <p class="shuby-p2 mb-4">
     <%= t("shuby_chats.rate_limit.reached_description", limit: User::ChatRateLimit::FREE_MONTHLY_MESSAGE_LIMIT) %>
   </p>
 
   <%= link_to t("shuby_chats.rate_limit.upgrade_button"),
         pricing_path,
-        class: "inline-flex items-center px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors" %>
+        class: "shuby-btn shuby-btn-md shuby-btn-primary" %>
 
-  <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">
+  <p class="shuby-caption mt-3">
     <%= t("shuby_chats.rate_limit.reset_info") %>
   </p>
 </div>

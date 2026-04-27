@@ -1,0 +1,8 @@
+<%# Empty-state body for the AI Helper landing — Figma 463:5386 (lower).
+    Robot mascot + headline + one-liner, centered. Shown only when the
+    current chat has no user/assistant messages yet. %>
+<div id="welcome-message" class="shuby-chat-welcome">
+  <%= render_svg "shuby/icons/icon-chatbot", size: :xxl, styles: "text-shuby-blue-800", decorative: true %>
+  <h2 class="shuby-d2"><%= t("shuby_chats.show.welcome.greeting") %></h2>
+  <p class="shuby-p1"><%= t("shuby_chats.show.welcome.description") %></p>
+</div>
