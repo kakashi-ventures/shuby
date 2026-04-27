@@ -11,7 +11,7 @@
       longer drive Turbo.visit. Web is unaffected. %>
   <body data-controller="theme bridge--menu-button <%= "bridge--notification-token" if user_signed_in? %>" data-theme-preference-value="shuby" data-page-type="<%= page_transition_type %>" data-body-background="<%= content_for(:body_background) %>" <%= 'data-turbo-prefetch="false"'.html_safe if hotwire_native_app? %>>
     <div class="grid-layout-wrapper">
-      <header class="native-inset-top">
+      <header class="<%= "native-inset-top" unless content_for?(:hide_navbar) %>">
         <%= impersonation_banner %>
         <%= render "flash" %>
         <%= render "navbar" unless content_for?(:hide_navbar) %>

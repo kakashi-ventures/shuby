@@ -47,6 +47,48 @@ the native tab bar stays responsive across many navigations.
 
 ---
 
+## [OPEN, since ruby_native ≥ 0.8] gem's `.native-inset-top::before` doubles up on `hide_navbar` pages
+
+**Symptom.** On iOS pages that set `content_for :hide_navbar` (dashboard,
+archive show, development-stages), the layout's `<header class="native-inset-top">`
+renders an empty `::before` spacer of `env(safe-area-inset-top)` on top of
+the page's own safe-area-aware sticky header — visible as a ~47pt empty
+blue band above the page header. Chrome (`env() = 0`) is unaffected.
+
+**Root cause.** `ruby_native ≥ 0.8` (gem CSS at
+`app/assets/stylesheets/ruby_native.css:5-10`) defines
+`.native-inset-top::before { height: env(safe-area-inset-top) }`
+unconditionally. Combined with our
+`html.hotwire-native #dashboard-header > header { padding-top:
+calc(env(safe-area-inset-top) + var(--space-3)) }` rule
+(`app/assets/tailwind/components/hotwire_native.css:32-34`), the inset is
+injected twice on iOS — once above `<main>` by the gem, once inside the
+sticky header by our rule.
+
+**Workaround.** `app/views/layouts/application.html.erb:14` gates the
+class:
+```erb
+<header class="<%= "native-inset-top" unless content_for?(:hide_navbar) %>">
+```
+Pages with a navbar still get the gem-managed inset; custom-header pages
+own theirs locally.
+
+**History.** Same change first shipped as `60375f38` (2026-04-24),
+reverted in `e80f768a` on the basis that Ruby Native 0.7's WebView
+reported `env(safe-area-inset-top) = 0`. That observation was
+version-specific — 0.8.1's WebView exposes the real inset, so the
+duplicate-spacer regression is back. Reapplied 2026-04-27.
+
+**Remove workaround when.** The gem ships a way to opt out of the inset
+on a per-element basis (e.g. a `--no-inset` modifier or per-page tag),
+**or** we move all custom-header pages to a layout that doesn't carry
+`<header class="native-inset-top">` at all. To verify the workaround is
+still needed: temporarily revert the gating, open the dashboard on iOS,
+inspect `<header class="native-inset-top">` in Safari Web Inspector — if
+its computed height is non-zero, the workaround is still required.
+
+---
+
 ## [OPEN] ruby_native 0.7.0 — UA does not contain "Turbo Native" / "Hotwire Native"
 
 **Symptom.** `turbo-rails`' default `hotwire_native_app?` helper only
