@@ -33,6 +33,13 @@ html.hotwire-native #dashboard-header > header {
   padding-top: calc(env(safe-area-inset-top) + var(--space-3));
 }
 
+/* Archive index sticky header: status bar inset + 16px breathing room.
+   Mirrors the Dashboard pattern but for the white-bg Archivio header
+   (Figma 463:6063). Pairs with .shuby-archive-index-header. */
+html.hotwire-native .shuby-archive-index-header {
+  padding-top: calc(env(safe-area-inset-top) + var(--space-4));
+}
+
 /* Hide web bottom nav — native tab bar replaces it.
    Primary guard is server-side (yield :bottom_nav unless hotwire_native_app?).
    This CSS is a belt-and-suspenders fallback. */

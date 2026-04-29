@@ -54,6 +54,7 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 - [x] Game/advice detail: yellow/blue header band for content type (hero partial variant)
 - [ ] Content detail: "Tappe di sviluppo collegate" section at bottom — **needs design**: requires association between content and development areas, not yet modeled
 - [x] Content detail: "Articoli collegati" horizontal carousel at bottom (age-range matching)
+- [ ] Filter panel: age-bracket filter + per-type standard tags (FA 6.1.1.1) — **needs design**: Figma `463:6063` shows only keyword search + 4 type pills; FA describes additional age + tag filters not yet drawn. Found during home-view audit (2026-04-29).
 
 ## P1: Notification System
 
@@ -67,7 +68,12 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 - Systematic Figma comparison per screen:
   - [x] Timeline 
   - [x] Dashboard
-  - [ ] Archive
+  - Archive (split into per-screen sub-audits):
+    - [x] Archive — index home view (Figma `463:6063`) — header round-buttons rebuilt as filled blue (`--bg-primary` + white icon, was transparent); brand navbar suppressed via `hide_navbar`; sticky translucent header (`bg-white/95 backdrop-blur-sm` + `.shuby-archive-index-header` with iOS safe-area inset) extracted to shared `_index_header.html.erb` partial used by home + search-results; section headings + cards verified against tokens
+    - [ ] Archive — Article detail (Figma `510:22491`)
+    - [ ] Archive — Activity detail (Figma `532:24578`)
+    - [ ] Archive — Game detail (Figma `532:25861`)
+    - [ ] Archive — Book detail (Figma `532:26226`)
   - [x] Chat (AI Helper)
   - [x] Measurements
   - [ ] Onboarding

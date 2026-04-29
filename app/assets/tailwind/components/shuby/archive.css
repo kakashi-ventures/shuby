@@ -1,0 +1,33 @@
+/* =====================================================
+   ARCHIVE INDEX HEADER
+   Sticky translucent white header for the Archive home + search-results
+   views (Figma 463:6063, Header node 463:6065).
+
+   Pair with .shuby-sticky-header (in layout.css) for position: sticky.
+   iOS safe-area inset is added in hotwire_native.css.
+
+   Negative horizontal margins compensate for the parent container's px-4
+   gutter so the translucent bg spans full viewport width while inner
+   content stays gutter-aligned with the cards below.
+   ===================================================== */
+.shuby-archive-index-header {
+    background-color: color-mix(in srgb, var(--color-shuby-white) 95%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    margin-left: calc(var(--space-4) * -1);
+    margin-right: calc(var(--space-4) * -1);
+    margin-bottom: var(--space-4);
+    padding: var(--space-4) var(--space-4) var(--space-3);
+}
+
+.shuby-archive-index-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shuby-archive-index-header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}

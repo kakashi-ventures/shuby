@@ -1,42 +1,32 @@
-<% scope = "archive.index" %>
-
+<%# Wrap the full section content (not just header+panel) in the
+    archive-filter controller so the sticky header has a tall-enough parent
+    to remain stuck while the user scrolls. %>
 <div data-controller="archive-filter">
-  <div class="flex items-center justify-between mb-6">
-    <h1 class="shuby-h2 text-shuby-blue-800"><%= t("heading", scope: scope) %></h1>
-    <div class="flex items-center gap-3">
-      <button type="button" class="shuby-header-icon-btn" data-action="click->archive-filter#toggle">
-        <%= render_svg "shuby/icons/icon-filter-list", size: :lg, decorative: true %>
-      </button>
-      <%= link_to archive_index_path(type: "saved"), class: "shuby-header-icon-btn" do %>
-        <%= render_svg "shuby/icons/icon-bookmark", size: :lg %>
-      <% end %>
-    </div>
-  </div>
-
+  <%= render "archive/index_header" %>
   <%= render "archive/search_filter_panel" %>
+
+  <%= render "archive/section_content_list",
+      items: articles,
+      section_key: "articles",
+      card_partial: "shared/ui/card_article",
+      filter_type: "article",
+      favorite_ids: favorite_ids %>
+
+  <%= render "archive/section_content_list",
+      items: consigli,
+      section_key: "consigli",
+      card_partial: "shared/ui/card_tip",
+      filter_type: "tip",
+      favorite_ids: favorite_ids %>
+
+  <%= render "archive/section_content_list",
+      items: activities,
+      section_key: "activities",
+      card_partial: "shared/ui/card_activity",
+      filter_type: "activity",
+      favorite_ids: favorite_ids %>
+
+  <% if articles.empty? && consigli.empty? && activities.empty? %>
+    <%= render "archive/empty_state" %>
+  <% end %>
 </div>
-
-<%= render "archive/section_content_list",
-    items: articles,
-    section_key: "articles",
-    card_partial: "shared/ui/card_article",
-    filter_type: "article",
-    favorite_ids: favorite_ids %>
-
-<%= render "archive/section_content_list",
-    items: consigli,
-    section_key: "consigli",
-    card_partial: "shared/ui/card_tip",
-    filter_type: "tip",
-    favorite_ids: favorite_ids %>
-
-<%= render "archive/section_content_list",
-    items: activities,
-    section_key: "activities",
-    card_partial: "shared/ui/card_activity",
-    filter_type: "activity",
-    favorite_ids: favorite_ids %>
-
-<% if articles.empty? && consigli.empty? && activities.empty? %>
-  <%= render "archive/empty_state" %>
-<% end %>

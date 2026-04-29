@@ -1,0 +1,19 @@
+<%# Archive index header — sticky at viewport top with translucent white bg.
+    Figma 463:6063 (Header node 463:6065): bg rgba(255,255,255,0.95) +
+    backdrop-blur, title left + filter/bookmark icon buttons right. Used by
+    both home and search-results section partials. Visual styling lives in
+    `components/shuby/archive.css`; iOS safe-area inset in `hotwire_native.css`. %>
+<% scope = "archive.index" %>
+<div class="shuby-sticky-header shuby-archive-index-header">
+  <div class="shuby-archive-index-header-row">
+    <h1 class="shuby-h2 text-shuby-blue-800"><%= t("heading", scope: scope) %></h1>
+    <div class="shuby-archive-index-header-actions">
+      <button type="button" class="shuby-header-icon-btn" data-action="click->archive-filter#toggle">
+        <%= render_svg "shuby/icons/icon-filter-list", size: :lg, decorative: true %>
+      </button>
+      <%= link_to archive_index_path(type: "saved"), class: "shuby-header-icon-btn" do %>
+        <%= render_svg "shuby/icons/icon-bookmark", size: :lg %>
+      <% end %>
+    </div>
+  </div>
+</div>

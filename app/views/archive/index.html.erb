@@ -1,6 +1,7 @@
 <% content_for :title, t(".title") %>
+<% content_for :hide_navbar, true %>
 
-<div class="container px-4 mx-auto my-8 pb-24">
+<div class="container px-4 mx-auto mb-8 pb-24">
   <% if @search_active %>
     <%= render "archive/section_search_results",
         search_query: @search_query,
