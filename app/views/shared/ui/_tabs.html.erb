@@ -1,7 +1,9 @@
 <%# Tab navigation (link-based)
   Required locals:
     tabs - array of hashes: [{ label:, path: }]
-             optional per-tab: active (bool) — if omitted, derived via current_page?
+             optional per-tab:
+               active (bool) — if omitted, derived via current_page?
+               data   (hash) — forwarded to link_to (e.g. { turbo_frame: "...", turbo_action: "advance" })
   Optional locals:
     variant    - "pill" (default), "segmented", or "settings"
     aria_label - accessible label for the nav element
@@ -25,6 +27,6 @@
 <nav class="<%= container_class %> <%= local_assigns[:class] %>"<%= " aria-label=\"#{local_assigns[:aria_label]}\"".html_safe if local_assigns[:aria_label] %>>
   <% tabs.each do |tab| %>
     <% is_active = tab.key?(:active) ? tab[:active] : current_page?(tab[:path]) %>
-    <%= link_to tab[:label], tab[:path], class: "#{item_class} #{"active" if is_active}", "aria-current": ("page" if is_active) %>
+    <%= link_to tab[:label], tab[:path], class: "#{item_class} #{"active" if is_active}", "aria-current": ("page" if is_active), data: tab[:data] %>
   <% end %>
 </nav>

@@ -1,10 +1,11 @@
 <%# Segmented tab bar for child profile
   Required locals:
     child - Child record
-    tab   - current active tab name ("info", "measurements")
+    tab   - current active tab name ("info", "measurements", "milestones")
 %>
+<% frame_data = { turbo_frame: "child_detail_tab_content", turbo_action: "advance" } %>
 <%= render "shared/ui/tabs", variant: "segmented", class: "mb-6", aria_label: "Profilo bambino", tabs: [
-  { label: t("measurements.tabs.info"), path: child_path(child, tab: "info"), active: tab == "info" },
-  { label: t("measurements.tabs.measurements"), path: child_path(child, tab: "measurements"), active: tab == "measurements" },
-  { label: t("measurements.tabs.milestones"), path: child_development_stages_path(child) }
+  { label: t("measurements.tabs.info"),         path: child_path(child, tab: "info"),         active: tab == "info",         data: frame_data },
+  { label: t("measurements.tabs.measurements"), path: child_path(child, tab: "measurements"), active: tab == "measurements", data: frame_data },
+  { label: t("measurements.tabs.milestones"),   path: child_path(child, tab: "milestones"),   active: tab == "milestones",   data: frame_data }
 ] %>

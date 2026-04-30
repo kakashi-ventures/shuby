@@ -662,6 +662,9 @@ en:
     show:
       edit: "Edit"
       details: "Details"
+      milestones_placeholder:
+        title: "Developmental milestones"
+        body: "This section will be available soon."
     new:
       title: "Add Child"
     edit:

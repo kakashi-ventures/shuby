@@ -12,67 +12,72 @@
     <%= render "shared/ui/avatar", child: @child, size: "lg", class: "w-24 h-24" %>
   </div>
 
-  <%# Segmented tab bar %>
-  <%= render "children/tab_bar", child: @child, tab: @tab %>
+  <%# Tab bar + content (swapped in place via Turbo Frame — the avatar above stays put,
+      and the tab bar re-renders inside the frame so the active state follows the new tab). %>
+  <%= turbo_frame_tag "child_detail_tab_content" do %>
+    <%= render "children/tab_bar", child: @child, tab: @tab %>
 
-  <%# Tab content %>
-  <% case @tab %>
-  <% when "info" %>
-    <%# Info tab - child details %>
-    <div class="shuby-card mb-6">
-      <div class="flex items-start justify-between mb-4">
-        <h2 class="shuby-h3"><%= t("children.show.details") %></h2>
-        <%= link_to edit_child_path(@child), class: "shuby-btn shuby-btn-sm shuby-btn-outline" do %>
-          <%= render_svg "shuby/icons/icon-edit", size: :sm, styles: "mr-1", decorative: true %>
-          <%= t("children.show.edit") %>
+    <% case @tab %>
+    <% when "info" %>
+      <%# Info tab - child details %>
+      <div class="shuby-card mb-6">
+        <div class="flex items-start justify-between mb-4">
+          <h2 class="shuby-h3"><%= t("children.show.details") %></h2>
+          <%= link_to edit_child_path(@child), class: "shuby-btn shuby-btn-sm shuby-btn-outline" do %>
+            <%= render_svg "shuby/icons/icon-edit", size: :sm, styles: "mr-1", decorative: true %>
+            <%= t("children.show.edit") %>
+          <% end %>
+        </div>
+
+        <dl class="space-y-4">
+          <div class="flex justify-between">
+            <dt class="shuby-caption"><%= t("children.form.birth_date") %></dt>
+            <dd class="shuby-p1"><%= l(@child.birth_date, format: :long) %></dd>
+          </div>
+
+          <div class="flex justify-between">
+            <dt class="shuby-caption"><%= t("children.form.sex") %></dt>
+            <dd class="shuby-p1"><%= t("children.sex.#{@child.sex}") %></dd>
+          </div>
+
+          <% if @child.premature? %>
+            <div class="flex justify-between">
+              <dt class="shuby-caption"><%= t("children.form.gestational_age") %></dt>
+              <dd class="shuby-p1">
+                <%= t("children.gestational_age.weeks_and_days", weeks: @child.gestational_weeks, days: @child.gestational_days || 0) %>
+              </dd>
+            </div>
+          <% end %>
+
+          <% if @child.notes.present? %>
+            <div>
+              <dt class="shuby-caption mb-2"><%= t("children.form.notes") %></dt>
+              <dd class="shuby-p1"><%= simple_format(@child.notes) %></dd>
+            </div>
+          <% end %>
+        </dl>
+      </div>
+
+      <%# Pediatrician questions section %>
+      <%= render "children/pediatrician_questions", child: @child %>
+
+      <%# Report download button %>
+      <div class="shuby-card mb-6">
+        <%= link_to child_pediatrician_report_path(@child),
+            class: "shuby-btn shuby-btn-primary w-full justify-center",
+            data: { turbo: false },
+            target: "_blank" do %>
+          <%= render_svg "shuby/icons/icon-document", size: :md, styles: "mr-2", decorative: true %>
+          <%= t("pediatrician_report.download") %>
         <% end %>
       </div>
 
-      <dl class="space-y-4">
-        <div class="flex justify-between">
-          <dt class="shuby-caption"><%= t("children.form.birth_date") %></dt>
-          <dd class="shuby-p1"><%= l(@child.birth_date, format: :long) %></dd>
-        </div>
+    <% when "measurements" %>
+      <%= render "children/measurements_tab" %>
 
-        <div class="flex justify-between">
-          <dt class="shuby-caption"><%= t("children.form.sex") %></dt>
-          <dd class="shuby-p1"><%= t("children.sex.#{@child.sex}") %></dd>
-        </div>
+    <% when "milestones" %>
+      <%= render "children/milestones_tab_placeholder" %>
 
-        <% if @child.premature? %>
-          <div class="flex justify-between">
-            <dt class="shuby-caption"><%= t("children.form.gestational_age") %></dt>
-            <dd class="shuby-p1">
-              <%= t("children.gestational_age.weeks_and_days", weeks: @child.gestational_weeks, days: @child.gestational_days || 0) %>
-            </dd>
-          </div>
-        <% end %>
-
-        <% if @child.notes.present? %>
-          <div>
-            <dt class="shuby-caption mb-2"><%= t("children.form.notes") %></dt>
-            <dd class="shuby-p1"><%= simple_format(@child.notes) %></dd>
-          </div>
-        <% end %>
-      </dl>
-    </div>
-
-    <%# Pediatrician questions section %>
-    <%= render "children/pediatrician_questions", child: @child %>
-
-    <%# Report download button %>
-    <div class="shuby-card mb-6">
-      <%= link_to child_pediatrician_report_path(@child),
-          class: "shuby-btn shuby-btn-primary w-full justify-center",
-          data: { turbo: false },
-          target: "_blank" do %>
-        <%= render_svg "shuby/icons/icon-document", size: :md, styles: "mr-2", decorative: true %>
-        <%= t("pediatrician_report.download") %>
-      <% end %>
-    </div>
-
-  <% when "measurements" %>
-    <%= render "children/measurements_tab" %>
-
+    <% end %>
   <% end %>
 </div>
