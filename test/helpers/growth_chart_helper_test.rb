@@ -14,7 +14,10 @@ class GrowthChartHelperTest < ActionView::TestCase
     assert_kind_of Array, data[:measurements]
     assert_kind_of Array, data[:who_curves]
     assert_equal "weight", data[:type]
-    assert_equal "kg", data[:unit]
+    # Unit label is no longer emitted server-side — the chart controller
+    # derives it from type + unit_system at render time so toggling units
+    # doesn't require a network round-trip.
+    assert_equal "metric", data[:unit_system]
   end
 
   test "growth_chart_data converts weight to kg" do
@@ -53,6 +56,33 @@ class GrowthChartHelperTest < ActionView::TestCase
     # Let's test with a child that has no measurements of a certain type
     data = growth_chart_data(child: child, type: "weight")
     assert_kind_of Array, data[:measurements]
+  end
+
+  test "growth_chart_data plots premature babies at corrected age on the x-axis" do
+    # Luca: 34w2d gestational, 18mo chronological → in the corrected-age window.
+    # Add a measurement exactly 100 days after birth so the chronological vs
+    # corrected difference is large enough to be unambiguous.
+    child = children(:luca)
+    Measurement.create!(
+      child: child,
+      measurement_type: :weight,
+      value: 6000,
+      measured_at: child.birth_date + 100.days,
+      percentile: 30
+    )
+
+    data = growth_chart_data(child: child, type: "weight")
+    new_point = data[:measurements].find { |m| (m[:value] - 6.0).abs < 0.01 } # 6000g → 6kg
+
+    chronological_months = (100.0 / 30.44).round(2)            # ~3.29
+    corrected_offset_days = ((40 - 34) * 7) + (7 - 2)          # 47
+    corrected_months = ((100 - corrected_offset_days) / 30.44).round(2) # ~1.74
+
+    assert_in_delta corrected_months, new_point[:age], 0.05,
+      "premature baby's data point must plot at corrected age (#{corrected_months}m), " \
+      "not chronological (#{chronological_months}m)"
+    assert new_point[:age] < chronological_months,
+      "corrected age must be earlier on the x-axis than chronological age"
   end
 
   # === percentile_color_class ===

@@ -13,7 +13,7 @@
   <%= link_to new_child_measurement_path(child, type: box.type),
         class: "shuby-tracking-card",
         aria: { label: "#{t('measurements.dashboard.start_tracking')}: #{type_label}" },
-        data: measurement_overlay_link_data(box.type) do %>
+        data: measurement_overlay_link_data(box.type, close_picker: local_assigns[:close_picker] == true) do %>
     <div class="shuby-tracking-card-heading">
       <p class="shuby-tracking-card-label">
         <%= t("measurements.dashboard.section_start_tracking") %>
@@ -29,7 +29,7 @@
   <%= link_to new_child_measurement_path(child, type: box.type),
         class: "shuby-tracking-card",
         aria: { label: "#{t('measurements.dashboard.update')}: #{type_label}" },
-        data: measurement_overlay_link_data(box.type) do %>
+        data: measurement_overlay_link_data(box.type, close_picker: local_assigns[:close_picker] == true) do %>
     <div class="shuby-tracking-card-heading">
       <span class="shuby-badge-fucsia">
         <%= t("measurements.dashboard.section_update") %>
@@ -50,7 +50,7 @@
   <%= link_to new_child_measurement_path(child, type: box.type),
         class: "shuby-tracking-card",
         aria: { label: "#{t('measurements.dashboard.track')}: #{type_label}" },
-        data: measurement_overlay_link_data(box.type) do %>
+        data: measurement_overlay_link_data(box.type, close_picker: local_assigns[:close_picker] == true) do %>
     <div class="shuby-tracking-card-heading">
       <p class="shuby-tracking-card-label">
         <%= t("measurements.dashboard.section_track") %>

@@ -33,6 +33,10 @@ it:
       history_title: "Storico misurazioni"
       add_more: "Aggiungi misurazione"
       edit: "Modifica"
+    picker:
+      title: "Aggiungi misurazione"
+      open: "Aggiungi misurazione"
+      close: "Chiudi"
     overlay:
       close: "Chiudi"
     create:

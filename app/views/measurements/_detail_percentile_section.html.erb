@@ -23,7 +23,7 @@
     </div>
 
     <% if has_sex %>
-      <% chart_data = growth_chart_data(child: child, type: type) %>
+      <% chart_data = growth_chart_data(child: child, type: type, unit_system: current_user.measurement_unit) %>
       <% if chart_data[:measurements].any? %>
         <%= render "children/growth_chart", child: child, chart_data: chart_data %>
       <% end %>

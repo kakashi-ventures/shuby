@@ -3,6 +3,7 @@
     measurement - the Measurement being shown
 %>
 <% shows_percentile = measurement.measurement_type != "feeding_weight" %>
+<% unit_system = current_user.measurement_unit %>
 <div class="shuby-measurement-detail-current">
   <div class="shuby-measurement-detail-current__meta">
     <span class="shuby-measurement-detail-current__title">
@@ -15,10 +16,19 @@
 
   <div class="shuby-measurement-detail-current__value">
     <div class="shuby-measurement-detail-current__number">
-      <div class="shuby-measurement-detail-current__number-value">
+      <div class="shuby-measurement-detail-current__number-value"
+           data-controller="unit-display"
+           data-unit-display-si-value-value="<%= measurement.value %>"
+           data-unit-display-type-value="<%= measurement.measurement_type %>"
+           data-unit-display-system-value="<%= unit_system %>"
+           data-unit-display-format-value="value">
         <%= measurement_formatted_value(measurement) %>
       </div>
-      <div class="shuby-measurement-detail-current__number-unit">
+      <div class="shuby-measurement-detail-current__number-unit"
+           data-controller="unit-display"
+           data-unit-display-type-value="<%= measurement.measurement_type %>"
+           data-unit-display-system-value="<%= unit_system %>"
+           data-unit-display-format-value="unit">
         <%= measurement_unit_label(measurement) %>
       </div>
     </div>

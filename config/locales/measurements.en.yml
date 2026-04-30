@@ -33,6 +33,10 @@ en:
       history_title: "Measurement history"
       add_more: "Add measurement"
       edit: "Edit"
+    picker:
+      title: "Add measurement"
+      open: "Add measurement"
+      close: "Close"
     overlay:
       close: "Close"
     create:

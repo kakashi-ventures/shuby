@@ -1,30 +1,32 @@
-<%# Measurements tab content %>
-<% no_measurements = @measurements_by_type.all? { |_type, measurement| measurement.nil? } %>
+<%# Measurements tab content. Figma: 451:5043 (with data) + 436:4638 (empty). %>
+<% measurements_with_data = @measurements_by_type.select { |_type, m| m.present? } %>
+<% picker_boxes = MeasurementDashboardService.picker_boxes(@child) %>
 <div class="space-y-4"
-     data-controller="measurement-overlay"
-     data-measurement-overlay-open-class="shuby-measurement-overlay--open">
-  <h2 class="shuby-h3 text-shuby-blue-800 mb-2"><%= t("measurements.index.title") %></h2>
+     data-controller="measurement-overlay measurement-picker-overlay"
+     data-measurement-overlay-open-class="shuby-measurement-overlay--open"
+     data-measurement-picker-overlay-open-class="shuby-measurement-picker-overlay--open">
+  <div class="shuby-section-header-row">
+    <h2 class="shuby-h3 text-shuby-blue-800"><%= t("measurements.index.title") %></h2>
+    <button type="button"
+            class="shuby-icon-btn-azzurro"
+            data-action="click->measurement-picker-overlay#open"
+            aria-label="<%= t("measurements.picker.open") %>">
+      <%= render_svg "shuby/icons/icon-add", size: :sm, decorative: true %>
+    </button>
+  </div>
 
-  <% if no_measurements %>
+  <% if measurements_with_data.empty? %>
     <%= render "children/measurements_empty_state", child: @child %>
   <% else %>
-    <% @measurements_by_type.each do |type, measurement| %>
-      <% child_age = @child.age_in_months %>
-      <% is_stale = measurement ? measurement.stale?(child_age) : false %>
-
+    <% child_age = @child.age_in_months %>
+    <% measurements_with_data.each do |_type, measurement| %>
       <%= render "shared/ui/card_metric",
-        title: t("measurements.types.#{type}"),
-        value: measurement && measurement_formatted_value(measurement),
-        unit: measurement ? measurement_unit_label(measurement) : measurement_unit_label_for_type(type),
-        percentile: measurement&.percentile,
-        measured_at: measurement&.measured_at,
-        stale: is_stale,
+        measurement: measurement,
         child: @child,
-        type: type %>
+        stale: measurement.stale?(child_age) %>
     <% end %>
-
-    <%= render "children/growth_charts_section", child: @child %>
   <% end %>
 
   <%= render "measurements/overlay" %>
+  <%= render "measurements/picker_overlay", boxes: picker_boxes, child: @child %>
 </div>
