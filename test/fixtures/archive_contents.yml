@@ -67,6 +67,10 @@ activity_tummy_time:
   min_age_months: 0
   max_age_months: 6
   duration_minutes: 10
+  benefits:
+    - "Rinforza il collo e le spalle del bambino."
+    - "Favorisce lo sviluppo motorio."
+    - "Stimola la coordinazione visiva."
   position: 1
   published: true
 

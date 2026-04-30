@@ -387,7 +387,12 @@ ARCHIVE_CONTENTS = [
     min_age_months: 0,
     max_age_months: 12,
     duration_minutes: 5,
-    published: true
+    published: true,
+    benefits: [
+      "Stimola la circolazione e la percezione corporea.",
+      "Favorisce il rilassamento e il sonno.",
+      "Rafforza il legame tra chi si prende cura e il neonato o la neonata."
+    ]
   },
   {
     title: "Musica classica",

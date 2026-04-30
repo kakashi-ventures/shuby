@@ -83,6 +83,17 @@ class ArchiveContent < ApplicationRecord
     "#{duration_minutes} min"
   end
 
+  # Virtual attribute for Madmin — exposes the benefits array as a newline-
+  # separated textarea (Madmin doesn't render PostgreSQL text[] columns
+  # natively). Authors write one benefit per line; blank lines are stripped.
+  def benefits_text
+    Array(benefits).join("\n")
+  end
+
+  def benefits_text=(value)
+    self.benefits = value.to_s.split("\n").map(&:strip).reject(&:blank?)
+  end
+
   private
 
   def max_age_greater_than_min

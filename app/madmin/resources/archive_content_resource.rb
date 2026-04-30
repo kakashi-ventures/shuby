@@ -60,6 +60,9 @@ class ArchiveContentResource < Madmin::Resource
   attribute :materials, index: false,
     label: "Materiali necessari",
     description: "Elenco dei materiali necessari per l'attività"
+  attribute :benefits_text, :text, index: false, form: true,
+    label: "Benefici",
+    description: "Un beneficio per riga (es. 'Stimola la circolazione e la percezione corporea.'). Appare nella pagina dettaglio attività con un elenco a cuoricini fucsia. Le righe vuote vengono ignorate."
 
   # Publishing (form only)
   attribute :published_at, index: false,

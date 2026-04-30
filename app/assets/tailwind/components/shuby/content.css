@@ -344,6 +344,52 @@
     }
 }
 
+/* Fucsia heart-bullet list (Figma 532:24578 — activity "Benefici" section).
+   Uses CSS mask-image so the bullet color stays themeable via --color-shuby-fucsia-500
+   instead of being baked into the SVG fill. Mask shape sourced directly from
+   the canonical icon at app/assets/images/shuby/icons/icon-heart-filled.svg via
+   Propshaft asset URL rewriting (no duplicated path data). */
+.shuby-list-hearts {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-4) 0;
+
+    li {
+        position: relative;
+        padding-left: calc(var(--space-5) + 6px);
+        margin-bottom: var(--space-3);
+        font-size: var(--font-size-p1);
+        line-height: var(--line-height-normal);
+        color: var(--base-text);
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 16px;
+            height: 14.7px;
+            background-color: var(--color-shuby-fucsia-500);
+            -webkit-mask: url("shuby/icons/icon-heart-filled.svg") center / contain no-repeat;
+                    mask: url("shuby/icons/icon-heart-filled.svg") center / contain no-repeat;
+        }
+    }
+}
+
+/* Activity body variant — overrides .shuby-article-body marker colors from
+   green-500 (article default, Figma 510:22491 "Come stimolarlo" / "Campanelli")
+   to blue-700 per Figma 532:24578 "Come fare". The :not(.shuby-list-hearts)
+   guard keeps the Benefici list's fucsia hearts unaffected. */
+.shuby-activity-body {
+    ol li::before {
+        color: var(--color-shuby-blue-700);
+    }
+
+    ul:not(.shuby-list-hearts) li::before {
+        color: var(--color-shuby-blue-700);
+    }
+}
+
 /* =====================================================
    GREEN LINKED PILL / BUTTON
    Clickable green pill for linked content (e.g., "Comunicazione e linguaggio")

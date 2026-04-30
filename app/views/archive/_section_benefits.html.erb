@@ -1,0 +1,12 @@
+<%# Activity "Benefici" section (Figma 532:24578).
+    H3 heading + heart-bullet list. The list class .shuby-list-hearts
+    sits alongside .shuby-list-blue / -red / -verde — adding a fucsia
+    heart-bullet variant to the established colored-list family. %>
+<section class="mb-8">
+  <h3 class="shuby-h3 text-shuby-blue-800 mb-3"><%= t("archive.activity.benefits") %></h3>
+  <ul class="shuby-list-hearts">
+    <% benefits.each do |benefit| %>
+      <li><%= benefit %></li>
+    <% end %>
+  </ul>
+</section>

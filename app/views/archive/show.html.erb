@@ -70,12 +70,19 @@
 
     <%# Tags + reading time. Reading time is rendered inline (icon+text,
         no pill) per Figma 527:23977 — uses the existing
-        .shuby-reading-time-primary class instead of a tag variant. %>
+        .shuby-reading-time-primary class instead of a tag variant.
+        Activities (Figma 532:24578) show ONLY the duration — no category, no
+        age — so the category + age tags are gated behind a content-type
+        conditional. If a 3rd content-type-specific tags row appears later
+        (Game/Book divergence), extract per-type partials instead of stacking
+        another conditional. %>
     <div class="flex flex-wrap items-center gap-2 mb-3 pr-12">
-      <% if @content.category.present? %>
-        <%= shuby_tag(@content.category, variant: :azzurro, icon: category_icon_for(@content.category)) %>
+      <% unless @content.content_type_activity? %>
+        <% if @content.category.present? %>
+          <%= shuby_tag(@content.category, variant: :azzurro, icon: category_icon_for(@content.category)) %>
+        <% end %>
+        <%= shuby_tag(@content.age_range_label, variant: :grigio) %>
       <% end %>
-      <%= shuby_tag(@content.age_range_label, variant: :grigio) %>
       <% if @content.duration_minutes %>
         <span class="shuby-reading-time shuby-reading-time-primary">
           <span class="shuby-reading-time-icon">
@@ -108,11 +115,22 @@
     <% end %>
 
     <%# Rich text body — uses .shuby-article-body so Action Text-rendered
-        h2/h3, paragraphs, lists and links match Figma 05.02 typography. %>
+        h2/h3, paragraphs, lists and links match Figma 05.02 typography.
+        Activities also receive .shuby-activity-body which overrides ol/ul
+        marker color from green-500 (article default) to blue-700 per
+        Figma 532:24578 "Come fare". %>
     <% if @content.body.present? %>
-      <div class="shuby-article-body mb-8">
+      <div class="shuby-article-body <%= 'shuby-activity-body' if @content.content_type_activity? %> mb-8">
         <%= @content.body %>
       </div>
+    <% end %>
+
+    <%# Activity-specific "Benefici" section (Figma 532:24578). Stored as a
+        text[] array on archive_contents — distinct from the rich-text body
+        so the heart-bullet styling doesn't have to round-trip through
+        Action Text's sanitizer. %>
+    <% if @content.content_type_activity? && @content.benefits.present? %>
+      <%= render "archive/section_benefits", benefits: @content.benefits %>
     <% end %>
   </div>
 
