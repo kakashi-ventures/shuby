@@ -56,7 +56,7 @@
 }
 
 /* Hero title — composes the .shuby-h2 typography tokens with
-   hero-specific color (fucsia) and layout (flex-1, centered).
+   hero-specific color (fucsia) and layout (flex-1, left).
    NOTE: keep in sync with .shuby-h2 in typography.css if that class
    changes font-size or line-height. min-width:0 + overflow-wrap:anywhere
    keep long phase titles from pushing the illustration off the row on
@@ -71,7 +71,7 @@
     flex: 1;
     min-width: 0;
     overflow-wrap: anywhere;
-    text-align: center;
+    text-align: left;
 }
 
 /* Hero description — composes .shuby-p1 with hero-specific black color. */
