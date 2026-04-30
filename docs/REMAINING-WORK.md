@@ -70,7 +70,7 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
   - [x] Dashboard
   - Archive (split into per-screen sub-audits):
     - [x] Archive — index home view (Figma `463:6063`) — header round-buttons rebuilt as filled blue (`--bg-primary` + white icon, was transparent); brand navbar suppressed via `hide_navbar`; sticky translucent header (`bg-white/95 backdrop-blur-sm` + `.shuby-archive-index-header` with iOS safe-area inset) extracted to shared `_index_header.html.erb` partial used by home + search-results; section headings + cards verified against tokens
-    - [ ] Archive — Article detail (Figma `510:22491`)
+    - [x] Archive — Article detail (Figma `510:22491`) — sticky header now backed by `.shuby-article-sticky-header` class with `Shadow Blu` drop-shadow + native safe-area inset (`hotwire_native.css`); white panel radius corrected to `radius/grande` (12px); bookmark switched to `:outlined` variant on the white-panel context (reuses `.shuby-icon-btn-fill`) AND mirrored into the sticky header right slot (FA 6.2.1 "Title + bookmark become sticky header") via a `frame_suffix: :sticky` second turbo frame, with `ArchiveFavoritesController` emitting both stream replacements in lockstep; reading time renders inline via `.shuby-reading-time-primary` instead of a tag pill; body subheadings now H3 (20px Semi-Bold) and anchors blu-800; defensive `<hr>` rule for editorial separators
     - [ ] Archive — Activity detail (Figma `532:24578`)
     - [ ] Archive — Game detail (Figma `532:25861`)
     - [ ] Archive — Book detail (Figma `532:26226`)

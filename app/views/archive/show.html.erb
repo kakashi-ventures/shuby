@@ -3,10 +3,11 @@
 <% content_for :page_type, "detail" %>
 
 <div class="pb-24 min-h-screen bg-white" data-controller="article-scroll">
-  <%# Floating back button — sticky top-left, persistent during scroll.
-      Figma 05.02_Articolo node 510:23114. Reuses .shuby-icon-btn-bianca for
-      the white-with-blue-border circle. %>
-  <div class="shuby-floating-back-wrapper">
+  <%# Floating back button — visible while the hero is on screen (Figma 510:23114).
+      Hands off to the inline chevron in the sticky header on scroll, per FA 6.2.1
+      ("Back button repositions next to title"). The article-scroll controller
+      toggles its opacity in lockstep with the sticky header. %>
+  <div class="shuby-floating-back-wrapper" data-article-scroll-target="floatingBack">
     <%= link_to archive_index_path,
           class: "shuby-icon-btn-bianca shuby-floating-back",
           aria: { label: t("back") } do %>
@@ -25,35 +26,68 @@
     <% end %>
   </div>
 
-  <%# Sticky compact header (hidden by default, shown on scroll).
-      No back button here — the floating button above owns that affordance.
-      pl-14 clears space under the floating button so the title doesn't collide. %>
+  <%# Sticky compact header — appears on scroll (Figma 510:23074).
+      Inline chevron + truncated title on the left, outlined bookmark on
+      the right (the 88px right slot in the Figma sticky header). The
+      floating back button is faded by the controller in tandem so the
+      back affordance "repositions" inside this bar (FA 6.2.1: "Title +
+      bookmark become sticky header"). %>
   <div data-article-scroll-target="stickyHeader"
-       class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 opacity-0 translate-y-[-100%] transition-all duration-200">
-    <div class="flex items-center gap-3 pl-14 pr-4 py-3">
-      <h2 class="shuby-h3 text-shuby-blue-800 flex-1 truncate"><%= @content.title %></h2>
-      <%= render "archive/favorite_button", content: @content, favorited: @favorited, inline: true %>
+       class="shuby-article-sticky-header fixed top-0 left-0 right-0 z-50 opacity-0 -translate-y-full transition-all duration-200">
+    <div class="flex items-center gap-2 px-3 py-2">
+      <%# Chevron + title share an <a>; gap-0 keeps them tight (the chevron
+          SVG's internal aspect-ratio padding already provides ~3px of
+          breathing room between the visible chevron tip and the title). %>
+      <%= link_to archive_index_path,
+            class: "flex items-center min-w-0 flex-1 text-shuby-blue-800",
+            aria: { label: t("back") } do %>
+        <%# !w-3 overrides the w-4 (16px) from size: :sm so the SVG box width
+            matches the chevron's natural 11.775×20 aspect ratio. With h-4 (16px)
+            still inherited from size, the chevron renders ~9.4×16 inside a 12×16
+            box — ~1.3px of horizontal padding instead of ~3.3px. %>
+        <%= render_svg "shuby/icons/icon-chevron-left", size: :sm, decorative: true, styles: "shrink-0 !w-3" %>
+        <h2 class="shuby-h3 truncate"><%= @content.title %></h2>
+      <% end %>
+      <%= render "archive/favorite_button",
+            content: @content,
+            favorited: @favorited,
+            variant: :outlined,
+            frame_suffix: :sticky,
+            inline: true %>
     </div>
   </div>
 
-  <%# Content body — slides up over the hero on scroll via negative margin %>
-  <div class="relative bg-white rounded-t-3xl -mt-6 pt-6 px-4">
-    <%# Tags %>
-    <div class="flex flex-wrap gap-2 mb-3">
+  <%# Content body — slides up over the hero on scroll via negative margin.
+      12px top corners match Figma radius/grande (510:23112). %>
+  <div class="relative bg-white rounded-t-[12px] -mt-6 pt-6 px-4">
+    <%# Bookmark anchored top-right of the white panel, on the tags-row band
+        per Figma 510:22491 (button at y=289 / tags row at y=297). The
+        :outlined variant gives the blu-800-bordered white circle that
+        Figma node 527:23934 specifies; default partial positioning
+        (absolute top-2 right-2 z-10) is preserved.
+        pr-12 on the tags row prevents tag pills from overflowing under it. %>
+    <%= render "archive/favorite_button", content: @content, favorited: @favorited, variant: :outlined %>
+
+    <%# Tags + reading time. Reading time is rendered inline (icon+text,
+        no pill) per Figma 527:23977 — uses the existing
+        .shuby-reading-time-primary class instead of a tag variant. %>
+    <div class="flex flex-wrap items-center gap-2 mb-3 pr-12">
       <% if @content.category.present? %>
         <%= shuby_tag(@content.category, variant: :azzurro, icon: category_icon_for(@content.category)) %>
       <% end %>
       <%= shuby_tag(@content.age_range_label, variant: :grigio) %>
       <% if @content.duration_minutes %>
-        <%= shuby_tag(@content.duration_label, variant: :light, icon: "shuby/icons/icon-alarm") %>
+        <span class="shuby-reading-time shuby-reading-time-primary">
+          <span class="shuby-reading-time-icon">
+            <%= render_svg "shuby/icons/icon-alarm", decorative: true %>
+          </span>
+          <%= @content.duration_label %>
+        </span>
       <% end %>
     </div>
 
-    <%# Bookmark row %>
-    <div class="flex items-start justify-between gap-3 mb-4">
-      <h1 class="shuby-h2 text-shuby-blue-800"><%= @content.title %></h1>
-      <%= render "archive/favorite_button", content: @content, favorited: @favorited, inline: true %>
-    </div>
+    <%# Title %>
+    <h1 class="shuby-h2 text-shuby-blue-800 mb-4"><%= @content.title %></h1>
 
     <%# Tip-specific metadata (author, publisher) %>
     <% if @content.content_type_tip? %>
@@ -73,9 +107,10 @@
       </div>
     <% end %>
 
-    <%# Rich text body %>
+    <%# Rich text body — uses .shuby-article-body so Action Text-rendered
+        h2/h3, paragraphs, lists and links match Figma 05.02 typography. %>
     <% if @content.body.present? %>
-      <div class="prose prose-sm max-w-none mb-8">
+      <div class="shuby-article-body mb-8">
         <%= @content.body %>
       </div>
     <% end %>

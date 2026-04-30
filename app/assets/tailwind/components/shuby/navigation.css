@@ -251,22 +251,48 @@
    ===================================================== */
 
 .shuby-floating-back-wrapper {
-    position: sticky;
+    /* Fixed (not sticky) so it overlays the hero without taking flow space.
+       sticky-positioned floating buttons push the hero down by their box
+       height, leaving a visible white gap above the hero — Figma 510:22491
+       has the hero start at y=0 with the chevron overlaid on top. */
+    position: fixed;
     top: 0;
-    z-index: 60;
-    width: fit-content;
+    left: 0;
+    z-index: 40;
     padding: 10px 0 0 10px;
     /* Let taps pass through the surrounding dead space so the sticky
        header beneath remains interactive — only the button itself clicks. */
     pointer-events: none;
+    transition: opacity 200ms ease-out;
 }
 
 .shuby-floating-back {
     pointer-events: auto;
 }
 
+/* Toggled by article-scroll-controller when the sticky header takes over,
+   so the back affordance visually "repositions" into the sticky bar
+   instead of stacking two back buttons (FA 6.2.1). */
+.shuby-floating-back-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
 html.hotwire-native .shuby-floating-back-wrapper {
     padding-top: calc(env(safe-area-inset-top) + 10px);
+}
+
+/* =====================================================
+   ARTICLE-DETAIL STICKY HEADER (Figma 510:23074)
+   Translucent white with the "Shadow Blu" drop-shadow token instead of a
+   hard bottom border. The view layers Tailwind transition utilities on top
+   (opacity, translate); this class only owns appearance, not motion.
+   Native iOS safe-area inset is added in hotwire_native.css.
+   ===================================================== */
+
+.shuby-article-sticky-header {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 5px rgba(158, 198, 240, 0.3);
 }
 
 /* =====================================================

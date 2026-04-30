@@ -31,10 +31,22 @@ class ArchiveFavoritesController < ApplicationController
   end
 
   def render_favorite_button(favorited)
-    render turbo_stream: turbo_stream.replace(
-      "favorite_archive_content_#{@content.id}",
-      partial: "archive/favorite_button",
-      locals: {content: @content, favorited: favorited}
-    )
+    variant = (params[:variant].presence || "default").to_sym
+    base_id = "favorite_archive_content_#{@content.id}"
+    streams = [
+      turbo_stream.replace(
+        base_id,
+        partial: "archive/favorite_button",
+        locals: {content: @content, favorited: favorited, variant: variant}
+      )
+    ]
+    if variant == :outlined
+      streams << turbo_stream.replace(
+        "#{base_id}_sticky",
+        partial: "archive/favorite_button",
+        locals: {content: @content, favorited: favorited, variant: variant, frame_suffix: :sticky, inline: true}
+      )
+    end
+    render turbo_stream: streams
   end
 end

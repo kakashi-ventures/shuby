@@ -40,6 +40,14 @@ html.hotwire-native .shuby-archive-index-header {
   padding-top: calc(env(safe-area-inset-top) + var(--space-4));
 }
 
+/* Article-detail sticky header: status bar inset + 8px breathing room.
+   Same pattern, smaller pad — Figma 510:23074 stacks status bar + 8px gap
+   before the chevron+title row. Without this, the row sits behind the
+   Dynamic Island on notched devices. Pairs with .shuby-article-sticky-header. */
+html.hotwire-native .shuby-article-sticky-header {
+  padding-top: calc(env(safe-area-inset-top) + var(--space-2));
+}
+
 /* Hide web bottom nav — native tab bar replaces it.
    Primary guard is server-side (yield :bottom_nav unless hotwire_native_app?).
    This CSS is a belt-and-suspenders fallback. */

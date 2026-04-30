@@ -1,13 +1,31 @@
-<%= turbo_frame_tag dom_id(content, :favorite), class: (local_assigns[:inline] ? "relative z-10" : "absolute top-2 right-2 z-10") do %>
+<%# Variants:
+    - :default — soft white-translucent button intended to sit over a colored
+      hero / card image (archive index, dashboard carousels)
+    - :outlined — blu-800 outlined circle on white, for placement inside the
+      white article-detail panel (Figma 510:22491 → 527:23934, also reused
+      by the article-detail sticky header → 510:23074 right slot). Reuses the
+      existing .shuby-icon-btn-fill design-system class.
+
+    `frame_suffix:` distinguishes multiple renders on the same page (article
+    detail renders the bookmark twice — in-panel + sticky-header). The
+    `variant` is round-tripped via a hidden form param so the controller
+    can re-render each frame with the correct styling. %>
+<% variant = local_assigns[:variant] || :default %>
+<% frame_suffix = local_assigns[:frame_suffix] %>
+<% frame_id = frame_suffix ? "#{dom_id(content, :favorite)}_#{frame_suffix}" : dom_id(content, :favorite) %>
+<% btn_class = variant == :outlined ? "shuby-icon-btn-fill" : "p-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm hover:bg-white transition-colors" %>
+<% empty_icon_color = variant == :outlined ? "text-shuby-blue-800" : "text-shuby-gray-400" %>
+<% form_params = {variant: variant, frame_suffix: frame_suffix}.compact %>
+<%= turbo_frame_tag frame_id, class: (local_assigns[:inline] ? "relative z-10" : "absolute top-2 right-2 z-10") do %>
   <div data-controller="favorite"
        data-action="click->favorite#toggle">
     <% if local_assigns[:favorited] && favorited %>
-      <%= button_to archive_favorite_path(content), method: :delete, class: "p-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm hover:bg-white transition-colors", aria: {label: t("archive.favorites.remove")} do %>
+      <%= button_to archive_favorite_path(content, **form_params), method: :delete, class: btn_class, aria: {label: t("archive.favorites.remove")} do %>
         <%= render_svg "shuby/icons/icon-bookmark-filled", size: :md, styles: "text-shuby-fucsia-500" %>
       <% end %>
     <% else %>
-      <%= button_to archive_favorite_path(content), method: :post, class: "p-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm hover:bg-white transition-colors", aria: {label: t("archive.favorites.save")} do %>
-        <%= render_svg "shuby/icons/icon-bookmark", size: :md, styles: "text-shuby-gray-400" %>
+      <%= button_to archive_favorite_path(content, **form_params), method: :post, class: btn_class, aria: {label: t("archive.favorites.save")} do %>
+        <%= render_svg "shuby/icons/icon-bookmark", size: :md, styles: empty_icon_color %>
       <% end %>
     <% end %>
   </div>

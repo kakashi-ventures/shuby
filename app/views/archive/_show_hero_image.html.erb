@@ -1,10 +1,13 @@
-<%# Article hero: full-width cover image (Figma 05.02). Back button lives in
-    the page-level floating wrapper in archive/show.html.erb so it persists
-    during scroll — don't render it here. %>
-<div class="relative">
-  <% if content.cover_image.attached? %>
-    <%= image_tag content.cover_image, alt: "", class: "w-full h-56 object-cover" %>
-  <% else %>
-    <div class="w-full h-56 bg-shuby-blue-400"></div>
-  <% end %>
+<%# Article hero: full-width cover image (Figma 05.02, node 510:22906 — 390×269).
+    Routes through the same archive_cover_image helper as the card thumbnail
+    so the hero and the card show the *same* illustration for a given article
+    (cover_image when attached, otherwise the cycling archive-{1,2,3}.svg
+    placeholder picked by content.id). The 390×269 hero and 290×200 card both
+    use a 1.45:1 aspect ratio, so object-cover scales the same SVG cleanly
+    between contexts. bg-shuby-blue-400 paints behind the image as a fallback
+    band against load failures.
+    Back button lives in the page-level floating wrapper in archive/show.html.erb
+    so it persists during scroll — don't render it here. %>
+<div class="relative w-full h-[269px] bg-shuby-blue-400 overflow-hidden">
+  <%= archive_cover_image(content, class: "w-full h-full object-cover") %>
 </div>
