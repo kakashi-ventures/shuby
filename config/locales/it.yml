@@ -657,9 +657,8 @@ it:
     show:
       edit: "Modifica"
       details: "Dettagli"
-      milestones_placeholder:
+      milestones:
         title: "Tappe di sviluppo"
-        body: "Questa sezione sarà presto disponibile."
     new:
       title: "Aggiungi Bambino"
     edit:

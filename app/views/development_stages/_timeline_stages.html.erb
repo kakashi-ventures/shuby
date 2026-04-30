@@ -1,7 +1,6 @@
 <%
   completed_count = development_areas.count { |d| d[:session]&.completed? }
   total_count = development_areas.count { |d| d[:questionnaire].present? }
-  areas_with_questionnaire = development_areas.select { |d| d[:questionnaire].present? }
 %>
 
 <section>
@@ -16,13 +15,7 @@
     <% end %>
   </div>
 
-  <div class="shuby-timeline-milestone-list">
-    <% areas_with_questionnaire.each do |data| %>
-      <%= render "development_stages/timeline_milestone_card",
-                 area: data[:area],
-                 session: data[:session],
-                 age_relationship: data[:age_relationship],
-                 child: child %>
-    <% end %>
-  </div>
+  <%= render "development_stages/timeline_stages_cards",
+             development_areas: development_areas,
+             child: child %>
 </section>

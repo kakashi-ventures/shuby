@@ -1,0 +1,18 @@
+<%# Vertical list of milestone cards — one per development area that has a
+  questionnaire mapped to the band's age. Used by:
+    * development_stages/_timeline_stages.html.erb (timeline page section)
+    * children/_milestones_band.html.erb           (Tappe tab accordion body)
+  Required locals:
+    development_areas - Array of hashes from ChildMilestonesLoader#data_for_band
+                        or one entry of #call's :bands array
+    child             - Child record
+%>
+<div class="shuby-timeline-milestone-list">
+  <% development_areas.select { |d| d[:questionnaire].present? }.each do |data| %>
+    <%= render "development_stages/timeline_milestone_card",
+               area: data[:area],
+               session: data[:session],
+               age_relationship: data[:age_relationship],
+               child: child %>
+  <% end %>
+</div>

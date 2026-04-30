@@ -1,0 +1,23 @@
+<%# Milestones tab on the child profile — Figma 451:5546 (Tappe/01) and 541:7850 (Tappe/02).
+  Shows an accordion of every age band the child has reached: current band auto-expanded,
+  past bands listed below in reverse chronological order (newest first).
+  Required locals:
+    child           - Child record
+    milestones_data - Output of ChildMilestonesLoader#call
+%>
+<section class="shuby-milestones-tab">
+  <h2 class="shuby-milestones-tab-title shuby-h3">
+    <%= t("children.show.milestones.title") %>
+  </h2>
+
+  <ul class="shuby-milestones-band-list">
+    <% milestones_data[:bands].each do |band_data| %>
+      <li>
+        <%= render "children/milestones_band",
+                   child: child,
+                   band_data: band_data,
+                   default_open: band_data[:age_relationship] == :current %>
+      </li>
+    <% end %>
+  </ul>
+</section>

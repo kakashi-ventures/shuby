@@ -76,7 +76,9 @@
       <%= render "children/measurements_tab" %>
 
     <% when "milestones" %>
-      <%= render "children/milestones_tab_placeholder" %>
+      <%= render "children/milestones_tab",
+                 child: @child,
+                 milestones_data: @milestones_data %>
 
     <% end %>
   <% end %>

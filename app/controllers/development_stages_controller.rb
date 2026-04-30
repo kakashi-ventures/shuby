@@ -49,10 +49,10 @@ class DevelopmentStagesController < ApplicationController
 
   def set_timeline_bands
     @child_age_months = @child.questionnaire_age_in_months
-    @child_age_weeks  = @child.questionnaire_age_in_weeks
+    @child_age_weeks = @child.questionnaire_age_in_weeks
+    @milestones_loader = ChildMilestonesLoader.new(@child)
     @age_bands = Timeline::AgeBands::ALL
-    @current_band = Timeline::AgeBands.for_child_age(@child_age_months, age_in_weeks: @child_age_weeks)
-    @current_band_questionnaire = AgeBandQuestionnaire.for_age([@child_age_months, 36].min).first
+    @current_band = @milestones_loader.current_band
     @selected_band = if params[:band].present?
       Timeline::AgeBands.find_by_key(params[:band]) || @current_band
     else
@@ -64,56 +64,11 @@ class DevelopmentStagesController < ApplicationController
     age = @selected_band[:age_months]
     @growth_phase = GrowthPhase.for_age(age)
     @who_ranges = load_who_ranges(age)
-    @development_areas = load_development_areas(age)
+    @development_areas = @milestones_loader.data_for_band(@selected_band)[:development_areas]
   end
 
   def load_who_ranges(age_months)
     sex = @child.sex&.to_sym
     WhoGrowthStandard.reference_ranges(sex: sex, age_months: age_months)
-  end
-
-  def load_development_areas(age_months)
-    relationship = timeline_age_relationship(age_months)
-    DevelopmentArea.ordered.includes(:age_band_questionnaires).map do |area|
-      questionnaire = area.questionnaire_for_age(age_months)
-      session = find_timeline_session(questionnaire, relationship)
-
-      {
-        area: area,
-        questionnaire: questionnaire,
-        session: session,
-        age_relationship: relationship
-      }
-    end
-  end
-
-  def find_timeline_session(questionnaire, relationship)
-    return nil unless questionnaire
-
-    if relationship == :current
-      @child.session_for(questionnaire) ||
-        @child.questionnaire_sessions
-          .where(age_band_questionnaire: questionnaire)
-          .completed.recent_first.first
-    else
-      @child.questionnaire_sessions
-        .where(age_band_questionnaire: questionnaire)
-        .completed.recent_first.first
-    end
-  end
-
-  def timeline_age_relationship(band_age)
-    return :current unless @current_band_questionnaire
-
-    selected_q = AgeBandQuestionnaire.for_age(band_age.clamp(0, 36)).first
-    return :current unless selected_q
-
-    if selected_q.min_age_months < @current_band_questionnaire.min_age_months
-      :past
-    elsif selected_q.min_age_months == @current_band_questionnaire.min_age_months
-      :current
-    else
-      :future
-    end
   end
 end

@@ -1,0 +1,34 @@
+<%# A single age-band accordion row inside the milestones tab.
+  HTML <details> handles toggle behavior natively — no Stimulus required.
+  Required locals:
+    child        - Child record
+    band_data    - Hash from ChildMilestonesLoader (band, development_areas, counts, age_relationship)
+    default_open - true to render the band expanded by default (typically the current band)
+%>
+<%
+  band = band_data[:band]
+  band_label = "#{band[:label_type]} #{band[:label_number]}"
+  show_counter = band_data[:total_count].positive?
+  all_completed = show_counter && band_data[:completed_count] == band_data[:total_count]
+%>
+<details class="shuby-milestones-band" <%= "open" if default_open %>>
+  <summary class="shuby-milestones-band-header">
+    <span class="shuby-milestones-band-chevron" aria-hidden="true">
+      <%= render_svg "shuby/icons/icon-chevron-down", size: :sm, decorative: true %>
+    </span>
+    <span class="shuby-milestones-band-label"><%= band_label %></span>
+    <% if show_counter %>
+      <span class="shuby-milestones-band-counter <%= "shuby-milestones-band-counter-complete" if all_completed %>">
+        <%= t("timeline.show.completed_count",
+              completed: band_data[:completed_count],
+              total: band_data[:total_count]) %>
+      </span>
+    <% end %>
+  </summary>
+
+  <div class="shuby-milestones-band-cards">
+    <%= render "development_stages/timeline_stages_cards",
+               development_areas: band_data[:development_areas],
+               child: child %>
+  </div>
+</details>

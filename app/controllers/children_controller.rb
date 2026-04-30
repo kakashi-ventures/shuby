@@ -13,11 +13,14 @@ class ChildrenController < ApplicationController
   # GET /children/:id
   def show
     @tab = params[:tab] || "info"
-    if @tab == "measurements"
+    case @tab
+    when "measurements"
       @measurements_by_type = Measurement.measurement_types.keys.map do |type|
         [type, @child.latest_measurement(type)]
       end
       @child.measurements.load # Preload for growth chart rendering
+    when "milestones"
+      @milestones_data = ChildMilestonesLoader.new(@child).call
     end
   end
 

@@ -952,3 +952,103 @@ html.hotwire-native .shuby-stage-completed-header {
     height: 80px;
     object-fit: contain;
 }
+
+/* =====================================================
+   MILESTONES TAB on Child profile
+   Figma: 451:5546 (Tappe/01 — current band expanded)
+          541:7850 (Tappe/02 — multiple bands expanded)
+
+   Vertical accordion of every age band the child has reached. Built on the
+   native HTML <details> element — toggle behaviour is free, no Stimulus.
+   The current band auto-opens; past bands expand on tap. Cards inside reuse
+   .shuby-milestone-card from the timeline page above.
+   ===================================================== */
+
+.shuby-milestones-tab {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.shuby-milestones-tab-title {
+    color: var(--color-shuby-blue-800);
+    margin: 0;
+}
+
+.shuby-milestones-band-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.shuby-milestones-band {
+    border-bottom: 1px solid var(--color-shuby-gray-500);
+}
+
+.shuby-milestones-band[open] .shuby-milestones-band-chevron {
+    transform: rotate(180deg);
+}
+
+/* Suppress the native disclosure triangle so our chevron icon owns the affordance. */
+.shuby-milestones-band > summary {
+    list-style: none;
+}
+.shuby-milestones-band > summary::-webkit-details-marker {
+    display: none;
+}
+
+.shuby-milestones-band-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-4) 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+.shuby-milestones-band-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--color-shuby-black);
+    transition: transform 200ms ease-out;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.shuby-milestones-band-label {
+    flex: 1;
+    min-width: 0;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    text-transform: uppercase;
+    color: var(--color-shuby-black);
+}
+
+.shuby-milestones-band-counter {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-black);
+    padding: 2px var(--space-2);
+    border-radius: 999px;
+}
+
+/* Filled pill when every milestone in the band is completed. */
+.shuby-milestones-band-counter-complete {
+    background-color: var(--color-shuby-verde-300);
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-milestones-band-cards {
+    padding-bottom: var(--space-4);
+}
