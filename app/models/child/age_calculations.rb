@@ -159,6 +159,22 @@ module Child::AgeCalculations
     premature? && age_in_months < 24
   end
 
+  # Returns the date that should serve as "age zero" for this child at the
+  # given reference date. For premature babies who are under 24 chronological
+  # months at that date, this is the corrected birth date (gestational
+  # adjustment). Otherwise it's the actual birth date.
+  #
+  # Used by the growth-chart helper so chart X-axis positions match the
+  # corrected age the percentile calculation already uses — without this,
+  # premature babies' data points appear several weeks ahead of where they
+  # should sit on the WHO curve, even though their plotted percentile is
+  # computed correctly. Mirrors the same conditional in
+  # `detailed_age_display_at` and `questionnaire_age_in_weeks`.
+  def age_reference_date(date = Date.current)
+    reference = date.to_date
+    (premature? && age_in_months(reference) < 24) ? corrected_birth_date : birth_date
+  end
+
   def age_correction_months
     return 0 unless using_corrected_age?
     age_in_months - corrected_age_in_months

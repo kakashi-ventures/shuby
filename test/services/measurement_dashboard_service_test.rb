@@ -51,4 +51,33 @@ class MeasurementDashboardServiceTest < ActiveSupport::TestCase
       assert_includes MeasurementDashboardService::PRIORITY_TYPES, box.type
     end
   end
+
+  # picker_boxes — type-picker overlay (Figma 463:5785 / 463:5995 / 795:8492)
+  test "picker_boxes returns one box per ALL_TYPES" do
+    boxes = MeasurementDashboardService.picker_boxes(children(:sophia))
+    assert_equal MeasurementDashboardService::ALL_TYPES, boxes.map(&:type)
+  end
+
+  test "picker_boxes includes feeding_weight (unlike call/MAX_BOXES)" do
+    boxes = MeasurementDashboardService.picker_boxes(children(:sophia))
+    assert_includes boxes.map(&:type), "feeding_weight"
+  end
+
+  test "picker_boxes derives state per type using same logic as call" do
+    boxes = MeasurementDashboardService.picker_boxes(children(:luca))
+    # luca_height_stale is 70 days old, luca is ~18 months, threshold 60 days.
+    height_box = boxes.find { |b| b.type == "height" }
+    assert_equal :update, height_box.state
+  end
+
+  test "picker_boxes returns :start_tracking for child with no measurements" do
+    child = Child.create!(
+      account: accounts(:company),
+      name: "Picker Empty Test",
+      birth_date: 1.week.ago.to_date
+    )
+    boxes = MeasurementDashboardService.picker_boxes(child)
+    assert boxes.all? { |b| b.state == :start_tracking }
+    assert_equal 4, boxes.size
+  end
 end

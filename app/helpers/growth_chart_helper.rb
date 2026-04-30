@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
 module GrowthChartHelper
-  # Build chart data JSON for the Stimulus controller
-  def growth_chart_data(child:, type:)
+  # Build chart data JSON for the Stimulus controller.
+  #
+  # Data is always emitted in metric (kg / cm) — the Stimulus controller
+  # converts to imperial client-side at render time. This keeps unit-toggle
+  # interactions snappy on mobile (no network round-trip) and avoids stale
+  # cached page snapshots when the user flips units.
+  #
+  # `unit_system` is included in the payload only as the *initial* display
+  # preference for the controller; conversion factors live in JS.
+  def growth_chart_data(child:, type:, unit_system: "metric")
     sex = child.sex.to_sym
     measurements = child.measurements.by_type(type).ordered.to_a
 
@@ -10,7 +18,7 @@ module GrowthChartHelper
       measurements: format_measurements(measurements, type),
       who_curves: WhoGrowthStandard.percentile_curves(sex: sex, type: type.to_sym),
       type: type,
-      unit: chart_unit(type),
+      unit_system: unit_system,
       title: t("measurements.types.#{type}")
     }
   end
@@ -59,21 +67,25 @@ module GrowthChartHelper
     end
   end
 
+  # Stored values are in SI base units: grams (weight) or cm (height/head).
+  # The chart works in kg / cm to match WHO curve units. Imperial conversion
+  # happens client-side in growth_chart_controller.
   def normalize_for_chart(value, type)
-    # Weight: grams → kg (WHO uses kg)
-    (type.to_s == "weight") ? (value / 1000.0).round(2) : value.to_f.round(2)
+    metric = (type.to_s == "weight") ? (value / 1000.0) : value.to_f
+    metric.round(2)
   end
 
+  # Plots a measurement on the chart's X axis at the child's age-on-that-date.
+  # For premature babies under 24 chronological months at the measurement
+  # date, uses corrected age (via `Child#age_reference_date`) so the dot
+  # lines up with the WHO curve at the same age the percentile is computed
+  # against. Without this alignment, premature babies' dots appear shifted
+  # to the right on the curve relative to their (correctly-calculated)
+  # percentile.
   def age_at_measurement(measurement)
     date = measurement.measured_at.to_date
-    days = (date - measurement.child.birth_date).to_i
+    reference = measurement.child.age_reference_date(date)
+    days = (date - reference).to_i
     (days / 30.44).round(2)
-  end
-
-  def chart_unit(type)
-    case type.to_s
-    when "weight" then "kg"
-    else "cm"
-    end
   end
 end

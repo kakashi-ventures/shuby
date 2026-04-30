@@ -21,6 +21,16 @@ paths:
 - Use Stimulus controllers for JavaScript behavior — no inline JS
 - **Page transitions**: tag new drill-down/wizard views with `<% content_for :page_type, "detail" %>` (or `"wizard"` / `"immersive"`). Omit for tab roots. See `.claude/rules/view-transitions.md` for the full pattern, `streamed:` local contract for Turbo Stream partials, and the non-obvious body+`:has()` CSS approach.
 
+## Display preferences (unit toggle, etc.)
+On a heavily-trafficked mobile view, **do not** round-trip the server to flip a display preference. The chart unit toggle (`unit_preference_controller.js`) is the reference pattern:
+
+1. **Server emits raw SI values** as data-attributes alongside an initial system flag (e.g. `data-unit-display-si-value-value="7000"`, `data-unit-display-system-value="metric"`). Conversion factors stay client-side.
+2. **A small wrapping Stimulus controller re-formats from the SI value** on the global event. `unit_display_controller.js` handles this for measurement values; copy the shape if a new pref toggle (locale, date format, temperature, etc.) lands later.
+3. **The toggle controller does fire-and-forget PATCH + dispatch a `shuby:<thing>-changed` CustomEvent**. It must NEVER call `Turbo.visit` for a display-only flip — that's a network round-trip + flicker the UI never needs.
+4. **Conversion factors are physical constants in two runtimes** (Ruby `Measurement::IMPERIAL`, JS `IMPERIAL_FACTORS`). This is fine — they're SI definitions, not business logic.
+
+Reference files: `app/javascript/controllers/unit_preference_controller.js` (toggle), `unit_display_controller.js` (display wrapper), `growth_chart_controller.js` (chart consumer of the same event).
+
 ## View Components
 - Use view components (`app/components/`) for reusable UI elements
 - Components should be self-contained with their own templates

@@ -3,18 +3,23 @@
     child      - the child record
     chart_data - hash from growth_chart_data helper
 %>
+<%# Wrapper is `data-turbo-permanent` so morph (e.g. after the user adds a
+    measurement and Turbo navigates) leaves Chart.js's runtime canvas state
+    alone. The unit toggle no longer round-trips — it directly mutates
+    `data-growth-chart-unit-system-value` here, which fires Stimulus's
+    value-changed callback and re-renders Chart.js client-side.
+    Data values are always emitted in metric (kg/cm); the controller
+    converts to imperial at draw time when system === "imperial". %>
 <div class="shuby-growth-chart"
+     id="shuby-growth-chart-<%= chart_data[:type] %>"
+     data-turbo-permanent
      data-controller="growth-chart"
      data-growth-chart-measurements-value="<%= chart_data[:measurements].to_json %>"
      data-growth-chart-who-curves-value="<%= chart_data[:who_curves].to_json %>"
      data-growth-chart-type-value="<%= chart_data[:type] %>"
-     data-growth-chart-unit-value="<%= chart_data[:unit] %>"
+     data-growth-chart-unit-system-value="<%= chart_data[:unit_system] %>"
      data-growth-chart-title-value="<%= chart_data[:title] %>"
      data-growth-chart-zoom-value="all">
-
-  <h3 class="shuby-p1-dark mb-2 text-shuby-black">
-    <%= chart_data[:title] %>
-  </h3>
 
   <div class="shuby-growth-chart-canvas">
     <canvas data-growth-chart-target="canvas"></canvas>

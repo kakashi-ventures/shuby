@@ -5,9 +5,24 @@ class MeasurementDashboardService
 
   MAX_BOXES = 2
   PRIORITY_TYPES = %w[weight height head_circumference].freeze
+  ALL_TYPES = %w[weight height head_circumference feeding_weight].freeze
 
   def self.call(child)
     new(child).call
+  end
+
+  # All four type boxes for the type-picker overlay (Figma 463:5785 / 463:5995).
+  # Reuses `determine_state` — no MAX_BOXES cap, includes feeding_weight.
+  def self.picker_boxes(child)
+    builder = new(child)
+    ALL_TYPES.map do |type|
+      measurement = child.latest_measurement(type)
+      MeasurementBox.new(
+        type: type,
+        state: builder.send(:determine_state, measurement),
+        last_measurement: measurement
+      )
+    end
   end
 
   def initialize(child)

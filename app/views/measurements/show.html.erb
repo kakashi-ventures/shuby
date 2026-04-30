@@ -8,21 +8,23 @@
 
 <% type = @measurement.measurement_type %>
 
+<% picker_boxes = MeasurementDashboardService.picker_boxes(@child) %>
 <div class="shuby-measurement-detail container px-4 mx-auto my-8 pb-24"
-     data-controller="measurement-overlay"
-     data-measurement-overlay-open-class="shuby-measurement-overlay--open">
+     data-controller="measurement-overlay measurement-picker-overlay"
+     data-measurement-overlay-open-class="shuby-measurement-overlay--open"
+     data-measurement-picker-overlay-open-class="shuby-measurement-picker-overlay--open">
 
   <div class="shuby-measurement-detail-header mb-6">
     <%= render "shared/ui/back_link",
         path: child_path(@child, tab: "measurements"),
         label: t("measurements.types.#{type}") %>
 
-    <%= link_to new_child_measurement_path(@child, type: type),
-        class: "shuby-measurement-detail-add",
-        aria: { label: t("measurements.show.add_more") },
-        data: measurement_overlay_link_data(type) do %>
+    <button type="button"
+            class="shuby-measurement-detail-add"
+            data-action="click->measurement-picker-overlay#open"
+            aria-label="<%= t("measurements.show.add_more") %>">
       <%= render_svg "shuby/icons/icon-add", size: :sm, decorative: true %>
-    <% end %>
+    </button>
   </div>
 
   <%= render "measurements/detail_current_card", measurement: @measurement %>
@@ -33,4 +35,5 @@
       child: @child %>
 
   <%= render "measurements/overlay" %>
+  <%= render "measurements/picker_overlay", boxes: picker_boxes, child: @child %>
 </div>

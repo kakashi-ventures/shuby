@@ -28,10 +28,16 @@ module MeasurementsHelper
   # Data hash for links that open the measurement overlay. Shared by
   # dashboard, card_metric, and the empty-state grid so all three routes
   # through the same Stimulus action.
-  def measurement_overlay_link_data(_type)
+  #
+  # When `close_picker:` is true (used by cards rendered inside the
+  # type-picker overlay), prepend a close action so a single tap closes
+  # the picker AND opens the form overlay.
+  def measurement_overlay_link_data(_type, close_picker: false)
+    action = "click->measurement-overlay#openWithFrame"
+    action = "click->measurement-picker-overlay#close #{action}" if close_picker
     {
       turbo_frame: "measurement_form",
-      action: "click->measurement-overlay#openWithFrame"
+      action: action
     }
   end
 

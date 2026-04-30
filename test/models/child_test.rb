@@ -117,4 +117,36 @@ class ChildTest < ActiveSupport::TestCase
     measured = child.birth_date + 42.days          # 6 weeks exactly
     assert_match(/\b6\b/, child.detailed_age_display_at(measured))
   end
+
+  test "age_reference_date returns corrected birth date for premature under 24 months" do
+    child = children(:luca) # 34w2d gestational, 18mo chronological
+    measured = child.birth_date + 100.days
+
+    # Premature with chronological age (at the measurement date) < 24 months
+    # → reference date should be corrected_birth_date, NOT raw birth_date.
+    # corrected_birth_date offsets birth by (40-34)*7 + (7-2) = 47 days.
+    expected_offset = ((40 - 34) * 7) + (7 - 2)
+    assert_equal child.birth_date + expected_offset.days, child.age_reference_date(measured)
+    refute_equal child.birth_date, child.age_reference_date(measured)
+  end
+
+  test "age_reference_date returns raw birth date for term babies" do
+    child = children(:sophia) # term, no gestational_weeks
+    measured = child.birth_date + 100.days
+    assert_equal child.birth_date, child.age_reference_date(measured)
+  end
+
+  test "age_reference_date falls back to raw birth date once premature baby passes 24 chronological months" do
+    # Use a fresh fixture clone to push age past the 24-month corrected-age window.
+    old_preemie = Child.create!(
+      account: accounts(:company),
+      name: "Old Preemie Test",
+      birth_date: 30.months.ago.to_date,
+      gestational_weeks: 34,
+      gestational_days: 2,
+      sex: 1
+    )
+    measured = Date.current
+    assert_equal old_preemie.birth_date, old_preemie.age_reference_date(measured)
+  end
 end

@@ -1,0 +1,35 @@
+<%# Type-picker bottom sheet for adding a measurement.
+  Figma: 463:5785 (no data) / 463:5995 (with data) / 795:8492.
+
+  Opens when the user taps a "global +" button (tab heading or detail
+  header). Cards inside reuse `_measurement_box` and pass `close_picker:`
+  so a tap closes this overlay AND opens the form overlay scoped to the
+  chosen type — see `measurement_overlay_link_data` in MeasurementsHelper.
+
+  Required locals:
+    boxes - 4 MeasurementDashboardService::MeasurementBox (one per type)
+    child - Child record
+%>
+<div class="shuby-measurement-picker-overlay"
+     data-measurement-picker-overlay-target="overlay"
+     aria-hidden="true">
+  <div class="shuby-measurement-picker-overlay-backdrop"
+       data-action="click->measurement-picker-overlay#close"></div>
+  <div class="shuby-measurement-picker-overlay-sheet"
+       role="dialog"
+       aria-modal="true"
+       aria-label="<%= t("measurements.picker.title") %>">
+    <div class="shuby-measurement-picker-overlay-handle" aria-hidden="true"></div>
+    <h2 class="shuby-measurement-picker-overlay-title">
+      <%= t("measurements.picker.title") %>
+    </h2>
+    <div class="shuby-measurement-picker-overlay-grid">
+      <% boxes.each do |box| %>
+        <%= render "dashboard/measurement_box",
+            box: box,
+            child: child,
+            close_picker: true %>
+      <% end %>
+    </div>
+  </div>
+</div>

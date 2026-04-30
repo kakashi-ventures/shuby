@@ -75,7 +75,7 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
     - [ ] Archive — Game detail (Figma `532:25861`)
     - [ ] Archive — Book detail (Figma `532:26226`)
   - [x] Chat (AI Helper)
-  - [x] Measurements
+  - [x] Measurements — type-picker overlay added (Figma `463:5785` empty / `463:5995` with data / `795:8492`); global `+` on tab heading + detail header opens picker; picker reuses `_measurement_box` driven by `MeasurementDashboardService.picker_boxes` (returns 4 boxes including feeding_weight); detail header `+` replaced same-type-direct flow per design intent
   - [ ] Onboarding
   - [ ] Child Profile
   - [x] Questionnaire overlay (Figma `499:5449/5450/5511/5540/5853`) — single-current progress bar, all-complete state on completion, per-question `uncertain_label` infra, per-question illustration rendering with graceful asset fallback

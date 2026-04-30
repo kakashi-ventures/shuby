@@ -4,10 +4,11 @@ import { Chart, LineController, LineElement, PointElement, LinearScale, Filler, 
 // Register only the components we need (tree-shakeable)
 Chart.register(LineController, LineElement, PointElement, LinearScale, Filler, Tooltip, Legend)
 
-// Dataset indices for fill targeting
-// Order: P3(0), P10(1), P25(2), P75(3), P90(4), P97(5), P50(6), Child(7)
-const DS_P3 = 0, DS_P10 = 1, DS_P25 = 2, DS_P75 = 3, DS_P90 = 4
-const DS_CHILD = 7
+// Dataset indices for fill targeting and tooltip routing.
+// Order: P10(0), P90(1), P25(2), P75(3), P50(4), Child(5)
+const DS_P10 = 0
+const DS_P25 = 2
+const DS_CHILD = 5
 
 export default class extends Controller {
   static targets = ["canvas", "zoomButton"]
@@ -15,33 +16,81 @@ export default class extends Controller {
     measurements: { type: Array, default: [] },
     whoCurves: { type: Array, default: [] },
     type: { type: String, default: "weight" },
-    unit: { type: String, default: "kg" },
+    unitSystem: { type: String, default: "metric" },
     title: { type: String, default: "" },
     zoom: { type: String, default: "all" }
   }
 
-  // Shuby design tokens
+  // Figma 621:10252 — calmer, parent-friendly visual.
+  // Three nested blue bands replace the previous green/orange/red 5-band scheme;
+  // out-of-range signaling stays on the value card (percentile_color_class).
   static COLORS = {
     childLine: "#0159B5",       // shuby-blue-800
     childPoint: "#0159B5",
-    p50Line: "#2C9A94",         // shuby-verde-500
-    normalBand: "rgba(44, 154, 148, 0.12)",   // verde, light
-    warningBand: "rgba(243, 156, 18, 0.10)",  // orange, light
-    alertBand: "rgba(231, 76, 60, 0.08)",     // red, light
+    p50Line: "#0159B5",         // shuby-blue-800 — solid (was dashed verde)
+    bandOuter: "rgba(158, 198, 240, 0.25)", // shuby-blue-500 @ 25% — P10-P90
+    bandInner: "rgba(158, 198, 240, 0.45)", // shuby-blue-500 @ 45% — P25-P75
     gridLine: "#E2E5E8",        // shuby-gray-500
-    textColor: "#B5B7BA"        // shuby-gray-600
+    textColor: "#616467"        // shuby-gray-800
+  }
+
+  // Y-axis title prefix per measurement_type (Italian).
+  // feeding_weight intentionally omitted — that type doesn't get a percentile chart.
+  static TYPE_LABELS = {
+    weight: "Peso",
+    height: "Altezza",
+    head_circumference: "Circonferenza cranica"
+  }
+
+  // Unit labels by type + system. Mirror of Measurement::IMPERIAL[:label] in JS.
+  // These are physical-constant unit names — won't drift from Ruby.
+  static UNIT_LABELS = {
+    weight: { metric: "kg", imperial: "lb" },
+    height: { metric: "cm", imperial: "in" },
+    head_circumference: { metric: "cm", imperial: "in" }
+  }
+
+  // Multiplicative factor to convert metric chart values (kg / cm) to imperial.
+  // Derived from Measurement::IMPERIAL scalars: kg → lb is 1000 / 453.59237;
+  // cm → in is 1 / 2.54. Hardcoded as physical constants — no drift risk.
+  static IMPERIAL_FACTORS = {
+    weight: 2.20462262,
+    height: 0.393700787,
+    head_circumference: 0.393700787
   }
 
   connect() {
-    this.renderChart()
+    // Defer chart creation to next animation frame so the canvas's container
+    // has finished laying out — Chart.js's responsive sizing reads the parent's
+    // clientWidth/clientHeight, which can still be 0 if measured synchronously
+    // during a fresh page render.
+    this.rafId = requestAnimationFrame(() => {
+      this.rafId = null
+      this.renderChart()
+    })
   }
 
   disconnect() {
+    if (this.rafId) {
+      cancelAnimationFrame(this.rafId)
+      this.rafId = null
+    }
     this.destroyChart()
   }
 
   zoomValueChanged() {
     this.renderChart()
+  }
+
+  // Fires when Turbo morph swaps in updated data-attributes (e.g. user
+  // flips the unit toggle on the detail page → server re-renders with
+  // converted measurements + who curves + new unit label, morph
+  // propagates them, Stimulus calls this). Triggering renderChart()
+  // here picks up the new values atomically — measurementsValueChanged
+  // and whoCurvesValueChanged are intentionally not defined to avoid
+  // multiple redundant re-renders during the same morph cycle.
+  unitSystemValueChanged() {
+    if (this.chart) this.renderChart()
   }
 
   setZoom(event) {
@@ -62,6 +111,13 @@ export default class extends Controller {
   // --- Private ---
 
   renderChart() {
+    // Belt-and-suspenders: kill any chart instance still bound to this canvas
+    // in Chart.js's global registry. The wrapper carries `data-turbo-permanent`
+    // (chart partial) so the canvas survives morph refreshes; if a stray
+    // chart instance remained on it (e.g. from a previous controller cycle),
+    // a second `new Chart()` would error out.
+    const existing = Chart.getChart?.(this.canvasTarget)
+    if (existing) existing.destroy()
     this.destroyChart()
 
     const { curves, measurements, xRange } = this.prepareData()
@@ -70,34 +126,32 @@ export default class extends Controller {
     const ctx = this.canvasTarget.getContext("2d")
     const C = this.constructor.COLORS
 
+    // Expose the chart instance on the canvas element so introspection
+    // tools (system tests, devtools) can read the live config without
+    // needing access to Chart.js's module-scoped registry.
     this.chart = new Chart(ctx, {
       type: "line",
       data: {
         datasets: [
-          // 0: P3 boundary (invisible base line)
-          this.percentileLine("P3", curves, "p3"),
-          // 1: P10 — fill down to P3 (alert band)
-          this.percentileLine("P10", curves, "p10", { fill: { target: DS_P3, above: C.alertBand } }),
-          // 2: P25 — fill down to P10 (warning band)
-          this.percentileLine("P25", curves, "p25", { fill: { target: DS_P10, above: C.warningBand } }),
-          // 3: P75 — fill down to P25 (normal band)
-          this.percentileLine("P75", curves, "p75", { fill: { target: DS_P25, above: C.normalBand } }),
-          // 4: P90 — fill down to P75 (warning band)
-          this.percentileLine("P90", curves, "p90", { fill: { target: DS_P75, above: C.warningBand } }),
-          // 5: P97 — fill down to P90 (alert band)
-          this.percentileLine("P97", curves, "p97", { fill: { target: DS_P90, above: C.alertBand } }),
-          // 6: P50 median (visible dashed line)
+          // 0: P10 invisible base — anchor for outer band fill
+          this.percentileLine("P10", curves, "p10"),
+          // 1: P90 — fill down to P10 with outer-band tint
+          this.percentileLine("P90", curves, "p90", { fill: { target: DS_P10, above: C.bandOuter } }),
+          // 2: P25 invisible base — anchor for inner band fill
+          this.percentileLine("P25", curves, "p25"),
+          // 3: P75 — fill down to P25 with inner-band tint
+          this.percentileLine("P75", curves, "p75", { fill: { target: DS_P25, above: C.bandInner } }),
+          // 4: P50 median — solid blu-800 line (no dash)
           {
             label: "P50",
             data: curves.map(c => ({ x: c.month, y: c.p50 })),
             borderColor: C.p50Line,
             borderWidth: 1.5,
-            borderDash: [4, 4],
             pointRadius: 0,
             fill: false,
             order: 1
           },
-          // 7: Child's actual measurements
+          // 5: Child's actual measurements
           {
             label: this.titleValue,
             data: measurements,
@@ -117,6 +171,7 @@ export default class extends Controller {
       },
       options: this.chartOptions(xRange)
     })
+    this.canvasTarget.__shubyChart = this.chart
   }
 
   destroyChart() {
@@ -141,13 +196,33 @@ export default class extends Controller {
   }
 
   prepareData() {
-    const { curves, xRange } = this.filterCurves()
-    if (curves.length === 0) return { curves: [], measurements: [], xRange: [0, 36] }
+    const { curves: rawCurves, xRange } = this.filterCurves()
+    if (rawCurves.length === 0) return { curves: [], measurements: [], xRange: [0, 36] }
 
-    // Measurements as {x, y} points at their exact fractional month age
-    const measurements = this.measurementsValue.map(m => ({ x: m.age, y: m.value }))
+    // Apply imperial conversion at render time so toggle flips don't need
+    // a server round-trip. Metric mode uses the values verbatim.
+    const factor = this.imperialFactor()
+    const curves = factor === 1
+      ? rawCurves
+      : rawCurves.map(c => Object.fromEntries(
+          Object.entries(c).map(([k, v]) => [k, k === "month" ? v : Number((v * factor).toFixed(4))])
+        ))
+    const measurements = this.measurementsValue.map(m => ({
+      x: m.age,
+      y: factor === 1 ? m.value : Number((m.value * factor).toFixed(2))
+    }))
 
     return { curves, measurements, xRange }
+  }
+
+  imperialFactor() {
+    if (this.unitSystemValue !== "imperial") return 1
+    return this.constructor.IMPERIAL_FACTORS[this.typeValue] || 1
+  }
+
+  unitLabel() {
+    const labels = this.constructor.UNIT_LABELS[this.typeValue]
+    return labels ? labels[this.unitSystemValue] : ""
   }
 
   filterCurves() {
@@ -178,11 +253,13 @@ export default class extends Controller {
     const C = this.constructor.COLORS
     const [xMin, xMax] = xRange
     const span = xMax - xMin
+    const useWeeks = span <= 3
 
-    // Adapt tick spacing to zoom level
-    let stepSize = 3
-    if (span <= 3) stepSize = 1
-    else if (span <= 8) stepSize = 1
+    // X-axis tick spacing:
+    //   weeks mode → 0.25 month = 1 week
+    //   months mode → at most ~8 ticks across the span
+    const stepSize = useWeeks ? 0.25 : Math.max(1, Math.ceil(span / 8))
+    const yTitle = `${this.constructor.TYPE_LABELS[this.typeValue] || this.titleValue} (${this.unitLabel()})`
 
     return {
       responsive: true,
@@ -217,7 +294,7 @@ export default class extends Controller {
               const measurement = this.measurementsValue.find(m =>
                 Math.abs(m.age - age) < 0.01 && Math.abs(m.value - value) < 0.01
               )
-              const lines = [`${value} ${this.unitValue}`]
+              const lines = [`${value} ${this.unitLabel()}`]
               if (measurement && measurement.percentile != null) {
                 lines.push(`${measurement.percentile}° percentile`)
               }
@@ -236,21 +313,24 @@ export default class extends Controller {
           max: xMax,
           title: {
             display: true,
-            text: "Mesi",
+            text: useWeeks ? "Età (settimane)" : "Età (mesi)",
             font: { family: "Montserrat", size: 11 },
             color: C.textColor
           },
           ticks: {
             font: { family: "Montserrat", size: 10 },
             color: C.textColor,
-            stepSize
+            stepSize,
+            // 4.345 ≈ avg weeks per month — internal data stays in months,
+            // only the tick label gets relabeled when in weeks mode.
+            callback: useWeeks ? (v) => Math.round(v * 4.345) : (v) => v
           },
-          grid: { color: C.gridLine }
+          grid: { color: C.gridLine, borderDash: [3, 3] }
         },
         y: {
           title: {
             display: true,
-            text: this.unitValue,
+            text: yTitle,
             font: { family: "Montserrat", size: 11 },
             color: C.textColor
           },
