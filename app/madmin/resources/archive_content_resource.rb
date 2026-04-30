@@ -64,6 +64,11 @@ class ArchiveContentResource < Madmin::Resource
     label: "Benefici",
     description: "Un beneficio per riga (es. 'Stimola la circolazione e la percezione corporea.'). Appare nella pagina dettaglio attività con un elenco a cuoricini fucsia. Le righe vuote vengono ignorate."
 
+  # Tip recommendations (Figma 532:25861 game / 532:26226 book "Perché è consigliato").
+  attribute :recommendations_text, :text, index: false, form: true,
+    label: "Raccomandazioni",
+    description: "Una raccomandazione per riga (es. 'Stimola la coordinazione visiva.'). Solo per consigli (giochi e libri) — appare nella pagina dettaglio con un elenco a pallini blu. Usa **testo** per le frasi in grassetto. Le righe vuote vengono ignorate."
+
   # Publishing (form only)
   attribute :published_at, index: false,
     label: "Data pubblicazione"

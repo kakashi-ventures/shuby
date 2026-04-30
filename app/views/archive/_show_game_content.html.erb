@@ -1,0 +1,41 @@
+<%# Game detail content (Figma 532:25861 — "05.04_Gioco"). Renders inside the
+    white-panel wrapper of show.html.erb. The page-level wrapper already paints
+    the bookmark in the top-right slot, so this partial owns only the body
+    region — tags row, title, description, body, recommendations, and the
+    inline cross-promo Scheda Consigli cards. The article-carousel related
+    section renders below at the page level.
+    Locals:
+      content      - (required) ArchiveContent record (content_type=tip, category=Giochi)
+      related_tips - (optional) Array<ArchiveContent> for the inline cross-promo cards %>
+
+<%# Tags row — category chip (giallo-500 bg, brick icon for Giochi) + age + duration. %>
+<div class="flex flex-wrap items-center gap-2 mb-3 pr-12">
+  <%= shuby_tag(content.category, variant: :giallo_scuro, icon: category_icon_for(content.category)) %>
+  <%= shuby_tag(content.age_range_label, variant: :grigio) %>
+  <% if content.duration_minutes %>
+    <span class="shuby-reading-time shuby-reading-time-primary">
+      <span class="shuby-reading-time-icon">
+        <%= render_svg "shuby/icons/icon-alarm", decorative: true %>
+      </span>
+      <%= content.duration_label %>
+    </span>
+  <% end %>
+</div>
+
+<h1 class="shuby-h2 text-shuby-blue-800 mb-4"><%= content.title %></h1>
+
+<% if content.description.present? %>
+  <p class="shuby-p1 text-gray-600 mb-4"><%= content.description %></p>
+<% end %>
+
+<% if content.body.present? %>
+  <div class="shuby-article-body mb-8">
+    <%= content.body %>
+  </div>
+<% end %>
+
+<% if content.recommendations.present? %>
+  <%= render "archive/section_recommendations", recommendations: content.recommendations %>
+<% end %>
+
+<%= render "archive/section_related_tips", related_tips: local_assigns[:related_tips] || [] %>

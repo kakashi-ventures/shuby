@@ -53,4 +53,12 @@ module ArchiveHelper
     else "shuby/icons/icon-document"
     end
   end
+
+  # Renders a Tip recommendation item with inline **bold** markdown-style
+  # markup (Figma 532:25861/26226 — bold lead phrase or in-sentence emphasis).
+  # Safe: HTML-escape the input first, then re-introduce only <strong>.
+  def recommendation_html(item)
+    escaped = ERB::Util.html_escape(item.to_s)
+    escaped.gsub(/\*\*(.+?)\*\*/, '<strong>\1</strong>').html_safe
+  end
 end

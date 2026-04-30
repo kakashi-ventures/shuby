@@ -46,6 +46,9 @@ en:
     show:
       title: "Content detail"
 
+    tip:
+      related_tips_eyebrow: "RELATED CONTENT"
+
     back_to_archive: "Archive"
     not_found: "Content not found"
 
@@ -60,6 +63,7 @@ en:
       author: "Author"
       illustrator: "Illustrations"
       publisher: "Publisher"
+      recommendations_heading: "Why it's recommended"
 
     favorites:
       save: "Save to favorites"

@@ -15,12 +15,15 @@
     <% end %>
   </div>
 
-  <%# Hero image / colored header %>
+  <%# Hero image / colored header. Tips split by category: Lettura (book) gets
+      an article-style full-width cover via _show_hero_image (Figma 532:26226
+      "05.05_Libro" hero is 0-383px); Giochi (game) gets a short yellow band
+      (Figma 532:25861 hero region 0-237px, no illustration). %>
   <div data-article-scroll-target="hero">
-    <% if @content.content_type_article? %>
+    <% if @content.content_type_article? || @content.category_lettura? %>
       <%= render "archive/show_hero_image", content: @content %>
-    <% elsif @content.content_type_tip? %>
-      <%= render "archive/show_hero_tip", content: @content %>
+    <% elsif @content.category_giochi? %>
+      <%= render "archive/show_hero_game", content: @content %>
     <% else %>
       <%= render "archive/show_hero_activity", content: @content %>
     <% end %>
@@ -48,12 +51,19 @@
         <%= render_svg "shuby/icons/icon-chevron-left", size: :sm, decorative: true, styles: "shrink-0 !w-3" %>
         <h2 class="shuby-h3 truncate"><%= @content.title %></h2>
       <% end %>
-      <%= render "archive/favorite_button",
-            content: @content,
-            favorited: @favorited,
-            variant: :outlined,
-            frame_suffix: :sticky,
-            inline: true %>
+      <%# Tips have an empty 88px right slot in their sticky header per
+          Figma 532:25886 (game) / 532:26239 (book) — only article + activity
+          mirror the bookmark into the sticky bar. The Turbo Stream that updates
+          favorite state is no-op on tip pages because the sticky frame isn't
+          rendered. %>
+      <% unless @content.content_type_tip? %>
+        <%= render "archive/favorite_button",
+              content: @content,
+              favorited: @favorited,
+              variant: :outlined,
+              frame_suffix: :sticky,
+              inline: true %>
+      <% end %>
     </div>
   </div>
 
@@ -68,69 +78,72 @@
         pr-12 on the tags row prevents tag pills from overflowing under it. %>
     <%= render "archive/favorite_button", content: @content, favorited: @favorited, variant: :outlined %>
 
-    <%# Tags + reading time. Reading time is rendered inline (icon+text,
-        no pill) per Figma 527:23977 — uses the existing
-        .shuby-reading-time-primary class instead of a tag variant.
-        Activities (Figma 532:24578) show ONLY the duration — no category, no
-        age — so the category + age tags are gated behind a content-type
-        conditional. If a 3rd content-type-specific tags row appears later
-        (Game/Book divergence), extract per-type partials instead of stacking
-        another conditional. %>
-    <div class="flex flex-wrap items-center gap-2 mb-3 pr-12">
-      <% unless @content.content_type_activity? %>
-        <% if @content.category.present? %>
-          <%= shuby_tag(@content.category, variant: :azzurro, icon: category_icon_for(@content.category)) %>
-        <% end %>
-        <%= shuby_tag(@content.age_range_label, variant: :grigio) %>
-      <% end %>
-      <% if @content.duration_minutes %>
-        <span class="shuby-reading-time shuby-reading-time-primary">
-          <span class="shuby-reading-time-icon">
-            <%= render_svg "shuby/icons/icon-alarm", decorative: true %>
-          </span>
-          <%= @content.duration_label %>
-        </span>
-      <% end %>
-    </div>
-
-    <%# Title %>
-    <h1 class="shuby-h2 text-shuby-blue-800 mb-4"><%= @content.title %></h1>
-
-    <%# Tip-specific metadata (author, publisher) %>
     <% if @content.content_type_tip? %>
-      <%= render "archive/show_tip_metadata", content: @content %>
-    <% end %>
-
-    <%# Description %>
-    <% if @content.description.present? %>
-      <p class="shuby-p1 text-gray-600 mb-4"><%= @content.description %></p>
-    <% end %>
-
-    <%# Materials (activities) %>
-    <% if @content.materials.present? %>
-      <div class="mb-4 p-4 bg-shuby-giallo-400 rounded-lg">
-        <p class="shuby-p1-dark"><%= t("archive.activity.materials") %>:</p>
-        <p class="shuby-p1"><%= @content.materials %></p>
+      <%# Tips diverge structurally per category — Game and Book have
+          different section orderings (book has a credits block at the end of
+          the body region; game has none) and different tags-row contents
+          (book suppresses duration). Per-category partials own their own
+          layouts; the white-panel chrome above stays shared. %>
+      <%= render(
+            @content.category_lettura? ? "archive/show_book_content" : "archive/show_game_content",
+            content: @content,
+            related_tips: @related_tips
+          ) %>
+    <% else %>
+      <%# Tags + reading time. Reading time is rendered inline (icon+text,
+          no pill) per Figma 527:23977 — uses the existing
+          .shuby-reading-time-primary class instead of a tag variant.
+          Activities (Figma 532:24578) show ONLY the duration — no category,
+          no age. %>
+      <div class="flex flex-wrap items-center gap-2 mb-3 pr-12">
+        <% unless @content.content_type_activity? %>
+          <% if @content.category.present? %>
+            <%= shuby_tag(@content.category, variant: :azzurro, icon: category_icon_for(@content.category)) %>
+          <% end %>
+          <%= shuby_tag(@content.age_range_label, variant: :grigio) %>
+        <% end %>
+        <% if @content.duration_minutes %>
+          <span class="shuby-reading-time shuby-reading-time-primary">
+            <span class="shuby-reading-time-icon">
+              <%= render_svg "shuby/icons/icon-alarm", decorative: true %>
+            </span>
+            <%= @content.duration_label %>
+          </span>
+        <% end %>
       </div>
-    <% end %>
 
-    <%# Rich text body — uses .shuby-article-body so Action Text-rendered
-        h2/h3, paragraphs, lists and links match Figma 05.02 typography.
-        Activities also receive .shuby-activity-body which overrides ol/ul
-        marker color from green-500 (article default) to blue-700 per
-        Figma 532:24578 "Come fare". %>
-    <% if @content.body.present? %>
-      <div class="shuby-article-body <%= 'shuby-activity-body' if @content.content_type_activity? %> mb-8">
-        <%= @content.body %>
-      </div>
-    <% end %>
+      <h1 class="shuby-h2 text-shuby-blue-800 mb-4"><%= @content.title %></h1>
 
-    <%# Activity-specific "Benefici" section (Figma 532:24578). Stored as a
-        text[] array on archive_contents — distinct from the rich-text body
-        so the heart-bullet styling doesn't have to round-trip through
-        Action Text's sanitizer. %>
-    <% if @content.content_type_activity? && @content.benefits.present? %>
-      <%= render "archive/section_benefits", benefits: @content.benefits %>
+      <% if @content.description.present? %>
+        <p class="shuby-p1 text-gray-600 mb-4"><%= @content.description %></p>
+      <% end %>
+
+      <%# Materials (activities) %>
+      <% if @content.materials.present? %>
+        <div class="mb-4 p-4 bg-shuby-giallo-400 rounded-lg">
+          <p class="shuby-p1-dark"><%= t("archive.activity.materials") %>:</p>
+          <p class="shuby-p1"><%= @content.materials %></p>
+        </div>
+      <% end %>
+
+      <%# Rich text body — uses .shuby-article-body so Action Text-rendered
+          h2/h3, paragraphs, lists and links match Figma 05.02 typography.
+          Activities also receive .shuby-activity-body which overrides ol/ul
+          marker color from green-500 (article default) to blue-700 per
+          Figma 532:24578 "Come fare". %>
+      <% if @content.body.present? %>
+        <div class="shuby-article-body <%= 'shuby-activity-body' if @content.content_type_activity? %> mb-8">
+          <%= @content.body %>
+        </div>
+      <% end %>
+
+      <%# Activity-specific "Benefici" section (Figma 532:24578). Stored as a
+          text[] array on archive_contents — distinct from the rich-text body
+          so the heart-bullet styling doesn't have to round-trip through
+          Action Text's sanitizer. %>
+      <% if @content.content_type_activity? && @content.benefits.present? %>
+        <%= render "archive/section_benefits", benefits: @content.benefits %>
+      <% end %>
     <% end %>
   </div>
 

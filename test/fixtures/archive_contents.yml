@@ -115,8 +115,12 @@ tip_pianto:
   content_type: 1
   category: "Giochi"
   description: "Capire i diversi tipi di pianto"
+  duration_minutes: 3
   min_age_months: 0
   max_age_months: 6
+  recommendations:
+    - "**Oggetti consigliati:** sonagli morbidi, tappetino per tummy time."
+    - "**Stimola:** controllo visivo, motricità grossolana."
   position: 1
   published: true
 
@@ -126,8 +130,15 @@ tip_bagnetto:
   content_type: 1
   category: "Lettura"
   description: "Consigli per il bagnetto"
+  author: "Elisa Mazzoli, Marianna Balducci"
+  illustrator: "Marianna Balducci"
+  publisher: "Bacchilega Editore"
+  publication_year: 2019
   min_age_months: 0
   max_age_months: 12
+  recommendations:
+    - "Le **illustrazioni semplici e ad alto contrasto** catturano lo sguardo del neonato."
+    - "Il **testo breve e musicale** invita all'ascolto e alla partecipazione."
   position: 2
   published: true
 

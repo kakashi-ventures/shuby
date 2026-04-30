@@ -1,0 +1,23 @@
+<%# Inline cross-promo: 1-2 Scheda Consigli cards stacked above the main
+    article carousel (Figma 532:25861 game / 532:26226 book — "Articoli
+    Collegati" eyebrow + yellow tip cards). Reuses the existing
+    shared/ui/_card_tip partial in :compact variant (yellow-400 bg, brick or
+    menu_book icon, age + duration tags) — the same card shape the dashboard
+    advice band already renders, so styling stays single-sourced.
+    Locals:
+      related_tips - (required) Array<ArchiveContent> tip records to render %>
+<% if related_tips.present? %>
+  <section class="mb-6">
+    <p class="shuby-related-section-title mb-3">
+      <%= t("archive.tip.related_tips_eyebrow") %>
+    </p>
+    <div class="flex flex-col gap-3">
+      <% related_tips.each do |tip| %>
+        <%= render partial: "shared/ui/card_tip", locals: {
+          content: tip,
+          variant: :compact
+        } %>
+      <% end %>
+    </div>
+  </section>
+<% end %>

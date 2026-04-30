@@ -32,6 +32,7 @@ class ArchiveController < ApplicationController
   def show
     @favorited = current_user.archive_favorites.exists?(archive_content: @content)
     @related_articles = load_related_articles
+    @related_tips = load_related_tips if @content.content_type_tip?
   end
 
   private
@@ -114,6 +115,17 @@ class ArchiveController < ApplicationController
       .where(min_age_months: ..@content.max_age_months, max_age_months: @content.min_age_months..)
       .ordered
       .limit(4)
+  end
+
+  # Tip-only "Articoli Collegati" inline cross-promo (Figma 532:25861/26226).
+  # Up to 2 age-matched tips, excluding the one being viewed.
+  def load_related_tips
+    base_scope
+      .tips
+      .where.not(id: @content.id)
+      .where(min_age_months: ..@content.max_age_months, max_age_months: @content.min_age_months..)
+      .ordered
+      .limit(2)
   end
 
   def set_content

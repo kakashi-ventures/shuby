@@ -1,0 +1,18 @@
+<%# Tip "Elenco Puntato" recommendations section (Figma 532:25861 game /
+    532:26226 book "Perché è consigliato"). Optional H3 heading — only the
+    book layout shows it; games render the list bare. Items support inline
+    `**bold**` syntax so authors can mark the lead phrase or an in-sentence
+    emphasis (parsed via `recommendation_html` with HTML-escape-then-strong).
+    Locals:
+      recommendations - (required) Array<String> recommendation items
+      heading         - (optional) String heading; suppresses the H3 if blank %>
+<section class="mb-8">
+  <% if local_assigns[:heading].present? %>
+    <h3 class="shuby-h3 mb-3"><%= heading %></h3>
+  <% end %>
+  <ul class="shuby-list-recommendations">
+    <% recommendations.each do |item| %>
+      <li><%= recommendation_html(item) %></li>
+    <% end %>
+  </ul>
+</section>

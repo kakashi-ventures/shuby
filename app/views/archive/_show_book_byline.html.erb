@@ -1,0 +1,16 @@
+<%# Book byline (Figma 532:26226 lines y=377/y=399). Compact author + publisher,
+    year row just under the title — slimmer than the previous _show_tip_metadata
+    which used p1 sizing.
+    Locals: content - ArchiveContent record %>
+<% if content.author.present? || content.publisher.present? %>
+  <div class="shuby-book-byline">
+    <% if content.author.present? %>
+      <p class="shuby-book-byline-author"><%= content.author %></p>
+    <% end %>
+    <% if content.publisher.present? %>
+      <p class="shuby-book-byline-publisher">
+        <%= content.publisher %><%= ", #{content.publication_year}" if content.publication_year %>
+      </p>
+    <% end %>
+  </div>
+<% end %>

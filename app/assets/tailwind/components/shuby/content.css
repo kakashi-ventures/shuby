@@ -390,6 +390,37 @@
     }
 }
 
+/* Tip "Elenco Puntato" recommendations list (Figma 532:25861 game / 532:26226
+   book "Perché è consigliato"). The Figma marker is a small blue dot inside a
+   23×26 layout slot — not a custom illustration, so this is a CSS pseudo-
+   element circle rather than a mask-image asset. Item layout matches the
+   Figma row: 23px marker box + 16px gap + flex body. */
+.shuby-list-recommendations {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-4) 0;
+
+    li {
+        position: relative;
+        padding-left: 39px; /* 23px marker box + 16px gap */
+        margin-bottom: var(--space-2);
+        font-size: var(--font-size-p1);
+        line-height: var(--line-height-prose);
+        color: var(--base-text);
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 7px; /* center the 8px dot in the 23px marker box */
+            top: 9px; /* aligns with first text line cap height */
+            width: 8px;
+            height: 8px;
+            background-color: var(--color-shuby-blue-800);
+            border-radius: 9999px;
+        }
+    }
+}
+
 /* =====================================================
    GREEN LINKED PILL / BUTTON
    Clickable green pill for linked content (e.g., "Comunicazione e linguaggio")
@@ -432,93 +463,53 @@
 }
 
 /* =====================================================
-   BOOK DETAIL LAYOUT
-   Layout for book/reading detail page with author info
-   Based on Figma "Quelli là" layout
+   BOOK DETAIL — byline + credits
+   Figma 532:26226 (05.05_Libro). Two distinct metadata blocks:
+     - byline       : compact author + publisher,year just under the title
+                      (Figma y=377/y=399, 12px regular + 10px regular black)
+     - credits      : stacked Autore/Illustrazioni/Editore key-value list
+                      after the body (Figma y=1095, 14px regular black with
+                      semibold inline labels)
    ===================================================== */
 
-.shuby-book-detail {
-    padding: var(--space-4);
-}
-
-.shuby-book-header {
+.shuby-book-byline {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: 0;
     margin-bottom: var(--space-4);
 }
 
-.shuby-book-cover {
-    width: 100%;
-    max-width: 280px;
-    aspect-ratio: 4/3;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    margin: 0 auto var(--space-4);
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-}
-
-.shuby-book-title {
-    font-size: var(--font-size-d2);
-    font-weight: var(--font-weight-bold);
-    line-height: var(--line-height-snug);
-    color: var(--color-shuby-blue-800);
-    margin-bottom: var(--space-1);
-}
-
-.shuby-book-author {
-    font-size: var(--font-size-p1);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--line-height-normal);
-    color: var(--base-text);
-}
-
-.shuby-book-publisher {
+.shuby-book-byline-author {
     font-size: var(--font-size-p2);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
-    color: var(--base-text-secondary);
+    color: var(--color-shuby-black);
 }
 
-.shuby-book-description {
-    font-size: var(--font-size-p1);
+.shuby-book-byline-publisher {
+    font-size: var(--font-size-caption);
     font-weight: var(--font-weight-regular);
-    line-height: var(--line-height-prose);
-    color: var(--base-text);
-    margin-bottom: var(--space-5);
+    line-height: var(--line-height-normal);
+    text-transform: none; /* override .shuby-caption family default */
+    color: var(--color-shuby-black);
 }
 
-/* Book metadata section (Author, Illustrator, Publisher) */
-.shuby-book-meta {
+.shuby-book-credits {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--base-border-tertiary);
-    margin-top: var(--space-4);
+    gap: 0;
+    margin-bottom: var(--space-4);
 }
 
-.shuby-book-meta-row {
-    display: flex;
-    gap: var(--space-2);
-}
-
-.shuby-book-meta-label {
-    font-size: var(--font-size-p1);
-    font-weight: var(--font-weight-semibold);
-    color: var(--base-text);
-    min-width: 80px;
-}
-
-.shuby-book-meta-value {
+.shuby-book-credits-row {
     font-size: var(--font-size-p1);
     font-weight: var(--font-weight-regular);
-    color: var(--base-text);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-black);
+
+    strong {
+        font-weight: var(--font-weight-semibold);
+    }
 }
 
 /* =====================================================

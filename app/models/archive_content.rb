@@ -83,6 +83,17 @@ class ArchiveContent < ApplicationRecord
     "#{duration_minutes} min"
   end
 
+  # Tip subtype predicates — single source of truth so views and tests stop
+  # sprinkling `category&.match?(/lettur/i)`. Books (Lettura) get an
+  # article-style cover hero; games (Giochi) get a yellow band.
+  def category_giochi?
+    content_type_tip? && category == "Giochi"
+  end
+
+  def category_lettura?
+    content_type_tip? && category == "Lettura"
+  end
+
   # Virtual attribute for Madmin — exposes the benefits array as a newline-
   # separated textarea (Madmin doesn't render PostgreSQL text[] columns
   # natively). Authors write one benefit per line; blank lines are stripped.
@@ -92,6 +103,16 @@ class ArchiveContent < ApplicationRecord
 
   def benefits_text=(value)
     self.benefits = value.to_s.split("\n").map(&:strip).reject(&:blank?)
+  end
+
+  # Same Madmin pattern for the Tip "Elenco Puntato" recommendations list
+  # (Figma 532:25861 game / 532:26226 book "Perché è consigliato").
+  def recommendations_text
+    Array(recommendations).join("\n")
+  end
+
+  def recommendations_text=(value)
+    self.recommendations = value.to_s.split("\n").map(&:strip).reject(&:blank?)
   end
 
   private

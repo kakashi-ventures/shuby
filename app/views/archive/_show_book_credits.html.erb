@@ -1,0 +1,24 @@
+<%# Book credits block (Figma 532:26226 y=1095). Stacked Autore/Illustrazioni/
+    Editore rows with bold inline labels — separate from the top byline,
+    appears at the end of the body region. Renders only the rows that have
+    data so a minimal book record (just author) doesn't show empty slots.
+    Locals: content - ArchiveContent record %>
+<% if content.author.present? || content.illustrator.present? || content.publisher.present? %>
+  <div class="shuby-book-credits">
+    <% if content.author.present? %>
+      <p class="shuby-book-credits-row">
+        <strong><%= t("archive.book.author") %>:</strong> <%= content.author %>
+      </p>
+    <% end %>
+    <% if content.illustrator.present? %>
+      <p class="shuby-book-credits-row">
+        <strong><%= t("archive.book.illustrator") %>:</strong> <%= content.illustrator %>
+      </p>
+    <% end %>
+    <% if content.publisher.present? %>
+      <p class="shuby-book-credits-row">
+        <strong><%= t("archive.book.publisher") %>:</strong> <%= content.publisher %>
+      </p>
+    <% end %>
+  </div>
+<% end %>

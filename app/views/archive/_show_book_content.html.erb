@@ -1,0 +1,40 @@
+<%# Book detail content (Figma 532:26226 — "05.05_Libro"). Renders inside the
+    white-panel wrapper of show.html.erb. Differs from games structurally:
+    a compact byline lives under the title, the recommendations list takes
+    a "Perché è consigliato" heading, the rich-text body renders AFTER the
+    recommendations as the closing paragraph, and a credits block stacks at
+    the end of the body region.
+    Locals:
+      content      - (required) ArchiveContent record (content_type=tip, category=Lettura)
+      related_tips - (optional) Array<ArchiveContent> for the inline cross-promo cards %>
+
+<%# Tags row — category chip (giallo-500 bg, menu_book icon for Lettura) + age.
+    No duration on books per Figma 532:26226 tags row. %>
+<div class="flex flex-wrap items-center gap-2 mb-3 pr-12">
+  <%= shuby_tag(content.category, variant: :giallo_scuro, icon: category_icon_for(content.category)) %>
+  <%= shuby_tag(content.age_range_label, variant: :grigio) %>
+</div>
+
+<h1 class="shuby-h2 text-shuby-blue-800 mb-2"><%= content.title %></h1>
+
+<%= render "archive/show_book_byline", content: content %>
+
+<% if content.description.present? %>
+  <p class="shuby-p1 text-gray-700 mb-5"><%= content.description %></p>
+<% end %>
+
+<% if content.recommendations.present? %>
+  <%= render "archive/section_recommendations",
+        recommendations: content.recommendations,
+        heading: t("archive.book.recommendations_heading") %>
+<% end %>
+
+<% if content.body.present? %>
+  <div class="shuby-article-body mb-6">
+    <%= content.body %>
+  </div>
+<% end %>
+
+<%= render "archive/show_book_credits", content: content %>
+
+<%= render "archive/section_related_tips", related_tips: local_assigns[:related_tips] || [] %>
