@@ -69,6 +69,9 @@
 
 /* Tag icon */
 .shuby-tag-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 16px;
     height: 16px;
     flex-shrink: 0;
