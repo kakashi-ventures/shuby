@@ -75,17 +75,7 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
     - [ ] Archive — Game detail (Figma `532:25861`)
     - [ ] Archive — Book detail (Figma `532:26226`)
   - [x] Chat (AI Helper)
-  - Measurements (split into per-screen sub-audits):
-    - [ ] Measurements — Detail page chrome (`show.html.erb`) — verify against main-file equivalent of `621:10252`; resolve the lone "spike file" annotation in `show.html.erb:1`
-    - [ ] Measurements — Featured measurement card (`_detail_current_card.html.erb`, nodes `621:10582` meta + `621:10586` value)
-    - [ ] Measurements — Percentile + chart section (`_detail_percentile_section.html.erb` + `_detail_unit_toggle.html.erb`, nodes `621:10346` title + `621:10427`–`621:10594` chart band)
-    - [ ] Measurements — History list (`_detail_history.html.erb` + `_detail_history_row.html.erb`, nodes `621:10594` title, `621:10637` edit, `621:10642` row)
-    - [ ] Measurements — Edit form full-context (`measurements/edit.html.erb` + `_form.html.erb` `context: :full`; overlay `:overlay` context already verified against `621:9860`)
-    - [ ] Measurements — Dashboard tracking cards 3 variants (`dashboard/_measurement_box.html.erb`: `start_tracking` / `update` / `track`; no nodeId currently — discover via `get_metadata` on `375:5429` + `434:12577`)
-    - [ ] Measurements — Growth chart card + zoom controls (`children/_growth_chart.html.erb`, `_growth_charts_section.html.erb`, `_percentile_explanation.html.erb` — no main-file node documented)
-    - [ ] Measurements — Timeline measurement strip (`development_stages/_timeline_measurements.html.erb` — small surface, low risk)
-    - [ ] Measurements — Settings unit-toggle section (`settings/privacy/_section_measurement_unit.html.erb` lives inside `455:5017`)
-    - [ ] Measurements — Cross-surface naming cleanup: `.shuby-unit-toggle` drives two different behaviors (form non-persistent UI swap vs detail percentile persistent toggle). Rename one or document the split in CSS.
+  - [x] Measurements
   - [ ] Onboarding
   - [ ] Child Profile
   - [x] Questionnaire overlay (Figma `499:5449/5450/5511/5540/5853`) — single-current progress bar, all-complete state on completion, per-question `uncertain_label` infra, per-question illustration rendering with graceful asset fallback
