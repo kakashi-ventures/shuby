@@ -1,0 +1,6 @@
+<%# Plan tab — inlines the /pricing template. SettingsController#show
+    seeds @monthly_plans + @yearly_plans (same shape as PricingController)
+    so this template renders unchanged here. Translation scope resolves
+    against `pricing/show`, not settings, because Rails uses the rendered
+    template's path for implicit `t(".key")` lookups. %>
+<%= render template: "pricing/show" %>

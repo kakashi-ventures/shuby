@@ -3,7 +3,7 @@
  */
 
 /* =====================================================
-   GESTIONE PAGE COMPONENTS
+   MANAGEMENT PAGE COMPONENTS
    Management page layout based on Figma screenshot
    Includes: Page header, Section header, Member lists
    ===================================================== */
@@ -61,39 +61,44 @@
    White rounded card with avatar, info, and edit button
    ===================================================== */
 
+/* Member card — Figma 225:1834 ("Card Famiglia"). 350px wide, white,
+   Blu-300 border, 12px radius, 16px H / 8px V padding. Cards stack with
+   gap on the parent (no margin-bottom on the card itself). */
 .shuby-member-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: var(--color-shuby-white);
-    border: 1px solid var(--base-border-tertiary);
+    border: 1px solid var(--color-shuby-blue-300);
     border-radius: var(--radius-lg);
-    padding: var(--space-4);
-    margin-bottom: var(--space-3);
+    padding: var(--space-2) var(--space-4);
     transition: box-shadow 0.2s ease;
 
     &:active { box-shadow: var(--shadow-card-hover); }
-    &:last-child { margin-bottom: 0; }
 }
 
 /* Member card content (left side: avatar + info) */
 .shuby-member-content {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
+    gap: var(--space-2);
+    flex: 1;
+    min-width: 0;
 }
 
-/* Member avatar container */
+/* Member avatar container — 40px circle per Figma. Photo fills via
+   object-fit: cover; icon-fallback path shows the Blu-400 ring. */
 .shuby-member-avatar {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-shuby-gray-400);
+    background-color: var(--color-shuby-blue-400);
+    color: var(--color-shuby-blue-800);
 
     img {
         width: 100%;
@@ -102,56 +107,36 @@
     }
 }
 
-/* Default user icon avatar (gray circle with person icon) */
-.shuby-member-avatar-default {
-    background-color: var(--color-shuby-gray-500);
-    color: var(--color-shuby-gray-500);
-
-    svg {
-        width: 24px;
-        height: 24px;
-    }
-}
-
 /* Member text info */
 .shuby-member-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--space-1);
+    min-width: 0;
 }
 
 .shuby-member-name {
-    font-size: var(--font-size-btn-s);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--line-height-normal);
-    color: var(--base-text);
-}
-
-.shuby-member-role {
     font-size: var(--font-size-p1);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
-    color: var(--base-text-tertiary);
+    color: var(--color-shuby-blue-800);
 }
 
+.shuby-member-role {
+    font-size: var(--font-size-overline);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-black);
+}
 
 /* =====================================================
    MEMBER CARD VARIANTS
    ===================================================== */
 
-/* Adult member card (with default avatar) */
-.shuby-member-card-adult .shuby-member-avatar {
-    background-color: var(--color-shuby-gray-500);
-}
-
-/* Child member card (with photo or emoji) */
-.shuby-member-card-child .shuby-member-avatar {
-    background-color: var(--color-shuby-blue-300);
-}
-
-/* Emoji avatar for children */
+/* Emoji/initial fallback inside the avatar circle (children with no photo). */
 .shuby-member-avatar-emoji {
-    font-size: var(--font-size-h2);
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-none);
 }
 
@@ -215,4 +200,159 @@
         background-color: var(--bg-danger-secondary);
         color: var(--icon-on-danger-secondary);
     }
+}
+
+/* =====================================================
+   SETTINGS SECTION GROUP — Figma node 455:5017 / 506:6066
+   Two-tab page (Family + Configuration). Overline title +
+   bordered card body that hosts row primitives. The segmented
+   tab bar itself reuses .shuby-tab-segmented from navigation.css.
+   ===================================================== */
+
+.shuby-settings-section {
+    margin-bottom: var(--space-6);
+}
+
+.shuby-settings-section-title {
+    margin-bottom: var(--space-2);
+    padding-inline: var(--space-2);
+}
+
+.shuby-settings-section-body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-shuby-white);
+    border: 1px solid var(--color-shuby-blue-300);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+/* Page-level section header — title with a row of action buttons
+   (e.g. family tab "edit family" + "add child"). */
+.shuby-settings-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    padding-block: var(--space-2);
+}
+
+.shuby-settings-section-header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+/* =====================================================
+   ROW PRIMITIVE — label + (value/toggle/chevron)
+   ===================================================== */
+
+.shuby-settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    min-height: 48px;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-shuby-blue-300);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.15s ease;
+}
+
+.shuby-settings-row:last-child {
+    border-bottom: none;
+}
+
+.shuby-settings-row:active {
+    background-color: var(--base-bg-hover);
+}
+
+.shuby-settings-row__label {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-black);
+}
+
+.shuby-settings-row__value {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-black);
+    max-width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.shuby-settings-row__trailing {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-shuby-blue-300);
+    flex-shrink: 0;
+}
+
+.shuby-settings-row--destructive .shuby-settings-row__label {
+    color: var(--color-shuby-fucsia-700);
+}
+
+/* Strip default <button> chrome when a row is rendered via button_to
+   (sign-out, delete-account, data-export). */
+.shuby-settings-row--button {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+/* =====================================================
+   CARD INTERIOR — title + description + control pattern
+   Used inside the Advanced section's .shuby-card stack.
+   Replaces the inline utility chains (.shuby-h4 / .shuby-caption +
+   text-gray-500) that previously leaked into the views.
+   ===================================================== */
+
+.shuby-card-heading {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    color: var(--base-text);
+    margin-bottom: var(--space-1);
+}
+
+.shuby-card-description {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--base-text-secondary);
+    margin-bottom: var(--space-3);
+}
+
+/* Inline variant: when the description sits next to a toggle in
+   .shuby-card-inline-row and the trailing margin is unwanted. */
+.shuby-card-description--inline {
+    margin-bottom: 0;
+}
+
+/* Two-column layout inside a card — text block on the left, control
+   (toggle, button) pinned right. */
+.shuby-card-inline-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+}
+
+.shuby-card-inline-row__body {
+    flex: 1;
 }

@@ -4,6 +4,7 @@ class Settings::PrivacyController < ApplicationController
   before_action :authenticate_user!
 
   def show
+    redirect_to settings_path(tab: "configuration"), status: :moved_permanently
   end
 
   def update
@@ -14,7 +15,11 @@ class Settings::PrivacyController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render :show, status: :unprocessable_content }
+        format.html do
+          redirect_to settings_path(tab: "configuration"),
+            alert: current_user.errors.full_messages.to_sentence.presence || t(".invalid"),
+            status: :see_other
+        end
         format.json { render json: current_user.errors, status: :unprocessable_content }
       end
     end
@@ -30,6 +35,12 @@ class Settings::PrivacyController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:data_sharing_consent, :measurement_unit)
+    params.require(:user).permit(
+      :data_sharing_consent,
+      :measurement_unit,
+      :push_notifications_enabled,
+      :email_newsletter_enabled,
+      :stage_reminders_enabled
+    )
   end
 end

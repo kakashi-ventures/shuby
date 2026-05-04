@@ -1,0 +1,15 @@
+<%# Account section — Email (read), Password, Language. Each row navigates
+    to the existing edit page; this view stays a list, no inline forms. %>
+<%= settings_section_group(title: t("settings.show.configuration.account.heading")) do %>
+  <%= settings_row(
+        label: t("settings.show.configuration.account.email"),
+        value: current_user.email,
+        href: edit_user_registration_path) %>
+  <%= settings_row(
+        label: t("settings.show.configuration.account.password"),
+        href: edit_account_password_path) %>
+  <%= settings_row(
+        label: t("settings.show.configuration.account.language"),
+        value: LanguageHelper::LANGUAGES[I18n.locale] || I18n.locale.to_s.upcase,
+        href: edit_user_registration_path) %>
+<% end %>

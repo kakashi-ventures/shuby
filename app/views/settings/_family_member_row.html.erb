@@ -1,0 +1,40 @@
+<%# A single family-member row.
+    Locals:
+      member - User (when kind == :adult) or Child (when kind == :child)
+      kind   - :adult | :child
+%>
+<% if kind == :adult %>
+  <% edit_path = edit_user_registration_path %>
+  <% display_name = member.name %>
+  <% meta = t("settings.show.family.role_parent") %>
+  <% card_variant = "shuby-member-card-adult" %>
+<% else %>
+  <% edit_path = edit_child_path(member) %>
+  <% display_name = member.display_name %>
+  <% meta = member.detailed_age_display %>
+  <% card_variant = "shuby-member-card-child" %>
+<% end %>
+
+<div class="shuby-member-card <%= card_variant %>">
+  <div class="shuby-member-content">
+    <div class="shuby-member-avatar">
+      <% if kind == :adult %>
+        <%= image_tag avatar_url_for(member, size: 96), alt: display_name %>
+      <% elsif member.respond_to?(:avatar) && member.avatar.attached? %>
+        <%= image_tag member.avatar, alt: display_name %>
+      <% else %>
+        <span class="shuby-member-avatar-emoji" aria-hidden="true"><%= display_name.first.to_s.upcase %></span>
+      <% end %>
+    </div>
+    <div class="shuby-member-info">
+      <span class="shuby-member-name"><%= display_name %></span>
+      <span class="shuby-member-role"><%= meta %></span>
+    </div>
+  </div>
+
+  <%= link_to edit_path,
+      class: "shuby-icon-btn",
+      aria: { label: t("edit") } do %>
+    <%= render_svg "shuby/icons/icon-edit", size: :lg, decorative: true %>
+  <% end %>
+</div>

@@ -60,8 +60,17 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 
 - [ ] Notification delivery (push via APNS/FCM for iOS via Ruby Native)
 - [ ] Notification triggers: measurement reminders, milestone alerts, content suggestions
-- [ ] Notification preferences UI in settings
+- [x] Notification preferences UI in settings — three toggles in `_section_notifications.html.erb` (push default on, email newsletter default off, stage reminders default on); persisted via `User#preferences` JSONB store_accessors in `User::Notifiable`
 - [ ] In-app notification center
+
+## Gestione (Settings) — Post-Redesign Tracking
+
+Items surfaced by `/shuby-review` after the Figma 06.01_Gestione redesign
+(Family + Configuration tabs aligned to nodes 455:5017 + 506:6066).
+
+- [x] **Piano tab — inlines /pricing template**. Third tab in `/settings` segmented bar (`Famiglia | Piano | Impostazioni`). `SettingsController#show` seeds `@monthly_plans` + `@yearly_plans` from `Plan.visible.sorted` (same as `PricingController#show`); `_tab_plan.html.erb` calls `render template: "pricing/show"` so the Plan tab is the pricing page UI in-tab. No duplicated markup; design refinement still pending Figma but the Plan tab is now feature-complete on top of the existing Pay-gem pricing surface.
+- [ ] **Supporto / Help Center (PRD §3.9.4)** — FAQ, video tutorials, contact, feedback. Out of Figma 06.01_Gestione scope. Blocked on design + content from team. `BetaFeedback` model already exists (`app/models/beta_feedback.rb`) for the feedback flow. Supersedes the older FAQ + Feedback bullets in P3.
+- [ ] **Email-change re-confirmation (PRD §3.9.1 "Email con conferma")** — `/users/edit` currently mutates `User#email` without triggering Devise `confirmable` re-confirmation. Pre-existing gap, not introduced by the Gestione redesign. Lives in `Users::RegistrationsController` / Devise registration flow, not in the Gestione tab itself.
 
 ## P2: Visual & UX Polish
 
@@ -77,7 +86,8 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
   - [x] Chat (AI Helper)
   - [x] Measurements — type-picker overlay added (Figma `463:5785` empty / `463:5995` with data / `795:8492`); global `+` on tab heading + detail header opens picker; picker reuses `_measurement_box` driven by `MeasurementDashboardService.picker_boxes` (returns 4 boxes including feeding_weight); detail header `+` replaced same-type-direct flow per design intent
   - [ ] Onboarding
-  - [ ] Child Profile
+  - [x] Child Profile
+  - [ ] Settings
   - [x] Questionnaire overlay (Figma `499:5449/5450/5511/5540/5853`) — single-current progress bar, all-complete state on completion, per-question `uncertain_label` infra, per-question illustration rendering with graceful asset fallback
 - [x] Dashboard header: verify scroll bg transition blue-to-white (FA 3.1)
 - [x] Measurement photo upload (PRD 3.5.2 — optional photo attachment) — Active Storage `has_one_attached :photo` on `Measurement`, form field with Stimulus preview, embedded as JPEG thumbnail in pediatrician PDF

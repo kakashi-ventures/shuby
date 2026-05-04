@@ -16,7 +16,7 @@ class Settings::PrivacyControllerTest < ActionDispatch::IntegrationTest
 
   test "update rejects values outside UNITS" do
     patch settings_privacy_path, params: {user: {measurement_unit: "cubits"}}
-    assert_response :unprocessable_content
+    assert_redirected_to settings_path(tab: "configuration")
     assert_equal "metric", @user.reload.measurement_unit
   end
 

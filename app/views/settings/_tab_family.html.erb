@@ -1,0 +1,33 @@
+<%# Family tab — household roster (parents, children) per Figma 455:5017.
+    Locals:
+      children      - ActiveRecord::Relation of Child
+      adult_members - Array<User>
+%>
+<%= render "settings/section_family_header",
+    name: family_display_name(current_user, current_account) %>
+
+<%= render "shared/ui/section_header",
+    title: t("settings.show.family.adults"),
+    variant: "overline",
+    class: "mt-2" %>
+
+<div class="space-y-2">
+  <% adult_members.each do |adult| %>
+    <%= render "settings/family_member_row", member: adult, kind: :adult %>
+  <% end %>
+</div>
+
+<%= render "shared/ui/section_header",
+    title: t("settings.show.family.children"),
+    variant: "overline",
+    class: "mt-6" %>
+
+<% if children.any? %>
+  <div class="space-y-2">
+    <% children.each do |child| %>
+      <%= render "settings/family_member_row", member: child, kind: :child %>
+    <% end %>
+  </div>
+<% else %>
+  <%= render "settings/family_empty_state" %>
+<% end %>

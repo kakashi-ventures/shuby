@@ -1,0 +1,26 @@
+<%# Family tab section header — title with edit + add action buttons.
+    The + button always lands on /children/new; ChildrenController#new
+    handles the at-limit case (renders the form with @at_children_limit
+    flag → embedded paywall). No frontend gating here.
+    Locals:
+      name - family surname (string)
+%>
+<div class="shuby-settings-section-header">
+  <h2 class="shuby-h3 text-shuby-blue-800">
+    <%= t("settings.show.family.heading", name: name) %>
+  </h2>
+  <div class="shuby-settings-section-header-actions">
+    <%= link_to edit_family_profile_path,
+        class: "shuby-icon-btn-azzurro",
+        aria: { label: t("settings.show.family.edit_family") },
+        data: { turbo_frame: "_top" } do %>
+      <%= render_svg "shuby/icons/icon-edit", size: :sm, decorative: true %>
+    <% end %>
+
+    <%= link_to new_child_path,
+        class: "shuby-icon-btn-azzurro",
+        aria: { label: t("settings.show.family.add_child") } do %>
+      <%= render_svg "shuby/icons/icon-add", size: :sm, decorative: true %>
+    <% end %>
+  </div>
+</div>

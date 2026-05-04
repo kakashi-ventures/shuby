@@ -1,0 +1,14 @@
+<%# Notifications section — three toggles per PRD §3.9.3:
+    push (default on), email newsletter (default off), stage reminders
+    (default on). Backed by User#preferences JSONB store_accessors. %>
+<%= settings_section_group(title: t("settings.show.configuration.notifications.heading")) do %>
+  <%= settings_toggle_row(
+        label: t("settings.show.configuration.notifications.push"),
+        attribute: :push_notifications_enabled) %>
+  <%= settings_toggle_row(
+        label: t("settings.show.configuration.notifications.email_newsletter"),
+        attribute: :email_newsletter_enabled) %>
+  <%= settings_toggle_row(
+        label: t("settings.show.configuration.notifications.stage_reminders"),
+        attribute: :stage_reminders_enabled) %>
+<% end %>

@@ -1,0 +1,28 @@
+<%# Security section — legal links, GDPR, destructive actions. Sign-out
+    and account-delete post via button_to inside the row chrome. %>
+<%= settings_section_group(title: t("settings.show.configuration.security.heading")) do %>
+  <%= settings_row(
+        label: t("settings.show.configuration.security.terms"),
+        href: terms_path) %>
+  <%= settings_row(
+        label: t("settings.show.configuration.security.privacy_policy"),
+        href: privacy_path) %>
+  <%= settings_row(
+        label: t("settings.show.configuration.security.manage_data"),
+        href: settings_privacy_path) %>
+  <%= settings_button_row(
+        label: t("settings.show.configuration.security.delete_account"),
+        url: registration_path(current_user),
+        method: :delete,
+        destructive: true,
+        data: {
+          turbo_confirm: t("are_you_sure"),
+          turbo_confirm_text: current_user.email,
+          turbo_confirm_description: t("settings.show.configuration.security.delete_account_confirm")
+        }) %>
+  <%= settings_button_row(
+        label: t("settings.show.configuration.security.sign_out"),
+        url: destroy_user_session_path,
+        method: :delete,
+        data: native_haptic_data(:warning)) %>
+<% end %>

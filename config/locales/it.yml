@@ -211,20 +211,49 @@ it:
   settings:
     show:
       title: "Gestione"
-      profile: "Profilo"
-      profile_description: "Modifica le tue informazioni personali"
-      children: "Bambini"
-      children_description: "Gestisci i profili dei tuoi bambini"
-      password: "Password"
-      password_description: "Modifica la tua password"
-      pricing: "Prezzi"
-      pricing_description: "Visualizza i piani e gli abbonamenti"
-      notifications: "Notifiche"
-      notifications_description: "Visualizza le tue notifiche"
-      privacy: "Privacy"
-      privacy_description: "Gestisci le tue preferenze sulla privacy"
-      sign_out: "Esci"
-      sign_out_description: "Disconnettiti dal tuo account"
+      tabs:
+        family: "Famiglia"
+        plan: "Piano"
+        configuration: "Impostazioni"
+      family:
+        heading: "Famiglia %{name}"
+        adults: "Adulti"
+        children: "Bambini"
+        role_parent: "Genitore"
+        empty_children: "Nessun bambino aggiunto."
+        add_child: "Aggiungi un bambino"
+        edit_family: "Modifica nucleo familiare"
+      configuration:
+        title: "Impostazioni"
+        notifications:
+          heading: "Notifiche"
+          push: "Notifiche push"
+          email_newsletter: "Newsletter via email"
+          stage_reminders: "Promemoria tappe e misurazioni"
+        account:
+          heading: "Account"
+          email: "Email"
+          password: "Cambia Password"
+          language: "Lingua"
+        security:
+          heading: "Security"
+          terms: "Termini e Condizioni"
+          privacy_policy: "Privacy Policy"
+          manage_data: "Gestisci Dati Account"
+          delete_account: "Elimina Account"
+          delete_account_confirm: "Questo eliminerà permanentemente tutti i tuoi dati, inclusi profili bambini, misurazioni, questionari e conversazioni. Digita il tuo indirizzo email per confermare."
+          sign_out: "Log out"
+        advanced:
+          heading: "Avanzate"
+          measurement_unit: "Unità di misura"
+          measurement_units:
+            metric: "Metriche"
+            imperial: "Imperiali"
+          debug_panel: "Pannello di debug"
+          debug_active: "Pannello attivo. Tocca per disattivare."
+          debug_inactive: "Pannello non attivo. Riservato ai beta tester."
+          debug_enable: "Attiva pannello debug"
+          debug_disable: "Disattiva pannello debug"
     privacy:
       show:
         title: "Privacy"
@@ -248,6 +277,7 @@ it:
         save: "Salva"
       update:
         updated: "Preferenze privacy aggiornate."
+        invalid: "Impossibile aggiornare le preferenze. Verifica i valori inseriti."
 
   shuby_chats:
     destroy:
