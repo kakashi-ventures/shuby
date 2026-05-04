@@ -6,13 +6,13 @@
 <% scope = "archive.index" %>
 <div class="shuby-sticky-header shuby-archive-index-header">
   <div class="shuby-archive-index-header-row">
-    <h1 class="shuby-h2 text-shuby-blue-800"><%= t("heading", scope: scope) %></h1>
+    <h1 class="shuby-h2 font-medium text-shuby-black"><%= t("heading", scope: scope) %></h1>
     <div class="shuby-archive-index-header-actions">
       <button type="button" class="shuby-header-icon-btn" data-action="click->archive-filter#toggle">
-        <%= render_svg "shuby/icons/icon-filter-list", size: :lg, decorative: true %>
+        <%= render_svg "shuby/icons/icon-filter-list", size: :md, decorative: true %>
       </button>
       <%= link_to archive_index_path(type: "saved"), class: "shuby-header-icon-btn" do %>
-        <%= render_svg "shuby/icons/icon-bookmark", size: :lg %>
+        <%= render_svg "shuby/icons/icon-bookmark", size: :md %>
       <% end %>
     </div>
   </div>
