@@ -5,8 +5,8 @@
     `components/shuby/archive.css`; iOS safe-area inset in `hotwire_native.css`. %>
 <% scope = "archive.index" %>
 <div class="shuby-sticky-header shuby-archive-index-header">
-  <div class="shuby-archive-index-header-row">
-    <h1 class="shuby-h2 font-medium text-shuby-black"><%= t("heading", scope: scope) %></h1>
+  <div class="shuby-container shuby-archive-index-header-row">
+    <h1 class="shuby-h3"><%= t("heading", scope: scope) %></h1>
     <div class="shuby-archive-index-header-actions">
       <button type="button" class="shuby-header-icon-btn" data-action="click->archive-filter#toggle">
         <%= render_svg "shuby/icons/icon-filter-list", size: :md, decorative: true %>

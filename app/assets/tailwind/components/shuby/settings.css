@@ -3,34 +3,50 @@
  */
 
 /* =====================================================
-   STICKY HEADER — page title + segmented tabs
+   STICKY HEADER — page title only
    Pairs with .shuby-sticky-header (in layout.css) for position: sticky.
    Translucent white bg + blur so content scrolling underneath fades.
    Negative horizontal margins compensate for the parent container's
    px-4 gutter so the bg spans full viewport width while inner content
    stays gutter-aligned with the rows below. iOS safe-area inset is
    added in hotwire_native.css.
+   Figma 379:5672: matches the canonical Shuby sticky-header spec
+   (8px top + 8px bottom, blur 2px). The segmented tabs row sits
+   below this sticky chrome and scrolls with the content (.shuby-settings-tabs).
    ===================================================== */
 
 .shuby-settings-sticky-header {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
     background-color: color-mix(in srgb, var(--color-shuby-white) 95%, transparent);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    /* Negative horizontal margins escape the parent's px-4 so the bg
+       spans viewport-edge to viewport-edge (matches dashboard). Horizontal
+       padding is delegated to the inner .shuby-container. */
     margin-left: calc(var(--space-4) * -1);
     margin-right: calc(var(--space-4) * -1);
-    margin-bottom: var(--space-6);
-    padding: var(--space-4) var(--space-4) var(--space-3);
+    padding-block: var(--space-2);
 }
 
 /* Override the default .shuby-page-header padding+margin inside the sticky
-   wrapper — the wrapper owns the spacing via flex gap. Keeps the global
-   .shuby-page-header definition intact for non-sticky pages. */
+   wrapper — the wrapper owns the spacing. Keeps the global
+   .shuby-page-header definition intact for non-sticky pages.
+   min-height: 42px matches the canonical sticky-header content row
+   (.shuby-dashboard-header-row) so settings sticky has identical height
+   to dashboard. */
 .shuby-settings-sticky-header .shuby-page-header {
     padding: 0;
     margin-bottom: 0;
+    min-height: 42px;
+}
+
+/* Tab row that previously lived inside the sticky header. Now sits
+   immediately below it, scrolls with content, leaves the sticky chrome
+   at canonical dashboard size. Distinct name from the legacy
+   .shuby-settings-tabs in navigation.css (pill variant) to avoid the
+   inline-flex/gray-pill rules collapsing this row. */
+.shuby-settings-tab-bar {
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-6);
 }
 
 /* =====================================================

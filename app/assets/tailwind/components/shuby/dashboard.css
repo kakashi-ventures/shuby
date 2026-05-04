@@ -130,8 +130,9 @@
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
     /* Default top padding for web. On Hotwire Native this is overridden
-       in hotwire_native.css to add env(safe-area-inset-top) on top. */
-    padding-top: var(--space-3);
+       in hotwire_native.css to add env(safe-area-inset-top) on top.
+       Figma 379:5672: 8px top + 8px bottom (canonical Shuby sticky spec). */
+    padding-top: var(--space-2);
     padding-bottom: var(--space-2);
 
     /* Token cascade — Figma: all text/icons use var(--colori/nero, black) on the light blue bg */
@@ -149,11 +150,15 @@
     /* token cascade unchanged — blue-800 text/icons remain correct on white */
 }
 
-/* Dashboard header inner layout: greeting on the left, action icons on the right. */
+/* Dashboard header inner layout: greeting on the left, action icons on the right.
+   min-height: 42px = canonical Shuby sticky-header content row (Figma 379:5672).
+   All other sticky headers (.shuby-archive-index-header-row, settings sticky
+   inner, .shuby-chat-topbar-row) match this height. */
 .shuby-dashboard-header-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height: 42px;
 }
 
 .shuby-dashboard-header-greeting {

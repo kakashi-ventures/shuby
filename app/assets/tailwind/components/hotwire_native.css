@@ -26,34 +26,17 @@ html.hotwire-native .top-nav.native.fixed {
   pointer-events: none;
 }
 
-/* Dashboard sticky header: status bar inset + 12px breathing room.
-   Selector specificity (0,1,1,2) beats .shuby-dashboard-header (0,0,1,0) —
-   both rules are in @layer components, so specificity decides the winner. */
-html.hotwire-native #dashboard-header > header {
-  padding-top: calc(env(safe-area-inset-top) + var(--space-3));
-}
-
-/* Archive index sticky header: status bar inset + 16px breathing room.
-   Mirrors the Dashboard pattern but for the white-bg Archivio header
-   (Figma 463:6063). Pairs with .shuby-archive-index-header. */
-html.hotwire-native .shuby-archive-index-header {
-  padding-top: calc(env(safe-area-inset-top) + var(--space-4));
-}
-
-/* Article-detail sticky header: status bar inset + 8px breathing room.
-   Same pattern, smaller pad — Figma 510:23074 stacks status bar + 8px gap
-   before the chevron+title row. Without this, the row sits behind the
-   Dynamic Island on notched devices. Pairs with .shuby-article-sticky-header. */
-html.hotwire-native .shuby-article-sticky-header {
-  padding-top: calc(env(safe-area-inset-top) + var(--space-2));
-}
-
-/* Settings sticky header: status bar inset + 16px breathing room.
-   Mirrors the Archive pattern — Figma 506:6076 anchors the page title
-   "Gestione" + segmented tabs at top:0 with bg-white/95. Pairs with
-   .shuby-settings-sticky-header. */
+/* Sticky headers — canonical Shuby spec (Figma 379:5672):
+   status bar inset + 8px breathing room. Applied per-selector so each
+   header retains its own bg/padding-bottom rules from its component CSS.
+   Selector specificity for the dashboard rule (0,1,1,2) beats
+   .shuby-dashboard-header (0,0,1,0); both rules sit in @layer components,
+   so specificity decides the winner. */
+html.hotwire-native #dashboard-header > header,
+html.hotwire-native .shuby-archive-index-header,
+html.hotwire-native .shuby-article-sticky-header,
 html.hotwire-native .shuby-settings-sticky-header {
-  padding-top: calc(env(safe-area-inset-top) + var(--space-4));
+  padding-top: calc(env(safe-area-inset-top) + var(--space-2));
 }
 
 /* Hide web bottom nav — native tab bar replaces it.

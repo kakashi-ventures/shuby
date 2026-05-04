@@ -3,22 +3,24 @@
     round blu-800 icon buttons: new conversation + history. Layout chrome
     lives in .shuby-chat-header / .shuby-chat-topbar-row in chat.css. %>
 <header class="shuby-chat-header">
-  <div class="shuby-chat-topbar-row justify-between">
-    <h1 class="shuby-h3"><%= t("shuby_chats.show.title") %></h1>
-    <div class="flex items-center gap-2">
-      <%= button_to shuby_chats_path,
-            method: :post,
-            form: { data: { turbo_confirm: nil } },
-            class: "shuby-icon-btn",
-            aria: { label: t("shuby_chats.show.actions.new_chat") },
-            data: native_haptic_data(:success) do %>
-        <%= render_svg "shuby/icons/icon-new-chat", size: :md, decorative: true %>
-      <% end %>
-      <%= link_to history_shuby_chats_path,
-            class: "shuby-icon-btn",
-            aria: { label: t("shuby_chats.show.actions.history") } do %>
-        <%= render_svg "shuby/icons/icon-chat-list", size: :md, decorative: true %>
-      <% end %>
+  <div class="shuby-container">
+    <div class="shuby-chat-topbar-row justify-between">
+      <h1 class="shuby-h3"><%= t("shuby_chats.show.title") %></h1>
+      <div class="flex items-center gap-2">
+        <%= button_to shuby_chats_path,
+              method: :post,
+              form: { data: { turbo_confirm: nil } },
+              class: "shuby-icon-btn",
+              aria: { label: t("shuby_chats.show.actions.new_chat") },
+              data: native_haptic_data(:success) do %>
+          <%= render_svg "shuby/icons/icon-new-chat", size: :md, decorative: true %>
+        <% end %>
+        <%= link_to history_shuby_chats_path,
+              class: "shuby-icon-btn",
+              aria: { label: t("shuby_chats.show.actions.history") } do %>
+          <%= render_svg "shuby/icons/icon-chat-list", size: :md, decorative: true %>
+        <% end %>
+      </div>
     </div>
   </div>
 </header>

@@ -4,11 +4,13 @@
 
 <div class="shuby-chat-page-history">
   <header class="shuby-chat-header">
-    <div class="shuby-chat-topbar-row gap-2">
-      <%= link_to shuby_chats_path, class: "shuby-chat-back", aria: { label: t("common.back") } do %>
-        <%= render_svg "shuby/icons/icon-chevron-left", size: :sm, decorative: true %>
-      <% end %>
-      <h1 class="shuby-h3"><%= t("shuby_chats.history.title") %></h1>
+    <div class="shuby-container">
+      <div class="shuby-chat-topbar-row gap-2">
+        <%= link_to shuby_chats_path, class: "shuby-chat-back", aria: { label: t("common.back") } do %>
+          <%= render_svg "shuby/icons/icon-chevron-left", size: :sm, decorative: true %>
+        <% end %>
+        <h1 class="shuby-h3"><%= t("shuby_chats.history.title") %></h1>
+      </div>
     </div>
   </header>
 

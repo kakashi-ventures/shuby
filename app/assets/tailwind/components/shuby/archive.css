@@ -12,18 +12,22 @@
    ===================================================== */
 .shuby-archive-index-header {
     background-color: color-mix(in srgb, var(--color-shuby-white) 95%, transparent);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    /* Negative horizontal margins escape the parent's px-4 so the bg
+       spans viewport-edge to viewport-edge (matches dashboard's bg behavior).
+       Horizontal padding is delegated to the inner .shuby-container so the
+       16px content inset matches dashboard exactly. */
     margin-left: calc(var(--space-4) * -1);
     margin-right: calc(var(--space-4) * -1);
-    margin-bottom: var(--space-4);
-    padding: var(--space-4) var(--space-4) var(--space-3);
+    padding-block: var(--space-2);
 }
 
 .shuby-archive-index-header-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height: 42px;
 }
 
 .shuby-archive-index-header-actions {

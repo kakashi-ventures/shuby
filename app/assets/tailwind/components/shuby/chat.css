@@ -51,7 +51,7 @@ html.hotwire-native .shuby-chat-page-history {
 .shuby-chat-header {
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 40;
     padding: var(--space-2) 0;
     background-color: var(--overlay-white-95);
     backdrop-filter: blur(2px);
@@ -60,19 +60,18 @@ html.hotwire-native .shuby-chat-page-history {
 }
 
 html.hotwire-native .shuby-chat-header {
-    padding-top: env(safe-area-inset-top);
+    padding-top: calc(env(safe-area-inset-top) + var(--space-2));
 }
 
-/* Top Navigation row — Figma 436:4742.
-   350 px-wide centered band, 42 px tall. Consumers add `justify-between`
-   (AI Helper) or `gap-2` (History back+title) on the markup. */
+/* Top Navigation row — Figma 436:4742. 42 px tall flex row. Consumers add
+   `justify-between` (AI Helper) or `gap-2` (History back+title) on the
+   markup. Horizontal width / centering / 16px inset is delegated to the
+   wrapping .shuby-container — same primitive the dashboard header uses,
+   so chat inner content aligns with all other Shuby sticky headers. */
 .shuby-chat-topbar-row {
     display: flex;
     align-items: center;
-    height: 42px;
-    width: 350px;
-    max-width: calc(100% - 40px);
-    margin-inline: auto;
+    min-height: 42px;
 }
 
 /* Bare 16 px back chevron used by the history header — Figma 2006:8916
