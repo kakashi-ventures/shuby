@@ -1,27 +1,29 @@
 <% Current.meta_tags.set(title: t(".title")) %>
+<% content_for :hide_navbar, true %>
 
 <div class="container mx-auto px-4 pb-24">
   <div class="my-8">
-    <%= render "shared/ui/page_header", title: t(".title"), title_class: "shuby-h3" %>
+    <div class="shuby-sticky-header shuby-settings-sticky-header">
+      <%= render "shared/ui/page_header", title: t(".title"), title_class: "shuby-h3" %>
 
-    <%= render "shared/ui/tabs",
-        variant: "segmented",
-        aria_label: t(".title"),
-        class: "mb-6",
-        tabs: [
-          { label: t(".tabs.family"),
-            path: settings_path,
-            active: @tab == "family",
-            data: { turbo_action: "replace" } },
-          { label: t(".tabs.plan"),
-            path: settings_path(tab: "plan"),
-            active: @tab == "plan",
-            data: { turbo_action: "replace" } },
-          { label: t(".tabs.configuration"),
-            path: settings_path(tab: "configuration"),
-            active: @tab == "configuration",
-            data: { turbo_action: "replace" } }
-        ] %>
+      <%= render "shared/ui/tabs",
+          variant: "segmented",
+          aria_label: t(".title"),
+          tabs: [
+            { label: t(".tabs.family"),
+              path: settings_path,
+              active: @tab == "family",
+              data: { turbo_action: "replace" } },
+            { label: t(".tabs.configuration"),
+              path: settings_path(tab: "configuration"),
+              active: @tab == "configuration",
+              data: { turbo_action: "replace" } },
+            { label: t(".tabs.plan"),
+              path: settings_path(tab: "plan"),
+              active: @tab == "plan",
+              data: { turbo_action: "replace" } }
+          ] %>
+    </div>
 
     <% case @tab %>
     <% when "family" %>

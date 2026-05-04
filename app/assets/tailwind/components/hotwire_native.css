@@ -48,6 +48,14 @@ html.hotwire-native .shuby-article-sticky-header {
   padding-top: calc(env(safe-area-inset-top) + var(--space-2));
 }
 
+/* Settings sticky header: status bar inset + 16px breathing room.
+   Mirrors the Archive pattern — Figma 506:6076 anchors the page title
+   "Gestione" + segmented tabs at top:0 with bg-white/95. Pairs with
+   .shuby-settings-sticky-header. */
+html.hotwire-native .shuby-settings-sticky-header {
+  padding-top: calc(env(safe-area-inset-top) + var(--space-4));
+}
+
 /* Hide web bottom nav — native tab bar replaces it.
    Primary guard is server-side (yield :bottom_nav unless hotwire_native_app?).
    This CSS is a belt-and-suspenders fallback. */

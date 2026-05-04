@@ -19,7 +19,11 @@
   <div class="shuby-member-content">
     <div class="shuby-member-avatar">
       <% if kind == :adult %>
-        <%= image_tag avatar_url_for(member, size: 96), alt: display_name %>
+        <% if member.respond_to?(:avatar) && member.avatar.attached? && member.avatar.variable? %>
+          <%= image_tag avatar_url_for(member, size: 96), alt: display_name %>
+        <% else %>
+          <%= render_svg "shuby/icons/icon-account", decorative: true, class: "shuby-member-avatar-glyph" %>
+        <% end %>
       <% elsif member.respond_to?(:avatar) && member.avatar.attached? %>
         <%= image_tag member.avatar, alt: display_name %>
       <% else %>
@@ -35,6 +39,6 @@
   <%= link_to edit_path,
       class: "shuby-icon-btn",
       aria: { label: t("edit") } do %>
-    <%= render_svg "shuby/icons/icon-edit", size: :lg, decorative: true %>
+    <%= render_svg "shuby/icons/icon-edit", size: :sm, decorative: true %>
   <% end %>
 </div>

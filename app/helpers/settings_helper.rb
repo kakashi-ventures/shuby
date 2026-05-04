@@ -11,7 +11,7 @@ module SettingsHelper
   # bordered card body that holds .shuby-settings-row children.
   def settings_section_group(title:, &block)
     tag.section(class: "shuby-settings-section") do
-      concat tag.h2(title, class: "shuby-overline-dark shuby-settings-section-title")
+      concat tag.h2(title, class: "shuby-settings-section-title")
       concat tag.div(class: "shuby-settings-section-body", &block)
     end
   end
@@ -25,10 +25,8 @@ module SettingsHelper
 
     body = capture do
       concat tag.span(label, class: "shuby-settings-row__label")
-      concat(tag.span(class: "shuby-settings-row__trailing") do
-        concat tag.span(value, class: "shuby-settings-row__value") if value.present?
-        concat render_svg("shuby/icons/icon-chevron-right", size: :sm, decorative: true)
-      end)
+      concat tag.span(value, class: "shuby-settings-row__value") if value.present?
+      concat render_svg("shuby/icons/icon-chevron-right", size: :sm, decorative: true, class: "shuby-settings-row__chevron")
     end
 
     if href.present?
@@ -43,15 +41,14 @@ module SettingsHelper
   # Row chrome wrapping a button_to — used for sign-out, delete-account,
   # data-export. Same visual shell as settings_row but POST/DELETE under
   # the hood. data: hash flows through to button_to.
-  def settings_button_row(label:, url:, method: :post, destructive: false, **data_attrs)
+  def settings_button_row(label:, url:, method: :post, destructive: false, standalone: false, **data_attrs)
     classes = ["shuby-settings-row", "shuby-settings-row--button"]
     classes << "shuby-settings-row--destructive" if destructive
+    classes << "shuby-settings-row--standalone" if standalone
 
     button_to url, method: method, class: classes.join(" "), data: data_attrs.delete(:data) do
       concat tag.span(label, class: "shuby-settings-row__label")
-      concat(tag.span(class: "shuby-settings-row__trailing") do
-        render_svg("shuby/icons/icon-chevron-right", size: :sm, decorative: true)
-      end)
+      concat render_svg("shuby/icons/icon-chevron-right", size: :sm, decorative: true, class: "shuby-settings-row__chevron")
     end
   end
 

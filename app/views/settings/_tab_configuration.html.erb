@@ -1,10 +1,20 @@
 <%# Configuration tab — Figma 506:6066. Notifications, Account, Security
-    stack; the Advanced section is our addition (items not in the design). %>
-<h1 class="shuby-h3 mb-4">
+    stack flat with hairline-separated rows; Log out sits standalone with
+    a top separator. The Advanced section is our addition for GDPR /
+    measurement-unit / data-export controls (not in the Figma frame). %>
+<h1 class="shuby-h3 text-shuby-blue-700 mb-4">
   <%= t("settings.show.configuration.title") %>
 </h1>
 
 <%= render "settings/section_notifications" %>
 <%= render "settings/section_account_rows" %>
 <%= render "settings/section_security" %>
+
+<%= settings_button_row(
+      label: t("settings.show.configuration.security.sign_out"),
+      url: destroy_user_session_path,
+      method: :delete,
+      standalone: true,
+      data: native_haptic_data(:warning)) %>
+
 <%= render "settings/section_advanced" %>

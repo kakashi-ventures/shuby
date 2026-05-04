@@ -87,7 +87,7 @@ Items surfaced by `/shuby-review` after the Figma 06.01_Gestione redesign
   - [x] Measurements — type-picker overlay added (Figma `463:5785` empty / `463:5995` with data / `795:8492`); global `+` on tab heading + detail header opens picker; picker reuses `_measurement_box` driven by `MeasurementDashboardService.picker_boxes` (returns 4 boxes including feeding_weight); detail header `+` replaced same-type-direct flow per design intent
   - [ ] Onboarding
   - [x] Child Profile
-  - [ ] Settings
+  - [x] Settings
   - [x] Questionnaire overlay (Figma `499:5449/5450/5511/5540/5853`) — single-current progress bar, all-complete state on completion, per-question `uncertain_label` infra, per-question illustration rendering with graceful asset fallback
 - [x] Dashboard header: verify scroll bg transition blue-to-white (FA 3.1)
 - [x] Measurement photo upload (PRD 3.5.2 — optional photo attachment) — Active Storage `has_one_attached :photo` on `Measurement`, form field with Stimulus preview, embedded as JPEG thumbnail in pediatrician PDF

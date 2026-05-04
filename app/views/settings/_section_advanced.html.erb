@@ -5,7 +5,7 @@
     redirect back to /settings, so iOS can skip the back-stack push. %>
 <%= native_form_tag %>
 <section class="shuby-settings-section">
-  <h2 class="shuby-overline-dark shuby-settings-section-title">
+  <h2 class="shuby-settings-section-title">
     <%= t("settings.show.configuration.advanced.heading") %>
   </h2>
 
@@ -51,6 +51,7 @@
       <%= button_to t("settings.privacy.show.export.button"),
           export_settings_privacy_path,
           method: :post,
+          disabled: true,
           class: "shuby-btn shuby-btn-secondary shuby-btn-sm" %>
     </div>
 

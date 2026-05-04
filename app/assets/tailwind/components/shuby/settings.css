@@ -3,6 +3,37 @@
  */
 
 /* =====================================================
+   STICKY HEADER — page title + segmented tabs
+   Pairs with .shuby-sticky-header (in layout.css) for position: sticky.
+   Translucent white bg + blur so content scrolling underneath fades.
+   Negative horizontal margins compensate for the parent container's
+   px-4 gutter so the bg spans full viewport width while inner content
+   stays gutter-aligned with the rows below. iOS safe-area inset is
+   added in hotwire_native.css.
+   ===================================================== */
+
+.shuby-settings-sticky-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    background-color: color-mix(in srgb, var(--color-shuby-white) 95%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    margin-left: calc(var(--space-4) * -1);
+    margin-right: calc(var(--space-4) * -1);
+    margin-bottom: var(--space-6);
+    padding: var(--space-4) var(--space-4) var(--space-3);
+}
+
+/* Override the default .shuby-page-header padding+margin inside the sticky
+   wrapper — the wrapper owns the spacing via flex gap. Keeps the global
+   .shuby-page-header definition intact for non-sticky pages. */
+.shuby-settings-sticky-header .shuby-page-header {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+/* =====================================================
    MANAGEMENT PAGE COMPONENTS
    Management page layout based on Figma screenshot
    Includes: Page header, Section header, Member lists
@@ -46,13 +77,15 @@
 }
 
 
-/* Category label (ADULTI, BAMBINI) */
+/* Category label (ADULTI, BAMBINI) — Figma 459:5150/5151
+   Caption/Span/Light: Montserrat Medium 10px Nero, uppercase. */
 .shuby-category-label {
-    font-size: var(--font-size-p2);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: var(--letter-spacing-wide);
+    font-size: var(--font-size-overline);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
     text-transform: uppercase;
-    color: var(--base-text-secondary);
+    color: var(--color-shuby-black);
     padding: var(--space-4) 0 var(--space-2);
 }
 
@@ -70,7 +103,7 @@
     justify-content: space-between;
     background-color: var(--color-shuby-white);
     border: 1px solid var(--color-shuby-blue-300);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     padding: var(--space-2) var(--space-4);
     transition: box-shadow 0.2s ease;
 
@@ -97,7 +130,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-shuby-blue-400);
+    background-color: var(--color-shuby-blue-300);
     color: var(--color-shuby-blue-800);
 
     img {
@@ -138,6 +171,14 @@
     font-size: var(--font-size-p1);
     font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-none);
+}
+
+/* SVG glyph fallback (account_circle silhouette / baby smiley) shown when
+   the member has no uploaded avatar — Figma 225:1821, 36px inner icon
+   on 40px Blu-400 ring. Inherits color from .shuby-member-avatar. */
+.shuby-member-avatar-glyph {
+    width: 28px;
+    height: 28px;
 }
 
 /* Highlighted member card (selected state) */
@@ -213,18 +254,33 @@
     margin-bottom: var(--space-6);
 }
 
+/* Section overline (NOTIFICHE, ACCOUNT, SECURITY) — Figma 506:6183/6185/6211.
+   Caption/Span/Light: Montserrat Medium 10px Blu-800, uppercase. Distinct from
+   .shuby-overline-dark (Semi-Bold 600) which other surfaces use. */
 .shuby-settings-section-title {
+    font-size: var(--font-size-overline);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+    text-transform: uppercase;
+    color: var(--color-shuby-blue-800);
     margin-bottom: var(--space-2);
     padding-inline: var(--space-2);
 }
 
+/* Figma 506:6066: sections are flat — no card border, no fill. The
+   inter-row hairlines come from .shuby-settings-row's border-bottom. */
 .shuby-settings-section-body {
     display: flex;
     flex-direction: column;
-    background-color: var(--color-shuby-white);
-    border: 1px solid var(--color-shuby-blue-300);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
+}
+
+/* Standalone row pinned to the bottom of the configuration tab (Log out).
+   Same row chrome but separated from the preceding section by a top
+   hairline + extra gap, mirroring the Figma split. */
+.shuby-settings-row--standalone {
+    margin-top: var(--space-4);
+    border-top: 1px solid var(--color-shuby-blue-300);
 }
 
 /* Page-level section header — title with a row of action buttons
@@ -254,7 +310,7 @@
     justify-content: space-between;
     gap: var(--space-3);
     min-height: 48px;
-    padding: var(--space-3) var(--space-4);
+    padding: var(--space-3) 0 var(--space-3) var(--space-4);
     border-bottom: 1px solid var(--color-shuby-blue-300);
     text-decoration: none;
     color: inherit;
@@ -270,6 +326,8 @@
 }
 
 .shuby-settings-row__label {
+    flex: 1 1 auto;
+    min-width: 0;
     font-family: var(--font-sans);
     font-size: var(--font-size-p1);
     font-weight: var(--font-weight-regular);
@@ -290,12 +348,14 @@
     text-align: right;
 }
 
-.shuby-settings-row__trailing {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    color: var(--color-shuby-blue-300);
+/* Chevron sits as the last child of the row — column-aligned at the
+   right edge regardless of whether the row has a value or not. The
+   row's right padding (zeroed) places the chevron flush with the
+   row's right boundary. */
+.shuby-settings-row__chevron {
     flex-shrink: 0;
+    color: var(--color-shuby-blue-700);
+    margin-left: auto;
 }
 
 .shuby-settings-row--destructive .shuby-settings-row__label {

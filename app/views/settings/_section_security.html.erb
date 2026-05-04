@@ -20,9 +20,4 @@
           turbo_confirm_text: current_user.email,
           turbo_confirm_description: t("settings.show.configuration.security.delete_account_confirm")
         }) %>
-  <%= settings_button_row(
-        label: t("settings.show.configuration.security.sign_out"),
-        url: destroy_user_session_path,
-        method: :delete,
-        data: native_haptic_data(:warning)) %>
 <% end %>
