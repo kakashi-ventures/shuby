@@ -1,0 +1,35 @@
+<%# Three legal-consent checkboxes shown at signup:
+    1. Terms of Service + Privacy Policy combined (mandatory)
+    2. Informed Consent for processing minor's health data (mandatory, GDPR art. 9)
+    3. Anonymized research consent (optional, revocable from Settings)
+    Locale keys live under devise.registrations.new.* (signup-flow scope). %>
+
+<% scope = "devise.registrations.new" %>
+
+<div class="form-group form-picker-group">
+  <%= f.check_box :terms_of_service, id: "tos" %>
+  <label for="tos">
+    <%= t("#{scope}.terms_html",
+          terms: link_to(t("#{scope}.terms_link_label"), terms_path,
+                         target: "_blank", class: "btn-link"),
+          privacy: link_to(t("#{scope}.privacy_link_label"), privacy_path,
+                           target: "_blank", class: "btn-link")) %>
+  </label>
+</div>
+
+<div class="form-group form-picker-group">
+  <%= f.check_box :informed_consent, id: "informed_consent" %>
+  <label for="informed_consent">
+    <%= t("#{scope}.informed_consent_html",
+          link: link_to(t("#{scope}.informed_consent_link_label"),
+                        consenso_informato_path,
+                        target: "_blank", class: "btn-link")) %>
+  </label>
+</div>
+
+<div class="form-group form-picker-group">
+  <%= f.check_box :research_consent_anonymized, id: "research_consent" %>
+  <label for="research_consent">
+    <%= t("#{scope}.research_consent_html") %>
+  </label>
+</div>

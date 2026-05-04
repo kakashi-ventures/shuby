@@ -133,6 +133,7 @@ it:
       announcements: "Novità"
       about: "Chi siamo"
       privacy: "Privacy"
+      consenso_informato: "Consenso"
       terms: "Termini"
     account_menu:
       create_account: "Crea un account"
@@ -236,13 +237,17 @@ it:
           password: "Cambia Password"
           language: "Lingua"
         security:
-          heading: "Security"
+          heading: "Sicurezza e documenti legali"
           terms: "Termini e Condizioni"
-          privacy_policy: "Privacy Policy"
+          privacy_policy: "Informativa Privacy"
+          informed_consent: "Modulo di Consenso Informato"
           manage_data: "Gestisci Dati Account"
           delete_account: "Elimina Account"
           delete_account_confirm: "Questo eliminerà permanentemente tutti i tuoi dati, inclusi profili bambini, misurazioni, questionari e conversazioni. Digita il tuo indirizzo email per confermare."
           sign_out: "Log out"
+        research:
+          heading: "Ricerca scientifica"
+          research_consent_label: "Consenso uso dati anonimizzati per ricerca"
         advanced:
           heading: "Avanzate"
           measurement_unit: "Unità di misura"
@@ -331,9 +336,23 @@ it:
     about:
       title: "Chi siamo"
     privacy:
-      title: "Privacy Policy"
+      title: "Informativa Privacy"
     terms:
-      title: "Termini di servizio"
+      title: "Termini e Condizioni"
+    consenso_informato:
+      title: "Modulo di Consenso Informato"
+
+  legal:
+    placeholders:
+      legal_address: "[da confermare]"
+      pec: "[da confermare]"
+      contact_email: "[da confermare]"
+      withdrawal_email: "[da confermare]"
+      privacy_email: "[da confermare]"
+      ip_violation_email: "[da confermare]"
+      phone: "[da confermare]"
+      dpo: "[da confermare]"
+      research_project_title: "Studio sullo sviluppo neuro-motorio nei primi 36 mesi di vita [da confermare]"
 
   billing:
     updated: "Impostazioni di fatturazione aggiornate con successo."
@@ -515,10 +534,12 @@ it:
 
   users:
     agreements:
+      toc:
+        heading: "Indice"
       show:
-        title: "%{agreement} modificato"
+        title: "%{agreement}"
         last_updated: "Ultimo aggiornamento %{date}"
-        description: "Prima di poter procedere, devi leggere e accettare il nuovo %{agreement}."
+        description: "Per continuare a utilizzare la Piattaforma devi leggere e accettare %{agreement}."
         accept: "Accetto"
         decline: "Rifiuto"
       destroy:

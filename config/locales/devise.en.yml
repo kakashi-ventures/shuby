@@ -83,7 +83,12 @@ en:
         sign_up: Sign up
         login: "log in to your account"
         login_html: "Or %{link}"
-        terms_html: "I accept the %{terms} &amp; %{privacy}"
+        terms_html: "I accept the %{terms} and %{privacy}."
+        terms_link_label: "Terms and Conditions"
+        privacy_link_label: "Privacy Policy"
+        informed_consent_html: "I consent to the processing of my personal data and that of the minor according to the %{link} (mandatory)."
+        informed_consent_link_label: "Informed Consent Form"
+        research_consent_html: "I consent to the use of my data in anonymized form for scientific research purposes (optional, revocable at any time)."
         submitting: "Submitting..."
         title: "Sign up"
       signed_up: "Welcome! You have signed up successfully."

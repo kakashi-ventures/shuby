@@ -8,6 +8,9 @@
         label: t("settings.show.configuration.security.privacy_policy"),
         href: privacy_path) %>
   <%= settings_row(
+        label: t("settings.show.configuration.security.informed_consent"),
+        href: consenso_informato_path) %>
+  <%= settings_row(
         label: t("settings.show.configuration.security.manage_data"),
         href: settings_privacy_path) %>
   <%= settings_button_row(
@@ -20,4 +23,11 @@
           turbo_confirm_text: current_user.email,
           turbo_confirm_description: t("settings.show.configuration.security.delete_account_confirm")
         }) %>
+<% end %>
+
+<%# Optional research consent — revocable any time per GDPR art. 7(3). %>
+<%= settings_section_group(title: t("settings.show.configuration.research.heading")) do %>
+  <%= settings_toggle_row(
+        label: t("settings.show.configuration.research.research_consent_label"),
+        attribute: :research_consent_anonymized) %>
 <% end %>

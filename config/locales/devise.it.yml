@@ -83,7 +83,12 @@ it:
         sign_up: Registrati
         login: "accedi al tuo account"
         login_html: "Oppure %{link}"
-        terms_html: "Accetto i %{terms} e la %{privacy}"
+        terms_html: "Accetto i %{terms} e l'%{privacy}."
+        terms_link_label: "Termini e Condizioni"
+        privacy_link_label: "Informativa Privacy"
+        informed_consent_html: "Acconsento al trattamento dei miei dati personali e di quelli del minore secondo il %{link} (obbligatorio)."
+        informed_consent_link_label: "Modulo di Consenso Informato"
+        research_consent_html: "Acconsento all'utilizzo dei dati in forma anonimizzata per finalità di ricerca scientifica (facoltativo, revocabile in qualsiasi momento)."
         submitting: "Invio..."
         title: "Registrati"
       signed_up: "Benvenuto! Ti sei registrato con successo."

@@ -19,11 +19,15 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 
 ## P0: GDPR Compliance (LAUNCH BLOCKER)
 
-- [x] Data export: JSON download with all personal data (`GdprDataExportService`)
+- [x] Data export: JSON download with all personal data (`GdprDataExportService`) — now includes terms/privacy/informed-consent timestamps
 - [x] Account deletion: confirmation dialog with email verification (Devise)
 - [x] Data sharing consent toggle in onboarding + settings
 - [x] Privacy page redesigned with export + deletion sections
+- [x] Lawyer-drafted legal docs integrated: Termini, Informativa Privacy, Modulo di Consenso Informato — 3 dedicated public pages (`/terms`, `/privacy`, `/consenso-informato`), forced re-acceptance modal, 3 signup checkboxes (Terms+Privacy combined, mandatory Informed Consent, optional research consent), Settings rows + research toggle, footer link. Dormant `Agreement` infra activated. Placeholders (sede, PEC, emails, DPO) live in `legal.placeholders.*` i18n keys for client confirmation.
 - [ ] Cookie consent banner (skipped for beta — no tracking cookies in use)
+- [ ] **TBD client**: legal entity contacts (sede legale Shuby S.r.l., PEC, email contatto/recesso/privacy, telefono, DPO) — substitute the `[da confermare]` markers in `config/locales/it.yml` `legal.placeholders.*` once provided
+- [ ] **TBD client**: confirm Disclaimer §4 "abbonamenti annuali con rinnovo automatico" matches the actual subscription model (currently undecided 6 vs 7.99 EUR/mo, frequency unconfirmed)
+- [ ] **TBD client**: confirm Disclaimer §6 / Privacy §3 references to "commissione tecnico-scientifica interna" — entity not yet formalized in product
 
 ## P1: Dashboard & Timeline Completeness
 

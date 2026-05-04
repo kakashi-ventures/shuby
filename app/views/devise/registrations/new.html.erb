@@ -49,10 +49,7 @@
       <%= invisible_captcha %>
     </div>
 
-    <div class="form-group form-picker-group">
-      <%= f.check_box :terms_of_service, id: "tos" %>
-      <label for="tos"><%= t ".terms_html", terms: link_to("terms of service", terms_path, target: "_blank", class: "btn-link"), privacy: link_to("privacy policy", privacy_path, target: "_blank", class: "btn-link") %></label>
-    </div>
+    <%= render "legal_checkboxes", f: f %>
 
     <div class="form-group">
       <%= f.button button_text(t('.sign_up'), disable_with: t(".submitting")), class: "btn btn-primary btn-expanded" %>

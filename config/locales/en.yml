@@ -164,6 +164,7 @@ en:
       announcements: "News"
       about: "About"
       privacy: "Privacy"
+      consenso_informato: "Consent"
       terms: "Terms"
     account_menu:
       create_account: "Create an account"
@@ -285,7 +286,21 @@ en:
     privacy:
       title: "Privacy Policy"
     terms:
-      title: "Terms Of Service"
+      title: "Terms and Conditions"
+    consenso_informato:
+      title: "Informed Consent Form"
+
+  legal:
+    placeholders:
+      legal_address: "[to be confirmed]"
+      pec: "[to be confirmed]"
+      contact_email: "[to be confirmed]"
+      withdrawal_email: "[to be confirmed]"
+      privacy_email: "[to be confirmed]"
+      ip_violation_email: "[to be confirmed]"
+      phone: "[to be confirmed]"
+      dpo: "[to be confirmed]"
+      research_project_title: "Study on neuro-motor development in the first 36 months [to be confirmed]"
 
   billing:
     updated: "Billing settings have been updated successfully."
@@ -488,10 +503,12 @@ en:
 
   users:
     agreements:
+      toc:
+        heading: "Table of contents"
       show:
-        title: "%{agreement} Changed"
+        title: "%{agreement}"
         last_updated: "Last updated %{date}"
-        description: "Before you can proceed, you must read and accept the new %{agreement}."
+        description: "Before you can proceed, you must read and accept the %{agreement}."
         accept: "I Accept"
         decline: "I Decline"
       destroy:
