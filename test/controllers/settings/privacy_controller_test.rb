@@ -45,4 +45,18 @@ class Settings::PrivacyControllerTest < ActionDispatch::IntegrationTest
     # casting behavior — assert only the measurement_unit side.
     assert_equal "imperial", @user.reload.measurement_unit
   end
+
+  test "update sets research_consent_anonymized_at when toggled on" do
+    @user.update_columns(research_consent_anonymized_at: nil)
+    patch settings_privacy_path, params: {user: {research_consent_anonymized: "1"}}
+    assert_redirected_to settings_privacy_path
+    assert_not_nil @user.reload.research_consent_anonymized_at
+  end
+
+  test "update clears research_consent_anonymized_at when toggled off" do
+    @user.update_columns(research_consent_anonymized_at: Time.current)
+    patch settings_privacy_path, params: {user: {research_consent_anonymized: "0"}}
+    assert_redirected_to settings_privacy_path
+    assert_nil @user.reload.research_consent_anonymized_at
+  end
 end

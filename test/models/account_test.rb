@@ -80,14 +80,14 @@ class AccountTest < ActiveSupport::TestCase
 
   test "personal accounts enabled" do
     Jumpstart.config.stub(:personal_accounts?, true) do
-      user = User.create! name: "Test", email: "personalaccounts@example.com", password: "password", password_confirmation: "password", terms_of_service: true
+      user = User.create! name: "Test", email: "personalaccounts@example.com", password: "password", password_confirmation: "password", terms_of_service: true, informed_consent: true
       assert user.accounts.first.personal?
     end
   end
 
   test "personal accounts disabled" do
     Jumpstart.config.stub(:personal_accounts?, false) do
-      user = User.create! name: "Test", email: "nonpersonalaccounts@example.com", password: "password", password_confirmation: "password", terms_of_service: true
+      user = User.create! name: "Test", email: "nonpersonalaccounts@example.com", password: "password", password_confirmation: "password", terms_of_service: true, informed_consent: true
       assert_not user.accounts.first.personal?
     end
   end

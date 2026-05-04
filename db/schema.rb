@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_30_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_04_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -796,6 +796,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_30_120000) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.datetime "accepted_informed_consent_at"
     t.datetime "accepted_privacy_at", precision: nil
     t.datetime "accepted_terms_at", precision: nil
     t.boolean "admin"
@@ -829,6 +830,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_30_120000) do
     t.jsonb "preferences"
     t.string "preferred_language"
     t.datetime "remember_created_at", precision: nil
+    t.datetime "research_consent_anonymized_at"
     t.datetime "reset_password_sent_at", precision: nil
     t.string "reset_password_token"
     t.string "time_zone"

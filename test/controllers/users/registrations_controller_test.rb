@@ -8,7 +8,8 @@ class Users::RegistrationsControllerTest < ActionDispatch::IntegrationTest
                         {name: "Test User",
                          email: "user@test.com",
                          password: "TestPassword",
-                         terms_of_service: "1"}}
+                         terms_of_service: "1",
+                         informed_consent: "1"}}
 
     # With this feature enabled, we also need to submit an account
     if Jumpstart.config.register_with_account?
@@ -36,6 +37,35 @@ class Users::RegistrationsControllerTest < ActionDispatch::IntegrationTest
       assert_no_difference "User.count" do
         post user_registration_url, params: {}
       end
+    end
+
+    test "registration fails without informed consent" do
+      params = @user_params.deep_dup
+      params[:user][:informed_consent] = "0"
+      assert_no_difference "User.count" do
+        post user_registration_url, params: params
+      end
+    end
+
+    test "successful registration sets all consent timestamps" do
+      params = @user_params.deep_dup
+      params[:user][:research_consent_anonymized] = "1"
+      assert_difference "User.count" do
+        post user_registration_url, params: params
+      end
+      user = User.find_by(email: "user@test.com")
+      assert_not_nil user.accepted_terms_at
+      assert_not_nil user.accepted_privacy_at
+      assert_not_nil user.accepted_informed_consent_at
+      assert_not_nil user.research_consent_anonymized_at
+    end
+
+    test "research consent stays nil when checkbox is not selected" do
+      assert_difference "User.count" do
+        post user_registration_url, params: @user_params
+      end
+      user = User.find_by(email: "user@test.com")
+      assert_nil user.research_consent_anonymized_at
     end
   end
 

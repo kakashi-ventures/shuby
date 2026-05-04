@@ -1,4 +1,6 @@
-# Agreements allow you to track changes to your Terms of Service, Privacy, and other agreements & policies in your application.
+# Agreements track user acceptance of legal documents (Terms, Privacy, Informed
+# Consent). Bumping `updated:` triggers a forced re-acceptance flow on next
+# request via Users::AgreementUpdates.
 
 Agreement = Data.define(:id, :title, :column, :updated, :prompt_when_updated) do
   def accepted_by?(user)
@@ -19,21 +21,30 @@ Agreement = Data.define(:id, :title, :column, :updated, :prompt_when_updated) do
   end
 end
 
-# Uncomment these to enforce user agreement changes are accepted by users
-# Set prompt_when_updated: true to ask the user to accept the new version
+# Updated timestamp = first deployment of full legal text from the lawyer.
+# Bump this whenever the partial content changes so users get re-prompted.
+LEGAL_DOCS_UPDATED_AT = Time.parse("2026-05-04 00:00:00").freeze
+
 Rails.application.config.agreements = [
-  # Agreement.new(
-  #   id: :terms_of_service,
-  #   title: "Terms Of Service",
-  #   column: :accepted_terms_at,
-  #   updated: Time.parse("2022-01-01 00:00:00"),
-  #   prompt_when_updated: true
-  # ),
-  # Agreement.new(
-  #   id: :privacy_policy,
-  #   title: "Privacy Policy",
-  #   column: :accepted_privacy_at,
-  #   updated: Time.parse("2022-01-01 00:00:00"),
-  #   prompt_when_updated: true
-  # )
+  Agreement.new(
+    id: :terms_of_service,
+    title: "Termini e Condizioni",
+    column: :accepted_terms_at,
+    updated: LEGAL_DOCS_UPDATED_AT,
+    prompt_when_updated: true
+  ),
+  Agreement.new(
+    id: :privacy_policy,
+    title: "Informativa Privacy",
+    column: :accepted_privacy_at,
+    updated: LEGAL_DOCS_UPDATED_AT,
+    prompt_when_updated: true
+  ),
+  Agreement.new(
+    id: :informed_consent,
+    title: "Modulo di Consenso Informato",
+    column: :accepted_informed_consent_at,
+    updated: LEGAL_DOCS_UPDATED_AT,
+    prompt_when_updated: true
+  )
 ]

@@ -5,6 +5,7 @@ one:
   encrypted_password: <%= Devise::Encryptor.digest(User, UNIQUE_PASSWORD) %>
   accepted_terms_at: <%= Time.current %>
   accepted_privacy_at: <%= Time.current %>
+  accepted_informed_consent_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
   onboarding_completed_at: <%= Time.current %>
@@ -17,6 +18,7 @@ two:
   encrypted_password: <%= Devise::Encryptor.digest(User, UNIQUE_PASSWORD) %>
   accepted_terms_at: <%= Time.current %>
   accepted_privacy_at: <%= Time.current %>
+  accepted_informed_consent_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
   onboarding_completed_at: <%= Time.current %>
@@ -29,6 +31,7 @@ admin:
   encrypted_password: <%= Devise::Encryptor.digest(User, UNIQUE_PASSWORD) %>
   accepted_terms_at: <%= Time.current %>
   accepted_privacy_at: <%= Time.current %>
+  accepted_informed_consent_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
   admin: true
@@ -42,6 +45,7 @@ invited:
   encrypted_password: <%= Devise::Encryptor.digest(User, UNIQUE_PASSWORD) %>
   accepted_terms_at: <%= Time.current %>
   accepted_privacy_at: <%= Time.current %>
+  accepted_informed_consent_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
   onboarding_completed_at: <%= Time.current %>
@@ -54,6 +58,7 @@ noaccount:
   encrypted_password: <%= Devise::Encryptor.digest(User, UNIQUE_PASSWORD) %>
   accepted_terms_at: <%= Time.current %>
   accepted_privacy_at: <%= Time.current %>
+  accepted_informed_consent_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
   onboarding_completed_at: <%= Time.current %>
@@ -66,6 +71,7 @@ twofactor:
   encrypted_password: <%= Devise::Encryptor.digest(User, UNIQUE_PASSWORD) %>
   accepted_terms_at: <%= Time.current %>
   accepted_privacy_at: <%= Time.current %>
+  accepted_informed_consent_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
   otp_required_for_login: true
@@ -86,6 +92,7 @@ user_without_billing_address:
   encrypted_password: <%= Devise::Encryptor.digest(User, UNIQUE_PASSWORD) %>
   accepted_terms_at: <%= Time.current %>
   accepted_privacy_at: <%= Time.current %>
+  accepted_informed_consent_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
   onboarding_completed_at: <%= Time.current %>
@@ -98,6 +105,7 @@ fake_processor:
   encrypted_password: <%= Devise::Encryptor.digest(User, UNIQUE_PASSWORD) %>
   accepted_terms_at: <%= Time.current %>
   accepted_privacy_at: <%= Time.current %>
+  accepted_informed_consent_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
   onboarding_completed_at: <%= Time.current %>
@@ -110,6 +118,7 @@ subscribed:
   encrypted_password: <%= Devise::Encryptor.digest(User, UNIQUE_PASSWORD) %>
   accepted_terms_at: <%= Time.current %>
   accepted_privacy_at: <%= Time.current %>
+  accepted_informed_consent_at: <%= Time.current %>
   time_zone: "Central Time (US & Canada)"
   confirmed_at: <%= Time.current %>
   onboarding_completed_at: <%= Time.current %>

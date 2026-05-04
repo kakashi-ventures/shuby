@@ -25,7 +25,13 @@ class GdprDataExportService
       name: @user.name,
       email: @user.email,
       created_at: @user.created_at&.iso8601,
-      data_sharing_consent: @user.data_sharing_consent
+      data_sharing_consent: @user.data_sharing_consent,
+      consents: {
+        terms_of_service: @user.accepted_terms_at&.iso8601,
+        privacy_policy: @user.accepted_privacy_at&.iso8601,
+        informed_consent: @user.accepted_informed_consent_at&.iso8601,
+        research_consent_anonymized: @user.research_consent_anonymized_at&.iso8601
+      }
     }
   end
 

@@ -37,6 +37,7 @@ class Settings::PrivacyController < ApplicationController
   def user_params
     params.require(:user).permit(
       :data_sharing_consent,
+      :research_consent_anonymized,
       :measurement_unit,
       :push_notifications_enabled,
       :email_newsletter_enabled,
