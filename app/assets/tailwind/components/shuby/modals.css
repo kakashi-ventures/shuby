@@ -285,17 +285,72 @@
     gap: var(--space-2);
 }
 
-/* Agreement acceptance sticky footer (Accept/Decline persistent CTAs).
-   Used by app/views/users/agreements/show.html.erb when forced
-   re-acceptance is triggered. Mobile-first 390px. */
-.shuby-agreement-footer {
+/* Agreement acceptance modal (forced re-acceptance overlay).
+   Used by app/views/users/agreements/show.html.erb under the
+   agreement_modal layout — full-viewport backdrop + flottante card with
+   sticky header/footer and scrollable prose body. The user is locked to
+   Accept/Decline (no escape via navbar — the layout omits one).
+   Mobile-first 390px. */
+.shuby-agreement-modal-overlay {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.shuby-agreement-modal-backdrop {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--bg-light);
-    border-top: 1px solid var(--color-shuby-blue-300);
-    padding: var(--space-4);
-    padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 40;
+}
+
+.shuby-agreement-modal-card {
+    position: fixed;
     z-index: 50;
+    background: var(--bg-light);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Mobile-first: bottom-sheet — top inset above safe area, full-bleed
+       sides, anchored to bottom. Rounded only at the top. */
+    inset: max(var(--space-6), env(safe-area-inset-top)) 0 0 0;
+    border-top-left-radius: var(--radius-grande);
+    border-top-right-radius: var(--radius-grande);
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.18);
+}
+
+@media (min-width: 768px) {
+    .shuby-agreement-modal-card {
+        /* Desktop: centered floating card with breathing room on all sides. */
+        inset: var(--space-8) auto;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(720px, calc(100vw - 2 * var(--space-8)));
+        max-height: calc(100vh - 2 * var(--space-8));
+        border-radius: var(--radius-grande);
+    }
+}
+
+.shuby-agreement-modal-card__header {
+    flex-shrink: 0;
+    padding: var(--space-5) var(--space-5) var(--space-4);
+    border-bottom: 1px solid var(--color-shuby-blue-300);
+    background: var(--bg-light);
+}
+
+.shuby-agreement-modal-card__body {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: var(--space-5);
+    background: var(--bg-light);
+}
+
+.shuby-agreement-modal-card__footer {
+    flex-shrink: 0;
+    padding: var(--space-4) var(--space-5);
+    padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
+    border-top: 1px solid var(--color-shuby-blue-300);
+    background: var(--bg-light);
 }

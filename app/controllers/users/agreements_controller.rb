@@ -3,7 +3,7 @@ class Users::AgreementsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_agreement
 
-  layout "minimal"
+  layout "agreement_modal"
 
   def show
     respond_to do |format|

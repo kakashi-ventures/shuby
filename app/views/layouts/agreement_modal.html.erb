@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html class="<%= class_names("hotwire-native": hotwire_native_app?) %>" lang="<%= I18n.locale %>" data-theme="shuby">
+  <head>
+    <%= render "head" %>
+  </head>
+
+  <body data-controller="theme" data-theme-preference-value="shuby"
+        data-page-type="<%= page_transition_type %>"
+        class="shuby-agreement-modal-overlay"
+        <%= 'data-turbo-prefetch="false"'.html_safe if hotwire_native_app? %>>
+    <%= impersonation_banner %>
+    <%= render "flash" %>
+    <%= yield %>
+  </body>
+</html>
