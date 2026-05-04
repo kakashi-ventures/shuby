@@ -335,3 +335,46 @@
     display: flex;
     justify-content: center;
 }
+
+/* =====================================================
+   RADIO PILL — option-card style for radio groups
+   Pairs with `<input class="peer sr-only" type="radio">`.
+   Used by onboarding sex / relationship / language pickers.
+   ===================================================== */
+
+.shuby-radio-pill {
+    display: block;
+    width: 100%;
+    padding: var(--space-3) var(--space-2);
+    text-align: center;
+    font-size: var(--font-size-p1);
+    color: var(--base-text-secondary);
+    background-color: var(--color-shuby-white);
+    border: 2px solid var(--color-shuby-blue-300);
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.shuby-radio-pill:hover {
+    border-color: var(--color-shuby-blue-500);
+}
+
+.peer:checked ~ .shuby-radio-pill,
+.peer:checked + .shuby-radio-pill {
+    border-color: var(--color-shuby-blue-500);
+    background-color: var(--color-shuby-blue-300);
+    color: var(--color-shuby-blue-800);
+}
+
+/* Field legend / label — preserves the .shuby-caption typography,
+   adds bottom spacing and a Shuby-token muted colour. Replaces the
+   inline `block shuby-caption mb-2 text-gray-700` chain repeated
+   across onboarding form sections. */
+.shuby-form-legend {
+    display: block;
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-normal);
+    color: var(--base-text-secondary);
+    margin-bottom: var(--space-2);
+}

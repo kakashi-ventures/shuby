@@ -1,11 +1,11 @@
-<div class="pt-4 border-t border-gray-100">
+<div class="pt-4 border-t border-shuby-blue-300">
   <label class="flex items-start gap-3 cursor-pointer">
     <input type="checkbox"
            name="user[data_sharing_consent]"
            value="true"
-           class="mt-1 w-5 h-5 rounded border-gray-300 text-[var(--color-shuby-blue-500)] focus:ring-[var(--color-shuby-blue-500)]"
+           class="mt-1 w-5 h-5 rounded border-shuby-blue-300 text-shuby-blue-500 focus:ring-shuby-blue-500"
            <%= "checked" if current_user.data_sharing_consented? %>>
-    <span class="shuby-p2 text-gray-500">
+    <span class="shuby-p2 text-shuby-blue-600">
       <%= t("onboarding.data_sharing_consent") %>
     </span>
   </label>
@@ -17,7 +17,7 @@
 </div>
 
 <div class="text-center">
-  <p class="shuby-p2 text-gray-400">
+  <p class="shuby-p2 text-shuby-blue-600">
     <%= t("onboarding.details_later") %>
   </p>
 </div>

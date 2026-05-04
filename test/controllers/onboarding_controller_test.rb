@@ -160,4 +160,24 @@ class OnboardingControllerTest < ActionDispatch::IntegrationTest
     account_user = AccountUser.find_by(user: @user, account: @account)
     assert_equal "other", account_user.relationship_to_child
   end
+
+  test "should allow caregiver relationship" do
+    post onboarding_path, params: {
+      child: {
+        name: "Test",
+        birth_date: 6.months.ago.to_date,
+        sex: "male"
+      },
+      family_profile: {
+        languages_spoken_at_home: 1
+      },
+      account_user: {
+        relationship_to_child: "caregiver"
+      }
+    }
+
+    assert_redirected_to root_path
+    account_user = AccountUser.find_by(user: @user, account: @account)
+    assert_equal "caregiver", account_user.relationship_to_child
+  end
 end

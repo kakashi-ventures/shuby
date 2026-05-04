@@ -1,5 +1,5 @@
 <div>
-  <label for="child_name" class="block shuby-caption mb-2 text-gray-700"><%= t("onboarding.child_name") %></label>
+  <label for="child_name" class="shuby-form-legend"><%= t("onboarding.child_name") %></label>
   <input type="text" name="child[name]" id="child_name"
          value="<%= child.name %>"
          placeholder="<%= t("onboarding.child_name_placeholder") %>"
@@ -9,7 +9,7 @@
 </div>
 
 <div>
-  <label for="child_birth_date" class="block shuby-caption mb-2 text-gray-700"><%= t("onboarding.birth_date") %></label>
+  <label for="child_birth_date" class="shuby-form-legend"><%= t("onboarding.birth_date") %></label>
   <input type="date" name="child[birth_date]" id="child_birth_date"
          value="<%= child.birth_date %>"
          required
@@ -19,16 +19,14 @@
 </div>
 
 <div>
-  <span class="block shuby-caption mb-2 text-gray-700"><%= t("onboarding.sex_at_birth") %></span>
+  <span class="shuby-form-legend"><%= t("onboarding.sex_at_birth") %></span>
   <div class="grid grid-cols-3 gap-2">
     <% [:male, :female, :intersex].each do |sex| %>
       <label class="relative cursor-pointer">
         <input type="radio" name="child[sex]" value="<%= sex %>"
                class="peer sr-only"
                <%= "checked" if child.sex == sex.to_s %>>
-        <span class="block w-full py-3 px-2 text-center rounded-xl border-2 border-gray-200
-                    peer-checked:border-[var(--color-shuby-blue-500)] peer-checked:bg-[var(--color-shuby-blue-300)]
-                    hover:border-gray-300 transition-all shuby-p1 text-gray-700">
+        <span class="shuby-radio-pill">
           <%= t("onboarding.sex.#{sex}") %>
         </span>
       </label>
