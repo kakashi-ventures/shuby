@@ -8,10 +8,19 @@ export default class extends Controller {
     this.onKeydown = this.onKeydown.bind(this)
     this.onFrameLoad = this.onFrameLoad.bind(this)
     this.onSubmitEnd = this.onSubmitEnd.bind(this)
+    this.onTouchStart = this.onTouchStart.bind(this)
+    this.onTouchMove = this.onTouchMove.bind(this)
+    this.onTouchEnd = this.onTouchEnd.bind(this)
 
     if (this.hasFrameTarget) {
       this.frameTarget.addEventListener("turbo:frame-load", this.onFrameLoad)
       this.frameTarget.addEventListener("turbo:submit-end", this.onSubmitEnd)
+    }
+
+    if (this.hasSheetTarget) {
+      this.sheetTarget.addEventListener("touchstart", this.onTouchStart, { passive: true })
+      this.sheetTarget.addEventListener("touchmove", this.onTouchMove, { passive: false })
+      this.sheetTarget.addEventListener("touchend", this.onTouchEnd)
     }
   }
 
@@ -19,6 +28,11 @@ export default class extends Controller {
     if (this.hasFrameTarget) {
       this.frameTarget.removeEventListener("turbo:frame-load", this.onFrameLoad)
       this.frameTarget.removeEventListener("turbo:submit-end", this.onSubmitEnd)
+    }
+    if (this.hasSheetTarget) {
+      this.sheetTarget.removeEventListener("touchstart", this.onTouchStart)
+      this.sheetTarget.removeEventListener("touchmove", this.onTouchMove)
+      this.sheetTarget.removeEventListener("touchend", this.onTouchEnd)
     }
     document.removeEventListener("keydown", this.onKeydown)
     document.body.classList.remove("shuby-measurement-overlay-scroll-lock")
@@ -106,5 +120,72 @@ export default class extends Controller {
         : null
       field?.focus({ preventScroll: true })
     })
+  }
+
+  // ── Swipe-to-dismiss ────────────────────────────────────────────────────
+
+  onTouchStart(event) {
+    // Only track single-touch drags that start on the handle or near the top
+    // of the sheet. Starting in the scrollable content area passes through.
+    const touch = event.touches[0]
+    const sheet = this.sheetTarget
+    const sheetTop = sheet.getBoundingClientRect().top
+    const touchY = touch.clientY
+
+    // Allow drag initiation from anywhere in the top 60px (handle + title bar)
+    if (touchY - sheetTop > 60) {
+      const scrollable = touch.target.closest("[data-swipe-scroll]") ||
+        touch.target.closest("input, select, textarea")
+      if (scrollable) {
+        this._swipeCancelled = true
+        return
+      }
+    }
+
+    this._swipeCancelled = false
+    this._swipeStartY = touchY
+    this._swipeDelta = 0
+    sheet.style.willChange = "transform"
+    sheet.style.transition = "none"
+  }
+
+  onTouchMove(event) {
+    if (this._swipeCancelled || this._swipeStartY == null) return
+    const touch = event.touches[0]
+    const delta = Math.max(0, touch.clientY - this._swipeStartY)
+    this._swipeDelta = delta
+    // Prevent page scroll while dragging the sheet down
+    if (delta > 0) event.preventDefault()
+    this.sheetTarget.style.transform = `translateY(${delta}px)`
+  }
+
+  onTouchEnd() {
+    if (this._swipeCancelled || this._swipeStartY == null) return
+    const sheet = this.sheetTarget
+    const DISMISS_THRESHOLD = 80
+
+    sheet.style.willChange = ""
+    sheet.style.transition = ""
+
+    if (this._swipeDelta >= DISMISS_THRESHOLD) {
+      // Animate fully off-screen then close
+      sheet.style.transition = "transform 0.25s ease-out"
+      sheet.style.transform = `translateY(100%)`
+      sheet.addEventListener("transitionend", () => {
+        sheet.style.transform = ""
+        sheet.style.transition = ""
+        this.close()
+      }, { once: true })
+    } else {
+      // Snap back
+      sheet.style.transition = "transform 0.2s ease-out"
+      sheet.style.transform = ""
+      sheet.addEventListener("transitionend", () => {
+        sheet.style.transition = ""
+      }, { once: true })
+    }
+
+    this._swipeStartY = null
+    this._swipeDelta = 0
   }
 }

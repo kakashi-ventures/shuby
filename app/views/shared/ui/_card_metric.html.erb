@@ -12,6 +12,7 @@
 <% shows_percentile_column = type.to_s != "feeding_weight" %>
 <%= link_to child_measurement_path(child, measurement),
     class: "shuby-measurement-card",
+    data: { turbo_frame: "_top" },
     aria: { label: t("measurements.types.#{type}") } do %>
   <div class="shuby-measurement-card-info">
     <span class="shuby-measurement-card-info-title">
