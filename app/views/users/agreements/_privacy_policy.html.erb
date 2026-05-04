@@ -1,16 +1,248 @@
-<%# Don't forget to update the Agreement updated timestamp after modifying! %>
+<%# Informativa Privacy ex artt. 13 e 14 GDPR — single source of truth.
+    Bump LEGAL_DOCS_UPDATED_AT in config/initializers/agreements.rb
+    when modifying the substantive content. %>
 
-<p class="mb-4 text-xl text-gray-700 dark:text-gray-300 leading-normal">
-  There are several sites that can help with the creation of your privacy policy.
-</p>
+<article class="shuby-article-body">
+  <p class="shuby-p2">
+    Informativa Privacy ex artt. 13 e 14 Regolamento (UE) 2016/679 ("GDPR")
+  </p>
 
-<p class="mb-4 text-xl text-gray-700 dark:text-gray-300 leading-normal">
-  Have your text reviewed by a lawyer before going live.
-</p>
+  <nav aria-label="<%= t("users.agreements.toc.heading") %>" class="mb-8">
+    <h3 class="shuby-h3 mb-3"><%= t("users.agreements.toc.heading") %></h3>
+    <ol class="space-y-1 list-decimal list-inside text-sm">
+      <li><a href="#sezione-1">Premessa</a></li>
+      <li><a href="#sezione-2">Titolare del trattamento</a></li>
+      <li><a href="#sezione-3">Finalità del trattamento e basi giuridiche</a></li>
+      <li><a href="#sezione-4">Categorie di dati trattati</a></li>
+      <li><a href="#sezione-5">Modalità del trattamento e sicurezza</a></li>
+      <li><a href="#sezione-6">Comunicazione e destinatari dei dati</a></li>
+      <li><a href="#sezione-7">Periodo di conservazione dei dati</a></li>
+      <li><a href="#sezione-8">Diritti dell'interessato</a></li>
+      <li><a href="#sezione-9">Obbligatorietà del conferimento</a></li>
+      <li><a href="#sezione-10">Aggiornamenti dell'informativa</a></li>
+    </ol>
+  </nav>
 
-<ul>
-  <li><a href="https://github.com/basecamp/policies">Basecamp</a></li>
-  <li><a href="https://www.iubenda.com/en/">Iubenda</a></li>
-  <li><a href="https://termly.io/">Termly</a></li>
-  <li><a href="https://getterms.io/">Get Terms</a></li>
-</ul>
+  <hr>
+
+  <h2 id="sezione-1">1. Premessa</h2>
+  <p>
+    La presente informativa è resa ai sensi degli articoli 13 e 14 del
+    Regolamento (UE) 2016/679 ("GDPR") e della normativa nazionale vigente
+    (D.Lgs. 196/2003 e s.m.i.), con riferimento al trattamento dei dati
+    personali effettuato tramite la piattaforma digitale <strong>Shuby</strong>
+    (di seguito, la "Piattaforma"), gestita da <strong>Shuby S.r.l.</strong>
+    (di seguito, il "Titolare").
+  </p>
+  <p>
+    La Piattaforma è dedicata alla raccolta di informazioni fornite dai
+    genitori o dai tutori legali di bambini di età compresa tra 0 e 36 mesi
+    ("Utenti"), al fine di condurre ricerche scientifiche, fornire contenuti
+    educativi e divulgativi, nonché interazioni informative tramite chatbot
+    basati su intelligenza artificiale ("AI").
+  </p>
+  <p>
+    L'utilizzo della Piattaforma è riservato a utenti maggiorenni che
+    esercitano la responsabilità genitoriale o la tutela legale.
+  </p>
+
+  <h2 id="sezione-2">2. Titolare del trattamento</h2>
+  <ul>
+    <li><strong>Titolare</strong>: Shuby S.r.l.</li>
+    <li><strong>Sede legale</strong>: <em><%= t("legal.placeholders.legal_address") %></em></li>
+    <li><strong>Email di contatto</strong>: <em><%= t("legal.placeholders.privacy_email") %></em></li>
+    <li><strong>Telefono</strong>: <em><%= t("legal.placeholders.phone") %></em></li>
+    <li><strong>Responsabile della protezione dei dati (DPO)</strong>: <em><%= t("legal.placeholders.dpo") %></em></li>
+  </ul>
+
+  <h2 id="sezione-3">3. Finalità del trattamento e basi giuridiche</h2>
+  <p>
+    I dati personali raccolti anche tramite appositi questionari sono
+    trattati per le seguenti finalità:
+  </p>
+
+  <h3>Ricerca scientifica e statistica</h3>
+  <p>
+    Raccolta, elaborazione e successiva anonimizzazione dei dati relativi
+    allo sviluppo e alla salute dei bambini nella fascia 0–36 mesi, ai fini
+    di studi scientifici, analisi statistiche e validazione di modelli di
+    ricerca.
+  </p>
+  <p>
+    <strong>Base giuridica</strong>: consenso esplicito (art. 6, par. 1,
+    lett. a; art. 9, par. 2, lett. a GDPR).
+  </p>
+
+  <h3>Fornitura di servizi educativi e divulgativi</h3>
+  <p>
+    Accesso a contenuti informativi, articoli e materiali di approfondimento
+    destinati ai genitori/tutori e ad altri caregiver autorizzati.
+  </p>
+  <p>
+    <strong>Base giuridica</strong>: esecuzione del contratto
+    (art. 6, par. 1, lett. b GDPR).
+  </p>
+
+  <h3>Interazioni tramite AI e chatbot</h3>
+  <p>
+    Gestione delle conversazioni con sistemi di intelligenza artificiale
+    che forniscono risposte informative non diagnostiche, basate su
+    materiale validato dall'apposita commissione interna alla società e su
+    linee guida mediche riconosciute (es. OMS).
+  </p>
+  <p>
+    L'AI non formula diagnosi né prende decisioni automatizzate con effetti
+    giuridici o significativi sugli utenti (art. 22 GDPR).
+  </p>
+  <p>
+    <strong>Base giuridica</strong>: consenso esplicito
+    (art. 6, par. 1, lett. a GDPR).
+  </p>
+
+  <h3>Gestione tecnica e operativa della Piattaforma</h3>
+  <p>
+    Manutenzione, sicurezza, assistenza tecnica, miglioramento dei servizi
+    e gestione degli account.
+  </p>
+  <p>
+    <strong>Base giuridica</strong>: legittimo interesse del Titolare
+    (art. 6, par. 1, lett. f GDPR).
+  </p>
+
+  <h2 id="sezione-4">4. Categorie di dati trattati</h2>
+  <p>Il Titolare tratta le seguenti categorie di dati personali:</p>
+  <ul>
+    <li>
+      <strong>Dati identificativi del genitore/tutore</strong>: nome,
+      cognome, email, credenziali di accesso, dati di contatto e preferenze
+      di utilizzo.
+    </li>
+    <li>
+      <strong>Dati relativi al bambino</strong>: età, sesso, dati di crescita
+      e sviluppo, informazioni comportamentali e ambientali.
+    </li>
+    <li>
+      <strong>Dati sanitari particolari</strong>: informazioni relative
+      alla presenza di eventuali diagnosi (es. sordità, disturbi motori,
+      del linguaggio, dell'attenzione, dello spettro autistico).
+      Non vengono raccolti referti medici, prescrizioni o informazioni su
+      terapie e farmaci.
+    </li>
+    <li>
+      <strong>Dati derivanti dalle interazioni con l'AI/chatbot</strong>:
+      contenuti delle conversazioni, log tecnici, preferenze di consultazione.
+    </li>
+    <li>
+      <strong>Dati di navigazione e tecnici</strong>: indirizzi IP, ID
+      dispositivo, cookie tecnici, tempi di accesso, statistiche di utilizzo.
+    </li>
+  </ul>
+  <p>
+    I dati personali del bambino sono forniti esclusivamente dal genitore
+    o tutore legale titolare dell'account principale. Potranno aversi
+    account collegati all'account principale (es. altro genitore, caregiver
+    espressamente autorizzati) con accesso ai soli contenuti informativi
+    e con espresso blocco all'inserimento o alla modifica dei dati personali
+    o sanitari del minore.
+  </p>
+
+  <h2 id="sezione-5">5. Modalità del trattamento e sicurezza</h2>
+  <p>
+    Il trattamento dei dati avviene con strumenti elettronici e telematici,
+    nel rispetto dei principi di liceità, correttezza e trasparenza.
+  </p>
+  <p>
+    Sono adottate misure tecniche e organizzative adeguate ai sensi
+    dell'art. 32 GDPR, tra cui:
+  </p>
+  <ul>
+    <li>autenticazione a più fattori e differenziazione dei ruoli di accesso;</li>
+    <li>cifratura dei dati e pseudonimizzazione delle informazioni sensibili;</li>
+    <li>sistemi di backup, firewall e monitoraggio costante, procedure di disaster recovery;</li>
+    <li>formazione del personale autorizzato;</li>
+    <li>registri e audit di sicurezza periodici.</li>
+  </ul>
+
+  <h2 id="sezione-6">6. Comunicazione e destinatari dei dati</h2>
+  <p>I dati personali potranno essere trattati esclusivamente da:</p>
+  <ul>
+    <li>
+      personale autorizzato dal Titolare e da soggetti nominati Responsabili
+      del trattamento (art. 28 GDPR) per servizi di hosting, manutenzione,
+      sviluppo software, sicurezza IT, pagamenti e supporto tecnico;
+    </li>
+    <li>
+      enti di ricerca, università o istituti sanitari, solo dopo
+      anonimizzazione completa dei dati;
+    </li>
+    <li>
+      nessun dato personale o sanitario sarà diffuso o condiviso con terzi
+      non autorizzati.
+    </li>
+  </ul>
+  <p>
+    I dati sono conservati su server situati all'interno dell'Unione Europea
+    e non saranno trasferiti verso Paesi terzi.
+  </p>
+
+  <h2 id="sezione-7">7. Periodo di conservazione dei dati</h2>
+  <ul>
+    <li>
+      <strong>Dati di account e interazioni AI</strong>: conservati per
+      tutta la durata di attivazione dell'account e fino a 12 mesi dopo
+      la sua chiusura.
+    </li>
+    <li>
+      <strong>Dati utilizzati per ricerca scientifica (anonimizzati)</strong>:
+      conservati fino a 10 anni o al completamento del progetto specifico.
+    </li>
+    <li>
+      <strong>Dati di log e sicurezza</strong>: fino a 12 mesi, salvo
+      obblighi legali diversi.
+    </li>
+  </ul>
+  <p>
+    Al termine dei periodi sopra indicati, i dati saranno cancellati o
+    anonimizzati in modo irreversibile.
+  </p>
+
+  <h2 id="sezione-8">8. Diritti dell'interessato</h2>
+  <p>Il genitore o tutore che conferisce i dati personali ha il diritto di:</p>
+  <ul>
+    <li>ottenere conferma dell'esistenza dei dati trattati e accedervi (art. 15 GDPR);</li>
+    <li>richiedere la rettifica o aggiornamento (art. 16 GDPR);</li>
+    <li>ottenere la cancellazione ("diritto all'oblio") nei casi previsti (art. 17 GDPR);</li>
+    <li>limitare il trattamento (art. 18 GDPR);</li>
+    <li>opporsi al trattamento nei casi consentiti (art. 21 GDPR);</li>
+    <li>
+      revocare il consenso in qualsiasi momento (art. 7, par. 3 GDPR),
+      senza pregiudicare la liceità del trattamento precedente;
+    </li>
+    <li>
+      proporre reclamo al Garante per la Protezione dei Dati Personali
+      (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a>).
+    </li>
+  </ul>
+  <p>
+    Le richieste possono essere inviate a:
+    <em><%= t("legal.placeholders.privacy_email") %></em>.
+  </p>
+
+  <h2 id="sezione-9">9. Obbligatorietà del conferimento</h2>
+  <p>
+    Il conferimento dei dati contrassegnati come obbligatori è necessario
+    per l'utilizzo della Piattaforma e per la compilazione dei questionari.
+  </p>
+  <p>
+    Il mancato conferimento comporta l'impossibilità di accedere ai servizi
+    e alle funzionalità di ricerca.
+  </p>
+
+  <h2 id="sezione-10">10. Aggiornamenti dell'informativa</h2>
+  <p>
+    Il Titolare potrà aggiornare la presente informativa in caso di
+    modifiche normative, tecnologiche o organizzative. Le modifiche saranno
+    pubblicate sulla Piattaforma e, se rilevanti, comunicate agli utenti
+    via email.
+  </p>
+</article>

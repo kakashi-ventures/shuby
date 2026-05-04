@@ -1,8 +1,14 @@
 <% Current.meta_tags.set(title: t(".title")) %>
+<% content_for :page_type, "detail" %>
 
-<div class="container mx-auto mt-8">
-  <h1 class="mb-4"><%= t(".title") %></h1>
-  <%= tag.p t("users.agreements.show.last_updated", date: l(@agreement.updated.to_date, format: :long)), class: "mb-4 text-gray-700 leading-normal" if @agreement %>
-
-  <%= render "users/agreements/privacy_policy" %>
+<div class="container mx-auto px-4 pb-24">
+  <div class="my-8">
+    <%= render "shared/ui/page_header", title: t(".title") %>
+    <% if @agreement %>
+      <p class="shuby-p2 italic text-gray-500 mb-6">
+        <%= t("users.agreements.show.last_updated", date: l(@agreement.updated.to_date, format: :long)) %>
+      </p>
+    <% end %>
+    <%= render "users/agreements/privacy_policy" %>
+  </div>
 </div>

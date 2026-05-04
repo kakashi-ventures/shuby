@@ -1,0 +1,185 @@
+<%# Modulo di Consenso Informato Digitale (artt. 6, 7, 9 GDPR) — single
+    source of truth. Bump LEGAL_DOCS_UPDATED_AT in
+    config/initializers/agreements.rb when modifying the substantive
+    content. The two checkbox declarations described at §7 are surfaced
+    in the signup form (devise/registrations/new) and revocable from
+    Settings → Configurazione → Security. %>
+
+<article class="shuby-article-body">
+  <p class="shuby-p2">
+    Modulo di Consenso Informato Digitale<br>
+    (ai sensi degli artt. 6, 7, 9 del Regolamento (UE) 2016/679 – GDPR)
+  </p>
+
+  <p>
+    <strong>Titolo e descrizione del progetto di ricerca</strong>:
+    <em><%= t("legal.placeholders.research_project_title") %></em>.
+  </p>
+
+  <p>
+    La presente ricerca viene condotta attraverso la piattaforma digitale
+    denominata <strong>Shuby</strong>, la quale ha l'obiettivo di raccogliere
+    dati anonimi e aggregati, forniti da genitori o tutori, riguardanti
+    bambini nella fascia di età da 0 a 36 mesi, nati a termine (nascita
+    avvenuta tra la 37ª e la 42ª settimana di gestazione).
+  </p>
+
+  <p>
+    <strong>Importante</strong>: la Piattaforma non è destinata alla
+    raccolta di dati relativi a bambini nati pretermine o con condizioni
+    cliniche particolari alla nascita. In caso di nascita pretermine o
+    complicazioni significative, non compilare il questionario.
+  </p>
+
+  <nav aria-label="<%= t("users.agreements.toc.heading") %>" class="mb-8">
+    <h3 class="shuby-h3 mb-3"><%= t("users.agreements.toc.heading") %></h3>
+    <ol class="space-y-1 list-decimal list-inside text-sm">
+      <li><a href="#sezione-1">Premessa</a></li>
+      <li><a href="#sezione-2">Oggetto del consenso</a></li>
+      <li><a href="#sezione-3">Condizioni di utilizzo e accesso ai dati</a></li>
+      <li><a href="#sezione-4">Natura del conferimento</a></li>
+      <li><a href="#sezione-5">Durata del trattamento</a></li>
+      <li><a href="#sezione-6">Diritti dell'interessato</a></li>
+      <li><a href="#sezione-7">Dichiarazione di consenso</a></li>
+    </ol>
+  </nav>
+
+  <hr>
+
+  <h2 id="sezione-1">1. Premessa</h2>
+  <p>
+    Io sottoscritto/a, genitore o tutore legale del minore per il quale
+    intendo compilare i questionari disponibili sulla Piattaforma digitale
+    gestita da <strong>Shuby S.r.l.</strong> (di seguito, la "Piattaforma"),
+    dichiaro di aver letto e compreso l'<%= link_to "Informativa Privacy", privacy_path %>
+    resa ai sensi del Regolamento (UE) 2016/679 ("GDPR") e di acconsentire
+    al trattamento dei miei dati personali e di quelli del minore secondo
+    quanto indicato.
+  </p>
+  <p>
+    Confermo di essere maggiorenne, di esercitare la responsabilità
+    genitoriale o la tutela legale del minore e di essere autorizzato a
+    conferire le informazioni richieste.
+  </p>
+
+  <h2 id="sezione-2">2. Oggetto del consenso</h2>
+  <p>
+    Autorizzo <strong>Shuby S.r.l.</strong>, in qualità di Titolare del
+    trattamento, a trattare i dati personali da me forniti, compresi quelli
+    appartenenti a categorie particolari ai sensi dell'art. 9 GDPR (dati
+    relativi allo stato di salute del minore, limitatamente alla presenza
+    di diagnosi indicate nei questionari), per le seguenti finalità:
+  </p>
+  <ul>
+    <li>
+      <strong>Raccolta e analisi dei dati per ricerca scientifica</strong>
+      sullo sviluppo e sul benessere dei bambini nella fascia 0–36 mesi;
+    </li>
+    <li><strong>Elaborazione e validazione statistica dei questionari</strong>;</li>
+    <li>
+      <strong>Fornitura di contenuti divulgativi, educativi e di supporto</strong>
+      rivolti ai genitori e caregiver (es. articoli, corsi, materiali
+      informativi);
+    </li>
+    <li>
+      <strong>Interazione con chatbot basati su intelligenza artificiale (AI)</strong>
+      che forniscono informazioni generali e consigli non diagnostici,
+      basati su fonti medico-scientifiche validate (es. linee guida OMS,
+      materiale medico approntato dall'apposita commissione interna).
+    </li>
+  </ul>
+  <p>
+    Il chatbot non effettua diagnosi né sostituisce in alcun modo il
+    consulto medico. Eventuali suggerimenti o alert generati automaticamente
+    hanno carattere puramente informativo.
+  </p>
+
+  <h2 id="sezione-3">3. Condizioni di utilizzo e accesso ai dati</h2>
+  <p>
+    Confermo che per ogni bambino potrà essere attivato un solo account
+    principale autorizzato all'inserimento e modifica dei dati.
+  </p>
+  <p>
+    Gli eventuali altri account collegati (es. altro genitore o caregiver
+    dal sottoscritto debitamente autorizzato) potranno solo consultare
+    contenuti informativi o ricevere aggiornamenti, ma non modificare o
+    aggiungere dati.
+  </p>
+  <p>
+    Tutti i dati forniti saranno conservati e gestiti nel rispetto delle
+    misure di sicurezza descritte nell'<%= link_to "Informativa Privacy", privacy_path %>
+    e trattati unicamente all'interno dell'Unione Europea.
+  </p>
+  <p>
+    I dati potranno essere anonimizzati e utilizzati per finalità di
+    ricerca scientifica o statistica, ma non saranno mai diffusi o ceduti
+    in forma identificabile a terzi.
+  </p>
+
+  <h2 id="sezione-4">4. Natura del conferimento</h2>
+  <p>
+    Il conferimento dei dati è facoltativo, ma necessario per accedere
+    alla Piattaforma e partecipare ai questionari di ricerca. Il mancato
+    consenso comporterà l'impossibilità di utilizzare i servizi offerti.
+  </p>
+
+  <h2 id="sezione-5">5. Durata del trattamento</h2>
+  <p>
+    I dati personali e di account saranno conservati per tutto il periodo
+    di utilizzo della Piattaforma e fino a 12 mesi dalla chiusura
+    dell'account.
+  </p>
+  <p>
+    I dati anonimizzati potranno essere conservati per 10 anni o fino al
+    completamento del progetto di ricerca.
+  </p>
+  <p>
+    Il consenso potrà essere revocato in qualsiasi momento, senza
+    pregiudicare la liceità del trattamento già effettuato.
+  </p>
+
+  <h2 id="sezione-6">6. Diritti dell'interessato</h2>
+  <p>
+    L'Utente può esercitare in ogni momento i diritti previsti dagli
+    artt. 15–22 GDPR (accesso, rettifica, cancellazione, limitazione,
+    opposizione, portabilità, revoca del consenso) scrivendo a:
+    <em><%= t("legal.placeholders.privacy_email") %></em>.
+  </p>
+
+  <h2 id="sezione-7">7. Dichiarazione di consenso</h2>
+  <p>
+    Il/La sottoscritto/a (genitore o tutore legale) dichiara di aver letto
+    e compreso le informazioni contenute nel presente documento e
+    nell'<%= link_to "Informativa Privacy", privacy_path %> ed in particolare:
+  </p>
+  <ul>
+    <li>aver letto e compreso l'Informativa Privacy;</li>
+    <li>essere genitore/tutore legale del minore per cui intende compilare i questionari;</li>
+    <li>acconsentire al trattamento dei dati personali e sanitari del minore per le finalità sopra indicate;</li>
+    <li>comprendere che le risposte fornite dal chatbot AI hanno natura informativa e non diagnostica.</li>
+  </ul>
+
+  <h3>Consenso al trattamento dei dati personali e sanitari del minore</h3>
+  <p class="shuby-p2">(espressione del consenso ai sensi degli artt. 6 e 9 GDPR)</p>
+  <p>
+    Questo consenso è <strong>obbligatorio</strong> e viene raccolto in
+    fase di registrazione tramite l'apposita casella di selezione presente
+    sul modulo di iscrizione alla Piattaforma. Senza tale consenso non è
+    possibile attivare l'account.
+  </p>
+
+  <h3>Consenso all'utilizzo dei dati in forma anonimizzata per finalità di ricerca scientifica</h3>
+  <p>
+    Questo consenso è <strong>facoltativo</strong> e revocabile in qualsiasi
+    momento dalle impostazioni del proprio account
+    (Gestione → Impostazioni → Ricerca scientifica). La revoca non
+    pregiudica la liceità del trattamento effettuato fino a quel momento
+    né l'accesso ai servizi della Piattaforma.
+  </p>
+
+  <p class="shuby-p2 italic">
+    Data e identità del genitore/tutore vengono registrate digitalmente
+    al momento dell'accettazione, insieme al timestamp dell'evento di
+    consenso.
+  </p>
+</article>

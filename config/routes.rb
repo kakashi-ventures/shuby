@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     get :about
     get :terms
     get :privacy
+    get :consenso_informato, path: "consenso-informato"
     get :reset_app
     get :app_preview
     get :native_debug

@@ -1,16 +1,269 @@
-<%# Don't forget to update the Agreement updated timestamp after modifying! %>
+<%# Termini e Condizioni di Utilizzo — single source of truth.
+    Bump LEGAL_DOCS_UPDATED_AT in config/initializers/agreements.rb
+    when modifying the substantive content. %>
 
-<p class="mb-4 text-xl text-gray-700 dark:text-gray-300 leading-normal">
-  There are several sites that can help with the creation of your terms of service.
-</p>
+<article class="shuby-article-body">
+  <nav aria-label="<%= t("users.agreements.toc.heading") %>" class="mb-8">
+    <h3 class="shuby-h3 mb-3"><%= t("users.agreements.toc.heading") %></h3>
+    <ol class="space-y-1 list-decimal list-inside text-sm">
+      <li><a href="#sezione-1">Identificazione della Società</a></li>
+      <li><a href="#sezione-2">Oggetto e finalità della Piattaforma</a></li>
+      <li><a href="#sezione-3">Registrazione e accesso alla Piattaforma</a></li>
+      <li><a href="#sezione-4">Servizi a pagamento, durata e rinnovo automatico</a></li>
+      <li><a href="#sezione-5">Diritto di recesso</a></li>
+      <li><a href="#sezione-6">Chatbot e intelligenza artificiale (AI)</a></li>
+      <li><a href="#sezione-7">Protezione dei dati personali</a></li>
+      <li><a href="#sezione-8">Proprietà intellettuale</a></li>
+      <li><a href="#sezione-9">Sospensione o cessazione dei servizi</a></li>
+      <li><a href="#sezione-10">Limitazione di responsabilità</a></li>
+      <li><a href="#sezione-11">Modifiche ai Termini e Condizioni</a></li>
+      <li><a href="#sezione-12">Legge applicabile e foro competente</a></li>
+      <li><a href="#sezione-13">Contatti</a></li>
+    </ol>
+  </nav>
 
-<p class="mb-4 text-xl text-gray-700 dark:text-gray-300 leading-normal">
-  Have your text reviewed by a lawyer before going live.
-</p>
+  <hr>
 
-<ul>
-  <li><a href="https://github.com/basecamp/policies">Basecamp</a></li>
-  <li><a href="https://www.iubenda.com/en/">Iubenda</a></li>
-  <li><a href="https://termly.io/">Termly</a></li>
-  <li><a href="https://getterms.io/">Get Terms</a></li>
-</ul>
+  <h2 id="sezione-1">1. Identificazione della Società</h2>
+  <p>
+    La piattaforma digitale <strong>Shuby</strong> (di seguito, la "Piattaforma")
+    è gestita da <strong>Shuby S.r.l.</strong>, con sede legale in
+    <em><%= t("legal.placeholders.legal_address") %></em>,
+    codice fiscale e partita IVA <strong>13408430018</strong>,
+    indirizzo PEC <em><%= t("legal.placeholders.pec") %></em>,
+    e indirizzo email di contatto <em><%= t("legal.placeholders.contact_email") %></em>
+    (di seguito, la "Società").
+  </p>
+  <p>
+    La Società è altresì titolare del trattamento dei dati personali raccolti
+    tramite la Piattaforma, come indicato nell'<%= link_to "Informativa Privacy", privacy_path %>.
+  </p>
+
+  <h2 id="sezione-2">2. Oggetto e finalità della Piattaforma</h2>
+  <p>
+    La Piattaforma è gestita dalla Società ed è finalizzata alla raccolta,
+    gestione ed elaborazione di dati a supporto di attività di ricerca
+    scientifica, nonché, in via complementare, per finalità divulgative,
+    formative e commerciali strettamente connesse ai servizi resi dalla
+    Piattaforma nell'ambito dello studio e della ricerca finalizzata ad
+    intercettare precocemente i disturbi dello sviluppo infantile, con
+    particolare riferimento ai bambini nati a termine (tra la 37ª e la 42ª
+    settimana di gestazione) e di età compresa tra 0 e 36 mesi.
+  </p>
+  <p>Attraverso la Piattaforma, la Società mette a disposizione:</p>
+  <ul>
+    <li>
+      <strong>Questionari di ricerca</strong>, compilabili esclusivamente
+      da genitori o tutori legali maggiorenni, finalizzati alla raccolta
+      di dati sullo sviluppo e sul benessere dei bambini.
+      I questionari possono includere domande relative a eventuali diagnosi
+      (es. disturbi motori, del linguaggio, dello spettro autistico, ecc.),
+      ma non raccolgono informazioni su terapie o trattamenti specifici.
+      L'inserimento di dati relativi a bambini nati pretermine o con
+      condizioni cliniche particolari non è consentito.
+    </li>
+    <li>
+      <strong>Servizi informativi, educativi e divulgativi</strong>, come
+      articoli, corsi anche online di approfondimento e materiali formativi,
+      anche digitali, anche a pagamento, destinati ai genitori e caregiver.
+    </li>
+    <li>
+      <strong>Chatbot e strumenti interattivi basati su intelligenza
+      artificiale (AI)</strong>, finalizzati a fornire risposte e suggerimenti
+      informativi resi sulla base dei dati inseriti e delle linee guida
+      mediche riconosciute (es. OMS).
+    </li>
+  </ul>
+
+  <h2 id="sezione-3">3. Registrazione e accesso alla Piattaforma</h2>
+  <p>
+    Per accedere ai servizi, è necessario creare un account personale.
+    Per ciascun bambino è previsto un solo account principale, autorizzato
+    a inserire dati e compilare i questionari. Ulteriori account collegati
+    (es. l'altro genitore e/o eventuali caregiver) potranno accedere a
+    contenuti informativi, ma non saranno autorizzati a inserire o modificare
+    dati del minore.
+  </p>
+  <p>
+    La registrazione è consentita solo a utenti maggiorenni che esercitino
+    la responsabilità genitoriale o la tutela legale del bambino.
+  </p>
+  <p>
+    L'utente è tenuto a fornire dati veritieri e a custodire con diligenza
+    le proprie credenziali. La Società si riserva la facoltà di sospendere
+    o disattivare ogni account in caso di violazioni o uso improprio della
+    Piattaforma.
+  </p>
+
+  <h2 id="sezione-4">4. Servizi a pagamento, durata e rinnovo automatico</h2>
+  <p>
+    Alcuni servizi offerti dalla Piattaforma (ad es. corsi online, contenuti
+    formativi, attività digitali) possono essere a pagamento.
+  </p>
+  <p>
+    Salvo ove diversamente specificato in Piattaforma, gli abbonamenti
+    offerti hanno durata annuale con rinnovo automatico, salvo disdetta
+    comunicata dall'utente entro i termini indicati nella sezione a ciò
+    dedicata della Piattaforma.
+  </p>
+  <p>
+    La Società invierà comunicazione preventiva in prossimità del rinnovo,
+    con le istruzioni per la disattivazione. I pagamenti possono essere
+    gestiti direttamente dalla Società o tramite fornitori esterni
+    (es. PayPal o analoghi sistemi di pagamento).
+  </p>
+
+  <h2 id="sezione-5">5. Diritto di recesso</h2>
+  <p>
+    L'utente ha diritto di recedere dal contratto entro 14 giorni dalla
+    conclusione dello stesso, senza penalità e senza obbligo di motivazione,
+    comunicando la propria decisione via email all'indirizzo
+    <em><%= t("legal.placeholders.withdrawal_email") %></em>.
+  </p>
+  <p>
+    Il diritto di recesso non si applica ai servizi digitali già pienamente
+    erogati con consenso espresso dell'utente. Decorso il predetto termine
+    di 14 giorni, non sono previsti rimborsi (parziali o totali).
+  </p>
+
+  <h2 id="sezione-6">6. Chatbot e intelligenza artificiale (AI)</h2>
+  <p>
+    I chatbot presenti sulla Piattaforma utilizzano tecnologie di
+    intelligenza artificiale appositamente addestrate sulla base di
+    materiali medico-scientifici forniti dalla commissione tecnico-scientifica
+    interna alla Società e di linee guida internazionali (es. OMS).
+  </p>
+  <p>
+    Tali strumenti hanno esclusiva finalità informativa e divulgativa: non
+    forniscono diagnosi, né sostituiscono consulenze mediche o professionali.
+  </p>
+  <p>Le risposte generate automaticamente potrebbero contenere imprecisioni o errori.</p>
+  <p>
+    La Società non potrà essere ritenuta responsabile di decisioni, azioni
+    o omissioni adottate dagli utenti sulla base delle informazioni fornite
+    dal chatbot.
+  </p>
+
+  <h2 id="sezione-7">7. Protezione dei dati personali</h2>
+  <p>
+    La Società tratta i dati personali nel rispetto del Regolamento (UE)
+    2016/679 ("GDPR") e della normativa nazionale vigente.
+  </p>
+  <p>
+    I questionari sono gestiti con modalità tali da garantire la
+    pseudonimizzazione o anonimizzazione dei dati.
+  </p>
+  <p>
+    I dati personali utilizzati per la gestione dell'account e dei pagamenti
+    sono conservati separatamente e protetti da misure di sicurezza adeguate.
+  </p>
+  <p>
+    Eventuali dati di natura particolare (es. relativi alla salute o allo
+    sviluppo del bambino) sono trattati solo con consenso esplicito
+    dell'utente e utilizzati esclusivamente per finalità di ricerca
+    scientifica.
+  </p>
+  <p>I dati non saranno trasferiti al di fuori dello Spazio Economico Europeo (SEE).</p>
+  <p>
+    Per maggiori dettagli, si rinvia all'<%= link_to "Informativa Privacy", privacy_path %>
+    disponibile sulla Piattaforma.
+  </p>
+
+  <h2 id="sezione-8">8. Proprietà intellettuale</h2>
+  <p>
+    Tutti i contenuti, materiali, loghi, testi, grafici, immagini, database
+    e software presenti sulla Piattaforma sono di proprietà della Società
+    o concessi in licenza d'uso e sono protetti dalle leggi in materia di
+    diritto d'autore e proprietà industriale.
+  </p>
+  <p>
+    In particolare, l'autorizzazione ad accedere ai servizi e a visualizzare
+    e scaricare i materiali dalla Piattaforma è consentita a condizione che:
+    (i) vengano conservati tutti i diritti d'autore e gli altri avvisi
+    proprietari contenuti nei materiali originali su tutte le copie dei
+    materiali; (ii) l'uso di tali materiali sia esclusivamente personale
+    e non commerciale e non venga copiato o pubblicato su alcun computer
+    di rete o trasmesso su alcun mezzo; (iii) non vengano modificati i
+    materiali in alcun modo o riprodotti, mostrati pubblicamente, eseguiti,
+    distribuiti, trasmessi o creati lavori derivati da nessuno dei materiali;
+    e (iv) non si tentino di copiare, decompilare o sottoporre a reverse
+    engineering alcuno dei codici del sito, applicazioni, interfacce o servizi.
+  </p>
+  <p>
+    L'autorizzazione di cui sopra non include il design dei Servizi o il
+    layout dei Siti Web, i cui elementi sono legalmente protetti e non
+    possono essere copiati o imitati in tutto o in parte. Nessun logo,
+    elemento grafico, suono o immagine di questo Sito Web può essere copiato
+    o ritrasmesso se non espressamente autorizzato dal Titolare. Nessun
+    altro utilizzo dei materiali è autorizzato. I materiali presenti su
+    questa Piattaforma sono proprietari e qualsiasi utilizzo non autorizzato
+    di qualsiasi materiale presente su questa Piattaforma può violare le
+    leggi sul copyright, sui marchi e altre leggi in tema di proprietà
+    industriale e intellettuale. La Piattaforma rispetta i diritti di
+    proprietà intellettuale di terze parti e richiede agli utenti dei
+    Servizi di informare il Titolare all'indirizzo
+    <em><%= t("legal.placeholders.ip_violation_email") %></em>
+    qualora venissero a conoscenza che qualsiasi contenuto di questa
+    Piattaforma o dei Servizi possa violare o infrangere i diritti di
+    proprietà intellettuale di terze parti.
+  </p>
+  <p>
+    Utilizzando i Servizi, l'utente accetta di non utilizzarli per scopi
+    illeciti o che violino in altro modo leggi, regolamenti o diritti di
+    individui o entità. L'utente non dovrà travisare la propria identità
+    durante l'utilizzo dei Servizi e non dovrà inviare o trasmettere a o
+    tramite questo sito web materiale illecito, diffamatorio, minaccioso
+    o altrimenti discutibile. L'utente non dovrà utilizzare questo sito
+    web per tentare di accedere o divulgare informazioni di identificazione
+    personale o raccogliere informazioni sugli utenti dei Servizi.
+  </p>
+
+  <h2 id="sezione-9">9. Sospensione o cessazione dei servizi</h2>
+  <p>La Società potrà sospendere, limitare o cessare l'erogazione dei servizi in caso di:</p>
+  <ul>
+    <li>violazione dei presenti Termini e Condizioni;</li>
+    <li>utilizzo improprio o illecito della Piattaforma;</li>
+    <li>interventi di manutenzione o aggiornamento tecnico.</li>
+  </ul>
+  <p>
+    In caso di sospensione per motivi non imputabili all'utente, la Società
+    ne darà comunicazione preventiva, salvo urgenze.
+  </p>
+
+  <h2 id="sezione-10">10. Limitazione di responsabilità</h2>
+  <p>
+    La Piattaforma è fornita "così com'è" ("as is"), senza garanzie di
+    continuità o assenza di errori. La Società non è responsabile per:
+  </p>
+  <ul>
+    <li>eventuali interruzioni, malfunzionamenti o errori di sistema;</li>
+    <li>decisioni o comportamenti assunti dagli utenti sulla base dei contenuti forniti dalla Piattaforma o dai chatbot;</li>
+    <li>danni indiretti, consequenziali o perdita di dati.</li>
+  </ul>
+  <p>L'utilizzo della Piattaforma avviene sotto la piena responsabilità dell'utente.</p>
+
+  <h2 id="sezione-11">11. Modifiche ai Termini e Condizioni</h2>
+  <p>
+    La Società potrà aggiornare o modificare i presenti termini e condizioni
+    in qualsiasi momento e senza preavviso. Le modifiche saranno pubblicate
+    sulla Piattaforma con indicazione della data di ultima revisione.
+    L'utilizzo continuato della Piattaforma dopo la pubblicazione delle
+    modifiche comporta l'accettazione delle nuove condizioni.
+  </p>
+
+  <h2 id="sezione-12">12. Legge applicabile e foro competente</h2>
+  <p>I presenti Termini e Condizioni sono regolati dalla legge italiana.</p>
+  <p>
+    Per le controversie con utenti qualificabili come consumatori, il foro
+    competente è quello di residenza o domicilio dell'utente, ai sensi
+    dell'art. 66-bis del Codice del Consumo.
+  </p>
+
+  <h2 id="sezione-13">13. Contatti</h2>
+  <p>Per informazioni o assistenza, l'utente può contattare la Società ai seguenti recapiti:</p>
+  <ul>
+    <li>Email: <em><%= t("legal.placeholders.contact_email") %></em></li>
+    <li>PEC: <em><%= t("legal.placeholders.pec") %></em></li>
+    <li>Telefono: <em><%= t("legal.placeholders.phone") %></em></li>
+  </ul>
+</article>
