@@ -390,6 +390,21 @@
     }
 }
 
+/* Legal document body variant — overrides marker color to fucsia-500. Green is
+   reserved for editorial/article content; fucsia signals a Shuby brand prose
+   variant that's distinct without carrying the destructive connotation of
+   fucsia-700 (delete account). Used by the three lawyer-drafted documents
+   under app/views/users/agreements/. */
+.shuby-legal-body {
+    ol li::before {
+        color: var(--color-shuby-fucsia-500);
+    }
+
+    ul:not(.shuby-list-hearts) li::before {
+        color: var(--color-shuby-fucsia-500);
+    }
+}
+
 /* Tip "Elenco Puntato" recommendations list (Figma 532:25861 game / 532:26226
    book "Perché è consigliato"). The Figma marker is a small blue dot inside a
    23×26 layout slot — not a custom illustration, so this is a CSS pseudo-
