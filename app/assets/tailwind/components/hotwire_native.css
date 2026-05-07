@@ -53,9 +53,11 @@ html.hotwire-native main {
   padding-bottom: calc(env(safe-area-inset-bottom) + 56px);
 }
 
-/* Beta feedback FAB — clear native tab bar */
+/* Beta feedback FAB — hidden on iOS; replaced by native_fab_tag (gem 0.8.2+).
+   The native FAB synthesises a click on .beta-feedback-fab to drive the
+   existing Stimulus modal-open action. */
 html.hotwire-native .beta-feedback-fab {
-  bottom: calc(env(safe-area-inset-bottom) + 96px);
+  display: none;
 }
 
 /* Per-page <body> background match. Driven by `content_for :body_background`
