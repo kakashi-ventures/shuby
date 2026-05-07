@@ -5,10 +5,10 @@
     Figma: 315:3672 (overlay) + 220:2341 (pills) + 159:935 (avatars). %>
 <% children = current_account.children.active.ordered %>
 
-<div data-controller="child-selector-overlay"
-     data-child-selector-overlay-open-class="shuby-child-selector-overlay--open">
+<div data-controller="bottom-sheet"
+     data-bottom-sheet-open-class="shuby-bottom-sheet--open">
   <button type="button"
-          data-action="click->child-selector-overlay#open"
+          data-action="click->bottom-sheet#open"
           class="shuby-child-selector-trigger">
     <span class="shuby-h3"><%= current_child&.display_name || t("dashboard.header.no_child") %></span>
     <% if children.size > 1 || children.empty? %>

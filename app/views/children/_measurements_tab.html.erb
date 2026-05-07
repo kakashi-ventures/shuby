@@ -3,8 +3,8 @@
 <% picker_boxes = MeasurementDashboardService.picker_boxes(@child) %>
 <div class="space-y-4"
      data-controller="measurement-overlay measurement-picker-overlay"
-     data-measurement-overlay-open-class="shuby-measurement-overlay--open"
-     data-measurement-picker-overlay-open-class="shuby-measurement-picker-overlay--open">
+     data-measurement-overlay-open-class="shuby-bottom-sheet--open"
+     data-measurement-picker-overlay-open-class="shuby-bottom-sheet--open">
   <div class="shuby-section-header-row">
     <h2 class="shuby-h3 text-shuby-blue-800"><%= t("measurements.index.title") %></h2>
     <button type="button"

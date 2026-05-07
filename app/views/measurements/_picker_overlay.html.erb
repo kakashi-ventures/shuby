@@ -10,21 +10,21 @@
     boxes - 4 MeasurementDashboardService::MeasurementBox (one per type)
     child - Child record
 %>
-<div class="shuby-measurement-picker-overlay"
+<div class="shuby-bottom-sheet"
      data-measurement-picker-overlay-target="overlay"
      aria-hidden="true">
-  <div class="shuby-measurement-picker-overlay-backdrop"
+  <div class="shuby-bottom-sheet-backdrop"
        data-action="click->measurement-picker-overlay#close"></div>
-  <div class="shuby-measurement-picker-overlay-sheet"
+  <div class="shuby-bottom-sheet-sheet"
        role="dialog"
        aria-modal="true"
        aria-label="<%= t("measurements.picker.title") %>"
        data-measurement-picker-overlay-target="sheet">
-    <div class="shuby-measurement-picker-overlay-handle" aria-hidden="true"></div>
-    <h2 class="shuby-measurement-picker-overlay-title">
+    <div class="shuby-bottom-sheet-handle" aria-hidden="true"></div>
+    <h2 class="shuby-measurement-sheet-title">
       <%= t("measurements.picker.title") %>
     </h2>
-    <div class="shuby-measurement-picker-overlay-grid">
+    <div class="shuby-measurement-picker-grid">
       <% boxes.each do |box| %>
         <%= render "dashboard/measurement_box",
             box: box,

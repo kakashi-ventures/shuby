@@ -1,0 +1,98 @@
+/* =====================================================
+   BOTTOM SHEET — shared chrome for all overlay sheets
+   Hoisted from .shuby-measurement-overlay-* +
+   .shuby-measurement-picker-overlay-* + .shuby-child-selector-overlay-*
+   per Figma 315:3672 (child selector) and 621:9860 (measurement form).
+
+   Pair with `bottom_sheet_controller.js` (open/close/escape/swipe/
+   backdrop/scroll-lock) when no surface-specific behavior is needed.
+   Surfaces with extra behavior — Turbo frame loading, skeleton restore,
+   submit-end navigation — keep their own dedicated Stimulus controllers
+   and reuse these CSS classes. CSS is the shared contract; JS stays
+   standalone (Stimulus inheritance was tried and dropped). See
+   `.claude/rules/bottom-sheet-overlays.md`.
+   ===================================================== */
+
+.shuby-bottom-sheet {
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    pointer-events: none;
+    visibility: hidden;
+    transition: visibility 200ms ease-out;
+}
+
+.shuby-bottom-sheet--open {
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.shuby-bottom-sheet-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+}
+
+.shuby-bottom-sheet--open .shuby-bottom-sheet-backdrop {
+    opacity: 1;
+}
+
+.shuby-bottom-sheet-sheet {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-shuby-blue-500);
+    border-top-left-radius: var(--radius-grande);
+    border-top-right-radius: var(--radius-grande);
+    box-shadow: 0 0 10px 0 rgba(158, 198, 240, 0.3);
+    padding: var(--space-4) var(--space-5);
+    padding-bottom: calc(var(--space-6) + env(safe-area-inset-bottom));
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 250ms ease-out;
+}
+
+.shuby-bottom-sheet--open .shuby-bottom-sheet-sheet {
+    transform: translateY(0);
+}
+
+/* Tall variant — 480px floor so layouts with a flex spacer (footer
+   actions pushed to the bottom) don't collapse to content height. The
+   picker (4-card grid, no spacer) does not use this. */
+.shuby-bottom-sheet--tall .shuby-bottom-sheet-sheet {
+    min-height: 480px;
+}
+
+/* Drag handle — 146x6 black per Figma 315:3672. Canonical for every
+   Shuby bottom sheet; do not customize per surface. */
+.shuby-bottom-sheet-handle {
+    width: 146px;
+    height: 6px;
+    border-radius: var(--radius-tondo);
+    background-color: var(--color-shuby-black);
+    margin: 0 auto var(--space-4);
+}
+
+.shuby-bottom-sheet-spacer {
+    flex: 1 1 auto;
+    min-height: var(--space-8);
+}
+
+.shuby-bottom-sheet-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    padding-top: var(--space-6);
+}
+
+.shuby-bottom-sheet-scroll-lock {
+    overflow: hidden;
+    touch-action: none;
+}

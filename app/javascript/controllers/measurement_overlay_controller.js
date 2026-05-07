@@ -1,5 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
+// Measurement form bottom sheet. Figma: 621:9860 (Overlay_Aggiungi
+// Altezza). Built on the shared `.shuby-bottom-sheet-*` CSS classes
+// (see `bottom-sheet.css`) but the JS contract is standalone — Stimulus
+// inheritance across importmap-loaded base classes is unreliable, so
+// the open/close/swipe/scroll-lock behavior is duplicated here rather
+// than imported from `BottomSheetController`.
 export default class extends Controller {
   static targets = ["sheet", "frame", "overlay", "skeletonTemplate"]
   static classes = ["open"]
@@ -35,7 +41,7 @@ export default class extends Controller {
       this.sheetTarget.removeEventListener("touchend", this.onTouchEnd)
     }
     document.removeEventListener("keydown", this.onKeydown)
-    document.body.classList.remove("shuby-measurement-overlay-scroll-lock")
+    document.body.classList.remove("shuby-bottom-sheet-scroll-lock")
   }
 
   // Intercepts a click on a link targeting the overlay frame. Opens the
@@ -56,14 +62,14 @@ export default class extends Controller {
   open() {
     this.overlayElement.classList.add(this.openClass)
     this.overlayElement.setAttribute("aria-hidden", "false")
-    document.body.classList.add("shuby-measurement-overlay-scroll-lock")
+    document.body.classList.add("shuby-bottom-sheet-scroll-lock")
     document.addEventListener("keydown", this.onKeydown)
   }
 
   close() {
     this.overlayElement.classList.remove(this.openClass)
     this.overlayElement.setAttribute("aria-hidden", "true")
-    document.body.classList.remove("shuby-measurement-overlay-scroll-lock")
+    document.body.classList.remove("shuby-bottom-sheet-scroll-lock")
     document.removeEventListener("keydown", this.onKeydown)
     if (this.hasFrameTarget) {
       // Restore the default skeleton so the next open shows it again
@@ -88,7 +94,7 @@ export default class extends Controller {
   }
 
   onFrameLoad() {
-    // Sheet is already open — just focus the first field now that the form
+    // Sheet is already open — focus the first field now that the form
     // has been swapped in for the skeleton.
     this.focusFirstField()
   }
@@ -170,7 +176,7 @@ export default class extends Controller {
     if (this._swipeDelta >= DISMISS_THRESHOLD) {
       // Animate fully off-screen then close
       sheet.style.transition = "transform 0.25s ease-out"
-      sheet.style.transform = `translateY(100%)`
+      sheet.style.transform = "translateY(100%)"
       sheet.addEventListener("transitionend", () => {
         sheet.style.transform = ""
         sheet.style.transition = ""

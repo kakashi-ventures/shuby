@@ -8,6 +8,15 @@ import { Controller } from "@hotwired/stimulus"
 // Picker cards close this overlay AND open the form overlay via a
 // chained Stimulus `data-action` (see measurement_overlay_link_data
 // helper with `close_picker: true`).
+//
+// Uses the shared `.shuby-bottom-sheet-*` CSS classes from
+// `bottom-sheet.css` (chrome) and the `shuby-bottom-sheet--open`
+// modifier (configured via `data-measurement-picker-overlay-open-class`
+// on the host element). The behavior is duplicated rather than
+// inherited from `BottomSheetController` because Stimulus's static
+// metadata pickup across imported base classes is unreliable in this
+// importmap setup; the CSS extraction is what guarantees visual
+// parity, not a shared JS class hierarchy.
 export default class extends Controller {
   static targets = ["overlay", "sheet"]
   static classes = ["open"]
@@ -21,14 +30,14 @@ export default class extends Controller {
 
   disconnect() {
     document.removeEventListener("keydown", this.onKeydown)
-    document.body.classList.remove("shuby-measurement-overlay-scroll-lock")
+    document.body.classList.remove("shuby-bottom-sheet-scroll-lock")
     this._detachSwipe()
   }
 
   open() {
     this.overlayElement.classList.add(this.openClass)
     this.overlayElement.setAttribute("aria-hidden", "false")
-    document.body.classList.add("shuby-measurement-overlay-scroll-lock")
+    document.body.classList.add("shuby-bottom-sheet-scroll-lock")
     document.addEventListener("keydown", this.onKeydown)
     this._attachSwipe()
   }
@@ -36,7 +45,7 @@ export default class extends Controller {
   close() {
     this.overlayElement.classList.remove(this.openClass)
     this.overlayElement.setAttribute("aria-hidden", "true")
-    document.body.classList.remove("shuby-measurement-overlay-scroll-lock")
+    document.body.classList.remove("shuby-bottom-sheet-scroll-lock")
     document.removeEventListener("keydown", this.onKeydown)
     this._detachSwipe()
   }
@@ -106,7 +115,7 @@ export default class extends Controller {
 
     if (this._swipeDelta >= DISMISS_THRESHOLD) {
       sheet.style.transition = "transform 0.25s ease-out"
-      sheet.style.transform = `translateY(100%)`
+      sheet.style.transform = "translateY(100%)"
       sheet.addEventListener("transitionend", () => {
         sheet.style.transform = ""
         sheet.style.transition = ""

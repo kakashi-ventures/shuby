@@ -1,13 +1,24 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Bottom-sheet overlay for the dashboard child selector. Mirrors
-// measurement_overlay_controller in shape (open/close + escape +
-// backdrop + swipe-to-dismiss) but omits the turbo_frame logic —
-// the overlay's content is server-rendered inline because the list
-// of children is small and stable across opens. Selection POSTs hit
-// /child_selections/:id which redirect_back's; Turbo Drive handles
-// the navigation.
-export default class extends Controller {
+// Generic bottom-sheet controller — open/close, Escape-to-close, body
+// scroll-lock, swipe-to-dismiss, defensive backdrop-click handler.
+//
+// Identifier: `bottom-sheet`. Use directly on a host element:
+//   <div data-controller="bottom-sheet"
+//        data-bottom-sheet-open-class="shuby-bottom-sheet--open">
+//     ...
+//   </div>
+// when no surface-specific behavior is needed (e.g. dashboard child
+// selector). Surfaces that DO need extra behavior — Turbo-frame loads,
+// skeleton restore, submit-end navigation — keep their own dedicated
+// Stimulus controller and just reuse the same `.shuby-bottom-sheet-*`
+// CSS classes (see measurement_overlay_controller.js for the form
+// flow). Inheritance was tried and dropped; CSS extraction is what
+// guarantees visual parity across surfaces, not a shared JS hierarchy.
+//
+// Pairs with .shuby-bottom-sheet-* in
+// app/assets/tailwind/components/shuby/bottom-sheet.css.
+export default class BottomSheetController extends Controller {
   static targets = ["overlay", "sheet"]
   static classes = ["open"]
 
@@ -31,22 +42,29 @@ export default class extends Controller {
       this.sheetTarget.removeEventListener("touchend", this.onTouchEnd)
     }
     document.removeEventListener("keydown", this.onKeydown)
-    document.body.classList.remove("shuby-child-selector-overlay-scroll-lock")
+    document.body.classList.remove("shuby-bottom-sheet-scroll-lock")
   }
 
   open(event) {
     event?.preventDefault?.()
     this.overlayElement.classList.add(this.openClass)
     this.overlayElement.setAttribute("aria-hidden", "false")
-    document.body.classList.add("shuby-child-selector-overlay-scroll-lock")
+    document.body.classList.add("shuby-bottom-sheet-scroll-lock")
     document.addEventListener("keydown", this.onKeydown)
   }
 
   close() {
     this.overlayElement.classList.remove(this.openClass)
     this.overlayElement.setAttribute("aria-hidden", "true")
-    document.body.classList.remove("shuby-child-selector-overlay-scroll-lock")
+    document.body.classList.remove("shuby-bottom-sheet-scroll-lock")
     document.removeEventListener("keydown", this.onKeydown)
+  }
+
+  // Defensive backdrop-click handler. Use when the action target is the
+  // backdrop element itself — guarantees the close fires only on backdrop
+  // clicks, not on bubbled clicks from descendants.
+  closeOnBackdrop(event) {
+    if (event.target === event.currentTarget) this.close()
   }
 
   get overlayElement() {
@@ -65,6 +83,9 @@ export default class extends Controller {
     const sheetTop = sheet.getBoundingClientRect().top
     const touchY = touch.clientY
 
+    // Allow drag initiation from anywhere in the top 60px (handle + title).
+    // Touches below that pass through if they start on a scrollable child
+    // or a form input — otherwise they still drive the dismiss gesture.
     if (touchY - sheetTop > 60) {
       const scrollable = touch.target.closest("[data-swipe-scroll]") ||
         touch.target.closest("input, select, textarea")
@@ -100,7 +121,7 @@ export default class extends Controller {
 
     if (this._swipeDelta >= DISMISS_THRESHOLD) {
       sheet.style.transition = "transform 0.25s ease-out"
-      sheet.style.transform = `translateY(100%)`
+      sheet.style.transform = "translateY(100%)"
       sheet.addEventListener("transitionend", () => {
         sheet.style.transform = ""
         sheet.style.transition = ""

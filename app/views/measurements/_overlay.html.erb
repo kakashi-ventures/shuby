@@ -6,17 +6,17 @@
 
   Figma: node 621:9860 (Overlay_Aggiungi Altezza).
 %>
-<div class="shuby-measurement-overlay"
+<div class="shuby-bottom-sheet shuby-bottom-sheet--tall"
      data-measurement-overlay-target="overlay"
      aria-hidden="true">
-  <div class="shuby-measurement-overlay-backdrop"
+  <div class="shuby-bottom-sheet-backdrop"
        data-action="click->measurement-overlay#close"></div>
-  <div class="shuby-measurement-overlay-sheet"
+  <div class="shuby-bottom-sheet-sheet"
        data-measurement-overlay-target="sheet"
        role="dialog"
        aria-modal="true"
        aria-label="<%= t("measurements.index.add_new") %>">
-    <div class="shuby-measurement-overlay-handle" aria-hidden="true"></div>
+    <div class="shuby-bottom-sheet-handle" aria-hidden="true"></div>
     <%= turbo_frame_tag "measurement_form",
         data: { measurement_overlay_target: "frame" },
         class: "block" do %>

@@ -9,7 +9,7 @@
       class: "mb-6" %>
 
   <%= turbo_frame_tag "measurement_form", class: "flex flex-col flex-1" do %>
-    <h1 id="measurement_overlay_title" class="shuby-measurement-overlay-title">
+    <h1 id="measurement_overlay_title" class="shuby-measurement-sheet-title">
       <%= t("measurements.types.#{@measurement.measurement_type || 'weight'}") %>
     </h1>
     <%= render "form", context: :overlay %>

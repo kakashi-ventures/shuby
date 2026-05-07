@@ -1,7 +1,7 @@
 <% if @measurement_boxes.present? %>
   <section class="mb-6"
            data-controller="measurement-overlay"
-           data-measurement-overlay-open-class="shuby-measurement-overlay--open">
+           data-measurement-overlay-open-class="shuby-bottom-sheet--open">
     <div class="shuby-metric-grid">
       <% @measurement_boxes.each do |box| %>
         <%= render "dashboard/measurement_box", box: box, child: current_child %>

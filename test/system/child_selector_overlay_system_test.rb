@@ -15,20 +15,20 @@ class ChildSelectorOverlaySystemTest < ApplicationSystemTestCase
 
   def open_overlay
     visit "/today"
-    find("[data-controller='child-selector-overlay'] > button").click
-    assert_selector ".shuby-child-selector-overlay--open"
+    find("[data-controller='bottom-sheet'] > button").click
+    assert_selector "[data-bottom-sheet-target='overlay'].shuby-bottom-sheet--open"
   end
 
   test "trigger opens the overlay" do
     visit "/today"
 
-    overlay = find(".shuby-child-selector-overlay", visible: :all)
+    overlay = find("[data-bottom-sheet-target='overlay']", visible: :all)
     assert_equal "true", overlay["aria-hidden"]
 
-    find("[data-controller='child-selector-overlay'] > button").click
+    find("[data-controller='bottom-sheet'] > button").click
 
-    assert_selector ".shuby-child-selector-overlay.shuby-child-selector-overlay--open"
-    assert_selector ".shuby-child-selector-overlay-sheet[role=dialog][aria-modal=true]"
+    assert_selector "[data-bottom-sheet-target='overlay'].shuby-bottom-sheet--open"
+    assert_selector "[data-bottom-sheet-target='sheet'][role=dialog][aria-modal=true]"
   end
 
   test "selected child carries the -selected modifier and Bianco avatar" do
@@ -66,7 +66,7 @@ class ChildSelectorOverlaySystemTest < ApplicationSystemTestCase
 
     # button_to issues a PATCH that redirect_back's; Capybara follows it.
     # Re-open the overlay and confirm the modifier moved.
-    find("[data-controller='child-selector-overlay'] > button").click
+    find("[data-controller='bottom-sheet'] > button").click
 
     new_selected = find(".shuby-child-selector-pill.-selected")
     assert_includes new_selected.text, @other_child.display_name
@@ -87,13 +87,13 @@ class ChildSelectorOverlaySystemTest < ApplicationSystemTestCase
     assert_current_path new_child_path
   end
 
-  test "outline tag navigates to gestione account" do
+  test "outline button navigates to gestione account" do
     open_overlay
 
     # Bottom nav (`.shuby-bottom-nav-fixed`) is hidden globally in the iOS
     # Ruby Native shell (per `hotwire_native.css`) but renders in the test
-    # browser, where Selenium intercepts the click on the outline tag. JS
-    # click bypasses the layered hit-test; production iOS never sees it.
+    # browser, where Selenium intercepts the click on the outline button.
+    # JS click bypasses the layered hit-test; production iOS never sees it.
     link = find_link(I18n.t("dashboard.header.account_management"))
     page.execute_script("arguments[0].click();", link)
 
@@ -103,9 +103,9 @@ class ChildSelectorOverlaySystemTest < ApplicationSystemTestCase
   test "backdrop click closes the overlay" do
     open_overlay
 
-    find(".shuby-child-selector-overlay-backdrop").click
+    find("[data-bottom-sheet-target='overlay'] .shuby-bottom-sheet-backdrop").click
 
-    assert_no_selector ".shuby-child-selector-overlay--open"
+    assert_no_selector "[data-bottom-sheet-target='overlay'].shuby-bottom-sheet--open"
   end
 
   test "escape closes the overlay" do
@@ -113,6 +113,6 @@ class ChildSelectorOverlaySystemTest < ApplicationSystemTestCase
 
     find("body").send_keys(:escape)
 
-    assert_no_selector ".shuby-child-selector-overlay--open"
+    assert_no_selector "[data-bottom-sheet-target='overlay'].shuby-bottom-sheet--open"
   end
 end

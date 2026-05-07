@@ -1,22 +1,21 @@
 <%# Bottom-sheet overlay listing the active children of the current
     account, with primary "+ Aggiungi bambino/a" CTA and "Gestione account"
-    outline tag at the bottom. Tapping a row PATCHes /child_selections/:id
+    outline button at the bottom. Tapping a row PATCHes /child_selections/:id
     and the existing redirect_back closes the sheet via Turbo navigation.
 
-    Figma: 315:3672 (overlay) + 220:2341 (pills) + 159:935 (avatars).
-    See app/views/measurements/_overlay.html.erb for the parallel pattern. %>
+    Figma: 315:3672 (overlay) + 220:2341 (pills) + 159:935 (avatars). %>
 <% children = current_account.children.active.ordered.to_a %>
-<div class="shuby-child-selector-overlay"
-     data-child-selector-overlay-target="overlay"
+<div class="shuby-bottom-sheet shuby-bottom-sheet--tall"
+     data-bottom-sheet-target="overlay"
      aria-hidden="true">
-  <div class="shuby-child-selector-overlay-backdrop"
-       data-action="click->child-selector-overlay#close"></div>
-  <div class="shuby-child-selector-overlay-sheet"
-       data-child-selector-overlay-target="sheet"
+  <div class="shuby-bottom-sheet-backdrop"
+       data-action="click->bottom-sheet#close"></div>
+  <div class="shuby-bottom-sheet-sheet"
+       data-bottom-sheet-target="sheet"
        role="dialog"
        aria-modal="true"
        aria-label="<%= t("dashboard.header.no_child") %>">
-    <div class="shuby-child-selector-overlay-handle" aria-hidden="true"></div>
+    <div class="shuby-bottom-sheet-handle" aria-hidden="true"></div>
 
     <% if children.any? %>
       <ul class="shuby-child-selector-list">
@@ -49,16 +48,16 @@
       </ul>
     <% end %>
 
-    <div class="shuby-child-selector-overlay-spacer" aria-hidden="true"></div>
+    <div class="shuby-bottom-sheet-spacer" aria-hidden="true"></div>
 
-    <div class="shuby-child-selector-overlay-actions">
+    <div class="shuby-bottom-sheet-actions">
       <% if policy(Child).create? %>
         <%= link_to new_child_path, class: "shuby-btn shuby-btn-primary shuby-btn-lg" do %>
           <%= render_svg "shuby/icons/icon-add", styles: "w-5 h-5 fill-[var(--text-on-primary)]" %>
           <span><%= t("dashboard.header.add_child") %></span>
         <% end %>
       <% end %>
-      <%= link_to settings_path, class: "shuby-tag shuby-tag-outline" do %>
+      <%= link_to settings_path, class: "shuby-btn shuby-btn-outline-dark shuby-btn-sm" do %>
         <%= t("dashboard.header.account_management") %>
       <% end %>
     </div>

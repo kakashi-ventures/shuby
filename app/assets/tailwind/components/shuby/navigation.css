@@ -358,6 +358,7 @@ html.hotwire-native .shuby-floating-back-wrapper {
     padding: 0;
     display: flex;
     flex-direction: column;
+    gap: 2px;
 }
 
 .shuby-child-selector-pill {

@@ -186,8 +186,8 @@
 
 /* Child-selector trigger button — child name + chevron in the dashboard
    greeting. Color follows --header-text so it tracks the blue→white scroll
-   transition. Renders inside a `data-controller="child-selector-overlay"`
-   wrapper; opens the bottom-sheet overlay on tap. */
+   transition. Renders inside a `data-controller="bottom-sheet"` wrapper;
+   opens the shared bottom-sheet overlay on tap. */
 .shuby-child-selector-trigger {
     display: flex;
     align-items: center;
