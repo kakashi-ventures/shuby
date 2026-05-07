@@ -17,17 +17,17 @@
 
 <div class="shuby-member-card <%= card_variant %>">
   <div class="shuby-member-content">
-    <div class="shuby-member-avatar">
+    <div class="shuby-avatar-btn">
       <% if kind == :adult %>
         <% if member.respond_to?(:avatar) && member.avatar.attached? && member.avatar.variable? %>
           <%= image_tag avatar_url_for(member, size: 96), alt: display_name %>
         <% else %>
-          <%= render_svg "shuby/icons/icon-account", decorative: true, class: "shuby-member-avatar-glyph" %>
+          <%= render_svg "shuby/icons/icon-account", decorative: true %>
         <% end %>
       <% elsif member.respond_to?(:avatar) && member.avatar.attached? %>
         <%= image_tag member.avatar, alt: display_name %>
       <% else %>
-        <span class="shuby-member-avatar-emoji" aria-hidden="true"><%= display_name.first.to_s.upcase %></span>
+        <%= render_svg "shuby/icons/icon-baby", decorative: true %>
       <% end %>
     </div>
     <div class="shuby-member-info">

@@ -64,7 +64,7 @@
     height: 48px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--base-border-primary);
+    border: 2px solid var(--color-shuby-blue-800);
 }
 
 .shuby-avatar-sm {
@@ -85,6 +85,25 @@
 .shuby-avatar-xl {
     width: 120px;
     height: 120px;
+}
+
+/* Glyph fallback (icon-baby / icon-account) is sized by the wrapper, NOT
+   the callsite — see `.claude/rules/child-avatar.md`. ~80% of wrapper. */
+.shuby-avatar > svg                   { width: 36px; height: 36px; }
+.shuby-avatar.shuby-avatar-sm > svg   { width: 24px; height: 24px; }
+.shuby-avatar.shuby-avatar-md > svg   { width: 32px; height: 32px; }
+.shuby-avatar.shuby-avatar-lg > svg   { width: 64px; height: 64px; }
+.shuby-avatar.shuby-avatar-xl > svg   { width: 96px; height: 96px; }
+
+/* Fallback wrapper used by the generic `shared/ui/_avatar` partial when no
+   photo is attached. Sits inside `.shuby-avatar` (or its size variants)
+   and supplies a centered blue-400 disc with blue-800 glyph color. */
+.shuby-avatar-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-shuby-blue-400);
+    color: var(--color-shuby-blue-800);
 }
 
 /* =====================================================

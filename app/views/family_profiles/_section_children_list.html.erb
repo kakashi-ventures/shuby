@@ -1,26 +1,30 @@
 <% scope = "family_profiles.edit" %>
 
 <% if children.any? %>
-  <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5">
-    <h2 class="shuby-d2 text-gray-900 dark:text-white mb-4"><%= t("sections.children", scope: scope) %></h2>
+  <div class="shuby-family-children-list">
+    <h2 class="shuby-d2 shuby-family-children-list-title"><%= t("sections.children", scope: scope) %></h2>
 
-    <div class="space-y-3">
+    <div class="shuby-family-children-list-stack">
       <% children.each do |child| %>
-        <%= link_to edit_child_path(child), class: "flex items-center gap-4 p-3 rounded-xl border border-gray-200 hover:border-gray-300 transition-colors" do %>
-          <div class="w-10 h-10 rounded-full bg-[var(--color-shuby-blue-400)] flex items-center justify-center">
-            <span class="shuby-p1 font-semibold text-[var(--color-shuby-blue-800)]"><%= child.display_name.first.upcase %></span>
+        <%= link_to edit_child_path(child), class: "shuby-family-children-row" do %>
+          <div class="shuby-avatar-btn">
+            <% if child.avatar.attached? %>
+              <%= image_tag child.avatar %>
+            <% else %>
+              <%= render_svg "shuby/icons/icon-baby", decorative: true %>
+            <% end %>
           </div>
-          <div class="flex-1">
-            <h3 class="shuby-p1 font-semibold text-gray-900 dark:text-white"><%= child.display_name %></h3>
-            <div class="flex items-center gap-2">
-              <span class="shuby-p2 text-gray-500"><%= child.age_display %></span>
-              <span class="shuby-p2 text-gray-400">&middot;</span>
-              <span class="shuby-p2 <%= child.profile_complete? ? 'text-green-600' : 'text-orange-500' %>">
+          <div class="shuby-family-children-row-info">
+            <h3 class="shuby-family-children-row-name"><%= child.display_name %></h3>
+            <div class="shuby-family-children-row-meta">
+              <span class="shuby-p2 shuby-family-children-row-meta-item"><%= child.age_display %></span>
+              <span class="shuby-p2 shuby-family-children-row-meta-divider">&middot;</span>
+              <span class="shuby-p2 shuby-family-children-row-meta-progress <%= child.profile_complete? ? "-complete" : "-incomplete" %>">
                 <%= child.profile_completeness_percentage %>% <%= t("complete", scope: scope) %>
               </span>
             </div>
           </div>
-          <%= render_svg "shuby/icons/icon-chevron-right", size: :md, styles: "text-gray-400", decorative: true %>
+          <%= render_svg "shuby/icons/icon-chevron-right", size: :md, decorative: true, class: "shuby-family-children-row-chevron" %>
         <% end %>
       <% end %>
     </div>

@@ -1,4 +1,4 @@
-<%# Avatar component
+<%# Avatar component (Figma node 159:935 — source of truth for child avatars).
   Required locals:
     child - Child record (needs .display_name, .avatar)
   Optional locals:
@@ -13,18 +13,11 @@
                 when "xl" then "shuby-avatar shuby-avatar-xl"
                 else           "shuby-avatar"
                 end %>
-<% initials_font = case size
-                   when "sm" then "text-xs"
-                   when "md" then "text-sm"
-                   when "lg" then "text-2xl"
-                   when "xl" then "text-3xl"
-                   else           "text-base"
-                   end %>
 
 <% if child.avatar.attached? %>
   <%= image_tag child.avatar, class: "#{size_class} #{local_assigns[:class]}" %>
 <% else %>
-  <div class="<%= size_class %> bg-shuby-blue-400 flex items-center justify-center <%= local_assigns[:class] %>">
-    <span class="<%= initials_font %> font-semibold text-shuby-blue-800"><%= child.display_name.first.upcase %></span>
+  <div class="<%= size_class %> shuby-avatar-fallback <%= local_assigns[:class] %>">
+    <%= render_svg "shuby/icons/icon-baby", decorative: true %>
   </div>
 <% end %>

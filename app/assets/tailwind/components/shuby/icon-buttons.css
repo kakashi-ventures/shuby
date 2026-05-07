@@ -279,7 +279,8 @@
     width: 40px;
     height: 40px;
     background-color: var(--color-shuby-white);
-    border: 2px solid var(--color-shuby-blue-400);
+    border: 2px solid var(--color-shuby-blue-800);
+    color: var(--color-shuby-blue-800);
     overflow: hidden;
     flex-shrink: 0;
     transition: border-color 0.2s ease;
@@ -291,16 +292,25 @@
         height: 100%;
         object-fit: cover;
     }
-}
 
-/* Fallback text shown inside avatar buttons when no image is attached
-   (first letter of child's display_name). Used by timeline header, dashboard
-   profile button, child selector. */
-.shuby-avatar-initials {
-    font-size: var(--font-size-p1);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-shuby-blue-800);
-    line-height: var(--line-height-normal);
+    /* "Bianco" variant — used inside the selected child-selector pill where
+       the parent bg is blue-800. Border + glyph become white; bg stays
+       transparent so the parent fill shows through. The fallback SVG uses
+       fill="currentColor" so `color: white` propagates to it. */
+    &.-bianco {
+        background-color: transparent;
+        border-color: var(--color-shuby-white);
+        color: var(--color-shuby-white);
+    }
+
+    /* Glyph fallback (icon-baby / icon-account) is sized by the wrapper, NOT
+       by the callsite. ~80% of the wrapper per Figma 159:935 (visual
+       measurement of the avatar component). Callers must not pass `styles:`
+       or `size:` for avatar SVGs — see `.claude/rules/child-avatar.md`. */
+    > svg {
+        width: 32px;
+        height: 32px;
+    }
 }
 
 /* Close button on dark/colored background */

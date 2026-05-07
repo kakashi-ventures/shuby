@@ -172,7 +172,7 @@ it:
       greeting: "Ciao %{name}"
       no_child: "Seleziona bambino"
       selected: "Selezionato"
-      add_child: "+ Aggiungi bambino/a"
+      add_child: "Aggiungi bambino/a"
       account_management: "Gestione account"
     age_growth_phase:
       phase_link_label: "Scopri la fase di sviluppo"

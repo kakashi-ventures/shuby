@@ -403,10 +403,17 @@
 
 .shuby-metric-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* Cards are fixed at the Figma SchedaMisurazioni component width (350px
+       at 100% → 167px at 50% scale). Grid centers the row inside its parent
+       container; extra horizontal space becomes symmetric left+right margin
+       around the cards instead of stretching the cards to the container edge. */
+    grid-template-columns: repeat(2, 167px);
     gap: var(--space-4);
+    justify-content: center;
 
-    @media (max-width: 320px) {
+    /* Below 350px viewport (167×2 + 16 gap), the row would clip — stack to
+       a single column so cards stay readable on iPhone SE-class devices. */
+    @media (max-width: 350px) {
         grid-template-columns: 1fr;
     }
 }
@@ -811,4 +818,81 @@
     font-weight: var(--font-weight-semibold);
     color: var(--color-shuby-black);
     white-space: nowrap;
+}
+
+/* =====================================================
+   FAMILY-PROFILE CHILDREN LIST
+   White card on the family-profile edit page that lists each active child
+   with avatar + name + age/completeness meta + chevron link to edit. Each
+   row links to /children/:id/edit.
+   ===================================================== */
+
+.shuby-family-children-list {
+    background-color: var(--bg-light);
+    border: 1px solid var(--base-border-primary);
+    border-radius: var(--radius-grande);
+    padding: var(--space-5);
+}
+
+.shuby-family-children-list-title {
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+}
+
+.shuby-family-children-list-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.shuby-family-children-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3);
+    border: 1px solid var(--base-border-primary);
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s ease;
+    text-decoration: none;
+}
+
+.shuby-family-children-row:hover {
+    border-color: var(--color-shuby-gray-600);
+}
+
+.shuby-family-children-row-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.shuby-family-children-row-name {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+}
+
+.shuby-family-children-row-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.shuby-family-children-row-meta-item {
+    color: var(--color-shuby-gray-700);
+}
+
+.shuby-family-children-row-meta-divider {
+    color: var(--color-shuby-gray-600);
+}
+
+.shuby-family-children-row-meta-progress.-complete {
+    color: var(--color-shuby-verde-500);
+}
+
+.shuby-family-children-row-meta-progress.-incomplete {
+    color: var(--color-shuby-orange-500);
+}
+
+.shuby-family-children-row-chevron {
+    color: var(--color-shuby-gray-600);
 }

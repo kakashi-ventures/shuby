@@ -183,3 +183,18 @@
     line-height: var(--line-height-normal);
     color: var(--header-text-secondary);
 }
+
+/* Child-selector trigger button — child name + chevron in the dashboard
+   greeting. Color follows --header-text so it tracks the blue→white scroll
+   transition. Renders inside a `data-controller="child-selector-overlay"`
+   wrapper; opens the bottom-sheet overlay on tap. */
+.shuby-child-selector-trigger {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--header-text);
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}

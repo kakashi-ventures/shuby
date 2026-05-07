@@ -343,3 +343,58 @@ html.hotwire-native .shuby-floating-back-wrapper {
 .shuby-tab-segmented-item.active + .shuby-tab-segmented-item {
     border-left: none;
 }
+
+/* =====================================================
+   CHILD SELECTOR PILLS (Figma 220:2341)
+   Stacked pill rows that share edges to form one continuous
+   rounded card. `-top` and `-bottom` modifiers carry the radius;
+   middle rows render square. `-selected` flips the row to the
+   blue-800 fill + white text variant.
+   ===================================================== */
+
+.shuby-child-selector-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.shuby-child-selector-pill {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-2) var(--space-4);
+    width: 100%;
+    min-height: 56px;
+    background-color: var(--color-shuby-blue-400);
+    color: var(--color-shuby-gray-800);
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+
+    &.-top {
+        border-top-left-radius: var(--radius-grande);
+        border-top-right-radius: var(--radius-grande);
+    }
+
+    &.-bottom {
+        border-bottom-left-radius: var(--radius-grande);
+        border-bottom-right-radius: var(--radius-grande);
+    }
+
+    &.-selected {
+        background-color: var(--color-shuby-blue-800);
+        color: var(--color-shuby-white);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--base-border-focus);
+        outline-offset: -2px;
+    }
+}
+
+.shuby-child-selector-pill-name {
+    flex: 1 1 auto;
+}

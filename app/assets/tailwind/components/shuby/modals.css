@@ -354,3 +354,87 @@
     border-top: 1px solid var(--color-shuby-blue-300);
     background: var(--bg-light);
 }
+
+/* =====================================================
+   CHILD SELECTOR OVERLAY (bottom sheet)
+   Matches Figma node 315:3672 (overlay) + 220:2341 (pills) +
+   159:935 (avatars). Mirrors the measurement-overlay scaffolding
+   under a dedicated namespace; the two can share a generic
+   .shuby-bottom-sheet-* in a follow-up refactor.
+   ===================================================== */
+
+.shuby-child-selector-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    pointer-events: none;
+    visibility: hidden;
+    transition: visibility 200ms ease-out;
+}
+
+.shuby-child-selector-overlay--open {
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.shuby-child-selector-overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+}
+
+.shuby-child-selector-overlay--open .shuby-child-selector-overlay-backdrop {
+    opacity: 1;
+}
+
+.shuby-child-selector-overlay-sheet {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-shuby-blue-300);
+    border-top-left-radius: var(--radius-grande);
+    border-top-right-radius: var(--radius-grande);
+    box-shadow: 0 0 10px 0 rgba(158, 198, 240, 0.3);
+    padding: var(--space-4) var(--space-5) calc(var(--space-6) + env(safe-area-inset-bottom));
+    min-height: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 250ms ease-out;
+}
+
+.shuby-child-selector-overlay--open .shuby-child-selector-overlay-sheet {
+    transform: translateY(0);
+}
+
+.shuby-child-selector-overlay-handle {
+    width: 40px;
+    height: 4px;
+    border-radius: var(--radius-tondo);
+    background-color: var(--color-shuby-blue-800);
+    margin: 0 auto var(--space-4);
+    opacity: 0.5;
+}
+
+.shuby-child-selector-overlay-spacer {
+    flex: 1 1 auto;
+    min-height: var(--space-8);
+}
+
+.shuby-child-selector-overlay-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    padding-top: var(--space-6);
+}
+
+.shuby-child-selector-overlay-scroll-lock {
+    overflow: hidden;
+    touch-action: none;
+}

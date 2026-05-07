@@ -135,27 +135,6 @@
     min-width: 0;
 }
 
-/* Member avatar container — 40px circle per Figma. Photo fills via
-   object-fit: cover; icon-fallback path shows the Blu-400 ring. */
-.shuby-member-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-shuby-blue-300);
-    color: var(--color-shuby-blue-800);
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-}
-
 /* Member text info */
 .shuby-member-info {
     display: flex;
@@ -181,21 +160,6 @@
 /* =====================================================
    MEMBER CARD VARIANTS
    ===================================================== */
-
-/* Emoji/initial fallback inside the avatar circle (children with no photo). */
-.shuby-member-avatar-emoji {
-    font-size: var(--font-size-p1);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--line-height-none);
-}
-
-/* SVG glyph fallback (account_circle silhouette / baby smiley) shown when
-   the member has no uploaded avatar — Figma 225:1821, 36px inner icon
-   on 40px Blu-400 ring. Inherits color from .shuby-member-avatar. */
-.shuby-member-avatar-glyph {
-    width: 28px;
-    height: 28px;
-}
 
 /* Highlighted member card (selected state) */
 .shuby-member-card.selected {
