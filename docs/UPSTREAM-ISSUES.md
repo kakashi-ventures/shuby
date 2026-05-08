@@ -45,6 +45,9 @@ once the Oggi tab stack is deep), then tap a link back to something
 under `/children/`. Confirm `turbo:before-visit` never logs `def=1` and
 the native tab bar stays responsive across many navigations.
 
+**Last verified.** Re-checked against ruby_native 0.9.0 release notes
+(2026-05-07). No regression — fix remains in the native binary.
+
 ---
 
 ## [OPEN, since ruby_native ≥ 0.8] gem's `.native-inset-top::before` doubles up on `hide_navbar` pages
@@ -87,6 +90,11 @@ still needed: temporarily revert the gating, open the dashboard on iOS,
 inspect `<header class="native-inset-top">` in Safari Web Inspector — if
 its computed height is non-zero, the workaround is still required.
 
+**Last verified.** Re-checked against ruby_native 0.9.0 release notes
+(2026-05-07). Still open — 0.9.0 ships only the authenticated-screenshots
+feature; gem CSS is unchanged. Workaround at
+`app/views/layouts/application.html.erb:14` retained.
+
 ---
 
 ## [OPEN] ruby_native 0.7.0 — UA does not contain "Turbo Native" / "Hotwire Native"
@@ -107,6 +115,10 @@ compatible UA string (appending `"Turbo Native"` alongside its own
 identifier), or (b) turbo-rails adds Ruby Native to its default regex.
 Check by removing the override and verifying the html class still applies
 on iOS (see `/native_debug` route).
+
+**Last verified.** Re-checked against ruby_native 0.9.0 release notes
+(2026-05-07). Still open — 0.9.0 release notes mention no UA changes.
+Workaround at `app/controllers/concerns/authentication.rb:26-28` retained.
 
 ---
 

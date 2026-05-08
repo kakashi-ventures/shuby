@@ -17,5 +17,7 @@
     </svg>
   </button>
 
+  <%= native_fab_tag(icon: "bubble.left.fill", click: ".beta-feedback-fab") if hotwire_native_app? %>
+
   <%= render "shared/beta_feedback_form" %>
 </div>

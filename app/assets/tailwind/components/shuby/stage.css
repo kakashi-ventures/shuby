@@ -901,6 +901,9 @@ html.hotwire-native .shuby-stage-completed-header {
    ===================================================== */
 
 .shuby-milestone-card-finish-previous {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
     position: relative;
     background-color: var(--color-shuby-giallo-400);
     border-radius: var(--radius-grande);
