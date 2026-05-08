@@ -982,3 +982,6 @@ it:
       locked_description: "Sblocca la timeline futura per scoprire cosa aspettarti nelle prossime fasi di sviluppo."
       locked_body: "Questi contenuti sono visibili per gli utenti con un account Premium!"
       locked_cta: "Passa alla versione Premium"
+    archive:
+      specialist_title: "Articolo specialistico"
+      specialist_description: "Approfondimenti su temi clinici e segnali atipici sono riservati agli utenti Premium."

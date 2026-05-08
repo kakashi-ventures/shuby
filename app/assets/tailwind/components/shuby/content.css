@@ -199,7 +199,10 @@
 
     /* Lists rendered by Action Text — green markers per Figma 05.02
        (Elenco Puntato component, used in "Come stimolarlo" and
-       "Campanelli d'allarme" sections). */
+       "Campanelli d'allarme" sections). Marker is a fixed 8×8 disc
+       (Figma stepper-component size) so it stays consistent across
+       the body's mixed font sizes; the U+2022 glyph would otherwise
+       scale with the surrounding text. */
     ul {
         list-style: none;
         padding: 0;
@@ -211,13 +214,14 @@
             margin-bottom: var(--space-2);
 
             &::before {
-                content: "•";
+                content: "";
                 position: absolute;
                 left: var(--space-1);
-                top: 0;
-                color: var(--color-shuby-green-500);
-                font-weight: var(--font-weight-bold);
-                line-height: var(--line-height-prose);
+                top: 6px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: var(--color-shuby-blue-800);
             }
         }
     }
@@ -385,8 +389,10 @@
         color: var(--color-shuby-blue-700);
     }
 
+    /* Background-color (not color) — the article-body marker is now a
+       background-painted disc, not a text glyph. */
     ul:not(.shuby-list-hearts) li::before {
-        color: var(--color-shuby-blue-700);
+        background-color: var(--color-shuby-blue-700);
     }
 }
 
@@ -400,8 +406,9 @@
         color: var(--color-shuby-fucsia-500);
     }
 
+    /* Background-color (not color) — matches the article-body disc marker. */
     ul:not(.shuby-list-hearts) li::before {
-        color: var(--color-shuby-fucsia-500);
+        background-color: var(--color-shuby-fucsia-500);
     }
 }
 

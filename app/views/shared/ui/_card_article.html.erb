@@ -10,6 +10,7 @@
 %>
 <% card_path = local_assigns[:path] || archive_path(content.slug) %>
 <% is_vertical = local_assigns[:variant] == "vertical" %>
+<% premium_locked = content.respond_to?(:specialist?) && content.specialist? && !current_account.premium? %>
 
 <% if is_vertical %>
   <%# Vertical variant (featured carousel) using shuby-card-article-vertical classes %>
@@ -29,6 +30,9 @@
             </span>
           <% end %>
           <span class="shuby-card-article-vertical-tag shuby-card-article-vertical-tag-age"><%= content.age_range_label %></span>
+          <% if premium_locked %>
+            <%= shuby_tag("Premium", variant: :primary, icon: "shuby/icons/icon-premium-star") %>
+          <% end %>
         </div>
         <div class="shuby-card-article-vertical-body-group">
           <div class="shuby-card-article-vertical-body">
@@ -65,6 +69,9 @@
           <%= shuby_tag(content.age_range_label, variant: :grigio) %>
           <% if content.duration_minutes.present? %>
             <%= shuby_tag(content.duration_label, variant: :light) %>
+          <% end %>
+          <% if premium_locked %>
+            <%= shuby_tag("Premium", variant: :primary, icon: "shuby/icons/icon-premium-star") %>
           <% end %>
         </div>
         <p class="shuby-card-article-title"><%= content.title %></p>

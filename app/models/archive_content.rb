@@ -4,8 +4,21 @@ class ArchiveContent < ApplicationRecord
   include Sluggable
 
   ARTICLE_CATEGORIES = [
-    "Abilità motorie", "Attaccamento", "Benessere familiare",
-    "Comunicazione", "Neurosviluppo", "Sonno"
+    "Abilità motorie",
+    "Attaccamento",
+    "Benessere familiare",
+    "Comunicazione e Linguaggio",
+    "Infanzia e Schermi",
+    "Interesse, Relazione e Gioco",
+    "Neurosviluppo",
+    "Orecchie, Naso e Gola",
+    "Pediatria",
+    "Prevenzione",
+    "Regolazione e comportamento",
+    "Sessualità e dintorni",
+    "Sonno",
+    "Sviluppo motorio",
+    "Sviluppo orale"
   ].freeze
 
   TIP_CATEGORIES = [
@@ -66,6 +79,8 @@ class ArchiveContent < ApplicationRecord
   scope :articles, -> { content_type_article }
   scope :tips, -> { content_type_tip }
   scope :activities, -> { content_type_activity }
+  scope :specialist, -> { where(specialist: true) }
+  scope :generic, -> { where(specialist: false) }
 
   # Instance methods
   def age_range_label
