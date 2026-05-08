@@ -45,6 +45,11 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.12"
 
+# Read .docx article sources for archive ingestion (lib/shuby/articles/docx_parser.rb).
+# Was only available transitively via selenium-webdriver (test group) — declared
+# explicitly so production eager-load of the parser doesn't fail with LoadError.
+gem "rubyzip", "~> 3.0"
+
 # AWS S3 for Active Storage in production
 gem "aws-sdk-s3", require: false
 

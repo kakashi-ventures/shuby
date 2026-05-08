@@ -676,6 +676,7 @@ DEPENDENCIES
   ruby-openai (~> 7.0)
   ruby_llm (~> 1.2)
   ruby_native (~> 0.9)
+  rubyzip (~> 3.0)
   selenium-webdriver (>= 4.20.1)
   solid_cable
   solid_cache
