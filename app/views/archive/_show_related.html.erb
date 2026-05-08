@@ -1,9 +1,11 @@
 <%# Related articles carousel at bottom of content detail (Figma 05.02, 05.03, 05.04) %>
 <% if related_articles.present? %>
   <section class="mt-8 mb-6">
-    <h2 class="shuby-carousel-title px-4 mb-4">
-      <%= t("archive.show.related_articles") %>
-    </h2>
+    <div class="shuby-container">
+      <h2 class="shuby-carousel-title mb-4">
+        <%= t("archive.show.related_articles") %>
+      </h2>
+    </div>
 
     <%= render layout: "shared/featured_carousel" do %>
       <% related_articles.each do |article| %>

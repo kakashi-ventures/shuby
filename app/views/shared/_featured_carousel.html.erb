@@ -1,10 +1,8 @@
-<%# Carousel track escapes the parent's px-4 padding so cards reach the viewport edge. %>
-<%# -mx-4 cancels the parent's 16px padding; px-5 matches Figma's Scroller_Articoli %>
-<%# node 434:10376 (px-[20px]). scroll-px-5 shifts the scroll-snap target inward by %>
-<%# 20px so the first card snaps to its padded position instead of swallowing px-5. %>
-<%# Stepper stays inside the wrapper so it remains centered. %>
+<%# Full-bleed horizontal carousel. Padding (20px inline, Figma 434:10376) and
+    viewport escape are owned by .shuby-carousel-wrapper / .shuby-carousel CSS;
+    callers don't need to provide any parent padding. %>
 <div data-controller="carousel-stepper" class="shuby-carousel-wrapper">
-  <div class="shuby-carousel -mx-4 px-5 scroll-px-5" data-carousel-stepper-target="scroller">
+  <div class="shuby-carousel" data-carousel-stepper-target="scroller">
     <%= yield %>
   </div>
   <div class="shuby-carousel-stepper" data-carousel-stepper-target="stepper"></div>
