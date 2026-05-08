@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
 # Children routes
-resources :children
+resources :children, except: :index

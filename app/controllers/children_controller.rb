@@ -4,12 +4,6 @@ class ChildrenController < ApplicationController
   before_action :authenticate_user!
   before_action :set_child, only: [:show, :edit, :update, :destroy]
 
-  # GET /children
-  def index
-    @children = policy_scope(Child).active.ordered
-    authorize Child
-  end
-
   # GET /children/:id
   def show
     @tab = params[:tab] || "info"
@@ -49,7 +43,7 @@ class ChildrenController < ApplicationController
       render :new, status: :unprocessable_content
     end
   rescue Pundit::NotAuthorizedError
-    redirect_to children_path, alert: t("premium.children.limit_title")
+    redirect_to today_path, alert: t("premium.children.limit_title")
   end
 
   # PATCH/PUT /children/:id
@@ -64,7 +58,7 @@ class ChildrenController < ApplicationController
   # DELETE /children/:id
   def destroy
     @child.update!(active: false)
-    redirect_to children_url, status: :see_other, notice: t(".destroyed")
+    redirect_to today_path, status: :see_other, notice: t(".destroyed")
   end
 
   private

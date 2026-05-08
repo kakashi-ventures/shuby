@@ -1,5 +1,5 @@
 <%# Child profile button with avatar — Figma: Avatar component (node 159:935) %>
-<%= link_to (current_child ? child_path(current_child) : children_path),
+<%= link_to (current_child ? child_path(current_child) : today_path),
             class: "shuby-avatar-btn" do %>
   <% if current_child&.avatar&.attached? %>
     <%= image_tag current_child.avatar %>

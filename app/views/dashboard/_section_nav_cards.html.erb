@@ -14,15 +14,6 @@
     <% end %>
 
     <%= dashboard_nav_card(
-      path: children_path,
-      icon_bg: "bg-shuby-blue-400",
-      title: t("children.index.title"),
-      subtitle: t("children.index.subtitle")
-    ) do %>
-      <%= render_svg "shuby/icons/icon-family", size: :md, styles: "text-shuby-blue-800", decorative: true %>
-    <% end %>
-
-    <%= dashboard_nav_card(
       path: shuby_chats_path,
       icon_bg: "bg-shuby-verde-200",
       title: t("dashboard.show.shuby_ai.title"),

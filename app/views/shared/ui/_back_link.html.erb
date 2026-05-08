@@ -1,23 +1,33 @@
 <%# Back link navigation
-  Required locals:
-    path  - URL to navigate back to
-    label - display text
-  Optional locals:
+  One of:
+    path     - URL to navigate back to (link mode)
+    history  - true to use window.history.back() via Stimulus (button mode)
+  Required:
+    label    - display text
+  Optional:
     size  - "base" or "sm" (default: "base")
     class - additional CSS classes
-    data  - Hash of data-* attributes. Pass `turbo_action: "replace"` to
-            keep Turbo's history stack from growing (back links are
-            semantically a restore, not a forward advance — this keeps
-            history shallow under the native iOS tab stack).
+    data  - Hash of data-* attributes (link mode only)
 %>
 <% size = local_assigns.fetch(:size, "base") %>
 <% link_class = size == "sm" ? "shuby-back-link shuby-back-link-sm" : "shuby-back-link" %>
 
-<%= link_to path,
-    class: "#{link_class} #{local_assigns[:class]}",
-    data: local_assigns[:data] do %>
-  <span class="shuby-back-link-icon">
-    <%= render_svg "shuby/icons/icon-chevron-left" %>
-  </span>
-  <%= label %>
+<% if local_assigns[:history] %>
+  <%= button_tag type: "button",
+      class: "#{link_class} #{local_assigns[:class]}",
+      data: { controller: "history-back", action: "click->history-back#go" } do %>
+    <span class="shuby-back-link-icon">
+      <%= render_svg "shuby/icons/icon-chevron-left", decorative: true %>
+    </span>
+    <%= label %>
+  <% end %>
+<% else %>
+  <%= link_to path,
+      class: "#{link_class} #{local_assigns[:class]}",
+      data: local_assigns[:data] do %>
+    <span class="shuby-back-link-icon">
+      <%= render_svg "shuby/icons/icon-chevron-left", decorative: true %>
+    </span>
+    <%= label %>
+  <% end %>
 <% end %>

@@ -698,13 +698,6 @@ it:
         password: "password"
 
   children:
-    index:
-      title: "Bambini"
-      subtitle: "Gestisci i profili dei tuoi bambini"
-      add_child: "Aggiungi Bambino"
-      empty:
-        title: "Nessun bambino ancora"
-        description: "Aggiungi il tuo primo bambino per iniziare"
     show:
       edit: "Modifica"
       details: "Dettagli"
@@ -712,6 +705,7 @@ it:
         title: "Tappe di sviluppo"
     new:
       title: "Aggiungi Bambino"
+      back_label: "Indietro"
     edit:
       title: "Modifica %{name}"
     create:

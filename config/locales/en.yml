@@ -669,13 +669,6 @@ en:
         password: "password"
 
   children:
-    index:
-      title: "Children"
-      subtitle: "Manage your children's profiles"
-      add_child: "Add Child"
-      empty:
-        title: "No children yet"
-        description: "Add your first child to get started"
     show:
       edit: "Edit"
       details: "Details"
@@ -683,6 +676,7 @@ en:
         title: "Developmental milestones"
     new:
       title: "Add Child"
+      back_label: "Back"
     edit:
       title: "Edit %{name}"
     create:

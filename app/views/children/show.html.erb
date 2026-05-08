@@ -4,7 +4,7 @@
 <div class="container px-4 mx-auto my-8 pb-24">
   <%# Back link %>
   <div class="mb-6">
-    <%= render "shared/ui/back_link", path: children_path, label: @child.display_name %>
+    <%= render "shared/ui/back_link", history: true, label: @child.display_name %>
   </div>
 
   <%# Child avatar centered %>
