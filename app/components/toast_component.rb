@@ -20,11 +20,10 @@ class ToastComponent < JumpstartComponent
   end
 
   def icon
-    if @icon
-      @icon
-    elsif @icon_name
-      FlashHelper::ICONS[@icon_name].html_safe
-    end
+    return @icon if @icon
+    return unless @icon_name
+
+    @view_context.flash_icon(@icon_name, css_class: "icon-#{@icon_name}")
   end
 
   def link

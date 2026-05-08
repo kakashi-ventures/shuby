@@ -39,6 +39,15 @@ html.hotwire-native .shuby-settings-sticky-header {
   padding-top: calc(env(safe-area-inset-top) + var(--space-2));
 }
 
+/* Toast notifications: clear iOS status bar / Dynamic Island.
+   #toasts is position:fixed with top:48px in toasts.css. On iPhones with
+   Dynamic Island (~59pt) or any safe-area-inset, that puts the toast
+   behind the system chrome. This rule only applies in the native shell
+   (browsers never carry .hotwire-native), so the web layout is unchanged. */
+html.hotwire-native #toasts {
+  top: calc(env(safe-area-inset-top) + var(--space-3));
+}
+
 /* Hide web bottom nav — native tab bar replaces it.
    Primary guard is server-side (yield :bottom_nav unless hotwire_native_app?).
    This CSS is a belt-and-suspenders fallback. */

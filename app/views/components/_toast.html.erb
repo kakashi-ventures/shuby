@@ -5,7 +5,7 @@
       <h2><%= component.title %></h2>
     </header>
 
-    <p><%= component.description %></p>
+    <% if component.description.present? %><p><%= component.description %></p><% end %>
   </section>
 
   <div>
