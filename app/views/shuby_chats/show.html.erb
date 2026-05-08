@@ -1,7 +1,6 @@
 <%= native_form_tag %>
 <% content_for :title, t("shuby_chats.show.title") %>
 <% content_for :hide_navbar, true %>
-<% content_for :hide_feedback_fab, true %>
 
 <div class="shuby-chat-page"
      data-controller="shuby-chat"
@@ -32,7 +31,7 @@
     <% else %>
       <%= render "shuby_chats/message_form",
             shuby_chat: @shuby_chat,
-            messages_remaining: @messages_remaining,
+            messages_remaining: (@messages.any? ? @messages_remaining : nil),
             show_disclaimer: @messages.any? %>
     <% end %>
   </div>
