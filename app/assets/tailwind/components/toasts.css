@@ -1,6 +1,6 @@
 .shuby-toast {
-  background: var(--base-bg-low);
-  border-radius: 4px;
+  background: var(--color-shuby-blue-400);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-overlay);
   display: flex;
   justify-content: space-between;
