@@ -8,7 +8,10 @@ export default class extends Controller {
 
     connect() {
         this.syncIconState()
-        this.autoResize()
+        // Skip when empty — iOS WKWebView inflates scrollHeight on autofocus before initial layout settles.
+        if (this.hasInputTarget && this.inputTarget.value.length > 0) {
+            this.autoResize()
+        }
         this.element.addEventListener("turbo:submit-end", this.onSubmitEnd.bind(this))
     }
 
