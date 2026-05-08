@@ -62,12 +62,10 @@ html.hotwire-native main {
   padding-bottom: calc(env(safe-area-inset-bottom) + 56px);
 }
 
-/* Beta feedback FAB — hidden on iOS; replaced by native_fab_tag (gem 0.8.2+).
-   The native FAB synthesises a click on .beta-feedback-fab to drive the
-   existing Stimulus modal-open action. */
-html.hotwire-native .beta-feedback-fab {
-  display: none;
-}
+/* Beta feedback FAB — replaced by native_fab_tag on iOS (gem 0.8.2+); the
+   visible web button is not rendered server-side in the native shell.
+   The hidden `.beta-feedback-fab` synth-click target is `display: none`
+   via the `hidden` utility class — no rule needed here. */
 
 /* Per-page <body> background match. Driven by `content_for :body_background`
    in a view → `data-body-background` on <body> (see application.html.erb).

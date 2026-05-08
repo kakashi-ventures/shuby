@@ -1,23 +1,34 @@
 <div data-controller="beta-feedback">
-  <button type="button"
-          data-action="beta-feedback#open"
-          class="beta-feedback-fab fixed bottom-20 right-4 z-[100] w-12 h-12 rounded-full
-                 bg-[var(--color-shuby-fucsia-500)] text-white shadow-lg
-                 flex items-center justify-center
-                 active:scale-95 transition-all"
-          aria-label="Invia feedback beta">
-    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round"
-            d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227
-               1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14
-               1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233
-               2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394
-               48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14
-               2.25 6.741v6.018z" />
-    </svg>
-  </button>
-
-  <%= native_fab_tag(icon: "bubble.left.fill", click: ".beta-feedback-fab") if hotwire_native_app? %>
+  <% if hotwire_native_app? %>
+    <%# iOS: native_fab_tag renders the visible Liquid Glass FAB via UIKit
+        and synthesises a click on `.beta-feedback-fab`. We render only a
+        hidden anchor element so that selector resolves to a real DOM node
+        whose `data-action` triggers the existing Stimulus modal flow. %>
+    <button type="button"
+            data-action="beta-feedback#open"
+            class="beta-feedback-fab hidden"
+            aria-hidden="true"
+            tabindex="-1"></button>
+    <%= native_fab_tag(icon: "bubble.left.fill", click: ".beta-feedback-fab") %>
+  <% else %>
+    <button type="button"
+            data-action="beta-feedback#open"
+            class="beta-feedback-fab fixed bottom-20 right-4 z-[100] w-12 h-12 rounded-full
+                   bg-[var(--color-shuby-fucsia-500)] text-white shadow-lg
+                   flex items-center justify-center
+                   active:scale-95 transition-all"
+            aria-label="Invia feedback beta">
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227
+                 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14
+                 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233
+                 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394
+                 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14
+                 2.25 6.741v6.018z" />
+      </svg>
+    </button>
+  <% end %>
 
   <%= render "shared/beta_feedback_form" %>
 </div>
