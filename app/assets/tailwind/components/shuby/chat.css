@@ -46,14 +46,21 @@ html.hotwire-native .shuby-chat-page-history {
    global `main { padding-bottom: calc(env(safe-area-inset-bottom) + 56px) }`
    would push <main> past 100dvh and force the outer page to scroll. Opt
    this <main> out, then reserve tab-bar clearance inside .shuby-chat-page
-   itself — the WKWebView is edge-to-edge, so without internal padding the
-   composer renders behind the tab bar. */
+   itself.
+
+   Ruby Native 0.9 reports the FULL bottom overlay (tab bar + home indicator)
+   via env(safe-area-inset-bottom) — see gem's ruby_native.css convention
+   `.native-inset-bottom { height: env(safe-area-inset-bottom) }` used as the
+   sole clearance primitive. Adding +56px on top double-counts the tab bar
+   and pushes the composer pill ~56pt above its Figma 463:5386 target
+   (15pt clearance from tab bar). Drop the static add — composer-wrap's own
+   `padding-bottom: var(--space-3)` (12pt) supplies the breathing room. */
 html.hotwire-native main:has(.shuby-chat-page) {
     padding-bottom: 0;
 }
 
 html.hotwire-native .shuby-chat-page {
-    padding-bottom: calc(env(safe-area-inset-bottom) + 56px);
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* =====================================================
