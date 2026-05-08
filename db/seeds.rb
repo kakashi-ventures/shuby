@@ -392,6 +392,11 @@ ARCHIVE_CONTENTS.each do |data|
   content.save!
 end
 
+puts
+puts "Seeding archive articles from JSON fixture..."
+Rake::Task["shuby:articles:seed"].invoke
+
+puts
 puts "Created #{ArchiveContent.count} archive content items"
 puts "  - Articles: #{ArchiveContent.articles.count}"
 puts "  - Tips: #{ArchiveContent.tips.count}"
