@@ -302,34 +302,6 @@ puts "Archive Content Seed Data"
 puts "=" * 60
 
 ARCHIVE_CONTENTS = [
-  # Articles
-  {
-    title: "Benessere emotivo della famiglia",
-    description: "Tutto quello che c'è da sapere sulla salute emotiva della famiglia nel post-partum",
-    content_type: :article,
-    category: "Benessere familiare",
-    min_age_months: 0,
-    max_age_months: 6,
-    published: true
-  },
-  {
-    title: "5 cose che dovresti sapere sul contatto pelle a pelle",
-    description: "Il contatto pelle a pelle è molto più di un gesto d'amore: scopri perché è fondamentale",
-    content_type: :article,
-    category: "Neurosviluppo",
-    min_age_months: 0,
-    max_age_months: 6,
-    published: true
-  },
-  {
-    title: "Il tempo speciale: un dono di attenzione",
-    description: "Un dono reciproco di attenzione, ascolto e amore",
-    content_type: :article,
-    category: "Attaccamento",
-    min_age_months: 0,
-    max_age_months: 36,
-    published: true
-  },
   # Tips - Lettura (reading recommendations)
   {
     title: "Quelli là",

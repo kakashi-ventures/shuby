@@ -28,9 +28,14 @@ class ArchiveController < ApplicationController
   end
 
   # GET /archive/:id
-  # Displays a single archive content item
+  # Displays a single archive content item. Specialist articles show the body
+  # only for premium accounts (subscription PDF: "Articoli specialistici" tier).
+  # Free accounts get the title/description/tags as a preview plus a paywall
+  # in place of the body — destination-side gating per the
+  # premium-gate-at-destination convention.
   def show
     @favorited = current_user.archive_favorites.exists?(archive_content: @content)
+    @gated = @content.specialist? && !current_account.premium?
     @related_articles = load_related_articles
     @related_tips = load_related_tips if @content.content_type_tip?
   end

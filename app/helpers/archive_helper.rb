@@ -6,8 +6,9 @@ module ArchiveHelper
     "Abilità motorie" => "shuby/icons/icon-barefoot",
     "Attaccamento" => "shuby/icons/icon-attachment",
     "Benessere familiare" => "shuby/icons/icon-heart-filled",
-    "Comunicazione" => "shuby/icons/icon-document",
+    "Comunicazione e Linguaggio" => "shuby/icons/icon-document",
     "Neurosviluppo" => "shuby/icons/icon-neurodevelopment",
+    "Pediatria" => "shuby/icons/icon-pediatrics",
     "Sonno" => "shuby/icons/icon-moon",
     "Giochi" => "shuby/icons/icon-barefoot",
     "Lettura" => "shuby/icons/icon-reading"

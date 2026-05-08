@@ -22,6 +22,9 @@ class ArchiveContentResource < Madmin::Resource
   attribute :published, :boolean, index: true,
     label: "Pubblicato",
     description: "Solo i contenuti pubblicati appaiono nell'app"
+  attribute :specialist, :boolean, index: true,
+    label: "Specialistico",
+    description: "Articoli specialistici (es. ritardo linguaggio, regressioni, segnali atipici) sono visibili solo agli utenti Premium"
   attribute :position, index: true,
     label: "Pos.",
     description: "Ordine di visualizzazione (numero più basso = prima)"

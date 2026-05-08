@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_04_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_08_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -165,10 +165,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_04_100000) do
     t.string "publisher"
     t.text "recommendations", default: [], null: false, array: true
     t.string "slug", null: false
+    t.boolean "specialist", default: false, null: false
     t.string "title", null: false
     t.datetime "updated_at", null: false
     t.index ["category"], name: "index_archive_contents_on_category"
     t.index ["content_type", "published"], name: "index_archive_contents_on_content_type_and_published"
+    t.index ["content_type", "specialist", "published"], name: "idx_on_content_type_specialist_published_6d174017a2"
     t.index ["content_type"], name: "index_archive_contents_on_content_type"
     t.index ["min_age_months", "max_age_months"], name: "index_archive_contents_on_min_age_months_and_max_age_months"
     t.index ["position"], name: "index_archive_contents_on_position"

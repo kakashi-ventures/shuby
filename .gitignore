@@ -58,9 +58,13 @@ yarn-debug.log*
 
 # Worktrees
 .worktrees/
+.claude/worktrees/
 
 # Knowledge base documents (large binary files)
 docs/knowledge_base/
+
+# Local-only article research / source material
+/docs/Articoli/
 
 # Ruby Native (Playwright, screenshots, session data)
 .ruby_native/

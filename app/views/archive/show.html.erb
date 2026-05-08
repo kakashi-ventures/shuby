@@ -115,7 +115,7 @@
       <h1 class="shuby-h2 text-shuby-blue-800 mb-4"><%= @content.title %></h1>
 
       <% if @content.description.present? %>
-        <p class="shuby-p1 text-gray-600 mb-4"><%= @content.description %></p>
+        <p class="shuby-p1 mb-4"><%= @content.description %></p>
       <% end %>
 
       <%# Materials (activities) %>
@@ -131,7 +131,14 @@
           Activities also receive .shuby-activity-body which overrides ol/ul
           marker color from green-500 (article default) to blue-700 per
           Figma 532:24578 "Come fare". %>
-      <% if @content.body.present? %>
+      <% if @gated %>
+        <div class="mb-8">
+          <%= render "shared/paywall_banner",
+                title: t("premium.archive.specialist_title"),
+                description: t("premium.archive.specialist_description"),
+                icon: :lock %>
+        </div>
+      <% elsif @content.body.present? %>
         <div class="shuby-article-body <%= 'shuby-activity-body' if @content.content_type_activity? %> mb-8">
           <%= @content.body %>
         </div>
