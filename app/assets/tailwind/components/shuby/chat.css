@@ -35,9 +35,24 @@
     min-height: 100dvh;
 }
 
-html.hotwire-native .shuby-chat-page,
+/* History scrolls naturally — let <main>'s global padding-bottom (in
+   hotwire_native.css) clear the iOS tab bar at the end of the list.
+   Just zero out the 86px web-bottom-nav reserve. */
 html.hotwire-native .shuby-chat-page-history {
     padding-bottom: 0;
+}
+
+/* Chat is a fixed-viewport layout (height: 100dvh). <main>'s global
+   padding-bottom would push the grid row past 100dvh and force the
+   outer page to scroll. Opt this <main> out, then reserve tab-bar
+   clearance inside .shuby-chat-page itself so the composer sits above
+   the iOS tab bar instead of behind it. */
+html.hotwire-native main:has(.shuby-chat-page) {
+    padding-bottom: 0;
+}
+
+html.hotwire-native .shuby-chat-page {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 56px);
 }
 
 /* =====================================================
