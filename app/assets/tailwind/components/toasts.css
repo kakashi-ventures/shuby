@@ -68,7 +68,8 @@
   position: fixed;
   right: 16px;
   top: 48px;
-  z-index: 30;
+  /* Above sticky-header (40) and top-nav (50), below modals (100). */
+  z-index: 60;
   width: 100%;
   max-width: 384px;
 
