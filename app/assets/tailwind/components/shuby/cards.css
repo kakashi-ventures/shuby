@@ -403,15 +403,15 @@
 
 .shuby-metric-grid {
     display: grid;
-    /* Cards are fixed at the Figma SchedaMisurazioni component width (350px
-       at 100% → 167px at 50% scale). Grid centers the row inside its parent
-       container; extra horizontal space becomes symmetric left+right margin
-       around the cards instead of stretching the cards to the container edge. */
-    grid-template-columns: repeat(2, 167px);
+    /* Tracks stretch to fill the parent .shuby-container so the metric row
+       aligns horizontally with the sibling activity cards (which use
+       width: 100%). minmax(0, 1fr) — not bare 1fr — lets descendants with
+       min-w-0 + .truncate ellipsis their content; bare 1fr resolves to
+       minmax(auto, 1fr) and would fight truncation on narrow viewports. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-4);
-    justify-content: center;
 
-    /* Below 350px viewport (167×2 + 16 gap), the row would clip — stack to
+    /* Below 350px viewport, two side-by-side cards feel cramped — stack to
        a single column so cards stay readable on iPhone SE-class devices. */
     @media (max-width: 350px) {
         grid-template-columns: 1fr;
@@ -427,7 +427,9 @@
     justify-content: space-between;
     align-items: flex-end;
     gap: var(--space-2);
-    min-height: 140px;
+    /* Height tracks width to keep the Figma Scheda Misurazioni
+       proportion (171×157 = 1.089). Width is fluid via the parent grid. */
+    aspect-ratio: 171 / 157;
 
     /* Icon buttons inside tracking cards should not shrink in the column flex. */
     .shuby-icon-btn,
