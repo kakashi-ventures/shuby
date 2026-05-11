@@ -116,6 +116,7 @@ class ArchiveController < ApplicationController
 
   def load_related_articles
     base_scope
+      .articles
       .where.not(id: @content.id)
       .where(min_age_months: ..@content.max_age_months, max_age_months: @content.min_age_months..)
       .ordered
