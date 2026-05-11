@@ -1,4 +1,4 @@
-class Account::AcceptedInviteNotifier < ApplicationNotifier
+class Children::QuestionnaireResumeNotifier < ApplicationNotifier
   deliver_by :action_cable do |config|
     config.channel = "Noticed::NotificationChannel"
     config.stream = -> { recipient }
@@ -10,24 +10,24 @@ class Account::AcceptedInviteNotifier < ApplicationNotifier
     config.format = ->(apn) { event.format_apns(apn, recipient) }
   end
 
-  def user
-    record || params[:user] || User.new(name: "Someone")
+  def child
+    record.child
   end
 
   def format_apns(apn, recipient)
     apn.alert = {
-      title: I18n.t("notifications.account.accepted_invite_notifier.push.title"),
-      body: I18n.t("notifications.account.accepted_invite_notifier.push.body", user: user.name)
+      title: I18n.t("notifications.children.questionnaire_resume.push.title"),
+      body: I18n.t("notifications.children.questionnaire_resume.push.body", name: child.display_name)
     }
     apn.sound = "default"
     apn.badge = recipient.notifications.unread.count
   end
 
   def message
-    t "notifications.invite_accepted", user: user.name
+    I18n.t("notifications.children.questionnaire_resume.message", name: child.display_name)
   end
 
   def url
-    account_path(account)
+    continue_child_questionnaire_session_path(child_id: record.child_id, id: record.id)
   end
 end

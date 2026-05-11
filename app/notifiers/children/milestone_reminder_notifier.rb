@@ -1,4 +1,4 @@
-class Account::AcceptedInviteNotifier < ApplicationNotifier
+class Children::MilestoneReminderNotifier < ApplicationNotifier
   deliver_by :action_cable do |config|
     config.channel = "Noticed::NotificationChannel"
     config.stream = -> { recipient }
@@ -10,24 +10,20 @@ class Account::AcceptedInviteNotifier < ApplicationNotifier
     config.format = ->(apn) { event.format_apns(apn, recipient) }
   end
 
-  def user
-    record || params[:user] || User.new(name: "Someone")
-  end
-
   def format_apns(apn, recipient)
     apn.alert = {
-      title: I18n.t("notifications.account.accepted_invite_notifier.push.title"),
-      body: I18n.t("notifications.account.accepted_invite_notifier.push.body", user: user.name)
+      title: I18n.t("notifications.children.milestone_reminder.push.title"),
+      body: I18n.t("notifications.children.milestone_reminder.push.body", name: record.display_name)
     }
     apn.sound = "default"
     apn.badge = recipient.notifications.unread.count
   end
 
   def message
-    t "notifications.invite_accepted", user: user.name
+    I18n.t("notifications.children.milestone_reminder.message", name: record.display_name)
   end
 
   def url
-    account_path(account)
+    child_development_stages_path(child_id: record.id)
   end
 end

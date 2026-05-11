@@ -1,4 +1,4 @@
-class Account::AcceptedInviteNotifier < ApplicationNotifier
+class Users::OnboardingNudgeNotifier < ApplicationNotifier
   deliver_by :action_cable do |config|
     config.channel = "Noticed::NotificationChannel"
     config.stream = -> { recipient }
@@ -10,24 +10,24 @@ class Account::AcceptedInviteNotifier < ApplicationNotifier
     config.format = ->(apn) { event.format_apns(apn, recipient) }
   end
 
-  def user
-    record || params[:user] || User.new(name: "Someone")
+  def first_child
+    account.children.active.first
   end
 
   def format_apns(apn, recipient)
     apn.alert = {
-      title: I18n.t("notifications.account.accepted_invite_notifier.push.title"),
-      body: I18n.t("notifications.account.accepted_invite_notifier.push.body", user: user.name)
+      title: I18n.t("notifications.users.onboarding_nudge.push.title"),
+      body: I18n.t("notifications.users.onboarding_nudge.push.body", name: first_child&.display_name || "tuo figlio")
     }
     apn.sound = "default"
     apn.badge = recipient.notifications.unread.count
   end
 
   def message
-    t "notifications.invite_accepted", user: user.name
+    I18n.t("notifications.users.onboarding_nudge.message", name: first_child&.display_name || "tuo figlio")
   end
 
   def url
-    account_path(account)
+    first_child ? child_measurements_path(child_id: first_child.id) : root_path
   end
 end

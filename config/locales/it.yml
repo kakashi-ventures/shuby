@@ -617,6 +617,37 @@ it:
     account_transferred: "%{previous_owner} ti ha reso proprietario dell'account %{account}."
     empty: "Niente da vedere qui — per ora."
     empty_description: "Ti faremo sapere quando avrai nuove notifiche."
+    account:
+      ownership_notifier:
+        push:
+          title: "Account aggiornato"
+          body: "%{previous_owner} ti ha reso proprietario di un account."
+      accepted_invite_notifier:
+        push:
+          title: "Invito accettato"
+          body: "%{user} ha accettato il tuo invito."
+    children:
+      measurement_reminder:
+        push:
+          title: "È ora di una nuova misurazione"
+          body: "Aggiorna peso, altezza o circonferenza cranica di %{name}."
+        message: "Ricorda di aggiornare le misurazioni di %{name}."
+      milestone_reminder:
+        push:
+          title: "Una nuova tappa da osservare"
+          body: "Hai una nuova tappa di sviluppo da osservare per %{name}."
+        message: "Nuova tappa di sviluppo disponibile per %{name}."
+      questionnaire_resume:
+        push:
+          title: "Hai un questionario in sospeso"
+          body: "Riprendi il questionario di %{name} dove l'avevi lasciato."
+        message: "Questionario di %{name} in sospeso."
+    users:
+      onboarding_nudge:
+        push:
+          title: "Pronto per la prima misurazione?"
+          body: "Registra peso e altezza di %{name} per iniziare a tracciare la crescita."
+        message: "Inizia a registrare le misurazioni di %{name}."
 
   age_bands:
     single_month:

@@ -62,10 +62,11 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 
 ## P1: Notification System
 
-- [ ] Notification delivery (push via APNS/FCM for iOS via Ruby Native)
-- [ ] Notification triggers: measurement reminders, milestone alerts, content suggestions
+- [x] Notification delivery (push via APNS for iOS via Ruby Native) — Noticed v3 `:ios` adapter wired through `ApplicationNotifier.apns_defaults` (`app/notifiers/application_notifier.rb`); JWT token-based auth with `.p8` credentials in `Rails.application.credentials.apns.*`; bundle id `app.shuby.rubynative`; in test env `IOS_ADAPTER` swaps to `:test` (no HTTP). FCM left dormant (iOS-only per memory). Smoke-tested via Account::OwnershipNotifier + Account::AcceptedInviteNotifier
+- [x] Notification triggers: measurement reminders, milestone alerts — 4 notifier classes (`Children::MeasurementReminderNotifier`, `Children::MilestoneReminderNotifier`, `Children::QuestionnaireResumeNotifier`, `Users::OnboardingNudgeNotifier`) + 4 SolidQueue scan jobs in `app/jobs/{children,users}/`, scheduled daily 09:00/09:15/09:30/10:00 Europe/Rome via `config/recurring.yml`. Quiet hours 22:00–08:00 per recipient time zone (default Europe/Rome). Dedupe via `Noticed::Event` row presence (7-day rolling for reminders, lifetime for questionnaire-resume + onboarding-nudge). GDPR-safe payloads: child display_name only — no measurement values or medical context. **Content-suggestion push deferred to Phase 2** (overlaps with Premium "Suggerimenti proattivi" per PDF)
 - [x] Notification preferences UI in settings — three toggles in `_section_notifications.html.erb` (push default on, email newsletter default off, stage reminders default on); persisted via `User#preferences` JSONB store_accessors in `User::Notifiable`
-- [ ] In-app notification center
+- [x] In-app notification center — `NotificationsController` (index/show/nav/mark_as_read), `app/views/notifications/`, navbar bell-icon partial, Stimulus controller subscribing to `Noticed::NotificationChannel` and syncing `RubyNative.setBadge(unread)` on the iOS shell
+- [ ] **APNS credentials provisioning** — Apple Developer portal: create APNs Auth Key for `app.shuby.rubynative`, download `.p8`, note Team ID + Key ID, paste into `bin/rails credentials:edit -e production` (and `-e development`, `-e staging`) under `apns:` block. Test env uses `:test` adapter so credentials may be absent there. Steps documented in `/Users/faeze/.claude/plans/p1-notification-system-zazzy-newell.md` §A.5
 
 ## Gestione (Settings) — Post-Redesign Tracking
 
