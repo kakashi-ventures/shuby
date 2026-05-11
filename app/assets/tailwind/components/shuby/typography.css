@@ -132,6 +132,16 @@
     color: var(--text-primary);
 }
 
+/* Section label - Dashboard band labels (Figma: Caption/Span/Light - Montserrat Medium 10px, black) */
+.shuby-section-label {
+    font-size: var(--font-size-overline);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+    text-transform: uppercase;
+    color: var(--color-shuby-black);
+}
+
 /* Secondary text color utility */
 /* shuby-text-secondary moved to utilities.css as @utility */
 

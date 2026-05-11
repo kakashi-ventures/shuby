@@ -1,10 +1,8 @@
 <% if @featured_articles.present? %>
   <section class="mb-6">
-    <div class="shuby-carousel-header">
-      <h2 class="shuby-carousel-title">
-        <%= t("dashboard.show.featured_articles.title") %>
-      </h2>
-    </div>
+    <%= render "shared/ui/section_header",
+               title: t("dashboard.show.featured_articles.title"),
+               variant: "overline" %>
 
     <%= render layout: "shared/featured_carousel" do %>
       <% @featured_articles.each do |article| %>
