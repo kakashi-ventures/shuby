@@ -64,8 +64,9 @@ module Shuby
       end
 
       def parse
-        document_xml, numbering_xml = read_xml
+        document_xml, numbering_xml, rels_xml = read_xml
         @list_format_by_id = parse_numbering(numbering_xml)
+        @hyperlink_targets = parse_hyperlink_targets(rels_xml)
 
         document = Nokogiri::XML(document_xml)
         document.remove_namespaces!
@@ -97,8 +98,9 @@ module Shuby
         Zip::File.open(@path) do |zip|
           document = zip.find_entry("word/document.xml")&.get_input_stream&.read
           numbering = zip.find_entry("word/numbering.xml")&.get_input_stream&.read
+          rels = zip.find_entry("word/_rels/document.xml.rels")&.get_input_stream&.read
           raise ParseError, "Missing word/document.xml in #{@path}" unless document
-          return [document, numbering]
+          return [document, numbering, rels]
         end
       end
 
@@ -120,6 +122,20 @@ module Shuby
         doc.xpath("//num").each_with_object({}) do |num, h|
           abs_id = num.at_xpath("./abstractNumId")&.[]("val")
           h[num["numId"]] = abstract[abs_id] || :ul
+        end
+      end
+
+      # Maps Word relationship Ids to hyperlink URLs. <w:hyperlink r:id="rIdN">
+      # references this map; the run text inside the hyperlink is what the user
+      # sees, the URL lives in the rels file.
+      def parse_hyperlink_targets(xml)
+        return {} unless xml
+        doc = Nokogiri::XML(xml)
+        doc.remove_namespaces!
+        doc.xpath("//Relationship").each_with_object({}) do |rel, h|
+          next unless rel["Type"].to_s.end_with?("/hyperlink")
+          target = rel["Target"]
+          h[rel["Id"]] = target if target && !target.empty?
         end
       end
 
@@ -191,15 +207,34 @@ module Shuby
         end
       end
 
-      # Walks all <w:r> descendants so we cover runs wrapped in <w:hyperlink>,
-      # <w:ins> (tracked-change inserts), and other containers. Runs inside
-      # <w:del> are author-removed content from track-changes mode — skipped.
+      # Walks paragraph element-children sequentially, preserving the
+      # hyperlink/run structure that the xpath descendant axis would flatten.
+      # Unknown containers (smartTag, sdt, ins, moveTo) recurse so runs
+      # nested inside them survive.
       def paragraph_inner_html(paragraph)
-        runs = paragraph.xpath(".//r[not(ancestor::del)]")
-        runs.map { |r| render_run(r) }.join
+        emit_runs(paragraph)
       end
 
-      def render_run(run)
+      def emit_runs(node, in_hyperlink: false)
+        node.element_children.filter_map do |child|
+          case child.name
+          when "r" then render_run(child, in_hyperlink: in_hyperlink)
+          when "hyperlink" then render_hyperlink(child)
+          when "pPr", "del", "moveFrom" then nil
+          else emit_runs(child, in_hyperlink: in_hyperlink)
+          end
+        end.join
+      end
+
+      def render_hyperlink(node)
+        inner = emit_runs(node, in_hyperlink: true)
+        return "" if inner.empty?
+        href = @hyperlink_targets[node["id"]]
+        return inner unless href
+        %(<a href="#{ERB::Util.html_escape(href)}">#{inner}</a>)
+      end
+
+      def render_run(run, in_hyperlink: false)
         text = run.children.map do |child|
           case child.name
           when "t" then ERB::Util.html_escape(child.text)
@@ -211,10 +246,21 @@ module Shuby
 
         return "" if text.empty?
 
+        text = auto_linkify(text) unless in_hyperlink
+
         run_props = run.at_xpath("./rPr")
         text = "<strong>#{text}</strong>" if run_props&.at_xpath("./b")
         text = "<em>#{text}</em>" if run_props&.at_xpath("./i")
         text
+      end
+
+      # Wraps bare URL strings (author typed/pasted but didn't make a Word
+      # hyperlink) in <a> tags. Excludes whitespace, brackets, quotes, and
+      # closing punctuation so a URL inside parens stops at the closing ).
+      URL_REGEX = %r{https?://[^\s<>"')\]\}]+}
+
+      def auto_linkify(html)
+        html.gsub(URL_REGEX) { |url| %(<a href="#{url}">#{url}</a>) }
       end
 
       # First heading paragraph wins as title. Marks its index consumed so the
