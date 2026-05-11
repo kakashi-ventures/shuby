@@ -6,7 +6,7 @@
   <%= tag.div(class: "shuby-timeline-sections",
               **(show_paywall ? { aria: { hidden: true }, inert: true } : {})) do %>
     <%= render "development_stages/timeline_growth_phase",
-               growth_phase: growth_phase,
+               timeline_stage: timeline_stage,
                selected_band: selected_band %>
 
     <%= render "development_stages/timeline_measurements",

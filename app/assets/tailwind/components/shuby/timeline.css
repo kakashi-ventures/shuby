@@ -470,6 +470,19 @@
     white-space: pre-line;
 }
 
+/* "Cosa puoi favorire:" actionable line shown under the narrative on weekly
+   pills. Body in the subdued p2 size; the label is the same color but
+   semibold to act as an inline heading. */
+.shuby-timeline-suggestions {
+    color: var(--color-shuby-gray-700);
+    white-space: pre-line;
+}
+
+.shuby-timeline-suggestions-label {
+    font-weight: 600;
+    margin-right: var(--space-1);
+}
+
 /* 3-column flex row for WHO measurement boxes, 8px gap */
 .shuby-who-box-grid {
     display: flex;

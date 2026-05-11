@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_08_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_11_130000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -302,6 +302,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_08_120000) do
     t.string "uid"
     t.datetime "updated_at", precision: nil, null: false
     t.index ["owner_id", "owner_type"], name: "index_connected_accounts_on_owner_id_and_owner_type"
+  end
+
+  create_table "dashboard_stage_contents", force: :cascade do |t|
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.string "kind", null: false
+    t.string "label", null: false
+    t.integer "max_age_months"
+    t.integer "max_age_weeks"
+    t.integer "min_age_months"
+    t.integer "min_age_weeks"
+    t.integer "position", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["kind", "min_age_months", "max_age_months"], name: "idx_dashboard_stage_contents_monthly"
+    t.index ["kind", "min_age_weeks", "max_age_weeks"], name: "idx_dashboard_stage_contents_weekly"
   end
 
   create_table "development_areas", force: :cascade do |t|
@@ -795,6 +810,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_08_120000) do
     t.decimal "weight_max_kg"
     t.decimal "weight_min_kg"
     t.index ["growth_phase_id"], name: "index_timeline_periods_on_growth_phase_id"
+  end
+
+  create_table "timeline_stage_contents", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description", null: false
+    t.string "pill_key", null: false
+    t.integer "position", default: 0, null: false
+    t.text "suggestions"
+    t.datetime "updated_at", null: false
+    t.index ["pill_key"], name: "index_timeline_stage_contents_on_pill_key", unique: true
   end
 
   create_table "users", force: :cascade do |t|

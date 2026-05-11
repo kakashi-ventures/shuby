@@ -33,6 +33,12 @@ _Full analysis: `docs/AUDIT-REPORT.md`_
 
 - [x] ~~24-Hour Guidelines table~~ — Not in Figma as separate table. Guidelines embedded in growth phase narrative text. Verify growth phase texts include these tips.
 - [x] Dashboard: article carousel bumped to 4 items (was 3, carousel already horizontal)
+- [x] Dashboard hero: per-month + per-week narrative seeded from April 2026 client drop (`docs/content_4_21/Dashboard generale_0-36.docx` + `Dashboard generale_prime settimane_0-2.docx`) — new `DashboardStageContent` model resolves child age to one of 4 weekly + 35 monthly rows; hero illustration still driven by `GrowthPhase` (9 broad phases) until per-month illustrations land
+- [ ] Dashboard hero: per-month illustrations (35 monthly + 4 weekly) — currently reuses the 9 `GrowthPhase` broad-phase illustrations. **Needs design**: illustration brief + asset delivery.
+- [ ] Dashboard hero: evocative titles per stage — currently "Mese N" / "Settimane N–M" placeholders. Client to provide titles per stage (e.g. "Il mondo dei sensi" style) in a follow-up content drop; the `label` column on `DashboardStageContent` is ready.
+- [ ] Dashboard hero: Premium weeks 9–12 narrative from the prime-settimane docx draft (Settimane 9–10 / 11 / 12) — intentionally skipped in the initial seed (overlaps MESE 2–3 content, marked "bozza"). Revisit once the client finalises this draft + decides whether it's free or premium.
+- [x] Timeline: per-pill long descriptions seeded from `docs/content_4_21/Timeline descrizione lunga_ 0-36.docx` — new `TimelineStageContent` model holds 1 row per pill (8 weekly + 34 monthly = 42 rows) keyed by pill_key, replacing the GrowthPhase-driven narrative that collapsed sett_1..sett_4 onto a single "Il mondo dei sensi" paragraph. Weekly rows carry a "Cosa puoi favorire:" suggestions paragraph rendered below the body via `t("timeline.show.suggestions_label")`.
+- [ ] Timeline: pill schema does not yet cover Settimane 9–12 or MESE 0/1/2 (content available in the new Timeline docx but no corresponding pill in `Timeline::AgeBands::ALL`). If the client wants weekly precision in months 2–3 or month-0/1/2 entry points, extend `Timeline::AgeBands` and re-run the JSON extractor.
 - [ ] Timeline: related content links per age band (PRD 3.3) — **needs design**: not in current Figma, ask design team if intended for v1.0
 
 ## P1: Questionnaire Integration

@@ -310,6 +310,107 @@ puts "Created #{GrowthPhase.count} growth phases"
 puts "=" * 60
 
 # =============================================================================
+# 5b. Dashboard Stage Content - Per-month and per-week narrative for hero band
+# =============================================================================
+#
+# Sourced verbatim from the April 2026 client content drop:
+#   docs/content_4_21/Dashboard generale_0-36.docx           (MESE 2..36)
+#   docs/content_4_21/Dashboard generale_prime settimane_0-2.docx (Settimane 1-8)
+#
+# Premium weeks 9-12 draft and the "Nota generale importante!" preamble are
+# intentionally excluded; see docs/REMAINING-WORK.md for deferred follow-ups.
+
+puts ""
+puts "=" * 60
+puts "Dashboard Stage Content Seed Data"
+puts "=" * 60
+
+dashboard_stage_json = Rails.root.join("db", "seeds", "data", "dashboard_stage_content.json")
+
+if File.exist?(dashboard_stage_json)
+  dashboard_data = JSON.parse(File.read(dashboard_stage_json))
+
+  expected_ids = []
+  position = 0
+
+  dashboard_data["weekly"].each do |entry|
+    record = DashboardStageContent.find_or_initialize_by(
+      kind: DashboardStageContent::KIND_WEEKLY,
+      min_age_weeks: entry["min_week"],
+      max_age_weeks: entry["max_week"]
+    )
+    record.label = entry["label"]
+    record.body = entry["body"]
+    record.position = (position += 1)
+    record.save!
+    expected_ids << record.id
+  end
+
+  dashboard_data["monthly"].each do |entry|
+    record = DashboardStageContent.find_or_initialize_by(
+      kind: DashboardStageContent::KIND_MONTHLY,
+      min_age_months: entry["month"],
+      max_age_months: entry["month"]
+    )
+    record.label = entry["label"]
+    record.body = entry["body"]
+    record.position = (position += 1)
+    record.save!
+    expected_ids << record.id
+  end
+
+  removed = DashboardStageContent.where.not(id: expected_ids).destroy_all
+  puts "  - Weekly: #{DashboardStageContent.weekly.count}"
+  puts "  - Monthly: #{DashboardStageContent.monthly.count}"
+  puts "  - Removed orphans: #{removed.size}"
+else
+  puts "WARNING: dashboard_stage_content.json not found. Skipping dashboard stage content loading."
+end
+
+puts "=" * 60
+
+# =============================================================================
+# 5c. Timeline Stage Content - Per-pill long descriptions for the carousel
+# =============================================================================
+#
+# Sourced verbatim from docs/content_4_21/Timeline descrizione lunga_ 0-36.docx
+# (April 2026 client content drop). One row per Timeline pill: 8 weekly
+# (sett_1..sett_8) + 34 monthly (mese_3..mese_36) = 42 rows.
+#
+# Settimane 9-12 and MESE 0/1/2 entries from the docx are intentionally
+# skipped (no corresponding pill in Timeline::AgeBands::ALL); see
+# docs/REMAINING-WORK.md for deferred follow-ups.
+
+puts ""
+puts "=" * 60
+puts "Timeline Stage Content Seed Data"
+puts "=" * 60
+
+timeline_stage_json = Rails.root.join("db", "seeds", "data", "timeline_stage_content.json")
+
+if File.exist?(timeline_stage_json)
+  timeline_data = JSON.parse(File.read(timeline_stage_json))
+  expected_ids = []
+
+  timeline_data["entries"].each_with_index do |entry, idx|
+    record = TimelineStageContent.find_or_initialize_by(pill_key: entry["pill_key"])
+    record.description = entry["description"]
+    record.suggestions = entry["suggestions"]
+    record.position = idx + 1
+    record.save!
+    expected_ids << record.id
+  end
+
+  removed = TimelineStageContent.where.not(id: expected_ids).destroy_all
+  puts "  - Timeline stage rows: #{TimelineStageContent.count}"
+  puts "  - Removed orphans: #{removed.size}"
+else
+  puts "WARNING: timeline_stage_content.json not found. Skipping timeline stage content loading."
+end
+
+puts "=" * 60
+
+# =============================================================================
 # 6. Archive Content - Educational articles, books, and activities
 # =============================================================================
 

@@ -820,6 +820,7 @@ it:
     show:
       title: "Timeline"
       no_growth_phase: "Informazioni non ancora disponibili per questa fascia d'età."
+      suggestions_label: "Cosa puoi favorire:"
       measurements_title: "Misure medie"
       no_sex_data: "Seleziona il sesso del bambino per vedere i valori di riferimento."
       weight: "Peso"

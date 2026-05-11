@@ -1,0 +1,42 @@
+# frozen_string_literal: true
+
+# Test fixtures for TimelineStageContent (per-pill long descriptions).
+# Representative subset; production seeds 42 rows from
+# db/seeds/data/timeline_stage_content.json.
+
+sett_1:
+  pill_key: "sett_1"
+  description: "Nei primi giorni di vita il tuo bambino sta affrontando un grande passaggio."
+  suggestions: "contatto pelle a pelle, voce calma, luci morbide."
+  position: 1
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+sett_8:
+  pill_key: "sett_8"
+  description: "Intorno ai due mesi molti bambini iniziano a mostrarsi più attivi e disponibili."
+  suggestions: "piccoli giochi di sguardo e voce, pause per lasciare al bambino il tempo di rispondere."
+  position: 8
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+mese_3:
+  pill_key: "mese_3"
+  description: "Si gira verso i suoni, porta le mani alla bocca e arricchisce i vocalizzi."
+  position: 9
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+mese_12:
+  pill_key: "mese_12"
+  description: "Arrivano i primi passi e 1–3 parole significative."
+  position: 18
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+mese_36:
+  pill_key: "mese_36"
+  description: "Sale e scende le scale alternando senza aiuto e racconta storie brevi."
+  position: 42
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

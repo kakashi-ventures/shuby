@@ -1,5 +1,6 @@
 <% if current_child.present? %>
   <% phase = GrowthPhase.for_age(current_child.questionnaire_age_in_months) %>
+  <% stage = DashboardStageContent.for_child(current_child) %>
   <section>
     <%# Date + Age metadata above the hero title.
         Figma (375:5429, 434:12577, 499:6713): 2 lines only — Overline/OL/Dark
@@ -16,22 +17,28 @@
 
     <%# Hero content — Figma 375:5429:
         Row 1: illustration (left, 123x117) + H2 fuchsia title (right, centered)
-        Row 2: description (full width, below) %>
-    <% if phase %>
+        Row 2: description (full width, below).
+        Title + description come from DashboardStageContent (per-month/per-week
+        rows seeded from docs/content_4_21/Dashboard generale_*.docx).
+        Illustration still comes from GrowthPhase (9 broad phases) until a
+        per-month illustration set is delivered. %>
+    <% if stage %>
       <%= link_to child_development_stages_path(current_child),
               class: "shuby-dashboard-hero-anchor",
               aria: { label: t("dashboard.age_growth_phase.phase_link_label") } do %>
         <div class="shuby-dashboard-hero">
           <div class="shuby-dashboard-hero-headline">
-            <div class="shuby-dashboard-hero-illustration">
-              <%= image_tag phase.illustration_path, alt: "" %>
-            </div>
+            <% if phase %>
+              <div class="shuby-dashboard-hero-illustration">
+                <%= image_tag phase.illustration_path, alt: "" %>
+              </div>
+            <% end %>
             <h2 class="shuby-dashboard-hero-title min-w-0">
-              <%= phase.title %>
+              <%= stage.label %>
             </h2>
           </div>
           <p class="shuby-dashboard-hero-description">
-            <%= phase.description %>
+            <%= stage.body %>
           </p>
         </div>
       <% end %>

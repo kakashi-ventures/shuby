@@ -62,7 +62,7 @@ class DevelopmentStagesController < ApplicationController
 
   def load_timeline_content
     age = @selected_band[:age_months]
-    @growth_phase = GrowthPhase.for_age(age)
+    @timeline_stage = TimelineStageContent.for_band(@selected_band)
     @who_ranges = load_who_ranges(age)
     @development_areas = @milestones_loader.data_for_band(@selected_band)[:development_areas]
   end

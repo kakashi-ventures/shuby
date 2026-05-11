@@ -1,0 +1,216 @@
+{
+  "source": "docs/content_4_21/Timeline descrizione lunga_ 0-36.docx",
+  "notes": "Verbatim per-pill narrative for the Timeline carousel. Drops Settimane 9-12 and MESE 0/1/2 (no corresponding pills). 'Cosa puoi favorire:' label prefix stripped before storage; view re-applies it via i18n.",
+  "entries": [
+    {
+      "pill_key": "sett_1",
+      "description": "Nei primi giorni di vita il tuo bambino sta affrontando un grande passaggio: dal corpo della mamma al mondo esterno. In questa fase prevalgono adattamento e regolazione. Il neonato alterna sonno e veglia in modo ancora irregolare, può avere momenti di quiete e momenti di attivazione improvvisa, sobbalzare per rumori o cambi di posizione e cercare contenimento attraverso il contatto corporeo. I movimenti sono ancora in gran parte riflessi e poco coordinati, ma già presenti in tutti e quattro gli arti. Il capo ha bisogno di sostegno completo. Anche lo sguardo è ancora breve, ma il tuo volto, la tua voce, il tuo odore e il contatto pelle a pelle sono già punti di riferimento importantissimi.",
+      "suggestions": "contatto pelle a pelle, voce calma, luci morbide, movimenti lenti, sostegno del capo, momenti di vicinanza e contenimento. In questa settimana l’obiettivo non è stimolare tanto, ma aiutare il bambino a sentirsi sicuro."
+    },
+    {
+      "pill_key": "sett_2",
+      "description": "Il tuo bambino continua ad adattarsi ai ritmi fuori dall’utero. Può iniziare a mostrare periodi di veglia un po’ più leggibili, anche se ancora brevi. I movimenti restano disordinati ma possono apparire leggermente più fluidi. Può portare talvolta le mani vicino al viso o alla bocca, calmarsi meglio in braccio e reagire alla voce o al contatto con piccole variazioni del corpo e dell’espressione. In posizione prona per pochi istanti può provare a ruotare il capo di lato per liberare il viso dal piano d’appoggio.",
+      "suggestions": "appoggiarlo ogni giorno su superfici stabili e sicure quando è sveglio, tenerlo spesso vicino, parlargli durante le cure, iniziare brevi momenti di tummy time distribuiti nella giornata. Per i lattanti l’attività fisica più volte al giorno e il tummy time da svegli fanno parte delle raccomandazioni per una crescita sana."
+    },
+    {
+      "pill_key": "sett_3",
+      "description": "In questa settimana alcuni bambini iniziano a sembrare un po’ più “presenti” durante la veglia. Possono stirarsi, flettersi, agitarsi quando sentono una voce o quando vengono presi in braccio. I ritmi restano ancora irregolari, ma il passaggio tra fame, sonno, disagio e calma può diventare un po’ più riconoscibile. Lo sguardo può fermarsi per un attimo sul volto del caregiver e la voce familiare può avere un effetto calmante. Le mani possono aprirsi per brevissimi istanti.",
+      "suggestions": "routine semplici e ripetute, momenti faccia a faccia molto brevi, voce dolce, cambi di posizione lenti, pause quando il bambino mostra di essere stanco o sovrastimolato."
+    },
+    {
+      "pill_key": "sett_4",
+      "description": "Alla fine del primo mese il bambino può mostrare momenti brevi ma più chiari di attivazione. Quando è sveglio può osservare per qualche secondo un volto, stare un po’ più tranquillo se contenuto, muovere arti superiori e inferiori in modo più evidente e portare più spesso la mano verso la bocca. In pancia in giù può iniziare a sollevare appena il capo o a ruotarlo più efficacemente. Anche il pianto inizia a diventare una modalità più riconoscibile di comunicazione dei bisogni.",
+      "suggestions": "tummy time breve e frequente, voce e sguardo da vicino, pause regolari, tempi semplici di interazione uno-a-uno. Non serve “riempire” la giornata: serve renderla prevedibile e rassicurante."
+    },
+    {
+      "pill_key": "sett_5",
+      "description": "Inizia spesso una fase in cui il bambino appare più disponibile al contatto e alla veglia condivisa. I movimenti possono diventare più ampi, il corpo un po’ meno raccolto, le mani un po’ meno serrate in alcuni momenti. Può calmarsi meglio con la voce, riconoscere sempre di più modalità familiari di cura e restare per brevi attimi in attenzione sul volto di chi si prende cura di lui. In braccio può provare per un istante a tenere la testa meno ciondolante.",
+      "suggestions": "alternare braccio, tappeto, fasciatoio, petto del caregiver; parlare durante il cambio e il bagnetto; lasciare piccoli spazi di veglia tranquilla senza dispositivi contenitivi prolungati."
+    },
+    {
+      "pill_key": "sett_6",
+      "description": "Verso questa settimana si può osservare un primo abbozzo di maggiore organizzazione. Il bambino può avere momenti di veglia un po’ più partecipi, cercare il volto, calmarsi con più facilità in alcune situazioni note e mostrare segnali iniziali di controllo antigravitario. In posizione prona può staccare per attimi il capo dal piano; in braccio, se ben sostenuto, può cercare di allineare testa e tronco per pochi secondi. Le mani possono aprirsi un po’ di più rispetto all’inizio.",
+      "suggestions": "continuare con tummy time quotidiano, offrire il volto e la voce come principale stimolo, osservare i segnali di stanchezza, rispettare i tempi del bambino senza forzarlo."
+    },
+    {
+      "pill_key": "sett_7",
+      "description": "Il tuo bambino può iniziare a mostrare una progressiva organizzazione del tronco, del collo e degli stati di regolazione. Non significa ancora vero controllo del capo, ma piccoli segnali di stabilizzazione. In alcuni momenti può essere più attento alla relazione, più facilmente consolabile e più disponibile a uno scambio fatto di sguardi, voce, pause e risposte del corpo. I movimenti degli arti possono diventare più ritmici e meno frammentati.",
+      "suggestions": "tempo sul tappeto, gioco faccia a faccia, filastrocche lente, routine prevedibili, momenti di calma dopo l’attivazione."
+    },
+    {
+      "pill_key": "sett_8",
+      "description": "Intorno ai due mesi molti bambini iniziano a mostrarsi più attivi e disponibili nella relazione. Possono seguire meglio il volto del caregiver, fermarsi un po’ di più sullo sguardo, reagire alla voce con cambiamenti dell’espressione o del corpo e mostrarsi più partecipi nei momenti di veglia. Dal punto di vista motorio possono muovere in modo vivace arti superiori e inferiori, portare le mani più chiaramente verso il centro del corpo e tollerare meglio la posizione prona. Nei primi mesi la qualità delle interazioni quotidiane ha un ruolo fondamentale nello sviluppo e nella neuroplasticità.",
+      "suggestions": "piccoli giochi di sguardo e voce, pause per lasciare al bambino il tempo di “rispondere”, tappeto ampio e stabile, tummy time distribuito nella giornata."
+    },
+    {
+      "pill_key": "mese_3",
+      "description": "Si gira verso i suoni, porta le mani alla bocca e arricchisce i vocalizzi. Proponi libri ad alto contrasto, sonagli leggeri e tummy time un po’ più lungo per rinforzare collo e spalle. Le finestre di veglia durano 60–90 minuti: osserva sbadigli, sguardo perso, sopracciglia arrossate per prevenire il sovraccarico. Il tuo volto è il suo specchio: rispondi ai suoi segnali, imita i suoni, lascia piccoli silenzi per aiutarlo a “prendere il turno”. Piccoli passi, grandi progressi.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_4",
+      "description": "In prono si appoggia sugli avambracci, ride spesso e afferra per brevi istanti. Il gioco libero a terra resta la palestra migliore: superfici sicure, varie consistenze e oggetti facili da afferrare. Il sonno totale è ancora 12–16 ore, con notti variabili. Segui un rituale costante (bagnetto, massaggino, storia breve) e durante il giorno offri occasioni per rotolarsi e raggiungere un obiettivo, senza forzare: la curiosità guida il movimento. Fidati del tuo intuito di genitore.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_5",
+      "description": "Inizia a rotolare, porta gli oggetti alla bocca e sperimenta consistenze; emergono balbettii con sillabe tipo “pa/ba”. Offri pause frequenti dai contenitori e tanto tappeto per muoversi in autonomia. Tieni a portata oggetti sicuri di diverse forme e materiali per esplorare. Osserva curiosità, sazietà e segni di stanchezza per regolare i tempi. Le routine ripetute danno previsione e lo aiutano a sentirsi competente e sereno. Ripeti ciò che funziona per voi.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_6",
+      "description": "Siede con sostegno, ripete sillabe e cerca gli oggetti caduti: la permanenza dell’oggetto prende forma. Avvia l’alimentazione complementare ricca di ferro affiancando il latte; proponi acqua da bicchiere aperto con il tuo aiuto e mantieni un approccio responsivo, senza pressioni. Giochi sul pavimento, movimenti liberi e routine di sonno regolari sostengono il ritmo. Lascia che tocchi, schiacci, assaggi: impara con tutti i sensi. La relazione è il suo habitat.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_7",
+      "description": "Siede più stabile, trasferisce gli oggetti da una mano all’altra e cerca attivamente l’interazione. Porta i pasti principali a 2–3 al giorno oltre al latte, introducendo consistenze più grumose e, con sorveglianza, piccole quantità di allergeni comuni. Gesti, canzoncine e cucù arricchiscono la comunicazione. Offri giochi per infilare, tirare, far rumore; alterna sfide e pause, rispettando i segnali di interesse e fatica. Sii presente, curioso, gentile.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_8",
+      "description": "Striscia o gattona; alcune vocalizzazioni somigliano a parole ma non sono ancora vere parole. Continua con routine del sonno coerenti e zero schermi: il tuo volto e la tua voce restano centrali. Proponi tunnel morbidi, libri cartonato da esplorare, giochi a inseguire il suono. Il bisogno di esplorare cresce: organizza spazi sicuri per salire, scendere, passare sotto, con cuscini e percorsi bassi, sempre sotto supervisione attenta. Ogni bambino ha il suo ritmo.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_9",
+      "description": "Si alza in piedi con appoggio, gioca a batti-batti e comprende parole d’uso comune. Offri tre pasti al giorno con cibi di famiglia adattati, ricchi di ferro e zinco; incoraggia la tazza aperta. Lascia che tocchi e sporcchi: è apprendimento. La curiosità guida l’assaggio, tu proponi senza forzare. Nelle interazioni usa parole semplici e gesti, dai il tempo di rispondere: la comunicazione è un dialogo che si costruisce a due. Segui i suoi segnali con calma.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_10",
+      "description": "Affina la presa radiale, imita gesti e può usare “mamma/papà” in modo più specifico. Giocate con contenitori da riempire e svuotare, con incastri grandi e libri illustrati che invitano a indicare. Alterna attività e pause dai sistemi di contenimento per liberare il movimento. Nomina ciò che guarda e sta facendo; attendi il suo sguardo per condividere l’attenzione. La ripetizione consolida abilità e fiducia. Il tuo contatto è la sua bussola.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_11",
+      "description": "Si alza da solo, cammina con una mano e indica per mostrare o chiedere; segue consegne semplici. Mantieni tre pasti più 1–2 snack nutrienti e tanta esplorazione sicura in casa. Parole, gesti e sguardi formano un unico vocabolario: valorizza tutti i canali comunicativi. Prevedi tempi tranquilli per ricaricare; quando è stanco riduci stimoli e avvicina il sonno con un rituale costante, breve e rassicurante. Piccoli passi, grandi progressi.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_12",
+      "description": "Arrivano i primi passi e 1–3 parole significative; la palla diventa un gioco divertente da rotolare e rilanciare. Tra 12 e 23 mesi punta a molto movimento ogni giorno, senza schermi e con sonno regolare. Offri una dieta varia accanto al latte, rispettando fame e sazietà. Celebra i traguardi senza fretta: ogni bambino ha il suo ritmo. Le routine familiari, ripetute e prevedibili, lo fanno sentire competente. Fidati del tuo intuito di genitore.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_13",
+      "description": "Cammina più sicuro, si accovaccia per prendere oggetti e usa 2–5 parole; indica per ampliare la comunicazione. Organizza tre pasti e due snack nutrienti, acqua sempre disponibile a piccoli sorsi. Lascia spazio al gioco libero: spingere, trascinare, riempire e svuotare. Nomina emozioni e azioni mentre le vive; piccoli compiti ripetuti (portare un panno, mettere un libro a posto) accendono l’autonomia. Ripeti ciò che funziona per voi.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_14",
+      "description": "Sale un gradino con aiuto, ti porge oggetti per condividere l’attenzione e comprende richieste a un passaggio. Introduci grossi pastelli per i primi scarabocchi su fogli grandi e parlategli di ciò che “disegna”. Giocate a nascondere e ritrovare, a “dov’è?” con oggetti quotidiani. La ripetizione consolida: poche regole chiare, spiegate con calma, aiutano a orientarsi e a sentirsi al sicuro nelle novità. La relazione è il suo habitat.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_15",
+      "description": "Cammina portando un gioco, indica e riconosce parti del corpo e dice 5–10 parole. Sostieni l’uso del cucchiaio con pazienza: il “pasticcio” è apprendimento. Libri cartonati, canzoni con gesti e giochi di incastro restano la base della vostra routine quotidiana. Riconosci i suoi tentativi di autonomia e offri scelte guidate (tra due magliette, due libri): sentirsi parte attiva riduce frustrazione e capricci. Sii presente, curioso, gentile.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_16",
+      "description": "Compie brevi “corse” rigide, sale su sedie basse e esplora senza sosta. Imita le tue attività domestiche e amplia il vocabolario con parole d’uso quotidiano. Struttura la giornata con orari prevedibili per pasti, gioco e sonno; i confini coerenti rassicurano. Allestisci percorsi bassi, travasi con farina di mais o pasta cruda, ceste dei tesori: mani e corpo guidano la scoperta, tu osserva e rimani disponibile. Ogni bambino ha il suo ritmo.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_17",
+      "description": "Costruisce torri di 3–4 cubi e indica molte parti del corpo, chiedendo con gesto e parola. Mantieni tanta attività fisica distribuita nella giornata e ancora niente schermi. I confini chiari e ripetuti lo aiutano a sentirsi sicuro. Offri giochi per infilare grossi anelli, spingere e trainare; commenta ciò che fa con frasi brevi e lente, lasciando pause per la sua risposta: il dialogo si allena come il cammino. Segui i suoi segnali con calma.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_18",
+      "description": "Corre meglio, lancia la palla e sperimenta un semplice gioco di finzione (telefonare, cucinare). Il vocabolario può salire a 10–50 parole e arrivano le prime combinazioni di due parole. Coinvolgilo in routine “vere” e brevi (riporre i giochi, buttare il pannolino). Le emozioni si accendono presto: anticipa i passaggi, offri abbracci e alternative; nomina ciò che prova per aiutarlo a riconoscerlo. Il tuo contatto è la sua bussola.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_19",
+      "description": "Sfoglia le pagine una alla volta, costruisce torri di 4 o più cubi e trova immagini nel libro su richiesta. Cura l’apporto di ferro quotidiano con legumi, carne o uova nelle porzioni adatte. Le passeggiate sono mini laboratori di linguaggio e scoperta: osservate cani, foglie, camion; commenta, aspetta la sua risposta, rilancia. Mantieni il sonno regolare con rituali brevi e costanti, alla stessa ora. Piccoli passi, grandi progressi.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_20",
+      "description": "Calcia la palla in avanti, combina due parole più spesso e nomina oggetti d’uso comune. Consolida orari di pasti e sonno per dare ritmo alla giornata e prevenire i crolli. Ogni nuova parola nasce dall’esperienza concreta: cucina insieme, travasa, annusa, tocca; racconta quello che fate. Piccole frustrazioni sono occasioni per imparare a calmarsi con il tuo aiuto: respira, abbraccia, proponi un’alternativa. Fidati del tuo intuito di genitore.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_21",
+      "description": "Sale e scende da divani bassi, usa il cucchiaio con meno aiuto e segue piccole sequenze (“prendi il libro e vieni”). Il “mio” fa capolino: è il bisogno di affermarsi. Offri scelte poche e chiare e prepara turni nei giochi; modella con l’esempio frasi semplici per chiedere e aspettare. Mantieni ambienti predisposti alla sua autonomia (sgabellino, libri a portata) e loda i tentativi più che il risultato finale. Ripeti ciò che funziona per voi.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_22",
+      "description": "Prova a saltare sul posto e nomina molte figure nei libri. Le frasi di due parole diventano più costanti; gioca in parallelo con i pari, osservando e imitando. Crea spazi per arrampicate basse e salti su superfici sicure; proponi puzzle grandi a due o tre pezzi. Nelle routine (vestirsi, lavarsi le mani) canta e descrivi i passaggi: prevedibilità e gioco trasformano impegni quotidiani in momenti di relazione. La relazione è il suo habitat.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_23",
+      "description": "Classifica oggetti per forma o colore e inizia a chiedere “cos’è?”. Verbi e pronomi compaiono nelle frasi. Sostieni la curiosità con domande aperte e giochi di abbinamento; lascia che provi da solo e offri aiuto solo se richiesto. I limiti brevi e spiegati con calma dicono cosa fare, non solo cosa evitare. Prevedi movimento all’aperto ogni giorno per scaricare energia e consolidare equilibrio e forza. Sii presente, curioso, gentile.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_24",
+      "description": "Salta con due piedi, corre meglio e usa oltre 50 parole, combinandone due con regolarità. Segue istruzioni a due passaggi e partecipa a piccole routine. Se a due anni non combina parole, è utile un controllo udito/linguaggio. I giochi simbolici si arricchiscono: dai da mangiare al peluche, mettilo a nanna. Offri occasioni per scegliere vestiti semplici, lavare le mani, apparecchiare insieme a te. Ogni bambino ha il suo ritmo.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_25",
+      "description": "Dice frasi di 2–3 parole e mette in sequenza il gioco simbolico (dar da mangiare e poi mettere a nanna la bambola). Inizia ad aiutare a vestirsi e svestirsi. Mantieni ritmi stabili e spazi di gioco energico all’aperto. Racconta la giornata con foto o libri familiari, stimola il “prima-dopo”. Frustrazione e no possono esplodere: accoglili, metti parole, proponi alternative possibili; l’autoregolazione cresce. Segui i suoi segnali con calma.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_26",
+      "description": "Tira la palla sopra la spalla, calcia con slancio e usa “mio/tuo”. Chiede aiuto con parole e si lava le mani con il tuo supporto. Le regole brevi e coerenti facilitano l’autocontrollo. Offri giochi di infilare, paste modellabili, travasi con legumi; racconta ciò che vede e fa, stimolando frasi più lunghe. Nelle uscite prepara in anticipo tempi e passaggi: sapere cosa succede riduce proteste e fatiche. Il tuo contatto è la sua bussola.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_27",
+      "description": "Costruisce torri di 6 cubi, traccia la linea verticale e gestisce capi semplici (cappello, scarpe facili). Riconosce i bisogni (come la pipì) prima o mentre accadono. Incoraggia l’autonomia con routine positive e ripetute; loda l’impegno, non solo il risultato. Nei giochi proponi turni semplici e parole per aspettare e chiedere. Molto movimento ogni giorno sostiene attenzione, sonno e umore. Piccoli passi, grandi progressi.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_28",
+      "description": "Indica e nomina più di sei parti del corpo, riconosce alcuni colori e sperimenta i primi plurali. Le conversazioni diventano più ricche dentro le routine quotidiane: descrivi, attendi, rilancia. Offri puzzle grandi e attività di incastro, paste da premere e tirare, percorsi bassi per saltare. Dai spazio a scelte compatibili: maglietta rossa o blu, questo libro o quello. Scegliere allena autonomia e calma. Fidati del tuo intuito di genitore.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_29",
+      "description": "Si mette cappello e giacca con il tuo aiuto, chiede “dov’è/chi è?” e racconta micro-eventi della giornata. Sostenete il racconto con foto, oggetti e libri familiari; riprendete insieme ciò che è accaduto. La narrazione dà ordine alle esperienze e rafforza il linguaggio. Prepara transizioni con anticipo (“tra poco si esce”), usa timer visivi semplici, mantieni il rituale della nanna calmo e ripetibile. La relazione è il suo habitat.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_30",
+      "description": "Fa torri di 8 cubi, salta da un gradino basso e formula frasi di 3–4 parole comprensibili ai familiari. Le attività motorie diventano più coordinate e intenzionali. Inserisci semplici regole di turno nei giochi e occasioni per aspettare. Giochi di ruolo più articolati (negozio, cucina) allenano linguaggio e flessibilità. Assicurati di offrire ogni giorno movimento all’aperto e momenti di quiete condivisa. Sii presente, curioso, gentile.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_31",
+      "description": "Prova triciclo o balance bike con aiuto, copia la linea orizzontale e comprende concetti spaziali semplici (dentro/sopra/sotto). Giochi di percorso, costruzioni e travestimenti arricchiscono il linguaggio. Mantieni tempi di recupero tranquilli tra un’attività e l’altra. Nelle letture dialogiche fai domande aperte, aspetta la risposta, espandi con una parola in più: così crescono frase e comprensione. Ogni bambino ha il suo ritmo.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_32",
+      "description": "Salta più lontano, gioca a turni semplici e abbozza il cerchio. Il linguaggio scorre meglio nelle routine e nei giochi di ruolo. Offri sfide motorie a bassa altezza, sempre supervisionate, e materiali aperti (scatole, teli, cucchiai di legno). Invitalo a raccontare “come” e “perché”: collegare cause ed effetti costruisce pensiero narrativo. Proteggi il sonno con orari regolari e ambienti calmi. Segui i suoi segnali con calma.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_33",
+      "description": "Sale le scale alternando con il tuo aiuto, racconta fatti brevi e capisce “prima-dopo”. Introduci piccoli incarichi domestici (mettere i calzini nel cesto, portare tovaglioli). La cooperazione cresce con ruoli chiari e ripetuti. Nel gioco simbolico inserisci sorprese gentili per stimolare flessibilità. Quando si frustra, valida l’emozione, proponi soluzioni; respiri insieme e un abbraccio sono strumenti potenti. Il tuo contatto è la sua bussola.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_34",
+      "description": "Con sostegno prova il salto a un piede, completa puzzle da 4–6 pezzi e usa pronomi e preposizioni nelle frasi. Proponi percorsi motori, travasi più fini e letture dialogiche con domande “chi/cosa/dove”. Le storie diventano più strutturate: inizio, mezzo e fine. Mantieni poche regole stabili e spiegate; la coerenza dell’adulto sostiene l’autocontrollo e rende prevedibile la giornata di tutti. Piccoli passi, grandi progressi.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_35",
+      "description": "Copia il cerchio e linee incrociate, prova forbicine a punta tonda sotto stretta sorveglianza e regola meglio il ritmo nel gioco energico. Offri materiali creativi semplici (carta, colla, stoffe) e tempi per sperimentare. L’attenzione sostenuta cresce gradualmente: alterna attività impegnative a pause di movimento. Le routine di addormentamento restano essenziali per chiudere la giornata con calma. Fidati del tuo intuito di genitore.",
+      "suggestions": null
+    },
+    {
+      "pill_key": "mese_36",
+      "description": "Sale e scende le scale alternando senza aiuto e racconta storie brevi comprensibili anche a chi non vi conosce. Nell’arco della giornata servono almeno 180 minuti di attività fisica, con momenti di gioco energico. Limita i tempi seduti prolungati e proteggi un sonno notturno regolare. Celebra i traguardi raggiunti: curiosità, movimento, parole e relazioni sono il suo motore per crescere ancora. La relazione è il suo habitat.",
+      "suggestions": null
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "source": "docs/content_4_21/Dashboard generale_0-36.docx + Dashboard generale_prime settimane_0-2.docx",
+  "notes": "Verbatim narrative content from client-provided docx (April 2026 drop). 'Nota generale' preamble and Premium weeks 9-12 draft extension intentionally excluded. Source typos preserved.",
+  "weekly": [
+    {
+      "min_week": 1,
+      "max_week": 2,
+      "label": "Settimane 1–2",
+      "body": "Pelle-pelle, allattamento a richiesta e tanto sonno frammentato sono la norma. Offri micro tummy time quotidiano e segui i segnali di fame/sazietà. Le tue parole e il contatto sono lo stimolo principale."
+    },
+    {
+      "min_week": 3,
+      "max_week": 4,
+      "label": "Settimane 3–4",
+      "body": "Arriva il sorriso di risposta e compaiono i primi vocalizzi. Crea una routine serale dolce e coerente. Niente schermi: la tua voce guida l’attenzione."
+    },
+    {
+      "min_week": 5,
+      "max_week": 6,
+      "label": "Settimane 5–6",
+      "body": "Aumenta il controllo del capo in prono e l’interesse per i contrasti. Allunga un po’ il tummy time e descrivi ciò che osserva. Mantieni brevi veglie seguite da recupero."
+    },
+    {
+      "min_week": 7,
+      "max_week": 8,
+      "label": "Settimane 7–8",
+      "body": "Segue oggetti in modo più fluido e vocalizza con varietà. Alterna gioco a terra e pause dal contenimento (mai oltre 60 minuti di fila). Canta e ripeti piccoli rituali."
+    }
+  ],
+  "monthly": [
+    {
+      "month": 2,
+      "label": "Mese 2",
+      "body": "In questo periodo aumenta il controllo del capo. Concedi pause regolari da cinture e ovetti. Mantieni una routine del sonno regolare."
+    },
+    {
+      "month": 3,
+      "label": "Mese 3",
+      "body": "Compaiono vocalizzi di vario tipo e sguardi intensi. Allunga un po’ il tempo del tummy time. Le veglie durano circa 60–90 minuti."
+    },
+    {
+      "month": 4,
+      "label": "Mese 4",
+      "body": "Il tuo bimbo in questa fase Inizia ad afferrare e a ridere. Offri tanto gioco libero a terra. Il sonno resta attorno a 12–16 ore."
+    },
+    {
+      "month": 5,
+      "label": "Mese 5",
+      "body": "In questo mese inizia il rotolamento ed il tuo bimbo inizia ad “assaggiare” il mondo con la bocca. Ascolta i vari babbling di tipo “pa/ba”. Per il gioco offri tappeto e movimento ogni giorno."
+    },
+    {
+      "month": 6,
+      "label": "Mese 6",
+      "body": "Evviva, si parte con lo svezzamento! Il tuo bimbo adesso si siede con sostegno. Il babbling dovrebbe essere ripetuto spesso e si fa sentire."
+    },
+    {
+      "month": 7,
+      "label": "Mese 7",
+      "body": "In questa fase il tuo bimbo trasferisce oggetti da una mano all’altra e gioca al cucù. Adesso pian piano introduci consistenze nuove e sicure."
+    },
+    {
+      "month": 8,
+      "label": "Mese 8",
+      "body": "In questa fase il tuo bimbo striscia e-o inizia a gattonare. Le prime parole non sono ancora precise ed è normale. Mantieni routine costanti."
+    },
+    {
+      "month": 9,
+      "label": "Mese 9",
+      "body": "Si alza in piedi con appoggio. Offri 3 pasti con piccoli assaggi di cibi differenti e sicuri. Gioca a batti-batti e divertitevi con versi."
+    },
+    {
+      "month": 10,
+      "label": "Mese 10",
+      "body": "In questo periodo crescono tanto i gesti e tutte le imitazioni. Proponete giochi “dentro/fuori” con contenitori. Ricorda le pause dalle cinture."
+    },
+    {
+      "month": 11,
+      "label": "Mese 11",
+      "body": "Il tuo bimbo adesso si tira su da solo e indica per comunicare. La comprensione delle richiesta aumenta e adesso capisce consegne semplici come “dai/porta”. Mantieni pasti e snack nutrienti."
+    },
+    {
+      "month": 12,
+      "label": "Mese 12",
+      "body": "In questi mesi compaiono 1–3 parole e i primi passi. Offri almeno 180 minuti di gioco attivo al giorno. Tieni una dieta varia accanto al latte."
+    },
+    {
+      "month": 13,
+      "label": "Mese 13",
+      "body": "Il tuo bimbo in questo periodo cammina e si accovaccia per prendere oggetti. Usa 2–5 parole e indica per farsi capire. Organizza 3 pasti e 2 snack."
+    },
+    {
+      "month": 14,
+      "label": "Mese 14",
+      "body": "In questa fase si avvia la capacità di saper scalare un gradino con la mano tenuta. Il tuo bimbo ora condivide oggetti e comprende semplici richieste e fa i primi scarabocchi."
+    },
+    {
+      "month": 15,
+      "label": "Mese 15",
+      "body": "Il tuo bimbo cammina portando un gioco. Dice 5–10 parole. In questi mesi prova il cucchiaio con il tuo aiuto."
+    },
+    {
+      "month": 16,
+      "label": "Mese 16",
+      "body": "Intorno a questo mese partono le prime corse. Il tuo bimbo imita le attività quotidiane ed il suo vocabolario è sempre in crescita."
+    },
+    {
+      "month": 17,
+      "label": "Mese 17",
+      "body": "Ora il tuo bimbo costruisce una torre di 3–4 cubi, indica diverse parti del corpo e rimane molto attivo ogni giorno."
+    },
+    {
+      "month": 18,
+      "label": "Mese 18",
+      "body": "In questo periodo il tuo bimbo inizia a correre e lanciare la palla. Inizia il gioco di finzione semplice e spuntano le prime combinazioni di due parole."
+    },
+    {
+      "month": 19,
+      "label": "Mese 19",
+      "body": "Ora il tuo bimbo mostra la maggiore capacità di concentrarsi su libri e immagini, sa costruisce torri di 4 o più cubi e la sua alimentazione è sempre più varia."
+    },
+    {
+      "month": 20,
+      "label": "Mese 20",
+      "body": "In questo periodo il tuo bimbo calcia la palla in avanti, usa frasi di due parole vicine e associate tra loro. Ricorda sempre di mantienere orari regolari."
+    },
+    {
+      "month": 21,
+      "label": "Mese 21",
+      "body": "Il tuo bimbo via via aumenta l’autonomia motoria, mangia quasi da solo con il cucchiai e segue piccole sequenze di azioni."
+    },
+    {
+      "month": 22,
+      "label": "Mese 22",
+      "body": "In questa fase il tuo bimbo prova a saltare sul posto. I nom pian piano diventano più chiari e comprensibili. Ora il tuo bimbo sa fare il gioco parallelo con i coetanei."
+    },
+    {
+      "month": 23,
+      "label": "Mese 23",
+      "body": "Il tuo bimbo in questi mesi ordina e abbina oggetti semplici, fa domande tipo “cos’è?” e inizia a usare più verbi e pronomi."
+    },
+    {
+      "month": 24,
+      "label": "Mese 24",
+      "body": "Via via che il tempo passa,il tuo bimbo salta e corre con più sicurezza, combina regolarmente due parole e segue istruzioni a due step."
+    },
+    {
+      "month": 25,
+      "label": "Mese 25",
+      "body": "Il tuo bimbo dice frasi brevi di 2–3 parole, mette in sequenza il gioco di finzione e ti aiuta a vestirsi e svestirsi."
+    },
+    {
+      "month": 26,
+      "label": "Mese 26",
+      "body": "In questo periodo il tuo bimbo tira e calcia la palla con più forza. Ora compaiono l’uso del “mio/tuo”. Lava e asciuga le mani con il tuo supporto."
+    },
+    {
+      "month": 27,
+      "label": "Mese 27",
+      "body": "Il tuo bimbo in questo periodo sa fare una torre di 6 cubi, avvia la capacità di tracciare la linea verticale e mostra più autonomia nell’abbigliamento."
+    },
+    {
+      "month": 28,
+      "label": "Mese 28",
+      "body": "Ora il tuo bimbno conosce almeno 6 parti del corpo, riconosce alcuni colori e usa plurali semplici."
+    },
+    {
+      "month": 29,
+      "label": "Mese 29",
+      "body": "Il tuo bimbo si veste con il tuo aiuto, fa domande curiose e inizia a raccontare piccole storie della giornata."
+    },
+    {
+      "month": 30,
+      "label": "Mese 30",
+      "body": "Il tuo bimbo fa una torre di 8 cubi e salta da un gradino basso, dice frasi di 3–4 parole comprensibili ai familiari."
+    },
+    {
+      "month": 31,
+      "label": "Mese 31",
+      "body": "In questo periodo il tuo bimbo pova il triciclo o la balance bike con aiuto, copia la linea orizzontale e comprende i concetti di “dentro/sopra/sotto”."
+    },
+    {
+      "month": 32,
+      "label": "Mese 32",
+      "body": "Il tuo bimbo pian piano ha salti che diventano più lunghi, gioca a turni semplici e prova a disegnare un cerchio."
+    },
+    {
+      "month": 33,
+      "label": "Mese 33",
+      "body": "Il tuo bimbo in questo periodo impara a salire le scale quasi alternando i piedi. I racconti sono più chiari e capisce i concetti di “prima” e “dopo”."
+    },
+    {
+      "month": 34,
+      "label": "Mese 34",
+      "body": "Il tuo bimbo con sostegno prova il salto a un piede. In questa fase il tuo bimbo completa puzzle da 4–6 pezzi grandi e inizia a usare pronomi e preposizioni nelle frasi."
+    },
+    {
+      "month": 35,
+      "label": "Mese 35",
+      "body": "In questo periodo il tuo bimbo inizia a saper copiare il cerchio e le linee incrociate. Il tuo bimbo sperimenta le forbicine sempre sotto stretta sorveglianza. E’ anche il periodo in cui si inizia a regolare meglio il ritmo nel gioco energico."
+    },
+    {
+      "month": 36,
+      "label": "Mese 36",
+      "body": "Il tuo bimbo sale e scende le scale alternando i piedi in autonomia, racconta storie brevi e chiare comprensibili anche a estranei e ha bisogno di almeno un’ora al giorno di gioco energico."
+    }
+  ]
+}

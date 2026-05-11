@@ -1,8 +1,16 @@
 <section class="shuby-timeline-growth-phase">
   <h2 class="shuby-h2"><%= timeline_band_title(selected_band) %></h2>
 
-  <% if growth_phase %>
-    <p class="shuby-p1 shuby-timeline-narrative"><%= growth_phase.description %></p>
+  <% if timeline_stage %>
+    <p class="shuby-p1 shuby-timeline-narrative"><%= timeline_stage.description %></p>
+    <% if timeline_stage.suggestions.present? %>
+      <p class="shuby-p2 shuby-timeline-suggestions">
+        <span class="shuby-timeline-suggestions-label">
+          <%= t("timeline.show.suggestions_label") %>
+        </span>
+        <%= timeline_stage.suggestions %>
+      </p>
+    <% end %>
   <% else %>
     <p class="shuby-p1"><%= t("timeline.show.no_growth_phase") %></p>
   <% end %>
