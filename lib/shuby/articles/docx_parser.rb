@@ -48,8 +48,15 @@ module Shuby
 
       SINGLE_AGE_PATTERN = /(\d+)\s*mesi?(?:\s|$|\.)/i
 
+      # Most articles declare their age band in a footer line
+      # ("Fascia d'età: 12-24 mesi"), well past the 600-char body cap.
+      # An explicit anchor lets us scan the whole body without re-introducing
+      # the prose false-match risk that AGE_BODY_SCAN_CHARS guards against.
+      FOOTER_AGE_PATTERN = /Fascia\s+d['’`]?et[àa]\s*:?\s*(\d+)\s*[-–—]\s*(\d+)\s*mes/i
+      FOOTER_SINGLE_AGE_PATTERN = /Fascia\s+d['’`]?et[àa]\s*:?\s*(\d+)\s*mesi?/i
+
       DESCRIPTION_MIN_LENGTH = 40
-      DESCRIPTION_MAX_LENGTH = 200
+      DESCRIPTION_MAX_LENGTH = 160
       AGE_BODY_SCAN_CHARS = 600
 
       def initialize(path)
@@ -131,6 +138,8 @@ module Shuby
         body = document.at_xpath("//body")
         return [] unless body
 
+        title_style_used = false
+
         body.xpath(".//p").filter_map do |paragraph|
           html = paragraph_inner_html(paragraph)
           text = decode_entities(strip_inline_tags(html)).gsub(/\s+/, " ").strip
@@ -147,7 +156,21 @@ module Shuby
               text: text
             }
           else
-            level = heading_level(paragraph.at_xpath("./pPr/pStyle")&.[]("val"))
+            style_val = paragraph.at_xpath("./pPr/pStyle")&.[]("val").to_s.downcase
+            # "Title" style is single-use in Word docs; subsequent
+            # "Title"-styled paragraphs are author errors (the lede gets
+            # styled like the title). Demote them to body paragraphs.
+            effective_style = if style_val == "title"
+              if title_style_used
+                nil
+              else
+                title_style_used = true
+                "title"
+              end
+            else
+              style_val
+            end
+            level = heading_level(effective_style)
             {
               type: level ? :heading : :paragraph,
               level: level,
@@ -168,8 +191,11 @@ module Shuby
         end
       end
 
+      # Walks all <w:r> descendants so we cover runs wrapped in <w:hyperlink>,
+      # <w:ins> (tracked-change inserts), and other containers. Runs inside
+      # <w:del> are author-removed content from track-changes mode — skipped.
       def paragraph_inner_html(paragraph)
-        runs = paragraph.xpath("./r | ./hyperlink/r")
+        runs = paragraph.xpath(".//r[not(ancestor::del)]")
         runs.map { |r| render_run(r) }.join
       end
 
@@ -202,23 +228,35 @@ module Shuby
       end
 
       # First substantive paragraph after the title (≥ 40 chars, not the title
-      # itself) becomes the lede. Marks its index consumed for the same reason.
+      # itself) seeds a brief snippet for the description field. The lede is
+      # NOT marked consumed — it stays in body_html as the article's opening
+      # paragraph, so the show view reads cleanly from line one.
       def extract_description(paragraphs, consumed, title)
         title_idx = consumed.first || -1
-        idx = paragraphs.each_with_index.find do |p, i|
+        lede = paragraphs.each_with_index.find do |p, i|
           i > title_idx &&
             p[:type] == :paragraph &&
             p[:text].length >= DESCRIPTION_MIN_LENGTH &&
             p[:text] != title
-        end&.last
+        end&.first
 
-        if idx
-          consumed << idx
-          truncate_at_word(paragraphs[idx][:text], DESCRIPTION_MAX_LENGTH)
+        return build_snippet(lede[:text]) if lede
+
+        combined = paragraphs.map { |p| p[:text] }.join(" ").gsub(/\s+/, " ").strip
+        build_snippet(combined)
+      end
+
+      # Brief snippet from a longer paragraph. Prefers cutting at a sentence
+      # terminator (./!/? followed by whitespace or end-of-string) within the
+      # cap; falls back to a word-boundary trim with an ellipsis when no
+      # terminator fits.
+      def build_snippet(text)
+        return text if text.length <= DESCRIPTION_MAX_LENGTH
+        head = text[0, DESCRIPTION_MAX_LENGTH]
+        if (m = head.match(/\A.*[.!?](?=\s|$)/m))
+          m[0]
         else
-          # Fallback: stitch all body text and truncate
-          combined = paragraphs.map { |p| p[:text] }.join(" ").gsub(/\s+/, " ").strip
-          truncate_at_word(combined, DESCRIPTION_MAX_LENGTH)
+          truncate_at_word(text, DESCRIPTION_MAX_LENGTH)
         end
       end
 
@@ -267,12 +305,29 @@ module Shuby
         if (range = match_filename(@path.basename(".docx").to_s))
           return clamp_range(*range)
         end
-        scan_text = paragraphs.map { |p| p[:text] }.join(" ").slice(0, AGE_BODY_SCAN_CHARS).to_s
+
+        full_text = paragraphs.map { |p| p[:text] }.join(" ")
+        if (range = match_footer(full_text))
+          return clamp_range(*range)
+        end
+
+        scan_text = full_text.slice(0, AGE_BODY_SCAN_CHARS).to_s
         if (range = match_body(scan_text))
           return clamp_range(*range)
         end
 
         [0, 36]
+      end
+
+      def match_footer(text)
+        if (m = text.match(FOOTER_AGE_PATTERN))
+          return [m[1].to_i, m[2].to_i]
+        end
+        if (m = text.match(FOOTER_SINGLE_AGE_PATTERN))
+          v = m[1].to_i
+          return [v, v]
+        end
+        nil
       end
 
       def match_filename(text)
