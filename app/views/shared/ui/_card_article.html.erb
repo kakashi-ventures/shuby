@@ -67,9 +67,6 @@
             <%= shuby_tag(content.category, variant: :azzurro, icon: category_icon_for(content.category)) %>
           <% end %>
           <%= shuby_tag(content.age_range_label, variant: :grigio) %>
-          <% if content.duration_minutes.present? %>
-            <%= shuby_tag(content.duration_label, variant: :light) %>
-          <% end %>
           <% if premium_locked %>
             <%= shuby_tag("Premium", variant: :primary, icon: "shuby/icons/icon-premium-star") %>
           <% end %>
