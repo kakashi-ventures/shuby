@@ -21,7 +21,7 @@
        data-action="click->favorite#toggle">
     <% if local_assigns[:favorited] && favorited %>
       <%= button_to archive_favorite_path(content, **form_params), method: :delete, class: btn_class, aria: {label: t("archive.favorites.remove")} do %>
-        <%= render_svg "shuby/icons/icon-bookmark-filled", size: :md, styles: "text-shuby-fucsia-500" %>
+        <%= render_svg "shuby/icons/icon-bookmark-filled", size: :md, styles: "text-shuby-blue-800" %>
       <% end %>
     <% else %>
       <%= button_to archive_favorite_path(content, **form_params), method: :post, class: btn_class, aria: {label: t("archive.favorites.save")} do %>

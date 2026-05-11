@@ -38,18 +38,15 @@
   <div data-article-scroll-target="stickyHeader"
        class="shuby-article-sticky-header fixed top-0 left-0 right-0 z-50 opacity-0 -translate-y-full transition-all duration-200">
     <div class="flex items-center gap-2 px-3 py-2">
-      <%# Chevron + title share an <a>; gap-0 keeps them tight (the chevron
-          SVG's internal aspect-ratio padding already provides ~3px of
-          breathing room between the visible chevron tip and the title). %>
       <%= link_to archive_index_path,
-            class: "flex items-center min-w-0 flex-1 text-shuby-black",
+            class: "flex items-center gap-2 min-w-0 flex-1 text-shuby-blue-800",
             aria: { label: t("back") } do %>
         <%# !w-3 overrides the w-4 (16px) from size: :sm so the SVG box width
             matches the chevron's natural 11.775×20 aspect ratio. With h-4 (16px)
             still inherited from size, the chevron renders ~9.4×16 inside a 12×16
             box — ~1.3px of horizontal padding instead of ~3.3px. %>
         <%= render_svg "shuby/icons/icon-chevron-left", size: :sm, decorative: true, styles: "shrink-0 !w-3" %>
-        <h2 class="shuby-h3 truncate"><%= @content.title %></h2>
+        <h2 class="shuby-h3 text-shuby-blue-800 truncate"><%= @content.title %></h2>
       <% end %>
       <%# Tips have an empty 88px right slot in their sticky header per
           Figma 532:25886 (game) / 532:26239 (book) — only article + activity
