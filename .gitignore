@@ -66,6 +66,9 @@ docs/knowledge_base/
 # Local-only article research / source material
 /docs/Articoli/
 
+# Client-delivered raw content drops (parsed into db/seeds/data/*.json)
+/docs/content_4_21/
+
 # Ruby Native (Playwright, screenshots, session data)
 .ruby_native/
 
