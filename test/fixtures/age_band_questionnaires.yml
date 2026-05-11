@@ -1,270 +1,44 @@
 # frozen_string_literal: true
 
-# 7 clinical bands × 5 development areas = 35 fixtures
-# Naming: {area}_{band_key} where band_key matches the representative checkpoint
+# Representative monthly bands × 5 development areas.
+# Each fixture key `{area}_mese_{N}` represents the band covering age_months=N,
+# matching Timeline::AgeBands pill semantics where pill `mese_N` looks up
+# questionnaire_for_age(N). The carryover band covers ages 28-36 inclusive.
+# Production seeds 29 monthly bands per area (0-28 + carryover); fixtures cover
+# only the ages tests exercise so they stay small.
+#
+# Age coverage rationale:
+#   - mese_0 (age 0) — sett_1..sett_4 pills, newborn
+#   - mese_1 (age 1) — sett_5..sett_8 pills
+#   - mese_2 (age 2) — sophia (~2.13 mo) DB age for #show
+#   - mese_3 (age 3) — pill `mese_3` for sophia's current carousel band
+#   - mese_6 (age 6) — pill `mese_6` for premium future-band tests
+#   - mese_9, mese_12, mese_18 — additional pill targets
+#   - mese_28_carryover (28..37) — pill `mese_36` and carryover lookups
 
-# =============================================================================
-# Band 1: 1° Mese (0-2 months)
-# =============================================================================
-comunicazione_mese_1:
-  development_area: comunicazione
-  min_age_months: 0
-  max_age_months: 2
-  label: "1° Mese"
-  position: 0
+<% AREAS = %i[comunicazione motricita cognizione relazione consolidamento] %>
 
-motricita_mese_1:
-  development_area: motricita
-  min_age_months: 0
-  max_age_months: 2
-  label: "1° Mese"
-  position: 0
+<% BANDS = [
+  {key: "mese_0",  min: 0,  max: 1,  label: "Neonato",     position: 0},
+  {key: "mese_1",  min: 1,  max: 2,  label: "1° Mese",     position: 1},
+  {key: "mese_2",  min: 2,  max: 3,  label: "2° Mese",     position: 2},
+  {key: "mese_3",  min: 3,  max: 4,  label: "3° Mese",     position: 3},
+  {key: "mese_6",  min: 6,  max: 7,  label: "6° Mese",     position: 6},
+  {key: "mese_9",  min: 9,  max: 10, label: "9° Mese",     position: 9},
+  {key: "mese_12", min: 12, max: 13, label: "12° Mese",    position: 12},
+  {key: "mese_18", min: 18, max: 19, label: "18° Mese",    position: 18},
+  {key: "mese_28_carryover", min: 28, max: 37, label: "29-36° Mesi", position: 28}
+] %>
 
-cognizione_mese_1:
-  development_area: cognizione
-  min_age_months: 0
-  max_age_months: 2
-  label: "1° Mese"
-  position: 0
+<% AREAS.each do |fixture_area| %>
+<% BANDS.each do |band| %>
+<% next if fixture_area == :consolidamento && band[:min].zero? %>
+<%= fixture_area %>_<%= band[:key] %>:
+  development_area: <%= fixture_area %>
+  min_age_months: <%= band[:min] %>
+  max_age_months: <%= band[:max] %>
+  label: "<%= band[:label] %>"
+  position: <%= band[:position] %>
 
-relazione_mese_1:
-  development_area: relazione
-  min_age_months: 0
-  max_age_months: 2
-  label: "1° Mese"
-  position: 0
-
-consolidamento_mese_1:
-  development_area: consolidamento
-  min_age_months: 0
-  max_age_months: 2
-  label: "1° Mese"
-  position: 0
-
-# =============================================================================
-# Band 2: 3° Mese (2-5 months)
-# =============================================================================
-comunicazione_mese_3:
-  development_area: comunicazione
-  min_age_months: 2
-  max_age_months: 5
-  label: "3° Mese"
-  position: 1
-
-motricita_mese_3:
-  development_area: motricita
-  min_age_months: 2
-  max_age_months: 5
-  label: "3° Mese"
-  position: 1
-
-cognizione_mese_3:
-  development_area: cognizione
-  min_age_months: 2
-  max_age_months: 5
-  label: "3° Mese"
-  position: 1
-
-relazione_mese_3:
-  development_area: relazione
-  min_age_months: 2
-  max_age_months: 5
-  label: "3° Mese"
-  position: 1
-
-consolidamento_mese_3:
-  development_area: consolidamento
-  min_age_months: 2
-  max_age_months: 5
-  label: "3° Mese"
-  position: 1
-
-# =============================================================================
-# Band 3: 6° Mese (5-8 months)
-# =============================================================================
-comunicazione_mese_6:
-  development_area: comunicazione
-  min_age_months: 5
-  max_age_months: 8
-  label: "6° Mese"
-  position: 2
-
-motricita_mese_6:
-  development_area: motricita
-  min_age_months: 5
-  max_age_months: 8
-  label: "6° Mese"
-  position: 2
-
-cognizione_mese_6:
-  development_area: cognizione
-  min_age_months: 5
-  max_age_months: 8
-  label: "6° Mese"
-  position: 2
-
-relazione_mese_6:
-  development_area: relazione
-  min_age_months: 5
-  max_age_months: 8
-  label: "6° Mese"
-  position: 2
-
-consolidamento_mese_6:
-  development_area: consolidamento
-  min_age_months: 5
-  max_age_months: 8
-  label: "6° Mese"
-  position: 2
-
-# =============================================================================
-# Band 4: 9° Mese (8-11 months)
-# =============================================================================
-comunicazione_mese_9:
-  development_area: comunicazione
-  min_age_months: 8
-  max_age_months: 11
-  label: "9° Mese"
-  position: 3
-
-motricita_mese_9:
-  development_area: motricita
-  min_age_months: 8
-  max_age_months: 11
-  label: "9° Mese"
-  position: 3
-
-cognizione_mese_9:
-  development_area: cognizione
-  min_age_months: 8
-  max_age_months: 11
-  label: "9° Mese"
-  position: 3
-
-relazione_mese_9:
-  development_area: relazione
-  min_age_months: 8
-  max_age_months: 11
-  label: "9° Mese"
-  position: 3
-
-consolidamento_mese_9:
-  development_area: consolidamento
-  min_age_months: 8
-  max_age_months: 11
-  label: "9° Mese"
-  position: 3
-
-# =============================================================================
-# Band 5: 12° Mese (11-18 months)
-# =============================================================================
-comunicazione_mese_12:
-  development_area: comunicazione
-  min_age_months: 11
-  max_age_months: 18
-  label: "12° Mese"
-  position: 4
-
-motricita_mese_12:
-  development_area: motricita
-  min_age_months: 11
-  max_age_months: 18
-  label: "12° Mese"
-  position: 4
-
-cognizione_mese_12:
-  development_area: cognizione
-  min_age_months: 11
-  max_age_months: 18
-  label: "12° Mese"
-  position: 4
-
-relazione_mese_12:
-  development_area: relazione
-  min_age_months: 11
-  max_age_months: 18
-  label: "12° Mese"
-  position: 4
-
-consolidamento_mese_12:
-  development_area: consolidamento
-  min_age_months: 11
-  max_age_months: 18
-  label: "12° Mese"
-  position: 4
-
-# =============================================================================
-# Band 6: 18-24° Mesi (18-36 months)
-# =============================================================================
-comunicazione_mese_18:
-  development_area: comunicazione
-  min_age_months: 18
-  max_age_months: 36
-  label: "18-24° Mesi"
-  position: 5
-
-motricita_mese_18:
-  development_area: motricita
-  min_age_months: 18
-  max_age_months: 36
-  label: "18-24° Mesi"
-  position: 5
-
-cognizione_mese_18:
-  development_area: cognizione
-  min_age_months: 18
-  max_age_months: 36
-  label: "18-24° Mesi"
-  position: 5
-
-relazione_mese_18:
-  development_area: relazione
-  min_age_months: 18
-  max_age_months: 36
-  label: "18-24° Mesi"
-  position: 5
-
-consolidamento_mese_18:
-  development_area: consolidamento
-  min_age_months: 18
-  max_age_months: 36
-  label: "18-24° Mesi"
-  position: 5
-
-# =============================================================================
-# Band 7: 36° Mese (36-37 months)
-# =============================================================================
-comunicazione_mese_36:
-  development_area: comunicazione
-  min_age_months: 36
-  max_age_months: 37
-  label: "36° Mese"
-  position: 6
-
-motricita_mese_36:
-  development_area: motricita
-  min_age_months: 36
-  max_age_months: 37
-  label: "36° Mese"
-  position: 6
-
-cognizione_mese_36:
-  development_area: cognizione
-  min_age_months: 36
-  max_age_months: 37
-  label: "36° Mese"
-  position: 6
-
-relazione_mese_36:
-  development_area: relazione
-  min_age_months: 36
-  max_age_months: 37
-  label: "36° Mese"
-  position: 6
-
-consolidamento_mese_36:
-  development_area: consolidamento
-  min_age_months: 36
-  max_age_months: 37
-  label: "36° Mese"
-  position: 6
+<% end %>
+<% end %>

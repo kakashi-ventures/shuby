@@ -125,7 +125,7 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
   # asserted only via the paywall contract tests below (overlay iff free+future).
 
   test "past incomplete cards render gray background class" do
-    # motricita_mese_1 has only an in_progress session (not returned for past bands)
+    # motricita_mese_0 has only an in_progress session (not returned for past bands)
     # so motricita card at sett_4 has session=nil → gray
     get timeline_content_child_development_stages_path(@child), params: {band: "sett_4"}
     assert_response :success
@@ -133,7 +133,7 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "past completed card renders dark teal background class" do
-    # comunicazione_mese_1 has a completed_session for sophia → dark teal
+    # comunicazione_mese_0 has a completed_session for sophia → dark teal
     get timeline_content_child_development_stages_path(@child), params: {band: "sett_4"}
     assert_response :success
     assert_select "[class*='shuby-milestone-card-completed']", minimum: 1

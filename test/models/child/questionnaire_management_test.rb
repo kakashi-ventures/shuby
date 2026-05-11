@@ -53,7 +53,7 @@ class Child::QuestionnaireManagementTest < ActiveSupport::TestCase
   end
 
   test "start_new_session raises error for past age band" do
-    past_questionnaire = age_band_questionnaires(:comunicazione_mese_1)
+    past_questionnaire = age_band_questionnaires(:comunicazione_mese_0)
     assert_operator past_questionnaire.max_age_months, :<=, @current_age
 
     error = assert_raises(ArgumentError) do

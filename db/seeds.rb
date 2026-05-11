@@ -98,15 +98,28 @@ questions_created = 0
 
 monthly_by_month = data["questionari_mensili"].index_by { |m| m["mese"] }
 
-BAND_DEFINITIONS = [
-  {min: 0, max: 2, label: "1° Mese", representative_month: 1, position: 0},
-  {min: 2, max: 5, label: "3° Mese", representative_month: 3, position: 1},
-  {min: 5, max: 8, label: "6° Mese", representative_month: 6, position: 2},
-  {min: 8, max: 11, label: "9° Mese", representative_month: 9, position: 3},
-  {min: 11, max: 18, label: "12° Mese", representative_month: 12, position: 4},
-  {min: 18, max: 36, label: "18-24° Mesi", representative_month: 18, position: 5},
-  {min: 36, max: 37, label: "36° Mese", representative_month: 36, position: 6}
-].freeze
+# Monthly bands 0-28 plus a carryover band (28..37) that reuses month 28 content
+# for older toddlers. Labels follow Timeline::AgeBands pill semantics where
+# `mese_N` resolves to age_months=N — i.e. the band covering age N is labelled
+# "N° Mese". Source: docs/content_4_21/SCHEDE_PER_MESE_GENITORI_v1.1.docx
+BAND_DEFINITIONS = (0..27).map { |m|
+  label = m.zero? ? "Neonato" : "#{m}° Mese"
+  {min: m, max: m + 1, label: label, representative_month: m, position: m}
+} + [{min: 28, max: 37, label: "29-36° Mesi", representative_month: 28, position: 28}]
+BAND_DEFINITIONS.freeze
+
+# Sweep bands left over from the prior 7-band schema. Valid monthly bands have
+# (max - min) == 1 for months 0-27, or min == 28 with max == 37 for the carryover.
+AgeBandQuestionnaire
+  .where("(max_age_months - min_age_months > 1 AND NOT (min_age_months = 28 AND max_age_months = 37)) OR min_age_months > 28")
+  .destroy_all
+
+# Drop any pre-existing month-0 Consolidamento band (no prior content to consolidate).
+if (consolidamento_area = DevelopmentArea.find_by(slug: "consolidamento"))
+  AgeBandQuestionnaire
+    .where(development_area: consolidamento_area, min_age_months: 0)
+    .destroy_all
+end
 
 BAND_DEFINITIONS.each do |band|
   month_data = monthly_by_month[band[:representative_month]]
@@ -118,6 +131,10 @@ BAND_DEFINITIONS.each do |band|
 
     area = DevelopmentArea.find_by(slug: slug)
     next unless area
+
+    # Client directive: Consolidamento must not appear at month 0 (no prior
+    # months to consolidate). The docx labels it "nessuno, mese iniziale".
+    next if slug == "consolidamento" && band[:min].zero?
 
     questionnaire = AgeBandQuestionnaire.find_or_create_by!(
       development_area: area,

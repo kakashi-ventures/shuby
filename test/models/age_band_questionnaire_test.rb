@@ -4,18 +4,18 @@ require "test_helper"
 
 class AgeBandQuestionnairTest < ActiveSupport::TestCase
   test "belongs to development_area" do
-    questionnaire = age_band_questionnaires(:comunicazione_mese_1)
+    questionnaire = age_band_questionnaires(:comunicazione_mese_0)
     assert_equal development_areas(:comunicazione), questionnaire.development_area
   end
 
   test "has many questions" do
-    questionnaire = age_band_questionnaires(:comunicazione_mese_1)
+    questionnaire = age_band_questionnaires(:comunicazione_mese_0)
     assert_respond_to questionnaire, :questions
     assert questionnaire.questions.count > 0
   end
 
   test "has many questionnaire_sessions" do
-    questionnaire = age_band_questionnaires(:comunicazione_mese_1)
+    questionnaire = age_band_questionnaires(:comunicazione_mese_0)
     assert_respond_to questionnaire, :questionnaire_sessions
   end
 
@@ -38,10 +38,10 @@ class AgeBandQuestionnairTest < ActiveSupport::TestCase
   end
 
   test "age_band_label returns label column value" do
-    assert_equal "1° Mese", age_band_questionnaires(:comunicazione_mese_1).age_band_label
+    assert_equal "Neonato", age_band_questionnaires(:comunicazione_mese_0).age_band_label
     assert_equal "3° Mese", age_band_questionnaires(:comunicazione_mese_3).age_band_label
-    assert_equal "18-24° Mesi", age_band_questionnaires(:comunicazione_mese_18).age_band_label
-    assert_equal "36° Mese", age_band_questionnaires(:comunicazione_mese_36).age_band_label
+    assert_equal "18° Mese", age_band_questionnaires(:comunicazione_mese_18).age_band_label
+    assert_equal "29-36° Mesi", age_band_questionnaires(:comunicazione_mese_28_carryover).age_band_label
   end
 
   test "label column is present and non-blank on all fixtures" do
@@ -51,17 +51,17 @@ class AgeBandQuestionnairTest < ActiveSupport::TestCase
   end
 
   test "active_questions returns only active questions" do
-    questionnaire = age_band_questionnaires(:comunicazione_mese_1)
+    questionnaire = age_band_questionnaires(:comunicazione_mese_0)
     active_questions = questionnaire.active_questions
     assert active_questions.all?(&:active?)
   end
 
-  test "for_age scope returns correct clinical band" do
-    # month 0 → "1° Mese" band (min=0)
+  test "for_age scope returns correct monthly band" do
+    # age 0 → Neonato band (min=0, max=1)
     assert_equal [0], AgeBandQuestionnaire.for_age(0).pluck(:min_age_months).uniq
-    # month 3 → "3° Mese" band (min=2)
-    assert_equal [2], AgeBandQuestionnaire.for_age(3).pluck(:min_age_months).uniq
-    # month 36 → "36° Mese" band (min=36)
-    assert_equal [36], AgeBandQuestionnaire.for_age(36).pluck(:min_age_months).uniq
+    # age 3 → 3° Mese band (min=3, max=4)
+    assert_equal [3], AgeBandQuestionnaire.for_age(3).pluck(:min_age_months).uniq
+    # age 30 → carryover band (min=28, max=37)
+    assert_equal [28], AgeBandQuestionnaire.for_age(30).pluck(:min_age_months).uniq
   end
 end

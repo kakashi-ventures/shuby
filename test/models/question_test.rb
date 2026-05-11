@@ -5,7 +5,7 @@ require "test_helper"
 class QuestionTest < ActiveSupport::TestCase
   test "belongs to age_band_questionnaire" do
     question = questions(:m0_com_1)
-    assert_equal age_band_questionnaires(:comunicazione_mese_1), question.age_band_questionnaire
+    assert_equal age_band_questionnaires(:comunicazione_mese_0), question.age_band_questionnaire
   end
 
   test "has many question_responses" do
@@ -15,7 +15,7 @@ class QuestionTest < ActiveSupport::TestCase
 
   test "validates presence of prompt" do
     question = Question.new(
-      age_band_questionnaire: age_band_questionnaires(:comunicazione_mese_1),
+      age_band_questionnaire: age_band_questionnaires(:comunicazione_mese_0),
       position: 0
     )
     assert_not question.valid?

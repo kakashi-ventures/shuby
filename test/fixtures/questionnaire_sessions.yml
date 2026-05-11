@@ -3,7 +3,7 @@
 # In-progress session for testing (motricita band 1° mese)
 in_progress_session:
   child: sophia
-  age_band_questionnaire: motricita_mese_1
+  age_band_questionnaire: motricita_mese_0
   status: 1
   started_at: <%= 1.day.ago %>
   child_age_months: 0
@@ -11,7 +11,7 @@ in_progress_session:
 # Completed session for testing (comunicazione band 1° mese)
 completed_session:
   child: sophia
-  age_band_questionnaire: comunicazione_mese_1
+  age_band_questionnaire: comunicazione_mese_0
   status: 2
   started_at: <%= 3.days.ago %>
   completed_at: <%= 2.days.ago %>
@@ -20,14 +20,14 @@ completed_session:
 # Not started session
 not_started_session:
   child: sophia
-  age_band_questionnaire: relazione_mese_1
+  age_band_questionnaire: relazione_mese_0
   status: 0
   child_age_months: 0
 
 # Session with attention needed (many "no" answers) - will have responses attached
 attention_needed_session:
   child: sophia
-  age_band_questionnaire: cognizione_mese_1
+  age_band_questionnaire: cognizione_mese_0
   status: 2
   started_at: <%= 5.days.ago %>
   completed_at: <%= 4.days.ago %>
@@ -36,12 +36,14 @@ attention_needed_session:
 # Past in-progress session (still band 1° mese, sophia is ~2 months) - for skip logic tests
 past_in_progress_session:
   child: sophia
-  age_band_questionnaire: comunicazione_mese_1
+  age_band_questionnaire: comunicazione_mese_0
   status: 1
   started_at: <%= 2.weeks.ago %>
   child_age_months: 1
 
-# Past not-started session (still band 1° mese) - for cleanup tests
+# Past not-started session - for cleanup tests. Uses consolidamento_mese_1
+# because mese_0 has no Consolidamento band (client directive — no
+# consolidamento at month 0).
 past_not_started_session:
   child: sophia
   age_band_questionnaire: consolidamento_mese_1
