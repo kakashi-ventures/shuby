@@ -60,8 +60,10 @@ export default class extends Controller {
     if (bandKey === selectedKey) {
       pill.classList.add("selected")
       pill.setAttribute("aria-selected", "true")
+      pill.setAttribute("tabindex", "0")
     } else {
       pill.setAttribute("aria-selected", "false")
+      pill.setAttribute("tabindex", "-1")
       if (relationship === "past") {
         pill.classList.add("past")
       } else if (relationship === "current") {

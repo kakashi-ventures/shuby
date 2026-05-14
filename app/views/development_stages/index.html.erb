@@ -16,9 +16,11 @@
       <h1 class="shuby-h3"><%= t(".title_short") %></h1>
     <% end %>
 
-    <%= link_to child_path(@child), class: "shuby-avatar-btn" do %>
+    <%= link_to child_path(@child),
+                class: "shuby-avatar-btn",
+                aria: { label: t(".profile_link_aria", name: @child.display_name) } do %>
       <% if @child.avatar.attached? %>
-        <%= image_tag @child.avatar %>
+        <%= image_tag @child.avatar, alt: "" %>
       <% else %>
         <%= render_svg "shuby/icons/icon-baby", decorative: true %>
       <% end %>

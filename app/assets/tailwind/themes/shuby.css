@@ -210,9 +210,13 @@
     --bg-disabled-secondary: var(--color-shuby-gray-600);
     --icon-disabled: var(--color-shuby-gray-400);
 
-    /* Base */
+    /* Base
+       text-secondary uses gray-800 (#616467, ~6:1 on white) so muted text passes
+       WCAG 2.1 AA (4.5:1) on every Shuby background (white, blu-300/400/500
+       bands, yellow nudge, gray-400 cards). Was gray-700 (#898D91, 3.34:1) which
+       failed AA across the board. */
     --base-text: var(--color-shuby-black);
-    --base-text-secondary: var(--color-shuby-gray-700);
+    --base-text-secondary: var(--color-shuby-gray-800);
     --base-text-tertiary: var(--color-shuby-gray-500);
     --base-text-disabled: var(--color-shuby-gray-400);
     --base-icon: var(--color-shuby-gray-500);

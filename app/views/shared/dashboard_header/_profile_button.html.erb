@@ -1,6 +1,9 @@
 <%# Child profile button with avatar — Figma: Avatar component (node 159:935) %>
 <%= link_to (current_child ? child_path(current_child) : today_path),
-            class: "shuby-avatar-btn" do %>
+            class: "shuby-avatar-btn",
+            aria: { label: current_child ?
+              t("shared.dashboard_header.profile_button.aria_label", name: current_child.display_name) :
+              t("shared.dashboard_header.profile_button.aria_label_no_child") } do %>
   <% if current_child&.avatar&.attached? %>
     <%= image_tag current_child.avatar %>
   <% elsif current_child %>

@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Toggles the archive search/filter panel and handles debounced search submission.
 export default class extends Controller {
-  static targets = ["panel", "input", "form"]
+  static targets = ["panel", "input", "form", "toggle"]
 
   connect() {
     this.debounceTimer = null
@@ -15,6 +15,7 @@ export default class extends Controller {
   toggle() {
     const isHidden = this.panelTarget.classList.contains("hidden")
     this.panelTarget.classList.toggle("hidden")
+    this.#syncToggleExpanded(isHidden)
 
     if (isHidden) {
       this.inputTarget.focus()
@@ -23,6 +24,11 @@ export default class extends Controller {
 
   close() {
     this.panelTarget.classList.add("hidden")
+    this.#syncToggleExpanded(false)
+  }
+
+  #syncToggleExpanded(expanded) {
+    if (this.hasToggleTarget) this.toggleTarget.setAttribute("aria-expanded", expanded ? "true" : "false")
   }
 
   // Debounced search: submits the form after 300ms of inactivity

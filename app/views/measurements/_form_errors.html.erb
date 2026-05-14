@@ -3,7 +3,10 @@
   it unconditionally.
 %>
 <% if @measurement.errors.any? %>
-  <div class="shuby-card shuby-card-danger shuby-card-danger--filled mb-4">
+  <div class="shuby-card shuby-card-danger shuby-card-danger--filled mb-4"
+       role="alert"
+       aria-live="assertive"
+       tabindex="-1">
     <ul class="shuby-form-error-list">
       <% @measurement.errors.full_messages.each do |message| %>
         <li><%= message %></li>

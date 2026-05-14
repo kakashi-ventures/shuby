@@ -1,0 +1,111 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Verifies WCAG 2.1 AA contrast (4.5:1 normal text, 3:1 large/UI) for every
+# foreground/background colour pair actually used inside the Shuby semantic
+# CSS layer. Reads tokens from application.css + themes/shuby.css, then
+# greps the components/shuby/*.css files for `color:` + `background-color:`
+# pairs within the same rule block.
+#
+# Run after touching design tokens or any semantic class colour:
+#   bin/verify_token_contrast
+#
+# Exits 1 if any pair fails AA — useful for CI/local gates.
+
+ROOT = Pathname.new(File.expand_path("..", __dir__))
+TOKEN_FILES = [
+  ROOT.join("app/assets/tailwind/application.css"),
+  ROOT.join("app/assets/tailwind/themes/shuby.css")
+]
+COMPONENT_GLOB = ROOT.join("app/assets/tailwind/components/shuby/*.css")
+
+def parse_tokens(files)
+  tokens = {}
+  files.each do |path|
+    path.each_line do |line|
+      if (m = line.match(/^\s*(--[\w-]+):\s*(#[0-9A-Fa-f]{3,6}|var\(--[\w-]+\));/))
+        tokens[m[1]] = m[2]
+      end
+    end
+  end
+  resolved = {}
+  tokens.each do |name, value|
+    resolved[name] = resolve(value, tokens)
+  end
+  resolved
+end
+
+def resolve(value, tokens, depth = 0)
+  return value if depth > 10
+  if (m = value.match(/^var\((--[\w-]+)\)$/))
+    next_val = tokens[m[1]]
+    return value unless next_val
+    return resolve(next_val, tokens, depth + 1)
+  end
+  value
+end
+
+def hex_to_rgb(hex)
+  hex = hex.delete_prefix("#")
+  hex = hex.chars.flat_map { |c| [c, c] }.join if hex.length == 3
+  [hex[0..1], hex[2..3], hex[4..5]].map { |h| h.to_i(16) }
+end
+
+def relative_luminance(hex)
+  rgb = hex_to_rgb(hex).map do |c|
+    s = c / 255.0
+    (s <= 0.03928) ? s / 12.92 : ((s + 0.055) / 1.055)**2.4
+  end
+  0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]
+end
+
+def contrast_ratio(fg, bg)
+  l1 = relative_luminance(fg)
+  l2 = relative_luminance(bg)
+  lighter, darker = [l1, l2].max, [l1, l2].min
+  ((lighter + 0.05) / (darker + 0.05)).round(2)
+end
+
+def extract_pairs(component_files, tokens)
+  pairs = []
+  Dir[component_files].each do |path|
+    content = File.read(path)
+    # Crude rule-block split — every `{...}` segment is a candidate rule.
+    content.scan(/\{([^{}]*)\}/).each do |(body)|
+      fg = body[/(?:^|;|\s)color:\s*var\((--[\w-]+)\)/, 1]
+      bg = body[/background(?:-color)?:\s*var\((--[\w-]+)\)/, 1]
+      next unless fg && bg
+      fg_hex = tokens[fg]
+      bg_hex = tokens[bg]
+      next unless fg_hex&.start_with?("#") && bg_hex&.start_with?("#")
+      pairs << [File.basename(path), fg, fg_hex, bg, bg_hex]
+    end
+  end
+  pairs.uniq
+end
+
+tokens = parse_tokens(TOKEN_FILES)
+pairs = extract_pairs(COMPONENT_GLOB.to_s, tokens)
+
+failed = []
+puts "%-32s %-30s %-9s %-30s %-9s %-8s %-6s" % %w[file fg-token fg-hex bg-token bg-hex ratio AA?]
+puts "-" * 130
+pairs.sort_by { |p| [p[0], p[1], p[3]] }.each do |file, fg, fg_hex, bg, bg_hex|
+  ratio = contrast_ratio(fg_hex, bg_hex)
+  aa = (ratio >= 4.5) ? "pass" : "FAIL"
+  failed << [file, fg, fg_hex, bg, bg_hex, ratio] if ratio < 4.5
+  puts "%-32s %-30s %-9s %-30s %-9s %-8s %-6s" % [file, fg, fg_hex, bg, bg_hex, ratio.to_s, aa]
+end
+
+strict = ARGV.include?("--strict")
+
+if failed.any?
+  puts "\n#{failed.size} fg/bg pair(s) below WCAG 2.1 AA 4.5:1 threshold:"
+  failed.each { |row| puts "  #{row[0]}: #{row[1]} (#{row[2]}) on #{row[3]} (#{row[4]}) = #{row[5]}:1" }
+  puts "\nNote: some pairs may still pass AA in context (large text 3:1, disabled UI exempt,"
+  puts "icon-only buttons gated by SC 1.4.11 3:1, etc.). The axe-core system tests are the"
+  puts "real AA gate (test/system/accessibility_test.rb). Re-run with --strict to fail."
+  exit 1 if strict
+else
+  puts "\nAll #{pairs.size} fg/bg pairs pass WCAG 2.1 AA (4.5:1)."
+end

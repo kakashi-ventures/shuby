@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { activateFocusTrap, setBackgroundInert } from "src/focus_trap"
 
 // Full-screen takeover overlay for the tappa (milestone) questionnaire.
 // Rendered by `questionnaire_sessions/_overlay` on caller pages
@@ -62,6 +63,8 @@ export default class extends Controller {
     this.overlayElement.setAttribute("aria-hidden", "false")
     document.body.classList.add("shuby-questionnaire-overlay-scroll-lock")
     document.addEventListener("keydown", this.onKeydown)
+    this._releaseFocusTrap = activateFocusTrap(this.overlayElement)
+    this._releaseInert = setBackgroundInert(this.overlayElement)
   }
 
   close() {
@@ -72,6 +75,10 @@ export default class extends Controller {
     this.overlayElement.setAttribute("aria-hidden", "true")
     document.body.classList.remove("shuby-questionnaire-overlay-scroll-lock")
     document.removeEventListener("keydown", this.onKeydown)
+    this._releaseInert?.()
+    this._releaseInert = null
+    this._releaseFocusTrap?.()
+    this._releaseFocusTrap = null
     if (this.hasFrameTarget) {
       // Restore the skeleton so the next open shows it again. Turbo
       // keeps the previous response cached until a new src is set;

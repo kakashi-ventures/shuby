@@ -2,16 +2,23 @@
   state_class = pill_state_class(band, current_band, selected_band, child)
   relationship = pill_relationship(band, current_band, child)
   locked = relationship == "future" && not_subscribed?
+  base_label = "#{band[:label_type]} #{band[:label_number]}"
+  pill_aria_label = locked ?
+    "#{base_label} #{t('development_stages.index.pill_locked_aria_suffix')}" :
+    base_label
 %>
 <button class="shuby-timeline-pill <%= state_class %> <%= 'locked' if locked %>"
         type="button"
+        role="tab"
         data-timeline-carousel-target="pill"
         data-band-key="<%= band[:key] %>"
         data-band-relationship="<%= relationship %>"
         data-band-locked="<%= locked %>"
         data-action="click->timeline-carousel#select"
-        aria-label="<%= band[:label_type] %> <%= band[:label_number] %>"
-        aria-selected="<%= band[:key] == selected_band[:key] %>">
+        aria-label="<%= pill_aria_label %>"
+        aria-selected="<%= band[:key] == selected_band[:key] %>"
+        <%= 'aria-disabled="true"'.html_safe if locked %>
+        tabindex="<%= band[:key] == selected_band[:key] ? 0 : -1 %>">
   <% if locked %>
     <span class="shuby-timeline-pill-star" aria-hidden="true">
       <%= render_svg "shuby/icons/icon-premium-star", preserve_fill: true, decorative: true %>

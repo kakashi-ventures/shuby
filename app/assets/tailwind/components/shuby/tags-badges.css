@@ -82,21 +82,23 @@
     }
 }
 
-/* Default tag - Light gray background */
+/* Default tag - Light gray background.
+   Text uses gray-800 (~5.8:1 on gray-400 bg) so WCAG 2.1 AA holds at the
+   default 10px caption size used for archive tags. */
 .shuby-tag-default {
     background-color: var(--color-shuby-gray-400);
-    color: var(--color-shuby-gray-700);
+    color: var(--color-shuby-gray-800);
 
-    .shuby-tag-icon { color: var(--color-shuby-gray-500); }
+    .shuby-tag-icon { color: var(--color-shuby-gray-800); }
 }
 
 /* Light tag - White background with subtle border */
 .shuby-tag-light {
     background-color: var(--color-shuby-white);
-    color: var(--color-shuby-gray-700);
+    color: var(--color-shuby-gray-800);
     border: 1px solid var(--color-shuby-gray-500);
 
-    .shuby-tag-icon { color: var(--color-shuby-gray-500); }
+    .shuby-tag-icon { color: var(--color-shuby-gray-800); }
 }
 
 /* Primary tag - Blue filled */
@@ -134,9 +136,9 @@
 /* Yellow/Amber tag (warning style) */
 .shuby-tag-yellow {
     background-color: var(--color-shuby-orange-500);
-    color: var(--color-shuby-gray-700);
+    color: var(--color-shuby-gray-800);
 
-    .shuby-tag-icon { color: var(--color-shuby-gray-600); }
+    .shuby-tag-icon { color: var(--color-shuby-gray-800); }
 }
 
 /* Giallo tag (Figma: Giallo - light yellow #FFF7D4) */

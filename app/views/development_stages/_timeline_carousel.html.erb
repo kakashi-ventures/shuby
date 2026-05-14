@@ -1,7 +1,9 @@
 <div class="sticky top-0 z-30 shuby-timeline-carousel-bar">
   <div class="flex gap-2 overflow-x-auto px-5 py-2"
        style="-webkit-overflow-scrolling: touch; scrollbar-width: none;"
-       data-timeline-carousel-target="scroller">
+       data-timeline-carousel-target="scroller"
+       role="tablist"
+       aria-label="<%= t("development_stages.index.timeline_aria_label") %>">
     <% age_bands.each do |band| %>
       <%= render "development_stages/timeline_pill",
                  band: band,

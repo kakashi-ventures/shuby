@@ -81,6 +81,12 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", ">= 3.39"
   gem "selenium-webdriver", ">= 4.20.1"
+
+  # Accessibility scanning (WCAG 2.1 AA) via axe-core in headless Chrome.
+  # axe-core-api drives the audit; axe-core-rspec gives us the matcher object
+  # whose passed?/failure_message methods are usable from Minitest too.
+  gem "axe-core-api", "~> 4.10"
+  gem "axe-core-rspec", "~> 4.10", require: false
 end
 
 # Use Redis adapter to run Action Cable in production

@@ -18,6 +18,8 @@ it:
         category_label: "Categoria"
         all_ages: "Tutte le età"
         all_categories: "Tutte le categorie"
+      filters_toggle_aria: "Mostra filtri"
+      saved_link_aria: "Apri contenuti salvati"
       sections:
         articles: "Articoli per te"
         all_articles: "Tutti gli Articoli"

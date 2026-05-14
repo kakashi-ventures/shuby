@@ -2,7 +2,7 @@
 <% scope = "archive.index" %>
 
 <% panel_visible = local_assigns[:search_query].present? %>
-<div data-archive-filter-target="panel" class="<%= "hidden" unless panel_visible %> mb-6">
+<div id="archive-filter-panel" data-archive-filter-target="panel" class="<%= "hidden" unless panel_visible %> mb-6">
   <div class="bg-white rounded-2xl shadow-sm border border-shuby-gray-100 p-4 space-y-4">
     <%# Search input %>
     <%= form_with url: archive_index_path, method: :get, data: { archive_filter_target: "form", turbo_frame: "_top" }, class: "space-y-4" do |f| %>

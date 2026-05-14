@@ -3,6 +3,7 @@ it:
     default_title: "Nuova Chat"
     show:
       title: "Shuby AI"
+      messages_aria_label: "Conversazione con Shuby AI"
       welcome:
         greeting: "Come posso aiutarti?"
         description: "Puoi scrivere una domanda o chiedere un consiglio."

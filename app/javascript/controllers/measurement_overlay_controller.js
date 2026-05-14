@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { activateFocusTrap, setBackgroundInert } from "src/focus_trap"
 
 // Measurement form bottom sheet. Figma: 621:9860 (Overlay_Aggiungi
 // Altezza). Built on the shared `.shuby-bottom-sheet-*` CSS classes
@@ -64,6 +65,9 @@ export default class extends Controller {
     this.overlayElement.setAttribute("aria-hidden", "false")
     document.body.classList.add("shuby-bottom-sheet-scroll-lock")
     document.addEventListener("keydown", this.onKeydown)
+    const sheet = this.hasSheetTarget ? this.sheetTarget : this.overlayElement
+    this._releaseFocusTrap = activateFocusTrap(sheet)
+    this._releaseInert = setBackgroundInert(this.overlayElement)
   }
 
   close() {
@@ -71,6 +75,10 @@ export default class extends Controller {
     this.overlayElement.setAttribute("aria-hidden", "true")
     document.body.classList.remove("shuby-bottom-sheet-scroll-lock")
     document.removeEventListener("keydown", this.onKeydown)
+    this._releaseInert?.()
+    this._releaseInert = null
+    this._releaseFocusTrap?.()
+    this._releaseFocusTrap = null
     if (this.hasFrameTarget) {
       // Restore the default skeleton so the next open shows it again
       // (Turbo keeps the previous response until a new src is set).

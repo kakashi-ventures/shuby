@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { activateFocusTrap, setBackgroundInert } from "src/focus_trap"
 
 // Type-picker bottom sheet for adding a measurement.
 // Figma: 463:5785 (no data) / 463:5995 (with data) / 795:8492.
@@ -40,6 +41,9 @@ export default class extends Controller {
     document.body.classList.add("shuby-bottom-sheet-scroll-lock")
     document.addEventListener("keydown", this.onKeydown)
     this._attachSwipe()
+    const sheet = this.hasSheetTarget ? this.sheetTarget : this.overlayElement
+    this._releaseFocusTrap = activateFocusTrap(sheet)
+    this._releaseInert = setBackgroundInert(this.overlayElement)
   }
 
   close() {
@@ -48,6 +52,10 @@ export default class extends Controller {
     document.body.classList.remove("shuby-bottom-sheet-scroll-lock")
     document.removeEventListener("keydown", this.onKeydown)
     this._detachSwipe()
+    this._releaseInert?.()
+    this._releaseInert = null
+    this._releaseFocusTrap?.()
+    this._releaseFocusTrap = null
   }
 
   onKeydown(event) {

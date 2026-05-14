@@ -8,11 +8,19 @@
   <div class="shuby-container shuby-archive-index-header-row">
     <h1 class="shuby-h3"><%= t("heading", scope: scope) %></h1>
     <div class="shuby-archive-index-header-actions">
-      <button type="button" class="shuby-header-icon-btn" data-action="click->archive-filter#toggle">
+      <button type="button"
+              class="shuby-header-icon-btn"
+              data-action="click->archive-filter#toggle"
+              data-archive-filter-target="toggle"
+              aria-label="<%= t("filters_toggle_aria", scope: scope) %>"
+              aria-expanded="false"
+              aria-controls="archive-filter-panel">
         <%= render_svg "shuby/icons/icon-filter-list", size: :md, decorative: true %>
       </button>
-      <%= link_to archive_index_path(type: "saved"), class: "shuby-header-icon-btn" do %>
-        <%= render_svg "shuby/icons/icon-bookmark", size: :md %>
+      <%= link_to archive_index_path(type: "saved"),
+                  class: "shuby-header-icon-btn",
+                  aria: { label: t("saved_link_aria", scope: scope) } do %>
+        <%= render_svg "shuby/icons/icon-bookmark", size: :md, decorative: true %>
       <% end %>
     </div>
   </div>

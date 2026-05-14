@@ -109,7 +109,7 @@ Items surfaced by `/shuby-review` after the Figma 06.01_Gestione redesign
 ## P2: Non-Functional Requirements
 
 - [x] General API rate limiting (Rack::Attack or equivalent — only auth endpoints currently limited)
-- [ ] WCAG 2.1 Level AA accessibility audit
+- [x] WCAG 2.1 Level AA accessibility audit
 - [ ] Performance measurement: app load < 2s, API < 500ms p95
 - [ ] Screen reader compatibility testing
 - [ ] AI chat streaming: replace `Thread.new` fire-and-forget at `app/controllers/shuby_chats_controller.rb:106` with a SolidQueue job. Current pattern loses the assistant response if the puma worker dies mid-stream; SolidQueue is already configured per CLAUDE.md.

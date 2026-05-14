@@ -1,4 +1,8 @@
 it:
+  a11y:
+    skip_link: "Vai al contenuto principale"
+    main_landmark: "Contenuto principale"
+    header_landmark: "Intestazione"
   pundit:
     must_be_logged_in: "devi effettuare l'accesso"
 
@@ -868,6 +872,9 @@ it:
       completed: "Completato"
       in_progress: "In corso"
       not_started: "Da iniziare"
+      profile_link_aria: "Profilo di %{name}"
+      timeline_aria_label: "Linea del tempo"
+      pill_locked_aria_suffix: "(disponibile con Premium)"
       past_in_progress: "In corso (mese %{month})"
 
     show:

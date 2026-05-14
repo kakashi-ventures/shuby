@@ -10,14 +10,15 @@
       desync the native tab controller so subsequent native tab taps no
       longer drive Turbo.visit. Web is unaffected. %>
   <body data-controller="theme bridge--menu-button <%= "bridge--notification-token" if user_signed_in? %>" data-theme-preference-value="shuby" data-page-type="<%= page_transition_type %>" data-body-background="<%= content_for(:body_background) %>" <%= 'data-turbo-prefetch="false"'.html_safe if hotwire_native_app? %>>
+    <a href="#main-content" class="shuby-skip-link"><%= t("a11y.skip_link") %></a>
     <div class="grid-layout-wrapper">
-      <header class="<%= "native-inset-top" unless content_for?(:hide_navbar) || user_signed_in? %>">
+      <header class="<%= "native-inset-top" unless content_for?(:hide_navbar) || user_signed_in? %>" aria-label="<%= t("a11y.header_landmark") %>">
         <%= impersonation_banner %>
         <%= render "flash" %>
         <%= render "navbar" unless content_for?(:hide_navbar) || user_signed_in? %>
       </header>
 
-      <main>
+      <main id="main-content" tabindex="-1">
         <%= content_for?(:content) ? yield(:content) : yield %>
       </main>
 

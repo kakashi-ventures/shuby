@@ -1,0 +1,27 @@
+/* Skip-to-content link (WCAG 2.4.1 Bypass Blocks).
+   Sits offscreen until focused, then drops into the top-left corner so
+   keyboard / screen-reader users can jump past the navbar/header straight
+   to <main>. Hidden inside the Ruby Native shell (the iOS tab bar already
+   provides the same affordance) but kept available in WKWebView for
+   VoiceOver, and in the browser for any web/admin access. */
+.shuby-skip-link {
+    position: absolute;
+    top: -100px;
+    left: var(--space-2);
+    z-index: 1000;
+    padding: var(--space-2) var(--space-4);
+    background-color: var(--bg-primary);
+    color: var(--text-on-primary);
+    border-radius: var(--radius-grande);
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: top 0.15s ease-out;
+}
+
+.shuby-skip-link:focus,
+.shuby-skip-link:focus-visible {
+    top: var(--space-2);
+    outline: 3px solid var(--color-shuby-blue-500);
+    outline-offset: 2px;
+}

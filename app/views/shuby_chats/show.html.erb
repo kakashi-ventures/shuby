@@ -14,14 +14,22 @@
        data-shuby-chat-target="messages">
     <% if @messages.any? %>
       <%= render "shuby_chats/section_greeting" %>
-      <div id="messages" class="shuby-chat-message-stack pt-8 pb-4">
+      <div id="messages"
+           class="shuby-chat-message-stack pt-8 pb-4"
+           aria-live="polite"
+           aria-relevant="additions"
+           aria-label="<%= t("shuby_chats.show.messages_aria_label") %>">
         <% @messages.each do |message| %>
           <%= render "shuby_chats/message", message: message %>
         <% end %>
       </div>
     <% else %>
       <%= render "shuby_chats/section_welcome" %>
-      <div id="messages" class="shuby-chat-message-stack"></div>
+      <div id="messages"
+           class="shuby-chat-message-stack"
+           aria-live="polite"
+           aria-relevant="additions"
+           aria-label="<%= t("shuby_chats.show.messages_aria_label") %>"></div>
     <% end %>
   </div>
 
