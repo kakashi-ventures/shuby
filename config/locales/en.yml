@@ -640,6 +640,10 @@ en:
   errors:
     messages:
       image_format_not_supported: "image format not supported"
+    too_many_requests:
+      title: "Too many requests"
+      body: "You've made too many requests in a short period. Please try again shortly."
+      back_to_home: "Back to home"
 
   helpers:
     label:

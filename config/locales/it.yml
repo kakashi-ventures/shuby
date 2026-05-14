@@ -701,6 +701,10 @@ it:
   errors:
     messages:
       image_format_not_supported: "formato immagine non supportato"
+    too_many_requests:
+      title: "Troppe richieste"
+      body: "Hai effettuato troppe richieste in poco tempo. Riprova tra qualche istante."
+      back_to_home: "Torna alla home"
 
   helpers:
     label:

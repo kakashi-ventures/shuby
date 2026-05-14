@@ -108,7 +108,7 @@ Items surfaced by `/shuby-review` after the Figma 06.01_Gestione redesign
 
 ## P2: Non-Functional Requirements
 
-- [ ] General API rate limiting (Rack::Attack or equivalent — only auth endpoints currently limited)
+- [x] General API rate limiting (Rack::Attack or equivalent — only auth endpoints currently limited)
 - [ ] WCAG 2.1 Level AA accessibility audit
 - [ ] Performance measurement: app load < 2s, API < 500ms p95
 - [ ] Screen reader compatibility testing
