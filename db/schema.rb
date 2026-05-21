@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_11_130000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_21_120100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -569,10 +569,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_11_130000) do
   create_table "question_responses", force: :cascade do |t|
     t.integer "answer", default: 0, null: false
     t.datetime "created_at", null: false
+    t.boolean "inherited", default: false, null: false
     t.text "notes"
     t.bigint "question_id", null: false
     t.bigint "questionnaire_session_id", null: false
     t.datetime "updated_at", null: false
+    t.index ["inherited"], name: "index_question_responses_on_inherited"
     t.index ["question_id"], name: "index_question_responses_on_question_id"
     t.index ["questionnaire_session_id", "question_id"], name: "idx_responses_session_question", unique: true
     t.index ["questionnaire_session_id"], name: "index_question_responses_on_questionnaire_session_id"
@@ -599,6 +601,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_11_130000) do
   create_table "questions", force: :cascade do |t|
     t.boolean "active", default: true
     t.bigint "age_band_questionnaire_id", null: false
+    t.string "content_key"
     t.datetime "created_at", null: false
     t.text "help_text"
     t.string "illustration_key"
@@ -608,6 +611,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_11_130000) do
     t.datetime "updated_at", null: false
     t.index ["age_band_questionnaire_id", "position"], name: "index_questions_on_age_band_questionnaire_id_and_position"
     t.index ["age_band_questionnaire_id"], name: "index_questions_on_age_band_questionnaire_id"
+    t.index ["content_key"], name: "index_questions_on_content_key"
     t.index ["illustration_key"], name: "index_questions_on_illustration_key", unique: true
   end
 

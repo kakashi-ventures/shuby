@@ -96,6 +96,10 @@ puts "Creating clinical band questionnaires and loading questions..."
 questionnaires_created = 0
 questions_created = 0
 
+# Track seed JSON ids -> content_key so that questions declaring
+# `"equivalent_to": "<other_seed_id>"` resolve to the same key as their canonical.
+seed_id_to_content_key = {}
+
 monthly_by_month = data["questionari_mensili"].index_by { |m| m["mese"] }
 
 # Monthly bands 0-28 plus a carryover band (28..37) that reuses month 28 content
@@ -162,6 +166,16 @@ BAND_DEFINITIONS.each do |band|
       question.position = index
       question.active = true
       question.illustration_key = q_data["id"] if q_data["id"].present?
+
+      ref = q_data["equivalent_to"]
+      content_key = if ref.present? && seed_id_to_content_key[ref]
+        seed_id_to_content_key[ref]
+      else
+        Question.normalize_prompt(prompt)
+      end
+      question.content_key = content_key
+      seed_id_to_content_key[q_data["id"]] = content_key if q_data["id"].present?
+
       question.save!
 
       questions_created += 1 if question.previously_new_record?

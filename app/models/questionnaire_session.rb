@@ -23,6 +23,7 @@ class QuestionnaireSession < ApplicationRecord
   }
 
   before_create :snapshot_metadata
+  after_create :pull_inherited_responses
 
   # Progress tracking
   def questions_count
@@ -132,5 +133,16 @@ class QuestionnaireSession < ApplicationRecord
   def snapshot_metadata
     self.child_age_months ||= child.questionnaire_age_in_months
     self.questionnaire_version ||= age_band_questionnaire.version
+  end
+
+  def pull_inherited_responses
+    area_id = age_band_questionnaire.development_area_id
+    age_band_questionnaire.questions.active.with_content_key.find_each do |q|
+      EquivalentAnswerPropagator.recompute(
+        content_key: q.content_key,
+        child: child,
+        development_area_id: area_id
+      )
+    end
   end
 end

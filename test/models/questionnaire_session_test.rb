@@ -228,6 +228,74 @@ class QuestionnaireSessionTest < ActiveSupport::TestCase
     assert_not session.from_past_age_band?(sophia.questionnaire_age_in_months)
   end
 
+  # --- Inheritance pull on session create ---
+
+  test "after_create pulls inherited responses from existing si answers" do
+    band_past = age_band_questionnaires(:motricita_mese_0)
+    band_new = age_band_questionnaires(:motricita_mese_1)
+
+    q_past = Question.create!(
+      age_band_questionnaire: band_past,
+      prompt: "Inherited concept prompt",
+      position: 80,
+      active: true,
+      content_key: "create-pull-test"
+    )
+    q_new = Question.create!(
+      age_band_questionnaire: band_new,
+      prompt: "Inherited concept prompt",
+      position: 80,
+      active: true,
+      content_key: "create-pull-test"
+    )
+
+    # Past session has direct si BEFORE the new session exists.
+    session_past = QuestionnaireSession.create!(child: children(:sophia), age_band_questionnaire: band_past, status: :not_started)
+    QuestionResponse.create!(questionnaire_session: session_past, question: q_past, answer: :si)
+
+    # New session is created later — after_create hook should pull the inherited si.
+    session_new = QuestionnaireSession.create!(child: children(:sophia), age_band_questionnaire: band_new, status: :not_started)
+
+    inherited = session_new.question_responses.find_by(question: q_new)
+    assert_not_nil inherited
+    assert inherited.si?
+    assert inherited.inherited?
+  end
+
+  test "new session auto-completes when every question is inherited as si" do
+    band_past = age_band_questionnaires(:motricita_mese_0)
+    # Same area (motricita) so inheritance applies; different month so it's a
+    # distinct band. Cross-area would be skipped by EquivalentAnswerPropagator.
+    band_new = age_band_questionnaires(:motricita_mese_1)
+
+    # Disable the fixture questions in band_new so the only active question with
+    # answers will be the one we add. Inactive questions are excluded from
+    # questions_count via the `active` scope.
+    band_new.questions.update_all(active: false)
+
+    q_past = Question.create!(
+      age_band_questionnaire: band_past,
+      prompt: "Sole prompt",
+      position: 80,
+      active: true,
+      content_key: "auto-complete-test"
+    )
+    Question.create!(
+      age_band_questionnaire: band_new,
+      prompt: "Sole prompt",
+      position: 80,
+      active: true,
+      content_key: "auto-complete-test"
+    )
+
+    session_past = QuestionnaireSession.create!(child: children(:sophia), age_band_questionnaire: band_past, status: :not_started)
+    QuestionResponse.create!(questionnaire_session: session_past, question: q_past, answer: :si)
+
+    session_new = QuestionnaireSession.create!(child: children(:sophia), age_band_questionnaire: band_new, status: :not_started)
+
+    assert session_new.reload.completed?, "session should auto-complete via inherited si"
+  end
+
   private
 
   def build_attention_session(no_count:, si_count:)

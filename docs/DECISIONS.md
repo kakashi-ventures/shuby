@@ -110,6 +110,13 @@
 - **Status**: done
 - **Note**: Confirmed 2026-05-21. Edit window: `in_progress` is freely editable (no time lock); the 14-day lock applies only after completion. Implementation: `QuestionResponse#update_session_status`, `QuestionnaireSession#editable?`, `QuestionnaireSession#needs_attention?`.
 
+### DEC-021: Cross-month answer inheritance — same development area only
+
+- **Overrides**: PRD §3.4.2 (re-asking observations across months becomes opt-in within an area, not mandatory)
+- **Decision**: Questions sharing a `content_key` auto-propagate "si" answers **within the same development area** across all of one child's sessions. A `si` answer in one session creates an inherited `si` row for any equivalent question in any other session for the same child **in the same area**. If a future questionnaire in that area is fully covered by past inheritance, it auto-completes per DEC-020 without parent input. Editing the canonical answer (si → no/incerto within the 14-day window) destroys all inherited copies and demotes any sessions that completed via inheritance.
+- **Status**: done
+- **Note**: Confirmed 2026-05-21. **Cross-area overlaps are intentional and NOT propagated** — the consolidamento area re-asks observations from prior areas by design, so parents revisit them in a different developmental context. Linkage: hybrid — author-declared `equivalent_to` in seed JSON, with normalized-prompt-text fallback. UI: silent (inherited rows are visually indistinguishable from direct answers). Implementation: `EquivalentAnswerPropagator` (scoped by `development_area_id`), `Question.normalize_prompt`, `QuestionnaireSession#pull_inherited_responses`.
+
 ---
 
 ## Reports & PDF

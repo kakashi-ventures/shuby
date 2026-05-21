@@ -9,6 +9,21 @@ class Question < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :ordered, -> { order(:position) }
+  scope :with_content_key, -> { where.not(content_key: nil) }
+
+  def equivalents
+    return Question.none if content_key.blank?
+    Question.where(content_key: content_key).where.not(id: id)
+  end
+
+  # Stable, comparable key derived from a prompt's text content. Strips case,
+  # punctuation, and whitespace variation so byte-identical-but-formatted
+  # duplicates collapse to the same key. Used by the seed loader and by the
+  # migration backfill — keep the algorithm in lockstep with both.
+  def self.normalize_prompt(text)
+    return nil if text.blank?
+    text.downcase.gsub(/[^\p{Alnum}\s]/, "").squeeze(" ").strip
+  end
 
   def illustration_path
     area_slug = age_band_questionnaire&.development_area&.slug

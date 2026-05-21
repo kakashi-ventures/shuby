@@ -14,6 +14,9 @@ class QuestionResponse < ApplicationRecord
   normalizes :notes, with: ->(value) { value.is_a?(String) ? value.strip.squeeze(" ") : value }
 
   after_save :update_session_status
+  after_destroy :update_session_status
+  after_save :propagate_inheritance, if: -> { saved_change_to_answer? && !inherited? }
+  after_destroy :recompute_inheritance, unless: :inherited?
 
   private
 
@@ -29,6 +32,24 @@ class QuestionResponse < ApplicationRecord
     elsif session.completed?
       session.update!(status: :in_progress, completed_at: nil)
     end
+  end
+
+  def propagate_inheritance
+    return if question.content_key.blank?
+    EquivalentAnswerPropagator.recompute(
+      content_key: question.content_key,
+      child: questionnaire_session.child,
+      development_area_id: question.age_band_questionnaire.development_area_id
+    )
+  end
+
+  def recompute_inheritance
+    return if question.content_key.blank?
+    EquivalentAnswerPropagator.recompute(
+      content_key: question.content_key,
+      child: questionnaire_session.child,
+      development_area_id: question.age_band_questionnaire.development_area_id
+    )
   end
 
   # Prevent answer changes after 14-day edit window expires
