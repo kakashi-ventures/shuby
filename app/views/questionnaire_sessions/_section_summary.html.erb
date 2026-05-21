@@ -30,9 +30,13 @@
       <div class="flex items-start justify-between gap-3">
         <div class="flex-1">
           <p class="shuby-p2-dark text-blue-800 mb-1"><%= t("can_edit", scope: scope) %></p>
-          <p class="shuby-caption text-blue-600">
-            <%= t("edit_expires_in", scope: scope, count: session.days_until_locked) %>
-          </p>
+          <% if session.completed? %>
+            <p class="shuby-caption text-blue-600">
+              <%= t("edit_expires_in", scope: scope, count: session.days_until_locked) %>
+            </p>
+          <% else %>
+            <p class="shuby-caption text-blue-600"><%= t("edit_until_completed", scope: scope) %></p>
+          <% end %>
         </div>
         <%= link_to t("edit_button", scope: scope),
             edit_child_questionnaire_session_path(child, session),

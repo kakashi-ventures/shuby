@@ -87,6 +87,32 @@ class QuestionnaireSessionTest < ActiveSupport::TestCase
     assert_not session.needs_attention?
   end
 
+  test "needs_attention? returns true for in_progress session with all answered and 2+ no" do
+    session = build_attention_session(no_count: 2, si_count: 1)
+    assert session.in_progress?
+    assert_equal session.questions_count, session.answered_count
+    assert session.needs_attention?
+  end
+
+  test "needs_attention? returns false when all answered si — session is completed without alert" do
+    session = build_attention_session(no_count: 0, si_count: 3)
+    assert session.completed?
+    assert_not session.needs_attention?
+  end
+
+  test "needs_attention? returns false for in_progress session that has not answered all questions" do
+    session = questionnaire_sessions(:in_progress_session)
+    assert_operator session.answered_count, :<, session.questions_count
+    assert_not session.needs_attention?
+  end
+
+  test "days_until_locked returns 0 without crash for in_progress session" do
+    session = questionnaire_sessions(:in_progress_session)
+    assert session.editable?
+    assert_nil session.completed_at
+    assert_equal 0, session.days_until_locked
+  end
+
   test "next_unanswered_question returns unanswered question" do
     session = questionnaire_sessions(:in_progress_session)
     next_q = session.next_unanswered_question
@@ -164,6 +190,31 @@ class QuestionnaireSessionTest < ActiveSupport::TestCase
     assert session.from_past_age_band?(sophia.questionnaire_age_in_months)
   end
 
+  # --- Editability ---
+
+  test "editable? returns true for in_progress sessions" do
+    session = questionnaire_sessions(:in_progress_session)
+    assert session.in_progress?
+    assert session.editable?
+  end
+
+  test "editable? returns true for completed session within 14 days" do
+    session = questionnaire_sessions(:completed_session)
+    assert session.completed?
+    assert session.editable?
+  end
+
+  test "editable? returns false for completed session past 14 day window" do
+    session = questionnaire_sessions(:in_progress_session)
+    session.update!(status: :completed, completed_at: 20.days.ago)
+    assert_not session.editable?
+  end
+
+  test "editable? returns false for not_started sessions" do
+    session = questionnaire_sessions(:not_started_session)
+    assert_not session.editable?
+  end
+
   test "from_past_age_band? returns false for current session" do
     # Create a session for current age band
     sophia = children(:sophia)
@@ -175,5 +226,20 @@ class QuestionnaireSessionTest < ActiveSupport::TestCase
       status: :not_started
     )
     assert_not session.from_past_age_band?(sophia.questionnaire_age_in_months)
+  end
+
+  private
+
+  def build_attention_session(no_count:, si_count:)
+    session = QuestionnaireSession.create!(
+      child: children(:sophia),
+      age_band_questionnaire: age_band_questionnaires(:relazione_mese_0),
+      status: :not_started
+    )
+    answers = Array.new(no_count, :no) + Array.new(si_count, :si)
+    session.age_band_questionnaire.questions.active.zip(answers).each do |question, answer|
+      QuestionResponse.create!(questionnaire_session: session, question: question, answer: answer)
+    end
+    session.reload
   end
 end

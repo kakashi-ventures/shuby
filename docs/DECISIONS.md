@@ -89,7 +89,7 @@
 - **Overrides**: Not present in specs
 - **Decision**: If a stage is not completed within the expected period, it is **skipped** and the app moves directly to the stages for the **child's current period**.
 - **Status**: done
-- **Note**: Past-month questionnaires are implicitly skipped (only current-age questionnaires shown). In-progress past sessions can still be completed. Stale not-started sessions are cleaned up automatically.
+- **Note**: Past-month questionnaires are implicitly skipped (only current-age questionnaires shown). In-progress past sessions can still be completed by changing all answers to "si" (see DEC-020). Stale not-started sessions are cleaned up automatically.
 
 ### DEC-012: Intelligent stage proposal
 
@@ -102,6 +102,13 @@
 - **Overrides**: Scope change
 - **Decision**: Hidden stages (triggers to be defined with Azia) are **deferred to after v1.0**.
 - **Status**: deferred
+
+### DEC-020: Tappa completion rule — all answers must be "si"
+
+- **Overrides**: PRD §3.4.3 (gentle alert now surfaces pre-completion at N/N rather than post-completion)
+- **Decision**: A tappa is "completed" only when every active question is answered **si**. Sessions with any **no** or **incerto** stay `in_progress`; the user reaches completion by updating those answers. The gentle observation alert (PRD §3.4.3) and a "Rivedi le risposte" CTA surface as soon as `answered_count == questions_count`, regardless of `completed?` status.
+- **Status**: done
+- **Note**: Confirmed 2026-05-21. Edit window: `in_progress` is freely editable (no time lock); the 14-day lock applies only after completion. Implementation: `QuestionResponse#update_session_status`, `QuestionnaireSession#editable?`, `QuestionnaireSession#needs_attention?`.
 
 ---
 

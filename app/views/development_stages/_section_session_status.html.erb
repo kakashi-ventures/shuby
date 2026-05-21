@@ -1,6 +1,16 @@
 <% scope = "development_stages.show" %>
 
-<% if current_session&.in_progress? %>
+<% if current_session&.in_progress? && current_session.all_answered? %>
+  <div class="shuby-stage-status-card shuby-stage-status-card--needs-review">
+    <div class="shuby-stage-status-card-text">
+      <p class="shuby-stage-status-card-title shuby-p1-dark"><%= t("all_answered_title", scope: scope) %></p>
+      <p class="shuby-stage-status-card-meta shuby-caption"><%= t("all_answered_meta", scope: scope) %></p>
+    </div>
+    <%= link_to t("review_answers", scope: scope),
+        child_questionnaire_session_path(child, current_session),
+        class: "shuby-btn shuby-btn-sm shuby-btn-primary" %>
+  </div>
+<% elsif current_session&.in_progress? %>
   <div class="shuby-stage-status-card shuby-stage-status-card--in-progress">
     <div class="shuby-stage-status-card-text">
       <p class="shuby-stage-status-card-title shuby-p1-dark"><%= t("in_progress", scope: scope) %></p>

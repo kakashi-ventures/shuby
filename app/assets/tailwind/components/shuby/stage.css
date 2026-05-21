@@ -892,6 +892,38 @@ html.hotwire-native .shuby-stage-completed-header {
     color: var(--icon-on-warning-secondary);
 }
 
+/* Needs-review: all questions answered but not all "si" — session sits
+   between in_progress and completed. Uses the gentle giallo palette so
+   it reads as "review and adjust" rather than alarm. Visually tied to
+   the downstream attention alert which uses the same yellow family. */
+.shuby-stage-status-card--needs-review {
+    background-color: var(--color-shuby-giallo-400);
+}
+
+.shuby-stage-status-card--needs-review .shuby-stage-status-card-title {
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-stage-status-card--needs-review .shuby-stage-status-card-meta {
+    color: var(--color-shuby-blue-800);
+}
+
+/* Past-needs-review: same body palette as --needs-review, plus a slim
+   giallo-600 border (mirrors --past-in-progress which uses an
+   orange-100 border to flag prior-month bleed-over). */
+.shuby-stage-status-card--past-needs-review {
+    background-color: var(--color-shuby-giallo-400);
+    border: 1px solid var(--color-shuby-giallo-600);
+}
+
+.shuby-stage-status-card--past-needs-review .shuby-stage-status-card-title {
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-stage-status-card--past-needs-review .shuby-stage-status-card-meta {
+    color: var(--color-shuby-blue-800);
+}
+
 /* =====================================================
    MILESTONE CARD — FINISH PREVIOUS variant
    Dashboard surface that prompts the parent to resume an in-progress

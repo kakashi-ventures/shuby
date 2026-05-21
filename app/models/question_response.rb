@@ -19,13 +19,15 @@ class QuestionResponse < ApplicationRecord
 
   def update_session_status
     session = questionnaire_session
+
     if session.not_started?
       session.update!(status: :in_progress, started_at: Time.current)
     end
 
-    # Auto-complete if all questions answered
-    if session.answered_count == session.questions_count
-      session.complete!
+    if session.yes_count == session.questions_count
+      session.complete! unless session.completed?
+    elsif session.completed?
+      session.update!(status: :in_progress, completed_at: nil)
     end
   end
 

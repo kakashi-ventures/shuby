@@ -54,4 +54,62 @@ class QuestionResponseTest < ActiveSupport::TestCase
     response = question_responses(:comunicazione_response_3)
     assert response.incerto?
   end
+
+  # --- Session status callback ---
+
+  test "session completes when every question answered si" do
+    session = build_fresh_session(:relazione_mese_0)
+    answer_all(session, :si)
+
+    assert session.reload.completed?
+    assert_not_nil session.completed_at
+  end
+
+  test "session stays in_progress when any answer is no" do
+    session = build_fresh_session(:relazione_mese_0)
+    questions = session.age_band_questionnaire.questions.active.to_a
+    questions[0..-2].each { |q| QuestionResponse.create!(questionnaire_session: session, question: q, answer: :si) }
+    QuestionResponse.create!(questionnaire_session: session, question: questions.last, answer: :no)
+
+    assert session.reload.in_progress?
+    assert_nil session.completed_at
+  end
+
+  test "session stays in_progress when any answer is incerto" do
+    session = build_fresh_session(:relazione_mese_0)
+    questions = session.age_band_questionnaire.questions.active.to_a
+    questions[0..-2].each { |q| QuestionResponse.create!(questionnaire_session: session, question: q, answer: :si) }
+    QuestionResponse.create!(questionnaire_session: session, question: questions.last, answer: :incerto)
+
+    assert session.reload.in_progress?
+    assert_nil session.completed_at
+  end
+
+  test "editing si to no on completed session demotes to in_progress and clears completed_at" do
+    session = build_fresh_session(:relazione_mese_0)
+    answer_all(session, :si)
+    assert session.reload.completed?
+
+    session.question_responses.first.update!(answer: :no)
+
+    session.reload
+    assert session.in_progress?
+    assert_nil session.completed_at
+  end
+
+  private
+
+  def build_fresh_session(age_band_key)
+    QuestionnaireSession.create!(
+      child: children(:sophia),
+      age_band_questionnaire: age_band_questionnaires(age_band_key),
+      status: :not_started
+    )
+  end
+
+  def answer_all(session, answer)
+    session.age_band_questionnaire.questions.active.each do |q|
+      QuestionResponse.create!(questionnaire_session: session, question: q, answer: answer)
+    end
+  end
 end

@@ -43,6 +43,10 @@ class QuestionnaireSession < ApplicationRecord
     ((answered_count.to_f / questions_count) * 100).round
   end
 
+  def all_answered?
+    questions_count > 0 && answered_count == questions_count
+  end
+
   # Response analysis
   def yes_count
     question_responses.where(answer: :si).count
@@ -75,8 +79,10 @@ class QuestionnaireSession < ApplicationRecord
   end
 
   def needs_attention?
-    # Gentle alert: multiple "No" answers (threshold: 2+ or >30%)
-    return false unless completed?
+    # Gentle alert: surfaces once observation is finished (completed, or in_progress at N/N)
+    # AND the response pattern crosses the threshold (2+ "No" or >30%).
+    return false if not_started?
+    return false if in_progress? && !all_answered?
     no_count >= 2 || (answered_count > 0 && (no_count.to_f / answered_count) > 0.3)
   end
 
@@ -93,9 +99,10 @@ class QuestionnaireSession < ApplicationRecord
     update!(status: :completed, completed_at: Time.current)
   end
 
-  # Editing capability - allow updates within 14 days of completion
+  # Editing capability - allow updates while in_progress, or within 14 days of completion
   # @return [Boolean] true if session can be edited
   def editable?
+    return true if in_progress?
     completed? && completed_at.present? && completed_at > 14.days.ago
   end
 
@@ -109,6 +116,7 @@ class QuestionnaireSession < ApplicationRecord
   # @return [Integer] number of days until editing is locked
   def days_until_locked
     return 0 unless editable?
+    return 0 if editing_deadline.nil?
     ((editing_deadline - Time.current) / 1.day).ceil
   end
 

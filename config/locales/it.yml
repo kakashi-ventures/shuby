@@ -882,6 +882,10 @@ it:
       no_questionnaire: "Nessun questionario disponibile per questa fascia d'età"
       past_in_progress_title: "Questionario del mese %{month} in corso"
       past_in_progress_progress: "%{progress} domande risposte"
+      past_all_answered_title: "Questionario del mese %{month} da rivedere"
+      all_answered_title: "Tutte le domande risposte"
+      all_answered_meta: "Rivedi le risposte e aggiorna quelle che vuoi cambiare"
+      review_answers: "Rivedi le risposte"
       finish_past_questionnaire: "Completa"
       start_questionnaire: "Inizia Questionario"
       restart_questionnaire: "Ripeti Questionario"
@@ -964,6 +968,7 @@ it:
       edit_expires_in:
         one: "Scade tra %{count} giorno"
         other: "Scade tra %{count} giorni"
+      edit_until_completed: "Puoi modificare le risposte finché il questionario non è completato"
       edit_button: "Modifica Osservazioni"
 
       attention_title: "Suggerimenti"

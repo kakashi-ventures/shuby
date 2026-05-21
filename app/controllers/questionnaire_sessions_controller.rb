@@ -26,8 +26,6 @@ class QuestionnaireSessionsController < ApplicationController
     @question = @session.next_unanswered_question
 
     if @question.nil?
-      # All questions answered, mark complete
-      @session.complete! unless @session.completed?
       redirect_to child_questionnaire_session_path(@child, @session)
       return
     end
