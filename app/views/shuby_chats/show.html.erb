@@ -15,7 +15,7 @@
     <% if @messages.any? %>
       <%= render "shuby_chats/section_greeting" %>
       <div id="messages"
-           class="shuby-chat-message-stack pt-8 pb-4"
+           class="shuby-chat-message-stack pt-8"
            aria-live="polite"
            aria-relevant="additions"
            aria-label="<%= t("shuby_chats.show.messages_aria_label") %>">

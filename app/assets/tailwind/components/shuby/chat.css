@@ -188,6 +188,7 @@ html.hotwire-native .shuby-chat-header {
     flex-direction: column;
     gap: 30px;
     padding-inline: var(--space-5);
+    padding-block-end: 60vh;
 }
 
 /* =====================================================
