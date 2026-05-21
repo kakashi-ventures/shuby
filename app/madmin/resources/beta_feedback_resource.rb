@@ -6,13 +6,13 @@ class BetaFeedbackResource < Madmin::Resource
 
   attribute :id, form: false
   attribute :user, form: false
-  attribute :account, form: false
-  attribute :section, form: false
+  attribute :account, form: false, index: true
+  attribute :section, form: false, index: true
   attribute :page_url, form: false
-  attribute :feedback_type, form: false
-  attribute :description, form: false
-  attribute :severity, form: false
-  attribute :status
+  attribute :feedback_type, form: false, index: true
+  attribute :description, form: false, index: true
+  attribute :severity, form: false, index: true
+  attribute :status, index: true
   attribute :admin_notes
   attribute :screenshot, index: false
   attribute :metadata, form: false, index: false
