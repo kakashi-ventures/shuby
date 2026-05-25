@@ -1,10 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 const CONVERSION = {
-  // SI (metric) -> imperial scalar; value * scalar = imperial display
+  // Form input units -> imperial scalar; value * scalar = imperial display.
+  // Weight is kg (DEC-022); the rest are SI base units (cm, grams).
   height: 1 / 2.54,              // cm -> in
   head_circumference: 1 / 2.54,  // cm -> in
-  weight: 1 / 453.59237,         // g -> lb
+  weight: 1000 / 453.59237,      // kg -> lb (DEC-022: form holds kg, not g)
   feeding_weight: 1 / 28.3495    // g -> oz
 }
 
