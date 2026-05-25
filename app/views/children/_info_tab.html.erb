@@ -6,6 +6,7 @@
     <h2 class="shuby-h3"><%= t("children.show.informazioni") %></h2>
     <%= link_to edit_child_path(child),
         class: "shuby-icon-btn-azzurro shuby-icon-btn-sm",
+        data: {turbo_frame: "_top"},
         aria: {label: t("children.show.edit_aria")} do %>
       <%= render_svg "shuby/icons/icon-edit", decorative: true %>
     <% end %>
