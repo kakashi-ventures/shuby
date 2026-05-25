@@ -13,3 +13,7 @@
     <%= render @announcement %>
   </div>
 </div>
+
+<% content_for :bottom_nav do %>
+  <%= render "shared/shuby_bottom_nav", active: "settings" %>
+<% end %>

@@ -55,3 +55,7 @@ Authorization: Bearer <%= blur_secret @api_token.token %></div>
     </div>
   </div>
 </div>
+
+<% content_for :bottom_nav do %>
+  <%= render "shared/shuby_bottom_nav", active: "settings" %>
+<% end %>
