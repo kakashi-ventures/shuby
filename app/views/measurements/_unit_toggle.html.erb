@@ -1,7 +1,7 @@
 <%# Unit toggle pill (Figma: Toggle unit - cm/in).
   Locals:
     type           - current measurement_type key ("weight" | "height" | "head_circumference" | "feeding_weight")
-    default_unit   - the SI unit label ("gr" | "cm")
+    default_unit   - the metric unit label ("kg" | "cm" | "gr" for feeding_weight)
     preferred_unit - "metric" (default) or "imperial"; sets the initial active side
 %>
 <% preferred_unit = (local_assigns[:preferred_unit] || "metric").to_s %>

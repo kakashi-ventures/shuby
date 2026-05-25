@@ -19,8 +19,8 @@ class MeasurementsHelperTest < ActionView::TestCase
 
   test "measurement_display returns metric string when user pref is metric" do
     @user.measurement_unit = "metric"
-    m = measurements(:sophia_weight_recent) # 4500g
-    assert_equal "4500 gr", measurement_display(m)
+    m = measurements(:sophia_weight_recent) # 4500g -> "4,5 kg" (DEC-022)
+    assert_equal "4,5 kg", measurement_display(m)
   end
 
   test "measurement_display returns imperial string when user pref is imperial" do
@@ -33,7 +33,7 @@ class MeasurementsHelperTest < ActionView::TestCase
 
   test "measurement_unit_label_for_type returns metric label by default" do
     @user.measurement_unit = "metric"
-    assert_equal "gr", measurement_unit_label_for_type("weight")
+    assert_equal "kg", measurement_unit_label_for_type("weight")
     assert_equal "cm", measurement_unit_label_for_type("height")
     assert_equal "cm", measurement_unit_label_for_type("head_circumference")
     assert_equal "gr", measurement_unit_label_for_type("feeding_weight")
@@ -49,6 +49,6 @@ class MeasurementsHelperTest < ActionView::TestCase
 
   test "falls back to metric when current_user is nil" do
     @user = nil
-    assert_equal "gr", measurement_unit_label_for_type("weight")
+    assert_equal "kg", measurement_unit_label_for_type("weight")
   end
 end

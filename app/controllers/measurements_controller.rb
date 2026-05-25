@@ -63,7 +63,19 @@ class MeasurementsController < ApplicationController
   end
 
   def measurement_params
-    params.expect(measurement: [:measurement_type, :value, :measured_at, :notes, :photo])
+    attrs = params.expect(measurement: [:measurement_type, :value, :measured_at, :notes, :photo])
+    normalize_weight_value!(attrs)
+    attrs
+  end
+
+  # Body weight is entered in kg but stored in integer grams (DEC-022).
+  # Accept "," or "." as the decimal separator. For partial updates that
+  # omit measurement_type, fall back to the persisted record's type.
+  def normalize_weight_value!(attrs)
+    return unless attrs[:value].present?
+    type = attrs[:measurement_type].presence || @measurement&.measurement_type
+    return unless type == "weight"
+    attrs[:value] = (attrs[:value].to_s.tr(",", ".").to_f * 1000).round
   end
 
   def remove_photo?

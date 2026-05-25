@@ -132,9 +132,40 @@ class MeasurementTest < ActiveSupport::TestCase
 
   # === Display helpers ===
 
-  test "display_value for weight shows grams" do
+  test "display_value for weight shows kg" do
     m = measurements(:sophia_weight_recent)
-    assert_equal "4500 gr", m.display_value
+    assert_equal "4,5 kg", m.display_value
+  end
+
+  test "formatted_value for weight drops trailing zeros and rounds to 2 decimals" do
+    m = measurements(:sophia_weight_recent)
+    m.value = 5000
+    assert_equal "5", m.formatted_value
+    m.value = 4500
+    assert_equal "4,5", m.formatted_value
+    m.value = 4567
+    assert_equal "4,57", m.formatted_value
+  end
+
+  test "feeding_weight stays in grams" do
+    m = measurements(:sophia_feeding)
+    assert_equal "gr", m.unit
+    assert_match(/\A\+\d+ gr\z/, m.display_value)
+  end
+
+  test "value_for_form returns kg for weight metric" do
+    m = measurements(:sophia_weight_recent)
+    assert_equal 4.5, m.value_for_form
+  end
+
+  test "value_for_form returns raw value for non-weight types" do
+    assert_equal measurements(:sophia_height).value, measurements(:sophia_height).value_for_form
+    assert_equal measurements(:sophia_feeding).value, measurements(:sophia_feeding).value_for_form
+  end
+
+  test "value_for_form returns nil for blank value" do
+    m = Measurement.new(measurement_type: :weight)
+    assert_nil m.value_for_form
   end
 
   test "display_value for height shows cm" do
@@ -148,7 +179,7 @@ class MeasurementTest < ActiveSupport::TestCase
   end
 
   test "unit returns correct unit string" do
-    assert_equal "gr", measurements(:sophia_weight_recent).unit
+    assert_equal "kg", measurements(:sophia_weight_recent).unit
     assert_equal "cm", measurements(:sophia_height).unit
     assert_equal "cm", measurements(:sophia_head).unit
     assert_equal "gr", measurements(:sophia_feeding).unit

@@ -42,13 +42,15 @@ class Measurement < ApplicationRecord
     "#{prefix}#{formatted_value(unit_system: unit_system)} #{unit(unit_system: unit_system)}"
   end
 
-  # Unit label for display.
+  # Unit label for display. Body weight is stored in grams but displayed
+  # in kg (see DEC-022); feeding_weight keeps grams (1-500 g milk delta range).
   def unit(unit_system: "metric")
     if unit_system == "imperial"
       IMPERIAL[measurement_type][:label]
     else
       case measurement_type
-      when "weight", "feeding_weight" then "gr"
+      when "weight" then "kg"
+      when "feeding_weight" then "gr"
       when "height", "head_circumference" then "cm"
       end
     end
@@ -56,15 +58,29 @@ class Measurement < ApplicationRecord
 
   # Formatted value without unit. In imperial mode the stored SI value is
   # converted and rounded to the type's display precision (see IMPERIAL).
+  # Metric weight divides stored grams by 1000 for kg display.
   def formatted_value(unit_system: "metric")
     if unit_system == "imperial"
       converted = value / IMPERIAL[measurement_type][:scalar]
       format_decimal(converted.round(IMPERIAL[measurement_type][:decimals]))
     else
       case measurement_type
-      when "weight", "feeding_weight" then value.to_i.to_s
+      when "weight" then format_decimal((value / 1000.0).round(2))
+      when "feeding_weight" then value.to_i.to_s
       when "height", "head_circumference" then format_decimal(value)
       end
+    end
+  end
+
+  # Value as it should appear in the edit form for the given unit system.
+  # Weight stored in grams renders as kg in the form; other types pass through.
+  # Returns nil so number_field omits the value attribute for new records.
+  def value_for_form(unit_system: "metric")
+    return nil if value.blank?
+    if measurement_type == "weight" && unit_system == "metric"
+      (value / 1000.0).round(2)
+    else
+      value
     end
   end
 

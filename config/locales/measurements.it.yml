@@ -6,7 +6,7 @@ it:
       head_circumference: "Circ. cranica"
       feeding_weight: "Peso pre/post poppata"
     units:
-      weight: "gr"
+      weight: "kg"
       height: "cm"
       head_circumference: "cm"
       feeding_weight: "gr"
@@ -63,7 +63,7 @@ it:
       cancel: "Annulla"
       value_placeholder: "Inserisci"
       placeholders:
-        weight: "es. 3900"
+        weight: "es. 4,5"
         height: "es. 54,3"
         head_circumference: "es. 34,2"
         feeding_weight: "es. 106"

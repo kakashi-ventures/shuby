@@ -68,18 +68,59 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
   # === Create ===
 
   test "should create measurement" do
-    # Use 1.day.ago to avoid timezone edge cases with datetime_local format
+    # Use 1.day.ago to avoid timezone edge cases with datetime_local format.
+    # Weight is entered as kg (DEC-022) and stored as integer grams: "5" -> 5000.
     assert_difference("Measurement.count", 1) do
       post child_measurements_path(@child), params: {
         measurement: {
           measurement_type: "weight",
-          value: "5000",
+          value: "5",
           measured_at: 1.day.ago.strftime("%Y-%m-%dT%H:%M"),
           notes: "After feeding"
         }
       }
     end
     assert_redirected_to child_measurement_path(@child, Measurement.last)
+    assert_equal 5000, Measurement.last.value.to_i
+  end
+
+  test "create normalizes comma-decimal kg input to grams" do
+    assert_difference("Measurement.count", 1) do
+      post child_measurements_path(@child), params: {
+        measurement: {
+          measurement_type: "weight",
+          value: "4,5",
+          measured_at: 1.day.ago.strftime("%Y-%m-%dT%H:%M")
+        }
+      }
+    end
+    assert_equal 4500, Measurement.last.value.to_i
+  end
+
+  test "create normalizes period-decimal kg input to grams" do
+    assert_difference("Measurement.count", 1) do
+      post child_measurements_path(@child), params: {
+        measurement: {
+          measurement_type: "weight",
+          value: "4.5",
+          measured_at: 1.day.ago.strftime("%Y-%m-%dT%H:%M")
+        }
+      }
+    end
+    assert_equal 4500, Measurement.last.value.to_i
+  end
+
+  test "create rejects weight below 500 grams (kg input out of range)" do
+    assert_no_difference("Measurement.count") do
+      post child_measurements_path(@child), params: {
+        measurement: {
+          measurement_type: "weight",
+          value: "0,3",
+          measured_at: 1.day.ago.strftime("%Y-%m-%dT%H:%M")
+        }
+      }
+    end
+    assert_response :unprocessable_content
   end
 
   test "create fails and reports response on invalid data" do
@@ -105,8 +146,10 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
   # === Update ===
 
   test "should update measurement" do
+    # Partial update sends only `value` (no measurement_type); controller falls
+    # back to @measurement.measurement_type to know it's a weight in kg.
     patch child_measurement_path(@child, @measurement), params: {
-      measurement: {value: "5100"}
+      measurement: {value: "5,1"}
     }
     assert_redirected_to child_measurement_path(@child, @measurement)
     @measurement.reload
@@ -136,7 +179,7 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
       post child_measurements_path(@child), params: {
         measurement: {
           measurement_type: "weight",
-          value: "5000",
+          value: "5",
           measured_at: 1.day.ago.strftime("%Y-%m-%dT%H:%M"),
           photo: fixture_file_upload("avatar.jpg", "image/jpeg")
         }
@@ -158,7 +201,7 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
       patch child_measurement_path(@child, @measurement), params: {
         measurement: {
           measurement_type: @measurement.measurement_type,
-          value: @measurement.value,
+          value: @measurement.value_for_form,
           measured_at: @measurement.measured_at.strftime("%Y-%m-%dT%H:%M"),
           remove_photo: "1"
         }
@@ -173,7 +216,7 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
       post child_measurements_path(@child), params: {
         measurement: {
           measurement_type: "weight",
-          value: "5000",
+          value: "5",
           measured_at: 1.day.ago.strftime("%Y-%m-%dT%H:%M"),
           photo: fixture_file_upload("not_an_image.txt", "text/plain")
         }
@@ -200,7 +243,7 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
     sign_out @user
     assert_no_difference("Measurement.count") do
       post child_measurements_path(@child), params: {
-        measurement: {measurement_type: "weight", value: "4000", measured_at: 1.day.ago.strftime("%Y-%m-%dT%H:%M")}
+        measurement: {measurement_type: "weight", value: "4", measured_at: 1.day.ago.strftime("%Y-%m-%dT%H:%M")}
       }
     end
     assert_response :redirect

@@ -31,25 +31,27 @@ export default class extends Controller {
   }
 
   // Stored value is in grams (weight/feeding_weight) or centimeters (height/head).
-  // factor is what to MULTIPLY the SI value by to get the imperial display value.
+  // factor is what to MULTIPLY the SI value by to get the display value.
+  // Body weight metric divides grams by 1000 for kg display (DEC-022).
   static FACTORS = {
-    weight: { metric: 1, imperial: 1 / 453.59237 },
+    weight: { metric: 1 / 1000, imperial: 1 / 453.59237 },
     feeding_weight: { metric: 1, imperial: 1 / 28.3495 },
     height: { metric: 1, imperial: 1 / 2.54 },
     head_circumference: { metric: 1, imperial: 1 / 2.54 }
   }
 
   static UNIT_LABELS = {
-    weight: { metric: "gr", imperial: "lb" },
+    weight: { metric: "kg", imperial: "lb" },
     feeding_weight: { metric: "gr", imperial: "oz" },
     height: { metric: "cm", imperial: "in" },
     head_circumference: { metric: "cm", imperial: "in" }
   }
 
   // Decimal places per type+system, mirroring Measurement::IMPERIAL[:decimals].
-  // Metric weight is shown as integer grams (3900); imperial weight as 2 decimals (8.60).
+  // Metric weight shows 2 decimals max with trailing zeros dropped (4500g→"4,5";
+  // 5000g→"5"); imperial weight 2 decimals (8.60).
   static DECIMALS = {
-    weight: { metric: 0, imperial: 2 },
+    weight: { metric: 2, imperial: 2 },
     feeding_weight: { metric: 0, imperial: 2 },
     height: { metric: 1, imperial: 1 },
     head_circumference: { metric: 1, imperial: 1 }

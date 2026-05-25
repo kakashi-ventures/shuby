@@ -174,3 +174,15 @@
 - **Overrides**: Scope change
 - **Decision**: Sleep quality tracking is **deferred** to a future version.
 - **Status**: deferred
+
+---
+
+## Measurements & Growth
+
+### DEC-022: Body weight displayed and entered in kg, not grams
+
+- **Overrides**: PRD §3.5.1 line 378 ("Peso (grammi)") and §3.5.3 line 402-403 (sample list rendering "3900 gr").
+- **Decision**: Body weight (`measurement_type = weight`) is **displayed and entered in kilograms** with up to 2 decimals, trailing zeros dropped (`4500 g → "4,5 kg"`, `5000 g → "5 kg"`, `4567 g → "4,57 kg"`). Storage stays as integer grams in `measurements.value` — no migration, no change to `PercentileCalculator` or WHO standard alignment. `feeding_weight` (pre/post poppata, 1-500 g milk delta) stays in **grams** — kg at that scale would obscure the magnitude pediatricians and parents reason about. The growth chart was already rendering in kg (`growth_chart_helper#normalize_for_chart`); this aligns the rest of the UI with that existing behaviour.
+- **Status**: done
+- **Source**: BetaFeedback id=3, Luca Bianchi (Premium), 2026-05-20: *"Usare i kg e non i gr"*.
+- **Note**: Form accepts both Italian comma (`"4,5"`) and period (`"4.5"`) as decimal separator; controller normalizes kg → integer grams before validation in `MeasurementsController#normalize_weight_value!`.
