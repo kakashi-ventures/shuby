@@ -122,6 +122,26 @@ class ChildHealthProfileTest < ActiveSupport::TestCase
     assert_empty profile.errors[:birth_weight_grams]
   end
 
+  test "validates birth height range" do
+    profile = ChildHealthProfile.new(child: @child, birth_height_cm: 20)
+    assert_not profile.valid?
+    assert profile.errors[:birth_height_cm].any?
+
+    profile.birth_height_cm = 70
+    assert_not profile.valid?
+    assert profile.errors[:birth_height_cm].any?
+
+    profile.birth_height_cm = 50.5
+    profile.valid?
+    assert_empty profile.errors[:birth_height_cm]
+  end
+
+  test "allows nil birth height" do
+    profile = ChildHealthProfile.new(child: @child, birth_height_cm: nil)
+    profile.valid?
+    assert_empty profile.errors[:birth_height_cm]
+  end
+
   test "validates sleep hours range" do
     profile = ChildHealthProfile.new(child: @child, average_sleep_hours: 0)
     assert_not profile.valid?

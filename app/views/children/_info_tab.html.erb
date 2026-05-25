@@ -1,0 +1,28 @@
+<%# Info tab content for /children/:id (Figma node 434:13573). %>
+<%= render "children/report_card", child: child, last_report_at: last_report_at %>
+
+<div class="shuby-card mb-6">
+  <div class="shuby-section-header-row">
+    <h2 class="shuby-h3"><%= t("children.show.informazioni") %></h2>
+    <%= link_to edit_child_path(child),
+        class: "shuby-icon-btn-azzurro shuby-icon-btn-sm",
+        aria: {label: t("children.show.edit_aria")} do %>
+      <%= render_svg "shuby/icons/icon-edit", decorative: true %>
+    <% end %>
+  </div>
+
+  <dl>
+    <% child_info_rows(child).each do |label, value| %>
+      <%= render "children/info_row", label: label, value: value %>
+    <% end %>
+  </dl>
+</div>
+
+<% if child.notes.present? %>
+  <div class="shuby-card mb-6">
+    <h2 class="shuby-h3 mb-2"><%= t("children.form.notes") %></h2>
+    <div class="shuby-p1"><%= simple_format(child.notes) %></div>
+  </div>
+<% end %>
+
+<%= render "children/pediatrician_questions", child: child %>

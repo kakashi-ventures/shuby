@@ -1,0 +1,16 @@
+<%# Report CTA card sitting at the top of the child Info tab. Renders "Apri il Report di Crescita" plus an optional "ULTIMO AGGIORNAMENTO" caption derived from the latest measurement timestamp. Caption hides when the child has no measurements yet. %>
+<div class="shuby-card mb-6">
+  <%= link_to child_pediatrician_report_path(child),
+      class: "shuby-btn shuby-btn-primary shuby-btn-full shuby-btn-icon",
+      data: {turbo: false},
+      target: "_blank" do %>
+    <%= render_svg "shuby/icons/icon-document", size: :md, decorative: true %>
+    <%= t("children.show.report_cta") %>
+  <% end %>
+
+  <% if last_report_at.present? %>
+    <p class="shuby-report-card-caption">
+      <%= t("children.show.last_updated", when: l(last_report_at, format: :short_dt)) %>
+    </p>
+  <% end %>
+</div>

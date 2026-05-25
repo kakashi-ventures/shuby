@@ -1,0 +1,54 @@
+/* Shuby Info Rows
+ * Label/value rows used inside the child profile "Informazioni" card.
+ * Figma reference: node 434:13573 (03.01_Scheda bambino_Info).
+ *
+ * Each row is a flex container with an uppercase blue label on the left
+ * and a value right-aligned. A hairline divider sits below every row
+ * except the last to match the Figma layout.
+ */
+
+.shuby-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-shuby-gray-500);
+}
+
+.shuby-info-row:last-child {
+    border-bottom: 0;
+}
+
+.shuby-info-row dt {
+    flex: 0 0 auto;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-shuby-blue-700);
+}
+
+.shuby-info-row dd {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 1rem;
+    color: var(--color-shuby-gray-800);
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.shuby-info-row dd.-empty {
+    color: var(--color-shuby-gray-600);
+}
+
+/* Caption under the report CTA — "ULTIMO AGGIORNAMENTO: ..." */
+.shuby-report-card-caption {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-shuby-gray-700);
+    text-align: center;
+    margin-top: 12px;
+}

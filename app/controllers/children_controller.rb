@@ -8,6 +8,8 @@ class ChildrenController < ApplicationController
   def show
     @tab = params[:tab] || "info"
     case @tab
+    when "info"
+      @last_report_at = @child.measurements.maximum(:updated_at)
     when "measurements"
       @measurements_by_type = Measurement.measurement_types.keys.map do |type|
         [type, @child.latest_measurement(type)]
@@ -72,7 +74,7 @@ class ChildrenController < ApplicationController
     params.expect(child: [
       :name, :birth_date, :sex, :gestational_weeks, :gestational_days, :notes, :avatar,
       health_profile_attributes: [
-        :id, :birth_weight_grams, :hearing_screening_result, :vision_screening_result,
+        :id, :birth_weight_grams, :birth_height_cm, :hearing_screening_result, :vision_screening_result,
         :current_feeding_type, :average_sleep_hours
       ]
     ])

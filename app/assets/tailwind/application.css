@@ -150,6 +150,7 @@
 @import "./components/shuby/archive.css" layer(components);
 @import "./components/shuby/chat.css" layer(components);
 @import "./components/shuby/list-items.css" layer(components);
+@import "./components/shuby/info-rows.css" layer(components);
 @import "./components/shuby/notices.css" layer(components);
 @import "./components/shuby/mascots.css" layer(components);
 @import "./components/shuby/modals.css" layer(components);

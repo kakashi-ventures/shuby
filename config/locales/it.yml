@@ -739,7 +739,17 @@ it:
   children:
     show:
       edit: "Modifica"
-      details: "Dettagli"
+      informazioni: "Informazioni"
+      edit_aria: "Modifica informazioni"
+      report_cta: "Apri il Report di Crescita"
+      last_updated: "ULTIMO AGGIORNAMENTO: %{when}"
+      field:
+        name: "Nome"
+        birth_date: "Data di Nascita"
+        gestational_weeks: "Settimane di Gravidanza"
+        sex_at_birth: "Sesso alla Nascita"
+        birth_weight_grams: "Peso alla Nascita (Grammi)"
+        birth_height_cm: "Lunghezza alla Nascita (Centimetri)"
       milestones:
         title: "Tappe di sviluppo"
     new:
@@ -759,17 +769,19 @@ it:
       name_placeholder: "Inserisci il nome del bambino"
       birth_date: "Data di Nascita"
       sex: "Sesso"
-      premature_section: "Informazioni Prematurità"
+      gestational_section: "Età Gestazionale"
       optional: "Opzionale"
       gestational_weeks: "Settimane"
       gestational_days: "Giorni"
       gestational_age: "Età Gestazionale"
-      gestational_help: "Inserisci l'età gestazionale alla nascita se il bambino è nato prematuro"
+      gestational_help: "Settimane e giorni di gravidanza al momento del parto"
       notes: "Note"
       notes_placeholder: "Note aggiuntive..."
       health_section: "Informazioni Salute"
       birth_weight: "Peso alla nascita (grammi)"
       birth_weight_help: "Peso del bambino alla nascita in grammi"
+      birth_height: "Lunghezza alla nascita (centimetri)"
+      birth_height_help: "Lunghezza del bambino alla nascita in centimetri"
       hearing_screening: "Screening Uditivo"
       vision_screening: "Screening Visivo"
       feeding_type: "Tipo di Alimentazione"
@@ -1014,11 +1026,13 @@ it:
   time:
     formats:
       date_with_hour: "%d.%m.%Y - h.%H:%M"
+      short_dt: "%d.%m.%Y - %H:%M"
 
   date:
     formats:
       long: "%d %B %Y"
       dashboard_day: "%A, %d %B"
+      short_dotted: "%d . %m . %Y"
 
   premium:
     upgrade_button: "Passa a Premium"

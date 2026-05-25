@@ -675,7 +675,17 @@ en:
   children:
     show:
       edit: "Edit"
-      details: "Details"
+      informazioni: "Information"
+      edit_aria: "Edit information"
+      report_cta: "Open the Growth Report"
+      last_updated: "LAST UPDATED: %{when}"
+      field:
+        name: "Name"
+        birth_date: "Birth Date"
+        gestational_weeks: "Gestational Weeks"
+        sex_at_birth: "Sex at Birth"
+        birth_weight_grams: "Birth Weight (Grams)"
+        birth_height_cm: "Birth Length (Centimeters)"
       milestones:
         title: "Developmental milestones"
     new:
@@ -695,17 +705,19 @@ en:
       name_placeholder: "Enter child's name"
       birth_date: "Birth Date"
       sex: "Sex"
-      premature_section: "Prematurity Information"
+      gestational_section: "Gestational Age"
       optional: "Optional"
       gestational_weeks: "Weeks"
       gestational_days: "Days"
       gestational_age: "Gestational Age"
-      gestational_help: "Enter gestational age at birth if the child was born premature"
+      gestational_help: "Weeks and days of gestation at birth"
       notes: "Notes"
       notes_placeholder: "Any additional notes..."
       health_section: "Health Information"
       birth_weight: "Birth Weight (grams)"
       birth_weight_help: "Baby's weight at birth in grams"
+      birth_height: "Birth Length (centimeters)"
+      birth_height_help: "Baby's length at birth in centimeters"
       hearing_screening: "Hearing Screening"
       vision_screening: "Vision Screening"
       feeding_type: "Feeding Type"
@@ -885,3 +897,8 @@ en:
   time:
     formats:
       date_with_hour: "%m/%d/%Y - %H:%M"
+      short_dt: "%m/%d/%Y - %H:%M"
+
+  date:
+    formats:
+      short_dotted: "%m . %d . %Y"

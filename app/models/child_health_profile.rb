@@ -63,6 +63,7 @@ class ChildHealthProfile < ApplicationRecord
 
   # Validations
   validates :birth_weight_grams, numericality: {greater_than: 0, less_than: 10000}, allow_nil: true
+  validates :birth_height_cm, numericality: {greater_than: 20, less_than: 70}, allow_nil: true
   validates :average_sleep_hours, numericality: {greater_than: 0, less_than_or_equal_to: 24}, allow_nil: true
   validates :floor_play_minutes_per_day, numericality: {greater_than_or_equal_to: 0, less_than: 1440}, allow_nil: true
   validate :premature_fields_consistency

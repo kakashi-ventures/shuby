@@ -1,0 +1,6 @@
+<%# Label/value row used inside the child Informazioni card. Pass `label:` (string) and `value:` (any). Nil/blank value renders an em-dash placeholder. %>
+<% blank_value = value.nil? || value.to_s.strip.empty? %>
+<div class="shuby-info-row">
+  <dt><%= label %></dt>
+  <dd class="<%= "-empty" if blank_value %>"><%= blank_value ? "—" : value %></dd>
+</div>

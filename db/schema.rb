@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_21_120100) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_25_102502) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -250,6 +250,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_21_120100) do
   create_table "child_health_profiles", force: :cascade do |t|
     t.decimal "average_sleep_hours", precision: 4, scale: 1
     t.jsonb "birth_complications", default: []
+    t.decimal "birth_height_cm", precision: 4, scale: 1
     t.integer "birth_weight_grams"
     t.integer "birth_weight_under_1500"
     t.bigint "child_id", null: false
