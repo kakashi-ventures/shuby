@@ -30,7 +30,7 @@ module FlashHelper
   end
 
   TOAST_LEVELS = {
-    notice: {icon_name: :success, dismiss_after: 4000},
+    notice: {dismiss_after: 4000},
     alert: {icon_name: :alert, dismiss_after: 6000}
   }.freeze
 

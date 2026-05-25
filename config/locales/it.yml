@@ -285,7 +285,7 @@ it:
           confirm_description: "Questo eliminerà permanentemente tutti i tuoi dati, inclusi profili bambini, misurazioni, questionari e conversazioni. Digita il tuo indirizzo email per confermare."
         save: "Salva"
       update:
-        updated: "Preferenze privacy aggiornate."
+        updated: "Preferenze aggiornate."
         invalid: "Impossibile aggiornare le preferenze. Verifica i valori inseriti."
 
   shuby_chats:
