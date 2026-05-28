@@ -69,6 +69,7 @@ it:
       destroyed: "Arrivederci! Il tuo account è stato cancellato con successo. Speriamo di rivederti presto."
       edit:
         are_you_sure: Sei sicuro?
+        avatar_help: "Tocca l'icona della fotocamera per cambiare la foto profilo."
         cancel_my_account: Elimina il mio account
         cancel_my_account_description: Questo eliminerà permanentemente tutti i dati associati al tuo account. Questa azione non può essere annullata.
         cancel_my_account_confirm_description_html: Questo eliminerà permanentemente tutti i dati associati al tuo account. Questa azione non può essere annullata.<br/><br/>Per verificare, digita il tuo indirizzo email per confermare ed eliminare il tuo account.

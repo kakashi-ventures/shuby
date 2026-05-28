@@ -10,6 +10,9 @@ it:
       profile_button:
         aria_label: "Profilo di %{name}"
         aria_label_no_child: "Profilo"
+    ui:
+      avatar_upload_camera_btn:
+        label: "Cambia foto"
 
   application:
     footer:

@@ -380,16 +380,15 @@
 }
 
 /* =====================================================
-   CHILD-FORM AVATAR PREVIEW
-   96px circle with white border + drop shadow used at the top of the
-   child create/edit form. Holds either the uploaded avatar image or an
-   icon-baby placeholder (replaced live by JS on file selection).
-   This is the explicit exception to the wrapper-owned-glyph-sizing rule
-   in `.claude/rules/child-avatar.md` — the 96px wrapper isn't part of
-   the canonical `.shuby-avatar-btn` system.
+   AVATAR UPLOAD PREVIEW
+   96px circle with white border + drop shadow used at the top of avatar-
+   upload forms (children/_form.html.erb, devise/registrations/edit.html.erb).
+   Holds either the live-preview image (swapped by `avatar_upload_controller.js`
+   on file selection) or — when the child form has no attachment yet — an
+   icon-baby placeholder beneath a hidden preview <img>.
    ===================================================== */
 
-.shuby-child-form-avatar-preview {
+.shuby-avatar-upload-preview {
     width: 96px;
     height: 96px;
     border-radius: 50%;
@@ -403,7 +402,7 @@
     justify-content: center;
 }
 
-.shuby-child-form-avatar-preview img {
+.shuby-avatar-upload-preview img {
     width: 100%;
     height: 100%;
     object-fit: cover;

@@ -84,11 +84,13 @@ To add a new size, add the wrapper class AND a matching `> svg { width:
 ...; height: ...; }` rule in the same file. Do NOT introduce a
 per-callsite override — that's how the smell came back the first time.
 
-**Single exception**: the 96px form-preview circle in
-`children/_form.html.erb` keeps its explicit `styles: "w-16 h-16"`. It
-is not part of the canonical avatar component (custom utility-chain
-wrapper for upload preview), so the wrapper-owned-sizing rule does not
-apply there.
+**Single exception**: the 96px upload-preview circle (class
+`.shuby-avatar-upload-preview`, used in `children/_form.html.erb` AND
+`devise/registrations/edit.html.erb`) keeps its explicit
+`styles: "w-16 h-16"` on the inner `icon-baby` placeholder. It is not
+part of the canonical avatar component (custom upload-form wrapper, see
+`.claude/rules/avatar-upload-form.md`), so the wrapper-owned-sizing rule
+does not apply there.
 
 **Canonical wrapper is `.shuby-avatar-btn`.** Backs the dashboard profile
 button, timeline header, child-selector pill, settings family-member
@@ -98,13 +100,21 @@ glyph size — all three have been removed. If a new context needs an
 avatar, use `.shuby-avatar-btn` (or the size-variant `.shuby-avatar`
 for non-button contexts).
 
-## Adult / account avatars are different
+## Adult / account avatars are different (display layer)
 
-This rule applies to **children** only. Parent / User avatars come from
-the `avatar_url_for(record, ...)` helper (Gravatar fallback) and use the
-`icon-account` glyph when no avatar is set. Don't unify the two — they
-serve different audiences and the design system treats them as separate
-components.
+This rule's display-avatar guidance applies to **children** only. Parent /
+User avatars come from the `avatar_url_for(record, ...)` helper (Gravatar
+fallback) and use the `icon-account` glyph when no avatar is set. The
+**display partials** stay separate: `app/views/shared/ui/_avatar.html.erb`
+is child-only (icon-baby fallback); user/account display rendering uses the
+helper directly. Don't unify the two display components — they serve
+different audiences.
+
+The **upload-form preview wrapper** (`.shuby-avatar-upload-preview` + the
+`avatar-upload` Stimulus controller + the `_avatar_upload_camera_btn`
+partial) IS shared across child and user forms by deliberate choice — see
+`.claude/rules/avatar-upload-form.md`. That sharing does NOT extend to the
+display partials above.
 
 ## Existing call sites
 
