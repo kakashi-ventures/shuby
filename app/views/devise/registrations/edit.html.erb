@@ -2,83 +2,35 @@
 <% Current.meta_tags.set(title: t(".title")) %>
 <% content_for :page_type, "detail" %>
 
-<div class="flex flex-wrap my-4 lg:px-4">
-  <div class="w-full mb-4 lg:w-1/4 lg:p-4">
-    <%= render partial: "account_navbar" %>
+<div class="shuby-detail-page">
+  <div class="mb-6">
+    <%= render "shared/ui/back_link", history: true, label: t("common.back"), class: "mb-4" %>
+    <h1 class="shuby-h3"><%= t(".title") %></h1>
   </div>
 
-  <div class="w-full lg:w-3/4 lg:p-4">
-    <div class="p-4 bg-white border border-gray-200 rounded-lg lg:p-10">
-      <h1 class="shuby-h3 mb-4"><%= t('.title', resource: resource.model_name.human) %></h1>
+  <%= form_with(
+        model: resource,
+        as: resource_name,
+        url: registration_path(resource_name),
+        method: :put,
+        class: "space-y-6",
+        data: {controller: "bridge--form",
+               action: "turbo:submit-start->bridge--form#submitStart turbo:submit-end->bridge--form#submitEnd"}
+      ) do |form| %>
+    <%= render "error_messages", resource: resource %>
+    <%= render "shared/ui/avatar",
+          form: form,
+          fallback: :gravatar,
+          help: t("devise.registrations.edit.avatar_help") %>
+    <%= render "devise/registrations/profile_fields", form: form, resource: resource %>
 
-      <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), method: :put, class: "mb-16", data: {controller: "bridge--form", action:"turbo:submit-start->bridge--form#submitStart turbo:submit-end->bridge--form#submitEnd"}) do |form| %>
-        <%= render "error_messages", resource: resource %>
-
-        <div class="form-group flex flex-col items-center" data-controller="avatar-upload">
-          <div class="relative">
-            <div class="shuby-avatar-upload-preview">
-              <%= image_tag avatar_url_for(form.object, size: 96),
-                  class: "w-full h-full object-cover",
-                  data: { "avatar-upload-target": "preview" } %>
-            </div>
-            <%= render "shared/ui/avatar_upload_camera_btn", for_id: "user_avatar" %>
-          </div>
-          <%= form.file_field :avatar, accept: "image/*", class: "hidden", id: "user_avatar",
-              direct_upload: true,
-              data: { action: "change->avatar-upload#preview" } %>
-          <p class="shuby-caption text-gray-400 mt-2"><%= t(".avatar_help") %></p>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :name %>
-          <%= form.text_field :name, autofocus: true, autocomplete: "name", placeholder: true, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :email %>
-          <%= form.email_field :email, autocomplete: "email", placeholder: true, class: "form-control" %>
-        </div>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div class="shuby-warning-box mb-4"><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
-        <% end %>
-
-        <% if I18n.available_locales.length > 1 %>
-          <div class="form-group">
-            <%= form.label :preferred_language %>
-            <%= form.select :preferred_language, language_options, {}, { class: "select" } %>
-          </div>
-        <% end %>
-
-        <div class="mt-2 form-group">
-          <%= form.button button_text(t('.update'), disable_with: t(".saving")), class: "shuby-btn shuby-btn-md shuby-btn-primary", "data-bridge--form-target": "submit", "data-bridge-title": t('.update') %>
-        </div>
-      <% end %>
-
-      <div class="flex flex-wrap flex-end">
-        <div class="flex-1">
-          <h3 class="shuby-h3 mb-4"><%= t('.cancel_my_account') %></h3>
-          <p class="text-sm"><%= t(".cancel_my_account_description") %></p>
-          <div class="mt-2">
-            <%= button_to t('.cancel_my_account'), registration_path(resource_name),
-              method: :delete,
-              class: "shuby-btn shuby-btn-md shuby-btn-danger-subtle",
-              data: {
-                controller: "bridge--sign-out",
-                action: "bridge--sign-out#signOut",
-                bridge__sign_out_path_value: api_v1_me_path,
-                turbo_confirm: t("are_you_sure"),
-                turbo_confirm_text: current_user.email,
-                turbo_confirm_description: t(".cancel_my_account_confirm_description_html")
-              } %>
-          </div>
-        </div>
-      </div>
-
+    <div class="pt-2">
+      <%= form.button button_text(t(".update"), disable_with: t(".saving")),
+            class: "shuby-btn shuby-btn-lg shuby-btn-primary w-full",
+            data: native_haptic_data(:success).merge(
+              "bridge--form-target": "submit",
+              "bridge-title": t(".update")
+            ) %>
     </div>
-  </div>
+  <% end %>
 </div>
-
-<% content_for :bottom_nav do %>
-  <%= render "shared/shuby_bottom_nav", active: "settings" %>
-<% end %>

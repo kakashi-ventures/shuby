@@ -128,8 +128,7 @@
         <div class="mb-8">
           <%= render "shared/paywall_banner",
                 title: t("premium.archive.specialist_title"),
-                description: t("premium.archive.specialist_description"),
-                icon: :lock %>
+                description: t("premium.archive.specialist_description") %>
         </div>
       <% elsif @content.body.present? %>
         <div class="shuby-article-body <%= 'shuby-activity-body' if @content.content_type_activity? %> mb-8">

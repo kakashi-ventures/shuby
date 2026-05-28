@@ -1,23 +1,67 @@
-<%# Avatar component (Figma node 159:935 — source of truth for child avatars).
-  Required locals:
-    child - Child record (needs .display_name, .avatar)
-  Optional locals:
-    size  - "sm", "md", "base", "lg", "xl" (default: "base")
-    class - additional CSS classes
-%>
-<% size = local_assigns.fetch(:size, "base") %>
-<% size_class = case size
-                when "sm" then "shuby-avatar shuby-avatar-sm"
-                when "md" then "shuby-avatar shuby-avatar-md"
-                when "lg" then "shuby-avatar shuby-avatar-lg"
-                when "xl" then "shuby-avatar shuby-avatar-xl"
-                else           "shuby-avatar"
-                end %>
+<%# Unified avatar partial — DISPLAY mode (read-only) when `child:` local is
+  passed; UPLOAD mode (file input + Stimulus preview wiring) when `form:`
+  local is passed.
 
-<% if child.avatar.attached? %>
-  <%= image_tag child.avatar, class: "#{size_class} #{local_assigns[:class]}" %>
-<% else %>
-  <div class="<%= size_class %> shuby-avatar-fallback <%= local_assigns[:class] %>">
-    <%= render_svg "shuby/icons/icon-baby", decorative: true %>
+  DISPLAY mode locals:
+    child   - Child record (required; needs .avatar)
+    size    - "sm", "md", "base", "lg", "xl" (default: "base")
+    class   - additional CSS classes
+
+  UPLOAD mode locals:
+    form     - FormBuilder (required)
+    fallback - :gravatar (user/account forms — image_tag always rendered via
+               avatar_url_for; no placeholder target) or :baby (child forms —
+               icon-baby fallback with placeholder target swap on file pick).
+               Default :baby.
+    field    - file attribute name (default: :avatar)
+    help     - optional help text below preview (Italian string, usually i18n)
+%>
+<% if local_assigns[:form] %>
+  <% form_builder = local_assigns[:form] %>
+  <% field = local_assigns.fetch(:field, :avatar) %>
+  <% input_id = "#{form_builder.object.model_name.singular}_#{field}" %>
+  <% fallback = local_assigns.fetch(:fallback, :baby) %>
+
+  <div class="flex flex-col items-center" data-controller="avatar-upload">
+    <div class="relative">
+      <div class="shuby-avatar-upload-preview">
+        <% if fallback == :gravatar %>
+          <%= image_tag avatar_url_for(form_builder.object, size: 96),
+                class: "w-full h-full object-cover",
+                data: {"avatar-upload-target": "preview"} %>
+        <% elsif form_builder.object.try(:avatar)&.attached? %>
+          <%= image_tag form_builder.object.avatar, data: {"avatar-upload-target": "preview"} %>
+        <% else %>
+          <span data-avatar-upload-target="placeholder">
+            <%= render_svg "shuby/icons/icon-baby", styles: "w-16 h-16", decorative: true %>
+          </span>
+          <img src="" class="hidden" data-avatar-upload-target="preview">
+        <% end %>
+      </div>
+      <%= render "shared/ui/avatar_upload_camera_btn", for_id: input_id %>
+    </div>
+    <%= form_builder.file_field field, accept: "image/*", class: "hidden", id: input_id,
+          direct_upload: true,
+          data: {action: "change->avatar-upload#preview"} %>
+    <% if local_assigns[:help] %>
+      <p class="shuby-field-help"><%= local_assigns[:help] %></p>
+    <% end %>
   </div>
+<% else %>
+  <% size = local_assigns.fetch(:size, "base") %>
+  <% size_class = case size
+                  when "sm" then "shuby-avatar shuby-avatar-sm"
+                  when "md" then "shuby-avatar shuby-avatar-md"
+                  when "lg" then "shuby-avatar shuby-avatar-lg"
+                  when "xl" then "shuby-avatar shuby-avatar-xl"
+                  else "shuby-avatar"
+                  end %>
+
+  <% if child.avatar.attached? %>
+    <%= image_tag child.avatar, class: "#{size_class} #{local_assigns[:class]}" %>
+  <% else %>
+    <div class="<%= size_class %> shuby-avatar-fallback <%= local_assigns[:class] %>">
+      <%= render_svg "shuby/icons/icon-baby", decorative: true %>
+    </div>
+  <% end %>
 <% end %>

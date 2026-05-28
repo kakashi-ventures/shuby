@@ -35,6 +35,22 @@
 }
 
 /* =====================================================
+   DRILL-DOWN DETAIL PAGE SHELL
+   Used for edit pages reached from a parent settings/tab surface
+   (users/edit, account/passwords/edit, pricing/show). Container width +
+   centering, plus drill-down vertical spacing (top breathing + bottom pad
+   so content clears the native iOS tab bar).
+   ===================================================== */
+.shuby-detail-page {
+    width: 100%;
+    max-width: 32rem;
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+    padding-top: var(--space-6);
+    padding-bottom: 6rem;
+}
+
+/* =====================================================
    STICKY HEADER POSITIONING
    Reusable sticky-at-top positioning for page headers.
    Pair with a header component class (e.g. .shuby-dashboard-header).

@@ -1,0 +1,33 @@
+<%# Brand-aligned plan card layout. Overrides lib/jumpstart/app/views/billing/
+    subscriptions/_plan.html.erb. yields the CTA so callers (pricing/show,
+    billing/subscriptions/edit) control button vs badge. %>
+<div class="shuby-card">
+  <div class="shuby-plan-card-heading">
+    <h3 class="shuby-h3"><%= plan.name %></h3>
+    <% if plan.contact_url? %>
+      <span class="shuby-h2"><%= t("billing.subscriptions.plan.contact_us_price") %></span>
+    <% else %>
+      <div>
+        <span class="shuby-h2"><%= pay_amount_to_currency(plan, strip_insignificant_zeros: true) %></span>
+        <span class="shuby-plan-price-interval">
+          <% if plan.unit_label? %>/&nbsp;<%= plan.unit_label %><% end %>
+          /&nbsp;<%= formatted_plan_interval(plan) %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+
+  <% if plan.description.present? %>
+    <p class="shuby-p1 text-gray-700 mb-4"><%= plan.description %></p>
+  <% end %>
+
+  <% if plan.features.any? %>
+    <ul class="shuby-plan-features">
+      <% plan.features.each do |feature| %>
+        <li class="shuby-plan-feature"><%= feature %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= yield %>
+</div>

@@ -8,80 +8,93 @@ paths:
 # Avatar Upload Form Pattern
 
 Live-preview avatar upload (file input → instant in-page preview swap before
-submit) is implemented ONCE and shared across forms. Do not reinvent per form.
-The pattern lives in three pieces. Reuse all three together; never partially
-adopt.
+submit) is rendered via the **unified avatar partial** at
+`app/views/shared/ui/_avatar.html.erb`. The same partial also handles
+read-only avatar display. Branch is determined by which local is passed:
 
-## The trio
+- Pass `child:` → DISPLAY mode (read-only image / icon-baby fallback).
+- Pass `form:` → UPLOAD mode (file input + Stimulus controller + camera
+  button + live preview).
+
+Do not reinvent per form, and do not maintain a parallel upload-only partial.
+
+## Upload mode
+
+Required local:
+
+- `form:` — FormBuilder.
+
+Optional locals:
+
+- `field:` — file attribute name (default `:avatar`).
+- `fallback:` —
+  - `:gravatar` for user / account forms (image_tag always rendered via
+    `avatar_url_for`, no placeholder target needed).
+  - `:baby` for child forms (icon-baby placeholder span with hidden preview
+    img that the Stimulus controller un-hides on file selection).
+  - Default `:baby`.
+- `help:` — optional help text (Italian, usually i18n string) rendered as
+  `<p class="shuby-caption text-gray-400 mt-2">` under the preview.
+
+Example callsites:
+
+```erb
+<%# Devise user edit form (Gravatar fallback) %>
+<%= render "shared/ui/avatar",
+      form: form,
+      fallback: :gravatar,
+      help: t("devise.registrations.edit.avatar_help") %>
+
+<%# Child profile edit form (icon-baby fallback) %>
+<%= render "shared/ui/avatar",
+      form: form,
+      fallback: :baby,
+      help: t("children.form.avatar_help") %>
+```
+
+The partial wires three primitives — reuse them as-is, never fork:
 
 1. **Stimulus controller** — `app/javascript/controllers/avatar_upload_controller.js`.
-   Targets: `preview` (the `<img>` whose `src` is swapped), optional `placeholder`
-   (element to hide on selection). Action: `preview(event)` reads
+   Targets: `preview` (the `<img>` whose `src` is swapped), optional
+   `placeholder` (element to hide on selection). Action `preview(event)` reads
    `FileReader.readAsDataURL(file)` and assigns the data URL to
    `previewTarget.src`. Uses defensive `has<X>Target` checks so the same
    controller works whether the form has a fallback element or not.
 
 2. **CSS wrapper** — `.shuby-avatar-upload-preview` in
-   `app/assets/tailwind/components/shuby/forms.css`. 96px circle, white border,
-   drop shadow, blue-400 background. Domain-neutral name (no `-child-` /
-   `-user-` prefix) — used by both `children/_form.html.erb` and
-   `devise/registrations/edit.html.erb`. If a third upload form lands, reuse
-   this class; don't fork a parallel wrapper.
+   `app/assets/tailwind/components/shuby/forms.css`. 96px circle, white
+   border, drop shadow, blue-400 background. Domain-neutral name. If a third
+   upload form lands, reuse this class; don't fork a parallel wrapper.
 
-3. **Camera-icon button partial** — `app/views/shared/ui/_avatar_upload_camera_btn.html.erb`.
-   Required local: `for_id:` — id of the hidden `<input type="file">` that
-   this `<label for=…>` triggers. Carries `aria-label` from
+3. **Camera-icon button partial** —
+   `app/views/shared/ui/_avatar_upload_camera_btn.html.erb`. Required local:
+   `for_id:` — id of the hidden `<input type="file">` that this `<label for=…>`
+   triggers. Carries `aria-label` from
    `shared.ui.avatar_upload_camera_btn.label` (i18n).
 
-## Wiring template
+The unified partial computes `input_id` from
+`form.object.model_name.singular + "_" + field`, producing the same ids
+(`user_avatar`, `child_avatar`) as the previous inlined forms.
 
-```erb
-<div class="flex flex-col items-center" data-controller="avatar-upload">
-  <div class="relative">
-    <div class="shuby-avatar-upload-preview">
-      <%# Either:
-          (a) image_tag with data-avatar-upload-target="preview" — for
-              user/account forms, since avatar_url_for always returns a URL
-              (gravatar fallback)
-          or
-          (b) a fallback <span data-avatar-upload-target="placeholder">
-              containing the icon SVG, alongside a hidden
-              <img data-avatar-upload-target="preview"> — for child forms
-              when child.avatar isn't attached %>
-    </div>
-    <%= render "shared/ui/avatar_upload_camera_btn", for_id: "<unique_id>" %>
-  </div>
-  <%= form.file_field :avatar, accept: "image/*", class: "hidden", id: "<unique_id>",
-        direct_upload: true,
-        data: { action: "change->avatar-upload#preview" } %>
-</div>
-```
+## Display mode
 
-## Fallback element — when do you need a `placeholder` target?
-
-- **User / account forms**: NO. `avatar_url_for(record, size: 96)` always
-  returns a URL (Gravatar fallback if no attachment). The preview `<img>` is
-  always rendered; selecting a new file swaps its `src`.
-- **Child forms**: YES, when no avatar is attached. The fallback is the
-  `icon-baby` glyph (per `child-avatar.md`), wrapped in a
-  `data-avatar-upload-target="placeholder"` span. A hidden
-  `<img data-avatar-upload-target="preview">` sits alongside; the controller
-  unhides it on file selection.
+Required local: `child:` (Child record). Optional: `size:`
+(`"sm"`/`"md"`/`"base"`/`"lg"`/`"xl"`), `class:`. Renders an `<img>` when the
+avatar is attached, or a sized `.shuby-avatar-fallback` div containing the
+`icon-baby` SVG when not.
 
 ## What NOT to do
 
-- ❌ Inline `onchange="…"` FileReader strings on the `file_field`. Wire the
-  Stimulus controller instead. (Inline JS was previously in
-  `children/_form.html.erb`; it has been removed. Don't reintroduce.)
-- ❌ Fork a `.shuby-<context>-form-avatar-preview` class. The wrapper is
-  domain-neutral; reuse it.
+- ❌ Inline `onchange="…"` FileReader strings on the file_field. The shared
+  Stimulus controller handles it.
+- ❌ Fork a `.shuby-<context>-form-avatar-preview` CSS class. The wrapper is
+  domain-neutral.
+- ❌ Re-inline the upload trio in a new form view. Pass `form:` to
+  `shared/ui/avatar` instead.
 - ❌ Hard-code the camera SVG inline. Render
   `shared/ui/_avatar_upload_camera_btn` instead.
 - ❌ Forget `aria-label` on the camera label — the partial supplies it via
   i18n.
-- ❌ Reuse `app/views/shared/ui/_avatar.html.erb` for the upload preview.
-  That partial is **display-only** (no file input, no preview wiring) and
-  uses the `icon-baby` fallback — wrong for user/account forms.
 
 ## Verifying Stimulus wiring without authentication
 

@@ -1,39 +1,24 @@
 <%= form_with(model: child, class: "space-y-6", multipart: true) do |form| %>
   <%= render "error_messages", resource: form.object %>
 
-  <%# Avatar upload %>
-  <div class="flex flex-col items-center" data-controller="avatar-upload">
-    <div class="relative">
-      <div class="shuby-avatar-upload-preview">
-        <% if child.avatar.attached? %>
-          <%= image_tag child.avatar, data: { "avatar-upload-target": "preview" } %>
-        <% else %>
-          <span data-avatar-upload-target="placeholder">
-            <%= render_svg "shuby/icons/icon-baby", styles: "w-16 h-16", decorative: true %>
-          </span>
-          <img src="" class="hidden" data-avatar-upload-target="preview">
-        <% end %>
-      </div>
-      <%= render "shared/ui/avatar_upload_camera_btn", for_id: "child_avatar" %>
-    </div>
-    <%= form.file_field :avatar, accept: "image/*", class: "hidden", id: "child_avatar", direct_upload: true,
-        data: { action: "change->avatar-upload#preview" } %>
-    <p class="shuby-caption text-gray-400 mt-2"><%= t("children.form.avatar_help") %></p>
+  <%= render "shared/ui/avatar",
+        form: form,
+        fallback: :baby,
+        help: t("children.form.avatar_help") %>
+
+  <div>
+    <%= form.label :name, t("children.form.name"), class: "shuby-field-label" %>
+    <%= form.text_field :name, placeholder: t("children.form.name_placeholder"), autofocus: true, required: true, class: "shuby-input" %>
   </div>
 
   <div>
-    <%= form.label :name, t("children.form.name"), class: "block shuby-caption mb-2" %>
-    <%= form.text_field :name, placeholder: t("children.form.name_placeholder"), autofocus: true, required: true, class: "shuby-input w-full" %>
+    <%= form.label :birth_date, t("children.form.birth_date"), class: "shuby-field-label" %>
+    <%= form.date_field :birth_date, required: true, max: Date.current, class: "shuby-input" %>
   </div>
 
   <div>
-    <%= form.label :birth_date, t("children.form.birth_date"), class: "block shuby-caption mb-2" %>
-    <%= form.date_field :birth_date, required: true, max: Date.current, class: "shuby-input w-full" %>
-  </div>
-
-  <div>
-    <%= form.label :sex, t("children.form.sex"), class: "block shuby-caption mb-2" %>
-    <%= form.select :sex, Child.sexes.keys.map { |s| [t("children.sex.#{s}"), s] }, {}, class: "shuby-input w-full" %>
+    <%= form.label :sex, t("children.form.sex"), class: "shuby-field-label" %>
+    <%= form.select :sex, Child.sexes.keys.map { |s| [t("children.sex.#{s}"), s] }, {}, class: "shuby-input" %>
   </div>
 
   <div class="border-t border-gray-200 pt-6">
@@ -44,21 +29,21 @@
 
     <div class="grid grid-cols-2 gap-4">
       <div>
-        <%= form.label :gestational_weeks, t("children.form.gestational_weeks"), class: "block shuby-caption mb-2" %>
-        <%= form.number_field :gestational_weeks, min: 22, max: 42, placeholder: "37", class: "shuby-input w-full" %>
+        <%= form.label :gestational_weeks, t("children.form.gestational_weeks"), class: "shuby-field-label" %>
+        <%= form.number_field :gestational_weeks, min: 22, max: 42, placeholder: "37", class: "shuby-input" %>
       </div>
 
       <div>
-        <%= form.label :gestational_days, t("children.form.gestational_days"), class: "block shuby-caption mb-2" %>
-        <%= form.number_field :gestational_days, min: 0, max: 6, placeholder: "0", class: "shuby-input w-full" %>
+        <%= form.label :gestational_days, t("children.form.gestational_days"), class: "shuby-field-label" %>
+        <%= form.number_field :gestational_days, min: 0, max: 6, placeholder: "0", class: "shuby-input" %>
       </div>
     </div>
-    <p class="shuby-caption text-gray-400 mt-2"><%= t("children.form.gestational_help") %></p>
+    <p class="shuby-field-help"><%= t("children.form.gestational_help") %></p>
   </div>
 
   <div>
-    <%= form.label :notes, t("children.form.notes"), class: "block shuby-caption mb-2" %>
-    <%= form.text_area :notes, rows: 3, placeholder: t("children.form.notes_placeholder"), class: "shuby-input w-full" %>
+    <%= form.label :notes, t("children.form.notes"), class: "shuby-field-label" %>
+    <%= form.text_area :notes, rows: 3, placeholder: t("children.form.notes_placeholder"), class: "shuby-input" %>
   </div>
 
   <%# Health Profile Section %>
@@ -72,45 +57,45 @@
       <%= form.fields_for :health_profile, child.health_profile || child.build_health_profile do |hp| %>
         <div class="space-y-4">
           <div>
-            <%= hp.label :birth_weight_grams, t("children.form.birth_weight"), class: "block shuby-caption mb-2" %>
-            <%= hp.number_field :birth_weight_grams, min: 500, max: 6000, placeholder: "3200", class: "shuby-input w-full" %>
-            <p class="shuby-caption text-gray-400 mt-1"><%= t("children.form.birth_weight_help") %></p>
+            <%= hp.label :birth_weight_grams, t("children.form.birth_weight"), class: "shuby-field-label" %>
+            <%= hp.number_field :birth_weight_grams, min: 500, max: 6000, placeholder: "3200", class: "shuby-input" %>
+            <p class="shuby-field-help"><%= t("children.form.birth_weight_help") %></p>
           </div>
 
           <div>
-            <%= hp.label :birth_height_cm, t("children.form.birth_height"), class: "block shuby-caption mb-2" %>
-            <%= hp.number_field :birth_height_cm, min: 25, max: 60, step: 0.1, placeholder: "50", class: "shuby-input w-full" %>
-            <p class="shuby-caption text-gray-400 mt-1"><%= t("children.form.birth_height_help") %></p>
+            <%= hp.label :birth_height_cm, t("children.form.birth_height"), class: "shuby-field-label" %>
+            <%= hp.number_field :birth_height_cm, min: 25, max: 60, step: 0.1, placeholder: "50", class: "shuby-input" %>
+            <p class="shuby-field-help"><%= t("children.form.birth_height_help") %></p>
           </div>
 
           <div>
-            <%= hp.label :hearing_screening_result, t("children.form.hearing_screening"), class: "block shuby-caption mb-2" %>
+            <%= hp.label :hearing_screening_result, t("children.form.hearing_screening"), class: "shuby-field-label" %>
             <%= hp.select :hearing_screening_result,
                 ChildHealthProfile.hearing_screening_results.keys.map { |k| [t("children.health.hearing.#{k}"), k] },
                 { include_blank: t("children.form.select_option") },
-                class: "shuby-input w-full" %>
+                class: "shuby-input" %>
           </div>
 
           <div>
-            <%= hp.label :vision_screening_result, t("children.form.vision_screening"), class: "block shuby-caption mb-2" %>
+            <%= hp.label :vision_screening_result, t("children.form.vision_screening"), class: "shuby-field-label" %>
             <%= hp.select :vision_screening_result,
                 ChildHealthProfile.vision_screening_results.keys.map { |k| [t("children.health.vision.#{k}"), k] },
                 { include_blank: t("children.form.select_option") },
-                class: "shuby-input w-full" %>
+                class: "shuby-input" %>
           </div>
 
           <div>
-            <%= hp.label :current_feeding_type, t("children.form.feeding_type"), class: "block shuby-caption mb-2" %>
+            <%= hp.label :current_feeding_type, t("children.form.feeding_type"), class: "shuby-field-label" %>
             <%= hp.select :current_feeding_type,
                 ChildHealthProfile.current_feeding_types.keys.map { |k| [t("children.health.feeding.#{k}"), k] },
                 { include_blank: t("children.form.select_option") },
-                class: "shuby-input w-full" %>
+                class: "shuby-input" %>
           </div>
 
           <div>
-            <%= hp.label :average_sleep_hours, t("children.form.sleep_hours"), class: "block shuby-caption mb-2" %>
-            <%= hp.number_field :average_sleep_hours, min: 8, max: 20, step: 0.5, placeholder: "14", class: "shuby-input w-full" %>
-            <p class="shuby-caption text-gray-400 mt-1"><%= t("children.form.sleep_hours_help") %></p>
+            <%= hp.label :average_sleep_hours, t("children.form.sleep_hours"), class: "shuby-field-label" %>
+            <%= hp.number_field :average_sleep_hours, min: 8, max: 20, step: 0.5, placeholder: "14", class: "shuby-input" %>
+            <p class="shuby-field-help"><%= t("children.form.sleep_hours_help") %></p>
           </div>
         </div>
       <% end %>

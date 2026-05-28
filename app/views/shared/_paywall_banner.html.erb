@@ -4,30 +4,16 @@
   Locals:
     title       - Main heading (required)
     description - Explanation text (required)
-    icon        - Symbol :lock (default), :star, :chart
 %>
-<% icon ||= :lock %>
-<div class="text-center py-6 px-4 rounded-2xl bg-gradient-to-b from-shuby-blue-50 to-white border border-shuby-blue-200" role="alert">
-  <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-shuby-blue-100 mb-3">
-    <% if icon == :star %>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 text-shuby-blue-600" aria-hidden="true">
-        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd" />
-      </svg>
-    <% elsif icon == :chart %>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 text-shuby-blue-600" aria-hidden="true">
-        <path d="M15.5 2A1.5 1.5 0 0 0 14 3.5v13a1.5 1.5 0 0 0 1.5 1.5h1a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 16.5 2h-1ZM9.5 6A1.5 1.5 0 0 0 8 7.5v9A1.5 1.5 0 0 0 9.5 18h1a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 10.5 6h-1ZM3.5 10A1.5 1.5 0 0 0 2 11.5v5A1.5 1.5 0 0 0 3.5 18h1A1.5 1.5 0 0 0 6 16.5v-5A1.5 1.5 0 0 0 4.5 10h-1Z" />
-      </svg>
-    <% else %>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 text-shuby-blue-600" aria-hidden="true">
-        <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clip-rule="evenodd" />
-      </svg>
-    <% end %>
+<div class="shuby-paywall-banner" role="alert">
+  <div class="shuby-paywall-banner-icon">
+    <%= render_svg "shuby/icons/icon-premium-star", decorative: true %>
   </div>
 
-  <h3 class="shuby-h4 text-shuby-blue-800 mb-1"><%= title %></h3>
-  <p class="shuby-p2 text-gray-600 mb-4"><%= description %></p>
+  <h3 class="shuby-paywall-banner-title"><%= title %></h3>
+  <p class="shuby-paywall-banner-description"><%= description %></p>
 
   <%= link_to t("premium.upgrade_button"),
-        pricing_path,
-        class: "shuby-btn shuby-btn-primary inline-flex items-center" %>
+        settings_path(tab: "plan"),
+        class: "shuby-btn shuby-btn-primary" %>
 </div>

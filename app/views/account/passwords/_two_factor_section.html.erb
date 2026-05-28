@@ -1,0 +1,13 @@
+<div class="shuby-card mt-8">
+  <h2 class="shuby-h3 mb-2"><%= t("account.passwords.edit.two_factor.header") %></h2>
+  <p class="shuby-p1 text-gray-500 mb-4"><%= t("account.passwords.edit.two_factor.description") %></p>
+
+  <% if current_user.otp_required_for_login? %>
+    <%= link_to t("account.passwords.edit.two_factor.disable"), user_two_factor_path,
+          class: "shuby-btn shuby-btn-md shuby-btn-danger-subtle",
+          data: {turbo_method: :delete, turbo_confirm: t("are_you_sure")} %>
+  <% else %>
+    <%= link_to t("account.passwords.edit.two_factor.enable"), backup_codes_user_two_factor_path,
+          class: "shuby-btn shuby-btn-md shuby-btn-secondary" %>
+  <% end %>
+</div>

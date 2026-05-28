@@ -38,7 +38,7 @@ module Authentication
 
   # To add extra fields to Devise registration, add the attribute names to `extra_keys`
   def configure_permitted_parameters
-    extra_keys = [:avatar, :name, :preferred_language, :theme]
+    extra_keys = [:avatar, :name, :first_name, :last_name, :preferred_language, :theme]
     legal_keys = [:terms_of_service, :informed_consent, :research_consent_anonymized]
     devise_parameter_sanitizer.permit(:sign_up, keys: extra_keys + legal_keys + [:invite, owned_accounts_attributes: [:name]])
     devise_parameter_sanitizer.permit(:account_update, keys: extra_keys)

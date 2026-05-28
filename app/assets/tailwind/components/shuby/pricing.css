@@ -1,0 +1,43 @@
+/* Shuby Pricing — plan-card structural classes.
+ * Consumed by app/views/billing/subscriptions/_plan.html.erb (the brand
+ * override of Jumpstart's plan card layout).
+ */
+
+/* =====================================================
+   PLAN CARD HEADING
+   Name on the left, price block on the right, baseline-aligned so the price
+   digits sit on the same baseline as the plan name.
+   ===================================================== */
+.shuby-plan-card-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-3);
+}
+
+/* =====================================================
+   PRICE INTERVAL SUFFIX
+   "/ mese", "/ user / month" — sits next to the price in the heading row.
+   ===================================================== */
+.shuby-plan-price-interval {
+    font-size: var(--font-size-caption);
+    color: var(--color-shuby-gray-700);
+}
+
+/* =====================================================
+   FEATURE CHECKLIST
+   Vertical stack of feature rows beneath the price.
+   ===================================================== */
+.shuby-plan-features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+}
+
+/* Single feature row — plain text line. */
+.shuby-plan-feature {
+    font-size: var(--font-size-p1);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-gray-800);
+}

@@ -158,5 +158,7 @@
 @import "./components/shuby/skip-link.css" layer(components);
 @import "./components/shuby/growth-chart.css" layer(components);
 @import "./components/shuby/landing.css" layer(components);
+@import "./components/shuby/pricing.css" layer(components);
+@import "./components/shuby/paywall.css" layer(components);
 @import "./components/shuby/utilities.css";
 @import "./components/shuby/questionnaire-overlay.css" layer(components);

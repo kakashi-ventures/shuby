@@ -28,6 +28,29 @@
     }
 }
 
+/* Block label above a stacked form field (devise/registrations/_profile_fields,
+   account/passwords/_password_fields, children/_form, etc.). Caption size,
+   medium weight, with bottom margin. Distinct from .shuby-form-label which is
+   uppercase overline-size for the underline-form pattern. */
+.shuby-field-label {
+    display: block;
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    color: var(--base-text);
+    margin-bottom: var(--space-2);
+}
+
+/* Helper/hint text rendered below an input (avatar upload help, password
+   minimum-length helper, etc.). Caption size, muted color, small top margin
+   so it sits just under the input. */
+.shuby-field-help {
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-gray-700);
+    margin-top: var(--space-2);
+}
+
 /* =====================================================
    TOGGLE SWITCH
    ===================================================== */

@@ -327,6 +327,16 @@ it:
       subhead: "Prezzi semplici e diretti per avviare la tua attività online"
       monthly: "Mensile"
       yearly: "Annuale"
+      current_plan: "Piano attuale"
+
+  plan:
+    interval:
+      month:
+        one: "mese"
+        other: "%{count} mesi"
+      year:
+        one: "anno"
+        other: "%{count} anni"
 
   scaffold:
     edit:
@@ -668,6 +678,13 @@ it:
         name_on_card: "Nome sulla carta"
       user:
         theme: "Tema colori"
+        first_name: "Nome"
+        last_name: "Cognome"
+        email: "Email"
+        preferred_language: "Lingua preferita"
+        current_password: "Password attuale"
+        password: "Nuova password"
+        password_confirmation: "Conferma nuova password"
     errors:
       models:
         account:
@@ -733,6 +750,8 @@ it:
         name: "Nome token"
       user:
         name: "Mario Rossi"
+        first_name: "Mario"
+        last_name: "Rossi"
         email: "tu@esempio.com"
         password: "password"
 

@@ -100,27 +100,27 @@ glyph size — all three have been removed. If a new context needs an
 avatar, use `.shuby-avatar-btn` (or the size-variant `.shuby-avatar`
 for non-button contexts).
 
-## Adult / account avatars are different (display layer)
+## Adult / account avatars
 
-This rule's display-avatar guidance applies to **children** only. Parent /
-User avatars come from the `avatar_url_for(record, ...)` helper (Gravatar
-fallback) and use the `icon-account` glyph when no avatar is set. The
-**display partials** stay separate: `app/views/shared/ui/_avatar.html.erb`
-is child-only (icon-baby fallback); user/account display rendering uses the
-helper directly. Don't unify the two display components — they serve
-different audiences.
+Parent / User avatars come from the `avatar_url_for(record, ...)` helper
+(Gravatar fallback) when displayed inline (custom headers, lists). For
+upload forms, the same `shared/ui/_avatar.html.erb` partial handles both
+user and child avatars — pass `form:` plus `fallback: :gravatar` for the
+user-style preview (image_tag from `avatar_url_for`) or `fallback: :baby`
+for the child-style preview (icon-baby placeholder + hidden preview img).
+See `.claude/rules/avatar-upload-form.md` for the full local contract.
 
-The **upload-form preview wrapper** (`.shuby-avatar-upload-preview` + the
-`avatar-upload` Stimulus controller + the `_avatar_upload_camera_btn`
-partial) IS shared across child and user forms by deliberate choice — see
-`.claude/rules/avatar-upload-form.md`. That sharing does NOT extend to the
-display partials above.
+This rule's display-avatar ring + sizing guidance (above) applies to
+children. User/account inline display surfaces (e.g. dashboard profile
+button) don't share the `.shuby-avatar` wrapper styling — they use their
+own per-context CSS.
 
 ## Existing call sites
 
-The shared partial at `app/views/shared/ui/_avatar.html.erb` is the
-preferred entry point for new code. When inline rendering is necessary
-(custom layout, header context, form preview), follow the wrapper +
-`render_svg "shuby/icons/icon-baby"` pattern shown in
+The unified partial at `app/views/shared/ui/_avatar.html.erb` is the
+preferred entry point for both display and upload. Display callers pass
+`child:`; upload callers pass `form:`. When inline rendering is necessary
+(custom layout, header context that needs a non-standard wrapper), follow
+the wrapper + `render_svg "shuby/icons/icon-baby"` pattern shown in
 `shared/dashboard_header/_profile_button.html.erb` or
 `shared/dashboard_header/_child_selector_overlay.html.erb`.
