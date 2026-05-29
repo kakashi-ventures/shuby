@@ -529,6 +529,10 @@ puts "Seeding archive articles from JSON fixture..."
 Rake::Task["shuby:articles:seed"].invoke
 
 puts
+puts "Seeding archive activities from JSON fixture..."
+Rake::Task["shuby:activities:seed"].invoke
+
+puts
 puts "Created #{ArchiveContent.count} archive content items"
 puts "  - Articles: #{ArchiveContent.articles.count}"
 puts "  - Tips: #{ArchiveContent.tips.count}"
