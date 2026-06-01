@@ -188,7 +188,11 @@ html.hotwire-native .shuby-chat-header {
     flex-direction: column;
     gap: 30px;
     padding-inline: var(--space-5);
-    padding-block-end: 60vh;
+    /* Scroll reserve for the "question rises to top, answer streams below"
+       pattern (see shuby_chat_controller.js). Kept modest so short answers
+       don't leave a cavern above the composer — a freshly-sent question still
+       rises, just not all the way to the very top on very short chats. */
+    padding-block-end: 20vh;
 }
 
 /* =====================================================
