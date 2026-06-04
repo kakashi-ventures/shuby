@@ -1,7 +1,7 @@
 Jumpstart.config = Jumpstart::Configuration.new({"application_name" => "Shuby",
  "business_name" => "Shuby S.r.l",
  "business_address" => "Via Sant'Antonino 17\n" + "Torino, Italy.",
- "domain" => "shuby.app",
+ "domain" => "app.shuby.app",
  "support_email" => "maryam@kakashi.ventures",
  "default_from_email" => "maryam@kakashi.ventures",
  "background_job_processor" => "solid_queue",
