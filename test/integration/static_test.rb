@@ -1,9 +1,11 @@
 require "test_helper"
 
 class Jumpstart::StaticTest < ActionDispatch::IntegrationTest
-  test "homepage" do
+  test "unauthenticated root shows the sign-in form" do
     get root_path
     assert_response :success
+    assert_select "form[action=?]", user_session_path
+    assert_select "input[name=?]", "user[email]"
   end
 
   test "dashboard" do
