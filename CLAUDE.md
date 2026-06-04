@@ -74,7 +74,7 @@ openai:
 
 ## Ruby Native (iOS App)
 
-Shuby is deployed as a native iOS app via **Ruby Native** (rubynative.com, app.shuby.rubynative). The gem `ruby_native` (~> 0.7) wraps the Rails web app in a native iOS shell with native tab bar, haptics, badges, and safe area handling.
+Shuby is deployed as a native iOS app via **Ruby Native** (rubynative.com, app.shuby.rubynative). The gem `ruby_native` (~> 0.10, currently 0.10.2) wraps the Rails web app in a native iOS shell with native tab bar, haptics, badges, safe area handling, App Store review prompts (`native_review_tag`), and iOS universal links (linked domains — `ios:` block in `config/ruby_native.yml`, AASA auto-served at `/.well-known/apple-app-site-association`). **The shipped iOS binary is coupled to the gem version** — after any `bundle update ruby_native`, rebuild & redeploy via `ruby_native deploy` (gem 0.10.2 surfaces a config-error screen on version mismatch).
 
 ### CRITICAL: Web must not break
 All native-specific CSS must be scoped to `html.hotwire-native`. This class is only present when running inside the iOS shell. Never add native-only styles without this selector. The `env(safe-area-inset-*)` values resolve to `0px` in browsers — safe to use unconditionally but always scope behavior changes.

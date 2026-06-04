@@ -38,6 +38,12 @@
     <% end %>
     <%= native_badge_tag(@notification_counts&.values&.sum || 0) if user_signed_in? && defined?(@notification_counts) %>
     <%= native_push_tag if user_signed_in? && hotwire_native_app? %>
+    <%# App Store review prompt (gem ≥0.9.3). Rendered once on the redirect
+        target after a measurement is saved (flag set in
+        MeasurementsController#create). Emits a hidden signal the native bridge
+        reads; Apple throttles actual display (~3/365d) and suppresses it during
+        screenshots. Native-only to keep the web DOM clean. %>
+    <%= native_review_tag if flash[:request_app_review] && hotwire_native_app? %>
     <%= yield :bottom_nav unless hotwire_native_app? %>
     <%= render "shared/beta_feedback_button" if user_signed_in? && current_user.beta_tester? && !content_for?(:hide_feedback_fab) %>
     <%= render "shared/debug_panel" if params[:debug] == "1" || cookies[:shuby_debug] == "1" %>
