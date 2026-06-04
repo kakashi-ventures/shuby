@@ -3,7 +3,7 @@
 # Development Stages routes
 resources :children, only: [] do
   # Main development stages pages
-  resources :development_stages, path: "development-stages", only: [:index, :show] do
+  resources :development_stages, path: "development-stages", only: [:index] do
     collection do
       get :timeline_content # Turbo Frame endpoint for age band content
     end

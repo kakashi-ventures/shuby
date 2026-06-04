@@ -812,22 +812,8 @@ en:
       not_started: "Not started"
 
     show:
-      title: "Development Area"
       no_questionnaire: "No questionnaire available for this age band"
-      start_questionnaire: "Start Questionnaire"
-      restart_questionnaire: "Restart Questionnaire"
-      continue_questionnaire: "Continue"
-      in_progress: "Questionnaire in progress"
-      questions_answered: "questions answered"
-      completed_status: "Questionnaire completed"
-      completed_on: "Completed on %{date}"
-      view_results: "View Results"
-      history_title: "History"
-      no_history: "No completed questionnaires"
-      "yes": "Yes"
-      "no": "No"
-      unknown: "Unknown"
-      attention: "Attention"
+      questionnaire_title: "Month %{month} Questionnaire"
 
   questionnaire_sessions:
     continue:

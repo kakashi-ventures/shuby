@@ -17,12 +17,6 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
     assert_select "h1", /Timeline/i
   end
 
-  test "should show development area with valid questionnaire" do
-    area = development_areas(:comunicazione)
-    get child_development_stage_path(@child, area.slug)
-    assert_response :success
-  end
-
   test "should redirect to overlay_frame when starting" do
     area = development_areas(:relazione)
     get start_child_development_stage_path(@child, area.slug)
@@ -52,12 +46,6 @@ class DevelopmentStagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     # The amber "past in progress" indicator should appear for areas with past sessions
     assert_select "span.text-amber-600", minimum: 0
-  end
-
-  test "show loads past in-progress session for area" do
-    area = development_areas(:comunicazione)
-    get child_development_stage_path(@child, area.slug)
-    assert_response :success
   end
 
   # --- Timeline carousel tests ---

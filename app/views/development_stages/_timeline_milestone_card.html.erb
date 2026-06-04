@@ -3,16 +3,13 @@
   is_current = age_relationship == :current
   is_interactive = (is_current && !is_completed) || is_completed
 
-  link_path = if is_completed && !is_current
-    child_questionnaire_session_path(child, session)
-  else
-    child_development_stage_path(child, area.slug)
-  end
+  destination = timeline_card_destination(child, area, session, age_relationship)
+  link_data = destination[:overlay] ? { action: "click->questionnaire-overlay#openWithFrame" } : { turbo_frame: "_top" }
 
-  aria_label = if is_completed
-    t("timeline.show.card_results_aria_label", area: area.name)
-  else
+  aria_label = if destination[:overlay]
     t("timeline.show.card_start_aria_label", area: area.name)
+  else
+    t("timeline.show.card_results_aria_label", area: area.name)
   end
 
   bg_class = if is_completed
@@ -25,10 +22,10 @@
 %>
 
 <% if is_interactive %>
-  <%= link_to link_path,
+  <%= link_to destination[:path],
       class: "#{bg_class} hover:opacity-90 transition-opacity",
       aria: { label: aria_label },
-      data: { turbo_frame: "_top" } do %>
+      data: link_data do %>
     <%= render "development_stages/timeline_milestone_card_content",
                area: area, session: session,
                age_relationship: age_relationship, is_completed: is_completed %>

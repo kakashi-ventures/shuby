@@ -89,7 +89,7 @@
 - **Overrides**: Not present in specs
 - **Decision**: Upon completing a stage, show: (1) **"Updated clinical report"**, (2) **link to download the report**, (3) **link to the AI helper** or to **stimulation activities**.
 - **Status**: done
-- **Note**: Per Figma `499:5853` (source of truth), the completion overlay shows a single PDF CTA ("Apri il Report di Crescita"). AI Helper and session Storico remain reachable via the global tab bar and the development_stages show page; the simplified design intentionally avoids stacked CTAs on the completion slide.
+- **Note**: Per Figma `499:5853` (source of truth), the completion overlay shows a single PDF CTA ("Apri il Report di Crescita"). AI Helper remains reachable via the global tab bar; the simplified design intentionally avoids stacked CTAs on the completion slide. **2026-06 update (see DEC-024)**: the per-area `development_stages#show` landing page was removed — completion now lands on the results page (`questionnaire_sessions#show`, which carries the answer summary + warning signs + stimulation activities, satisfying points 1 & 3). Per-area session Storico was intentionally dropped; recompilation history lives in the clinical-report PDF.
 
 ### DEC-011: Skipped stages — jump to current period
 
@@ -115,7 +115,7 @@
 - **Overrides**: PRD §3.4.3 (gentle alert now surfaces pre-completion at N/N rather than post-completion)
 - **Decision**: A tappa is "completed" only when every active question is answered **si**. Sessions with any **no** or **incerto** stay `in_progress`; the user reaches completion by updating those answers. The gentle observation alert (PRD §3.4.3) and a "Rivedi le risposte" CTA surface as soon as `answered_count == questions_count`, regardless of `completed?` status.
 - **Status**: done
-- **Note**: Confirmed 2026-05-21. Edit window: `in_progress` is freely editable (no time lock); the 14-day lock applies only after completion. Implementation: `QuestionResponse#update_session_status`, `QuestionnaireSession#editable?`, `QuestionnaireSession#needs_attention?`.
+- **Note**: Confirmed 2026-05-21. Edit window: `in_progress` is freely editable (no time lock); the 14-day lock applies only after completion. Implementation: `QuestionResponse#update_session_status`, `QuestionnaireSession#editable?`, `QuestionnaireSession#needs_attention?`. **2026-06 update (see DEC-024)**: the labeled "Rivedi le risposte" CTA lived on the now-removed per-area landing page; the review-at-N/N behavior is preserved — timeline/accordion cards route straight to the results page once `answered_count == questions_count`. Recompile-of-completed via a fresh session (FA "recompile unlimited times") is superseded: completed current-age tappe are final, corrected only through the edit window above / inheritance (DEC-021).
 
 ### DEC-021: Cross-month answer inheritance — same development area only
 
@@ -123,6 +123,13 @@
 - **Decision**: Questions sharing a `content_key` auto-propagate "si" answers **within the same development area** across all of one child's sessions. A `si` answer in one session creates an inherited `si` row for any equivalent question in any other session for the same child **in the same area**. If a future questionnaire in that area is fully covered by past inheritance, it auto-completes per DEC-020 without parent input. Editing the canonical answer (si → no/incerto within the 14-day window) destroys all inherited copies and demotes any sessions that completed via inheritance.
 - **Status**: done
 - **Note**: Confirmed 2026-05-21. **Cross-area overlaps are intentional and NOT propagated** — the consolidamento area re-asks observations from prior areas by design, so parents revisit them in a different developmental context. Linkage: hybrid — author-declared `equivalent_to` in seed JSON, with normalized-prompt-text fallback. UI: silent (inherited rows are visually indistinguishable from direct answers). Implementation: `EquivalentAnswerPropagator` (scoped by `development_area_id`), `Question.normalize_prompt`, `QuestionnaireSession#pull_inherited_responses`.
+
+### DEC-024: Per-area development-stages landing page removed
+
+- **Overrides**: FA Timeline Milestone Interaction Rules (drops the per-area landing hop; supersedes "recompile unlimited times")
+- **Decision**: The per-area landing page (`development_stages#show`, `/children/:id/development-stages/:area`) is removed. Tapping a tappa card — on the Timeline **or** the child-profile Tappe accordion — routes directly to its destination: the questionnaire overlay (not-started / in-progress) or the results page `questionnaire_sessions#show` (all-answered / completed). The page was a pure navigation hub with no unique capability.
+- **Status**: done
+- **Note**: 2026-06. Consequences: (1) per-area session **Storico** (the page's history list) dropped — recompilation history lives in the clinical-report PDF (FA: "prior data preserved in reports"); (2) **recompile-of-completed** is superseded by the DEC-020/021 edit-window model — no "Ripeti Questionario" button; (3) **past in-progress** sessions stay completable via the Dashboard daily-milestone box (`DailyMilestoneService` → `:finish_previous`), not the removed page. Destination logic: `TimelineHelper#timeline_card_destination`; the questionnaire overlay is now hosted on both the Timeline index and the milestones tab (`children/_milestones_tab`).
 
 ---
 

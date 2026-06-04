@@ -5,7 +5,13 @@
     child           - Child record
     milestones_data - Output of ChildMilestonesLoader#call
 %>
-<section class="shuby-milestones-tab">
+<%# Hosts the questionnaire overlay so the accordion's current-band cards can open
+  the questionnaire in place (same contract as the timeline index). Without this,
+  a card's `openWithFrame` action has no controller to handle it and falls through
+  to a bare, layout-less frame page. %>
+<section class="shuby-milestones-tab"
+         data-controller="questionnaire-overlay"
+         data-questionnaire-overlay-open-class="shuby-questionnaire-overlay--open">
   <h2 class="shuby-milestones-tab-title shuby-h3">
     <%= t("children.show.milestones.title") %>
   </h2>
@@ -20,4 +26,6 @@
       </li>
     <% end %>
   </ul>
+
+  <%= render "questionnaire_sessions/overlay" %>
 </section>

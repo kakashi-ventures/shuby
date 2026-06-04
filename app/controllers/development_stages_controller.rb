@@ -16,20 +16,6 @@ class DevelopmentStagesController < ApplicationController
     render layout: false
   end
 
-  def show
-    @area = DevelopmentArea.find_by!(slug: params[:id])
-    @questionnaire = @area.questionnaire_for_age(@child.questionnaire_age_in_months)
-
-    unless @questionnaire
-      redirect_to child_development_stages_path(@child), alert: t(".no_questionnaire")
-      return
-    end
-
-    @current_session = @child.session_for(@questionnaire)
-    @completed_sessions = @child.completed_sessions_for_area(@area)
-    @past_in_progress_session = @child.in_progress_past_sessions.for_area(@area).first
-  end
-
   def start
     @area = DevelopmentArea.find_by!(slug: params[:id])
     @questionnaire = @area.questionnaire_for_age(@child.questionnaire_age_in_months)

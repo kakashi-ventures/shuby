@@ -76,6 +76,43 @@ module TimelineHelper
     end
   end
 
+  # Resolves where a timeline milestone card navigates when tapped. Replaces the
+  # removed per-area landing page (development_stages#show), which existed only to
+  # branch on questionnaire state and forward the user. Returns { path:, overlay: }:
+  #
+  #   overlay: true  → open the questionnaire overlay in place (the card must carry
+  #                    `data-action="click->questionnaire-overlay#openWithFrame"`;
+  #                    the host + overlay partial already live on the timeline index).
+  #   overlay: false → a normal full-page navigation (add `data-turbo-frame="_top"`
+  #                    so it escapes the timeline-content turbo frame).
+  #
+  # Only called for interactive cards (see _timeline_milestone_card). Mapping mirrors
+  # the deleted _section_session_status partial 1:1.
+  def timeline_card_destination(child, area, session, age_relationship)
+    # Past completed → results page (unchanged from the prior card behavior).
+    if session&.completed? && age_relationship != :current
+      return {path: child_questionnaire_session_path(child, session), overlay: false}
+    end
+
+    # No session yet, or started-but-unanswered → open the questionnaire overlay.
+    if session.nil? || session.not_started?
+      path = if session
+        overlay_frame_child_questionnaire_session_path(child, session)
+      else
+        start_child_development_stage_path(child, area.slug)
+      end
+      return {path: path, overlay: true}
+    end
+
+    # Partially answered → resume in the overlay. Everything else (all answers given
+    # but not auto-completed, or a completed current-band session) → results page.
+    if session.in_progress? && !session.all_answered?
+      {path: overlay_frame_child_questionnaire_session_path(child, session), overlay: true}
+    else
+      {path: child_questionnaire_session_path(child, session), overlay: false}
+    end
+  end
+
   private
 
   # True when +band+ falls strictly before +current_band+ in the timeline sequence.

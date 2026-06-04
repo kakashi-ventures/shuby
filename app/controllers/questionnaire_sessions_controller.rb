@@ -95,8 +95,7 @@ class QuestionnaireSessionsController < ApplicationController
 
   def complete
     @session.complete!
-    redirect_to child_development_stage_path(@child, @session.age_band_questionnaire.development_area.slug),
-                notice: t(".completed")
+    redirect_to child_questionnaire_session_path(@child, @session), notice: t(".completed")
   end
 
   def edit
