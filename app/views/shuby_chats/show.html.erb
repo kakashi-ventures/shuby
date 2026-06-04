@@ -34,13 +34,13 @@
   </div>
 
   <div class="shuby-chat-composer-wrap">
+    <p class="shuby-chat-disclaimer mb-2"><%= t("shuby_chats.show.disclaimer") %></p>
     <% if @chat_rate_limited %>
       <%= render "shuby_chats/rate_limit_reached" %>
     <% else %>
       <%= render "shuby_chats/message_form",
             shuby_chat: @shuby_chat,
-            messages_remaining: (@messages.any? ? @messages_remaining : nil),
-            show_disclaimer: @messages.any? %>
+            messages_remaining: (@messages.any? ? @messages_remaining : nil) %>
     <% end %>
   </div>
 </div>

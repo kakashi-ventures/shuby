@@ -1,7 +1,7 @@
 <%# Streaming content for an assistant message. Plain-text style matches
-    the final _message.html.erb assistant rendering — no card chrome. %>
+    the final _message.html.erb assistant rendering — no card chrome.
+    Markdown is rendered server-side (commonmarker) on each accumulated
+    delta; partial markdown resolves cleanly as more tokens arrive. %>
 <div id="<%= message_id %>" class="shuby-chat-assistant shuby-p1">
-  <div data-controller="markdown" data-markdown-content-value="<%= content %>">
-    <div data-markdown-target="output" class="shuby-message-content"><%= simple_format(content) %></div>
-  </div>
+  <div class="shuby-message-content"><%= render_chat_markdown(content) %></div>
 </div>

@@ -148,7 +148,7 @@ Items surfaced by `/shuby-review` after the Figma 06.01_Gestione redesign
 - 5-area developmental questionnaires with age-band versioning + stories UI
 - Timeline age band navigation with past/current/future states
 - Archive with 3 content types, categories, age filtering, favorites
-- AI chat with OpenAI streaming, RAG, specialist routing, rate limiting
+- AI chat with OpenAI streaming, RAG, specialist routing, rate limiting, always-visible pediatrician disclaimer (DEC-023)
 - Dashboard with daily milestone rotation, content rotation, measurement cards
 - PDF pediatrician reports (Prawn)
 - Onboarding flow with family profile

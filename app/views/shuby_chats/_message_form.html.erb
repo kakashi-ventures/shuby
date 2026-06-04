@@ -2,10 +2,6 @@
     mic icon when empty, send-arrow icon when typing. The page-level
     native_form_tag is rendered by show.html.erb (one tag per page suffices). %>
 <div id="message_form" class="flex flex-col gap-1">
-  <% if local_assigns[:show_disclaimer] %>
-    <p class="shuby-chat-disclaimer mb-1"><%= t("shuby_chats.show.disclaimer") %></p>
-  <% end %>
-
   <%= form_with url: message_shuby_chat_path(shuby_chat),
         method: :post,
         data: { controller: "shuby-form", action: "submit->shuby-form#submit" },

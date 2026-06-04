@@ -17,9 +17,7 @@
 <% else %>
   <div id="<%= message_dom_id %>" class="shuby-chat-assistant shuby-p1<%= enter_class %>">
     <% if message.content.present? %>
-      <div data-controller="markdown" data-markdown-content-value="<%= message.content %>">
-        <div data-markdown-target="output" class="shuby-message-content"><%= simple_format(message.content) %></div>
-      </div>
+      <div class="shuby-message-content"><%= render_chat_markdown(message.content) %></div>
     <% end %>
   </div>
 <% end %>

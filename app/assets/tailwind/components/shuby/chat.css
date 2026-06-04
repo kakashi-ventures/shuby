@@ -219,9 +219,123 @@ html.hotwire-native .shuby-chat-header {
     align-self: stretch;
 }
 
-.shuby-chat-assistant .shuby-message-content,
-.shuby-chat-assistant p {
+/* Markdown prose rendered server-side (commonmarker) inside assistant
+   messages. The parser emits bare h2/ul/table/etc — styled by element with
+   Shuby tokens. First/last children shed outer margins so the reply hugs. */
+.shuby-message-content {
     margin: 0;
+}
+
+.shuby-message-content > :first-child {
+    margin-top: 0;
+}
+
+.shuby-message-content > :last-child {
+    margin-bottom: 0;
+}
+
+.shuby-message-content p {
+    margin: 0 0 var(--space-3);
+}
+
+.shuby-message-content h1,
+.shuby-message-content h2,
+.shuby-message-content h3,
+.shuby-message-content h4 {
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
+    margin: var(--space-4) 0 var(--space-2);
+}
+
+.shuby-message-content h1,
+.shuby-message-content h2 {
+    font-size: var(--font-size-h3); /* 20px — largest in-chat heading */
+}
+
+.shuby-message-content h3,
+.shuby-message-content h4 {
+    font-size: var(--font-size-btn-s); /* 16px — secondary heading step */
+}
+
+.shuby-message-content ul,
+.shuby-message-content ol {
+    margin: 0 0 var(--space-3);
+    padding-inline-start: var(--space-5);
+}
+
+.shuby-message-content ul {
+    list-style: disc;
+}
+
+.shuby-message-content ol {
+    list-style: decimal;
+}
+
+.shuby-message-content li {
+    margin-block: var(--space-1);
+}
+
+.shuby-message-content li > ul,
+.shuby-message-content li > ol {
+    margin-block: var(--space-1) 0;
+}
+
+.shuby-message-content a {
+    color: var(--color-shuby-blue-700);
+    text-decoration: underline;
+}
+
+.shuby-message-content strong {
+    font-weight: var(--font-weight-semibold);
+}
+
+.shuby-message-content blockquote {
+    margin: 0 0 var(--space-3);
+    padding-inline-start: var(--space-3);
+    border-inline-start: 3px solid var(--color-shuby-blue-300);
+    color: var(--base-text-secondary);
+}
+
+.shuby-message-content code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+    background-color: var(--color-shuby-blue-300);
+    padding: 0.1em 0.3em;
+    border-radius: var(--radius-xs);
+}
+
+.shuby-message-content pre {
+    margin: 0 0 var(--space-3);
+    padding: var(--space-3);
+    background-color: var(--color-shuby-blue-300);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+}
+
+.shuby-message-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.shuby-message-content table {
+    display: block;
+    width: 100%;
+    margin: 0 0 var(--space-3);
+    border-collapse: collapse;
+    font-size: var(--font-size-p2);
+    overflow-x: auto;
+}
+
+.shuby-message-content th,
+.shuby-message-content td {
+    border: 1px solid var(--color-shuby-blue-300);
+    padding: var(--space-1) var(--space-2);
+    text-align: start;
+}
+
+.shuby-message-content th {
+    background-color: var(--bg-info-secondary);
+    font-weight: var(--font-weight-semibold);
 }
 
 /* Thinking dots — minimal, no card chrome. */
@@ -338,7 +452,9 @@ html.hotwire-native .shuby-chat-header {
 
 /* =====================================================
    DISCLAIMER (Figma 2030:8881)
-   "Risposte basate su fonti mediche verificate" — caption blu-800.
+   Always-visible pediatrician disclaimer (PRD §3.6.3, DEC-023):
+   "🩺 Consulta sempre il pediatra…" — caption blu-800. Rendered in
+   .shuby-chat-composer-wrap so it persists across every chat state.
    ===================================================== */
 
 .shuby-chat-disclaimer {

@@ -46,7 +46,6 @@ class ShubyAssistantService
     - Organizza risposte per fasce d'età (0-11 mesi, 12-23 mesi, 24-36 mesi) quando rilevante
     - Cita sempre le fonti dalla knowledge base
     - Enfatizza l'importanza della personalizzazione ("ogni bambino è unico")
-    - Includi SEMPRE disclaimer: "⚕️ Consulta sempre il pediatra per situazioni specifiche del tuo bambino"
 
     LINGUAGGIO POSITIVO:
     - Usa "il tuo bambino" invece di "un bambino"
@@ -274,11 +273,14 @@ class ShubyAssistantService
   # Handles a text delta event - accumulates text and broadcasts cleaned delta
   def handle_text_delta(event_data, accumulated_text, &block)
     delta = event_data["delta"]
-    return unless delta.present?
+    # Do NOT guard with present?/blank? — they treat whitespace-only strings as
+    # blank, so the "\n\n" deltas that delimit markdown headings/paragraphs would
+    # be dropped, gluing blocks together (e.g. "testo## Titolo"). Only nil is skippable.
+    return if delta.nil?
 
     accumulated_text << delta
     cleaned_delta = ShubyCitationProcessor.strip_citation_markers(delta)
-    block&.call({type: :delta, content: cleaned_delta}) if cleaned_delta.present?
+    block&.call({type: :delta, content: cleaned_delta}) unless cleaned_delta.empty?
   end
 
   # Finalizes the response: saves message, citations, and yields completion events

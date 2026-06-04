@@ -95,7 +95,7 @@ class ShubyChatsController < ApplicationController
           turbo_stream.replace("message_form", partial: "shuby_chats/rate_limit_reached")
         else
           turbo_stream.replace("message_form", partial: "shuby_chats/message_form",
-            locals: {shuby_chat: @shuby_chat, messages_remaining: current_user.chat_messages_remaining, show_disclaimer: true})
+            locals: {shuby_chat: @shuby_chat, messages_remaining: current_user.chat_messages_remaining})
         end
 
         render turbo_stream: streams

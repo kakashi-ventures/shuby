@@ -145,6 +145,25 @@ class ShubyChatsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  # --- Always-visible pediatrician disclaimer (PRD §3.6.3, DEC-023) ---
+
+  test "pediatrician disclaimer is visible on an empty chat" do
+    @user.shuby_chats.destroy_all
+    empty = @user.shuby_chats.create!(model: "gpt-4o-mini", account: accounts(:one))
+
+    get shuby_chat_path(empty)
+    assert_response :success
+    assert_includes response.body, I18n.t("shuby_chats.show.disclaimer")
+  end
+
+  test "pediatrician disclaimer stays visible when rate limited" do
+    fill_to_limit(@user)
+
+    get shuby_chat_path(@chat)
+    assert_response :success
+    assert_includes response.body, I18n.t("shuby_chats.show.disclaimer")
+  end
+
   private
 
   def fill_to_limit(user)

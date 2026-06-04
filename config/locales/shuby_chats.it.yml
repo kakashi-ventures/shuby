@@ -10,7 +10,7 @@ it:
       greeting:
         title: "Incontra Shuby AI"
         tagline: "Il tuo assistente AI per ogni domanda, 24/7"
-      disclaimer: "Risposte basate su fonti mediche verificate"
+      disclaimer: "🩺 Consulta sempre il pediatra per situazioni specifiche del tuo bambino"
       actions:
         new_chat: "Nuova conversazione"
         history: "Cronologia conversazioni"

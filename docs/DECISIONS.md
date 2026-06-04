@@ -67,6 +67,13 @@
 - **Status**: done
 - **Note**: Published ArchiveContent catalog is injected into the AI system prompt. The AI weaves markdown links (`[Title](/archivio/slug)`) naturally into responses. Markdown controller renders these as clickable Turbo-navigated links.
 
+### DEC-023: AI chat pediatrician disclaimer — always-visible, app-rendered, 🩺 glyph
+
+- **Overrides**: PRD §3.6.3 (shows the disclaimer with the "⚕️" staff symbol, as model-emitted text)
+- **Decision**: The mandatory disclaimer "Consulta sempre il pediatra per situazioni specifiche del tuo bambino" is a fixed, always-visible UI element in the chat composer footer (empty, active, and rate-limited states), not LLM-emitted. The leading glyph is "🩺" (U+1FA7A, emoji-default, renders in color) instead of "⚕️" (U+2695, which renders as a cold monochrome text glyph in the iOS WebView pipeline and clashes with Shuby's warm tone). Disclaimer text is unchanged from the PRD.
+- **Status**: done
+- **Note**: The LLM system-prompt disclaimer instruction was removed to avoid duplication; pediatrician-redirect safety remains enforced by the prompt's emergency/specialist sections. Replaces the former chat footer line "Risposte basate su fonti mediche verificate".
+
 ---
 
 ## Development Stages
