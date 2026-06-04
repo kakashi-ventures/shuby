@@ -12,6 +12,9 @@ resources :children, only: [] do
     end
   end
 
+  # Per-stage PDF export — :id is the age-band key (e.g. "sett_5", "mese_12")
+  resources :stage_reports, path: "stage-reports", only: [:show]
+
   # Questionnaire session flow
   resources :questionnaire_sessions, path: "questionnaires", only: [:show, :edit, :update] do
     member do

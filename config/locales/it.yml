@@ -771,6 +771,7 @@ it:
         birth_height_cm: "Lunghezza alla Nascita (Centimetri)"
       milestones:
         title: "Tappe di sviluppo"
+        download_pdf: "Scarica PDF della tappa %{band}"
     new:
       title: "Aggiungi Bambino"
       back_label: "Indietro"

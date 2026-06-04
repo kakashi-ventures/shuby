@@ -1018,6 +1018,10 @@ html.hotwire-native .shuby-stage-completed-header {
     flex-direction: column;
 }
 
+.shuby-milestones-band-wrap {
+    position: relative; /* anchor for the absolutely-positioned PDF download icon */
+}
+
 .shuby-milestones-band {
     border-bottom: 1px solid var(--color-shuby-gray-500);
 }
@@ -1039,6 +1043,9 @@ html.hotwire-native .shuby-stage-completed-header {
     align-items: center;
     gap: var(--space-2);
     padding: var(--space-4) 0;
+    /* Reserve the right gutter for the absolutely-positioned PDF tile (40px)
+       so the completion counter never slides underneath it. */
+    padding-right: calc(40px + var(--space-2));
     cursor: pointer;
     user-select: none;
 }
@@ -1082,6 +1089,35 @@ html.hotwire-native .shuby-stage-completed-header {
 .shuby-milestones-band-counter-complete {
     background-color: var(--color-shuby-verde-300);
     color: var(--color-shuby-blue-800);
+}
+
+/* Per-stage PDF download (Figma 541:7850). A sibling of <details>, overlaid on the
+   header's reserved right gutter: stays visible when the band is collapsed and a tap
+   never toggles the accordion. Round, self-contained box shared by both states. */
+.shuby-milestones-band-pdf {
+    position: absolute;
+    top: var(--space-1);
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Active colour comes from .shuby-icon-btn-azzurro (blu-400 circle / blu-800 glyph).
+   Disabled: no completed area in the band → light-grey circle, grey glyph, inert. */
+.shuby-milestones-band-pdf-disabled {
+    background-color: var(--color-shuby-gray-500);
+    color: var(--color-shuby-gray-700);
+    cursor: default;
+    pointer-events: none;
 }
 
 .shuby-milestones-band-cards {

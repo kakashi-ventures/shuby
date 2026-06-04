@@ -10,25 +10,46 @@
   band_label = "#{band[:label_type]} #{band[:label_number]}"
   show_counter = band_data[:total_count].positive?
   all_completed = show_counter && band_data[:completed_count] == band_data[:total_count]
+  has_completions = show_counter && band_data[:completed_count].positive?
 %>
-<details class="shuby-milestones-band" <%= "open" if default_open %>>
-  <summary class="shuby-milestones-band-header">
-    <span class="shuby-milestones-band-chevron" aria-hidden="true">
-      <%= render_svg "shuby/icons/icon-chevron-down", size: :sm, decorative: true %>
-    </span>
-    <span class="shuby-milestones-band-label"><%= band_label %></span>
-    <% if show_counter %>
-      <span class="shuby-milestones-band-counter <%= "shuby-milestones-band-counter-complete" if all_completed %>">
-        <%= t("timeline.show.completed_count",
-              completed: band_data[:completed_count],
-              total: band_data[:total_count]) %>
+<div class="shuby-milestones-band-wrap">
+  <details class="shuby-milestones-band" <%= "open" if default_open %>>
+    <summary class="shuby-milestones-band-header">
+      <span class="shuby-milestones-band-chevron" aria-hidden="true">
+        <%= render_svg "shuby/icons/icon-chevron-down", size: :sm, decorative: true %>
+      </span>
+      <span class="shuby-milestones-band-label"><%= band_label %></span>
+      <% if show_counter %>
+        <span class="shuby-milestones-band-counter <%= "shuby-milestones-band-counter-complete" if all_completed %>">
+          <%= t("timeline.show.completed_count",
+                completed: band_data[:completed_count],
+                total: band_data[:total_count]) %>
+        </span>
+      <% end %>
+    </summary>
+
+    <div class="shuby-milestones-band-cards">
+      <%= render "development_stages/timeline_stages_cards",
+                 development_areas: band_data[:development_areas],
+                 child: child %>
+    </div>
+  </details>
+
+  <%# Download the band's questionnaire-results PDF. A sibling of <details> (NOT
+      inside it) so it stays visible when the band is collapsed and never toggles
+      the accordion. Active when ≥1 area is completed; disabled grey at 0/N. %>
+  <% if show_counter %>
+    <% if has_completions %>
+      <%= link_to child_stage_report_path(child, band[:key]),
+                  class: "shuby-milestones-band-pdf shuby-icon-btn-azzurro",
+                  data: {turbo: false},
+                  "aria-label": t("children.show.milestones.download_pdf", band: band_label) do %>
+        <%= render_svg "shuby/icons/icon-document", decorative: true %>
+      <% end %>
+    <% else %>
+      <span class="shuby-milestones-band-pdf shuby-milestones-band-pdf-disabled" aria-hidden="true">
+        <%= render_svg "shuby/icons/icon-document", decorative: true %>
       </span>
     <% end %>
-  </summary>
-
-  <div class="shuby-milestones-band-cards">
-    <%= render "development_stages/timeline_stages_cards",
-               development_areas: band_data[:development_areas],
-               child: child %>
-  </div>
-</details>
+  <% end %>
+</div>

@@ -1,0 +1,29 @@
+it:
+  stage_report:
+    title: "Risultati della tappa"
+    subtitle: "Risultati dei questionari di sviluppo"
+    header:
+      child: "Bambino"
+      stage: "Tappa"
+      generated_at: "Generato il"
+    status:
+      completed: "Completato"
+      in_progress: "In corso"
+      not_started: "Non completato"
+      not_available: "Non disponibile"
+    status_notes:
+      not_available: "Nessun questionario disponibile per quest'area in questa tappa."
+    questions:
+      prompt: "Domanda"
+      answer: "Risposta"
+    answer:
+      si: "Sì"
+      no: "No"
+      incerto: "Non so"
+      none: "—"
+    summary:
+      counts: "Sì %{si} · No %{no} · Non so %{incerto}"
+      completed_at: "Completato il %{date}"
+    footer:
+      disclaimer: "Questo documento riassume le risposte ai questionari di sviluppo registrate su Shuby ed è inteso come supporto informativo. Non sostituisce la valutazione medica professionale."
+      page: "Pagina %{current} di %{total}"
