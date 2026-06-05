@@ -136,6 +136,31 @@ class MeasurementsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_content
   end
 
+  # === App Store review prompt (native_review_tag, ruby_native >= 0.9.3) ===
+
+  test "saving a measurement renders native_review_tag on the native redirect target" do
+    post child_measurements_path(@child), params: {
+      measurement: {measurement_type: "weight", value: "5", measured_at: 1.day.ago.strftime("%Y-%m-%dT%H:%M")}
+    }
+    created = Measurement.last
+    assert_redirected_to child_measurement_path(@child, created)
+    # Re-request the redirect target with a Ruby Native UA so hotwire_native_app?
+    # is true (exercises the UA override); the flash flag set on create persists
+    # across the single redirect.
+    get child_measurement_path(@child, created), headers: {HTTP_USER_AGENT: "Ruby Native iOS"}
+    assert_match "data-native-review", response.body,
+      "expected native_review_tag on the post-save page in the native shell"
+  end
+
+  test "review prompt stays out of the web DOM after saving a measurement" do
+    post child_measurements_path(@child), params: {
+      measurement: {measurement_type: "weight", value: "5", measured_at: 1.day.ago.strftime("%Y-%m-%dT%H:%M")}
+    }
+    get child_measurement_path(@child, Measurement.last)
+    refute_match "data-native-review", response.body,
+      "native_review_tag must not render on plain web"
+  end
+
   # === Edit ===
 
   test "should get edit" do

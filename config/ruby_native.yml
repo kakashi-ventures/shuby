@@ -29,3 +29,16 @@ tabs:
   - title: Gestione
     path: /settings
     icon: gearshape.fill
+
+# Linked domains (gem ≥0.10.0). Tapping an app.shuby.app link opens the iOS app
+# instead of Safari, and lets the app share saved passwords with the site. The
+# gem serves /.well-known/apple-app-site-association from these values and the
+# linked domain is auto-derived from the request host (no domain key needed).
+# team_id is NOT secret — it ships publicly in the AASA file as TEAMID.BUNDLEID
+# — so it is kept here as a literal: ruby_native.yml is parsed with
+# YAML.load_file, which has no ERB/credentials support.
+# NOTE: requires an iOS binary rebuilt against this gem version so the
+# associated-domains entitlement is baked in (run `ruby_native deploy`).
+ios:
+  bundle_id: app.shuby.rubynative
+  team_id: "9R33QX48J7"

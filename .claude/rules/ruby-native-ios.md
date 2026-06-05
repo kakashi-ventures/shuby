@@ -34,7 +34,7 @@ paths:
 - Test both web and native when modifying layouts
 
 ## Native UA detection — single point of truth
-- Ruby Native 0.7 sends `"Ruby Native"` / `"RubyNative/0.7.0"` in User-Agent; turbo-rails' default `hotwire_native_app?` only matches `/(Turbo|Hotwire) Native/` so it silently returns `false` in the iOS shell
+- Ruby Native (0.7 through 0.10.2, re-verified 2026-06-04) sends `"Ruby Native"` / `"RubyNative/x.y.z"` in User-Agent; turbo-rails' default `hotwire_native_app?` only matches `/(Turbo|Hotwire) Native/` so it silently returns `false` in the iOS shell
 - Shuby overrides `hotwire_native_app?` in `app/controllers/concerns/authentication.rb` with regex `/(Turbo|Hotwire|Ruby) Native/` — this is the ONLY place that parses the UA
 - Never add new UA-parsing code elsewhere; always call the helper. JS-side: read `document.documentElement.classList.contains("hotwire-native")` (set server-side by the same helper) or feature-detect `typeof RubyNative !== 'undefined'`
 - If a new native-only check is needed, scope CSS to `html.hotwire-native` — never to specific UA strings

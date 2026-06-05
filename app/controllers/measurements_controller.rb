@@ -32,6 +32,11 @@ class MeasurementsController < ApplicationController
     authorize @measurement
 
     if @measurement.save
+      # Saving a measurement is a genuine "win" moment — flag it so the layout
+      # renders native_review_tag once on the redirect target (iOS App Store
+      # rating prompt). Boolean value, so it is ignored by the toast renderer
+      # (flash_helper#toasts only picks Hash-valued entries).
+      flash[:request_app_review] = true
       redirect_to child_measurement_path(@child, @measurement), notice: t(".created")
     else
       render :new, status: :unprocessable_content

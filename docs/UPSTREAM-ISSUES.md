@@ -45,8 +45,9 @@ once the Oggi tab stack is deep), then tap a link back to something
 under `/children/`. Confirm `turbo:before-visit` never logs `def=1` and
 the native tab bar stays responsive across many navigations.
 
-**Last verified.** Re-checked against ruby_native 0.9.0 release notes
-(2026-05-07). No regression — fix remains in the native binary.
+**Last verified.** ruby_native 0.10.2 (2026-06-04). No regression — fix
+remains in the native binary. The deployed iOS binary must be rebuilt
+(≥0.8.1) via `ruby_native deploy` to carry it; the gem bump alone doesn't.
 
 ---
 
@@ -90,10 +91,16 @@ still needed: temporarily revert the gating, open the dashboard on iOS,
 inspect `<header class="native-inset-top">` in Safari Web Inspector — if
 its computed height is non-zero, the workaround is still required.
 
-**Last verified.** Re-checked against ruby_native 0.9.0 release notes
-(2026-05-07). Still open — 0.9.0 ships only the authenticated-screenshots
-feature; gem CSS is unchanged. Workaround at
-`app/views/layouts/application.html.erb:14` retained.
+**Last verified.** ruby_native 0.10.2 (2026-06-04), checked against the gem
+source directly. Still open — `app/assets/stylesheets/ruby_native.css` still
+injects `.native-inset-top::before { height: … }` unconditionally. NEW in
+0.10.x: that height now reads `var(--ruby-native-safe-area-inset-top,
+env(safe-area-inset-top))`, so a future cleanup could neutralize the inset
+per-element by setting `--ruby-native-safe-area-inset-top: 0` on custom-header
+pages instead of gating the class off entirely — evaluate on the next native
+pass. For now the class gating in `app/views/layouts/application.html.erb`
+(the `<header>` whose `native-inset-top` is dropped on `hide_navbar` /
+signed-in pages) is retained.
 
 ---
 
@@ -116,9 +123,10 @@ identifier), or (b) turbo-rails adds Ruby Native to its default regex.
 Check by removing the override and verifying the html class still applies
 on iOS (see `/native_debug` route).
 
-**Last verified.** Re-checked against ruby_native 0.9.0 release notes
-(2026-05-07). Still open — 0.9.0 release notes mention no UA changes.
-Workaround at `app/controllers/concerns/authentication.rb:26-28` retained.
+**Last verified.** ruby_native 0.10.2 (2026-06-04). Still open — release
+notes through 0.10.2 mention no UA change, and the override remains the
+single UA-detection point. Workaround at
+`app/controllers/concerns/authentication.rb` retained.
 
 ---
 
