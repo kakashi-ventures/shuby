@@ -1,0 +1,171 @@
+/* Shuby Questionnaire Results Cards
+ * Components for the questionnaire results/summary page:
+ * tinted result callouts, the yes/no/uncertain stat tiles + grid, and the
+ * per-question response list. Colors follow the brand answer language
+ * (verde / fucsia / grigio) shared with shuby_tag.
+ */
+
+/* =====================================================
+   RESULT CALLOUT (advisory panels: verde / fucsia / giallo / blu)
+   Tinted card in the brand answer-color language (matches shuby_tag variants).
+   Bind to the PALETTE, not --bg-success/-danger-secondary (those resolve to a
+   generic green/red that barely appears in the product). A single color: on the
+   modifier cascades to the :is() typography and .shuby-callout-icon.
+   Self-contained — does NOT extend .shuby-card-danger, which is shared with
+   measurements/_form_errors and must not gain foreground rules.
+   ===================================================== */
+.shuby-callout {
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+}
+
+/* Compact variant for nested notices (e.g. the "you can still edit" box). */
+.shuby-callout-sm {
+    padding: var(--space-4);
+}
+
+/* Typography inside a callout adopts the callout's own foreground color, so a
+   single color: on the modifier tints heading + body + caption together. */
+.shuby-callout :is(.shuby-h2, .shuby-h3, .shuby-p1, .shuby-p1-dark, .shuby-p2, .shuby-p2-dark, .shuby-caption, .shuby-overline) {
+    color: inherit;
+}
+
+.shuby-callout-icon {
+    color: inherit;
+    flex-shrink: 0;
+}
+
+/* Flat tinted cards — fill alone separates them; no border (see results page). */
+
+/* Positive guidance (stimulation activities) — light teal, like .shuby-tag-verde. */
+.shuby-callout--verde {
+    background-color: var(--color-shuby-verde-300);
+    color: var(--color-shuby-blue-800);
+}
+
+/* Negative / concern — solid fucsia + white, like .shuby-tag-fucsia. */
+.shuby-callout--fucsia {
+    background-color: var(--color-shuby-fucsia-500);
+    color: var(--color-shuby-white);
+}
+
+/* Caution (attention notice) — pale brand yellow, like the tip / nudge cards. */
+.shuby-callout--giallo {
+    background-color: var(--color-shuby-giallo-400);
+    color: var(--color-shuby-blue-800);
+}
+
+/* Informational (edit notice, warning signs) — light blue. */
+.shuby-callout--blu {
+    background-color: var(--color-shuby-blue-400);
+    color: var(--color-shuby-blue-800);
+}
+
+/* Callout internal layout — icon row, content column, bulleted list, stacked actions. */
+.shuby-callout-body {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.shuby-callout-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.shuby-callout-list {
+    list-style: disc;
+    list-style-position: inside;
+}
+
+.shuby-callout-list > li + li {
+    margin-top: var(--space-2);
+}
+
+.shuby-callout-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+/* Buttons inside a callout never wrap (keeps the edit CTA on one line). */
+.shuby-callout .shuby-btn {
+    white-space: nowrap;
+}
+
+/* =====================================================
+   STAT TILE (questionnaire result count summary)
+   Centered count + label tile. Variants match the answer pills exactly:
+   verde (sì) / fucsia (no) / grigio (incerto).
+   ===================================================== */
+.shuby-stat-tile {
+    text-align: center;
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+}
+
+.shuby-stat-tile-value {
+    font-family: var(--font-display);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+}
+
+.shuby-stat-tile-label {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+}
+
+.shuby-stat-tile--verde {
+    background-color: var(--color-shuby-verde-300);
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-stat-tile--fucsia {
+    background-color: var(--color-shuby-fucsia-500);
+    color: var(--color-shuby-white);
+}
+
+.shuby-stat-tile--grigio {
+    background-color: var(--color-shuby-gray-400);
+    color: var(--color-shuby-gray-800);
+}
+
+.shuby-stat-tile--blu {
+    background-color: var(--color-shuby-blue-400);
+    color: var(--color-shuby-blue-800);
+}
+
+/* Three-across grid holding the result count tiles. */
+.shuby-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+}
+
+/* =====================================================
+   RESPONSE LIST (per-question answer rows on the results page)
+   Tag pill + question prompt, hairline divider between rows.
+   ===================================================== */
+.shuby-response-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.shuby-response-row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-shuby-gray-500);
+}
+
+.shuby-response-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.shuby-response-row .shuby-tag {
+    flex-shrink: 0;
+}

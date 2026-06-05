@@ -1,17 +1,17 @@
 <% scope = "questionnaire_sessions.show" %>
 
 <% if stimulation_activities.any? %>
-  <div id="stimulation-activities" class="shuby-card mb-6 border-green-200 bg-green-50">
-    <div class="flex gap-3">
-      <div class="flex-shrink-0">
-        <%= render_svg "shuby/icons/icon-tips", size: :lg, styles: "text-green-500", decorative: true %>
+  <div id="stimulation-activities" class="shuby-callout shuby-callout--verde mb-6">
+    <div class="shuby-callout-body">
+      <div class="shuby-callout-icon">
+        <%= render_svg "shuby/icons/icon-tips", size: :lg, decorative: true %>
       </div>
-      <div class="flex-1">
-        <h3 class="shuby-h3 text-green-800 mb-2"><%= t("stimulation_activities_title", scope: scope) %></h3>
-        <p class="shuby-caption text-green-600 mb-3"><%= t("stimulation_activities_subtitle", scope: scope) %></p>
-        <ul class="list-disc list-inside space-y-2">
+      <div class="shuby-callout-content">
+        <h3 class="shuby-h3 mb-2"><%= t("stimulation_activities_title", scope: scope) %></h3>
+        <p class="shuby-caption mb-3"><%= t("stimulation_activities_subtitle", scope: scope) %></p>
+        <ul class="shuby-callout-list">
           <% stimulation_activities.each do |a| %>
-            <li class="shuby-p2 text-green-700"><%= a.description %></li>
+            <li class="shuby-p2"><%= a.description %></li>
           <% end %>
         </ul>
       </div>

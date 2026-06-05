@@ -1,0 +1,194 @@
+/* Shuby Content Cards
+ * Dashboard content cards: tip card (Scheda Consigli) + activity card (Scheda Attività)
+ *
+ * Shared pattern:
+ * - Time indicator: inline-flex row with 12px icon + uppercase 10px text
+ *   (see also cards-article.css)
+ */
+
+/* =====================================================
+   TIP CARD (Figma: Scheda Consigli)
+   Yellow card for tips/advice with optional thumbnail
+   ===================================================== */
+
+.shuby-card-tip {
+    display: flex;
+    align-items: center;
+    padding: var(--space-4);
+    background-color: var(--color-shuby-giallo-400);
+    border-radius: var(--radius-grande);
+    width: 100%;
+}
+
+.shuby-card-tip-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.shuby-card-tip-tags {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+}
+
+.shuby-card-tip-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.shuby-card-tip-author {
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-black);
+}
+
+.shuby-card-tip-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-card-tip-publisher {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-black);
+}
+
+/* Fluid thumbnail — Figma spec 78×99 at 390px viewport. Scales down on
+   narrower iPhones via min()/vw; aspect-ratio preserves the 78:99
+   proportions at every width. Matches the fluid pattern used on the
+   dashboard hero illustration (min(123px, 32vw)). */
+.shuby-card-tip-thumbnail {
+    width: min(78px, 22vw);
+    aspect-ratio: 78 / 99;
+    height: auto;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 0 var(--radius-grande) var(--radius-grande) 0;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* Consigli card with time indicator (games/activities) */
+.shuby-card-tip-time {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.shuby-card-tip-time-icon {
+    width: 12px;
+    height: 12px;
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-card-tip-time-text {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-blue-800);
+    text-transform: uppercase;
+}
+
+/* Featured variant — white bg + soft blue shadow (Figma: Scheda Consigli Versione 2) */
+.shuby-card-tip--featured {
+    background-color: var(--color-shuby-white);
+    box-shadow: var(--shadow-blu);
+}
+
+/* Large thumbnail for Lettura featured (Figma Versione 2: 112×144 at 390px).
+   Uses the same fluid pattern as the base thumbnail — scales down on narrow
+   widths while preserving the 112:144 aspect ratio. */
+.shuby-card-tip-thumbnail--large {
+    width: min(112px, 30vw);
+    aspect-ratio: 112 / 144;
+    height: auto;
+}
+
+/* Subtitle text for Generale category (14px body, blue-800) */
+.shuby-card-tip-subtitle {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-blue-800);
+}
+
+/* =====================================================
+   ACTIVITY CARD (Figma: Scheda Attività)
+   Activity list item with title, time, and arrow
+   ===================================================== */
+
+.shuby-card-activity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    background-color: var(--color-shuby-white);
+    border: 1px solid var(--color-shuby-blue-300);
+    border-radius: var(--radius-grande);
+    width: 100%;
+    height: 80px;
+}
+
+/* Shadow variant — replaces border with a soft blue glow */
+.shuby-card-activity--shadow {
+    border: none;
+    box-shadow: 0px 0px 10px 0px rgba(158, 198, 240, 0.30);
+}
+
+.shuby-card-activity-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.shuby-card-activity-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    color: var(--color-shuby-blue-800);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.shuby-card-activity-time {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.shuby-card-activity-time-icon {
+    width: 12px;
+    height: 12px;
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-card-activity-time-text {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-blue-800);
+    text-transform: uppercase;
+}
+
+.shuby-card-activity-arrow {
+    width: 16px;
+    height: 16px;
+    color: var(--color-shuby-blue-800);
+    flex-shrink: 0;
+}

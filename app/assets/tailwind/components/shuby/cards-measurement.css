@@ -1,0 +1,298 @@
+/* Shuby Measurement Cards
+ * Metric range cards, the "comincia a tracciare" grid + tracking cards,
+ * the two-part measurement card, and the measurements empty state.
+ * (The per-measurement detail page lives in cards-measurement-detail.css.)
+ */
+
+/* "Last activity" row for .shuby-tracking-card in :update / :track states —
+   holds the last-measurement timestamp on the left and the update icon-btn on the right. */
+.shuby-tracking-card-last-activity {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    flex-shrink: 0;
+}
+
+/* =====================================================
+   METRIC RANGE CARD
+   Card showing measurement ranges (e.g., PESO: 2,3 - 4,4 kg)
+   Based on Figma "MISURE MEDIE" section
+   ===================================================== */
+
+/* Metric range card container */
+.shuby-metric-range-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-3);
+    background-color: var(--color-shuby-white);
+    border: 1px solid var(--base-border-primary);
+    border-radius: var(--radius-md);
+    min-width: 90px;
+}
+
+/* Metric range label (e.g., "PESO", "ALTEZZA") */
+.shuby-metric-range-label {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: var(--base-text-tertiary);
+    margin-bottom: var(--space-1);
+}
+
+/* Metric range values container */
+.shuby-metric-range-values {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 2px;
+}
+
+/* Individual range value (large number) */
+.shuby-metric-range-value {
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    line-height: var(--line-height-tight);
+}
+
+/* Metric range unit (e.g., "chilogrammi", "centimetri") */
+.shuby-metric-range-unit {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    color: var(--base-text-tertiary);
+}
+
+/* Grid container for multiple metric cards */
+.shuby-metric-range-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+}
+
+/* =====================================================
+   METRIC GRID & TRACKING CARDS
+   Two-column grid for measurement tracking
+   Based on Figma "Comincia a tracciare" section
+   ===================================================== */
+
+.shuby-metric-grid {
+    display: grid;
+    /* Tracks stretch to fill the parent .shuby-container so the metric row
+       aligns horizontally with the sibling activity cards (which use
+       width: 100%). minmax(0, 1fr) — not bare 1fr — lets descendants with
+       min-w-0 + .truncate ellipsis their content; bare 1fr resolves to
+       minmax(auto, 1fr) and would fight truncation on narrow viewports. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+
+    /* Below 350px viewport, two side-by-side cards feel cramped — stack to
+       a single column so cards stay readable on iPhone SE-class devices. */
+    @media (max-width: 350px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.shuby-tracking-card {
+    background-color: var(--color-shuby-blue-300);
+    border-radius: var(--radius-grande);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-2);
+    /* Height tracks width to keep the Figma Scheda Misurazioni
+       proportion (171×157 = 1.089). Width is fluid via the parent grid. */
+    aspect-ratio: 171 / 157;
+
+    /* Icon buttons inside tracking cards should not shrink in the column flex. */
+    .shuby-icon-btn,
+    .shuby-icon-btn-pink {
+        flex-shrink: 0;
+    }
+
+    /* Badge inside tracking card needs inline-block so padding + radius render,
+       and bottom spacing to separate it from the title below. */
+    .shuby-badge-fucsia {
+        display: inline-block;
+        margin-bottom: var(--space-2);
+    }
+}
+
+/* Heading block inside the tracking card — holds the state label / badge
+   and the measurement-type name. Full width so the name isn't pushed right
+   by the parent's align-items: flex-end. */
+.shuby-tracking-card-heading {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+}
+
+/* Section label above the measurement type (e.g. "COMINCIA A TRACCIARE:", "TRACCIA:").
+   Figma Caption/Span/Light: Montserrat Medium 10px, black — same style in both
+   `Nuovo` (413:3667) and `In corso` (463:5649) states. Only `Aggiorna` uses the
+   fucsia pill badge variant (`.shuby-badge-fucsia`). */
+.shuby-tracking-card-label {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+    text-transform: uppercase;
+    color: var(--color-shuby-black);
+}
+
+.shuby-tracking-card-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-shuby-blue-800);
+    line-height: var(--line-height-tight);
+}
+
+.shuby-tracking-card-value {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-black);
+}
+
+/* =====================================================
+   MEASUREMENT CARD
+   Two-part card for displaying measurement data
+   ===================================================== */
+
+.shuby-measurement-card {
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+
+    &:hover, &:focus-visible {
+        text-decoration: none;
+    }
+}
+
+.shuby-measurement-card-info {
+    flex: 1;
+    padding: var(--space-4) var(--space-2) var(--space-4) var(--space-4);
+    border-top: 1px solid var(--color-shuby-blue-300);
+    border-bottom: 1px solid var(--color-shuby-blue-300);
+    border-left: 1px solid var(--color-shuby-blue-300);
+    border-radius: var(--radius-grande) 0 0 var(--radius-grande);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-1);
+}
+
+.shuby-measurement-card-info-title {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-measurement-card-info-date {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-gray-800);
+}
+
+/* Right-hand value column of the measurement card. Figma spec is 131px at
+   390px viewport; on narrower iPhones (375px) a fixed 131px overflows the
+   card's left block. clamp() keeps the column at spec above 374px, shrinks
+   it to ~131→108px below, and never drops past the 108px floor (still wide
+   enough for "000,0 kg" + icon without wrapping). */
+.shuby-measurement-card-value {
+    width: clamp(108px, 35vw, 131px);
+    flex-shrink: 0;
+    padding: var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    border-radius: 0 var(--radius-grande) var(--radius-grande) 0;
+}
+
+.shuby-measurement-card-value.updated {
+    background-color: var(--color-shuby-blue-400);
+}
+
+.shuby-measurement-card-value.stale {
+    background-color: var(--color-shuby-gray-400);
+}
+
+.shuby-measurement-card-number {
+    text-align: center;
+}
+
+.shuby-measurement-card-number-value {
+    font-family: var(--font-display);
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-shuby-blue-800);
+    line-height: var(--line-height-tight);
+}
+
+.shuby-measurement-card-number-unit {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-measurement-card-percentile {
+    text-align: center;
+}
+
+.shuby-measurement-card-percentile-value {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-btn-s);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-shuby-black);
+    line-height: var(--line-height-tight);
+}
+
+.shuby-measurement-card-percentile-label {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-black);
+}
+
+/* =====================================================
+   MEASUREMENTS — EMPTY STATE
+   Shown in the Misurazioni tab when no measurements exist.
+   Matches Figma node 436:4638 (mascot-scale illustration + copy).
+   ===================================================== */
+
+.shuby-measurements-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    padding-block: var(--space-10);
+    text-align: center;
+}
+
+.shuby-measurements-empty-illustration {
+    width: 178px;
+    height: auto;
+    max-width: 60%;
+}
+
+.shuby-measurements-empty-copy {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-shuby-gray-800);
+    max-width: 320px;
+}

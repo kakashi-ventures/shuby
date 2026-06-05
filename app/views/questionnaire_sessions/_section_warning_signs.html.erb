@@ -1,19 +1,17 @@
 <% scope = "questionnaire_sessions.show" %>
 
 <% if warning_signs.any? %>
-  <div class="shuby-card mb-6 border-red-200 bg-red-50">
-    <div class="flex gap-3">
-      <div class="flex-shrink-0">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-red-500">
-          <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
-        </svg>
+  <div class="shuby-callout shuby-callout--blu mb-6">
+    <div class="shuby-callout-body">
+      <div class="shuby-callout-icon">
+        <%= render_svg "shuby/icons/icon-alarm", size: :lg, decorative: true %>
       </div>
-      <div class="flex-1">
-        <h3 class="shuby-h3 text-red-800 mb-2"><%= t("warning_signs_title", scope: scope) %></h3>
-        <p class="shuby-caption text-red-600 mb-3"><%= t("warning_signs_subtitle", scope: scope) %></p>
-        <ul class="list-disc list-inside space-y-2">
+      <div class="shuby-callout-content">
+        <h3 class="shuby-h3 mb-2"><%= t("warning_signs_title", scope: scope) %></h3>
+        <p class="shuby-caption mb-3"><%= t("warning_signs_subtitle", scope: scope) %></p>
+        <ul class="shuby-callout-list">
           <% warning_signs.each do |c| %>
-            <li class="shuby-p2 text-red-700"><%= c.description %></li>
+            <li class="shuby-p2"><%= c.description %></li>
           <% end %>
         </ul>
       </div>

@@ -1,0 +1,207 @@
+/* Shuby Measurement Detail Page
+ * Per-measurement show page (Figma node 621:10252): header row, featured
+ * current-measurement card, percentile section header, and history list.
+ * The chart itself reuses the global .shuby-growth-chart styles.
+ */
+
+/* =====================================================
+   MEASUREMENT DETAIL PAGE
+   Per-measurement show page (Figma node 621:10252).
+   Header row, featured card, and history list live here;
+   the chart reuses the global .shuby-growth-chart styles.
+   ===================================================== */
+
+.shuby-measurement-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+}
+
+.shuby-measurement-detail-add {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-tondo);
+    background-color: var(--color-shuby-blue-800);
+    color: #fff;
+    flex-shrink: 0;
+
+    /* fill ensures the glyph paints in white; size is set by the render_svg
+       call site via `size:` so this class stays generic for any icon. */
+    svg {
+        fill: currentColor;
+    }
+
+    &:hover, &:focus-visible {
+        background-color: var(--color-shuby-blue-700);
+    }
+}
+
+/* Featured (most-recent/selected) measurement card — two-pane layout.
+   Non-interactive (no link wrapper) to keep the page focused on detail
+   reading; adding another measurement goes through the header (+) button. */
+.shuby-measurement-detail-current {
+    display: flex;
+    width: 100%;
+}
+
+.shuby-measurement-detail-current__meta {
+    flex: 1;
+    padding: var(--space-4) var(--space-2) var(--space-4) var(--space-4);
+    border-top: 1px solid var(--color-shuby-blue-300);
+    border-bottom: 1px solid var(--color-shuby-blue-300);
+    border-left: 1px solid var(--color-shuby-blue-300);
+    border-radius: var(--radius-grande) 0 0 var(--radius-grande);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-1);
+}
+
+.shuby-measurement-detail-current__title {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-measurement-detail-current__timestamp {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-gray-800);
+}
+
+.shuby-measurement-detail-current__value {
+    width: clamp(108px, 35vw, 131px);
+    flex-shrink: 0;
+    padding: var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    border-radius: 0 var(--radius-grande) var(--radius-grande) 0;
+    background-color: var(--color-shuby-blue-400);
+}
+
+.shuby-measurement-detail-current__number {
+    text-align: center;
+}
+
+.shuby-measurement-detail-current__number-value {
+    font-family: var(--font-display);
+    font-size: var(--font-size-d2);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-shuby-blue-800);
+    line-height: var(--line-height-tight);
+}
+
+.shuby-measurement-detail-current__number-unit {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-measurement-detail-current__percentile {
+    text-align: center;
+}
+
+.shuby-measurement-detail-current__percentile-value {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-btn-s);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-shuby-black);
+    line-height: var(--line-height-tight);
+}
+
+.shuby-measurement-detail-current__percentile-label {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-black);
+}
+
+/* Percentile section header — title on the left, cm/in toggle on the right.
+   Figma: nodes 621:10346 (title) + 621:10357 (toggle). */
+.shuby-measurement-detail-percentiles__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+/* History list — Figma: nodes 621:10594 / 621:10637 / 621:10642 */
+.shuby-measurement-detail-history__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+}
+
+.shuby-measurement-detail-history__edit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-tondo);
+    background-color: var(--color-shuby-blue-400);
+    color: var(--color-shuby-blue-800);
+    flex-shrink: 0;
+
+    svg {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+    }
+
+    &:hover, &:focus-visible {
+        background-color: var(--color-shuby-blue-500);
+    }
+}
+
+.shuby-measurement-detail-history__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.shuby-measurement-detail-history__row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding-block: var(--space-1);
+    border-bottom: 1px solid var(--color-shuby-blue-300);
+}
+
+.shuby-measurement-detail-history__date {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-black);
+}
+
+.shuby-measurement-detail-history__age {
+    flex: 1;
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-shuby-black);
+}
+
+.shuby-measurement-detail-history__value {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-shuby-black);
+    white-space: nowrap;
+}

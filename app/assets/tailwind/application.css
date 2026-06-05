@@ -140,6 +140,11 @@
 @import "./components/shuby/tags-badges.css" layer(components);
 @import "./components/shuby/cards.css" layer(components);
 @import "./components/shuby/cards-article.css" layer(components);
+@import "./components/shuby/cards-content.css" layer(components);
+@import "./components/shuby/cards-measurement.css" layer(components);
+@import "./components/shuby/cards-measurement-detail.css" layer(components);
+@import "./components/shuby/cards-family.css" layer(components);
+@import "./components/shuby/cards-questionnaire.css" layer(components);
 @import "./components/shuby/navigation.css" layer(components);
 @import "./components/shuby/timeline.css" layer(components);
 @import "./components/shuby/stage.css" layer(components);

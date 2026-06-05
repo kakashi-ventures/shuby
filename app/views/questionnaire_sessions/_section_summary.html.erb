@@ -1,47 +1,42 @@
 <% scope = "questionnaire_sessions.show" %>
 
-<div class="shuby-card mb-6">
+<div class="mb-6">
   <h1 class="shuby-h3 mb-2"><%= t("results_title", scope: scope) %></h1>
   <p class="shuby-p2 mb-4"><%= questionnaire.display_title %></p>
 
-  <div class="grid grid-cols-3 gap-4 mb-6">
-    <div class="text-center p-3 bg-green-50 rounded-lg">
-      <div class="shuby-h2 text-green-600"><%= session.yes_count %></div>
-      <div class="shuby-caption text-green-600"><%= t("yes", scope: scope) %></div>
-    </div>
-    <div class="text-center p-3 bg-red-50 rounded-lg">
-      <div class="shuby-h2 text-red-600"><%= session.no_count %></div>
-      <div class="shuby-caption text-red-600"><%= t("no", scope: scope) %></div>
-    </div>
-    <div class="text-center p-3 bg-gray-50 rounded-lg">
-      <div class="shuby-h2 text-gray-600"><%= session.unknown_count %></div>
-      <div class="shuby-caption text-gray-600"><%= t("unknown", scope: scope) %></div>
-    </div>
+  <% tiles = [
+       {value: session.yes_count, label: t("yes", scope: scope), variant: "verde"},
+       {value: session.no_count, label: t("no", scope: scope), variant: "blu"},
+       {value: session.unknown_count, label: t("unknown", scope: scope), variant: "grigio"}
+     ] %>
+  <div class="shuby-stat-grid mb-6">
+    <% tiles.each do |tile| %>
+      <div class="shuby-stat-tile shuby-stat-tile--<%= tile[:variant] %>">
+        <div class="shuby-stat-tile-value"><%= tile[:value] %></div>
+        <div class="shuby-stat-tile-label"><%= tile[:label] %></div>
+      </div>
+    <% end %>
   </div>
 
   <% if session.completed_at %>
-    <p class="shuby-caption text-gray-400">
+    <p class="shuby-caption text-shuby-gray-800">
       <%= t("completed_on", scope: scope, date: l(session.completed_at.to_date, format: :long)) %>
     </p>
   <% end %>
 
   <% if session.editable? %>
-    <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-      <div class="flex items-start justify-between gap-3">
-        <div class="flex-1">
-          <p class="shuby-p2-dark text-blue-800 mb-1"><%= t("can_edit", scope: scope) %></p>
-          <% if session.completed? %>
-            <p class="shuby-caption text-blue-600">
-              <%= t("edit_expires_in", scope: scope, count: session.days_until_locked) %>
-            </p>
-          <% else %>
-            <p class="shuby-caption text-blue-600"><%= t("edit_until_completed", scope: scope) %></p>
-          <% end %>
-        </div>
-        <%= link_to t("edit_button", scope: scope),
-            edit_child_questionnaire_session_path(child, session),
-            class: "shuby-btn shuby-btn-sm shuby-btn-secondary" %>
-      </div>
+    <div class="shuby-callout shuby-callout--verde shuby-callout-sm mt-4">
+      <p class="shuby-p2-dark mb-1"><%= t("can_edit", scope: scope) %></p>
+      <% if session.completed? %>
+        <p class="shuby-caption mb-3">
+          <%= t("edit_expires_in", scope: scope, count: session.days_until_locked) %>
+        </p>
+      <% else %>
+        <p class="shuby-caption mb-3"><%= t("edit_until_completed", scope: scope) %></p>
+      <% end %>
+      <%= link_to t("edit_button", scope: scope),
+          edit_child_questionnaire_session_path(child, session),
+          class: "shuby-btn shuby-btn-sm shuby-btn-secondary whitespace-nowrap" %>
     </div>
   <% end %>
 </div>

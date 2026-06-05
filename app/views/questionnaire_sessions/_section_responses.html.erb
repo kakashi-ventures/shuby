@@ -2,13 +2,12 @@
 
 <div class="shuby-card">
   <h2 class="shuby-h3 mb-4"><%= t("responses_title", scope: scope) %></h2>
-  <div class="space-y-4">
+  <div class="shuby-response-list">
     <% responses.each do |response| %>
-      <div class="flex items-start gap-3 pb-4 border-b border-gray-100 last:border-0 last:pb-0">
+      <div class="shuby-response-row">
         <%= shuby_tag(t("answer_#{response.answer}", scope: scope),
                      variant: answer_tag_variant(response.answer),
-                     size: :small,
-                     class: "flex-shrink-0") %>
+                     size: :small) %>
         <p class="shuby-p2"><%= response.question.prompt %></p>
       </div>
     <% end %>
