@@ -69,6 +69,9 @@ docs/knowledge_base/
 # Client-delivered raw content drops (parsed into db/seeds/data/*.json)
 /docs/content_4_21/
 
+# Local-only activity content (.docx source material)
+/docs/Activities/
+
 # Ruby Native (Playwright, screenshots, session data)
 .ruby_native/
 

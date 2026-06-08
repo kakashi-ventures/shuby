@@ -7,16 +7,18 @@ module Shuby
     # Reads the committed JSON fixture at db/seeds/archive_activities.json and
     # upserts ArchiveContent activity records. Idempotent on slug — re-running
     # updates title/materials/benefits/body/etc. and refreshes the ActionText
-    # body in place.
+    # body in place. Activity rows whose slug is absent from the fixture are
+    # pruned, so the JSON is the authoritative set of activities.
     #
-    # The fixture is hand-authored from a single docx in docs/content_4_21/ that
-    # holds many activities; production deploys never touch the .docx files
-    # (they are gitignored), so the committed JSON is the source of truth.
+    # The fixture is generated from docs/Activities/*.docx via
+    # `rake shuby:activities:dump`; production deploys never touch the .docx
+    # files (they are gitignored), so the committed JSON is the source of truth.
     class Seeder
       def initialize(json_path:, io: $stdout)
         @json_path = Pathname.new(json_path)
         @io = io
-        @stats = {created: 0, updated: 0, skipped: 0, failed: 0, by_age_band: Hash.new(0)}
+        @seen_slugs = []
+        @stats = {created: 0, updated: 0, deleted: 0, skipped: 0, failed: 0, by_age_band: Hash.new(0)}
       end
 
       def run
@@ -29,6 +31,7 @@ module Shuby
         @io.puts "Seeding #{records.size} activities from #{@json_path.relative_path_from(Rails.root)}…"
 
         records.each { |attrs| ingest(attrs) }
+        prune_orphans
 
         print_summary
         @stats
@@ -37,7 +40,9 @@ module Shuby
       private
 
       def ingest(attrs)
-        record = ArchiveContent.find_or_initialize_by(slug: attrs.fetch("slug"))
+        slug = attrs.fetch("slug")
+        @seen_slugs << slug
+        record = ArchiveContent.find_or_initialize_by(slug: slug)
 
         record.assign_attributes(
           title: attrs.fetch("title"),
@@ -72,9 +77,23 @@ module Shuby
         "#{attrs.fetch("min_age_months")}–#{attrs.fetch("max_age_months")} mesi"
       end
 
+      # Activities present in the DB but absent from the fixture are stale
+      # (renamed/removed source docx). Destroy them so the fixture stays the
+      # authoritative set. Scoped to content_type: :activity — articles and tips
+      # are seeded from other sources and must not be touched. Cascades to
+      # archive_favorites via dependent: :destroy. Guarded against an empty
+      # fixture so a missing/blank file never wipes the table.
+      def prune_orphans
+        return if @seen_slugs.empty?
+
+        orphans = ArchiveContent.activities.where.not(slug: @seen_slugs)
+        @stats[:deleted] = orphans.count
+        orphans.destroy_all
+      end
+
       def print_summary
         @io.puts
-        @io.puts "Done. Created #{@stats[:created]} / Updated #{@stats[:updated]} / Skipped #{@stats[:skipped]} / Failed #{@stats[:failed]}"
+        @io.puts "Done. Created #{@stats[:created]} / Updated #{@stats[:updated]} / Deleted #{@stats[:deleted]} / Skipped #{@stats[:skipped]} / Failed #{@stats[:failed]}"
         return if @stats[:by_age_band].empty?
 
         @io.puts "By age band:"

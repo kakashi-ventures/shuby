@@ -475,45 +475,10 @@ ARCHIVE_CONTENTS = [
     max_age_months: 2,
     duration_minutes: 3,
     published: true
-  },
-  # Activities
-  {
-    title: "Tummy time musicale",
-    content_type: :activity,
-    min_age_months: 0,
-    max_age_months: 6,
-    duration_minutes: 5,
-    published: true
-  },
-  {
-    title: "Massaggio mani e piedi",
-    content_type: :activity,
-    min_age_months: 0,
-    max_age_months: 12,
-    duration_minutes: 5,
-    published: true,
-    benefits: [
-      "Stimola la circolazione e la percezione corporea.",
-      "Favorisce il rilassamento e il sonno.",
-      "Rafforza il legame tra chi si prende cura e il neonato o la neonata."
-    ]
-  },
-  {
-    title: "Musica classica",
-    content_type: :activity,
-    min_age_months: 0,
-    max_age_months: 36,
-    duration_minutes: 5,
-    published: true
-  },
-  {
-    title: 'Momento "viso a viso"',
-    content_type: :activity,
-    min_age_months: 0,
-    max_age_months: 6,
-    duration_minutes: 5,
-    published: true
   }
+  # NOTE: activities are seeded separately from docs/Activities/*.docx via
+  # `shuby:activities:seed` (invoked below). Inline activity records were
+  # removed when the docx batch became the authoritative activity set.
 ].freeze
 
 puts "Seeding archive content..."
