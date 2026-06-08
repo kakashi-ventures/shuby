@@ -2,6 +2,7 @@
 
 require "test_helper"
 require "stringio"
+require "tmpdir"
 
 module Shuby
   module Activities
@@ -80,6 +81,27 @@ module Shuby
 
         assert ArchiveContent.find_by(id: article.id), "articles must survive activity pruning"
         assert ArchiveContent.find_by(id: tip.id), "tips must survive activity pruning"
+      end
+
+      # The fixture currently carries no materials/benefits/duration, so this
+      # seeds a one-record fixture with those fields populated (the parse-if-
+      # present path) to prove they map JSON → DB.
+      test "maps populated materials, benefits and duration onto the record" do
+        Dir.mktmpdir do |dir|
+          path = File.join(dir, "enriched.json")
+          File.write(path, JSON.generate([{
+            "slug" => "gioco-ricco", "title" => "Gioco ricco", "body_html" => "<p>Prova.</p>",
+            "materials" => "scatola, cuscino", "benefits" => ["Favorisce X", "Stimola Y"],
+            "min_age_months" => 12, "max_age_months" => 24, "duration_minutes" => 10,
+            "specialist" => false, "position" => 1
+          }]))
+          Shuby::Activities::Seeder.new(json_path: path, io: StringIO.new).run
+
+          activity = ArchiveContent.find_by(slug: "gioco-ricco")
+          assert_equal "scatola, cuscino", activity.materials
+          assert_equal ["Favorisce X", "Stimola Y"], activity.benefits
+          assert_equal 10, activity.duration_minutes
+        end
       end
     end
   end

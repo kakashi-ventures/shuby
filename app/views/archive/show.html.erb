@@ -91,23 +91,26 @@
           no pill) per Figma 527:23977 — uses the existing
           .shuby-reading-time-primary class instead of a tag variant.
           Activities (Figma 532:24578) show ONLY the duration — no category,
-          no age. %>
-      <div class="flex flex-wrap items-center gap-2 mb-3 pr-12">
-        <% unless @content.content_type_activity? %>
-          <% if @content.category.present? %>
-            <%= shuby_tag(@content.category, variant: :azzurro, icon: category_icon_for(@content.category)) %>
+          no age. Skip the whole row for an activity with no duration, else it
+          renders an empty gap; it reappears once a duration is parsed. %>
+      <% if !@content.content_type_activity? || @content.duration_minutes %>
+        <div class="flex flex-wrap items-center gap-2 mb-3 pr-12">
+          <% unless @content.content_type_activity? %>
+            <% if @content.category.present? %>
+              <%= shuby_tag(@content.category, variant: :azzurro, icon: category_icon_for(@content.category)) %>
+            <% end %>
+            <%= shuby_tag(@content.age_range_label, variant: :grigio) %>
           <% end %>
-          <%= shuby_tag(@content.age_range_label, variant: :grigio) %>
-        <% end %>
-        <% if @content.duration_minutes %>
-          <span class="shuby-reading-time shuby-reading-time-primary">
-            <span class="shuby-reading-time-icon">
-              <%= render_svg "shuby/icons/icon-alarm", decorative: true %>
+          <% if @content.duration_minutes %>
+            <span class="shuby-reading-time shuby-reading-time-primary">
+              <span class="shuby-reading-time-icon">
+                <%= render_svg "shuby/icons/icon-alarm", decorative: true %>
+              </span>
+              <%= @content.duration_label %>
             </span>
-            <%= @content.duration_label %>
-          </span>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% end %>
 
       <h1 class="shuby-h2 text-shuby-blue-800 mb-4"><%= @content.title %></h1>
 
