@@ -179,8 +179,56 @@ them together.
 | Skip `/reset_app` redirect for `native_app?` | `authentication.rb` | Keep — `/reset_app` is Hotwire-Native-specific; Ruby Native doesn't intercept it |
 | Skip `:native` view variant when `!user_signed_in?` | `device_format.rb` | Keep — unrelated to interceptor; landing page needs standard navbar |
 
+---
+
+# Jumpstart Pro divergences
+
+Not third-party *bugs* — intentional edits to vendored Jumpstart Pro code where its
+multi-tenant/team assumptions collide with Shuby's effectively single-account-per-user
+model. The `app/` copies shadow `lib/jumpstart/`, so these survive a Jumpstart re-sync
+silently. **Revisit on every Jumpstart Pro re-sync** (e.g. `e9b08bff "replace
+lib/jumpstart/ with upstream Jumpstart Pro"`) so the divergence is reconciled, not lost.
+
+## [OPEN] "child disappeared after editing profile / switching language" guards
+
+**Bug.** A legacy user owns a `personal:false` account holding their child (registered
+while the app was in team mode). The app now runs in personal/both mode, so the first
+profile edit fired Jumpstart's name-change callback, which minted an empty `personal:true`
+account; `fallback_account` (ordering `personal: :desc`) then preferred the empty account
+and the child vanished from the dashboard. Trigger was a phantom `last_name` `NULL → ""`
+change posted by the profile form, even when only the language was changed.
+
+**Three Shuby edits diverge from upstream Jumpstart:**
+
+1. `app/models/user.rb` — `normalizes :first_name, :last_name` collapses blank to `nil`
+   (`.presence`), so re-submitting an empty field over `NULL` is not a dirty change.
+2. `app/models/user/accounts.rb` — `sync_personal_account_name` only syncs an EXISTING
+   personal account's name; the upstream `personal_account.nil? → create_default_account`
+   branch (which minted the stray) was removed.
+3. `app/controllers/concerns/set_current_request_details.rb` — `fallback_account` prefers
+   an account holding an active child before the upstream `personal: :desc, created_at:`
+   ordering. Safety net so a stranded user still resolves to their child's account.
+
+**Data heal.** `lib/tasks/accounts_reconcile.rake` (`bin/rails accounts:reconcile`,
+`APPLY=1` to act) collapses each user to one canonical owned account and destroys only
+provably-empty stray owned accounts.
+
+**Remove / reconcile when.** Decide Shuby's account mode deliberately (team vs personal —
+currently `account_types: "both"`). If a future Jumpstart sync reorders/removes these, the
+regression tests catch it: `test/models/user_test.rb` (normalize + no-account-on-language-
+change), `test/controllers/dashboard_controller_test.rb` (child-aware fallback). Re-run
+both after any Jumpstart re-sync.
+
+**Caveat.** Child-aware `fallback_account` keys off account *membership*, so a future
+multi-account user (premium caregiver sharing, deferred per DEC-004) could be routed toward
+a shared child-bearing account on login. Acceptable for v1 (single owned account per user);
+pin the active account explicitly when caregiver sharing ships.
+
+---
+
 ## Revisit cadence
 
 - On every `bundle update ruby_native`
 - On every major iOS WebKit release (observed bugs may change with WKWebView updates)
 - On every Shuby release preparing for App Store submission
+- On every Jumpstart Pro re-sync (see "Jumpstart Pro divergences" above)

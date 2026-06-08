@@ -23,6 +23,9 @@ class User < ApplicationRecord
 
   scope :admins, -> { where(admin: true) }
 
-  # Normalize text fields to strip whitespace
-  normalizes :first_name, :last_name, with: ->(value) { value.is_a?(String) ? value.strip.squeeze(" ") : value }
+  # Normalize text fields: strip whitespace and collapse blank to nil so that a
+  # form re-submitting an empty field over a NULL value is not a dirty change.
+  # (A phantom NULL -> "" change used to fire sync_personal_account_name and mint
+  # a stray personal account — see app/models/user/accounts.rb.)
+  normalizes :first_name, :last_name, with: ->(value) { value.is_a?(String) ? value.strip.squeeze(" ").presence : value }
 end

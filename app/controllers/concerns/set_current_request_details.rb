@@ -40,9 +40,19 @@ module SetCurrentRequestDetails
     current_user.accounts.includes(:payment_processor, :users).find_by(id: account_id)
   end
 
-  # Returns an account sorting by personal accounts and oldest account first
+  # Returns the account to render when none was explicitly selected.
+  #
+  # Shuby divergence from upstream Jumpstart: prefer the account that actually
+  # holds an active child before falling back to the personal/oldest ordering.
+  # This is the safety net for the "child disappeared" bug — a user stranded on
+  # an empty personal account still resolves to the account with their child.
+  # See docs/UPSTREAM-ISSUES.md.
   def fallback_account
     return unless user_signed_in?
-    current_user.accounts.includes(:payment_processor, :users).order(personal: :desc, created_at: :asc).first || current_user.create_default_account
+
+    accounts = current_user.accounts.includes(:payment_processor, :users)
+    accounts.joins(:children).where(children: {active: true}).order(created_at: :asc).first ||
+      accounts.order(personal: :desc, created_at: :asc).first ||
+      current_user.create_default_account
   end
 end

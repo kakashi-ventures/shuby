@@ -25,13 +25,12 @@ module User::Accounts
   def sync_personal_account_name
     return unless first_name_previously_changed? || last_name_previously_changed?
 
-    # Accepting an invitation calls this when the user's name is updated
-    if personal_account.nil?
-      create_default_account
-      reload_personal_account
-    else
-      # Sync the personal account name with the user's name
-      personal_account.update(name: name)
-    end
+    # Shuby divergence from upstream Jumpstart: only sync an EXISTING personal
+    # account's name — never create one here. Legacy users registered in team
+    # mode own a personal:false account and have no personal account; the
+    # upstream `create_default_account` branch minted an empty personal account
+    # on any name change, which fallback_account then preferred, hiding their
+    # child. See docs/UPSTREAM-ISSUES.md.
+    personal_account&.update(name: name)
   end
 end

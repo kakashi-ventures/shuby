@@ -6,6 +6,12 @@ class OnboardingControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
     @account = @user.personal_account
+    # Isolate onboarding to the personal account. users(:one) also belongs to
+    # :company (which has children); a real first-time-onboarding user has only
+    # their own account, and without this the child-aware fallback_account would
+    # resolve to :company. switch_account can't pin it here because
+    # require_onboarding_completed redirects the switch request itself.
+    @user.account_users.where.not(account: @account).destroy_all
     # Clean up any existing family profile and children
     @account.family_profile&.destroy
     @account.children.destroy_all
