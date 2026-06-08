@@ -52,11 +52,13 @@ module SettingsHelper
     end
   end
 
-  # Toggle row — auto-submits a single-attribute boolean form to
-  # settings_privacy_path. Reuses the project convention of an sr-only
-  # checkbox inside .shuby-toggle whose onchange calls requestSubmit().
-  def settings_toggle_row(label:, attribute:, model: current_user)
-    form_with(model: model, url: settings_privacy_path, method: :patch, html: {class: "shuby-settings-row"}) do |form|
+  # Toggle row — auto-submits a single-attribute boolean form. Defaults to
+  # settings_privacy_path (the configuration-tab toggles); pass url: to point a
+  # toggle at a different settings endpoint (e.g. settings_pdf_path). Reuses the
+  # project convention of an sr-only checkbox inside .shuby-toggle whose onchange
+  # calls requestSubmit().
+  def settings_toggle_row(label:, attribute:, model: current_user, url: settings_privacy_path)
+    form_with(model: model, url: url, method: :patch, html: {class: "shuby-settings-row"}) do |form|
       concat tag.span(label, class: "shuby-settings-row__label")
       concat(tag.label(class: "shuby-toggle shrink-0") do
         concat form.check_box(attribute, class: "sr-only", onchange: "this.form.requestSubmit()")

@@ -59,4 +59,14 @@ class StageReportsControllerTest < ActionDispatch::IntegrationTest
     get child_stage_report_path(@child, "sett_1")
     assert_response :not_found
   end
+
+  # === Question-detail toggle (PDF preferences) ===
+
+  test "still streams a PDF with question detail disabled" do
+    @user.update!(pdf_stage_question_details: false)
+    get child_stage_report_path(@child, "sett_1")
+    assert_response :success
+    assert_equal "application/pdf", response.content_type
+    assert response.body.start_with?("%PDF")
+  end
 end

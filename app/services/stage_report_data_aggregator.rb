@@ -7,13 +7,14 @@
 # structure the PDF service renders. One entry per development area available
 # at the band, each carrying its questions and the child's answers.
 class StageReportDataAggregator
-  def self.call(child, band)
-    new(child, band).call
+  def self.call(child, band, include_question_details: true)
+    new(child, band, include_question_details).call
   end
 
-  def initialize(child, band)
+  def initialize(child, band, include_question_details = true)
     @child = child
     @band = band
+    @include_question_details = include_question_details
   end
 
   def call
@@ -52,8 +53,16 @@ class StageReportDataAggregator
       yes_count: session&.yes_count || 0,
       no_count: session&.no_count || 0,
       unknown_count: session&.unknown_count || 0,
-      questions: questions_for(questionnaire, session)
+      questions: questions_for_area(questionnaire, session)
     }
+  end
+
+  # Per-question detail is opt-out via the parent's PDF preferences. The summary
+  # counts above come straight from the session, so omitting questions hides
+  # only the detailed answer table — the yes/no/incerto summary still renders.
+  def questions_for_area(questionnaire, session)
+    return [] unless @include_question_details
+    questions_for(questionnaire, session)
   end
 
   def status_for(questionnaire, session)

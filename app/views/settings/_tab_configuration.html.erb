@@ -8,6 +8,13 @@
 
 <%= render "settings/section_notifications" %>
 <%= render "settings/section_account_rows" %>
+
+<%= settings_section_group(title: t("settings.show.configuration.reports.heading")) do %>
+  <%= settings_row(
+        label: t("settings.show.configuration.reports.pdf"),
+        href: settings_pdf_path) %>
+<% end %>
+
 <%= render "settings/section_security" %>
 
 <%= settings_button_row(

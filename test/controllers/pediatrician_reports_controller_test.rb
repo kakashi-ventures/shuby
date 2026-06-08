@@ -57,4 +57,25 @@ class PediatricianReportsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal "application/pdf", response.content_type
   end
+
+  # === Section selection (PDF preferences) ===
+
+  test "still streams a PDF when the parent deselects some sections" do
+    @user.update!(pdf_pediatrician_measurements: false, pdf_pediatrician_notes: false)
+    get child_pediatrician_report_path(@child)
+    assert_response :success
+    assert_equal "application/pdf", response.content_type
+    assert response.body.start_with?("%PDF")
+  end
+
+  test "still streams a header-only PDF when every optional section is off" do
+    User::ReportPreferences::PEDIATRICIAN_SECTIONS.each do |section|
+      @user.public_send(:"pdf_pediatrician_#{section}=", false)
+    end
+    @user.save!
+
+    get child_pediatrician_report_path(@child)
+    assert_response :success
+    assert response.body.start_with?("%PDF")
+  end
 end

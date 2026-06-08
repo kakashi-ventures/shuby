@@ -1,0 +1,42 @@
+<%# Settings → Report PDF. Drill-in from the configuration tab: the parent
+    toggles which sections appear in the PDFs they share with the pediatrician.
+    Each toggle auto-submits to settings_pdf_path (see settings_toggle_row). %>
+<% Current.meta_tags.set(title: t(".title")) %>
+<% content_for :hide_navbar, true %>
+<% content_for :page_type, "detail" %>
+
+<div class="container mx-auto px-4 pb-24">
+  <div class="shuby-sticky-header shuby-settings-sticky-header">
+    <div class="shuby-container">
+      <%= render "shared/ui/back_link",
+            path: settings_path(tab: "configuration"),
+            label: t("settings.show.title"),
+            size: "sm" %>
+      <%= render "shared/ui/page_header", title: t(".title"), title_class: "shuby-h3" %>
+    </div>
+  </div>
+
+  <p class="shuby-p2 text-gray-600 mb-6"><%= t(".intro") %></p>
+
+  <%= settings_section_group(title: t(".growth.heading")) do %>
+    <% User::ReportPreferences::PEDIATRICIAN_SECTIONS.each do |section| %>
+      <%= settings_toggle_row(
+            label: t(".growth.sections.#{section}"),
+            attribute: :"pdf_pediatrician_#{section}",
+            url: settings_pdf_path) %>
+    <% end %>
+  <% end %>
+
+  <%= settings_section_group(title: t(".stage.heading")) do %>
+    <%= settings_toggle_row(
+          label: t(".stage.question_details"),
+          attribute: :pdf_stage_question_details,
+          url: settings_pdf_path) %>
+  <% end %>
+
+  <p class="shuby-p2 text-gray-500"><%= t(".identity_note") %></p>
+</div>
+
+<% content_for :bottom_nav do %>
+  <%= render "shared/shuby_bottom_nav", active: "settings" %>
+<% end %>

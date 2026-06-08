@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       resource :privacy, only: [:show, :update], controller: "privacy" do
         post :export, on: :member
       end
+      resource :pdf, only: [:show, :update], controller: "pdf"
     end
     resources :child_selections, only: [:update]
   end

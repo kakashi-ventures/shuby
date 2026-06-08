@@ -69,6 +69,8 @@ class PediatricianReportPdf
   end
 
   def render_general_info(pdf)
+    return unless @data.key?(:general_info)
+
     info = @data[:general_info]
     return if info.empty?
 
@@ -102,6 +104,8 @@ class PediatricianReportPdf
   end
 
   def render_measurements(pdf)
+    return unless @data.key?(:measurements)
+
     section_heading(pdf, t("sections.measurements"))
     measurements = @data[:measurements]
 
@@ -154,6 +158,8 @@ class PediatricianReportPdf
   end
 
   def render_development(pdf)
+    return unless @data.key?(:development)
+
     section_heading(pdf, t("sections.development"))
     dev = @data[:development]
 
@@ -194,6 +200,8 @@ class PediatricianReportPdf
   end
 
   def render_questionnaires(pdf)
+    return unless @data.key?(:questionnaires)
+
     section_heading(pdf, t("sections.questionnaires"))
     sessions = @data[:questionnaires]
 
@@ -236,6 +244,8 @@ class PediatricianReportPdf
   end
 
   def render_questions(pdf)
+    return unless @data.key?(:pediatrician_questions)
+
     section_heading(pdf, t("sections.questions"))
     questions = @data[:pediatrician_questions]
 
@@ -267,6 +277,8 @@ class PediatricianReportPdf
   end
 
   def render_notes(pdf)
+    return unless @data.key?(:notes)
+
     notes = @data[:notes]
     return unless notes.present?
 

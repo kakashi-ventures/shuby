@@ -194,4 +194,37 @@ class ReportDataAggregatorTest < ActiveSupport::TestCase
     result = ReportDataAggregator.call(child)
     assert_empty result[:pediatrician_questions]
   end
+
+  # === Section selection (PDF preferences) ===
+
+  test "defaults to all selectable sections plus the header" do
+    result = ReportDataAggregator.call(@child)
+    expected = (%i[header] + ReportDataAggregator::SELECTABLE_SECTIONS).sort
+    assert_equal expected, result.keys.sort
+  end
+
+  test "includes only the requested sections plus the always-on header" do
+    result = ReportDataAggregator.call(@child, sections: %i[measurements notes])
+    assert_equal %i[header measurements notes].sort, result.keys.sort
+  end
+
+  test "omits deselected section keys entirely" do
+    result = ReportDataAggregator.call(@child, sections: [:notes])
+    assert result.key?(:header)
+    assert result.key?(:notes)
+    assert_not result.key?(:measurements)
+    assert_not result.key?(:development)
+    assert_not result.key?(:pediatrician_questions)
+  end
+
+  test "keeps only the header when no sections are selected" do
+    result = ReportDataAggregator.call(@child, sections: [])
+    assert_equal [:header], result.keys
+  end
+
+  test "accepts string section keys" do
+    result = ReportDataAggregator.call(@child, sections: ["notes"])
+    assert result.key?(:notes)
+    assert_not result.key?(:measurements)
+  end
 end

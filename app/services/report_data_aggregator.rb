@@ -1,29 +1,48 @@
 # frozen_string_literal: true
 
 class ReportDataAggregator
-  def self.call(child)
-    new(child).call
+  # Optional report sections the parent can include/omit via their PDF
+  # preferences. Header is structural and always present. Must stay in sync
+  # with User::ReportPreferences::PEDIATRICIAN_SECTIONS (guarded by a test).
+  SELECTABLE_SECTIONS = %i[
+    general_info
+    measurements
+    development
+    questionnaires
+    pediatrician_questions
+    notes
+  ].freeze
+
+  def self.call(child, sections: SELECTABLE_SECTIONS)
+    new(child, sections).call
   end
 
-  def initialize(child)
+  def initialize(child, sections = SELECTABLE_SECTIONS)
     @child = child
+    @sections = sections.map(&:to_sym)
     @health_profile = child.health_profile
     @family_profile = child.account.family_profile
   end
 
+  # Header is always included; every other key is added only when the section
+  # is in the allowlist, so the PDF service can skip absent sections entirely
+  # (rather than rendering an empty "no data" block for a deselected one).
   def call
-    {
-      header: header_data,
-      general_info: general_info_data,
-      measurements: measurements_data,
-      development: development_data,
-      questionnaires: questionnaires_data,
-      pediatrician_questions: @child.pediatrician_questions.ordered.pluck(:body),
-      notes: @child.notes
-    }
+    data = {header: header_data}
+    data[:general_info] = general_info_data if include?(:general_info)
+    data[:measurements] = measurements_data if include?(:measurements)
+    data[:development] = development_data if include?(:development)
+    data[:questionnaires] = questionnaires_data if include?(:questionnaires)
+    data[:pediatrician_questions] = @child.pediatrician_questions.ordered.pluck(:body) if include?(:pediatrician_questions)
+    data[:notes] = @child.notes if include?(:notes)
+    data
   end
 
   private
+
+  def include?(section)
+    @sections.include?(section)
+  end
 
   def header_data
     {

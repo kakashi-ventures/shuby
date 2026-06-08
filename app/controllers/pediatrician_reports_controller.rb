@@ -7,7 +7,7 @@ class PediatricianReportsController < ApplicationController
   before_action :set_child
 
   def show
-    data = ReportDataAggregator.call(@child)
+    data = ReportDataAggregator.call(@child, sections: current_user.pdf_pediatrician_sections)
     pdf = PediatricianReportPdf.call(data)
     filename = "shuby-report-#{@child.display_name.parameterize}-#{Date.current}.pdf"
 

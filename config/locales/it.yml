@@ -240,6 +240,9 @@ it:
           email: "Email"
           password: "Cambia Password"
           language: "Lingua"
+        reports:
+          heading: "Report"
+          pdf: "Contenuti dei report PDF"
         security:
           heading: "Sicurezza e documenti legali"
           terms: "Termini e Condizioni"
@@ -287,6 +290,26 @@ it:
       update:
         updated: "Preferenze aggiornate."
         invalid: "Impossibile aggiornare le preferenze. Verifica i valori inseriti."
+    pdf:
+      show:
+        title: "Report PDF"
+        intro: "Scegli quali sezioni includere nei PDF che condividi con il pediatra. Le preferenze valgono per tutti i tuoi bambini."
+        growth:
+          heading: "Report di crescita"
+          sections:
+            general_info: "Informazioni generali"
+            measurements: "Misurazioni di crescita"
+            development: "Tappe di sviluppo"
+            questionnaires: "Questionari completati"
+            pediatrician_questions: "Domande per il pediatra"
+            notes: "Note libere"
+        stage:
+          heading: "Report di tappa"
+          question_details: "Dettaglio delle risposte"
+        identity_note: "I dati identificativi del bambino sono sempre inclusi."
+      update:
+        updated: "Preferenze PDF aggiornate."
+        invalid: "Impossibile aggiornare le preferenze."
 
   shuby_chats:
     destroy:

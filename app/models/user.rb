@@ -10,6 +10,7 @@ class User < ApplicationRecord
   include User::Notifiable
   include User::Onboarding
   include User::Profile
+  include User::ReportPreferences
   include User::Searchable
   include User::Theme
 

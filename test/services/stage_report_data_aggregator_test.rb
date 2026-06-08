@@ -54,6 +54,27 @@ class StageReportDataAggregatorTest < ActiveSupport::TestCase
     assert_equal DevelopmentArea.count, data[:areas].size
   end
 
+  # === Question-detail toggle (PDF preferences) ===
+
+  test "includes per-question detail by default" do
+    data = StageReportDataAggregator.call(@child, @band)
+    area = area_named(data, development_areas(:comunicazione).name)
+    assert_equal 3, area[:questions].size
+  end
+
+  test "omits question detail but keeps the summary when disabled" do
+    data = StageReportDataAggregator.call(@child, @band, include_question_details: false)
+    area = area_named(data, development_areas(:comunicazione).name)
+
+    assert_empty area[:questions], "detailed answers should be dropped"
+    # Summary counts come from the session, not the questions array, so they
+    # survive the toggle.
+    assert_equal :completed, area[:status]
+    assert_equal 2, area[:yes_count]
+    assert_equal 1, area[:unknown_count]
+    assert_not_nil area[:completed_at]
+  end
+
   private
 
   def area_named(data, name)

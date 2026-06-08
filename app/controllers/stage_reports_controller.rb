@@ -12,7 +12,8 @@ class StageReportsController < ApplicationController
   before_action :set_band
 
   def show
-    data = StageReportDataAggregator.call(@child, @band)
+    data = StageReportDataAggregator.call(@child, @band,
+      include_question_details: current_user.pdf_stage_question_details)
     pdf = StageReportPdf.call(data)
 
     send_data pdf,
