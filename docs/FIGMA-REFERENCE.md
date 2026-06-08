@@ -37,6 +37,7 @@
 | Questionnaire overlay — Q2 | `499:5511` | 07.01_Test_01 (Domanda 2, area-specific illustration) |
 | Questionnaire overlay — Q3 | `499:5540` | 07.01_Test_01 (Domanda 3, area-specific illustration) |
 | Questionnaire overlay — completion | `499:5853` | 07.01_Test_01 (Tappa completata, verde-scuro-500 bg) |
+| Login | `2524:10888` | Login (frame "iPhone 13 & 14 - 14") |
 
 ## Components (design system)
 
@@ -58,6 +59,28 @@ Colors section, Typography section, plus:
 | Menu | `198:3262` |
 
 ## Sub-nodes (detailed screen breakdowns)
+
+### Login (`2524:10888`)
+
+Full-bleed `blu-300` (#E5F2FF) pre-auth screen. Top → bottom:
+
+| Element | nodeId | Maps to (code) |
+|---------|--------|----------------|
+| Logo (color, pink "Shuby") | `2524:10921` | `shuby_logo` helper → `shuby_logo.png` |
+| Cloud mascot (197×187, transparent) | `2524:11021` | `mascot-cloud-smile` asset (exported from this node) |
+| Email field | `2524:10945` (Form `220:2532`) | `.shuby-form-input-underline` |
+| Password field | `2524:10955` (Form `220:2532`) | `.shuby-form-input-underline` |
+| Button row | `2524:11018` | `.shuby-auth-actions` flex row |
+| — "Accedi" pill | `2524:10962` | `.shuby-btn .shuby-btn-primary .shuby-btn-lg` |
+| — Round Face-ID button | `2524:10968` (Round Button `159:915`) | `.shuby-icon-btn` (48px) + `icon-face-id.svg` |
+| Sign-up link | `2524:10965` | text link, blu-800 |
+| Forgot-password link | `2524:10966` | text link, blu-800 |
+| Confirmation-instructions link | `2524:10967` | text link, blu-800 |
+| Background blobs ×3 | `2524:11033` / `:10898` / `:10896` | `.shuby-auth-background` CSS circles |
+
+**Tokens**: bg `blu-300`; field underline `blu-700` (#3B83CF); button + links
+`blu-800`; label Overline 10px/600/uppercase; input Body-P1 14px regular;
+button Button-L 20px/600. The cream blob (`2524:10896`) uses `mix-blend-hue`.
 
 ## Prototype REST API helper
 

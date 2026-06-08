@@ -97,6 +97,8 @@ Items surfaced by `/shuby-review` after the Figma 06.01_Gestione redesign
   - [x] Chat (AI Helper)
   - [x] Measurements — type-picker overlay added (Figma `463:5785` empty / `463:5995` with data / `795:8492`); global `+` on tab heading + detail header opens picker; picker reuses `_measurement_box` driven by `MeasurementDashboardService.picker_boxes` (returns 4 boxes including feeding_weight); detail header `+` replaced same-type-direct flow per design intent
   - [ ] Onboarding
+  - [x] Login (Figma `2524:10888`) — full-bleed redesign on a new `auth` layout: underline fields + pill "Accedi" + round Face-ID button + cloud mascot + decorative blobs, all reusing existing `shuby/*` design-system classes (`.shuby-form-input-underline`, `.shuby-btn-primary`, `.shuby-icon-btn`)
+  - [ ] Auth siblings (register / password reset / confirmation / unlock) — restyle to the new full-bleed login look; still on `minimal` + `devise/shared/_form_block`. Needs Figma per page.
   - [x] Child Profile
   - [x] Child Selector — Figma `220:2341` + `315:3672` audit; chrome refactored into shared `.shuby-bottom-sheet-*` (new `bottom-sheet.css` + `bottom_sheet_controller.js`) covering child-selector + measurement form + measurement picker; sheet bg → blu-500, drag handle → 146×6 black per Figma, footer-actions gap → space-4, pill stack gap → 2px, "Gestione account" element swapped from `.shuby-tag-outline` to canonical `.shuby-btn .shuby-btn-outline-dark .shuby-btn-sm` (Figma "Type=Outline, Colore=Nero"). System tests updated to use identifier-scoped target selectors (form/picker share `.shuby-bottom-sheet--open` so disambiguation needs `[data-<identifier>-overlay-target='overlay']`). Stimulus inheritance attempted then dropped — CSS extraction is what guarantees parity.
   - [x] Settings
@@ -132,6 +134,7 @@ Items surfaced by `/shuby-review` after the Figma 06.01_Gestione redesign
 - [ ] Advanced insights / predictive insights (Phase 2)
 - [ ] Pre/post feeding weight premium gating
 - [ ] Premium PDF report enhancements (evolved layout, annual summary, auto-diary)
+- [ ] Biometric login (Face ID / Touch ID) via WebAuthn/passkeys — the login round Face-ID button currently triggers iOS Password AutoFill (associated domains already configured in `config/ruby_native.yml`); true tap-to-authenticate needs a passkey credential flow (backend `webauthn` + `navigator.credentials`). WKWebView supports passkeys with the configured associated domains.
 
 ## Decisions Needing Client Confirmation
 

@@ -1,0 +1,17 @@
+<%# Centered text links under the login form (Figma 2524:10965/66/67).
+    All blu-800 Button-S. Recoverable/confirmable guarded so the routes only
+    render when those Devise modules are enabled. %>
+<nav class="shuby-auth-links" aria-label="<%= t("devise.sessions.new.title") %>">
+  <%= link_to t("devise.sessions.new.sign_up_prompt"),
+        new_registration_path(resource_name), class: "shuby-auth-link" %>
+
+  <% if devise_mapping.recoverable? %>
+    <%= link_to t("devise.shared.links.forgot_your_password"),
+          new_password_path(resource_name), class: "shuby-auth-link" %>
+  <% end %>
+
+  <% if devise_mapping.confirmable? %>
+    <%= link_to t("devise.shared.links.didn_t_receive_confirmation_instructions"),
+          new_confirmation_path(resource_name), class: "shuby-auth-link" %>
+  <% end %>
+</nav>

@@ -1,0 +1,14 @@
+<%# Login submit + round Face-ID quick-login. Rendered inside the form (local f)
+    so the pill submits and the round button can trigger iOS credential AutoFill.
+    Figma button row 2524-11018 (Accedi 2524-10962 + Round Button 2524-10968). %>
+<div class="shuby-auth-actions">
+  <%= f.submit t("devise.sessions.new.sign_in"),
+        class: "shuby-btn shuby-btn-primary shuby-btn-lg shuby-auth-submit",
+        data: native_haptic_data(:success) %>
+
+  <button type="button" class="shuby-icon-btn shuby-auth-faceid"
+          data-action="biometric-login#prompt"
+          aria-label="<%= t("devise.sessions.new.face_id_label") %>">
+    <%= render_svg "shuby/icons/icon-face-id", size: :lg, decorative: true %>
+  </button>
+</div>

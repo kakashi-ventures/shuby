@@ -106,6 +106,10 @@ it:
         sign_up_html: "Oppure %{link}"
         sign_in: "Accedi"
         title: "Accedi"
+        email_placeholder: "mail@esempio.com"
+        password_placeholder: "La tua password"
+        sign_up_prompt: "Non hai ancora un account? Registrati"
+        face_id_label: "Accedi con i dati salvati"
       signed_in: "Accesso effettuato con successo."
       signed_out: "Disconnessione effettuata con successo."
     shared:

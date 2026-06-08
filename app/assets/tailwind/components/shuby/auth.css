@@ -1,0 +1,169 @@
+/* Shuby Auth — Login screen (Figma 2524:10888)
+ *
+ * Full-bleed blu-300 page with the cloud mascot, underline fields (reused
+ * .shuby-form-* / Form component 220:2532), a pill "Accedi" + round Face-ID
+ * button (reused .shuby-btn-primary / .shuby-icon-btn), centered text links,
+ * and three decorative background blobs. Used only by the "auth" layout
+ * (Users::SessionsController#new). Coordinates derived from the 390×844 frame.
+ */
+
+/* Body + page fill blu-300 so the colour reaches the iOS status-bar area. */
+.shuby-auth-body {
+  background-color: var(--color-shuby-blue-300);
+}
+
+.shuby-auth-page {
+  position: relative;
+  isolation: isolate; /* contain the blob mix-blend-mode to this surface */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100dvh;
+  overflow: hidden; /* clip blobs that bleed past the edges */
+  background-color: var(--color-shuby-blue-300);
+  padding-inline: var(--space-5); /* 20px side gutters → 350px content in 390 */
+  padding-top: max(60px, calc(env(safe-area-inset-top) + var(--space-6)));
+  padding-bottom: max(var(--space-8), calc(env(safe-area-inset-bottom) + var(--space-4)));
+}
+
+/* =====================================================
+   DECORATIVE BACKGROUND BLOBS (Figma ellipses 2524:11033/10898/10896)
+   ===================================================== */
+
+.shuby-auth-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.shuby-auth-blob {
+  position: absolute;
+  border-radius: 50%;
+}
+
+/* Blu 500 — large, lower-left, behind everything (Ellipse 58) */
+.shuby-auth-blob-blu {
+  width: 394px;
+  height: 394px;
+  left: -268px;
+  bottom: -98px;
+  background-color: var(--color-shuby-blue-500);
+}
+
+/* Giallo 400 — mid-right, blends with the page (Ellipse 59, mix-blend hue) */
+.shuby-auth-blob-giallo {
+  width: 285px;
+  height: 285px;
+  right: -108px;
+  bottom: 123px;
+  background-color: var(--color-shuby-giallo-400);
+  mix-blend-mode: hue;
+}
+
+/* Magenta 300 — bottom, peeking in (Ellipse 60) */
+.shuby-auth-blob-magenta {
+  width: 285px;
+  height: 285px;
+  left: 32px;
+  bottom: -185px;
+  background-color: var(--color-shuby-magenta-300);
+}
+
+/* =====================================================
+   CONTENT COLUMN
+   ===================================================== */
+
+.shuby-auth-card {
+  position: relative;
+  z-index: 1; /* above the blobs */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 350px;
+}
+
+.shuby-auth-mascot {
+  width: 100%;
+  max-width: 197px;
+  height: auto;
+  margin-top: var(--space-8); /* logo → mascot */
+}
+
+.shuby-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10); /* 40px between field groups (Figma) */
+  width: 100%;
+  margin-top: var(--space-5); /* mascot → first field */
+}
+
+/* Underline fields are bottom-border only. @tailwindcss/forms adds a focus
+   box-shadow ring (visible on the autofocused email field since the input has
+   no border) — suppress it and show focus via a darker underline instead. */
+.shuby-auth-card .shuby-form-input-underline:focus,
+.shuby-auth-card .shuby-form-input-underline:focus-visible {
+  box-shadow: none;
+  outline: none;
+}
+
+.shuby-auth-card .shuby-form-input-wrapper:focus-within {
+  border-bottom-color: var(--color-shuby-blue-800);
+}
+
+/* =====================================================
+   ACTIONS ROW — pill submit + round Face-ID button
+   ===================================================== */
+
+.shuby-auth-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Figma button-row gap */
+  width: 100%;
+  margin-top: var(--space-10); /* password → actions */
+}
+
+/* Reuse .shuby-btn-primary .shuby-btn-lg; only the height/width differ from
+   the design-system default (Figma: 199px wide, 48px tall, min 150px). */
+.shuby-auth-submit {
+  flex: 0 1 199px;
+  min-width: 150px;
+  padding-block: 9px; /* 20px×1.5 + 9+9 = 48px tall */
+}
+
+/* Round Face-ID button: .shuby-icon-btn is blu-800/white at 40px; Figma is 48px. */
+.shuby-auth-faceid {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+}
+
+/* =====================================================
+   TEXT LINKS (Figma 2524:10965/66/67 — blu-800 Button-S, centered)
+   ===================================================== */
+
+.shuby-auth-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  width: 100%;
+  margin-top: var(--space-8);
+  text-align: center;
+}
+
+.shuby-auth-link {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-btn-s); /* 16px */
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  color: var(--color-shuby-blue-800);
+  text-decoration: none;
+
+  &:active {
+    color: var(--color-shuby-blue-700);
+  }
+}

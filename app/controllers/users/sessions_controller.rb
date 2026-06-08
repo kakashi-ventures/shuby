@@ -48,4 +48,14 @@ class Users::SessionsController < Devise::SessionsController
   def clear_otp_user_from_session
     session.delete(:otp_user_id)
   end
+
+  private
+
+  # The login form uses the full-bleed "auth" layout (Figma 2524:10888).
+  # create/otp fall back to the shared devise "minimal" layout via super.
+  def set_layout
+    return super if turbo_frame_request?
+
+    (action_name == "new") ? "auth" : super
+  end
 end

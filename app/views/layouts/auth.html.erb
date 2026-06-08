@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html class="<%= class_names("hotwire-native": hotwire_native_app?) %>" lang="<%= I18n.locale %>" data-theme="shuby">
+  <head>
+    <%# Guard against the iOS Turbo-visit layout-swap freeze (see stories/onboarding layouts). %>
+    <%= tag.meta(name: "turbo-visit-control", content: "reload") if hotwire_native_app? %>
+    <%= render "head" %>
+  </head>
+
+  <body class="shuby-auth-body" data-controller="theme" data-theme-preference-value="shuby" data-page-type="<%= page_transition_type %>" <%= 'data-turbo-prefetch="false"'.html_safe if hotwire_native_app? %>>
+    <%= impersonation_banner %>
+    <%= render "flash" %>
+
+    <main class="shuby-auth-page">
+      <%= render "devise/sessions/auth_background" %>
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </main>
+  </body>
+</html>
