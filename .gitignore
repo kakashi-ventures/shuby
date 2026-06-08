@@ -72,6 +72,9 @@ docs/knowledge_base/
 # Local-only activity content (.docx source material)
 /docs/Activities/
 
+# Local-only parenting-tip content (.docx source material)
+/docs/Tips/
+
 # Ruby Native (Playwright, screenshots, session data)
 .ruby_native/
 
