@@ -1,23 +1,17 @@
-<%# All complete state - all milestones for current age range done %>
-<div class="bg-shuby-giallo-400 rounded-2xl p-4">
-  <div class="flex items-center gap-3">
-    <%# Success icon %>
-    <div class="w-10 h-10 rounded-full bg-white/50 flex items-center justify-center shrink-0">
-      <svg class="w-5 h-5 text-yellow-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    </div>
-    <%# Message %>
-    <div class="flex-1 min-w-0">
-      <%# Title — Figma: Body/P1/Dark (14 Semi-Bold, black default) %>
-      <h3 class="shuby-p1-dark">
-        <%= t("dashboard.milestone_box.all_complete_title") %>
-      </h3>
-      <%# Subtitle — Figma: Body/P2/Light (12 Regular, gray-700 default) %>
-      <p class="shuby-p2">
-        <%= t("dashboard.milestone_box.all_complete_subtitle", band: child.current_age_band&.label) %>
-      </p>
-    </div>
+<%# All complete state — all milestones for the current age range done.
+    Styling lives in .shuby-milestone-allcomplete* (stage.css). %>
+<div class="shuby-milestone-allcomplete">
+  <%# Success icon — white disc, teal glyph (color via .shuby-milestone-allcomplete-icon) %>
+  <div class="shuby-milestone-allcomplete-icon">
+    <%= render_svg "shuby/icons/icon-heart-filled", size: :md, decorative: true %>
+  </div>
+  <%# Message — typography from shuby-p1-dark / shuby-p2, recolored white by the parent %>
+  <div class="shuby-milestone-allcomplete-text">
+    <h3 class="shuby-p1-dark">
+      <%= t("dashboard.milestone_box.all_complete_title") %>
+    </h3>
+    <p class="shuby-p2">
+      <%= t("dashboard.milestone_box.all_complete_subtitle", band: child.current_age_band&.label) %>
+    </p>
   </div>
 </div>

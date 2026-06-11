@@ -368,6 +368,44 @@
     line-height: var(--line-height-normal);
 }
 
+/* All-complete state — every milestone for the current age band is done.
+   Dashboard milestone box (not a timeline card): dark teal panel with a
+   white success-icon disc, white title and soft-white subtitle. Typography
+   comes from .shuby-p1-dark / .shuby-p2 on the text nodes; this variant only
+   recolors them for the dark background. */
+.shuby-milestone-allcomplete {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    background-color: var(--color-shuby-verde-scuro-500);
+}
+
+.shuby-milestone-allcomplete-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background-color: var(--color-shuby-white);
+    /* Glyph inherits this via currentColor; sizing comes from render_svg size:. */
+    color: var(--color-shuby-verde-scuro-500);
+}
+
+.shuby-milestone-allcomplete-text {
+    flex: 1;
+    min-width: 0;
+
+    /* Both full white for WCAG AA on the teal panel (7.2:1); the 14/semibold
+       vs 12/regular type scale carries the title↔subtitle hierarchy.
+       Matches _completed_today's full-white body on the same background. */
+    .shuby-p1-dark { color: var(--color-shuby-white); }
+    .shuby-p2 { color: var(--color-shuby-white); }
+}
+
 /* Future / past-not-completed state — light blue (blu-300) background, blue-800 title.
    Figma 02.03_Timeline_Futuro shows cards at #e5f2ff on the white page background. */
 .shuby-milestone-card-future {
