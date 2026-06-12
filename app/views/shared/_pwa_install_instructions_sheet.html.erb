@@ -1,0 +1,47 @@
+<%# Manual "Aggiungi a Home" instructions. Opened by pwa-install#install when
+    the browser offers no beforeinstallprompt (iOS Safari, non-Chromium
+    desktop). Bottom-sheet chrome per .claude/rules/bottom-sheet-overlays.md
+    — the host element carries data-controller="pwa-install" and the
+    open-class attribute. %>
+<div class="shuby-bottom-sheet"
+     data-pwa-install-target="overlay"
+     aria-hidden="true">
+  <div class="shuby-bottom-sheet-backdrop"
+       data-action="click->pwa-install#closeOnBackdrop"></div>
+  <div class="shuby-bottom-sheet-sheet"
+       data-pwa-install-target="sheet"
+       role="dialog"
+       aria-modal="true"
+       aria-label="<%= t("pwa.install.sheet.title") %>">
+    <div class="shuby-bottom-sheet-handle" aria-hidden="true"></div>
+
+    <h2 class="shuby-pwa-install-sheet-title"><%= t("pwa.install.sheet.title") %></h2>
+    <p class="shuby-pwa-install-sheet-intro"><%= t("pwa.install.sheet.intro") %></p>
+
+    <%# iOS Safari steps (Share → Aggiungi a Home → Aggiungi). %>
+    <ol class="shuby-pwa-install-steps" data-pwa-install-target="iosSteps">
+      <% t("pwa.install.sheet.ios_steps").each_with_index do |step, i| %>
+        <li class="shuby-pwa-install-step">
+          <span class="shuby-pwa-install-step-num" aria-hidden="true"><%= i + 1 %></span>
+          <span class="shuby-pwa-install-step-text"><%= step %></span>
+        </li>
+      <% end %>
+    </ol>
+
+    <%# Generic browser-menu steps (non-iOS, non-Chromium desktop). %>
+    <ol class="shuby-pwa-install-steps" data-pwa-install-target="genericSteps" hidden>
+      <% t("pwa.install.sheet.generic_steps").each_with_index do |step, i| %>
+        <li class="shuby-pwa-install-step">
+          <span class="shuby-pwa-install-step-num" aria-hidden="true"><%= i + 1 %></span>
+          <span class="shuby-pwa-install-step-text"><%= step %></span>
+        </li>
+      <% end %>
+    </ol>
+
+    <button type="button"
+            class="shuby-btn shuby-btn-primary shuby-pwa-install-sheet-close"
+            data-action="pwa-install#closeSheet">
+      <%= t("pwa.install.sheet.close") %>
+    </button>
+  </div>
+</div>

@@ -160,6 +160,7 @@
 @import "./components/shuby/mascots.css" layer(components);
 @import "./components/shuby/modals.css" layer(components);
 @import "./components/shuby/bottom-sheet.css" layer(components);
+@import "./components/shuby/pwa-install.css" layer(components);
 @import "./components/shuby/skip-link.css" layer(components);
 @import "./components/shuby/growth-chart.css" layer(components);
 @import "./components/shuby/landing.css" layer(components);

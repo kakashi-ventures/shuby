@@ -29,6 +29,8 @@
       in hotwire_native.css (native shell); no per-page padding needed. %>
   <div class="shuby-container">
 
+    <%= render "dashboard/section_pwa_install_banner" unless hotwire_native_app? %>
+
     <%= render "dashboard/milestone_box" if current_child.present? %>
 
     <%= render "dashboard/section_activities" %>

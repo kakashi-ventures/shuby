@@ -9,6 +9,8 @@
 <%= render "settings/section_notifications" %>
 <%= render "settings/section_account_rows" %>
 
+<%= render "settings/section_pwa_install" unless hotwire_native_app? %>
+
 <%= settings_section_group(title: t("settings.show.configuration.reports.heading")) do %>
   <%= settings_row(
         label: t("settings.show.configuration.reports.pdf"),

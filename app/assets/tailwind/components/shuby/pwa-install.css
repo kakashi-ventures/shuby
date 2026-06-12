@@ -1,0 +1,151 @@
+/* =====================================================
+   PWA INSTALL — in-app "Installa l'app" surfaces
+   Dashboard banner (proactive, dismissible) + settings row, both opening the
+   shared instructions bottom-sheet (.shuby-bottom-sheet-* chrome).
+   See app/javascript/controllers/pwa_install_controller.js + src/pwa.js.
+   ===================================================== */
+
+/* Hide every install surface when the app is already running as an installed
+   PWA (the inline head script adds html.pwa-standalone before first paint).
+   Mirrors the html.hotwire-native gating convention. */
+html.pwa-standalone .js-pwa-install {
+    display: none !important;
+}
+
+/* ── Dashboard banner ──────────────────────────────────────────────────── */
+
+.shuby-pwa-install-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background-color: var(--color-shuby-blue-400);
+    border-radius: var(--radius-grande);
+}
+
+/* Bare-button reset: the whole left region is the install trigger. */
+.shuby-pwa-install-banner-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: 0;
+    background: transparent;
+    border: none;
+    text-align: left;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.shuby-pwa-install-banner-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background-color: var(--overlay-white-80);
+    color: var(--color-shuby-blue-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.shuby-pwa-install-banner-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.shuby-pwa-install-banner-title {
+    font-size: var(--font-size-p1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+}
+
+.shuby-pwa-install-banner-subtitle {
+    font-size: var(--font-size-p2);
+    color: var(--base-text-secondary);
+}
+
+.shuby-pwa-install-banner-dismiss {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-full);
+    color: var(--color-shuby-blue-800);
+    cursor: pointer;
+}
+
+.shuby-pwa-install-banner-dismiss:active {
+    background-color: var(--overlay-white-80);
+}
+
+/* ── Settings row icon ─────────────────────────────────────────────────── */
+
+/* Download glyph sits just before the trailing chevron in the settings row. */
+.shuby-pwa-install-row-icon {
+    flex-shrink: 0;
+    color: var(--color-shuby-blue-700);
+}
+
+/* ── Instructions bottom-sheet ─────────────────────────────────────────── */
+
+.shuby-pwa-install-sheet-title {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-shuby-blue-800);
+    margin-bottom: var(--space-2);
+}
+
+.shuby-pwa-install-sheet-intro {
+    font-size: var(--font-size-p2);
+    color: var(--color-shuby-blue-800);
+    margin-bottom: var(--space-5);
+}
+
+.shuby-pwa-install-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.shuby-pwa-install-step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+}
+
+.shuby-pwa-install-step-num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-shuby-blue-800);
+    color: var(--color-shuby-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-p2);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+}
+
+.shuby-pwa-install-step-text {
+    font-size: var(--font-size-p1);
+    color: var(--color-shuby-blue-800);
+}
+
+.shuby-pwa-install-sheet-close {
+    margin-top: var(--space-6);
+    width: 100%;
+}
