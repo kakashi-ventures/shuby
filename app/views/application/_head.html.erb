@@ -39,3 +39,26 @@
 <link rel="icon" type="image/svg+xml" href="/icon.svg">
 <link rel="icon" type="image/png" sizes="512x512" href="/icon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<%# PWA install metadata. theme-color paints the browser/OS chrome; the
+    apple-* tags give iOS a standalone display + a "Shuby" home-screen title
+    when the user adds the app via Safari's "Aggiungi a Home". %>
+<meta name="theme-color" content="#0159B5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Shuby">
+
+<%# Flag installed/standalone mode before first paint so the in-app install
+    prompts (.js-pwa-install) can be hidden via CSS with no flash — mirrors
+    the html.hotwire-native convention. The pwa-install controller double-
+    checks at runtime. No CSP is enforced (see content_security_policy.rb),
+    so this inline script needs no nonce. %>
+<script>
+  (function () {
+    try {
+      if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true) {
+        document.documentElement.classList.add("pwa-standalone")
+      }
+    } catch (e) {}
+  })()
+</script>

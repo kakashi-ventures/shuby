@@ -1,0 +1,33 @@
+<%# Proactive PWA-install banner for the dashboard. Starts hidden and is
+    revealed by the pwa-install controller only when the app is installable
+    (Android prompt captured) or on iOS, and not previously dismissed /
+    installed. The caller server-gates this out of the native shell
+    (unless hotwire_native_app?); the .js-pwa-install wrapper is CSS-hidden
+    when already running as an installed PWA (html.pwa-standalone). %>
+<div class="js-pwa-install"
+     data-controller="pwa-install"
+     data-pwa-install-open-class="shuby-bottom-sheet--open">
+  <section class="mb-4" data-pwa-install-target="banner" hidden>
+    <div class="shuby-pwa-install-banner">
+      <button type="button"
+              class="shuby-pwa-install-banner-main"
+              data-action="pwa-install#install">
+        <span class="shuby-pwa-install-banner-icon">
+          <%= render_svg "shuby/icons/icon-download", size: :md, decorative: true %>
+        </span>
+        <span class="shuby-pwa-install-banner-content">
+          <span class="shuby-pwa-install-banner-title"><%= t("pwa.install.banner.title") %></span>
+          <span class="shuby-pwa-install-banner-subtitle"><%= t("pwa.install.banner.subtitle") %></span>
+        </span>
+      </button>
+      <button type="button"
+              class="shuby-pwa-install-banner-dismiss"
+              data-action="pwa-install#dismiss"
+              aria-label="<%= t("pwa.install.banner.dismiss") %>">
+        <%= render_svg "shuby/icons/icon-close", size: :sm, decorative: true %>
+      </button>
+    </div>
+  </section>
+
+  <%= render "shared/pwa_install_instructions_sheet" %>
+</div>

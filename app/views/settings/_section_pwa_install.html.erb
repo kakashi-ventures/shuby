@@ -1,0 +1,21 @@
+<%# Always-available "Installa l'app" entry in Impostazioni → Configurazione.
+    The caller server-gates it out of the native shell
+    (unless hotwire_native_app?); the .js-pwa-install wrapper is CSS-hidden
+    when already running as an installed PWA (html.pwa-standalone). Tapping it
+    fires the native install dialog (Android) or opens manual instructions
+    (iOS / non-Chromium desktop). %>
+<div class="js-pwa-install"
+     data-controller="pwa-install"
+     data-pwa-install-open-class="shuby-bottom-sheet--open">
+  <%= settings_section_group(title: t("pwa.install.settings.heading")) do %>
+    <button type="button"
+            class="shuby-settings-row shuby-settings-row--button"
+            data-action="pwa-install#install">
+      <span class="shuby-settings-row__label"><%= t("pwa.install.settings.label") %></span>
+      <%= render_svg "shuby/icons/icon-download", size: :sm, decorative: true, class: "shuby-pwa-install-row-icon" %>
+      <%= render_svg "shuby/icons/icon-chevron-right", size: :sm, decorative: true, class: "shuby-settings-row__chevron" %>
+    </button>
+  <% end %>
+
+  <%= render "shared/pwa_install_instructions_sheet" %>
+</div>

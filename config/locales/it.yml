@@ -1064,3 +1064,25 @@ it:
     archive:
       specialist_title: "Articolo specialistico"
       specialist_description: "Approfondimenti su temi clinici e segnali atipici sono riservati agli utenti Premium."
+
+  pwa:
+    install:
+      banner:
+        title: "Installa Shuby"
+        subtitle: "Aggiungila alla schermata Home per aprirla in un tocco."
+        dismiss: "Chiudi"
+      settings:
+        heading: "App"
+        label: "Installa l'app sul telefono"
+      sheet:
+        title: "Installa Shuby"
+        intro: "Aggiungi Shuby alla schermata Home per accedere più velocemente, come una vera app."
+        ios_steps:
+          - "Tocca il pulsante Condividi nella barra di Safari."
+          - "Scorri e tocca «Aggiungi a Home»."
+          - "Tocca «Aggiungi» in alto a destra."
+        generic_steps:
+          - "Apri il menu del browser (i tre puntini)."
+          - "Tocca «Installa app» o «Aggiungi a schermata Home»."
+          - "Conferma per aggiungere Shuby."
+        close: "Ho capito"
