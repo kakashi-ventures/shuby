@@ -182,7 +182,10 @@ export default class extends Controller {
   focusFirstInteractive(slide) {
     const focusable = slide.querySelector("button:not([disabled]), a[href], input:not([disabled])")
     if (focusable) {
-      focusable.focus()
+      // preventScroll: matches the shared focus-trap contract (src/focus_trap)
+      // and measurement_overlay_controller — moving focus between slides must
+      // never scroll the slide content or the page behind the overlay.
+      focusable.focus({ preventScroll: true })
     }
   }
 

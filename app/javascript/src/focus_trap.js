@@ -45,7 +45,7 @@ export function activateFocusTrap(container) {
     const focusable = focusableWithin(container)
     if (focusable.length === 0) {
       event.preventDefault()
-      container.focus()
+      container.focus({ preventScroll: true })
       return
     }
     const first = focusable[0]
@@ -54,26 +54,31 @@ export function activateFocusTrap(container) {
     if (event.shiftKey) {
       if (active === first || !container.contains(active)) {
         event.preventDefault()
-        last.focus()
+        last.focus({ preventScroll: true })
       }
     } else if (active === last) {
       event.preventDefault()
-      first.focus()
+      first.focus({ preventScroll: true })
     }
   }
   container.addEventListener("keydown", onKeydown)
 
+  // preventScroll: an overlay opens with its sheet animating in from
+  // translateY(100%), so the first focusable (e.g. the close button) is still
+  // off-screen at this point. A plain focus() would make the browser scroll the
+  // caller page to reveal it (pronounced in iOS WebKit) — the "back page scrolls
+  // when the tappa overlay opens" bug. A focus trap must move focus, never scroll.
   const initial = focusableWithin(container)[0]
   if (initial) {
-    initial.focus()
+    initial.focus({ preventScroll: true })
   } else if (container.tabIndex >= 0 || container.hasAttribute("tabindex")) {
-    container.focus()
+    container.focus({ preventScroll: true })
   }
 
   return function deactivate() {
     container.removeEventListener("keydown", onKeydown)
     if (previouslyFocused && document.body.contains(previouslyFocused)) {
-      previouslyFocused.focus()
+      previouslyFocused.focus({ preventScroll: true })
     }
   }
 }
